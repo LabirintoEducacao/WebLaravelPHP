@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Pergunta;
 use App\Resposta;
 use App\Sala;
@@ -66,6 +67,8 @@ class PerguntaRespostaController extends Controller
              $pergunta->prox_perg = $proxima; 
              $pergunta->disp = $disponivel;    
              $pergunta->save();
+
+             // $pergunta = 
         
         
 //        for($x=1;$x<=$request->input('respMax');$x++){

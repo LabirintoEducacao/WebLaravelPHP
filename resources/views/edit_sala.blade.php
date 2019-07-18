@@ -16,8 +16,6 @@
                            
 
 
-                        <p class="card-title" >{{Auth::user()->name}} </p>
-
                         
 
                 <!--         @foreach($data as $item)
