@@ -58,7 +58,7 @@ class PerguntaRespostaController extends Controller
              $disponivel = true;
 
              $pergunta = new Pergunta();
-             $pergunta->sala_id = $request->get('id_sala');
+             $pergunta->sala_id = '1';
              $pergunta->tipo_perg = $request->get('question_type');
              $pergunta->pergunta = $request->get('pergunta');
              $pergunta->ambiente_perg = $request->get('answer_boolean');
