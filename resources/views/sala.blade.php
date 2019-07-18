@@ -35,7 +35,7 @@
 
  <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
  
-     <a href="{{ url('admin/editar-sala') }}" class="btn btn-sm btn-outline-info fa fa-pencil-square-o ">&ensp;Editar</a>
+     <a href="{{ url('admin/editar-sala/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-pencil-square-o ">&ensp;Editar</a>
 
       <a href="{{ url('admin/deletar-sala/'.$item->id)}}" class="btn btn-sm btn-outline-danger fa fa-pencil-square-o ">&ensp;Deletar</a> 
 </div>

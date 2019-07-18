@@ -14,11 +14,9 @@ class PerguntaRespostaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-
-         $data = \App\Sala::all ();
-        return view ( 'edit_sala' )->withData ( $data );
+        return view ( 'edit_sala', ['id' => $id] );
     }
 
     /**
@@ -98,7 +96,7 @@ class PerguntaRespostaController extends Controller
 //                 $pergunta->save();
 //            }
 
-              return view('edit_sala');
+              return view('edit_sala', ['id' => $request->get('id_sala')] );
     }
     
 

@@ -27,7 +27,7 @@ class CreatePerguntasTable extends Migration
         });
 
        Schema::table('perguntas', function($table) {
-       $table->foreign('sala_id')->references('id')->on('salas');
+       $table->foreign('sala_id')->references('id')->on('salas')->onDelete('cascade');
        });
     
     }

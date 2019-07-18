@@ -16,6 +16,10 @@ class Resposta extends Model
         'tipo_resp', 'resposta', 'corret',
     ];
     
-    
+    public function perguntas() {
+        return $this->belongsToMany("App\Pergunta");
+    }
     
 }
+
+

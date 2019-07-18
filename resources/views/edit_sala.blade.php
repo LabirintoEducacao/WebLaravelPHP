@@ -7,7 +7,7 @@
 
                       <p style="font-size:35px;" align="center"> Incluindo Perguntas e Respostas&emsp;<button class="btn btn-outline-info" id="nova">ADICIONAR PERGUNTA E RESPOSTA</button></p>
 
-        <form action="editar-sala" method="POST" style="margin-left: 25%;margin-right:1%">
+        <form action=" {{ url('admin/editar-sala')}}" method="POST" style="margin-left: 25%;margin-right:1%">
                            @csrf
                         {{ csrf_field() }}
                         
@@ -16,21 +16,9 @@
                            
 
 
-                        <p class="card-title" >{{Auth::user()->name}} </p>
-
-                        
-
-                <!--         @foreach($data as $item)
-                             @if( $item->id == $item->id)
-                               <?php $sala = $item->id ?>
-                            @endif                     
-                        @endforeach
-
-                         <p class="card-title" >{{$sala}}</p>
-      
-                         <input type="hidden" name="id_sala" value="{{$sala}}"> -->
-
-
+                      <p class="card-title" >{{Auth::user()->name}} </p>
+                        <input type="hidden" name="id_sala" value="{{ $id }}">
+                     
 
                         <div class="form-group">
                              <h4 class="col-md-2"> Tipo da perguntas: </h4>

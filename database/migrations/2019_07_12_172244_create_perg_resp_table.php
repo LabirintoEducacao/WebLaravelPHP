@@ -15,10 +15,15 @@ class CreatePergRespTable extends Migration
     {
         Schema::create('perg_resp', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('perg_id')->unsigned();
-            $table->integer('resp_id')->unsigned();
+            $table->bigInteger('perg_id')->unsigned();
+            $table->bigInteger('resp_id')->unsigned();
             $table->timestamps();
         });
+
+       Schema::table('perg_resp', function($table) {
+       $table->foreign('perg_id')->references('id')->on('perguntas')->onDelete('cascade');
+       $table->foreign('resp_id')->references('id')->on('respostas')->onDelete('cascade');
+       });
     }
 
     /**

@@ -17,9 +17,12 @@ class Pergunta extends Model
     ];
 
 
-
-    function sala() {
+   public function salas() {
         return $this->belongsTo("App\Sala");
+    }
+
+   public function respostas() {
+        return $this->belongsToMany("App\Resposta");
     }
     
     

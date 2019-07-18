@@ -160,5 +160,5 @@ Route::post('admin/sala', 'SalaController@store');
 
 /*Rotas da pergunta e Resposta*/
 
-Route::get('admin/editar-sala', 'PerguntaRespostaController@index');
+Route::get('admin/editar-sala/{id}', 'PerguntaRespostaController@index');
 Route::post('admin/editar-sala', 'PerguntaRespostaController@store');
