@@ -8,17 +8,53 @@
                       <p style="font-size:35px;" align="center"> Incluindo Perguntas e Respostas&emsp;<button class="btn btn-outline-info" id="nova">ADICIONAR PERGUNTA E RESPOSTA</button></p>
 
         <form action=" {{ url('admin/editar-sala')}}" method="POST" style="margin-left: 25%;margin-right:1%">
+
                            @csrf
                         {{ csrf_field() }}
+        
+
+            <h3>Definição de como o Jogo mostrará essa pergunta</h3>
+
+                          <div class="form-group">
+                             <span class="col-md-2"> Tipo: </span>
+                            <select name ="answer_boolean">
+                                <option selected value="1">Corredor</option>
+                                <option value="2">Labirinto</option>
+                                    
+                             </select>
+                        </div>
+
+
+                        <div class="form-group">
+                             <span class="col-md-2"> Tamanho: </span>
+                            <select name ="tamanho">
+                                <option selected value="1">Pequeno</option>
+                                <option value="2">Medio</option>
+                                <option value="3">Grande</option>
+                                    
+                             </select>
+                        </div>
                         
-                                            
+                        <div class="form-group">
+                             <span class="col-md-2"> Largura: </span>
+                            <select name ="largura">
+                                <option selected value="1">Pequeno</option>
+                                <option value="2">Medio</option>
+                                <option value="3">Grande</option>
+                                    
+                             </select>
+                        </div>
+
+                               
 <!-------------------------  PERGUNTA  -------------------------------->
                            
-
 
                       <p class="card-title" >{{Auth::user()->name}} </p>
                         <input type="hidden" name="id_sala" value="{{ $id }}">
                      
+
+                        <br>
+                      <h3>Pergunta</h3>
 
                         <div class="form-group">
                              <h4 class="col-md-2"> Tipo da perguntas: </h4>
@@ -38,8 +74,9 @@
                         </div>
 
                        <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
-<!-------------------------  RESPOSTAS  -------------------------------->
 
+<!-------------------------  RESPOSTAS  -------------------------------->
+                          <br>
 
                           <h3>Resposta</h3>
                         <div class="form-group">
@@ -86,42 +123,14 @@
                      
 <!--                        <button class="btn btn-outline-info" id="nresp">ADICIONAR RESPOSTA</button>-->
 
-------  DEFINIÇOES DAS RESPOSTAR PARA O LABIRINTO   -----
+                          
+             <button type="submit" class="btn btn-outline-success btn-lg btn-block">CRIAR PERGUNTA</button>
 
-                          <p style="font-size:40px; ">Definição de como o Jogo mostrará essa pergunta</p>
-
-                          <div class="form-group">
-                             <strong class="col-md-2"> Tipo: </strong>
-                            <select name ="answer_boolean">
-                                <option selected value="1">Corredor</option>
-                                <option value="2">Labirinto</option>
-                                    
-                             </select>
-                        </div>
+             <a href="{{ url('/admin/sala') }}" class="btn btn-outline-danger btn-lg btn-block" >CANCELAR</a>
 
 
-                        <div class="form-group">
-                             <strong class="col-md-2"> Tamanho: </strong>
-                            <select name ="tamanho">
-                                <option selected value="1">Pequeno</option>
-                                <option value="2">Medio</option>
-                                <option value="3">Grande</option>
-                                    
-                             </select>
-                        </div>
-                        
-                        <div class="form-group">
-                             <strong class="col-md-2"> Largura: </strong>
-                            <select name ="largura">
-                                <option selected value="1">Pequeno</option>
-                                <option value="2">Medio</option>
-                                <option value="3">Grande</option>
-                                    
-                             </select>
-                        </div>
-             <button type="submit" class="btn btn-outline-danger btn-lg btn-block">CRIAR SALA</button>
                         </form>
-                        
+              
 
                     
     

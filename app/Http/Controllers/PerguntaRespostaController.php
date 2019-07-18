@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Pergunta;
 use App\Resposta;
 use App\Sala;
@@ -55,7 +56,7 @@ class PerguntaRespostaController extends Controller
              $disponivel = true;
 
              $pergunta = new Pergunta();
-             $pergunta->sala_id = $request->get('id_sala');
+             $pergunta->sala_id = '1';
              $pergunta->tipo_perg = $request->get('question_type');
              $pergunta->pergunta = $request->get('pergunta');
              $pergunta->ambiente_perg = $request->get('answer_boolean');
@@ -64,6 +65,8 @@ class PerguntaRespostaController extends Controller
              $pergunta->prox_perg = $proxima; 
              $pergunta->disp = $disponivel;    
              $pergunta->save();
+
+             // $pergunta = 
         
         
 //        for($x=1;$x<=$request->input('respMax');$x++){
