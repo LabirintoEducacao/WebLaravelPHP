@@ -66,40 +66,10 @@ class PerguntaRespostaController extends Controller
              $pergunta->disp = $disponivel;    
              $pergunta->save();
 
-             // $pergunta = 
-        
-        
-//        for($x=1;$x<=$request->input('respMax');$x++){
-//                 $answer_tipo = "answer_tipo" +$x;
-//                 $resposta = "resposta" +$x;
-//                 $answer_definitions = "answer-definitions" +$x;
-//
-//                 $resposta->tipo_resp = $request->input($answer_tipo);
-//                 $resposta->resposta = $request->input($resposta);
-//                 $resposta->corret = $request->input($answer_definition);  
-//                 $resposta->save();
-//             }
-//              
-//             
-//            for($x=1;$x<=$request->input('pergMax');$x++){
-//                 $question_type = "question_type" +$x;
-//                 $pergunta = "pergunta" +$x;
-//                 $answer_boolean = "answer_boolean" +$x;
-//                 $tamanho = "tamanho" +$x;
-//                 $largura = "largura" +$x;
-//                
-//                 $pergunta->sala_id = $id_sala;
-//                 $pergunta->tipo_perg = $request->input($question_type);
-//                 $pergunta->pergunta = $request->input($pergunta);
-//                 $pergunta->ambiente_perg = $request->input($answer_boolean);
-//                 $pergunta->tamanho = $request->input($tamanho);
-//                 $pergunta->largura = $request->input($largura);     
-//                 $pergunta->prox_perg = $proxima; 
-//                 $pergunta->disp = $disponivel;    
-//                 $pergunta->save();
-//            }
-
-              return view('edit_sala', ['id' => $request->get('id_sala')] );
+             DB::table('perg_resp')->insert(
+                array('perg_id' => $pergunta->id, 'resp_id' => $resposta->id)
+            );
+            return redirect('admin/editar-sala/'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
     }
     
 
