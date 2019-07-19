@@ -122,7 +122,7 @@ return [
          ],
           [
              'text'        => 'Espaço Virtual',
-             'url'         => '',
+             'url'         => 'virtual',
              'icon'        => 'rocket',
              //'can'         => 'adminpermitido',
          ],

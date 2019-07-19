@@ -162,3 +162,9 @@ Route::post('admin/sala', 'SalaController@store');
 
 Route::get('admin/editar-sala/{id}', 'PerguntaRespostaController@index');
 Route::post('admin/editar-sala', 'PerguntaRespostaController@store');
+
+Route::get('virtual', function(){
+ $data = \App\Sala::all ();
+    return view ( 'virtual' )->withData ( $data );
+
+});
