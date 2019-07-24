@@ -113,11 +113,10 @@ class SalaController extends Controller
 
     public function add_user(Request $request){
         $data = $request->all();
-        var_dump($data->sala_id);
-        // DB::table('sala_user')->insert(
-        //         array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
-        //     );
-        // return redirect('admin/alunos'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
+        DB::table('sala_user')->insert(
+                array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
+            );
+        return redirect('admin/alunos'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
 
     }
 }
