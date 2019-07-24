@@ -45,6 +45,36 @@ class PerguntaRespostaController extends Controller
         //
     }
 
+    public function edit_resp(Request $request){
+        $data = $request->all();
+        DB::table('respostas')
+            ->where('id','=', $data['resposta_id'])
+            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name']]);
+
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        return view ( 'edit_sala', ['id' => $data['sala_id']] )->with(['data' => $perg, 'respostas' => $respostas]);
+    }
+
+    public function edit_perg(Request $request){
+        $data = $request->all();
+        DB::table('perguntas')
+            ->where('id','=', $data['pergunta_id'])
+            ->update(['tipo_perg' => $data['pergunta_type'],'pergunta' => $data['pergunta_name'],'ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
+
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        return view ( 'edit_sala', ['id' => $data['sala_id']] )->with(['data' => $perg, 'respostas' => $respostas]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -175,4 +175,49 @@ $(document).ready(function(){
  
 });
 
+    $('#perguntaModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var recipient = button.data('whatever'); // Extract info from data-* attributes
+      var recipientnome = button.data('whatevernome');
+      var recipientperg = button.data('whatevertype');
+      var recipientdetalhes = button.data('whateverdetalhes');
+      var recipienttamanho = button.data('whatevertamanho');
+      var recipientlargura = button.data('whateverlargura');
+      var recipientid = button.data('whateveridperg');
+      
+      
+      
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      modal.find('.modal-title').text('Nº ' + recipient);
+      modal.find('#id-curso').val(recipient);
+      modal.find('#pergunta_name').val(recipientnome);
+      modal.find('#pergunta_type').val(recipientperg);
+      modal.find('#pergunta_ambiente').val(recipientdetalhes);
+      modal.find('#pergunta_tamanho').val(recipienttamanho);
+      modal.find('#pergunta_largura').val(recipientlargura);
+      modal.find('#pergunta_id').val(recipientid);
+      
+    });
+
+    $('#respostaModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var recipient = button.data('whatevern'); // Extract info from data-* attributes
+      var recipientnome = button.data('whateverresp');
+      var recipientresp = button.data('whatevertyperesp');
+      var recipientid = button.data('whateveridresp');
+      
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      modal.find('.modal-title').text('Nº ' + recipient);
+      modal.find('#id-curso').val(recipient);
+      modal.find('#resposta_name').val(recipientnome);
+      modal.find('#resposta_type').val(recipientresp);
+      modal.find('#resposta_id').val(recipientid);
+      
+    });
+
+
 
