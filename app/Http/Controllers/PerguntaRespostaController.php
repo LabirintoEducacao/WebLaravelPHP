@@ -15,10 +15,25 @@ class PerguntaRespostaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+
+    //      $data = \App\Sala::all ();
+    //     return view ( 'edit_sala' )->withData ( $data );
+    // }
+
     public function index($id)
     {
-        return view ( 'edit_sala', ['id' => $id] );
+        
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$id)
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$id)
+            ->get();
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'respostas' => $respostas]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -48,6 +63,7 @@ class PerguntaRespostaController extends Controller
            ]);            
              $resposta = new Resposta();
              $resposta->tipo_resp = $request->get("answer_tipo");
+             $resposta->sala_id = $request->get('sala_id');
              $resposta->resposta = $request->get("resposta");
              $resposta->corret = $request->get("answer-definitions");  
              $resposta->save();
@@ -56,7 +72,7 @@ class PerguntaRespostaController extends Controller
              $disponivel = true;
 
              $pergunta = new Pergunta();
-             $pergunta->sala_id = '1';
+             $pergunta->sala_id = $request->get('sala_id');
              $pergunta->tipo_perg = $request->get('question_type');
              $pergunta->pergunta = $request->get('pergunta');
              $pergunta->ambiente_perg = $request->get('answer_boolean');
@@ -69,7 +85,8 @@ class PerguntaRespostaController extends Controller
              DB::table('perg_resp')->insert(
                 array('perg_id' => $pergunta->id, 'resp_id' => $resposta->id)
             );
-            return redirect('admin/editar-sala/'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
+
+             return redirect('admin/editar-sala/'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
     }
     
 
@@ -115,6 +132,18 @@ class PerguntaRespostaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $resp = DB::table('perg_resp')
+                ->select('resp_id')
+                ->where('perg_id', '=', $id)
+                ->get();
+        $perg = Pergunta::find($id);
+        
+        DB::table('perg_resp')->where('perg_id', '=', $id)->delete();
+        DB::table('perguntas')->where('id', '=', $id)->delete();
+        foreach ($resp as $resp_id) {
+            DB::table('respostas')->where('id', '=', $resp_id->resp_id)->delete();
+        }
+        
+        return redirect('admin/editar-sala/'. $perg->sala_id)->with('warning', 'Pergunta deletada com sucesso!');
     }
 }

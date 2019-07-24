@@ -128,4 +128,52 @@ class UserController extends Controller
         
     	return redirect()->route('admin.users.index')->with('success', 'E-mail para cadastro enviado com sucesso!');
     }
+
+
+    public function add_user($id)
+    {
+
+        $data = DB::table('users')
+            ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
+            ->orderBy('name')
+            ->where('sala_user.sala_id','=',$id)
+            ->get();
+
+        $alunos = \App\User::orderBy('name')->get();
+
+        return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
+    }
+
+
+    public function store(Request $request)
+    {
+        $data = DB::table('sala_user')
+            ->where([['sala_id','=',$request->get('sala_id')],['user_id','=',$request->get('user_id')]])
+            ->get();
+            var_dump(count($data));
+
+        if(count($data) == 0){
+             DB::table('sala_user')->insert(
+                array('sala_id' => $request->get('sala_id'), 'user_id' => $request->get('user_id'))
+            );
+
+             return redirect('admin/alunos/'. $request->get('sala_id'))->with('success', 'Aluno adicionado com sucesso!');
+        }
+        return redirect('admin/alunos/'. $request->get('sala_id'))->with('warning', 'Este aluno já está cadastrado nesta sala!');
+    }
+
+    public function deletar($id,$sala)
+    {
+
+        DB::table('sala_user')->where('id','=',$id)->delete();
+
+
+        // if(count($data) == 0){
+        return redirect('admin/alunos/'. $sala)->with('success', 'Aluno deletado com sucesso!');
+        // }
+        // return redirect('admin/alunos/'. $sala)->with('warning', 'Este aluno não pôde ser deletado!');
+    }
+
+
+
 }

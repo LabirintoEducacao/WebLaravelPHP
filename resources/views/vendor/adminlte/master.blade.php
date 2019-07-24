@@ -43,6 +43,11 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     
+    <!-- Select com busca -->
+  <!-- <link rel="stylesheet" href="{{ asset('docsupport/style.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('docsupport/prism.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
+    
     <style>
         html, body {
                 background-color: #fff;
@@ -170,6 +175,13 @@
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     
 <script src="{{ asset('js/caixa.js') }}"></script>
+    
+    <!-- Select com busca -->
+
+<!-- <script src="docsupport/jquery-3.2.1.min.js" type="text/javascript"></script> -->
+<script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
+<script src="{{ asset('docsupport/prism.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('docsupport/init.js') }}" type="text/javascript" charset="utf-8"></script>
 
 @if(config('adminlte.plugins.select2'))
     <!-- Select2 -->

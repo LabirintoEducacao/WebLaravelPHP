@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Sala;
 
 class SalaController extends Controller
@@ -108,5 +109,15 @@ class SalaController extends Controller
            $sala->delete();         
        }
       return redirect('admin/sala');
+    }
+
+    public function add_user(Request $request){
+        $data = $request->all();
+        var_dump($data->sala_id);
+        // DB::table('sala_user')->insert(
+        //         array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
+        //     );
+        // return redirect('admin/alunos'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
+
     }
 }

@@ -3,7 +3,9 @@ $(document).ready(function(){
     var y=1;
     var z=0;
     var divP = $('#caixa');
+    // divP.append('<form action="editar-sala" method="POST" style="margin-left: 5%;margin-right:1%">');
     var btnCriar = $('#nova');
+
 //    var btnResp = $('#nresp');
 
     btnCriar.click(function(){

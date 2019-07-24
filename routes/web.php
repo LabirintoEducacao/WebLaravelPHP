@@ -68,6 +68,16 @@ Route::get('admin/sala', function () {
 
 });
 
+Route::get('admin/alunos/{id}', 'Admin\UserController@add_user');
+Route::post('admin/aluno', 'Admin\UserController@store');
+Route::get('admin/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar');
+// Route::get('admin/alunos/{id}', function () {
+
+//     $data = \App\User::all ();
+//     return view ('add_alunos')->withData ( $data );
+
+// });
+
 
 Route::get('admin/deletar-sala/{id}', 'SalaController@destroy' );
 
@@ -162,6 +172,11 @@ Route::post('admin/sala', 'SalaController@store');
 
 Route::get('admin/editar-sala/{id}', 'PerguntaRespostaController@index');
 Route::post('admin/editar-sala', 'PerguntaRespostaController@store');
+
+Route::get('admin/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy');
+
+Route::get('admin/add-aluno', 'SalaController@add_user');
+
 
 Route::get('virtual', function(){
  $data = \App\Sala::all ();
