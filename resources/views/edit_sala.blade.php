@@ -185,7 +185,7 @@
 <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
             <td>
               <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}"></button>
-              <a href="{{ url('admin/deletar-pergunta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+              <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
             </td>
           </tr>
           <?php $y++; ?>

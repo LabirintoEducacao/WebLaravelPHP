@@ -57,7 +57,8 @@ class PerguntaRespostaController extends Controller
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$data['sala_id'])
             ->get();
-        return view ( 'edit_sala', ['id' => $data['sala_id']] )->with(['data' => $perg, 'respostas' => $respostas]);
+            
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])->with('success', 'Resposta alterada com sucesso!');
     }
 
     public function edit_perg(Request $request){
@@ -72,7 +73,8 @@ class PerguntaRespostaController extends Controller
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$data['sala_id'])
             ->get();
-        return view ( 'edit_sala', ['id' => $data['sala_id']] )->with(['data' => $perg, 'respostas' => $respostas]);
+
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])->with('success', 'Pergunta alterada com sucesso!');
     }
 
     /**
@@ -175,5 +177,17 @@ class PerguntaRespostaController extends Controller
         }
         
         return redirect('admin/editar-sala/'. $perg->sala_id)->with('warning', 'Pergunta deletada com sucesso!');
+    }
+
+    public function destroyresp($id)
+    {
+        $resp = DB::table('respostas')
+                ->select('sala_id')
+                ->where('id', '=', $id)
+                ->get();
+        // $resposta = Respostas::find($id);
+        DB::table('perg_resp')->where('resp_id', '=', $id)->delete();
+        DB::table('respostas')->where('id', '=', $id)->delete();
+        return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with('warning', 'Resposta deletada com sucesso!');
     }
 }
