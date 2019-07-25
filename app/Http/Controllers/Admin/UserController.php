@@ -160,7 +160,7 @@ class UserController extends Controller
                 'message' => 'E-mail para cadastro enviado com sucesso!!',
                 'alert-type' => 'success'
                 );
-    	return redirect()->route('admin.users.index')->with($notification);
+    	return redirect('admin/alunos/'. $data['sala_id'])->with($notification);
     }
 
 
