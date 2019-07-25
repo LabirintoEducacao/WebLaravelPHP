@@ -1,12 +1,13 @@
 @extends('adminlte::page')
 
 @section('content')
+
 <div class="container"style="padding-right: 100px; padding-left: 100px;">
-
-
-
-
-
+  @if (session('status'))
+    <div class="alert alert-success" role="alert">
+      {{ session('status') }}
+    </div>
+  @endif
   
   <input type="hidden" value="52" id="num_y">
 
@@ -26,13 +27,19 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ url('admin/editar-sala') }}" method="POST" style="margin-left: 5%;margin-right:1%">
+        <form name="add_name"  id="add_name" style="margin-left: 5%;margin-right:1%">
           <input type="hidden" value="{{$id}}" name="sala_id">
           <div class="modal-body">
           
             @csrf
             {{ csrf_field() }}
 
+                 @error('pergunta')
+                     <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                  <div class="alert alert-danger print-error-msg" style="display: none;"><ul></ul></div>
+                  <div class="alert alert-success print-success-msg" style="display: none;"><ul></ul></div>
+                  <br><br>
             <ul class="nav nav-tabs">
               <li class="active col-md-4 lista"><a data-toggle="tab" href="#perg">Pergunta</a></li>
               <li class="col-md-4 lista"><a data-toggle="tab" href="#resp">Resposta</a></li>
@@ -55,45 +62,46 @@
                 </div>
                 <div class="form-group">
                   <h4>Pergunta:</h4>
-                  <input type="text" name="pergunta" class="form-control" placeholder="Pergunta" style="width: 500px;">
+                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;">
                 </div>
               </div>
 
               <!-- RESPOSTAS -->
               <div id="resp" class="tab-pane fade">
-                <div class="form-group">
-                  <br>
-                  <h4 style="display: inline;" class="col-md-5">Tipo da resposta:&emsp;</h4>
-                  <select  name ="answer_tipo">
-                    <option selected value="1">Texto</option>
-                    <option value="2">Imagem</option>
-                    <option value="3">video</option>
-                    <option value="4">Audio</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
-                  <h4 class="col-md-5">Definição da resposta: </h4>
-                  <select name ="answer-definitions">
-                    <option selected value="1">Certa</option>          
-                    <option value="2">Fim de Jogo</option>   
-                  </select>
-                </div>
-                <div class="form-group">
-                  <table>
-                    <tr>
-                      <td>
-                        <h4 class="col-md-3">Resposta:&emsp;&emsp;</h4>
-                      </td>
-                      <td>
-                        <input type="text" name="resposta" class="form-control" placeholder="Resposta">
-                      </td>
-                      <td>&emsp;
-                        <button class="fa fa-plus btn btn-outline-success btn-sm"></button>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+              <table class="table table-bordered table-hover" id="dynamic_field" border="0">
+                               <thead>
+                                 <tr>
+                                   <td>Tipo da Resposta</td>
+                                   <td>Definição da Resposta</td>
+                                   <td>Fim de Jogo</td>
+                                   <td>Resposta</td>
+                                 </tr>
+                               </thead>
+                                 <tbody>
+                                   <tr>
+                                     <td>
+
+                                       <select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">
+                                        <option selected value="1">Texto</option>
+                                            <option value="2">imagem</option>
+                                            <option value="3">video</option>
+                                            <option value="4">Audio</option>
+                                       </select>  
+                                     </td>
+                                      <td>
+                                     <select name ="corret[]" class="form-control">
+                                     <option selected value="1">Certa</option>
+                                     <option value="2">Errada</option>   
+                                     </select>
+                                     </td>
+                                      <td>
+                                      <input type="checkbox" name="end_game[]">
+                                     </td>
+                                     <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
+                                     <td><button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button></td>
+                                   </tr>
+                                 </tbody>
+                               </table>
               </div>
 
               <!-- AMBIENTE -->
@@ -130,7 +138,7 @@
           </div>
           <div class="modal-footer">
             <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
-            <button type="submit" class="btn btn-outline-success">Save changes</button>
+            <button name="submit" id="submit" class="btn btn-info" value="submit">Save changes</button>
           </div>
         </form>
       </div>
@@ -270,18 +278,10 @@
         </form>
       </div>
     </div>
-  </div>      
-
-                    
-    
+  </div>       
     
     
 </div>
-
-
-
-
-
 
 <div class="modal fade" id="respostaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
@@ -331,6 +331,6 @@
     
     
     
-</div>
+</div>        
 
 @endsection

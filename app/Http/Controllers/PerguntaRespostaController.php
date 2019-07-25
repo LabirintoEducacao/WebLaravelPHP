@@ -86,39 +86,75 @@ class PerguntaRespostaController extends Controller
     public function store(Request $request)
     {
 
+      if($request->ajax())
+      {
+        $rules = array(
+            'resposta.*' => 'required'
+        );
       
-           $request->validate([
+      $error = Validator::make($request->all(), $rules);
 
-                  'resposta' => 'required',
-                  'pergunta' => 'required'
+      if($error->fails())
+      {
+        return response()->json(['error' => $error->errors()->all()]);
 
-           ]);            
-             $resposta = new Resposta();
-             $resposta->tipo_resp = $request->get("answer_tipo");
-             $resposta->sala_id = $request->get('sala_id');
-             $resposta->resposta = $request->get("resposta");
-             $resposta->corret = $request->get("answer-definitions");  
-             $resposta->save();
-              
+      }
+
+              $tipo_resp = $request->tipo_resp;
+              $resposta = $request->resposta;
+              $corret = $request->corret;
+              $sala_id = $request->sala_id;
+              $end_game = true;
+
+
+             $sala_id = $request->sala_id;
+             $tipo_perg = $request->question_type;
+             $pergunta = $request->pergunta;
+             $ambiente_perg = $request->answer_boolean;
+             $tamanho = $request->tamanho;
+             $largura = $request->largura;
              $proxima = 0;
-             $disponivel = true;
+             $disponivel = true;     
+        
+    $pergid = DB::table('perguntas')->insertGetId(array(
+                
+             'sala_id' =>  $sala_id,
+             'tipo_perg' => $tipo_perg,
+             'pergunta' => $request->pergunta,
+             'ambiente_perg' => $ambiente_perg,
+             'tamanho' => $tamanho,
+             'largura' => $largura,
+             'prox_perg' => $proxima,
+             'disp' => $disponivel     
 
-             $pergunta = new Pergunta();
-             $pergunta->sala_id = $request->get('sala_id');
-             $pergunta->tipo_perg = $request->get('question_type');
-             $pergunta->pergunta = $request->get('pergunta');
-             $pergunta->ambiente_perg = $request->get('answer_boolean');
-             $pergunta->tamanho = $request->get('tamanho');
-             $pergunta->largura = $request->get('largura');     
-             $pergunta->prox_perg = $proxima; 
-             $pergunta->disp = $disponivel;    
-             $pergunta->save();
+           ));
 
-             DB::table('perg_resp')->insert(
-                array('perg_id' => $pergunta->id, 'resp_id' => $resposta->id)
-            );
 
-             return redirect('admin/editar-sala/'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
+      
+      for($count = 0; $count < count($tipo_resp); $count++)
+      {
+              
+           
+        $id = DB::table('respostas')->insertGetId(array(
+
+                 'sala_id'  =>  $sala_id,
+                 'tipo_resp' => $tipo_resp[$count],
+                 'resposta' => $resposta[$count],
+                 'corret' => $corret[$count],
+                 'end_game' => $end_game
+
+           ));
+
+
+          DB::table('perg_resp')->insert(array('perg_id' => $pergid, 'resp_id' => $id));
+
+      }
+
+     return response()->json(['success' => 'sucesso.']);
+
+     }
+
+          
     }
     
 
