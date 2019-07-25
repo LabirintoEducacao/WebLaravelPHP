@@ -124,7 +124,7 @@ return [
              'text'        => 'Espaço Virtual',
              'url'         => 'virtual',
              'icon'        => 'rocket',
-             //'can'         => 'adminpermitido',
+             'can'         => 'permitidouser',
          ],
         'CONFIGURAÇÃO DE CONTA',
         [
@@ -148,6 +148,7 @@ return [
             'text' => 'Salas',
             'url'  => 'admin/sala',
             'icon' => 'cube',
+            'can'  => 'permitidoprof',
         ],
         
         // [

@@ -33,12 +33,21 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        \Gate::define('permitidouserprof', function ($user) {
+        \Gate::define('permitidouser', function ($user) {
 
-            if ($user->hasAnyRoles(['user', 'professor'])){
+            if ($user->hasAnyRoles(['user'])){
                 return true;
             }
             return false;
         });
+
+        \Gate::define('permitidoprof', function ($user) {
+
+            if ($user->hasAnyRoles(['professor'])){
+                return true;
+            }
+            return false;
+        });
+        
     }
 }
