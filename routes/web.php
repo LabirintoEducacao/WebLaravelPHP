@@ -182,8 +182,6 @@ Route::get('admin/deletar-resposta/{id}', 'PerguntaRespostaController@destroyres
 Route::get('admin/add-aluno', 'SalaController@add_user');
 
 
-Route::get('virtual', function(){
- $data = \App\Sala::all ();
-    return view ( 'virtual' )->withData ( $data );
 
-});
+
+Route::get('virtual', 'SalaController@entrar');

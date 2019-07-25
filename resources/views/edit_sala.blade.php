@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container"style="padding-right: 100px; padding-left: 100px;">
-  @if (session('status'))
-    <div class="alert alert-success" role="alert">
-      {{ session('status') }}
-    </div>
-  @endif
+
+
+
+
+
   
   <input type="hidden" value="52" id="num_y">
 

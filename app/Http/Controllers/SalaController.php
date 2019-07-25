@@ -119,4 +119,13 @@ class SalaController extends Controller
         return redirect('admin/alunos'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
 
     }
+
+    public function entrar(){
+        $salas = Sala::all();
+        
+        $sala_user = DB::table('sala_user')
+        ->get();
+
+        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user]);
+    }
 }

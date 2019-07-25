@@ -25,9 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-         \Gate::define('permitidoadminprof', function ($user) {
+         \Gate::define('permitidoadmin', function ($user) {
 
-            if ($user->hasAnyRoles(['admin', 'professor'])){
+            if ($user->hasAnyRoles(['admin'])){
                 return true;
             }
             return false;

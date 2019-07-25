@@ -7,9 +7,7 @@
         <div class="col-md-8 ">
             <h1> Controle de Salas </h1>
         </div>
-        <div class="col-md-2" style="padding-top: 30px; ">
-        <a class="btn btn-outline-success fa fa-plus" href="{{ url('admin/adicionar-sala') }}" style="text-decoration: none;">Adicionar sala</a>    
-        </div>
+        
         
     </div>
 </div>
@@ -20,13 +18,14 @@
 <!------- Estrutura de repetição (CARD)------------------->
    @foreach($data as $item)
 
-   <?php $user = Auth::user()->id; 
-         $prof = $item->prof_id; ?>
+   <?php $user = Auth::user()->id;?>
+   @foreach($sala_user as $sala)
+   @if($item->id==$sala->sala_id)
+   <?php $aluno = $sala->user_id;?>
 
+@if($user == $aluno)
 
-@if($user == $prof)
-
-   <?php $id= $item->id ?>
+   <?php $id=$item->id ?>
 
     <div class="col-md-3" style="padding-top:20px;">
   <div class="card ">
@@ -41,22 +40,31 @@
 
 <!----------------------Botao do Modal-------------------------->
      
-<button type="button" class="btn btn-primary btn-sm fa fa-qrcode" data-toggle="modal" data-target="#exampleModalScrollable"> Qr Code</button>
+<button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal"  data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
 
-<!------------------- Modal --------------------------->
 
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+</div>
+</div>
+@endif
+@endif
+@endforeach
+@endforeach
+
+
+<div class="modal fade" id="salaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content " >
       <div class="modal-header" style="background-color:#2F4F4F;" >
+        <h5 class="modal-title"></h5>
         <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
         "  id="exampleModalScrollableTitle">Qr Code </h5>
 
       </div>
       <div class="modal-body" >
-      <p>Labirinto: {{$item->name }}</p>
-      <p style="padding-left: 170px;" >{!! QrCode::size(250)->generate( 'labirinto Quimica' ); !!}</p>
-
+        
+        <h3 class="sala_name" align="center">Sala</h3>
+        <p style="padding-left: 170px;" >{!! QrCode::size(250)->generate( 'labirinto Quimica' ); !!}</p>
+        <input type="hidden" name="sala_id" id="sala_id">
     
     </div>
       <div class="modal-footer">
@@ -68,17 +76,7 @@
 </div>
 
 
-</div>
-</div>
 
-
-
-
-
-
-
-@endif
-@endforeach
 
 
 @endsection

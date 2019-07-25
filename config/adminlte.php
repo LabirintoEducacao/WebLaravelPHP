@@ -118,7 +118,7 @@ return [
              'text'        => 'Usuários',
              'url'         => '/admin/users',
              'icon'        => 'file',
-             'can'         => 'permitidoadminprof',
+             'can'         => 'permitidoadmin',
          ],
           [
              'text'        => 'Espaço Virtual',

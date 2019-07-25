@@ -20,6 +20,8 @@
     
     <link href="css/buttons.css" rel="stylesheet">
 
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
     @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
@@ -59,6 +61,40 @@
                 margin: 0;
             }
         
+        .btn-outline-cyan {
+          color: #176eb8;
+          border-color: #176eb8;
+          background-color: transparent;
+        }
+
+        .btn-outline-cyan:hover {
+          color: #fff;
+          background-color: #176eb8;
+          border-color: #176eb8;
+          /*rgb(118, 184, 255);*/
+        }
+
+        .btn-outline-cyan:focus, .btn-outline-cyan.focus {
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-outline-cyan.disabled, .btn-outline-cyan:disabled {
+          color: #176eb8;
+          background-color: transparent;
+        }
+
+        .btn-outline-cyan:not(:disabled):not(.disabled):active, .btn-outline-cyan:not(:disabled):not(.disabled).active,
+        .show > .btn-outline-cyan.dropdown-toggle {
+          color: #fff;
+          background-color: #176eb8;
+          border-color: #176eb8;
+        }
+
+        .btn-outline-cyan:not(:disabled):not(.disabled):active:focus, .btn-outline-cyan:not(:disabled):not(.disabled).active:focus,
+        .show > .btn-outline-cyan.dropdown-toggle:focus {
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+        }
+
         .btn-outline-danger {
           color: #dc3545;
           background-color: transparent;
@@ -234,7 +270,29 @@
       
 </head>
 <body class="hold-transition @yield('body_class')">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+<script>
+  @if(Session::has('message'))
+    var type="{{Session::get('alert-type','info')}}"
+
+    switch(type){
+      case 'info':
+             toastr.info("{{ Session::get('message') }}");
+             break;
+          case 'success':
+              toastr.success("{{ Session::get('message') }}");
+              break;
+          case 'warning':
+              toastr.warning("{{ Session::get('message') }}");
+              break;
+          case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+  @endif
+</script>
 @yield('body')
 
 <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
