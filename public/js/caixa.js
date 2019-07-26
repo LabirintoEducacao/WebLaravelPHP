@@ -146,7 +146,7 @@
       modal.find('#resposta_id').val(recipientid);
       modal.find('#resposta_correct').val(recipientcorrect);
       if(recipientendgame==1)
-      document.getElementById('resposta_end').checked = true;
+        document.getElementById('resposta_end').checked = true;
       
     });
 

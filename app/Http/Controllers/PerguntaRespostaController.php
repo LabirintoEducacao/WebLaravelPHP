@@ -50,9 +50,13 @@ class PerguntaRespostaController extends Controller
 
     public function edit_resp(Request $request){
         $data = $request->all();
+        if($request->input('resposta_end') == null)
+            $end=0;
+        else
+            $end=1;
         DB::table('respostas')
             ->where('id','=', $data['resposta_id'])
-            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name']]);
+            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name'],'corret' => $data['resposta_correct'],'end_game' => $end]);
 
         $perg = DB::table('perguntas')
             ->where('sala_id','=',$data['sala_id'])
