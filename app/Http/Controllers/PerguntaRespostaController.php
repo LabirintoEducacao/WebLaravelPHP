@@ -32,7 +32,9 @@ class PerguntaRespostaController extends Controller
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$id)
             ->get();
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'respostas' => $respostas]);
+        $perg_resp =  DB::table('perg_resp')
+            ->get();   
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'respostas' => $respostas, 'perg_resp' => $perg_resp]);
     }
 
 
