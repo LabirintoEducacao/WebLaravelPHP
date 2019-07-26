@@ -32,7 +32,9 @@ class PerguntaRespostaController extends Controller
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$id)
             ->get();
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'respostas' => $respostas]);
+        $perg_resp =  DB::table('perg_resp')
+            ->get();   
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'respostas' => $respostas, 'perg_resp' => $perg_resp]);
     }
 
 
@@ -48,9 +50,13 @@ class PerguntaRespostaController extends Controller
 
     public function edit_resp(Request $request){
         $data = $request->all();
+        if($request->input('resposta_end') == null)
+            $end=0;
+        else
+            $end=1;
         DB::table('respostas')
             ->where('id','=', $data['resposta_id'])
-            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name']]);
+            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name'],'corret' => $data['resposta_correct'],'end_game' => $end]);
 
         $perg = DB::table('perguntas')
             ->where('sala_id','=',$data['sala_id'])
@@ -108,7 +114,6 @@ class PerguntaRespostaController extends Controller
               $resposta = $request->resposta;
               $corret = $request->corret;
               $sala_id = $request->sala_id;
-             // $end_game = Input::has('end_game[]') ? true : false;
               $end_game = true;
 
              $sala_id = $request->sala_id;
@@ -138,10 +143,8 @@ class PerguntaRespostaController extends Controller
 
 
       
-      for($count = 0; $count < count($tipo_resp); $count++)
+      for($count = 0; $count < count($resposta); $count++)
       {
-              
-           
         $id = DB::table('respostas')->insertGetId(array(
 
                  'sala_id'  =>  $sala_id,

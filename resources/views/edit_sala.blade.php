@@ -101,6 +101,43 @@
                                    </tr>
                                  </tbody>
                                </table>
+                <table class="table table-bordered table-hover" id="dynamic_field" border="0">
+                  <thead>
+                    <tr>
+                      <td>Tipo da Resposta</td>
+                      <td>Definição da Resposta</td>
+                      <td>Fim de Jogo</td>
+                      <td>Resposta</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">
+                          <option selected value="1">Texto</option>
+                          <option value="2">imagem</option>
+                          <option value="3">video</option>
+                          <option value="4">Audio</option>
+                        </select>  
+                      </td>
+                      <td>
+                        <select name ="corret[]" class="form-control">
+                          <option selected value="1">Certa</option>
+                          <option value="2">Errada</option>   
+                        </select>
+                      </td>
+                      <td>
+                        <input type="checkbox" name="end_game[]">
+                      </td>
+                      <td>
+                        <input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list">
+                      </td>
+                      <td>
+                        <button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
               <!-- AMBIENTE -->
@@ -213,57 +250,47 @@
     </div>
   </div>
   <div class="container-fluid" style="padding-top: 10px; ">
-   <?php $x=1;$y=1; ?>
+   <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
    
 <!------- Estrutura de repetição (CARD)------------------->
-<div class="col-md-6" style="padding-top:20px;" display="inline">
+<div class="col-md-12" style="padding-top:20px;" display="inline">
+  @foreach($data as $item)
   <div class="card">
-    <table>
-      <tr>
-        <th class="col-md-1"></th>
-        <th class="col-md-5">Pergunta</th>
-        <!-- <th class="col-md-3">Resposta</th> -->
-        <th class="col-md-3"></th>
-      </tr>
-      @foreach($data as $item)
-          <tr>
-            <td class="col-md-1"><?php echo $x; ?></td>
-            <td class="col-md-5">{{$item->pergunta}}</td>
+    <div align="left" class="col-md-6">
+            <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
+            <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
 <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
-            <td>
+            <span class="col-md-4">
               <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whateverdetalhes="{{$item->ambiente_perg}}" data-whatevertype="{{$item->tipo_perg}}" data-whatevertamanho="{{$item->tamanho}}" data-whateverlargura="{{$item->largura}}" data-whateveridperg="{{$item->id}}"></button>
               <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
-            </td>
-          </tr>
+            </span>
           <?php $x++; ?>
 
-      @endforeach
-    </table>
-  </div>
-</div>
-<div class="col-md-6" style="padding-top:20px;">
-  <div class="card">
-    <table>
-      <tr>
-        <th class="col-md-1"></th>
-        <th class="col-md-5">Resposta</th>
-        <!-- <th class="col-md-3">Resposta</th> -->
-        <th class="col-md-3"></th>
-      </tr>
+      
+    </div>
+    <div align="right" class="col-md-6">
       @foreach($respostas as $resposta)
-          <tr>
-            <td class="col-md-1"><?php echo $y; ?></td>
-            <td class="col-md-5">{{$resposta->resposta}}</td>
-<!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
-            <td>
-              <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}"></button>
-              <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
-            </td>
-          </tr>
-          <?php $y++; ?>
+        @foreach($perg_resp as $pergresp)
+          @if($pergresp->perg_id==$item->id)
+            @if($pergresp->resp_id==$resposta->id)
+              <h4 display="inline" class="col-md-1"><?php echo $letras[$y]; ?></h4>
+              <h4 display="inline" align="left" class="col-md-7">{{$resposta->resposta}}</h4>
+  <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
+              <span class="col-md-4">
+                <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}" data-whateverendgame="{{$resposta->end_game}}"></button>
+                <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+              </span>
+              <?php $y++; ?>
+              <br><br>
+            @endif
+          @endif
+        @endforeach
       @endforeach
-    </table>
+    </div>
   </div>
+  <?php $y=0;; ?>
+  <hr style="border: 0.5px solid #c2c2c2;">
+  @endforeach
 </div>
 
 
@@ -373,7 +400,44 @@
             </ul>
             <div class="tab-content">
               <div id="edit_resp" class="tab-pane fade in active">
-                <div class="form-group">
+                <table class="table table-bordered table-hover" id="dynamic_field" border="0">
+                  <thead>
+                    <tr>
+                      <td>Tipo da Resposta</td>
+                      <td>Definição da Resposta</td>
+                      <td>Fim de Jogo</td>
+                      <td>Resposta</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <select name ="resposta_type" id ="resposta_type">
+                          <option value="1">Texto</option>
+                          <option value="2">Imagem</option>
+                          <option value="3">video</option>
+                          <option value="4">Audio</option>
+                        </select>  
+                      </td>
+                      <td>
+                        <select id="resposta_correct" name="resposta_correct" class="form-control">
+                          <option value="1">Certa</option>
+                          <option value="2">Errada</option>   
+                        </select>
+                      </td>
+                      <td>
+                        <input type="checkbox" id="resposta_end" name="resposta_end">
+                      </td>
+                      <td>
+                        <input type="text" class="form-control" id="resposta_name" name="resposta_name">
+                      </td>
+                      <td>
+                        <button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- <div class="form-group">
                 <br>
                 <label for="resposta_type" class="control-label" style="display: inline;">Tipo da resposta:&emsp;</label>
                 <select name ="resposta_type" id ="resposta_type">
@@ -386,7 +450,7 @@
                 <div class="form-group">
                   <label for="resposta_name" class="control-label">Resposta:</label>
                   <input type="text" class="form-control" id="resposta_name" name="resposta_name">
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

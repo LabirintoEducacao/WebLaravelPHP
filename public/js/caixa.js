@@ -21,8 +21,8 @@
          '</td>' +
           '<td>'+
           '<select name ="corret[]" class="form-control">'+
-         '<option selected value="1">Certa</option>'+
-          '<option value="2">Fim de Jogo</option>'+   
+         '<option value="1">Certa</option>'+
+          '<option selected value="2">Errada</option>'+   
           '</select>'+
           '</td>'+
           '<td>'+
@@ -194,14 +194,32 @@
       var recipientnome = button.data('whateverresp');
       var recipientresp = button.data('whatevertyperesp');
       var recipientid = button.data('whateveridresp');
+      var recipientcorrect = button.data('whatevercorrect');
+      var recipientendgame = button.data('whateverendgame');
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      modal.find('.modal-title').text('Resposta Nº ' + (recipient+1));
+      // modal.find('#id-curso').val(recipient);
+      modal.find('#resposta_name').val(recipientnome);
+      modal.find('#resposta_type').val(recipientresp);
+      modal.find('#resposta_id').val(recipientid);
+      modal.find('#resposta_correct').val(recipientcorrect);
+      if(recipientendgame==1)
+        document.getElementById('resposta_end').checked = true;
+      
+    });
+
+    $('#salaModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var recipient = button.data('whatever'); // Extract info from data-* attributes
+      var recipientnome = button.data('whatevernome');
       
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this);
       modal.find('.modal-title').text('Nº ' + recipient);
-      modal.find('#id-curso').val(recipient);
-      modal.find('#resposta_name').val(recipientnome);
-      modal.find('#resposta_type').val(recipientresp);
-      modal.find('#resposta_id').val(recipientid);
+      modal.find('.sala_name').text(recipientnome);
+
       
     });
