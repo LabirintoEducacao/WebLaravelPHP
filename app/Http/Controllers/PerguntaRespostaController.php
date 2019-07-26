@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Pergunta;
 use App\Resposta;
 use App\Sala;
@@ -116,17 +117,18 @@ class PerguntaRespostaController extends Controller
              $proxima = 0;
              $disponivel = true;     
         
-            $pergid = DB::table('perguntas')->insertGetId(array(   
-                 'sala_id' =>  $sala_id,
-                 'tipo_perg' => $tipo_perg,
-                 'pergunta' => $request->pergunta,
-                 'ambiente_perg' => $ambiente_perg,
-                 'tamanho' => $tamanho,
-                 'largura' => $largura,
-                 'prox_perg' => $proxima,
-                 'disp' => $disponivel     
+    $pergid = DB::table('perguntas')->insertGetId(array(
+                
+             'sala_id' =>  $sala_id,
+             'tipo_perg' => $tipo_perg,
+             'pergunta' => $request->pergunta,
+             'ambiente_perg' => $ambiente_perg,
+             'tamanho' => $tamanho,
+             'largura' => $largura,
+             'prox_perg' => $proxima,
+             'disp' => $disponivel     
 
-            ));
+           ));
 
 
       
@@ -140,7 +142,7 @@ class PerguntaRespostaController extends Controller
                  'tipo_resp' => $tipo_resp[$count],
                  'resposta' => $resposta[$count],
                  'corret' => $corret[$count],
-                 'end_game' => $end_game[$count]
+                 'end_game' => $end_game
 
            ));
 
@@ -152,6 +154,7 @@ class PerguntaRespostaController extends Controller
      return response()->json(['success' => 'sucesso.']);
 
      }
+
 
           
     }

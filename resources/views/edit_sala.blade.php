@@ -30,12 +30,9 @@
         <form name="add_name"  id="add_name" style="margin-left: 5%;margin-right:1%">
           <input type="hidden" value="{{$id}}" name="sala_id">
           <div class="modal-body">
+          
             @csrf
             {{ csrf_field() }}
-
-                 @error('pergunta')
-                     <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
                   <div class="alert alert-danger print-error-msg" style="display: none;"><ul></ul></div>
                   <div class="alert alert-success print-success-msg" style="display: none;"><ul></ul></div>
                   <br><br>
@@ -67,43 +64,40 @@
 
               <!-- RESPOSTAS -->
               <div id="resp" class="tab-pane fade">
-                <table class="table table-bordered table-hover" id="dynamic_field" border="0">
-                  <thead>
-                    <tr>
-                      <td>Tipo da Resposta</td>
-                      <td>Definição da Resposta</td>
-                      <td>Fim de Jogo</td>
-                      <td>Resposta</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                    <td>
-                      <select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">
-                        <option selected value="1">Texto</option>
-                        <option value="2">imagem</option>
-                        <option value="3">video</option>
-                        <option value="4">Audio</option>
-                      </select>  
-                    </td>
-                    <td>
-                      <select name ="corret[]" class="form-control">
-                        <option selected value="1">Certa</option>
-                        <option value="2">Errada</option>   
-                      </select>
-                    </td>
-                    <td>
-                      <input type="checkbox" name="end_game[]">
-                    </td>
-                    <td>
-                      <input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list">
-                    </td>
-                    <td>
-                      <button type="button" name="add" id="add" class="btn btn-succcess fa fa-plus"></button>
-                    </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <table class="table table-bordered table-hover" id="dynamic_field" border="0">
+                               <thead>
+                                 <tr>
+                                   <td>Tipo da Resposta</td>
+                                   <td>Definição da Resposta</td>
+                                   <td>Fim de Jogo</td>
+                                   <td>Resposta</td>
+                                 </tr>
+                               </thead>
+                                 <tbody>
+                                   <tr>
+                                     <td>
+
+                                       <select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">
+                                        <option selected value="1">Texto</option>
+                                            <option value="2">imagem</option>
+                                            <option value="3">video</option>
+                                            <option value="4">Audio</option>
+                                       </select>  
+                                     </td>
+                                      <td>
+                                     <select name ="corret[]" class="form-control">
+                                     <option selected value="1">Certa</option>
+                                     <option value="2">Errada</option>   
+                                     </select>
+                                     </td>
+                                      <td>
+                                      <input type="checkbox" name="end_game[]">
+                                     </td>
+                                     <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
+                                     <td><button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button></td>
+                                   </tr>
+                                 </tbody>
+                               </table>
               </div>
 
               <!-- AMBIENTE -->
@@ -280,10 +274,18 @@
         </form>
       </div>
     </div>
-  </div>       
+  </div>      
+
+                    
+    
     
     
 </div>
+
+
+
+
+
 
 <div class="modal fade" id="respostaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
