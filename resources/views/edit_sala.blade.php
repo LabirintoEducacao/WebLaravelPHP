@@ -90,8 +90,11 @@
                                      <option value="2">Errada</option>   
                                      </select>
                                      </td>
-                                      <td>
-                                      <input type="checkbox" name="end_game[]">
+                                     <td>
+                                     <div class="form-group">
+                                       <label for="end_game"></label>
+                                       <input type="checkbox" class="" name="end_game" value="1">
+                                     </div>
                                      </td>
                                      <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
                                      <td><button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button></td>
@@ -126,11 +129,80 @@
                     <option value="3">Grande</option>                                    
                   </select>
                 </div>
+
+
+              <div  id="esconder" style=" display: none;">
+                 <div class="form-group">
+                  <h4>Pergunta:</h4>
+                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;">
+                </div>
+
+                <table class="table table-bordered table-hover" id="dynamic_field2" border="0">
+                               <thead>
+                                 <tr>
+                                   <td>Tipo da Resposta</td>
+                                   <td>Definição da Resposta</td>
+                                   <td>Fim de Jogo</td>
+                                   <td>Resposta</td>
+                                   <td><button type="button" name="remove2" id="'+i+'" class="btn btn-danger btn_remove2">Close</button></td>
+                                 </tr>
+                               </thead>
+                                 <tbody>
+                                   <tr>
+                                     <td>
+
+                                       <select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">
+                                        <option selected value="1">Texto</option>
+                                            <option value="2">imagem</option>
+                                            <option value="3">video</option>
+                                            <option value="4">Audio</option>
+                                       </select>  
+                                     </td>
+                                      <td>
+                                     <select name ="corret[]" class="form-control">
+                                     <option selected value="1">Certa</option>
+                                     <option value="2">Errada</option>   
+                                     </select>
+                                     </td>
+                                     <td>
+                                     <div class="form-group">
+                                       <label for="end_game"></label>
+                                       <input type="checkbox" class="" name="end_game" value="1">
+                                     </div>
+                                     </td>
+                                     <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
+                                      <td>
+                <button type="button" name="add2" id="add2" class="btn btn-succcess">Resposta</button></td>
+                  </tr>
+                  </tbody>
+               </table>
+                <div class="form-group">
+                  <span class="col-md-3">Tipo:&emsp;</span>
+                  <select name ="answer_boolean">
+                    <option selected value="1">Corredor</option>
+                    <option value="2">Labirinto</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <span class="col-md-3">Tamanho:</span>
+                  <select name ="tamanho">
+                    <option selected value="1">Pequeno</option>
+                    <option value="2">Medio</option>
+                    <option value="3">Grande</option>                                
+                  </select>
+                </div>
+                <div class="form-group">
+                  <span class="col-md-3">Largura:&emsp;</span>
+                  <select name ="largura">
+                    <option selected value="1">Pequeno</option>
+                    <option value="2">Medio</option>
+                    <option value="3">Grande</option>                                    
+                  </select>
+                </div>
               </div>
+              <button type="button" name="add3" id="add3" class="btn btn-succcess">Reforço</button>
             </div>
             <br>
-
-
           </div>
           <div class="modal-footer">
             <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
@@ -139,10 +211,6 @@
         </form>
       </div>
     </div>
-  </div>
-
-  <div>
-    
   </div>
   <div class="container-fluid" style="padding-top: 10px; ">
    <?php $x=1;$y=1; ?>

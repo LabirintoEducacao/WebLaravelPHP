@@ -38,6 +38,39 @@
           }
 
         });
+
+        $('#add2').click(function() {
+
+         if(a < 3){
+          $('#dynamic_field2').append('' + 
+         '<tr id="row'+i+'" class="dynamic-added">' +
+         '<td>'+
+         '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">'+
+         '<option selected value="1">Texto</option>'+
+         '<option value="2">Imagem</option>'+
+         '<option value="3">video</option>'+
+         '<option value="4">Audio</option>'+
+         '</select>'+
+         '</td>' +
+          '<td>'+
+          '<select name ="corret[]" class="form-control">'+
+         '<option selected value="1">Certa</option>'+
+          '<option value="2">Fim de Jogo</option>'+   
+          '</select>'+
+          '</td>'+
+          '<td>'+
+          '<input type="checkbox" name="end_game[]">' +
+          '</td>' +
+         '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" /></td>' +
+         '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
+         '</tr>');
+          a++;
+          }else{
+       
+             
+          }
+
+        });
         // Acao para botao deletar remove fields
 
         $(document).on('click', '.btn_remove', function() {
@@ -46,6 +79,24 @@
           $('#row'+button_id+'').remove();
           a--;
         });
+
+
+
+      //   $('#add3').on('click',function(){
+      //     $('dynamic_field2').show(); // aparece o div
+      // });
+
+        $( "#add3" ).click(function() {
+        $("#esconder").css("display","block");
+        $("#add3").css("display","none");
+       });
+
+
+        $(document).on('click', '.btn_remove2', function() {
+          $("#esconder").css("display","none");
+          $("#add3").css("display","block");
+        });
+       
 
         // setup token to input Field (is the rule of laravel should be put when you add data to DB)
         $.ajaxSetup({
@@ -100,6 +151,15 @@
       }
 
 });
+
+
+  function checkStat(input, name) {
+    if(input.checked == true){
+        $("#"+name).val('ativo');
+    }else{
+        $("#"+name).val('inativo');
+    }
+}
 
 
    $('#perguntaModal').on('show.bs.modal', function (event) {

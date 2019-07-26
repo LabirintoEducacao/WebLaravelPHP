@@ -99,14 +99,17 @@ class PerguntaRespostaController extends Controller
       {
         return response()->json(['error' => $error->errors()->all()]);
 
-      }
+      }  
+
+
+             
 
               $tipo_resp = $request->tipo_resp;
               $resposta = $request->resposta;
               $corret = $request->corret;
               $sala_id = $request->sala_id;
+             // $end_game = Input::has('end_game[]') ? true : false;
               $end_game = true;
-
 
              $sala_id = $request->sala_id;
              $tipo_perg = $request->question_type;
@@ -116,6 +119,9 @@ class PerguntaRespostaController extends Controller
              $largura = $request->largura;
              $proxima = 0;
              $disponivel = true;     
+
+
+
         
     $pergid = DB::table('perguntas')->insertGetId(array(
                 
