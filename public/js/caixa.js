@@ -21,8 +21,8 @@
          '</td>' +
           '<td>'+
           '<select name ="corret[]" class="form-control">'+
-         '<option selected value="1">Certa</option>'+
-          '<option value="2">Fim de Jogo</option>'+   
+         '<option value="1">Certa</option>'+
+          '<option selected value="2">Errada</option>'+   
           '</select>'+
           '</td>'+
           '<td>'+

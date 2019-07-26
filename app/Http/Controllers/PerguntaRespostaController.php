@@ -111,6 +111,7 @@ class PerguntaRespostaController extends Controller
               $resposta = $request->resposta;
               $corret = $request->corret;
               $sala_id = $request->sala_id;
+              // $end_game = $request->end_game;
               $end_game = true;
 
 
@@ -138,9 +139,11 @@ class PerguntaRespostaController extends Controller
 
 
       
-      for($count = 0; $count < count($tipo_resp); $count++)
+      for($count = 0; $count < count($resposta); $count++)
       {
-              
+        // if($end_game[$count]==0)
+        //     $x = 0;
+        // else $x=1;
            
         $id = DB::table('respostas')->insertGetId(array(
 
@@ -149,6 +152,7 @@ class PerguntaRespostaController extends Controller
                  'resposta' => $resposta[$count],
                  'corret' => $corret[$count],
                  'end_game' => $end_game
+                 // 'end_game' => $x
 
            ));
 
