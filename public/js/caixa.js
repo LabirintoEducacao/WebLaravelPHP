@@ -62,7 +62,7 @@
           '<input type="checkbox" name="end_game[]">' +
           '</td>' +
          '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" /></td>' +
-         '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
+         '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove3">X</button></td>' +
          '</tr>');
           a++;
           }else{
@@ -74,6 +74,14 @@
         // Acao para botao deletar remove fields
 
         $(document).on('click', '.btn_remove', function() {
+       
+          var button_id = $(this).attr("id");
+          $('#row'+button_id+'').remove();
+          a--;
+        });
+
+
+        $(document).on('click', '.btn_remove3', function() {
        
           var button_id = $(this).attr("id");
           $('#row'+button_id+'').remove();
