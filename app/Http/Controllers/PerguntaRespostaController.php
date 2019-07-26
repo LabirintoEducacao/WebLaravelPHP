@@ -116,18 +116,17 @@ class PerguntaRespostaController extends Controller
              $proxima = 0;
              $disponivel = true;     
         
-    $pergid = DB::table('perguntas')->insertGetId(array(
-                
-             'sala_id' =>  $sala_id,
-             'tipo_perg' => $tipo_perg,
-             'pergunta' => $request->pergunta,
-             'ambiente_perg' => $ambiente_perg,
-             'tamanho' => $tamanho,
-             'largura' => $largura,
-             'prox_perg' => $proxima,
-             'disp' => $disponivel     
+            $pergid = DB::table('perguntas')->insertGetId(array(   
+                 'sala_id' =>  $sala_id,
+                 'tipo_perg' => $tipo_perg,
+                 'pergunta' => $request->pergunta,
+                 'ambiente_perg' => $ambiente_perg,
+                 'tamanho' => $tamanho,
+                 'largura' => $largura,
+                 'prox_perg' => $proxima,
+                 'disp' => $disponivel     
 
-           ));
+            ));
 
 
       
@@ -141,7 +140,7 @@ class PerguntaRespostaController extends Controller
                  'tipo_resp' => $tipo_resp[$count],
                  'resposta' => $resposta[$count],
                  'corret' => $corret[$count],
-                 'end_game' => $end_game
+                 'end_game' => $end_game[$count]
 
            ));
 

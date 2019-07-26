@@ -5,7 +5,7 @@
 <div class="container-fluid" style="border-bottom: solid; ">
     <div class="row">
         <div class="col-md-8 ">
-            <h1> Controle de Salas </h1>
+            <h1>Jogos</h1>
         </div>
         
         
