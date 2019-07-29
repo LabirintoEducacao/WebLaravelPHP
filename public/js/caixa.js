@@ -94,15 +94,27 @@
       //     $('dynamic_field2').show(); // aparece o div
       // });
 
-        $( "#add3" ).click(function() {
-        $("#esconder").css("display","block");
-        $("#add3").css("display","none");
-       });
+       //  $( "#add3" ).click(function() {
+       //  $("#esconder").css("display","block");
+       //  $("#add3").css("display","none");
+       // });
+
+       // $('#add_reforco').checked(function(){
+       //  $("#esconder").css("display","block");
+       // });
 
 
-        $(document).on('click', '.btn_remove2', function() {
-          $("#esconder").css("display","none");
-          $("#add3").css("display","block");
+        // $(document).on('click', '.btn_remove2', function() {
+        //   $("#esconder").css("display","none");
+        //   $("#add3").css("display","block");
+        // });
+
+        $(document).on('click', '#add_reforco', function() {
+          if($("#add_reforco").is(':checked')){
+            $("#esconder").css("display","block");
+          }else{
+            $("#esconder").css("display","none");
+          }
         });
        
 
