@@ -45,7 +45,7 @@
           $('#dynamic_field2').append('' + 
          '<tr id="row'+i+'" class="dynamic-added">' +
          '<td>'+
-         '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">'+
+         '<select name ="tipo_respr[]" id ="tipo_opcaor" class="form-control">'+
          '<option selected value="1">Texto</option>'+
          '<option value="2">Imagem</option>'+
          '<option value="3">video</option>'+
@@ -53,13 +53,13 @@
          '</select>'+
          '</td>' +
           '<td>'+
-          '<select name ="corret[]" class="form-control">'+
+          '<select name ="corretr[]" class="form-control">'+
          '<option selected value="1">Certa</option>'+
           '<option value="2">Fim de Jogo</option>'+   
           '</select>'+
           '</td>'+
           '<td>'+
-          '<input type="checkbox" name="end_game[]">' +
+          '<input type="checkbox" name="end_gamer[]">' +
           '</td>' +
          '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" /></td>' +
          '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove3">X</button></td>' +

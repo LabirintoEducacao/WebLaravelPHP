@@ -135,12 +135,24 @@
                   </select>
                 </div>
               </div>
-              <div id="reforco" class="tab-pane fade">
-                <input type="checkbox" name="add_reforco" id="add_reforco">Adicionar Reforço
+
+              <!-- REFORÇO -->
+            <div id="reforco" class="tab-pane fade">
+              <input type="checkbox" name="add_reforco" id="add_reforco">Adicionar Reforço
               <div  id="esconder" style=" display: none;">
                 <div class="form-group">
+                  <br>
+                  <h4 style="display: inline;">Tipo da pergunta:&emsp;</h4>
+                  <select  name ="question_typer">
+                    <option selected value="1">Texto</option>
+                    <option value="2">Imagem</option>
+                    <option value="3">video</option>
+                    <option value="4">Audio</option>
+                  </select>
+                </div>
+                <div class="form-group">
                   <h4>Pergunta:</h4>
-                  <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;">
+                  <input id="perguntar" type="text" name="perguntar" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;">
                 </div>
 
                 <table class="table table-bordered table-hover" id="dynamic_field2" border="0">
@@ -158,7 +170,7 @@
                   <tbody>
                     <tr>
                       <td>
-                        <select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">
+                        <select name ="tipo_respr[]" id ="tipo_opcaor" class="form-control">
                           <option selected value="1">Texto</option>
                           <option value="2">imagem</option>
                           <option value="3">video</option>
@@ -166,36 +178,36 @@
                         </select>  
                       </td>
                       <td>
-                        <select name ="corret[]" class="form-control">
+                        <select name ="corretr[]" class="form-control">
                           <option selected value="1">Certa</option>
                           <option value="2">Errada</option>   
                         </select>
                       </td>
                       <td>
                         <div class="form-group">
-                          <label for="end_game"></label>
-                          <input type="checkbox" class="" name="end_game" value="1">
+                          <label for="end_gamer"></label>
+                          <input type="checkbox" class="" id="end_gamer" name="end_gamer" value="1">
                         </div>
                       </td>
                       <td>
-                        <input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list">
+                        <input type="text" name="respostar[]" placeholder="Resposta" class="form-control name_list">
                       </td>
                       <td>
                         <button type="button" name="add2" id="add2" class="btn btn-succcess">Resposta</button>
                       </td>
                     </tr>
                   </tbody>
-               </table>
+                </table>
                 <div class="form-group">
                   <span class="col-md-3">Tipo:&emsp;</span>
-                  <select name ="answer_boolean">
+                  <select name ="answer_booleanr">
                     <option selected value="1">Corredor</option>
                     <option value="2">Labirinto</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <span class="col-md-3">Tamanho:</span>
-                  <select name ="tamanho">
+                  <select name ="tamanhor">
                     <option selected value="1">Pequeno</option>
                     <option value="2">Medio</option>
                     <option value="3">Grande</option>                                
@@ -203,7 +215,7 @@
                 </div>
                 <div class="form-group">
                   <span class="col-md-3">Largura:&emsp;</span>
-                  <select name ="largura">
+                  <select name ="largurar">
                     <option selected value="1">Pequeno</option>
                     <option value="2">Medio</option>
                     <option value="3">Grande</option>                                    

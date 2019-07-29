@@ -116,16 +116,28 @@ class PerguntaRespostaController extends Controller
               $sala_id = $request->sala_id;
               $end_game = true;
 
-             $sala_id = $request->sala_id;
              $tipo_perg = $request->question_type;
              $pergunta = $request->pergunta;
              $ambiente_perg = $request->answer_boolean;
              $tamanho = $request->tamanho;
              $largura = $request->largura;
              $proxima = 0;
-             $disponivel = true;     
+             $disponivel = true;    
 
 
+            $tipo_respr = $request->tipo_respr;
+            $respostar = $request->respostar;
+            $corretr = $request->corretr;
+
+            $tipo_pergr = $request->question_typer;
+            $perguntar = $request->perguntar;
+            $ambiente_pergr = $request->answer_booleanr;
+            $tamanhor = $request->tamanhor;
+            $largurar = $request->largurar;   
+
+
+
+       
 
         
     $pergid = DB::table('perguntas')->insertGetId(array(
@@ -136,6 +148,19 @@ class PerguntaRespostaController extends Controller
              'ambiente_perg' => $ambiente_perg,
              'tamanho' => $tamanho,
              'largura' => $largura,
+             'prox_perg' => $proxima,
+             'disp' => $disponivel     
+
+           ));
+
+    $perg_ref_id = DB::table('perguntas')->insertGetId(array(
+                
+             'sala_id' =>  $sala_id,
+             'tipo_perg' => $tipo_pergr,
+             'pergunta' => $perguntar,
+             'ambiente_perg' => $ambiente_pergr,
+             'tamanho' => $tamanhor,
+             'largura' => $largurar,
              'prox_perg' => $proxima,
              'disp' => $disponivel     
 
@@ -157,6 +182,23 @@ class PerguntaRespostaController extends Controller
 
 
           DB::table('perg_resp')->insert(array('perg_id' => $pergid, 'resp_id' => $id));
+
+      }
+
+      for($count = 0; $count < count($respostar); $count++)
+      {
+        $id = DB::table('respostas')->insertGetId(array(
+
+                 'sala_id'  =>  $sala_id,
+                 'tipo_resp' => $tipo_respr[$count],
+                 'resposta' => $respostar[$count],
+                 'corret' => $corretr[$count],
+                 'end_game' => $end_game
+
+           ));
+
+
+          DB::table('perg_resp')->insert(array('perg_id' => $perg_ref_id, 'resp_id' => $id));
 
       }
 
