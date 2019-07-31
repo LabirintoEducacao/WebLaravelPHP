@@ -19,7 +19,7 @@ class CreateRespostasTable extends Migration
             $table->string('tipo_resp');
             $table->string('resposta');
             $table->boolean('corret');
-            $table->boolean('end_game')->default(1);
+            $table->boolean('end_game')->nullable();
             $table->timestamps();
         });
         Schema::table('respostas', function($table) {

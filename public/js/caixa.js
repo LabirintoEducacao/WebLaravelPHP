@@ -2,9 +2,11 @@
 
         var postURL='editar-sala';
         var i = 1;
+        var i2 = 1;
 
         // botao para add resposta fields
         var a = 0;
+        var b = 0;
 
         $('#add').click(function() {
 
@@ -39,38 +41,6 @@
 
         });
 
-        $('#add2').click(function() {
-
-         if(a < 3){
-          $('#dynamic_field2').append('' + 
-         '<tr id="row'+i+'" class="dynamic-added">' +
-         '<td>'+
-         '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">'+
-         '<option selected value="1">Texto</option>'+
-         '<option value="2">Imagem</option>'+
-         '<option value="3">video</option>'+
-         '<option value="4">Audio</option>'+
-         '</select>'+
-         '</td>' +
-          '<td>'+
-          '<select name ="corret[]" class="form-control">'+
-         '<option selected value="1">Certa</option>'+
-          '<option value="2">Fim de Jogo</option>'+   
-          '</select>'+
-          '</td>'+
-          '<td>'+
-          '<input type="checkbox" name="end_game[]">' +
-          '</td>' +
-         '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" /></td>' +
-         '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove3">X</button></td>' +
-         '</tr>');
-          a++;
-          }else{
-       
-             
-          }
-
-        });
         // Acao para botao deletar remove fields
 
         $(document).on('click', '.btn_remove', function() {
@@ -81,31 +51,133 @@
         });
 
 
-        $(document).on('click', '.btn_remove3', function() {
+//////////////////////////////////////////////////////////////////////////
+  $(document).on('click', '.teste', function() {
+    if(b < 3){
+     $('#dynamic_field2').append('' + 
+         '<tr id="row'+i2+'" class="dynamic-added">' +
+         '<td>'+
+         '<select name ="tipo_resp_ref[]" id ="tipo_opcao" class="form-control">'+
+         '<option selected value="1">Texto</option>'+
+         '<option value="2">Imagem</option>'+
+         '<option value="3">video</option>'+
+         '<option value="4">Audio</option>'+
+         '</select>'+
+         '</td>' +
+          '<td>'+
+          '<select name ="corret_ref[]" class="form-control">'+
+         '<option value="1">Certa</option>'+
+          '<option selected value="2">Errada</option>'+   
+          '</select>'+
+          '</td>'+
+         '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" /></td>' +
+         '<td><button type="button" name="remove2" id="'+i2+'" class="btn btn-danger btn_remove2">X</button></td>' +
+         '</tr>');
+          b++;
+          }else{
        
-          var button_id = $(this).attr("id");
-          $('#row'+button_id+'').remove();
-          a--;
-        });
+             
+          }         
+  });
 
-
-
-      //   $('#add3').on('click',function(){
-      //     $('dynamic_field2').show(); // aparece o div
-      // });
-
-        $( "#add3" ).click(function() {
-        $("#esconder").css("display","block");
-        $("#add3").css("display","none");
-       });
-
-
-        $(document).on('click', '.btn_remove2', function() {
-          $("#esconder").css("display","none");
-          $("#add3").css("display","block");
-        });
+  //////////////////////////////////////////////////////////////
+  $(document).on('click', '.btn_remove2', function() {
        
+          var button_id2 = $(this).attr("id");
+          $('#row'+button_id2+'').remove();
+          b--;
+  });
 
+///////////////////////////////////////////////////////////////////
+  $('input[type="checkbox"]').on('change', function() {
+  var $parent = $(this).parents('.hovereffect');
+  if (this.checked) {
+    $('.abcd', $parent).append(     
+                    '<div class="form-group hea">'+
+                    '<h4>Pergunta:</h4>'+
+                    '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;">'+
+                    '</div>'+
+                    '<div class="form-group hea">'+
+                    '<h4 style="display: inline;"> Tipo da pergunta:&emsp;</h4>'+
+                    '<select  name ="question_type_ref">'+
+                    '<option selected value="1">Texto</option>'+
+                    '<option value="2">Imagem</option>'+
+                    '<option value="3">video</option>'+
+                    '<option value="4">Audio</option>'+
+                    '</select>'+
+                    '</div>'+
+                     '<div class="form-group hea">'+
+                    '<h4 style="display: inline;">Interação:&emsp;</h4>'+
+                      '<select name ="room_type_ref">'+
+                      '<option selected value="key">Chave</option>'+
+                     '<option value="door">Porta</option>'+
+                     '<option value="diamond">Diamante</option>'+
+                     '</select>'+ 
+                    '</div>'+    
+                    '<table class="table table-bordered table-hover hea" id="dynamic_field2" border="0">'+
+                    '<thead>'+
+                                 '<tr>'+
+                                   '<td>Tipo da Resposta</td>'+
+                                   '<td>Definição da Resposta</td>'+
+                                   '<td>Resposta</td>'+
+                                 '</tr>'+
+                               '</thead>'+
+                                 '<tbody>'+
+                                   '<tr>'+
+                                     '<td>'+
+
+                                       '<select name ="tipo_resp_ref[]" class="form-control">'+
+                                        '<option selected value="1">Texto</option>'+
+                                            '<option value="2">imagem</option>'+
+                                            '<option value="3">video</option>'+
+                                            '<option value="4">Audio</option>'+
+                                       '</select>'+  
+                                     '</td>'+
+                                      '<td>'+
+                                     '<select name ="corret_ref[]" class="form-control">'+
+                                     '<option selected value="1">Certa</option>'+
+                                     '<option value="2">Errada</option>'+   
+                                     '</select>'+
+                                     '</td>'+
+                                     '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list"></td>'+
+                                      '<td><input type="button" class="teste" value="Add" /></td>'+
+                  '</tbody>'+
+                  '</table>'+
+                '<br>'+
+                '<div class="hea">'+
+                '<div class="form-group">'+
+                  '<span class="col-md-3">Tipo:&emsp;</span>'+
+                  '<select name ="answer_boolean_ref">'+
+                    '<option selected value="1">Corredor</option>'+
+                    '<option value="2">Labirinto</option>'+
+                  '</select>'+
+                '</div>'+
+                '<div class="form-group">'+
+                  '<span class="col-md-3">Tamanho:</span>'+
+                  '<select name ="tamanho_ref">'+
+                    '<option selected value="1">Pequeno</option>'+
+                    '<option value="2">Medio</option>'+
+                    '<option value="3">Grande</option>'+                                
+                  '</select>'+
+                '</div>'+
+                '<div class="form-group">'+
+                 '<span class="col-md-3">Largura:&emsp;</span>'+
+                  '<select name ="largura_ref">'+
+                    '<option selected value="1">Pequeno</option>'+
+                    '<option value="2">Medio</option>'+
+                    '<option value="3">Grande</option>'+                                    
+                  '</select>'+
+                '</div>'+
+                '</div>'
+      );
+  } else {
+    $('.hea', $parent).remove();
+    b = 0;
+  }
+});
+
+//////////////////////////////////////////////////////////////
+ 
         // setup token to input Field (is the rule of laravel should be put when you add data to DB)
         $.ajaxSetup({
 

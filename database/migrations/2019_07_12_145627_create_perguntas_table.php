@@ -18,11 +18,8 @@ class CreatePerguntasTable extends Migration
             $table->bigInteger('sala_id')->unsigned()->nullable();
             $table->string('tipo_perg');
             $table->string('pergunta');
-            $table->string('ambiente_perg');
-            $table->integer('tamanho');
-            $table->integer('largura');
-            $table->integer('prox_perg');
-            $table->boolean('disp');
+            $table->integer('ordem');
+            $table->string('room_type');
             $table->timestamps();
         });
 

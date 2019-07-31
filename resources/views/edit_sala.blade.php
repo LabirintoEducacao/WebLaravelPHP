@@ -57,6 +57,15 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <br>
+                  <h4 style="display: inline;">Interação:&emsp;</h4>
+                    <select name ="room_type">
+                    <option selected value="key">Chave</option>
+                    <option value="door">Porta</option>
+                    <option value="diamond">Diamante</option>
+                  </select>
+                </div>
+                <div class="form-group">
                   <h4>Pergunta:</h4>
                      <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;">
                 </div>
@@ -93,7 +102,7 @@
                                      <td>
                                      <div class="form-group">
                                        <label for="end_game"></label>
-                                       <input type="checkbox" class="" name="end_game" value="1">
+                                       <input type="checkbox" class="" name="end_game[]" value="1">
                                      </div>
                                      </td>
                                      <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
@@ -105,7 +114,7 @@
               </div>
 
               <!-- AMBIENTE -->
-              <div id="ambiente" class="tab-pane fade">
+             <div id="ambiente" class="tab-pane fade">
                 <br>
                 <div class="form-group">
                   <span class="col-md-3">Tipo:&emsp;</span>
@@ -130,81 +139,22 @@
                     <option value="3">Grande</option>                                    
                   </select>
                 </div>
+  
 
-
-              <div  id="esconder" style=" display: none;">
-                 <div class="form-group">
-                  <h4>Pergunta:</h4>
-                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;">
+            <div class="hovereffect">
+               <div class="overlay">
+                    <label class="btn btn-primary cke">
+                    <input type="checkbox" value="nao">
+                    </label><p>Pergunta Refoço</p>
                 </div>
-
-                <table class="table table-bordered table-hover" id="dynamic_field2" border="0">
-                               <thead>
-                                 <tr>
-                                   <td>Tipo da Resposta</td>
-                                   <td>Definição da Resposta</td>
-                                   <td>Fim de Jogo</td>
-                                   <td>Resposta</td>
-                                   <td><button type="button" name="remove2" id="'+i+'" class="btn btn-danger btn_remove2">Close</button></td>
-                                 </tr>
-                               </thead>
-                                 <tbody>
-                                   <tr>
-                                     <td>
-
-                                       <select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">
-                                        <option selected value="1">Texto</option>
-                                            <option value="2">imagem</option>
-                                            <option value="3">video</option>
-                                            <option value="4">Audio</option>
-                                       </select>  
-                                     </td>
-                                      <td>
-                                     <select name ="corret[]" class="form-control">
-                                     <option selected value="1">Certa</option>
-                                     <option value="2">Errada</option>   
-                                     </select>
-                                     </td>
-                                     <td>
-                                     <div class="form-group">
-                                       <label for="end_game"></label>
-                                       <input type="checkbox" class="" name="end_game" value="1">
-                                     </div>
-                                     </td>
-                                     <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
-                                      <td>
-                <button type="button" name="add2" id="add2" class="btn btn-succcess">Resposta</button></td>
-                  </tr>
-                  </tbody>
-               </table>
-                <div class="form-group">
-                  <span class="col-md-3">Tipo:&emsp;</span>
-                  <select name ="answer_boolean">
-                    <option selected value="1">Corredor</option>
-                    <option value="2">Labirinto</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <span class="col-md-3">Tamanho:</span>
-                  <select name ="tamanho">
-                    <option selected value="1">Pequeno</option>
-                    <option value="2">Medio</option>
-                    <option value="3">Grande</option>                                
-                  </select>
-                </div>
-                <div class="form-group">
-                  <span class="col-md-3">Largura:&emsp;</span>
-                  <select name ="largura">
-                    <option selected value="1">Pequeno</option>
-                    <option value="2">Medio</option>
-                    <option value="3">Grande</option>                                    
-                  </select>
-                </div>
+               <div class="abcd">
+                             
               </div>
-              <button type="button" name="add3" id="add3" class="btn btn-succcess">Reforço</button>
-            </div>
-            <br>
+            </div>    
           </div>
+                 
+            <br>
+          
           <div class="modal-footer">
             <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
             <button name="submit" id="submit" class="btn btn-info" value="submit">Save changes</button>
@@ -223,11 +173,7 @@
     <div align="left" class="col-md-6">
             <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
             <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
-<!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
-            <span class="col-md-4">
-              <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whateverdetalhes="{{$item->ambiente_perg}}" data-whatevertype="{{$item->tipo_perg}}" data-whatevertamanho="{{$item->tamanho}}" data-whateverlargura="{{$item->largura}}" data-whateveridperg="{{$item->id}}"></button>
-              <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
-            </span>
+
           <?php $x++; ?>
 
       
@@ -333,19 +279,9 @@
         </form>
       </div>
     </div>
-  </div>      
-
-                    
-    
-    
+  </div>        
     
 </div>
-
-
-
-
-
-
 <div class="modal fade" id="respostaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

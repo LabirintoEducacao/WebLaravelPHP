@@ -13,7 +13,7 @@ class Pergunta extends Model
     
     
     protected $fillable = [
-        'sala_id', 'tipo_perg', 'pergunta','ambiente_perg', 'tamanho', 'largura', 'prox_perg', 'disp',
+        'sala_id', 'tipo_perg', 'pergunta', 'ordem', 'room_type',
     ];
 
 
