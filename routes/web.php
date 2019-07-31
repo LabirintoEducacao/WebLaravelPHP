@@ -179,6 +179,8 @@ Route::post('admin/editar-perg', 'PerguntaRespostaController@edit_perg');
 Route::get('admin/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy');
 Route::get('admin/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
 
+Route::post('admin/alterar-ordem','PerguntaRespostaController@alterar');
+
 Route::get('admin/add-aluno', 'SalaController@add_user');
 
 

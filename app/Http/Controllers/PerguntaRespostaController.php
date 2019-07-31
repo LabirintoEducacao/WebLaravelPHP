@@ -38,6 +38,45 @@ class PerguntaRespostaController extends Controller
             ->get();   
         return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'respostas' => $respostas, 'perg_resp' => $perg_resp]);
     }
+    
+    public function alterar(Request $request){
+    if($request->ajax())
+      {
+            $lista = $request->lista;
+            $end_game=0;  
+            $y=1;
+            for($count = 0; $count < count($lista); $count++)
+            {
+                $perg_resp = DB::table('perg_resp')
+                    ->where('id','=', $lista[$count])
+                    ->get();
+                foreach ($perg_resp as $pergresp) {
+                    $x = Resposta::find($pergresp->resp_id);
+                    if($x->end_game==1)
+                        $end_game = $lista[$count];
+                }
+                if($lista[$count]!=$end_game){
+                    if(next($lista)){
+                        $perg = Pergunta::find($lista[$count]);
+                        $perg->ordem=$y;
+                        $perg->save();
+                    }else{
+                        $perg = Pergunta::find($lista[$count]);
+                        $perg->ordem=8;
+                        $perg->save();
+                    }
+                        
+                    
+                }
+                $y++;
+
+            }
+
+     return response()->json(['success' => 'sucesso.']);
+
+     }
+
+    }
 
 
     /**
@@ -115,13 +154,13 @@ class PerguntaRespostaController extends Controller
                       $resposta = $request->resposta;
                       $corret = $request->corret;
                       $sala_id = $request->sala_id;
-                      $end_game = true;
+                    $end_game = $request->end_game;
 
                       /////Resposta2////////////
                       $tipo_resp_ref = $request->tipo_resp_ref;
                       $resposta_ref = $request->resposta_ref;
                       $corret_ref = $request->corret_ref;
-                      $end_game_ref = true;
+                      $end_game_ref = false;
 
                     ////////////////Reforco/////////
                      
@@ -138,7 +177,7 @@ class PerguntaRespostaController extends Controller
                      $tipo_perg = $request->question_type;
                      $pergunta = $request->pergunta;
                      $proxima = 0;
-                     $room_type = $request->room_type;  
+                     $room_type = $request->room_type;
 
                      ///////////Path////////////
                      $ambiente_perg = $request->answer_boolean;
@@ -184,15 +223,21 @@ class PerguntaRespostaController extends Controller
                    ));
 
               ////////////////Tabela Resposta1//////////////////////
+                $end=0; 
               for($count = 0; $count < count($resposta); $count++)
               {
+                  if($end_game[$count] == null || $end_game[$count] == 0){
+                    $end=0;
+                  }else{
+                    $end=1;
+                  }
                 $id = DB::table('respostas')->insertGetId(array(
 
                          'sala_id'  =>  $sala_id,
                          'tipo_resp' => $tipo_resp[$count],
                          'resposta' => $resposta[$count],
                          'corret' => $corret[$count],
-                         'end_game' => $end_game
+                         'end_game' => $end
 
 
                    ));
