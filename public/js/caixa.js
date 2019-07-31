@@ -53,18 +53,18 @@
 
 //////////////////////////////////////////////////////////////////////////
   $(document).on('click', '.teste', function() {
-    if(b < 3){
-     $('#dynamic_field2').append('' + 
+         if(b < 3){
+          $('#dynamic_field2').append('' + 
          '<tr id="row'+i2+'" class="dynamic-added">' +
          '<td>'+
-         '<select name ="tipo_resp_ref[]" id ="tipo_opcao" class="form-control">'+
+         '<select name ="tipo_resp_ref[]" class="form-control">'+
          '<option selected value="1">Texto</option>'+
          '<option value="2">Imagem</option>'+
          '<option value="3">video</option>'+
          '<option value="4">Audio</option>'+
          '</select>'+
          '</td>' +
-          '<td>'+
+         '<td>'+
           '<select name ="corret_ref[]" class="form-control">'+
          '<option value="1">Certa</option>'+
           '<option selected value="2">Errada</option>'+   
@@ -79,43 +79,43 @@
              
           }         
   });
-
-  //////////////////////////////////////////////////////////////
+ // Acao para botao deletar remove fields
   $(document).on('click', '.btn_remove2', function() {
-       
-          var button_id2 = $(this).attr("id");
+
+     var button_id2 = $(this).attr("id");
           $('#row'+button_id2+'').remove();
           b--;
-  });
+   });
+
 
 ///////////////////////////////////////////////////////////////////
   $('input[type="checkbox"]').on('change', function() {
   var $parent = $(this).parents('.hovereffect');
   if (this.checked) {
     $('.abcd', $parent).append(     
-                    '<div class="form-group hea">'+
-                    '<h4>Pergunta:</h4>'+
-                    '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;">'+
-                    '</div>'+
-                    '<div class="form-group hea">'+
-                    '<h4 style="display: inline;"> Tipo da pergunta:&emsp;</h4>'+
-                    '<select  name ="question_type_ref">'+
-                    '<option selected value="1">Texto</option>'+
-                    '<option value="2">Imagem</option>'+
-                    '<option value="3">video</option>'+
-                    '<option value="4">Audio</option>'+
-                    '</select>'+
-                    '</div>'+
-                     '<div class="form-group hea">'+
-                    '<h4 style="display: inline;">Interação:&emsp;</h4>'+
-                      '<select name ="room_type_ref">'+
-                      '<option selected value="key">Chave</option>'+
-                     '<option value="door">Porta</option>'+
-                     '<option value="diamond">Diamante</option>'+
-                     '</select>'+ 
-                    '</div>'+    
-                    '<table class="table table-bordered table-hover hea" id="dynamic_field2" border="0">'+
-                    '<thead>'+
+                              '<div class="form-group hea">'+
+                              '<h4>Pergunta:</h4>'+
+                              '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;">'+
+                              '</div>'+
+                              '<div class="form-group hea">'+
+                              '<h4 style="display: inline;"> Tipo da pergunta:&emsp;</h4>'+
+                              '<select  name ="question_type_ref">'+
+                              '<option selected value="1">Texto</option>'+
+                              '<option value="2">Imagem</option>'+
+                              '<option value="3">video</option>'+
+                              '<option value="4">Audio</option>'+
+                              '</select>'+
+                              '</div>'+
+                               '<div class="form-group hea">'+
+                              '<h4 style="display: inline;">Interação:&emsp;</h4>'+
+                                '<select name ="room_type_ref">'+
+                                '<option selected value="key">Chave</option>'+
+                               '<option value="door">Porta</option>'+
+                               '<option value="diamond">Diamante</option>'+
+                               '</select>'+ 
+                              '</div>'+    
+                              '<table class="table table-bordered table-hover hea" id="dynamic_field2" border="0">'+
+                              '<thead>'+
                                  '<tr>'+
                                    '<td>Tipo da Resposta</td>'+
                                    '<td>Definição da Resposta</td>'+
@@ -125,7 +125,6 @@
                                  '<tbody>'+
                                    '<tr>'+
                                      '<td>'+
-
                                        '<select name ="tipo_resp_ref[]" class="form-control">'+
                                         '<option selected value="1">Texto</option>'+
                                             '<option value="2">imagem</option>'+
@@ -141,34 +140,34 @@
                                      '</td>'+
                                      '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list"></td>'+
                                       '<td><input type="button" class="teste" value="Add" /></td>'+
-                  '</tbody>'+
-                  '</table>'+
-                '<br>'+
-                '<div class="hea">'+
-                '<div class="form-group">'+
-                  '<span class="col-md-3">Tipo:&emsp;</span>'+
-                  '<select name ="answer_boolean_ref">'+
-                    '<option selected value="1">Corredor</option>'+
-                    '<option value="2">Labirinto</option>'+
-                  '</select>'+
-                '</div>'+
-                '<div class="form-group">'+
-                  '<span class="col-md-3">Tamanho:</span>'+
-                  '<select name ="tamanho_ref">'+
-                    '<option selected value="1">Pequeno</option>'+
-                    '<option value="2">Medio</option>'+
-                    '<option value="3">Grande</option>'+                                
-                  '</select>'+
-                '</div>'+
-                '<div class="form-group">'+
-                 '<span class="col-md-3">Largura:&emsp;</span>'+
-                  '<select name ="largura_ref">'+
-                    '<option selected value="1">Pequeno</option>'+
-                    '<option value="2">Medio</option>'+
-                    '<option value="3">Grande</option>'+                                    
-                  '</select>'+
-                '</div>'+
-                '</div>'
+                                        '</tbody>'+
+                                        '</table>'+
+                                      '<br>'+
+                                      '<div class="hea">'+
+                                      '<div class="form-group">'+
+                                        '<span class="col-md-3">Tipo:&emsp;</span>'+
+                                        '<select name ="answer_boolean_ref">'+
+                                          '<option selected value="1">Corredor</option>'+
+                                          '<option value="2">Labirinto</option>'+
+                                        '</select>'+
+                                      '</div>'+
+                                      '<div class="form-group">'+
+                                        '<span class="col-md-3">Tamanho:</span>'+
+                                        '<select name ="tamanho_ref">'+
+                                          '<option selected value="1">Pequeno</option>'+
+                                          '<option value="2">Medio</option>'+
+                                          '<option value="3">Grande</option>'+                                
+                                        '</select>'+
+                                      '</div>'+
+                                      '<div class="form-group">'+
+                                       '<span class="col-md-3">Largura:&emsp;</span>'+
+                                        '<select name ="largura_ref">'+
+                                          '<option selected value="1">Pequeno</option>'+
+                                          '<option value="2">Medio</option>'+
+                                          '<option value="3">Grande</option>'+                                    
+                                        '</select>'+
+                                      '</div>'+
+                                      '</div>'
       );
   } else {
     $('.hea', $parent).remove();
@@ -213,7 +212,7 @@
                     $(".print-error-msg").css('display', 'none');
                     $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
                   }
-                 a = 0;
+                 a = 0;b=0;
               }
 
           });
