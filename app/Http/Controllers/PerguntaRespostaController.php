@@ -175,6 +175,9 @@ class PerguntaRespostaController extends Controller
 
                     ));
 
+                    $statement = DB::select("SHOW TABLE STATUS LIKE 'perguntas'");
+                    $nextId = $statement[0]->Auto_increment;
+
 
                     ////////////Tabela Path//////////////////
                     $pathid = DB::table('paths')->insertGetId(array(
@@ -235,6 +238,7 @@ class PerguntaRespostaController extends Controller
             
             ///////////////Tabela Perguntas de Reforço///////////////
              $refid = DB::table('reforcos')->insertGetId(array(
+                     'id' =>  $nextId,
                      'perg_id' => $pergid,
                      'tipo_perg_ref' => $tipo_perg_ref,
                      'reforco' => $reforco,
