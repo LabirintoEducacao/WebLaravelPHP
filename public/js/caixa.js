@@ -213,6 +213,7 @@
                            printErrorMsg(data.error);
                        } else {
                            alert('Ordem alterada');
+                           window.location.reload();
                        }
                    }
                });
@@ -233,17 +234,17 @@
 
                            printErrorMsg(data.error);
                        } else {
-
-                           i = 1;
-                           $('.dynamic-added').remove();
-                           $('#add_name')[0].reset();
-                           $(".print-success-msg").find("ul").html('');
-                           $(".print-success-msg").css('display', 'block');
-                           $(".print-error-msg").css('display', 'none');
-                           $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
+                           window.location.reload();
+                           //                           i = 1;
+                           //                           $('.dynamic-added').remove();
+                           //                           $('#add_name')[0].reset();
+                           //                           $(".print-success-msg").find("ul").html('');
+                           //                           $(".print-success-msg").css('display', 'block');
+                           //                           $(".print-error-msg").css('display', 'none');
+                           //                           $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
                        }
-                       a = 0;
-                       b = 0;
+                       //                       a = 0;
+                       //                       b = 0;
                    }
 
                });
