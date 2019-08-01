@@ -30,7 +30,6 @@ class PerguntaRespostaController extends Controller
         
         $perg = DB::table('perguntas')
             ->where('sala_id','=',$id)
-            ->orderBy('ordem')
             ->get();
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$id)
