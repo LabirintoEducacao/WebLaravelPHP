@@ -29,6 +29,7 @@
                 </div>
                 <form name="add_name" id="add_name" style="margin-left: 5%;margin-right:1%">
                     <input type="hidden" value="{{$id}}" name="sala_id">
+                    <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
                     <div class="modal-body">
 
                         @csrf
@@ -44,6 +45,8 @@
                             <li class="active col-md-3 lista"><a data-toggle="tab" href="#perg">Pergunta</a></li>
                             <li class="col-md-3 lista"><a data-toggle="tab" href="#resp">Resposta</a></li>
                             <li class="col-md-3 lista"><a data-toggle="tab" href="#ambiente">Ambiente</a></li>
+                            <li class="col-md-3 lista"><a data-toggle="tab" href="#pergReforco">Reforço</a></li>
+
                         </ul>
 
                         <div class="tab-content">
@@ -71,7 +74,7 @@
                                 </div>
                                 <div class="form-group">
                                     <h4>Pergunta:</h4>
-                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;">
+                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;" required>
                                 </div>
                             </div>
 
@@ -82,7 +85,6 @@
                                         <tr>
                                             <td>Tipo da Resposta</td>
                                             <td>Definição da Resposta</td>
-                                            <td>Fim de Jogo</td>
                                             <td>Resposta</td>
                                         </tr>
                                     </thead>
@@ -101,12 +103,6 @@
                                                     <option selected value="1">Certa</option>
                                                     <option value="2">Errada</option>
                                                 </select>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <label for="end_game"></label>
-                                                    <input type="checkbox" class="" name="end_game[]" value="1">
-                                                </div>
                                             </td>
                                             <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
                                             <td><button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button></td>
@@ -141,13 +137,11 @@
                                         <option value="3">Grande</option>
                                     </select>
                                 </div>
-
+                            </div>
+                            <div id="pergReforco" class="tab-pane fade">
                                 <div class="hovereffect">
                                     <div class="overlay">
-                                        <label class="btn btn-primary cke">
-                                            <input type="checkbox" value="nao">
-                                        </label>
-                                        <p>Pergunta Refoço</p>
+                                        <input type="checkbox">&nbsp;Pergunta Refoço
                                     </div>
                                     <div class="abcd">
 
@@ -193,7 +187,7 @@
                     <h4 display="inline" class="col-md-1"><?php echo $letras[$y]; ?></h4>
                     <h4 display="inline" align="left" class="col-md-7">{{$resposta->resposta}}</h4>
                     <span class="col-md-4">
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}" data-whateverendgame="{{$resposta->end_game}}"></button>
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}"></button>
                         <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
                     </span>
                     <?php $y++; ?>
@@ -208,7 +202,7 @@
             <hr style="border: 0.5px solid #c2c2c2;">
             @endforeach
             <div align="right">
-                <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}" data-whateverendgame="{{$resposta->end_game}}">Alterar sequência</button>
+                <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal">Alterar sequência</button>
             </div>
         </div>
 
@@ -342,7 +336,6 @@
                                     <tr>
                                         <td>Tipo da Resposta</td>
                                         <td>Definição da Resposta</td>
-                                        <td>Fim de Jogo</td>
                                         <td>Resposta</td>
                                     </tr>
                                 </thead>
@@ -361,9 +354,6 @@
                                                 <option value="1">Certa</option>
                                                 <option value="2">Errada</option>
                                             </select>
-                                        </td>
-                                        <td>
-                                            <input type="checkbox" id="resposta_end" name="resposta_end">
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" id="resposta_name" name="resposta_name">

@@ -27,9 +27,6 @@
                        '<option selected value="2">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td>' +
-                       '<input type="checkbox" name="end_game[]">' +
-                       '</td>' +
                        '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" /></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
@@ -95,7 +92,7 @@
                    $('.abcd', $parent).append(
                        '<div class="form-group hea">' +
                        '<h4>Pergunta:</h4>' +
-                       '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;">' +
+                       '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;" required>' +
                        '</div>' +
                        '<div class="form-group hea">' +
                        '<h4 style="display: inline;"> Tipo da pergunta:&emsp;</h4>' +
@@ -169,10 +166,13 @@
                        '</div>' +
                        '</div>'
                    );
+                   document.getElementById('perg_reforco').value = 1;
                } else {
                    $('.hea', $parent).remove();
+                   document.getElementById('perg_reforco').value = 0;
                    b = 0;
                }
+
            });
 
            //////////////////////////////////////////////////////////////
@@ -221,7 +221,6 @@
            //Add Action to buttton submit Data to DB
 
            $('#submit').click(function () {
-
                $.ajax({
 
                    url: postURL,
@@ -306,7 +305,6 @@
            var recipientresp = button.data('whatevertyperesp');
            var recipientid = button.data('whateveridresp');
            var recipientcorrect = button.data('whatevercorrect');
-           var recipientendgame = button.data('whateverendgame');
            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
            var modal = $(this);
@@ -316,8 +314,7 @@
            modal.find('#resposta_type').val(recipientresp);
            modal.find('#resposta_id').val(recipientid);
            modal.find('#resposta_correct').val(recipientcorrect);
-           if (recipientendgame == 1)
-               document.getElementById('resposta_end').checked = true;
+
 
        });
 

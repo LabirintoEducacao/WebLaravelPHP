@@ -149,30 +149,8 @@ class PerguntaRespostaController extends Controller
                 return response()->json(['error' => $error->errors()->all()]);
 
               }  
-                      /////Resposta1////////////
-                      $tipo_resp = $request->tipo_resp;
-                      $resposta = $request->resposta;
-                      $corret = $request->corret;
-                      $sala_id = $request->sala_id;
-                    $end_game = $request->end_game;
-
-                      /////Resposta2////////////
-                      $tipo_resp_ref = $request->tipo_resp_ref;
-                      $resposta_ref = $request->resposta_ref;
-                      $corret_ref = $request->corret_ref;
-                      $end_game_ref = false;
-
-                    ////////////////Reforco/////////
-                     
-                     $tipo_perg_ref = $request->question_type_ref;
-                     $reforco = $request->reforco;
-                     $ambiente_ref = $request->answer_boolean_ref;
-                     $tamanho_ref = $request->tamanho_ref;
-                     $largura_ref = $request->largura_ref;
-                     $disponivel = true;
-                     $room_type_ref = $request->room_type_ref; 
-
-                     ////////Perguntas///////////
+          
+                        ////////Perguntas///////////
                      $sala_id = $request->sala_id;
                      $tipo_perg = $request->question_type;
                      $pergunta = $request->pergunta;
@@ -183,31 +161,76 @@ class PerguntaRespostaController extends Controller
                      $ambiente_perg = $request->answer_boolean;
                      $tamanho = $request->tamanho;
                      $largura = $request->largura;
-
-            ////////Tabela Pergunta ////////////////////////
-            $pergid = DB::table('perguntas')->insertGetId(array(
-                        
-                     'sala_id' =>  $sala_id,
-                     'tipo_perg' => $tipo_perg,
-                     'pergunta' => $pergunta,
-                     'ordem' => $proxima,
-                     'room_type' => $room_type    
-
-                   ));
-
-
-             ////////////Tabela Path//////////////////
-            $pathid = DB::table('paths')->insertGetId(array(
-
-                     'ambiente_perg' => $ambiente_perg,
-                     'tamanho' => $tamanho,
-                     'largura' => $largura,
-                     'disp' => $disponivel
+                     $disponivel = true;
           
-            
-                   ));
+                    ////////Tabela Pergunta ////////////////////////
+                    $pergid = DB::table('perguntas')->insertGetId(array(
 
-             DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' => $pathid));
+                    'sala_id' => $sala_id,
+                    'tipo_perg' => $tipo_perg,
+                    'pergunta' => $pergunta,
+                    'ordem' => $proxima,
+                    'room_type' => $room_type
+
+                    ));
+
+
+                    ////////////Tabela Path//////////////////
+                    $pathid = DB::table('paths')->insertGetId(array(
+
+                    'ambiente_perg' => $ambiente_perg,
+                    'tamanho' => $tamanho,
+                    'largura' => $largura,
+                    'disp' => $disponivel
+
+
+                    ));
+
+                    DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' => $pathid));
+          
+          
+          
+          
+          
+                      /////Resposta1////////////
+                      $tipo_resp = $request->tipo_resp;
+                      $resposta = $request->resposta;
+                      $corret = $request->corret;
+                      $sala_id = $request->sala_id;
+                    
+
+                      for($count = 0; $count < count($resposta); $count++)
+                      {
+                          
+                        $id = DB::table('respostas')->insertGetId(array(
+
+                                 'sala_id'  =>  $sala_id,
+                                 'tipo_resp' => $tipo_resp[$count],
+                                 'resposta' => $resposta[$count],
+                                 'corret' => $corret[$count]
+
+
+                           ));
+
+                       DB::table('perg_resp')->insert(array('perg_id' => $pergid, 'resp_id' => $id));
+
+                      }
+          if($request->perg_reforco==1){
+          
+                        ////////////////Reforco/////////
+                     
+                     $tipo_perg_ref = $request->question_type_ref;
+                     $reforco = $request->reforco;
+                     $ambiente_ref = $request->answer_boolean_ref;
+                     $tamanho_ref = $request->tamanho_ref;
+                     $largura_ref = $request->largura_ref;
+                     $room_type_ref = $request->room_type_ref; 
+
+                      /////Resposta2////////////
+                      $tipo_resp_ref = $request->tipo_resp_ref;
+                      $resposta_ref = $request->resposta_ref;
+                      $corret_ref = $request->corret_ref;
+            
             
             ///////////////Tabela Perguntas de Reforço///////////////
              $refid = DB::table('reforcos')->insertGetId(array(
@@ -222,30 +245,7 @@ class PerguntaRespostaController extends Controller
             
                    ));
 
-              ////////////////Tabela Resposta1//////////////////////
-                $end=0; 
-              for($count = 0; $count < count($resposta); $count++)
-              {
-                  if($end_game[$count] == null || $end_game[$count] == 0){
-                    $end=0;
-                  }else{
-                    $end=1;
-                  }
-                $id = DB::table('respostas')->insertGetId(array(
-
-                         'sala_id'  =>  $sala_id,
-                         'tipo_resp' => $tipo_resp[$count],
-                         'resposta' => $resposta[$count],
-                         'corret' => $corret[$count],
-                         'end_game' => $end
-
-
-                   ));
-
-
-               DB::table('perg_resp')->insert(array('perg_id' => $pergid, 'resp_id' => $id));
-
-              }
+              
 
             ////////////////Tabela Resposta2//////////////////////
 
@@ -257,7 +257,6 @@ class PerguntaRespostaController extends Controller
                              'tipo_resp' => $tipo_resp_ref[$i],
                              'resposta' => $resposta_ref[$i],
                              'corret' => $corret_ref[$i],
-                             'end_game' => $end_game_ref
 
 
                        ));
@@ -266,6 +265,7 @@ class PerguntaRespostaController extends Controller
              DB::table('ref_resp')->insert(array('ref_id' => $refid, 'resp_id' => $reforcoid));
 
                 }
+      }
                  return response()->json(['success' => 'sucesso.']);
               
         }
