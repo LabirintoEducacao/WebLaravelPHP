@@ -56,6 +56,10 @@ class SalaController extends Controller
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
             $sala->tematica = $request->input('theme');
+            if($request->public==null)
+                $sala->public=0;
+            else
+                $sala->public=1;
             $sala->save();
 
             return redirect('admin/sala')->with('success', 'Sala criada com sucesso!');
@@ -127,5 +131,10 @@ class SalaController extends Controller
         ->get();
 
         return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user]);
+    }
+    public function entrar_guest(){
+        $salas = Sala::where('public','=',1)->get();
+
+        return view('virtual_guest')->with(['data' => $salas]);
     }
 }

@@ -191,5 +191,8 @@ Route::get('admin/add-aluno', 'SalaController@add_user');
 
 
 
+Route::get('admin/virtual', 'SalaController@entrar');
 
-Route::get('virtual', 'SalaController@entrar');
+Route::get('virtual', 'SalaController@entrar_guest');
+
+

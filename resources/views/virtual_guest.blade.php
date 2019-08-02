@@ -1,38 +1,30 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('content')
 <!------------------------ Cabeçalho ------------------------>
-<div class="container-fluid" style="border-bottom: solid; ">
+<div class="container-fluid" align="center">
     <div class="row">
-        <div class="col-md-8 ">
-            <h1>Jogos</h1>
+        <div class="col-md-12">
+            <h1 align="center">Jogos</h1>
         </div>
         
         
     </div>
 </div>
 <!------------------------ Espaço das Salas  --------------------------->
-<div class="container-fluid" style="padding-top: 10px; ">
+<div class="container-fluid" style="padding-top: 10px; margin: 2% 2% 2% 2%">
    
    
 <!------- Estrutura de repetição (CARD)------------------->
    @foreach($data as $item)
-
-   <?php $user = Auth::user()->id;?>
-   @foreach($sala_user as $sala)
-   @if($item->id==$sala->sala_id)
-   <?php $aluno = $sala->user_id;?>
-
-@if($user == $aluno || $item->public==1)
-
    <?php $id=$item->id ?>
 
     <div class="col-md-3" style="padding-top:20px;">
   <div class="card ">
    
-<p class="card-title" >  {{$item->name}} </p>
+<p class="card-title" > <h3 align="center">{{$item->name}}</h3></p>
 
- <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
+ <img src=" {{ asset('img/1.jpg')}} " style="width:100%; margin-bottom: 10px; " alt="imagen labirinto">
 
 <a href="#" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
 
@@ -45,9 +37,6 @@
 
 </div>
 </div>
-@endif
-@endif
-@endforeach
 @endforeach
 
 
@@ -55,15 +44,13 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content " >
       <div class="modal-header" style="background-color:#2F4F4F;" >
-        <h5 class="modal-title"></h5>
-        <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
-        "  id="exampleModalScrollableTitle">Qr Code </h5>
+        <h2 style="color:#ffffff; margin-left:40%">Qr Code </h2>
 
       </div>
       <div class="modal-body" >
         
         <h3 class="sala_name" align="center">Sala</h3>
-        <p style="padding-left: 170px;" >{!! QrCode::size(250)->generate( 'labirinto Quimica' ); !!}</p>
+        <p align="center">{!! QrCode::size(250)->generate( 'labirinto Quimica' ); !!}</p>
         <input type="hidden" name="sala_id" id="sala_id">
     
     </div>
