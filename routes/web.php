@@ -195,4 +195,8 @@ Route::get('admin/virtual', 'SalaController@entrar');
 
 Route::get('virtual', 'SalaController@entrar_guest');
 
+Route::get('buscar', 'SalaController@buscar');
+
+Route::post('buscar', 'SalaController@buscar');
+
 

@@ -2,15 +2,18 @@
 
 @section('content')
 <!------------------------ Cabeçalho ------------------------>
-<div class="container-fluid" align="center">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 align="center">Jogos</h1>
-        </div>
-        
-        
-    </div>
+<div class="container-fluid">
+  <form class="form-inline mr-auto" action="{{ url('/buscar') }}" method="POST">
+    @csrf
+    <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search" name="buscar" id="buscar">
+    <button class="btn btn-outline-info" type="submit">Buscar</button>
+  </form> 
 </div>
+@if (session('status'))
+                        <div class="alert alert-warning" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 <!------------------------ Espaço das Salas  --------------------------->
 <div class="container-fluid" style="padding-top: 10px; margin: 2% 2% 2% 2%">
    
@@ -19,7 +22,7 @@
    @foreach($data as $item)
    <?php $id=$item->id ?>
 
-    <div class="col-md-3" style="padding-top:20px;">
+    <div class="col-md-3" style="padding-top:20px;" display="inline">
   <div class="card ">
    
 <p class="card-title" > <h3 align="center">{{$item->name}}</h3></p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use App\Sala;
 
 class SalaController extends Controller
@@ -135,6 +136,35 @@ class SalaController extends Controller
     public function entrar_guest(){
         $salas = Sala::where('public','=',1)->get();
 
-        return view('virtual_guest')->with(['data' => $salas]);
+        $professores = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->orderBy('name')
+            ->where('role_user.role_id','=',2)
+            ->get();
+
+        return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
+    }
+
+    public function buscar(Request $request){
+        $salas = DB::table('salas')
+            ->orderBy('name')
+            ->where('public','=',1)
+            ->where('name',$request->buscar)
+            ->get();
+            $professores = DB::table('users')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->orderBy('name')
+                ->where('role_user.role_id','=',2)
+                ->get();
+        if(count($salas)<=0){
+            $salas = Sala::where('public','=',1)->get();
+            $notification = array(
+                'message' => 'Você não tem permissão para editar!!',
+                'alert-type' => 'warning'
+            );
+            return redirect('virtual')->with($notification);
+        }
+        else
+            return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
     }
 }

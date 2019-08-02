@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/caixa.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -272,7 +273,6 @@
         .show>.btn-outline-dark.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
         }
-
     </style>
 </head>
 <body>
@@ -290,6 +290,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                    </ul>
+
+                    <ul class="navbar-nav" align="center">
+                        @if (\Request::is('virtual')) 
+                            <li class="nav-item">
+                                <h3>Jogos</h3>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -317,6 +325,13 @@
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('userRegister') }}">{{ __('Register') }}</a>
                             </li>
+                             @elseif (\Request::is('virtual')) 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('userLogin') }}">{{ __('Login') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('userRegister') }}">{{ __('Register') }}</a>
+                                </li>
                              @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -354,5 +369,26 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        @if(Session::has('message'))
+        var type = "{{Session::get('alert-type','info')}}"
+
+        switch (type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        @endif
+
+    </script>
 </body>
 </html>
