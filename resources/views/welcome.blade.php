@@ -105,6 +105,15 @@
                             </div>
                         </div>
                     </div>&emsp;&emsp;&emsp;
+                    <div class="card border-info mb-3 col" style="max-width: 20rem;">
+                        <div class="card-header">Jogos Públicos</div>
+                        <div class="card-body text-info">
+                            <img class="card-img-top" src="{{ asset('img/console.png') }}" width="50"/>
+                            <div class="card-text links">
+                                <a href="{{ url('virtual') }}">Jogar</a><br>
+                            </div>
+                        </div>
+                    </div>&emsp;&emsp;&emsp;
                 </div>
             </div>
         </div>

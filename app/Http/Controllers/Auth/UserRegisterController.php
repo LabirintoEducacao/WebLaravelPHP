@@ -6,9 +6,11 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -78,5 +80,26 @@ class UserRegisterController extends Controller
         $user->roles()->attach(Role::where('name', 'user')->first());
       
        return $user; 
+    }
+
+    protected function createWithSala(Request $request)
+    {
+        $data = $request->all();
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        DB::table('role_user')->insert(
+                array('role_id' => 3, 'user_id' => $user->id)
+            );
+        if(isset($data['sala_id'])){
+            DB::table('sala_user')->insert(
+                array('sala_id' => $data['sala_id'], 'user_id' => $user->id)
+            );
+        }
+      
+       return redirect('home');
     }
 }

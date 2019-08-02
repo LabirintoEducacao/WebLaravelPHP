@@ -44,31 +44,19 @@ class PerguntaRespostaController extends Controller
     if($request->ajax())
       {
             $lista = $request->lista;
-            $end_game=0;  
             $y=1;
             for($count = 0; $count < count($lista); $count++)
             {
-                $perg_resp = DB::table('perg_resp')
-                    ->where('id','=', $lista[$count])
-                    ->get();
-                foreach ($perg_resp as $pergresp) {
-                    $x = Resposta::find($pergresp->resp_id);
-                    if($x->end_game==1)
-                        $end_game = $lista[$count];
+                if(next($lista)){
+                    $perg = Pergunta::find($lista[$count]);
+                    $perg->ordem=$y;
+                    $perg->save();
+                }else{
+                    $perg = Pergunta::find($lista[$count]);
+                    $perg->ordem=100;
+                    $perg->save();
                 }
-                if($lista[$count]!=$end_game){
-                    if(next($lista)){
-                        $perg = Pergunta::find($lista[$count]);
-                        $perg->ordem=$y;
-                        $perg->save();
-                    }else{
-                        $perg = Pergunta::find($lista[$count]);
-                        $perg->ordem=8;
-                        $perg->save();
-                    }
                         
-                    
-                }
                 $y++;
 
             }

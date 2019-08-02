@@ -57,6 +57,9 @@
                              </select>
 
                         </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="public">Sala Pública
+                        </div>
                         
                         <div>
                             <button type="submit" class="btn btn-outline-success btn-lg btn-block">CRIAR SALA</button>

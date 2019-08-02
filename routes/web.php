@@ -131,6 +131,12 @@ Route::post('usuario/login', 'Auth\LoginController@login')->name('userLogin');
 Route::get('usuario/register', 'User\UserRegisterController@showRegistrationForm')->name('userRegister');
 Route::post('usuario/register', 'Auth\UserRegisterController@register')->name('userRegister');
 
+Route::get('usuario/cadastro/{id}', function ($id) {
+    return view ( 'cad_sala' )->with(['id'=>$id]);
+
+});
+Route::post('usuario/cadastro/{id}', 'Auth\UserRegisterController@createWithSala');
+
 
 /* Rotas do Admin */
 
@@ -185,3 +191,12 @@ Route::get('admin/add-aluno', 'SalaController@add_user');
 
 
 Route::get('virtual', 'SalaController@entrar');
+
+Route::get('admin/virtual', 'SalaController@entrar');
+
+Route::get('virtual', 'SalaController@entrar_guest');
+
+Route::get('buscar', 'SalaController@buscar');
+
+Route::post('buscar', 'SalaController@buscar');
+
