@@ -165,6 +165,9 @@
         <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
         <!------- Estrutura de repetição (CARD)------------------->
         <div class="col-md-12" style="padding-top:20px;" display="inline">
+            <h2 style="text-align: center;">Perguntas</h2>
+            <br>
+            <hr style="border: 0.5px solid #c2c2c2;">
             @foreach($data as $item)
             <div class="card">
                 <div align="left" class="col-md-6">
@@ -200,10 +203,53 @@
             </div>
             <?php $y=0;; ?>
             <hr style="border: 0.5px solid #c2c2c2;">
+            <br>
             @endforeach
-            <div align="right">
+             <div align="right">
                 <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal">Alterar sequência</button>
             </div>
+             <br>
+              <br>
+            <h2 style="text-align: center;">Perguntas de Reforço</h2>
+            <br>
+            <hr style="border: 0.5px solid #c2c2c2;">
+            @foreach($ref as $item)
+            <div class="card">
+                <div align="left" class="col-md-6">
+                    <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
+                    <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
+                    <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
+                    <span class="col-md-4">
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}"></button>
+                        <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                    </span>
+                    <?php $x++; ?>
+
+
+                </div>
+                <div align="right" class="col-md-6">
+                    @foreach($respostas as $resposta)
+                    @foreach($perg_resp as $pergresp)
+                    @if($pergresp->perg_id==$item->id)
+                    @if($pergresp->resp_id==$resposta->id)
+                    <h4 display="inline" class="col-md-1"><?php echo $letras[$y]; ?></h4>
+                    <h4 display="inline" align="left" class="col-md-7">{{$resposta->resposta}}</h4>
+                    <span class="col-md-4">
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}"></button>
+                        <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                    </span>
+                    <?php $y++; ?>
+                    <br><br>
+                    @endif
+                    @endif
+                    @endforeach
+                    @endforeach
+                </div>
+            </div>
+            <?php $y=0;; ?>
+            <hr style="border: 0.5px solid #c2c2c2;">
+
+            @endforeach
         </div>
 
 

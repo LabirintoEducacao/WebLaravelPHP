@@ -18,7 +18,7 @@ class CreatePerguntasTable extends Migration
             $table->bigInteger('sala_id')->unsigned()->nullable();
             $table->string('tipo_perg');
             $table->string('pergunta');
-            $table->integer('ordem');
+            $table->integer('ordem')->nullable();
             $table->string('room_type');
             $table->timestamps();
         });

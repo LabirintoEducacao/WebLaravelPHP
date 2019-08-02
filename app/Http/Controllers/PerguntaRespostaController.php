@@ -29,7 +29,11 @@ class PerguntaRespostaController extends Controller
     {
         
         $perg = DB::table('perguntas')
-            ->where('sala_id','=',$id)
+            ->where('sala_id','=',$id )->whereNotNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $ref = DB::table('perguntas')
+            ->where('sala_id','=',$id )->whereNull('ordem')
             ->orderBy('ordem')
             ->get();
         $respostas = DB::table('respostas')
@@ -37,7 +41,7 @@ class PerguntaRespostaController extends Controller
             ->get();
         $perg_resp =  DB::table('perg_resp')
             ->get();   
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'respostas' => $respostas, 'perg_resp' => $perg_resp]);
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp]);
     }
     
     public function alterar(Request $request){
@@ -47,15 +51,11 @@ class PerguntaRespostaController extends Controller
             $y=1;
             for($count = 0; $count < count($lista); $count++)
             {
-                if(next($lista)){
+                    
                     $perg = Pergunta::find($lista[$count]);
                     $perg->ordem=$y;
                     $perg->save();
-                }else{
-                    $perg = Pergunta::find($lista[$count]);
-                    $perg->ordem=100;
-                    $perg->save();
-                }
+           
                         
                 $y++;
 
@@ -143,7 +143,7 @@ class PerguntaRespostaController extends Controller
                      $sala_id = $request->sala_id;
                      $tipo_perg = $request->question_type;
                      $pergunta = $request->pergunta;
-                     $proxima = 0;
+                     $proxima = 1;
                      $room_type = $request->room_type;
 
                      ///////////Path////////////
@@ -208,8 +208,7 @@ class PerguntaRespostaController extends Controller
 
                      $sala_id_ref = $request->sala_id;
                      $tipo_perg_ref = $request->question_type_ref;
-                     $pergunta_ref = $request->reforco;
-                     $proxima_ref = 0;
+                     $pergunta_ref = $request->reforco;;
                      $room_type_ref = $request->room_type_ref;
 
 
@@ -245,7 +244,6 @@ class PerguntaRespostaController extends Controller
                     'sala_id' => $sala_id_ref,
                     'tipo_perg' => $tipo_perg_ref,
                     'pergunta' => $pergunta_ref,
-                    'ordem' => $proxima_ref,
                     'room_type' => $room_type_ref
 
                     ));  
