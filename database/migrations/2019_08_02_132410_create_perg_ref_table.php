@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRefRespTable extends Migration
+class CreatePergRefTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateRefRespTable extends Migration
      */
     public function up()
     {
-        Schema::create('ref_resp', function (Blueprint $table) {
+        Schema::create('perg_ref', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('perg_id')->unsigned();
             $table->bigInteger('ref_id')->unsigned()->nullable();
-            $table->bigInteger('resp_id')->unsigned()->nullable();
             $table->timestamps();
         });
-        
-        Schema::table('ref_resp', function($table) {
-            $table->foreign('ref_id')->references('id')->on('reforcos')->onDelete('cascade');
-            $table->foreign('resp_id')->references('id')->on('respostas')->onDelete('cascade');
+        Schema::table('perg_ref', function($table) {
+           $table->foreign('perg_id')->references('id')->on('perguntas')->onDelete('cascade');
+           $table->foreign('ref_id')->references('id')->on('perguntas')->onDelete('cascade');
         });
+
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateRefRespTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ref_resp');
+        Schema::dropIfExists('perg_ref');
     }
 }

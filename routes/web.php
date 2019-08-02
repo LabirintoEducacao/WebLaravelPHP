@@ -184,6 +184,4 @@ Route::post('admin/alterar-ordem','PerguntaRespostaController@alterar');
 Route::get('admin/add-aluno', 'SalaController@add_user');
 
 
-
-
 Route::get('virtual', 'SalaController@entrar');
