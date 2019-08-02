@@ -143,11 +143,13 @@ class UserController extends Controller
         $data = $request->all();
 
         $users = User::where('email', '=', $data['email'])->get();
+        
+        $sala = Sala::find($request->sala_id);
 
         foreach ($users as $user)
         {
             if($user){
-                \Mail::to($data['email'])->send(new LinkSala());
+                \Mail::to($data['email'])->send(new LinkSala($sala->name,Auth::user()->name,Auth::user()->id));
                 $notification = array(
                 'message' => 'E-mail enviado com sucesso!!',
                 'alert-type' => 'success'
@@ -155,12 +157,12 @@ class UserController extends Controller
                 return redirect()->route('admin.users.index')->with($notification);
             }
         }
-        \Mail::to($data['email'])->send(new LinkCadastro());
+        \Mail::to($data['email'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id));
         $notification = array(
                 'message' => 'E-mail para cadastro enviado com sucesso!!',
                 'alert-type' => 'success'
                 );
-    	return redirect('admin/alunos/'. $data['sala_id'])->with($notification);
+      return redirect('admin/alunos/'. $data['sala_id'])->with($notification);
     }
 
 

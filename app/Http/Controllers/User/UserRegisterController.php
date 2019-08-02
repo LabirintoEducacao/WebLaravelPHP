@@ -17,4 +17,9 @@ class UserRegisterController extends Controller
     {
       return view('auth.userRegister');
     }
+
+    public function showRegistrationFormId($id)
+    {
+      return view('cad_sala')->withData($id);
+    }
 }
