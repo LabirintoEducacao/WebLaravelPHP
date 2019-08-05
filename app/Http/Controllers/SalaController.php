@@ -62,8 +62,12 @@ class SalaController extends Controller
             else
                 $sala->public=1;
             $sala->save();
-
-            return redirect('admin/sala')->with('success', 'Sala criada com sucesso!');
+            
+            $notification = array(
+                'message' => 'Sala criada com sucesso!!!',
+                'alert-type' => 'success'
+            );
+            return redirect('admin/sala')->with($notification);
     }
     
     
@@ -93,8 +97,12 @@ class SalaController extends Controller
             else
                 $sala->public=1;
             $sala->save();
+            $notification = array(
+                'message' => 'Sala alterada com sucesso!!!',
+                'alert-type' => 'success'
+            );
 
-            return redirect('admin/sala')->with('success', 'Sala alterada com sucesso!');
+            return redirect('admin/sala')->with($notification);
     }
 
     /**
@@ -144,7 +152,11 @@ class SalaController extends Controller
         if(isset($sala)){
            $sala->delete();         
        }
-      return redirect('admin/sala');
+        $notification = array(
+                'message' => 'Sala deletada com sucesso!!!',
+                'alert-type' => 'success'
+            );
+      return redirect('admin/sala')->with($notification);
     }
 
     public function add_user(Request $request){
@@ -152,7 +164,12 @@ class SalaController extends Controller
         DB::table('sala_user')->insert(
                 array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
             );
-        return redirect('admin/alunos'. $request->get('sala_id'))->with('success', 'Pergunta criada com sucesso!');
+        $salas = Sala::where('public','=',1)->get();
+            $notification = array(
+                'message' => 'Usuário adicionado com sucesso!!!',
+                'alert-type' => 'success'
+            );
+        return redirect('admin/alunos'. $request->get('sala_id'))->with($notification);
 
     }
 
