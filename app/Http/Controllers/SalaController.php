@@ -88,7 +88,7 @@ class SalaController extends Controller
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
             $sala->tematica = $request->input('theme');
-            if($request->public==null || $request->public==0)
+            if($request->public==null)
                 $sala->public=0;
             else
                 $sala->public=1;
