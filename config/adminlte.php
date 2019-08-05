@@ -108,11 +108,9 @@ return [
     */
 
     'menu' => [
-        'MENU',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'header' => 'MENU DO ADMINISTRADOR',
+            'can' => 'permitidoadmin'
         ],
          [
              'text'        => 'Usuários',
@@ -120,12 +118,26 @@ return [
              'icon'        => 'file',
              'can'         => 'permitidoadmin',
          ],
+        [
+            'header' => 'MENU DO USUÁRIO',
+            'can' => 'permitidouser'
+        ],
           [
              'text'        => 'Espaço Virtual',
              'url'         => 'admin/virtual',
              'icon'        => 'rocket',
              'can'         => 'permitidouser',
          ],
+        [
+            'header' => 'EDIÇÃO DE SALA',
+            'can' => 'permitidoprof'
+        ],
+        [
+            'text' => 'Editar Salas',
+            'url'  => 'admin/sala',
+            'icon' => 'cube',
+            'can'  => 'permitidoprof',
+        ],
         'CONFIGURAÇÃO DE CONTA',
         [
             'text' => 'Perfil',
@@ -143,13 +155,7 @@ return [
             'icon' => 'user-times',
            'can' => 'permitidouserprof',
         ],
-         'EDIÇÃO DE SALA',
-        [
-            'text' => 'Salas',
-            'url'  => 'admin/sala',
-            'icon' => 'cube',
-            'can'  => 'permitidoprof',
-        ],
+         
         
         // [
         //     'text' => 'Profile',
