@@ -65,6 +65,37 @@ class SalaController extends Controller
 
             return redirect('admin/sala')->with('success', 'Sala criada com sucesso!');
     }
+    
+    
+    public function edit_sala(Request $request)
+    {
+        
+           $request->validate([
+
+                  'nome' => 'required|max:20'
+
+           ]);
+
+            $time = $request->input('time');
+
+           if($time == ""){
+               
+            $time = 0;
+
+           }
+        
+            $sala = Sala::find($request->sala_id);
+            $sala->name = $request->input('nome');
+            $sala->duracao = $time;
+            $sala->tematica = $request->input('theme');
+            if($request->public==null || $request->public==0)
+                $sala->public=0;
+            else
+                $sala->public=1;
+            $sala->save();
+
+            return redirect('admin/sala')->with('success', 'Sala alterada com sucesso!');
+    }
 
     /**
      * Display the specified resource.

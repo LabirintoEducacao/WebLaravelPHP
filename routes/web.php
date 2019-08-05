@@ -97,10 +97,7 @@ Route::get('register/user', function () {
 });
 
 
-
-// Route::get('admin/editar-sala', function () {
-//     return view('edit_sala');
-// });
+Route::post('admin/editar-sala','SalaController@edit_sala');
 
 
 
@@ -199,4 +196,3 @@ Route::get('virtual', 'SalaController@entrar_guest');
 Route::get('buscar', 'SalaController@buscar');
 
 Route::post('buscar', 'SalaController@buscar');
-

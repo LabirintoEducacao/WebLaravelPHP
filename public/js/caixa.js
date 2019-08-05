@@ -235,16 +235,16 @@
                            printErrorMsg(data.error);
                        } else {
                            window.location.reload();
-                      i = 1;
-                      $('.dynamic-added').remove();
-                      $('#add_name')[0].reset();
-                      $(".print-success-msg").find("ul").html('');
-                      $(".print-success-msg").css('display', 'block');
-                      $(".print-error-msg").css('display', 'none');
-                      $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
-                      }
-                      a = 0;
-                      b = 0;
+                           i = 1;
+                           $('.dynamic-added').remove();
+                           $('#add_name')[0].reset();
+                           $(".print-success-msg").find("ul").html('');
+                           $(".print-success-msg").css('display', 'block');
+                           $(".print-error-msg").css('display', 'none');
+                           $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
+                       }
+                       a = 0;
+                       b = 0;
                    }
 
                });
@@ -315,6 +315,29 @@
            modal.find('#resposta_type').val(recipientresp);
            modal.find('#resposta_id').val(recipientid);
            modal.find('#resposta_correct').val(recipientcorrect);
+
+
+       });
+
+       $('#salaEModal').on('show.bs.modal', function (event) {
+           var button = $(event.relatedTarget); // Button that triggered the modal
+           var recipientnome = button.data('whatevernome');
+           var recipientid = button.data('whateverid');
+           var recipientresp = button.data('whatevertype');
+           var recipienttema = button.data('whatevertema');
+           var recipientcorrect = button.data('whateverpublic');
+           // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+           var modal = $(this);
+           modal.find('#nome').val(recipientnome);
+           modal.find('#time').val(recipientresp);
+           modal.find('#sala_id').val(recipientid);
+           modal.find('#theme').val(recipienttema);
+           if (recipientcorrect == 1)
+               $('#public').prop("checked", true);
+           else
+               $('#public').prop("checked", false);
+           //modal.find('#public').val(recipientcorrect);
 
 
        });
