@@ -123,8 +123,30 @@ class PerguntaRespostaController extends Controller
     public function store(Request $request)
     {
 
+
+         $salaid = $request->sala_id;
+         $ordem = Pergunta::select('ordem')->where('sala_id', $salaid)->orderBy('ordem')->get();
+
+           foreach ($ordem as $value) {
+               $teste = $value->ordem;
+             }
+
+       
+         if(isset($teste)){
+
+           $teste ++;
+
+         }
+         if(!isset($teste)){
+
+            $teste = 0;
+         }
+
+
       if($request->ajax())
        {
+          
+
           $rules = array(
                     'resposta.*' => 'required',
                     'resposta_ref.*' => 'required'
@@ -143,7 +165,6 @@ class PerguntaRespostaController extends Controller
                      $sala_id = $request->sala_id;
                      $tipo_perg = $request->question_type;
                      $pergunta = $request->pergunta;
-                     $proxima = 50;
                      $room_type = $request->room_type;
 
                      ///////////Path////////////
@@ -158,10 +179,13 @@ class PerguntaRespostaController extends Controller
                     'sala_id' => $sala_id,
                     'tipo_perg' => $tipo_perg,
                     'pergunta' => $pergunta,
-                    'ordem' => $proxima,
+                    'ordem' =>   $teste,
                     'room_type' => $room_type
 
                     ));
+
+
+
                     ////////////Tabela Path//////////////////
                     $pathid = DB::table('paths')->insertGetId(array(
 
