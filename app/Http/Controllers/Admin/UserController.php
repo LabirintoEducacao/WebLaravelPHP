@@ -168,16 +168,25 @@ class UserController extends Controller
 
     public function add_user($id)
     {
+        $sala = Sala::find($id);
+        if($sala->public ==0){
+            $data = DB::table('users')
+                ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
+                ->orderBy('name')
+                ->where('sala_user.sala_id','=',$id)
+                ->get();
 
-        $data = DB::table('users')
-            ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
-            ->orderBy('name')
-            ->where('sala_user.sala_id','=',$id)
-            ->get();
+            $alunos = \App\User::orderBy('name')->get();
 
-        $alunos = \App\User::orderBy('name')->get();
-
-        return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
+            return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
+        }else{
+             $notification = array(
+                'message' => 'Esta sala é pública, não há como adicionar alunos!!',
+                'alert-type' => 'warning'
+                );
+      return redirect('admin/sala')->with($notification);
+            
+        }
     }
 
 
