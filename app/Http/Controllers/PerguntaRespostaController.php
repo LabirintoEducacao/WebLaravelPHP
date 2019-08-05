@@ -127,7 +127,7 @@ class PerguntaRespostaController extends Controller
          $salaid = $request->sala_id;
          $ordem = Pergunta::select('ordem')->where('sala_id', $salaid)->orderBy('ordem')->get();
 
-           foreach ($ordem as $value) {
+           foreach ($ordem as $value){
                $teste = $value->ordem;
              }
 
