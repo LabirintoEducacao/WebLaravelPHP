@@ -167,7 +167,6 @@
         <div class="col-md-12" style="padding-top:20px;" display="inline">
             <h2 style="text-align: center;">Perguntas</h2>
             <br>
-            <hr style="border: 0.5px solid #c2c2c2;">
             @foreach($data as $item)
             <div class="card">
                 <div align="left" class="col-md-6">
@@ -205,25 +204,25 @@
             <hr style="border: 0.5px solid #c2c2c2;">
             <br>
             @endforeach
-             <div align="right">
+            <div align="right">
                 <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal">Alterar sequência</button>
             </div>
-             <br>
-              <br>
+            <br>
+            <br>
             <h2 style="text-align: center;">Perguntas de Reforço</h2>
             <br>
-            <hr style="border: 0.5px solid #c2c2c2;">
+            <?php $z=1 ?>
             @foreach($ref as $item)
             <div class="card">
                 <div align="left" class="col-md-6">
-                    <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
+                    <h4 display="inline" class="col-md-1"><?php echo $z; ?></h4>
                     <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
                     <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
                     <span class="col-md-4">
                         <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}"></button>
                         <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
                     </span>
-                    <?php $x++; ?>
+                    <?php $z++; ?>
 
 
                 </div>

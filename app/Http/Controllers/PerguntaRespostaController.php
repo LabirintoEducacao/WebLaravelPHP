@@ -94,8 +94,11 @@ class PerguntaRespostaController extends Controller
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$data['sala_id'])
             ->get();
-            
-        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])->with('success', 'Resposta alterada com sucesso!');
+            $notification = array(
+                'message' => 'Resposta alterada com sucesso!!',
+                'alert-type' => 'success'
+            );
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])->with($notification);
     }
 
     public function edit_perg(Request $request){
@@ -110,8 +113,12 @@ class PerguntaRespostaController extends Controller
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$data['sala_id'])
             ->get();
+        $notification = array(
+                'message' => 'Pergunta alterada com sucesso!!',
+                'alert-type' => 'success'
+            );
 
-        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])->with('success', 'Pergunta alterada com sucesso!');
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])>with($notification);
     }
 
     /**
@@ -357,7 +364,11 @@ class PerguntaRespostaController extends Controller
             DB::table('respostas')->where('id', '=', $resp_id->resp_id)->delete();
         }
         
-        return redirect('admin/editar-sala/'. $perg->sala_id)->with('warning', 'Pergunta deletada com sucesso!');
+        $notification = array(
+                'message' => 'Pergunta deletada com sucesso!!',
+                'alert-type' => 'success'
+            );
+        return redirect('admin/editar-sala/'. $perg->sala_id)->with($notification);
     }
 
     public function destroyresp($id)
@@ -369,6 +380,10 @@ class PerguntaRespostaController extends Controller
         // $resposta = Respostas::find($id);
         DB::table('perg_resp')->where('resp_id', '=', $id)->delete();
         DB::table('respostas')->where('id', '=', $id)->delete();
-        return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with('warning', 'Resposta deletada com sucesso!');
+        $notification = array(
+                'message' => 'Resposta deletada com sucesso!!',
+                'alert-type' => 'success'
+            );
+        return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with($notification);
     }
 }
