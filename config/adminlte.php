@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'LOGIN',
+    'title' => 'LABIRINTO',
 
     'title_prefix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'purple-light',
+    'skin' => 'green-light',
 
     /*
     |--------------------------------------------------------------------------
