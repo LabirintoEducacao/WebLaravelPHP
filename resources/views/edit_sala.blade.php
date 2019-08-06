@@ -168,15 +168,27 @@
             <h2 style="text-align: center;">Perguntas</h2>
             <br>
             @foreach($data as $item)
+
+
             <div class="card">
                 <div align="left" class="col-md-6">
                     <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
                     <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
                     <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
+                    @foreach($path_perg as $pp)
+                    @if($pp->perg_id==$item->id)
+                    <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
+                    @foreach($paths as $path)
+                    @if($path->id==$pp->path_id)
+                    <!--                    <input value="{{$path->id}}"><br><br>-->
                     <span class="col-md-4">
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}"></button>
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}"></button>
                         <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
                     </span>
+                    @endif
+                    @endforeach
+                    @endif
+                    @endforeach
                     <?php $x++; ?>
 
 
@@ -218,10 +230,18 @@
                     <h4 display="inline" class="col-md-1"><?php echo $z; ?></h4>
                     <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
                     <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
+                    @foreach($path_perg as $pp)
+                    @if($pp->perg_id==$item->id)
+                    @foreach($paths as $path)
+                    @if($path->id==$pp->path_id)
                     <span class="col-md-4">
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}"></button>
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $z; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}"></button>
                         <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
                     </span>
+                    @endif
+                    @endforeach
+                    @endif
+                    @endforeach
                     <?php $z++; ?>
 
 
@@ -312,39 +332,47 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="perg_room_type" class="control-label">Interação:&emsp;</label>
+                                    <select name="perg_room_type" id="perg_room_type">
+                                        <option selected value="key">Chave</option>
+                                        <option value="door">Porta</option>
+                                        <option value="diamond">Diamante</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="pergunta_name" class="control-label">Pergunta:</label>
                                     <input type="text" class="form-control" id="pergunta_name" name="pergunta_name">
                                 </div>
                             </div>
                             <!-- AMBIENTE -->
-                            <!--
-              <div id="edit_ambiente" class="tab-pane fade">
-                <br>
-                <div class="form-group">
-                  <span class="col-md-3">Tipo:&emsp;</span>
-                  <select name ="pergunta_ambiente" id="pergunta_ambiente">
-                    <option value="1">Corredor</option>
-                    <option value="2">Labirinto</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <span class="col-md-3">Tamanho:</span>
-                  <select name ="pergunta_tamanho" id="pergunta_tamanho">
-                    <option value="1">Pequeno</option>
-                    <option value="2">Medio</option>
-                    <option value="3">Grande</option>                                
-                  </select>
-                </div>
-                <div class="form-group">
-                  <span class="col-md-3">Largura:&emsp;</span>
-                  <select name ="pergunta_largura" id="pergunta_largura">
-                    <option value="1">Pequeno</option>
-                    <option value="2">Medio</option>
-                    <option value="3">Grande</option>                                    
-                   </select>
-                </div>
-              </div>
--->
+
+                            <div id="edit_ambiente" class="tab-pane fade">
+                                <br>
+                                <div class="form-group">
+                                    <span class="col-md-3">Tipo:&emsp;</span>
+                                    <select name="pergunta_ambiente" id="pergunta_ambiente">
+                                        <option value="1">Corredor</option>
+                                        <option value="2">Labirinto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span class="col-md-3">Tamanho:</span>
+                                    <select name="pergunta_tamanho" id="pergunta_tamanho">
+                                        <option value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span class="col-md-3">Largura:&emsp;</span>
+                                    <select name="pergunta_largura" id="pergunta_largura">
+                                        <option value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <br>
                         </div>
                     </div>

@@ -31,6 +31,10 @@ class PerguntaRespostaController extends Controller
             ->where('sala_id','=',$id )->whereNotNull('ordem')
             ->orderBy('ordem')
             ->get();
+        $path_perg = DB::table('path_perg')
+            ->get();
+        $paths = DB::table('paths')
+            ->get();
         $ref = DB::table('perguntas')
             ->where('sala_id','=',$id )->whereNull('ordem')
             ->orderBy('ordem')
@@ -40,7 +44,7 @@ class PerguntaRespostaController extends Controller
             ->get();
         $perg_resp =  DB::table('perg_resp')
             ->get();   
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp]);
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths]);
     }
     
     public function alterar(Request $request){
@@ -104,20 +108,41 @@ class PerguntaRespostaController extends Controller
         $data = $request->all();
         DB::table('perguntas')
             ->where('id','=', $data['pergunta_id'])
-            ->update(['tipo_perg' => $data['pergunta_type'],'pergunta' => $data['pergunta_name'],'ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
+            ->update(['tipo_perg' => $data['pergunta_type'],'pergunta' => $data['pergunta_name'],'room_type' => $data['perg_room_type']]);
+        
+        $path_perg = DB::table('path_perg')
+            ->where('perg_id','=', $data['pergunta_id'])
+            ->get();
+        foreach($path_perg as $pp){
+            DB::table('paths')
+                ->where('id','=',$pp->path_id)
+                ->update(['ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
+        }
 
         $perg = DB::table('perguntas')
-            ->where('sala_id','=',$data['sala_id'])
+            ->where('sala_id','=',$data['sala_id'] )->whereNotNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $path_perg = DB::table('path_perg')
+            ->get();
+        $paths = DB::table('paths')
+            ->get();
+        $ref = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'] )->whereNull('ordem')
+            ->orderBy('ordem')
             ->get();
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$data['sala_id'])
             ->get();
+        $perg_resp =  DB::table('perg_resp')
+            ->get();   
+
         $notification = array(
                 'message' => 'Pergunta alterada com sucesso!!',
                 'alert-type' => 'success'
             );
 
-        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])>with($notification);
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths])->with($notification);
     }
 
     /**

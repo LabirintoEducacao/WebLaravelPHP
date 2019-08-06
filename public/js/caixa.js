@@ -308,12 +308,11 @@
            var recipient = button.data('whatever'); // Extract info from data-* attributes
            var recipientnome = button.data('whatevernome');
            var recipientperg = button.data('whatevertype');
-           //var recipientdetalhes = button.data('whateverdetalhes');
-           //var recipienttamanho = button.data('whatevertamanho');
-           //var recipientlargura = button.data('whateverlargura');
+           var recipientdetalhes = button.data('whateverambiente');
+           var recipienttamanho = button.data('whatevertamanho');
+           var recipientlargura = button.data('whateverlargura');
            var recipientid = button.data('whateveridperg');
-
-
+           var recipientroom = button.data('whateverroom');
 
            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -322,12 +321,15 @@
            modal.find('#id-curso').val(recipient);
            modal.find('#pergunta_name').val(recipientnome);
            modal.find('#pergunta_type').val(recipientperg);
-           //modal.find('#pergunta_ambiente').val(recipientdetalhes);
-           //modal.find('#pergunta_tamanho').val(recipienttamanho);
-           //modal.find('#pergunta_largura').val(recipientlargura);
+           modal.find('#pergunta_ambiente').val(recipientdetalhes);
+           modal.find('#pergunta_tamanho').val(recipienttamanho);
+           modal.find('#pergunta_largura').val(recipientlargura);
+           modal.find('#perg_room_type').val(recipientroom);
            modal.find('#pergunta_id').val(recipientid);
 
        });
+
+
 
        $('#respostaModal').on('show.bs.modal', function (event) {
            var button = $(event.relatedTarget); // Button that triggered the modal
