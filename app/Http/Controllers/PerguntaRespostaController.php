@@ -288,7 +288,7 @@ class PerguntaRespostaController extends Controller
 
 
                                       ////////////Tabela Path ambiente errado//////////////////
-                                        $pathidref = DB::table('paths')->insertGetId(array(
+                                        $pathidperg = DB::table('paths')->insertGetId(array(
 
                                         'ambiente_perg' =>  $ambiente,
                                         'tamanho' =>   $tamanho_perg,
@@ -319,7 +319,7 @@ class PerguntaRespostaController extends Controller
 
                                         ));  
 
-                               DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
+                               DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' =>  $pathidperg));
 
                                DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
                                        

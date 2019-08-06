@@ -24,7 +24,7 @@
                        '<td>' +
                        '<select name ="corret[]" class="form-control">' +
                        '<option value="1">Certa</option>' +
-                       '<option selected value="2">Errada</option>' +
+                       '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
                        '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" /></td>' +
@@ -64,7 +64,7 @@
                        '<td>' +
                        '<select name ="corret_ref[]" class="form-control">' +
                        '<option value="1">Certa</option>' +
-                       '<option selected value="2">Errada</option>' +
+                       '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
                        '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" /></td>' +
@@ -161,7 +161,7 @@
                        '<td>' +
                        '<select name ="corret_ref[]" class="form-control">' +
                        '<option selected value="1">Certa</option>' +
-                       '<option value="2">Errada</option>' +
+                       '<option value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
                        '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list"></td>' +
