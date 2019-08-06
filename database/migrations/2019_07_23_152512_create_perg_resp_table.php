@@ -22,7 +22,7 @@ class CreatePergRespTable extends Migration
         
         Schema::table('perg_resp', function($table) {
             $table->foreign('perg_id')->references('id')->on('perguntas')->onDelete('cascade');
-            $table->foreign('resp_id')->references('id')->on('perguntas')->onDelete('cascade');
+            $table->foreign('resp_id')->references('id')->on('respostas')->onDelete('cascade');
         });
     }
 

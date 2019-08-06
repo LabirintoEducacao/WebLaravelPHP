@@ -10,9 +10,4 @@ class Path extends Model
        'ambiente_perg', 'tamanho', 'largura', 'disp',
     ];
 
-
-     public function perguntas() {
-        return $this->belongsToMany("App\Pergunta");
-    }
-
 }

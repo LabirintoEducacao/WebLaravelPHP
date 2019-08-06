@@ -256,11 +256,11 @@ class PerguntaRespostaController extends Controller
 
                       }
 
-                              if($request->perg_reforco==1){
+                 if($request->perg_reforco==1){
 
 
 
-                                          ////////////////Patch errado da Pergunta/////////
+                                         //  ////////////////Patch errado da Pergunta/////////
                                          $ambiente = $request->answer_boolean_perg;
                                          $tamanho_perg = $request->tamanho_perg;
                                          $largura_perg = $request->largura_perg;
@@ -345,7 +345,7 @@ class PerguntaRespostaController extends Controller
 
                                     }
 
-                                }
+                }
 
                     return response()->json(['success' => 'sucesso.']);
               
@@ -405,14 +405,7 @@ class PerguntaRespostaController extends Controller
                 ->where('perg_id', '=', $id)
                 ->get();
 
-
-
-        // $respref = DB::table('perg_ref')
-        //         ->select('ref_id')
-        //         ->where('perg_id', '=', $id)
-        //         ->get();
-
-                
+       
 
         $perg = Pergunta::find($id);
 
@@ -421,15 +414,13 @@ class PerguntaRespostaController extends Controller
 
                $ref =  $perguntaref[0]->ref_id;
                DB::table('perguntas')->where('id', $ref )->delete();
-               DB::table('paths')->where('id', '=', $id)->delete();
          }
 
          
-
-
         
         DB::table('perg_resp')->where('perg_id', '=', $id)->delete();
         DB::table('perguntas')->where('id', '=', $id)->delete();
+        DB::table('paths')->where('id', '=', $id)->delete();
       
         foreach ($resp as $resp_id) {
             DB::table('respostas')->where('id', '=', $resp_id->resp_id)->delete();

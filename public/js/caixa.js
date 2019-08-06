@@ -90,7 +90,6 @@
                var $parent = $(this).parents('.hovereffect');
                if (this.checked) {
                    $('.abcd', $parent).append(
-                       '<div class="form-group hea">' +
                        '<br>'+
                        '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>'+
                        '<br>'+
@@ -120,6 +119,7 @@
                        '</div>' +
                        '</div>'+
                        '<br>'+
+                       '<div class="form-group hea">' +
                        '<h4>Pergunta Reforço:</h4>' +
                        '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;" required>' +
                        '</div>' +
