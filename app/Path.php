@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class path extends Model
+class Path extends Model
 {
-     protected $fillable = [
+  protected $fillable = [
        'ambiente_perg', 'tamanho', 'largura', 'disp',
     ];
 
@@ -14,4 +14,5 @@ class path extends Model
      public function perguntas() {
         return $this->belongsToMany("App\Pergunta");
     }
+
 }
