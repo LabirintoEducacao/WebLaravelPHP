@@ -175,6 +175,7 @@
                     <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
                     <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
                     <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
+                    <?php $errado=0; ?>
                     @foreach($path_perg as $pp)
                     @if($pp->perg_id==$item->id)
                     <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
@@ -182,11 +183,16 @@
                     @if($path->id==$pp->path_id)
                     <!--                    <input value="{{$path->id}}"><br><br>-->
                     <span class="col-md-4">
+                        @if($errado==1)
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" title="Caminho para resposta errada"></button>
+                        @else
                         <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}"></button>
+                        @endif
                         <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
                     </span>
                     @endif
                     @endforeach
+                    <?php $errado++; ?>
                     @endif
                     @endforeach
                     <?php $x++; ?>
@@ -294,6 +300,59 @@
                     <div class="modal-footer">
                         <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
                         <button type="button" class="btn btn-outline-success altera" id="altera" name="altera">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="caminhoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <form action="{{ url('admin/editar-ambi') }}" method="POST" style="margin-left: 5%;margin-right:1%">
+                    <div class="modal-body">
+                        <input type="hidden" value="{{$id}}" name="sala_id">
+                        <input type="hidden" name="path_id" id="path_id">
+                        @csrf
+                        {{ csrf_field() }}
+                        <!-- AMBIENTE -->
+
+                        <div id="edit_ambiente">
+                            <br>
+                            <div class="form-group">
+                                <span class="col-md-3">Tipo:&emsp;</span>
+                                <select name="pergunta_ambiente" id="pergunta_ambiente">
+                                    <option value="1">Corredor</option>
+                                    <option value="2">Labirinto</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-3">Tamanho:</span>
+                                <select name="pergunta_tamanho" id="pergunta_tamanho">
+                                    <option value="1">Pequeno</option>
+                                    <option value="2">Medio</option>
+                                    <option value="3">Grande</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-3">Largura:&emsp;</span>
+                                <select name="pergunta_largura" id="pergunta_largura">
+                                    <option value="1">Pequeno</option>
+                                    <option value="2">Medio</option>
+                                    <option value="3">Grande</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-outline-success">Save changes</button>
                     </div>
                 </form>
             </div>

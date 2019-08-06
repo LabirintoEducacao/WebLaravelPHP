@@ -92,7 +92,6 @@
                    $('.abcd', $parent).append(
                        '<br>'+
                        '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>'+
-                       '<br>'+
                        '<div class="hea">' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
@@ -117,9 +116,10 @@
                        '<option value="3">Grande</option>' +
                        '</select>' +
                        '</div>' +
-                       '</div>'+
+                       '</div>' +
                        '<br>'+
                        '<div class="form-group hea">' +
+                       '<br>' +
                        '<h4>Pergunta Reforço:</h4>' +
                        '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;" required>' +
                        '</div>' +
@@ -168,8 +168,8 @@
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
                        '</table>' +
-                       '<h4 style="color: black;">Selecionar o ambiente para pergunta reforço:</h4>'+
-                       '<br>'+
+                       '<h4 style="color: black;">Selecionar o ambiente para pergunta reforço:</h4>' +
+                       '<br>' +
                        '<div class="hea">' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
@@ -272,9 +272,11 @@
                            $(".print-success-msg").css('display', 'block');
                            $(".print-error-msg").css('display', 'none');
                            $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
+                           window.location.reload();
                        }
                        a = 0;
                        b = 0;
+
                    }
 
                });
@@ -326,6 +328,24 @@
            modal.find('#pergunta_largura').val(recipientlargura);
            modal.find('#perg_room_type').val(recipientroom);
            modal.find('#pergunta_id').val(recipientid);
+
+       });
+
+       $('#caminhoModal').on('show.bs.modal', function (event) {
+           var button = $(event.relatedTarget); // Button that triggered the modal
+           var recipient = button.data('whatever');
+           var recipientdetalhes = button.data('whateverambiente');
+           var recipienttamanho = button.data('whatevertamanho');
+           var recipientlargura = button.data('whateverlargura');
+           var recipientid = button.data('whateveridperg');
+
+           // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+           var modal = $(this);
+           modal.find('#pergunta_ambiente').val(recipientdetalhes);
+           modal.find('#pergunta_tamanho').val(recipienttamanho);
+           modal.find('#pergunta_largura').val(recipientlargura);
+           modal.find('#path_id').val(recipient);
 
        });
 
