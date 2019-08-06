@@ -178,6 +178,7 @@ Route::post('admin/editar-sala/{id}', 'PerguntaRespostaController@store');
 
 Route::post('admin/editar-resp', 'PerguntaRespostaController@edit_resp');
 Route::post('admin/editar-perg', 'PerguntaRespostaController@edit_perg');
+Route::post('admin/editar-ambi', 'PerguntaRespostaController@edit_ambi');
 
 Route::get('admin/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy');
 Route::get('admin/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');

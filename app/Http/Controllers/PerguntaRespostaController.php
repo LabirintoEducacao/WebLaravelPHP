@@ -144,6 +144,39 @@ class PerguntaRespostaController extends Controller
 
         return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths])->with($notification);
     }
+    
+    
+    public function edit_ambi(Request $request){
+        $data = $request->all();
+        DB::table('paths')
+                ->where('id','=',$data['path_id'])
+                ->update(['ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'] )->whereNotNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $path_perg = DB::table('path_perg')
+            ->get();
+        $paths = DB::table('paths')
+            ->get();
+        $ref = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'] )->whereNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        $perg_resp =  DB::table('perg_resp')
+            ->get(); 
+
+
+        $notification = array(
+                'message' => 'Ambiente alterado com sucesso!!',
+                'alert-type' => 'success'
+            );
+
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths])->with($notification);
+    }
 
     /**
      * Store a newly created resource in storage.
