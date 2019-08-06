@@ -14,7 +14,7 @@ class CreatePathsTable extends Migration
     public function up()
     {
         Schema::create('paths', function (Blueprint $table) {
-          $table->bigIncrements('id');
+            $table->bigIncrements('id');
             $table->string('ambiente_perg');
             $table->integer('tamanho');
             $table->integer('largura');

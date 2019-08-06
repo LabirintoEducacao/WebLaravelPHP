@@ -3,16 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Path extends Model
+class path extends Model
 {
-	 use Notifiable;
-
-      protected $fillable = [
+     protected $fillable = [
        'ambiente_perg', 'tamanho', 'largura', 'disp',
     ];
 
+
+     public function perguntas() {
+        return $this->belongsToMany("App\Pergunta");
+    }
 }

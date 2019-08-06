@@ -24,6 +24,10 @@ class Pergunta extends Model
    public function respostas() {
         return $this->belongsToMany("App\Resposta");
     }
+
+    public function paths() {
+        return $this->belongsToMany("App\path");
+    }
     
     
 }

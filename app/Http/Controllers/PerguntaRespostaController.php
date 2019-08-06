@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Pergunta;
 use App\Path;
-use App\Reforco;
 use App\Resposta;
 use App\Sala;
 
@@ -233,6 +232,14 @@ class PerguntaRespostaController extends Controller
                       }
 
                               if($request->perg_reforco==1){
+
+
+
+                                          ////////////////Patch errado da Pergunta/////////
+                                         $ambiente = $request->answer_boolean_perg;
+                                         $tamanho_perg = $request->tamanho_perg;
+                                         $largura_perg = $request->largura_perg;
+                                         $disponivel_perg = false;
                               
                                           ////////Perguntas///////////
 
@@ -252,9 +259,19 @@ class PerguntaRespostaController extends Controller
                                          $ambiente_ref = $request->answer_boolean_ref;
                                          $tamanho_ref = $request->tamanho_ref;
                                          $largura_ref = $request->largura_ref;
-                                         $disponivel_ref = false;
+                                         $disponivel_ref = true;
 
 
+                                      ////////////Tabela Path ambiente errado//////////////////
+                                        $pathidref = DB::table('paths')->insertGetId(array(
+
+                                        'ambiente_perg' =>  $ambiente,
+                                        'tamanho' =>   $tamanho_perg,
+                                        'largura' => $largura_perg,
+                                        'disp' => $disponivel_perg
+
+
+                                        ));
 
                                      ////////////Tabela Path//////////////////
                                         $pathidref = DB::table('paths')->insertGetId(array(
@@ -266,7 +283,6 @@ class PerguntaRespostaController extends Controller
 
 
                                         ));
-                               
 
                                          ////////Tabela Pergunta ////////////////////////
                                         $pergid2 = DB::table('perguntas')->insertGetId(array(
@@ -277,6 +293,8 @@ class PerguntaRespostaController extends Controller
                                         'room_type' => $room_type_ref
 
                                         ));  
+
+                               DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
 
                                DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
                                        
@@ -356,10 +374,38 @@ class PerguntaRespostaController extends Controller
                 ->select('resp_id')
                 ->where('perg_id', '=', $id)
                 ->get();
+
+        $perguntaref = DB::table('perg_ref')
+                ->select('ref_id')
+                ->where('perg_id', '=', $id)
+                ->get();
+
+
+
+        // $respref = DB::table('perg_ref')
+        //         ->select('ref_id')
+        //         ->where('perg_id', '=', $id)
+        //         ->get();
+
+                
+
         $perg = Pergunta::find($id);
+
+
+         if(count($perguntaref)> 0){
+
+               $ref =  $perguntaref[0]->ref_id;
+               DB::table('perguntas')->where('id', $ref )->delete();
+               DB::table('paths')->where('id', '=', $id)->delete();
+         }
+
+         
+
+
         
         DB::table('perg_resp')->where('perg_id', '=', $id)->delete();
         DB::table('perguntas')->where('id', '=', $id)->delete();
+      
         foreach ($resp as $resp_id) {
             DB::table('respostas')->where('id', '=', $resp_id->resp_id)->delete();
         }
@@ -377,7 +423,7 @@ class PerguntaRespostaController extends Controller
                 ->select('sala_id')
                 ->where('id', '=', $id)
                 ->get();
-        // $resposta = Respostas::find($id);
+         //$resposta = Respostas::find($id);
         DB::table('perg_resp')->where('resp_id', '=', $id)->delete();
         DB::table('respostas')->where('id', '=', $id)->delete();
         $notification = array(

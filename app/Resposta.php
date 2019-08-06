@@ -13,7 +13,7 @@ class Resposta extends Model
     
     
     protected $fillable = [
-        'sala_id', 'tipo_resp', 'resposta', 'corret', 'end_game',
+        'sala_id', 'tipo_resp', 'resposta', 'corret',
     ];
     
     public function perguntas() {

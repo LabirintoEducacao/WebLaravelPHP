@@ -91,7 +91,36 @@
                if (this.checked) {
                    $('.abcd', $parent).append(
                        '<div class="form-group hea">' +
-                       '<h4>Pergunta:</h4>' +
+                       '<br>'+
+                       '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>'+
+                       '<br>'+
+                       '<div class="hea">' +
+                       '<div class="form-group">' +
+                       '<span class="col-md-3">Tipo:&emsp;</span>' +
+                       '<select name ="answer_boolean_perg">' +
+                       '<option selected value="1">Corredor</option>' +
+                       '<option value="2">Labirinto</option>' +
+                       '</select>' +
+                       '</div>' +
+                       '<div class="form-group">' +
+                       '<span class="col-md-3">Tamanho:</span>' +
+                       '<select name ="tamanho_perg">' +
+                       '<option selected value="1">Pequeno</option>' +
+                       '<option value="2">Medio</option>' +
+                       '<option value="3">Grande</option>' +
+                       '</select>' +
+                       '</div>' +
+                       '<div class="form-group">' +
+                       '<span class="col-md-3">Largura:&emsp;</span>' +
+                       '<select name ="largura_perg">' +
+                       '<option selected value="1">Pequeno</option>' +
+                       '<option value="2">Medio</option>' +
+                       '<option value="3">Grande</option>' +
+                       '</select>' +
+                       '</div>' +
+                       '</div>'+
+                       '<br>'+
+                       '<h4>Pergunta Reforço:</h4>' +
                        '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;" required>' +
                        '</div>' +
                        '<div class="form-group hea">' +
@@ -139,7 +168,8 @@
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
                        '</table>' +
-                       '<br>' +
+                       '<h4 style="color: black;">Selecionar o ambiente para pergunta reforço:</h4>'+
+                       '<br>'+
                        '<div class="hea">' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
