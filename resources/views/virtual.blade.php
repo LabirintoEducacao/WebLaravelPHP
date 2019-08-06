@@ -19,6 +19,22 @@
     @foreach($data as $item)
 
     <?php $user = Auth::user()->id;?>
+    @if($item->public==1)
+    <div class="col-md-3" style="padding-top:20px;">
+        <div class="card ">
+
+            <p class="card-title"> {{$item->name}} </p>
+
+            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
+
+            <a href="#" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
+            <!----------------------Botao do Modal-------------------------->
+            <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+
+
+        </div>
+    </div>
+    @else
     @foreach($sala_user as $sala)
     @if($item->id==$sala->sala_id)
     @if($user == $sala->user_id)
@@ -42,21 +58,6 @@
     @endif
 
     @endforeach
-    @if($item->public==1)
-    <div class="col-md-3" style="padding-top:20px;">
-        <div class="card ">
-
-            <p class="card-title"> {{$item->name}} </p>
-
-            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
-
-            <a href="#" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
-            <!----------------------Botao do Modal-------------------------->
-            <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
-
-
-        </div>
-    </div>
 
     @endif
     @endforeach
