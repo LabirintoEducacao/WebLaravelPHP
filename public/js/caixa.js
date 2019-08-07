@@ -329,7 +329,7 @@
            modal.find('#pergunta_tamanho').val(recipienttamanho);
            modal.find('#pergunta_largura').val(recipientlargura);
            modal.find('#perg_room_type').val(recipientroom);
-           modal.find('#pergunta_path').val(recipientid);
+           modal.find('#pergunta_path').val(recipientpath);
            modal.find('#pergunta_id').val(recipientid);
 
        });
@@ -337,17 +337,17 @@
        $('#caminhoModal').on('show.bs.modal', function (event) {
            var button = $(event.relatedTarget); // Button that triggered the modal
            var recipient = button.data('whatever');
-           var recipientdetalhes = button.data('whateverambiente');
-           var recipienttamanho = button.data('whatevertamanho');
-           var recipientlargura = button.data('whateverlargura');
+           var recipientdetalhes = button.data('whateverambientex');
+           var recipienttamanho = button.data('whatevertamanhox');
+           var recipientlargura = button.data('whateverlargurax');
            var recipientid = button.data('whateveridperg');
 
            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
            var modal = $(this);
-           modal.find('#pergunta_ambiente').val(recipientdetalhes);
-           modal.find('#pergunta_tamanho').val(recipienttamanho);
-           modal.find('#pergunta_largura').val(recipientlargura);
+           modal.find('#pergunta_ambientex').val(recipientdetalhes);
+           modal.find('#pergunta_tamanhox').val(recipienttamanho);
+           modal.find('#pergunta_largurax').val(recipientlargura);
            modal.find('#path_id').val(recipient);
 
        });

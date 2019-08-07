@@ -109,11 +109,9 @@ class PerguntaRespostaController extends Controller
         DB::table('perguntas')
             ->where('id','=', $data['pergunta_id'])
             ->update(['tipo_perg' => $data['pergunta_type'],'pergunta' => $data['pergunta_name'],'room_type' => $data['perg_room_type']]);
-        
             DB::table('paths')
                 ->where('id','=',$data['pergunta_path'])
                 ->update(['ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
-
                 
         $perg = DB::table('perguntas')
             ->where('sala_id','=',$data['sala_id'] )->whereNotNull('ordem')
@@ -146,7 +144,7 @@ class PerguntaRespostaController extends Controller
         $data = $request->all();
         DB::table('paths')
                 ->where('id','=',$data['path_id'])
-                ->update(['ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
+                ->update(['ambiente_perg' => $data['pergunta_ambientex'],'tamanho' => $data['pergunta_tamanhox'], 'largura' => $data['pergunta_largurax']]);
         $perg = DB::table('perguntas')
             ->where('sala_id','=',$data['sala_id'] )->whereNotNull('ordem')
             ->orderBy('ordem')

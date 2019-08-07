@@ -183,10 +183,10 @@
                     <!--                    <input value="{{$path->id}}"><br><br>-->
                     <span class="col-md-4">
                         @if($errado==1)
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" title="Caminho para resposta errada"></button>
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambientex="{{$path->ambiente_perg}}" data-whatevertamanhox="{{$path->tamanho}}" data-whateverlargurax="{{$path->largura}}" title="Caminho para resposta errada"></button>
                         @else
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}" data-whateverpath="{{$path->id}}"></button>
-                        <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                             <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whateverpath="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whatever="<?php echo $x?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverroom="{{$item->room_type}}"></button>
+                            <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
                         @endif
                         
                     </span>
@@ -326,14 +326,14 @@
                             <br>
                             <div class="form-group">
                                 <span class="col-md-3">Tipo:&emsp;</span>
-                                <select name="pergunta_ambiente" id="pergunta_ambiente">
+                                <select name="pergunta_ambientex" id="pergunta_ambientex">
                                     <option value="1">Corredor</option>
                                     <option value="2">Labirinto</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <span class="col-md-3">Tamanho:</span>
-                                <select name="pergunta_tamanho" id="pergunta_tamanho">
+                                <select name="pergunta_tamanhox" id="pergunta_tamanhox">
                                     <option value="1">Pequeno</option>
                                     <option value="2">Medio</option>
                                     <option value="3">Grande</option>
@@ -341,7 +341,7 @@
                             </div>
                             <div class="form-group">
                                 <span class="col-md-3">Largura:&emsp;</span>
-                                <select name="pergunta_largura" id="pergunta_largura">
+                                <select name="pergunta_largurax" id="pergunta_largurax">
                                     <option value="1">Pequeno</option>
                                     <option value="2">Medio</option>
                                     <option value="3">Grande</option>
