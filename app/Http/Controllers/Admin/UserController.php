@@ -157,7 +157,7 @@ class UserController extends Controller
                 return redirect()->route('admin.users.index')->with($notification);
             }
         }
-        \Mail::to($data['email'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id));
+        \Mail::to($data['email'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id,$data['email']));
         $notification = array(
                 'message' => 'E-mail para cadastro enviado com sucesso!!',
                 'alert-type' => 'success'

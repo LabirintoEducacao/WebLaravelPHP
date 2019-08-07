@@ -82,7 +82,7 @@
                         <p>Olá, </p>
                         <p>Para se cadastrar e participar da sala {{$sala->name}} do(a) Professor(a) {{$prof}}, basta clicar no link abaixo:</p>
                         <p class="botao">
-                            <a href="{{ url('usuario/cadastro/'.$sala->id) }}">
+                            <a href="{{ url('usuario/cadastro/'.$email.'/'.$sala->id) }}">
                                 <button style="color: #fff;background-color: #17a2b8;border-color: #17a2b8; border-radius: 7px; height:37px">Cadastro Labirinto</button>
                             </a>
                         </p>
