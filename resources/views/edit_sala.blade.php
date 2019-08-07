@@ -185,9 +185,10 @@
                         @if($errado==1)
                         <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" title="Caminho para resposta errada"></button>
                         @else
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}"></button>
-                        @endif
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}" data-whateverpath="{{$path->id}}"></button>
                         <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                        @endif
+                        
                     </span>
                     @endif
                     @endforeach
@@ -366,15 +367,16 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="exampleModalLabel"></h4>
                 </div>
-                <form action="{{ url('admin/editar-perg') }}" method="POST" style="margin-left: 5%;margin-right:1%">
+                <form action="{{ url('admin/editar-perg' ) }}" method="POST" style="margin-left: 5%;margin-right:1%">
                     <div class="modal-body">
                         <input type="hidden" value="{{$id}}" name="sala_id">
                         <input type="hidden" name="pergunta_id" id="pergunta_id">
+                        <input type="hidden" name="pergunta_path" id="pergunta_path">
                         @csrf
                         {{ csrf_field() }}
                         <ul class="nav nav-tabs">
                             <li class="active col-md-6 lista"><a data-toggle="tab" href="#edit_perg">Pergunta</a></li>
-                            <li class="col-md-6 lista"><a data-toggle="tab" href="#edit_ambiente">Configurações do Ambiente</a></li>
+                            <li class="col-md-6 lista"><a data-toggle="tab" href="#edit_ambi">Configurações do Ambiente</a></li>
                         </ul>
                         <div class="tab-content">
                             <!-- PERGUNTAS -->
@@ -404,7 +406,7 @@
                             </div>
                             <!-- AMBIENTE -->
 
-                            <div id="edit_ambiente" class="tab-pane fade">
+                            <div id="edit_ambi" class="tab-pane fade">
                                 <br>
                                 <div class="form-group">
                                     <span class="col-md-3">Tipo:&emsp;</span>

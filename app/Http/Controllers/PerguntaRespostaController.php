@@ -110,15 +110,11 @@ class PerguntaRespostaController extends Controller
             ->where('id','=', $data['pergunta_id'])
             ->update(['tipo_perg' => $data['pergunta_type'],'pergunta' => $data['pergunta_name'],'room_type' => $data['perg_room_type']]);
         
-        $path_perg = DB::table('path_perg')
-            ->where('perg_id','=', $data['pergunta_id'])
-            ->get();
-        foreach($path_perg as $pp){
             DB::table('paths')
-                ->where('id','=',$pp->path_id)
+                ->where('id','=',$data['pergunta_path'])
                 ->update(['ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
-        }
 
+                
         $perg = DB::table('perguntas')
             ->where('sala_id','=',$data['sala_id'] )->whereNotNull('ordem')
             ->orderBy('ordem')
@@ -434,7 +430,6 @@ class PerguntaRespostaController extends Controller
                 ->get();
 
         $perguntaref = DB::table('perg_ref')
-                ->select('ref_id')
                 ->where('perg_id', '=', $id)
                 ->get();
 
@@ -442,15 +437,6 @@ class PerguntaRespostaController extends Controller
                 ->select('path_id')
                 ->where('perg_id', '=', $id)
                 ->get();
-
-
-         // $path2 = DB::table('path_perg')
-         //        ->select('path_id')
-         //        ->where('path_id', '=', $id)
-         //        ->get();
-
-
-
 
 
         $perg = Pergunta::find($id);
@@ -471,9 +457,14 @@ class PerguntaRespostaController extends Controller
 
          }
 
+
          if(count($perguntaref)> 0){
 
                $ref = $perguntaref[0]->ref_id; 
+               $path_ref = DB::table('path_perg')
+                         ->where('perg_id', '=', $perguntaref[0]->ref_id)
+                         ->get();
+                DB::table('paths')->where('id', '=', $path_ref[0]->path_id)->delete();
                DB::table('perguntas')->where('id', $ref)->delete();
 
          }
@@ -482,7 +473,6 @@ class PerguntaRespostaController extends Controller
         
         DB::table('perg_resp')->where('perg_id', '=', $id)->delete();
         DB::table('perguntas')->where('id', '=', $id)->delete();
-        DB::table('paths')->where('id', '=', $id)->delete();
 
       
         foreach ($resp as $resp_id) {

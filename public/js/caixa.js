@@ -315,6 +315,8 @@
            var recipientlargura = button.data('whateverlargura');
            var recipientid = button.data('whateveridperg');
            var recipientroom = button.data('whateverroom');
+           var recipientpath = button.data('whateverpath');
+           
 
            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -327,6 +329,7 @@
            modal.find('#pergunta_tamanho').val(recipienttamanho);
            modal.find('#pergunta_largura').val(recipientlargura);
            modal.find('#perg_room_type').val(recipientroom);
+           modal.find('#pergunta_path').val(recipientid);
            modal.find('#pergunta_id').val(recipientid);
 
        });

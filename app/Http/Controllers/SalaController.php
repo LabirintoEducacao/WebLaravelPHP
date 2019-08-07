@@ -147,6 +147,25 @@ class SalaController extends Controller
      */
     public function destroy($id)
     {
+
+        $perguntas = DB::table('perguntas')
+                ->where('sala_id', '=', $id)
+                ->get();
+
+        foreach($perguntas as $pergunta){
+            $path = DB::table('path_perg')
+                ->select('path_id')
+                ->where('perg_id', '=', $pergunta->id)
+                ->get();
+                if(count($path)> 0){
+                    foreach ($path as $path_id) {
+                        DB::table('paths')->where('id', '=', $path_id->path_id)->delete();
+                    }
+
+                }
+        }
+
+
         $sala = Sala::find($id);
 
         if(isset($sala)){
