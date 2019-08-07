@@ -287,94 +287,86 @@ class PerguntaRespostaController extends Controller
 
 
 
-                                         //  ////////////////Patch errado da Pergunta/////////
-                                         $ambiente = $request->answer_boolean_perg;
-                                         $tamanho_perg = $request->tamanho_perg;
-                                         $largura_perg = $request->largura_perg;
-                                         $disponivel_perg = false;
+                     //  ////////////////Patch errado da Pergunta/////////
+                     $ambiente = $request->answer_boolean_perg;
+                     $tamanho_perg = $request->tamanho_perg;
+                     $largura_perg = $request->largura_perg;
+                     $disponivel_perg = false;
                               
-                                          ////////Perguntas///////////
+                     ////////Perguntas///////////
 
-                                         $sala_id_ref = $request->sala_id;
-                                         $tipo_perg_ref = $request->question_type_ref;
-                                         $pergunta_ref = $request->reforco;;
-                                         $room_type_ref = $request->room_type_ref;
-
-
-                                           /////Resposta2////////////
-                                          $tipo_resp_ref = $request->tipo_resp_ref;
-                                          $resposta_ref = $request->resposta_ref;
-                                          $corret_ref = $request->corret_ref;
+                     $sala_id_ref = $request->sala_id;
+                     $tipo_perg_ref = $request->question_type_ref;
+                     $pergunta_ref = $request->reforco;
+                     $room_type_ref = $request->room_type_ref;
 
 
-                                         ////////////////PatchReforco/////////
-                                         $ambiente_ref = $request->answer_boolean_ref;
-                                         $tamanho_ref = $request->tamanho_ref;
-                                         $largura_ref = $request->largura_ref;
-                                         $disponivel_ref = true;
+                     /////Resposta2////////////
+                     $tipo_resp_ref = $request->tipo_resp_ref;
+                     $resposta_ref = $request->resposta_ref;
+                     $corret_ref = $request->corret_ref;
 
 
-                                      ////////////Tabela Path ambiente errado//////////////////
-                                        $pathidperg = DB::table('paths')->insertGetId(array(
-
-                                        'ambiente_perg' =>  $ambiente,
-                                        'tamanho' =>   $tamanho_perg,
-                                        'largura' => $largura_perg,
-                                        'disp' => $disponivel_perg
+                     ////////////////PatchReforco/////////
+                     $ambiente_ref = $request->answer_boolean_ref;
+                     $tamanho_ref = $request->tamanho_ref;
+                     $largura_ref = $request->largura_ref;
+                     $disponivel_ref = true;
 
 
-                                        ));
+                     ////////////Tabela Path ambiente errado//////////////////
+                     $pathidperg = DB::table('paths')->insertGetId(array(
+                         'ambiente_perg' =>  $ambiente,
+                         'tamanho' =>   $tamanho_perg,
+                         'largura' => $largura_perg,
+                         'disp' => $disponivel_perg
+                     ));
+                     
+                     ////////////Tabela Path//////////////////
+                     $pathidref = DB::table('paths')->insertGetId(array(
+                         'ambiente_perg' =>  $ambiente_ref,
+                         'tamanho' =>   $tamanho_ref,
+                         'largura' => $largura_ref,
+                         'disp' => $disponivel_ref
+                     ));
 
-                                     ////////////Tabela Path//////////////////
-                                        $pathidref = DB::table('paths')->insertGetId(array(
+                     ////////Tabela Pergunta ////////////////////////
+                     $pergid2 = DB::table('perguntas')->insertGetId(array(
+                        'sala_id' => $sala_id_ref,
+                        'tipo_perg' => $tipo_perg_ref,
+                        'pergunta' => $pergunta_ref,
+                        'room_type' => $room_type_ref
+                    ));  
+                     
+                     DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' =>  $pathidperg));
 
-                                        'ambiente_perg' =>  $ambiente_ref,
-                                        'tamanho' =>   $tamanho_ref,
-                                        'largura' => $largura_ref,
-                                        'disp' => $disponivel_ref
-
-
-                                        ));
-
-                                         ////////Tabela Pergunta ////////////////////////
-                                        $pergid2 = DB::table('perguntas')->insertGetId(array(
-
-                                        'sala_id' => $sala_id_ref,
-                                        'tipo_perg' => $tipo_perg_ref,
-                                        'pergunta' => $pergunta_ref,
-                                        'room_type' => $room_type_ref
-
-                                        ));  
-
-                               DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' =>  $pathidperg));
-
-                               DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
+                     DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
                                        
-                               DB::table('perg_ref')->insert(array('perg_id' => $pergid, 'ref_id' => $pergid2));
+                     DB::table('perg_ref')->insert(array('perg_id' => $pergid, 'ref_id' => $pergid2));
 
                      
-                                ////////////////Tabela Resposta2//////////////////////
+                     ////////////////Tabela Resposta2//////////////////////
 
-                                  for($i = 0; $i < count($resposta_ref); $i++)
-                                    {
-                                        $reforcoid = DB::table('respostas')->insertGetId(array(
+                     for($i = 0; $i < count($resposta_ref); $i++)
+                     {
+                         $reforcoid = DB::table('respostas')->insertGetId(array(
+                             
+                             'sala_id'  =>  $sala_id,
+                             'tipo_resp' => $tipo_resp_ref[$i],
+                             'resposta' => $resposta_ref[$i],
+                             'corret' => $corret_ref[$i]
+                             
+                             
+                         ));
+                         
+                         
+                         DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
 
-                                                 'sala_id'  =>  $sala_id,
-                                                 'tipo_resp' => $tipo_resp_ref[$i],
-                                                 'resposta' => $resposta_ref[$i],
-                                                 'corret' => $corret_ref[$i]
-
-
-                                           ));
-                                         
-
-                                 DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
-
-                                    }
+                    }
 
                 }
 
-                    return response()->json(['success' => 'sucesso.']);
+            return response()->json(['success' => 'sucesso.']);
               
    }
 } 
