@@ -169,7 +169,6 @@
             <br>
             @foreach($data as $item)
 
-
             <div class="card">
                 <div align="left" class="col-md-6">
                     <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
