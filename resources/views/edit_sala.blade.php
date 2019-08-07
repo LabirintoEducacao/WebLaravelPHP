@@ -218,7 +218,8 @@
                     @endforeach
                 </div>
             </div>
-            <?php $y=0;; ?>
+            <?php $y=0; ?>
+            <br><br><br>
             <hr style="border: 0.5px solid #c2c2c2;">
             <br>
             @endforeach
