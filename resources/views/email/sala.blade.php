@@ -20,10 +20,10 @@
                         <div class="card-body">
                             <br>
                             <p>Olá, </p>
-                            <p>Para participar da sala, basta clicar no link abaixo:</p>
+                            <p>Para participar da sala {{$sala}} do(a) Professor(a) {{$prof}}, basta clicar no link abaixo:</p>
                             <p class="botao">
                                 <a href="{{ url('usuario/login') }}">
-                                <button style="color: #fff;background-color: #17a2b8;border-color: #17a2b8; border-radius: 7px; height:37px">Sala OIE</button>
+                                <button style="color: #fff;background-color: #17a2b8;border-color: #17a2b8; border-radius: 7px; height:37px">Participar da sala</button>
                                 </a>
                             </p>
                         </div>

@@ -13,9 +13,13 @@ class Resposta extends Model
     
     
     protected $fillable = [
-        'tipo_resp', 'resposta', 'corret',
+        'sala_id', 'tipo_resp', 'resposta', 'corret',
     ];
     
-    
+    public function perguntas() {
+        return $this->belongsToMany("App\Pergunta");
+    }
     
 }
+
+

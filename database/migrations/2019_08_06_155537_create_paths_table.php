@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePergRespTable extends Migration
+class CreatePathsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePergRespTable extends Migration
      */
     public function up()
     {
-        Schema::create('perg_resp', function (Blueprint $table) {
+        Schema::create('paths', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('perg_id')->unsigned();
-            $table->integer('resp_id')->unsigned();
+            $table->string('ambiente_perg');
+            $table->integer('tamanho');
+            $table->integer('largura');
+            $table->boolean('disp');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePergRespTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perg_resp');
+        Schema::dropIfExists('paths');
     }
 }

@@ -14,11 +14,18 @@ class ProfileController extends Controller
         $data = $request->all();
         $update = auth()->user()->update($data);
         
-        if($update)
-            \Session::flash('success','Perfil atualizado com sucesso!');
-        else
-            \Session::flash('warning','Perfil não pode ser atualizado!');
-        return view('home');
+        if($update){
+            $notification = array(
+                'message' => 'Perfil atualizado com sucesso!!',
+                'alert-type' => 'success'
+            );
+            return redirect('admin/sala')->with($notification);
+        }else
+            $notification = array(
+                'message' => 'Perfil não pode ser atualizado!!',
+                'alert-type' => 'warning'
+            );
+        return view('home')->with($notification);
         
     }
     
@@ -30,16 +37,25 @@ class ProfileController extends Controller
                 $data['password'] = bcrypt($data['password']);
                 $update = auth()->user()->update($data);
                 if($update)
-                    \Session::flash('success','Senha atualizada com sucesso!');
+                    $notification = array(
+                        'message' => 'Senha atualizada com sucesso!!',
+                        'alert-type' => 'success'
+                    );
             }else{
             unset($data['password']);
-            \Session::flash('warning','A senha não pode ser atualizada!');
+            $notification = array(
+                        'message' => 'Senha não pôde ser atualizada!!',
+                        'alert-type' => 'warning'
+                    );
             }
         }else{
             unset($data['password']);
-            \Session::flash('warning','A senha não pode ser atualizada!');
+            $notification = array(
+                        'message' => 'Senha não pôde ser atualizada!!',
+                        'alert-type' => 'warning'
+                    );
         }
-        return view('home');
+        return view('home')->with($notification);
         
     }
     
@@ -50,9 +66,17 @@ class ProfileController extends Controller
        if($user){
            $user->roles()->detach();
            $user->delete();
-           return redirect('usuario/login')->with('success', 'Usuário deletado com sucesso!');
+           $notification = array(
+                        'message' => 'Usuário deletado com sucesso!!',
+                        'alert-type' => 'success'
+                    );
+           return redirect('usuario/login')->with($notification);
        }
-        return redirect('usuario/login')->with('warning', 'Usuário não pôde ser deletado!');
+        $notification = array(
+                        'message' => 'Usuário não pôde ser deletado!!',
+                        'alert-type' => 'warning'
+                    );
+        return redirect('usuario/login')->with($notification);
         
     }
     

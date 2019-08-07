@@ -68,6 +68,16 @@ Route::get('admin/sala', function () {
 
 });
 
+Route::get('admin/alunos/{id}', 'Admin\UserController@add_user');
+Route::post('admin/aluno', 'Admin\UserController@store');
+Route::get('admin/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar');
+// Route::get('admin/alunos/{id}', function () {
+
+//     $data = \App\User::all ();
+//     return view ('add_alunos')->withData ( $data );
+
+// });
+
 
 Route::get('admin/deletar-sala/{id}', 'SalaController@destroy' );
 
@@ -87,10 +97,7 @@ Route::get('register/user', function () {
 });
 
 
-
-// Route::get('admin/editar-sala', function () {
-//     return view('edit_sala');
-// });
+Route::post('admin/editar-sala','SalaController@edit_sala');
 
 
 
@@ -120,6 +127,12 @@ Route::get('usuario/login', 'User\UserRegisterController@login')->name('userLogi
 Route::post('usuario/login', 'Auth\LoginController@login')->name('userLogin');
 Route::get('usuario/register', 'User\UserRegisterController@showRegistrationForm')->name('userRegister');
 Route::post('usuario/register', 'Auth\UserRegisterController@register')->name('userRegister');
+
+Route::get('usuario/cadastro/{id}', function ($id) {
+    return view ( 'cad_sala' )->with(['id'=>$id]);
+
+});
+Route::post('usuario/cadastro/{id}', 'Auth\UserRegisterController@createWithSala');
 
 
 /* Rotas do Admin */
@@ -160,5 +173,29 @@ Route::post('admin/sala', 'SalaController@store');
 
 /*Rotas da pergunta e Resposta*/
 
-Route::get('admin/editar-sala', 'PerguntaRespostaController@index');
-Route::post('admin/editar-sala', 'PerguntaRespostaController@store');
+Route::get('admin/editar-sala/{id}', 'PerguntaRespostaController@index');
+Route::post('admin/editar-sala/{id}', 'PerguntaRespostaController@store');
+
+Route::post('admin/editar-resp', 'PerguntaRespostaController@edit_resp');
+Route::post('admin/editar-perg', 'PerguntaRespostaController@edit_perg');
+Route::post('admin/editar-ambi', 'PerguntaRespostaController@edit_ambi');
+
+Route::get('admin/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy');
+Route::get('admin/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
+
+Route::post('admin/alterar-ordem','PerguntaRespostaController@alterar');
+
+Route::get('admin/add-aluno', 'SalaController@add_user');
+
+
+Route::get('virtual', 'SalaController@entrar');
+
+Route::get('admin/virtual', 'SalaController@entrar');
+
+Route::get('virtual', 'SalaController@entrar_guest');
+
+Route::get('buscar', 'SalaController@buscar');
+
+Route::post('buscar', 'SalaController@buscar');
+
+Route::get('/admin/virtual/{id}','Json@show');

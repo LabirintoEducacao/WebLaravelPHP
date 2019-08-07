@@ -1,200 +1,523 @@
 @extends('adminlte::page')
 
 @section('content')
-<div class="container"style="padding-right: 100px; padding-left: 100px;">
-  
-                    <input type="hidden" value="52" id="num_y">
 
-                      <p style="font-size:35px;" align="center"> Incluindo Perguntas e Respostas&emsp;<button class="btn btn-outline-info" id="nova">ADICIONAR PERGUNTA E RESPOSTA</button></p>
+<div class="container" style="padding-right: 100px; padding-left: 100px;">
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+    @endif
 
-        <form action="editar-sala" method="POST" style="margin-left: 25%;margin-right:1%">
-                           @csrf
+    <input type="hidden" value="52" id="num_y">
+
+    <p style="font-size:35px;" align="center">
+        <a class="btn btn-outline-success" href="{{ url('admin/alunos/'.$id) }}">ADICIONAR ALUNOS</a>
+        &emsp;EDIÇÃO DA SALA&emsp;
+        <button class="btn btn-outline-info" data-toggle="modal" data-target="#addPerg">ADICIONAR PERGUNTA E RESPOSTA
+        </button>
+    </p>
+
+    <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="addPergResp" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPergResp">Nova Pergunta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form name="add_name" id="add_name" style="margin-left: 5%;margin-right:1%">
+                    <input type="hidden" value="{{$id}}" name="sala_id">
+                    <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
+                    <div class="modal-body">
+
+                        @csrf
                         {{ csrf_field() }}
-                        
-                                            
-<!-------------------------  PERGUNTA  -------------------------------->
-                           
-
-
-                        <p class="card-title" >{{Auth::user()->name}} </p>
-
-                        
-
-                <!--         @foreach($data as $item)
-                             @if( $item->id == $item->id)
-                               <?php $sala = $item->id ?>
-                            @endif                     
-                        @endforeach
-
-                         <p class="card-title" >{{$sala}}</p>
-      
-                         <input type="hidden" name="id_sala" value="{{$sala}}"> -->
-
-
-
-                        <div class="form-group">
-                             <h4 class="col-md-2"> Tipo da perguntas: </h4>
-                            <select  name ="question_type">
-                                <option selected value="1">Texto</option>
-                                <option value="2">Imagem</option>
-                                <option value="3">video</option>
-                                <option value="4">Audio</option>
-                                
-                             </select>
-
+                        <div class="alert alert-danger print-error-msg" style="display: none;">
+                            <ul></ul>
                         </div>
+                        <div class="alert alert-success print-success-msg" style="display: none;">
+                            <ul></ul>
+                        </div>
+                        <br><br>
+                        <ul class="nav nav-tabs">
+                            <li class="active col-md-3 lista"><a data-toggle="tab" href="#perg">Pergunta</a></li>
+                            <li class="col-md-3 lista"><a data-toggle="tab" href="#resp">Resposta</a></li>
+                            <li class="col-md-3 lista"><a data-toggle="tab" href="#ambiente">Ambiente</a></li>
+                            <li class="col-md-3 lista"><a data-toggle="tab" href="#pergReforco">Reforço</a></li>
+
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <!-- PERGUNTAS -->
+                            <div id="perg" class="tab-pane fade in active">
+                                <div class="form-group">
+                                    <br>
+                                    <h4 style="display: inline;"> Tipo da pergunta:&emsp;</h4>
+                                    <select name="question_type">
+                                        <option selected value="1">Texto</option>
+                                        <option value="2">Imagem</option>
+                                        <option value="3">video</option>
+                                        <option value="4">Audio</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <br>
+                                    <h4 style="display: inline;">Interação:&emsp;</h4>
+                                    <select name="room_type">
+                                        <option selected value="key">Chave</option>
+                                        <option value="door">Porta</option>
+                                        <option value="diamond">Diamante</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <h4>Pergunta:</h4>
+                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;" required>
+                                </div>
+                            </div>
+
+                            <!-- RESPOSTAS -->
+                            <div id="resp" class="tab-pane fade">
+                                <table class="table table-bordered table-hover" id="dynamic_field" border="0">
+                                    <thead>
+                                        <tr>
+                                            <td>Tipo da Resposta</td>
+                                            <td>Definição da Resposta</td>
+                                            <td>Resposta</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select name="tipo_resp[]" id="tipo_opcao" class="form-control">
+                                                    <option selected value="1">Texto</option>
+                                                    <option value="2">imagem</option>
+                                                    <option value="3">video</option>
+                                                    <option value="4">Audio</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="corret[]" class="form-control">
+                                                    <option selected value="1">Certa</option>
+                                                    <option value="0">Errada</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
+                                            <td><button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- AMBIENTE -->
+                            <div id="ambiente" class="tab-pane fade">
+                                <br>
+                                <div class="form-group">
+                                    <span class="col-md-3">Tipo:&emsp;</span>
+                                    <select name="answer_boolean">
+                                        <option selected value="1">Corredor</option>
+                                        <option value="2">Labirinto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span class="col-md-3">Tamanho:</span>
+                                    <select name="tamanho">
+                                        <option selected value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span class="col-md-3">Largura:&emsp;</span>
+                                    <select name="largura">
+                                        <option selected value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="pergReforco" class="tab-pane fade">
+                                <div class="hovereffect">
+                                    <div class="overlay">
+                                        <input type="checkbox">&nbsp;Pergunta Refoço
+                                    </div>
+                                    <div class="abcd">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="modal-footer">
+                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <button name="submit" id="submit" class="btn btn-info" value="submit">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding-top: 10px; ">
+        <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
+        <!------- Estrutura de repetição (CARD)------------------->
+        <div class="col-md-12" style="padding-top:20px;" display="inline">
+            <h2 style="text-align: center;">Perguntas</h2>
+            <br>
+            @foreach($data as $item)
+
+
+            <div class="card">
+                <div align="left" class="col-md-6">
+                    <h4 display="inline" class="col-md-1"><?php echo $x; ?></h4>
+                    <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
+                    <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
+                    <?php $errado=0; ?>
+                    @foreach($path_perg as $pp)
+                    @if($pp->perg_id==$item->id)
+                    <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
+                    @foreach($paths as $path)
+                    @if($path->id==$pp->path_id)
+                    <!--                    <input value="{{$path->id}}"><br><br>-->
+                    <span class="col-md-4">
+                        @if($errado==1)
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" title="Caminho para resposta errada"></button>
+                        @else
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $x; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}"></button>
+                        @endif
+                        <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                    </span>
+                    @endif
+                    @endforeach
+                    <?php $errado++; ?>
+                    @endif
+                    @endforeach
+                    <?php $x++; ?>
+
+
+                </div>
+                <div align="right" class="col-md-6">
+                    @foreach($respostas as $resposta)
+                    @foreach($perg_resp as $pergresp)
+                    @if($pergresp->perg_id==$item->id)
+                    @if($pergresp->resp_id==$resposta->id)
+                    <h4 display="inline" class="col-md-1"><?php echo $letras[$y]; ?></h4>
+                    <h4 display="inline" align="left" class="col-md-7">{{$resposta->resposta}}</h4>
+                    <span class="col-md-4">
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}"></button>
+                        <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                    </span>
+                    <?php $y++; ?>
+                    <br><br>
+                    @endif
+                    @endif
+                    @endforeach
+                    @endforeach
+                </div>
+            </div>
+            <?php $y=0;; ?>
+            <hr style="border: 0.5px solid #c2c2c2;">
+            <br>
+            @endforeach
+            <div align="right">
+                <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal">Alterar sequência</button>
+            </div>
+            <br>
+            <br>
+            <h2 style="text-align: center;">Perguntas de Reforço</h2>
+            <br>
+            <?php $z=1 ?>
+            @foreach($ref as $item)
+            <div class="card">
+                <div align="left" class="col-md-6">
+                    <h4 display="inline" class="col-md-1"><?php echo $z; ?></h4>
+                    <h4 display="inline" class="col-md-7">{{$item->pergunta}}</h4>
+                    <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
+                    @foreach($path_perg as $pp)
+                    @if($pp->perg_id==$item->id)
+                    @foreach($paths as $path)
+                    @if($path->id==$pp->path_id)
+                    <span class="col-md-4">
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $z; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}"></button>
+                        <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                    </span>
+                    @endif
+                    @endforeach
+                    @endif
+                    @endforeach
+                    <?php $z++; ?>
+
+
+                </div>
+                <div align="right" class="col-md-6">
+                    @foreach($respostas as $resposta)
+                    @foreach($perg_resp as $pergresp)
+                    @if($pergresp->perg_id==$item->id)
+                    @if($pergresp->resp_id==$resposta->id)
+                    <h4 display="inline" class="col-md-1"><?php echo $letras[$y]; ?></h4>
+                    <h4 display="inline" align="left" class="col-md-7">{{$resposta->resposta}}</h4>
+                    <span class="col-md-4">
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}"></button>
+                        <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                    </span>
+                    <?php $y++; ?>
+                    <br><br>
+                    @endif
+                    @endif
+                    @endforeach
+                    @endforeach
+                </div>
+            </div>
+            <?php $y=0;; ?>
+            <hr style="border: 0.5px solid #c2c2c2;">
+
+            @endforeach
+        </div>
+
+
+    </div>
+
+    <div class="modal fade" id="alteraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <form>
+                    {{ csrf_field() }}
+                    <input type="hidden" value="{{$id}}" name="sala_id" id="sala_id">
+                    <div class="modal-body">
+                        <ul id="sortable" class="sortable">
+                            @foreach($data as $item)
+                            <li class="ui-state-default" value="{{$item->id}}">{{$item->pergunta}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <button type="button" class="btn btn-outline-success altera" id="altera" name="altera">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="caminhoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <form action="{{ url('admin/editar-ambi') }}" method="POST" style="margin-left: 5%;margin-right:1%">
+                    <div class="modal-body">
+                        <input type="hidden" value="{{$id}}" name="sala_id">
+                        <input type="hidden" name="path_id" id="path_id">
+                        @csrf
+                        {{ csrf_field() }}
+                        <!-- AMBIENTE -->
+
+                        <div id="edit_ambiente">
+                            <br>
+                            <div class="form-group">
+                                <span class="col-md-3">Tipo:&emsp;</span>
+                                <select name="pergunta_ambiente" id="pergunta_ambiente">
+                                    <option value="1">Corredor</option>
+                                    <option value="2">Labirinto</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-3">Tamanho:</span>
+                                <select name="pergunta_tamanho" id="pergunta_tamanho">
+                                    <option value="1">Pequeno</option>
+                                    <option value="2">Medio</option>
+                                    <option value="3">Grande</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-3">Largura:&emsp;</span>
+                                <select name="pergunta_largura" id="pergunta_largura">
+                                    <option value="1">Pequeno</option>
+                                    <option value="2">Medio</option>
+                                    <option value="3">Grande</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <br>
-                        <div class="form-group">
-                            <h4 class="col-md-2"> Pergunta:</h4>
-                            <input type="text" name="pergunta" class="form-control" placeholder="Pergunta" style="width: 500px;">
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-outline-success">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="perguntaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <form action="{{ url('admin/editar-perg') }}" method="POST" style="margin-left: 5%;margin-right:1%">
+                    <div class="modal-body">
+                        <input type="hidden" value="{{$id}}" name="sala_id">
+                        <input type="hidden" name="pergunta_id" id="pergunta_id">
+                        @csrf
+                        {{ csrf_field() }}
+                        <ul class="nav nav-tabs">
+                            <li class="active col-md-6 lista"><a data-toggle="tab" href="#edit_perg">Pergunta</a></li>
+                            <li class="col-md-6 lista"><a data-toggle="tab" href="#edit_ambiente">Configurações do Ambiente</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <!-- PERGUNTAS -->
+                            <div id="edit_perg" class="tab-pane fade in active">
+                                <div class="form-group">
+                                    <br>
+                                    <label for="pergunta_type" class="control-label" style="display: inline;">Tipo da pergunta:&emsp;</label>
+                                    <select name="pergunta_type" id="pergunta_type">
+                                        <option value="1">Texto</option>
+                                        <option value="2">Imagem</option>
+                                        <option value="3">video</option>
+                                        <option value="4">Audio</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="perg_room_type" class="control-label">Interação:&emsp;</label>
+                                    <select name="perg_room_type" id="perg_room_type">
+                                        <option selected value="key">Chave</option>
+                                        <option value="door">Porta</option>
+                                        <option value="diamond">Diamante</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pergunta_name" class="control-label">Pergunta:</label>
+                                    <input type="text" class="form-control" id="pergunta_name" name="pergunta_name">
+                                </div>
+                            </div>
+                            <!-- AMBIENTE -->
+
+                            <div id="edit_ambiente" class="tab-pane fade">
+                                <br>
+                                <div class="form-group">
+                                    <span class="col-md-3">Tipo:&emsp;</span>
+                                    <select name="pergunta_ambiente" id="pergunta_ambiente">
+                                        <option value="1">Corredor</option>
+                                        <option value="2">Labirinto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span class="col-md-3">Tamanho:</span>
+                                    <select name="pergunta_tamanho" id="pergunta_tamanho">
+                                        <option value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <span class="col-md-3">Largura:&emsp;</span>
+                                    <select name="pergunta_largura" id="pergunta_largura">
+                                        <option value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <br>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-outline-success">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                       <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
-<!-------------------------  RESPOSTAS  -------------------------------->
-
-
-                          <h3>Resposta</h3>
-                        <div class="form-group">
-
-                           
-                             <h4 class="col-md-2"> Tipo da resposta: </h4>
-                            <select name ="answer_tipo">
-                                <option selected value="4">Texto</option>
-                                <option value="1">Imagen</option>
-                                <option value="2">video</option>
-                                <option value="3">Audio</option>
-                                
-                             </select>
-                               </div>
-
-                             <div class="form-group">
-                            <h4 class="col-md-2"> Definição da resposta: </h4>
-                            <select name ="answer-definitions">
-                                <option selected value="1">Certa</option>          
-                                <option value="2">Fim de Jogo</option>   
-                             </select>
-
+</div>
+<div class="modal fade" id="respostaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel"></h4>
+            </div>
+            <form action="{{ url('admin/editar-resp') }}" method="POST" style="margin-left: 5%;margin-right:1%">
+                <div class="modal-body">
+                    <input type="hidden" value="{{$id}}" name="sala_id">
+                    <input type="hidden" name="resposta_id" id="resposta_id">
+                    @csrf
+                    {{ csrf_field() }}
+                    <ul class="nav nav-tabs">
+                        <li class="active col-md-6 lista"><a data-toggle="tab" href="#edit_perg">Resposta</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="edit_resp" class="tab-pane fade in active">
+                            <table class="table table-bordered table-hover" id="dynamic_field" border="0">
+                                <thead>
+                                    <tr>
+                                        <td>Tipo da Resposta</td>
+                                        <td>Definição da Resposta</td>
+                                        <td>Resposta</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select name="resposta_type" id="resposta_type">
+                                                <option value="1">Texto</option>
+                                                <option value="2">Imagem</option>
+                                                <option value="3">video</option>
+                                                <option value="4">Audio</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select id="resposta_correct" name="resposta_correct" class="form-control">
+                                                <option value="1">Certa</option>
+                                                <option value="2">Errada</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="resposta_name" name="resposta_name">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- <div class="form-group">
+                <br>
+                <label for="resposta_type" class="control-label" style="display: inline;">Tipo da resposta:&emsp;</label>
+                <select name ="resposta_type" id ="resposta_type">
+                  <option value="1">Texto</option>
+                  <option value="2">Imagem</option>
+                  <option value="3">video</option>
+                  <option value="4">Audio</option>
+                </select>
+                </div>
+                <div class="form-group">
+                  <label for="resposta_name" class="control-label">Resposta:</label>
+                  <input type="text" class="form-control" id="resposta_name" name="resposta_name">
+                </div> -->
                         </div>
-                        
-                        <div class="form-group">
-                            <h4 class="col-md-2"> Resposta:</h4>
-                            <input type="text" name="resposta" class="form-control"
-                             placeholder="Resposta" style="width: 500px;">
-                        </div>
-
-                        
-
-
-                       <!--  <div id="caixa">
-                           
-                        </div>
- -->
-                                
-                        
-                           
-                                   
-                        
-                     
-                     
-<!--                        <button class="btn btn-outline-info" id="nresp">ADICIONAR RESPOSTA</button>-->
-
-------  DEFINIÇOES DAS RESPOSTAR PARA O LABIRINTO   -----
-
-                          <p style="font-size:40px; ">Definição de como o Jogo mostrará essa pergunta</p>
-
-                          <div class="form-group">
-                             <strong class="col-md-2"> Tipo: </strong>
-                            <select name ="answer_boolean">
-                                <option selected value="1">Corredor</option>
-                                <option value="2">Labirinto</option>
-                                    
-                             </select>
-                        </div>
-
-
-                        <div class="form-group">
-                             <strong class="col-md-2"> Tamanho: </strong>
-                            <select name ="tamanho">
-                                <option selected value="1">Pequeno</option>
-                                <option value="2">Medio</option>
-                                <option value="3">Grande</option>
-                                    
-                             </select>
-                        </div>
-                        
-                        <div class="form-group">
-                             <strong class="col-md-2"> Largura: </strong>
-                            <select name ="largura">
-                                <option selected value="1">Pequeno</option>
-                                <option value="2">Medio</option>
-                                <option value="3">Grande</option>
-                                    
-                             </select>
-                        </div>
-             <button type="submit" class="btn btn-outline-danger btn-lg btn-block">CRIAR SALA</button>
-                        </form>
-                        
-
-                    
-    
-    <script>
-        function addR(id,x){
-            var resp = document.getElementById('valor'+x).value;
-            if(resp<=3){
-                var divPai = $('#c'+x);
-                var y = document.getElementById("num_y").value;
-                divPai.append('<hr style="background-color:rgba(160, 160, 160, 0.87);height:1px">');
-                divPai.append('<div id="r'+y+'">');
-                var divResp = $('#r'+y);
-                divResp.append('<div class="form-group" id="fr'+y+'"></div>');
-                divResp.append('<input type="hidden" value="perg'+x+'" id="perg'+x+'">')
-                var divFr = $('#fr'+y);
-                divFr.append('<h4 class="col-md-2">Tipo da resposta: </h4><button class="btn btn-outline-danger fa fa-trash" id="delete'+y+'" onclick="delR(r'+y+');" style="float:right"></button>');
-                divFr.append('<select id="tipor'+y+'" name="answer_tipo'+y+'"></select>');
-                divFr.append('<br><br><h4 class="col-md-2">Esta resposta está: </h4>');
-                divFr.append('<select id="boor'+y+'" name="answer-definitions'+y+'"></select>');
-                var Select = $('#tipor'+y);
-                Select.append('<option value="1">Texto</option>');
-                Select.append('<option value="2">Imagem</option>');
-                Select.append('<option value="3">Video</option>');
-                Select.append('<option value="4">Aúdio</option>');
-
-                var Boolean = $('#boor'+y);
-                Boolean.append('<option value="0">Certa</option>');
-                Boolean.append('<option value="1" selected>Errada</option>');
-                divResp.append("<br>");
-                divResp.append('<div class="form-group"><h4 class="col-md-2"> Resposta:</h4><input type="text" name="resposta'+y+'" class="fo    control" placeholder="Resposta" style="width: 500px;" id="resp'+y+'"></div>');
-                divPai.append('</div>');
-                y++;
-                console.log(y);
-                document.getElementById('num_y').value = y;
-                
-                resp++;
-                console.log(resp);
-                document.getElementById('valor'+x).value = resp;
-                
-                var respMax = document.getElementById('respMax').value;
-                respMax++;
-                console.log('MAXIMO DE REPOSTAS: '+respMax);
-                document.getElementById('respMax').value = respMax;
-                
-            }else{
-                alert('Não é possível adicionar mais respostas a essa pergunta');
-            }
-
-        }
-        
-        
-        function delR(x){
-            var divPai = $('#'+x);
-            divPai.remove();
-
-        }
-    
-    
-    </script>
-    
-    
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                    <button type="submit" class="btn btn-outline-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </div>
 
 @endsection

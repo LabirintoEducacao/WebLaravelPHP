@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Pergunta;
+use App\Path;
 use App\Resposta;
 use App\Sala;
 
@@ -14,12 +17,59 @@ class PerguntaRespostaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    // public function index()
+    // {
 
-         $data = \App\Sala::all ();
-        return view ( 'edit_sala' )->withData ( $data );
+    //      $data = \App\Sala::all ();
+    //     return view ( 'edit_sala' )->withData ( $data );
+    // }
+
+    public function index($id)
+    {
+        
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$id )->whereNotNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $path_perg = DB::table('path_perg')
+            ->get();
+        $paths = DB::table('paths')
+            ->get();
+        $ref = DB::table('perguntas')
+            ->where('sala_id','=',$id )->whereNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$id)
+            ->get();
+        $perg_resp =  DB::table('perg_resp')
+            ->get();   
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths]);
     }
+    
+    public function alterar(Request $request){
+    if($request->ajax())
+      {
+            $lista = $request->lista;
+            $y=1;
+            for($count = 0; $count < count($lista); $count++)
+            {
+                    
+                    $perg = Pergunta::find($lista[$count]);
+                    $perg->ordem=$y;
+                    $perg->save();
+           
+                        
+                $y++;
+
+            }
+
+     return response()->json(['success' => 'sucesso.']);
+
+     }
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,6 +81,103 @@ class PerguntaRespostaController extends Controller
         //
     }
 
+    public function edit_resp(Request $request){
+        $data = $request->all();
+        if($request->input('resposta_end') == null)
+            $end=0;
+        else
+            $end=1;
+        DB::table('respostas')
+            ->where('id','=', $data['resposta_id'])
+            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name'],'corret' => $data['resposta_correct'],'end_game' => $end]);
+
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+            $notification = array(
+                'message' => 'Resposta alterada com sucesso!!',
+                'alert-type' => 'success'
+            );
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])->with($notification);
+    }
+
+    public function edit_perg(Request $request){
+        $data = $request->all();
+        DB::table('perguntas')
+            ->where('id','=', $data['pergunta_id'])
+            ->update(['tipo_perg' => $data['pergunta_type'],'pergunta' => $data['pergunta_name'],'room_type' => $data['perg_room_type']]);
+        
+        $path_perg = DB::table('path_perg')
+            ->where('perg_id','=', $data['pergunta_id'])
+            ->get();
+        foreach($path_perg as $pp){
+            DB::table('paths')
+                ->where('id','=',$pp->path_id)
+                ->update(['ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
+        }
+
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'] )->whereNotNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $path_perg = DB::table('path_perg')
+            ->get();
+        $paths = DB::table('paths')
+            ->get();
+        $ref = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'] )->whereNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        $perg_resp =  DB::table('perg_resp')
+            ->get();   
+
+        $notification = array(
+                'message' => 'Pergunta alterada com sucesso!!',
+                'alert-type' => 'success'
+            );
+
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths])->with($notification);
+    }
+    
+    
+    public function edit_ambi(Request $request){
+        $data = $request->all();
+        DB::table('paths')
+                ->where('id','=',$data['path_id'])
+                ->update(['ambiente_perg' => $data['pergunta_ambiente'],'tamanho' => $data['pergunta_tamanho'], 'largura' => $data['pergunta_largura']]);
+        $perg = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'] )->whereNotNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $path_perg = DB::table('path_perg')
+            ->get();
+        $paths = DB::table('paths')
+            ->get();
+        $ref = DB::table('perguntas')
+            ->where('sala_id','=',$data['sala_id'] )->whereNull('ordem')
+            ->orderBy('ordem')
+            ->get();
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$data['sala_id'])
+            ->get();
+        $perg_resp =  DB::table('perg_resp')
+            ->get(); 
+
+
+        $notification = array(
+                'message' => 'Ambiente alterado com sucesso!!',
+                'alert-type' => 'success'
+            );
+
+        return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths])->with($notification);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,66 +187,203 @@ class PerguntaRespostaController extends Controller
     public function store(Request $request)
     {
 
-      
-           $request->validate([
 
-                  'resposta' => 'required',
-                  'pergunta' => 'required'
+         $salaid = $request->sala_id;
+         $ordem = Pergunta::select('ordem')->where('sala_id', $salaid)->orderBy('ordem')->get();
 
-           ]);            
-             $resposta = new Resposta();
-             $resposta->tipo_resp = $request->get("answer_tipo");
-             $resposta->resposta = $request->get("resposta");
-             $resposta->corret = $request->get("answer-definitions");  
-             $resposta->save();
+           foreach ($ordem as $value){
+               $teste = $value->ordem;
+             }
+
+       
+         if(isset($teste)){
+
+           $teste ++;
+
+         }
+         if(!isset($teste)){
+
+            $teste = 0;
+         }
+
+
+      if($request->ajax())
+       {
+          
+
+          $rules = array(
+                    'resposta.*' => 'required',
+                    'resposta_ref.*' => 'required'
+
+                );
               
-             $proxima = 0;
-             $disponivel = true;
+              $error = Validator::make($request->all(), $rules);
 
-             $pergunta = new Pergunta();
-             $pergunta->sala_id = $request->get('id_sala');
-             $pergunta->tipo_perg = $request->get('question_type');
-             $pergunta->pergunta = $request->get('pergunta');
-             $pergunta->ambiente_perg = $request->get('answer_boolean');
-             $pergunta->tamanho = $request->get('tamanho');
-             $pergunta->largura = $request->get('largura');     
-             $pergunta->prox_perg = $proxima; 
-             $pergunta->disp = $disponivel;    
-             $pergunta->save();
-        
-        
-//        for($x=1;$x<=$request->input('respMax');$x++){
-//                 $answer_tipo = "answer_tipo" +$x;
-//                 $resposta = "resposta" +$x;
-//                 $answer_definitions = "answer-definitions" +$x;
-//
-//                 $resposta->tipo_resp = $request->input($answer_tipo);
-//                 $resposta->resposta = $request->input($resposta);
-//                 $resposta->corret = $request->input($answer_definition);  
-//                 $resposta->save();
-//             }
-//              
-//             
-//            for($x=1;$x<=$request->input('pergMax');$x++){
-//                 $question_type = "question_type" +$x;
-//                 $pergunta = "pergunta" +$x;
-//                 $answer_boolean = "answer_boolean" +$x;
-//                 $tamanho = "tamanho" +$x;
-//                 $largura = "largura" +$x;
-//                
-//                 $pergunta->sala_id = $id_sala;
-//                 $pergunta->tipo_perg = $request->input($question_type);
-//                 $pergunta->pergunta = $request->input($pergunta);
-//                 $pergunta->ambiente_perg = $request->input($answer_boolean);
-//                 $pergunta->tamanho = $request->input($tamanho);
-//                 $pergunta->largura = $request->input($largura);     
-//                 $pergunta->prox_perg = $proxima; 
-//                 $pergunta->disp = $disponivel;    
-//                 $pergunta->save();
-//            }
+              if($error->fails())
+              {
+                return response()->json(['error' => $error->errors()->all()]);
 
-              return view('edit_sala');
-    }
+              }  
+          
+                        ////////Perguntas///////////
+                     $sala_id = $request->sala_id;
+                     $tipo_perg = $request->question_type;
+                     $pergunta = $request->pergunta;
+                     $room_type = $request->room_type;
+
+                     ///////////Path////////////
+                     $ambiente_perg = $request->answer_boolean;
+                     $tamanho = $request->tamanho;
+                     $largura = $request->largura;
+                     $disponivel = true;
+          
+                    ////////Tabela Pergunta ////////////////////////
+                    $pergid = DB::table('perguntas')->insertGetId(array(
+
+                    'sala_id' => $sala_id,
+                    'tipo_perg' => $tipo_perg,
+                    'pergunta' => $pergunta,
+                    'ordem' =>   $teste,
+                    'room_type' => $room_type
+
+                    ));
+
+
+
+                    ////////////Tabela Path//////////////////
+                    $pathid = DB::table('paths')->insertGetId(array(
+
+                    'ambiente_perg' => $ambiente_perg,
+                    'tamanho' => $tamanho,
+                    'largura' => $largura,
+                    'disp' => $disponivel
+
+
+                    ));
+
+                
+                    DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' => $pathid));
+          
+          
+                      /////Resposta1////////////
+                      $tipo_resp = $request->tipo_resp;
+                      $resposta = $request->resposta;
+                      $corret = $request->corret;
+                      $sala_id = $request->sala_id;
+                    
+
+                      for($count = 0; $count < count($resposta); $count++)
+                      {
+                          
+                        $id = DB::table('respostas')->insertGetId(array(
+
+                                 'sala_id'  =>  $sala_id,
+                                 'tipo_resp' => $tipo_resp[$count],
+                                 'resposta' => $resposta[$count],
+                                 'corret' => $corret[$count]
+
+
+                           ));
+
+                       DB::table('perg_resp')->insert(array('perg_id' => $pergid, 'resp_id' => $id));
+
+                      }
+
+                 if($request->perg_reforco==1){
+
+
+
+                                         //  ////////////////Patch errado da Pergunta/////////
+                                         $ambiente = $request->answer_boolean_perg;
+                                         $tamanho_perg = $request->tamanho_perg;
+                                         $largura_perg = $request->largura_perg;
+                                         $disponivel_perg = false;
+                              
+                                          ////////Perguntas///////////
+
+                                         $sala_id_ref = $request->sala_id;
+                                         $tipo_perg_ref = $request->question_type_ref;
+                                         $pergunta_ref = $request->reforco;;
+                                         $room_type_ref = $request->room_type_ref;
+
+
+                                           /////Resposta2////////////
+                                          $tipo_resp_ref = $request->tipo_resp_ref;
+                                          $resposta_ref = $request->resposta_ref;
+                                          $corret_ref = $request->corret_ref;
+
+
+                                         ////////////////PatchReforco/////////
+                                         $ambiente_ref = $request->answer_boolean_ref;
+                                         $tamanho_ref = $request->tamanho_ref;
+                                         $largura_ref = $request->largura_ref;
+                                         $disponivel_ref = true;
+
+
+                                      ////////////Tabela Path ambiente errado//////////////////
+                                        $pathidperg = DB::table('paths')->insertGetId(array(
+
+                                        'ambiente_perg' =>  $ambiente,
+                                        'tamanho' =>   $tamanho_perg,
+                                        'largura' => $largura_perg,
+                                        'disp' => $disponivel_perg
+
+
+                                        ));
+
+                                     ////////////Tabela Path//////////////////
+                                        $pathidref = DB::table('paths')->insertGetId(array(
+
+                                        'ambiente_perg' =>  $ambiente_ref,
+                                        'tamanho' =>   $tamanho_ref,
+                                        'largura' => $largura_ref,
+                                        'disp' => $disponivel_ref
+
+
+                                        ));
+
+                                         ////////Tabela Pergunta ////////////////////////
+                                        $pergid2 = DB::table('perguntas')->insertGetId(array(
+
+                                        'sala_id' => $sala_id_ref,
+                                        'tipo_perg' => $tipo_perg_ref,
+                                        'pergunta' => $pergunta_ref,
+                                        'room_type' => $room_type_ref
+
+                                        ));  
+
+                               DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' =>  $pathidperg));
+
+                               DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
+                                       
+                               DB::table('perg_ref')->insert(array('perg_id' => $pergid, 'ref_id' => $pergid2));
+
+                     
+                                ////////////////Tabela Resposta2//////////////////////
+
+                                  for($i = 0; $i < count($resposta_ref); $i++)
+                                    {
+                                        $reforcoid = DB::table('respostas')->insertGetId(array(
+
+                                                 'sala_id'  =>  $sala_id,
+                                                 'tipo_resp' => $tipo_resp_ref[$i],
+                                                 'resposta' => $resposta_ref[$i],
+                                                 'corret' => $corret_ref[$i]
+
+
+                                           ));
+                                         
+
+                                 DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
+
+                                    }
+
+                }
+
+                    return response()->json(['success' => 'sucesso.']);
+              
+   }
+} 
     
 
     /**
@@ -144,6 +428,57 @@ class PerguntaRespostaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $resp = DB::table('perg_resp')
+                ->select('resp_id')
+                ->where('perg_id', '=', $id)
+                ->get();
+
+        $perguntaref = DB::table('perg_ref')
+                ->select('ref_id')
+                ->where('perg_id', '=', $id)
+                ->get();
+
+       
+
+        $perg = Pergunta::find($id);
+
+
+         if(count($perguntaref)> 0){
+
+               $ref =  $perguntaref[0]->ref_id;
+               DB::table('perguntas')->where('id', $ref )->delete();
+         }
+
+         
+        
+        DB::table('perg_resp')->where('perg_id', '=', $id)->delete();
+        DB::table('perguntas')->where('id', '=', $id)->delete();
+        DB::table('paths')->where('id', '=', $id)->delete();
+      
+        foreach ($resp as $resp_id) {
+            DB::table('respostas')->where('id', '=', $resp_id->resp_id)->delete();
+        }
+        
+        $notification = array(
+                'message' => 'Pergunta deletada com sucesso!!',
+                'alert-type' => 'success'
+            );
+        return redirect('admin/editar-sala/'. $perg->sala_id)->with($notification);
+    }
+
+    public function destroyresp($id)
+    {
+        $resp = DB::table('respostas')
+                ->select('sala_id')
+                ->where('id', '=', $id)
+                ->get();
+         //$resposta = Respostas::find($id);
+        DB::table('perg_resp')->where('resp_id', '=', $id)->delete();
+        DB::table('respostas')->where('id', '=', $id)->delete();
+        $notification = array(
+                'message' => 'Resposta deletada com sucesso!!',
+                'alert-type' => 'success'
+            );
+        return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with($notification);
     }
 }

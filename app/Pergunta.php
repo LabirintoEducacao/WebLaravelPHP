@@ -13,13 +13,20 @@ class Pergunta extends Model
     
     
     protected $fillable = [
-        'sala_id', 'tipo_perg', 'pergunta','ambiente_perg', 'tamanho', 'largura', 'prox_perg', 'disp',
+        'sala_id', 'tipo_perg', 'pergunta', 'ordem', 'room_type',
     ];
 
 
-
-    function sala() {
+   public function salas() {
         return $this->belongsTo("App\Sala");
+    }
+
+   public function respostas() {
+        return $this->belongsToMany("App\Resposta");
+    }
+
+    public function paths() {
+        return $this->belongsToMany("App\path");
     }
     
     
