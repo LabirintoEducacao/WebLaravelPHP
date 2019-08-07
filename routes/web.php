@@ -199,3 +199,4 @@ Route::get('buscar', 'SalaController@buscar');
 Route::post('buscar', 'SalaController@buscar');
 
 Route::get('/admin/virtual/{id}','Json@show');
+
