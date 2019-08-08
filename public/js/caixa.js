@@ -90,8 +90,8 @@
                var $parent = $(this).parents('.hovereffect');
                if (this.checked) {
                    $('.abcd', $parent).append(
-                       '<br>'+
-                       '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>'+
+                       '<br>' +
+                       '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>' +
                        '<div class="hea">' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
@@ -117,7 +117,7 @@
                        '</select>' +
                        '</div>' +
                        '</div>' +
-                       '<br>'+
+                       '<br>' +
                        '<div class="form-group hea">' +
                        '<br>' +
                        '<h4>Pergunta Reforço:</h4>' +
@@ -313,7 +313,7 @@
            var recipientid = button.data('whateveridperg');
            var recipientroom = button.data('whateverroom');
            var recipientpath = button.data('whateverpath');
-           
+
 
            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.

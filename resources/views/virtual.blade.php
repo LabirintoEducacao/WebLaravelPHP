@@ -26,7 +26,7 @@
             <p class="card-title"> {{$item->name}} </p>
 
             <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
-
+            <br><br>
 
             <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
  

@@ -128,8 +128,8 @@ Route::post('usuario/login', 'Auth\LoginController@login')->name('userLogin');
 Route::get('usuario/register', 'User\UserRegisterController@showRegistrationForm')->name('userRegister');
 Route::post('usuario/register', 'Auth\UserRegisterController@register')->name('userRegister');
 
-Route::get('usuario/cadastro/{id}', function ($id) {
-    return view ( 'cad_sala' )->with(['id'=>$id]);
+Route::get('usuario/cadastro/{email}/{id}', function ($email, $id) {
+    return view ( 'cad_sala' )->with(['email'=>$email,'id'=>$id]);
 
 });
 Route::post('usuario/cadastro/{id}', 'Auth\UserRegisterController@createWithSala');
@@ -199,6 +199,4 @@ Route::get('buscar', 'SalaController@buscar');
 Route::post('buscar', 'SalaController@buscar');
 
 Route::get('/admin/virtual/{id}','Json@show');
-
-//Route::post('usuario/register', 'Auth\UserRegisterController@store');
 
