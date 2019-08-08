@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/login','Auth\LoginController@indexJson');
+Route::get('/admin/sala','SalaController@indexJson');
+Route::get('/admin/editar-sala/{id}','PerguntaRespostaController@indexJson');

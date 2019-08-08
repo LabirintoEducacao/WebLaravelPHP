@@ -24,6 +24,7 @@ class PerguntaRespostaController extends Controller
     //     return view ( 'edit_sala' )->withData ( $data );
     // }
 
+
     public function index($id)
     {
         

@@ -200,3 +200,5 @@ Route::post('buscar', 'SalaController@buscar');
 
 Route::get('/admin/virtual/{id}','Json@show');
 
+//Route::post('usuario/register', 'Auth\UserRegisterController@store');
+

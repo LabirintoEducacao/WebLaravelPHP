@@ -234,4 +234,12 @@ class SalaController extends Controller
         else
             return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
     }
+
+
+    public function indexJson()
+    {
+
+        $salas =  Sala::select('id','prof_id','name','duracao','tematica','public')->get();
+         return json_decode($salas);
+    }
 }

@@ -24,17 +24,20 @@ class UsersTableSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('admin')
+            'password' => 'admin'
+            // 'password' => bcrypt('admin')
         ]);
         $author = User::create([
             'name' => 'Author',
             'email' => 'author@author.com',
-            'password' => bcrypt('author')
+            'password' => 'author'
+            // 'password' => bcrypt('author')
         ]);
         $user = User::create([
             'name' => 'User',
             'email' => 'user@user.com',
-            'password' => bcrypt('user')
+            'password' => 'user'
+            // 'password' => bcrypt('user')
         ]);
 
         $admin->roles()->attach($adminRole);
@@ -42,6 +45,6 @@ class UsersTableSeeder extends Seeder
         $user->roles()->attach($userRole);
         
         //opcional para preenchr o banco com 50 usuarios
-        factory(App\User::class, 50)->create();
+        //factory(App\User::class, 50)->create();
     }
 }
