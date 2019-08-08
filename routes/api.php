@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/login','Auth\LoginController@indexJson');
 Route::get('/admin/sala','SalaController@indexJson');
-Route::get('/admin/editar-sala/{id}','PerguntaRespostaController@indexJson');
+Route::get('/login', 'Auth\LoginController@teste');
+

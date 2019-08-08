@@ -270,6 +270,7 @@
                            $(".print-success-msg").css('display', 'block');
                            $(".print-error-msg").css('display', 'none');
                            $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
+
                        }
                        a = 0;
                        b = 0;
