@@ -79,9 +79,8 @@
                 <div class="modal-body">
 
                     <h3 class="sala_name" align="center">Sala</h3>
-                    <p style="padding-left: 170px;">{!! QrCode::size(250)->generate( 'labirinto Quimica' ); !!}</p>
+                    <p style="padding-left: 170px;">{!! QrCode::size(250)->generate( 'http://127.0.0.1:8000/admin/virtual/1' ); !!}</p>
                     <input type="hidden" name="sala_id" id="sala_id">
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

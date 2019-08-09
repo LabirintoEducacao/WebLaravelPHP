@@ -348,6 +348,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
     
   echo json_encode($jsn);
 
+
  
 }
  
