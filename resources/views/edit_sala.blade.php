@@ -183,12 +183,12 @@
                     <!--                    <input value="{{$path->id}}"><br><br>-->
                     <span class="col-md-4">
                         @if($errado==1)
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambientex="{{$path->ambiente_perg}}" data-whatevertamanhox="{{$path->tamanho}}" data-whateverlargurax="{{$path->largura}}" title="Caminho para resposta errada"></button>
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambientex="{{$path->ambiente_perg}}" data-whatevertamanhox="{{$path->tamanho}}" data-whateverlargurax="{{$path->largura}}" title="Editar path do reforço"></button>
                         @else
-                             <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whateverpath="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whatever="<?php echo $x?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverroom="{{$item->room_type}}"></button>
-                            <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whateverpath="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whatever="<?php echo $x?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverroom="{{$item->room_type}}" title="Editar path da pergunta"></button>
+                        <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
                         @endif
-                        
+
                     </span>
                     @endif
                     @endforeach
