@@ -90,9 +90,9 @@
                var $parent = $(this).parents('.hovereffect');
                if (this.checked) {
                    $('.abcd', $parent).append(
+                       '<div class="hea">' +
                        '<br>' +
                        '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>' +
-                       '<div class="hea">' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
                        '<select name ="answer_boolean_perg">' +
@@ -117,7 +117,6 @@
                        '</select>' +
                        '</div>' +
                        '</div>' +
-                       '<br>' +
                        '<div class="form-group hea">' +
                        '<br>' +
                        '<h4>Pergunta Reforço:</h4>' +
@@ -168,9 +167,9 @@
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
                        '</table>' +
-                       '<h4 style="color: black;">Selecionar o ambiente para pergunta reforço:</h4>' +
                        '<br>' +
                        '<div class="hea">' +
+                       '<h4 style="color: black;">Selecionar o ambiente para pergunta reforço:</h4>' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
                        '<select name ="answer_boolean_ref">' +
