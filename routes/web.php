@@ -168,6 +168,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 //Route::post('admin/editar-sala/salvar', 'RespostaController@store');
 
 
+
 Route::get('admin/adicionar-sala', 'SalaController@index');
 Route::post('admin/sala', 'SalaController@store');
 
