@@ -14,8 +14,14 @@
     <p style="font-size:35px;" align="center">
         <a class="btn btn-outline-success" href="{{ url('admin/alunos/'.$id) }}">ADICIONAR ALUNOS</a>
         &emsp;EDIÇÃO DA SALA&emsp;
-        <button class="btn btn-outline-info" data-toggle="modal" data-target="#addPerg">ADICIONAR PERGUNTA E RESPOSTA
+
+        <?php if(count($data)>=20){ ?>
+            <button class="btn btn-outline-info" data-toggle="modal" data-target="#addPerg" disabled>ADICIONAR PERGUNTA E RESPOSTA
         </button>
+        <?php }else{ ?>
+            <button class="btn btn-outline-info" data-toggle="modal" data-target="#addPerg">ADICIONAR PERGUNTA E RESPOSTA
+        </button>
+        <?php } ?>
     </p>
 
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="addPergResp" aria-hidden="true">
@@ -74,7 +80,7 @@
                                 </div>
                                 <div class="form-group">
                                     <h4>Pergunta:</h4>
-                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;" required>
+                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror" placeholder=" Pergunta" style="width: 500px;" maxlength="80" required>
                                 </div>
                             </div>
 
@@ -104,7 +110,7 @@
                                                     <option value="0">Errada</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list"></td>
+                                            <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" maxlength="80"></td>
                                             <td><button type="button" name="add" id="add" class="btn btn-succcess">Add Name</button></td>
                                         </tr>
                                     </tbody>
@@ -402,7 +408,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="pergunta_name" class="control-label">Pergunta:</label>
-                                    <input type="text" class="form-control" id="pergunta_name" name="pergunta_name">
+                                    <input type="text" class="form-control" id="pergunta_name" name="pergunta_name" maxlength="80" required>
                                 </div>
                             </div>
                             <!-- AMBIENTE -->
@@ -490,7 +496,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="resposta_name" name="resposta_name">
+                                            <input type="text" class="form-control" id="resposta_name" name="resposta_name" maxlength="80" required>
                                         </td>
                                     </tr>
                                 </tbody>

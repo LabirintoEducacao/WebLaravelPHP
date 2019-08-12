@@ -27,7 +27,7 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" /></td>' +
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" maxlength="80" /></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
                    a++;
@@ -67,7 +67,7 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" /></td>' +
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" /></td>' +
                        '<td><button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn_remove2">X</button></td>' +
                        '</tr>');
                    b++;
@@ -121,7 +121,7 @@
                        '<div class="form-group hea">' +
                        '<br>' +
                        '<h4>Pergunta Reforço:</h4>' +
-                       '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;" required>' +
+                       '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;" maxlength="80" required>' +
                        '</div>' +
                        '<div class="form-group hea">' +
                        '<h4 style="display: inline;"> Tipo da pergunta:&emsp;</h4>' +
@@ -164,7 +164,7 @@
                        '<option value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list"></td>' +
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80"></td>' +
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
                        '</table>' +
