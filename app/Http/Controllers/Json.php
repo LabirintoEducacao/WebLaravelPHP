@@ -157,12 +157,21 @@ foreach ($ref_resp as  $value) {
                 'correct'=> $answ
             );
                 $respref[] = $resp_ref;
+                    
 
+                   if( $resp_ref['correct'] == true){
+
+                       $conttrue = 38;
+                   }else{
+
+                      $conttrue = 40;
+
+                   }
 
                    $teste = strlen (implode ( " ",$resp_ref));
                    $x = $contrespref;
-                   $contrespref = $x+ $teste;
-                // echo "contrespref : " . $contrespref . json_encode($resp_ref ). "<br>";
+                   $contrespref = $x+ $teste + $conttrue;
+                 echo "contrespref : " . $contrespref . json_encode($resp_ref ). "<br>";
 
  }
 
@@ -193,11 +202,19 @@ foreach ($ref_resp as  $value) {
                 'conect_question' => $idperg 
             );
 
+                 if( $pathref['availability'] == true){
+
+                       $conttrue = 3;
+                   }else{
+
+                      $conttrue = 5;
+
+                   }
 
                 $contpathref = strlen (implode ( " ",$pathref));
 
 
-              //  echo "contpathref : " . $contpathref . "<br>";
+                echo "contpathref : " . ($contpathref+60+$conttrue)  . json_encode($pathref). "<br>";
 
 
                $ref = array(
@@ -210,20 +227,25 @@ foreach ($ref_resp as  $value) {
 
  );
 
+
+             
                $contref =  $ref = array(
                 'question_id' => $reforco[0]->id,
                 'question_type' => $reforco[0]->tipo_perg,
                 'question' => $reforco[0]->pergunta,
-                'room_type' => $reforco[0]->room_type );
+                'room_type' => $reforco[0]->room_type
+
+
+                 );
 
 
 
              $contrefref = strlen (implode ( " ",$contref));       
-           //  echo "contrefref  : " . $contrefref  . "<br>";
+            echo "contrefref  : " . ($contrefref + 61)  . json_encode($contref). "<br>";
 
              $contagemref = $contrefref + $contpathref + $contrespref;
             $contagem = $contagem + $contagemref;
-           //  echo "contagem : " . $contagem . "<br>";
+            echo "contagem : " . $contagem . "<br>";
 
 
 
@@ -255,10 +277,21 @@ foreach ($ref_resp as  $value) {
 );
             $respost[] = $arresp;
 
-                     $teste = strlen (implode ( " ",$arresp));
+
+
+                  if( $arresp['correct'] == true){
+
+                       $conttrue = 38;
+                   }else{
+
+                      $conttrue = 40;
+
+                   }
+
+                    $teste = strlen (implode ( " ",$arresp));
                    $x = $contresp;
-                   $contresp = $x+ $teste;
-               //  echo "contresp : " . $contresp . json_encode($arresp ). "<br>";
+                   $contresp = $x+ $teste+$conttrue;
+                echo "contresp : " . $contresp . json_encode($arresp ). "<br>";
      
 
     }
@@ -333,15 +366,30 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
             );
         }}
 
-        
+                  if( $pat['availability'] == 'right'){
+                     
+                      if( $pat['end_game'] == true){
+
+                       $conttrue = 58;
+                   }else{
+
+                      $conttrue = 59;
+
+                   }
+
+                   }else{
+
+                      $conttrue = 62;
+
+                   }
 
         
                   $paths[]= $pat;
 
                 $teste = strlen (implode ( " ",$pat));
                    $x = $contpath;
-                   $contpath = $x+ $teste;
-                // echo "contpath : " . $contpath . json_encode($pat ). "<br>"; 
+                   $contpath = $x+ $teste + $conttrue;
+                 echo "contpath : " . $contpath  . json_encode($pat ). "<br>"; 
                         
 
     }
@@ -370,7 +418,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                    $x = $contpath;
                    $contpath = $x+ $teste;
                 //
-                // echo "contpath : " . $contpath . json_encode($pat ). "<br>"; 
+                 echo "contpath : " . $contpath . json_encode($pat ). "<br>"; 
                         
 
 
@@ -415,7 +463,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
     ];
 
     
-  echo json_encode($jsn);
+  //echo json_encode($jsn);
 
  
 
