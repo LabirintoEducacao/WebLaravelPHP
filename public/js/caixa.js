@@ -91,7 +91,6 @@
                if (this.checked) {
                    $('.abcd', $parent).append(
                        '<div class="hea">' +
-                       '<br>' +
                        '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
@@ -167,8 +166,8 @@
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
                        '</table>' +
-                       '<br>' +
                        '<div class="hea">' +
+                       '<br>' +
                        '<h4 style="color: black;">Selecionar o ambiente para pergunta reforço:</h4>' +
                        '<div class="form-group">' +
                        '<span class="col-md-3">Tipo:&emsp;</span>' +
