@@ -62,14 +62,13 @@ class Json extends Controller
           $sala = Sala::find($id);
 
 
-
-          $contagem=0;
+$controle =0;
    
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
    foreach($prox_pergunta as $proxima){
-
+    
     $prox = $proxima->id;
 
     $proxpergid [] = $prox;
@@ -79,6 +78,7 @@ class Json extends Controller
        
 
 $i=0;
+$flag = 0;
 
 
 // --------------------- Começo do Foreach das Perguntas------------------//
@@ -94,6 +94,9 @@ $i=0;
     unset($paths);
     unset($reforco);
     unset($respref);
+    unset($respost);
+    $contagem =0;
+    $contagemperg = 0;
 
      //- Puxando o id das resposta da tabela de Relação Perg_resp
     $reforcoid = DB::table('perg_ref')->where('perg_id',$pergid)->get();
@@ -128,6 +131,46 @@ if(count($reforcoid) > 0){
  $pathreforco = DB::table('path_perg') ->where('perg_id',$idref)->get();
 
  $pathrefs = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$pathreforco[0]->path_id)->get();
+
+
+// --------------------------- Path Pergunta Reforço-------------------//
+
+ if($pathrefs[0]->disp == 0){
+
+                    $dispref = false;
+                }
+
+
+                if($pathrefs[0]->disp == 1){
+
+                    $dispref = true;
+                }
+
+
+                $pathref = array(
+                'availability' => $dispref,
+                'widht' => $pathrefs[0]->largura,
+                'heigh' => $pathrefs[0]->tamanho,
+                'type' => $pathrefs[0]->ambiente_perg,
+                'conect_question' => $idperg 
+            );
+
+                 if( $pathref['availability'] == true){
+
+                       $conttrue = 3;
+                   }else{
+
+                      $conttrue = 5;
+
+                   }
+
+            $contpathref = strlen (implode ( " ",$pathref)) + 60 + $conttrue;
+           
+       
+
+
+
+
 
 
 
@@ -171,56 +214,15 @@ foreach ($ref_resp as  $value) {
                    $teste = strlen (implode ( " ",$resp_ref));
                    $x = $contrespref;
                    $contrespref = $x+ $teste + $conttrue;
+                   
 
 
-                   $idsala = Sala::all()->last()->id;
-
-                   echo "teste de sala: " . $idsala . "</br>";
-
-                 echo "contrespref : " . $contrespref . json_encode($resp_ref ). "<br>";
+             
 
  }
 
 
-
-              
-
-
-                
-
-                if($pathrefs[0]->disp == 0){
-
-                    $dispref = false;
-                }
-
-
-                if($pathrefs[0]->disp == 1){
-
-                    $dispref = true;
-                }
-
-
-                $pathref = array(
-                'availability' => $dispref,
-                'widht' => $pathrefs[0]->largura,
-                'heigh' => $pathrefs[0]->tamanho,
-                'type' => $pathrefs[0]->ambiente_perg,
-                'conect_question' => $idperg 
-            );
-
-                 if( $pathref['availability'] == true){
-
-                       $conttrue = 3;
-                   }else{
-
-                      $conttrue = 5;
-
-                   }
-
-                $contpathref = strlen (implode ( " ",$pathref));
-
-
-                echo "contpathref : " . ($contpathref+60+$conttrue)  . json_encode($pathref). "<br>";
+               
 
 
                $ref = array(
@@ -234,8 +236,8 @@ foreach ($ref_resp as  $value) {
  );
 
 
-             
-               $contref =  $ref = array(
+             // Contar letras do contrref 
+               $contref = array(
                 'question_id' => $reforco[0]->id,
                 'question_type' => $reforco[0]->tipo_perg,
                 'question' => $reforco[0]->pergunta,
@@ -246,14 +248,11 @@ foreach ($ref_resp as  $value) {
 
 
 
-             $contrefref = strlen (implode ( " ",$contref));       
-            echo "contrefref  : " . ($contrefref + 61)  . json_encode($contref). "<br>";
-
-             $contagemref = $contrefref + $contpathref + $contrespref;
+             $contrefref = strlen (implode ( " ",$contref)) + 61 ;       
+       
+            $contagemref = ( $contrefref + $contpathref + $contrespref );
             $contagem = $contagem + $contagemref;
-            echo "contagem : " . $contagem . "<br>";
-
-
+      
 
  }
 
@@ -295,9 +294,9 @@ foreach ($ref_resp as  $value) {
                    }
 
                     $teste = strlen (implode ( " ",$arresp));
-                   $x = $contresp;
-                   $contresp = $x+ $teste+$conttrue;
-                echo "contresp : " . $contresp . json_encode($arresp ). "<br>";
+                   $x = $contagemperg;
+                   $contagemperg = $x+ $teste+$conttrue;
+              
      
 
     }
@@ -309,7 +308,7 @@ foreach ($ref_resp as  $value) {
 
 $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
 
-  
+        $conttrue = 62;
 
         if($path[0]->disp == 1){
 
@@ -348,6 +347,8 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
 
             if($path[0]->disp == 1){
 
+                $conttrue = 58;
+
                 $pat= array(
                     'availability' => $disponivel,
                     'widht' => $path[0]->largura,
@@ -357,6 +358,8 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                 );
             }
                 if($path[0]->disp == 0){
+
+    
 
                     $pat= array(
                         'availability' => $disponivel,
@@ -368,35 +371,14 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                 }       
            }
 
-                  if( $pat['availability'] == 'right' ) {
-                     
-
-                         if(isset($pat['end_game'])){
-                          if( $pat['end_game'] == true){
-
-                               $conttrue = 58;
-                           }else{
-
-
-                              $conttrue = 59;
-
-                           }
-                      }
-
-                   } else {
-
-                      $conttrue = 62;
-
-                   }
-
+                 
         
                   $paths[]= $pat;
 
                 $teste = strlen (implode ( " ",$pat));
-                   $x = $contpath;
-                   $contpath = $x+ $teste + $conttrue;
-                 echo "contpath : " . $contpath  . json_encode($pat ). "<br>"; 
-                        
+                   $x = $contagemperg;
+                   $contagemperg = $x+ $teste + $conttrue;
+            
 
     }
 
@@ -418,29 +400,57 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
  );
 
 
-                  
+                   
 
-                $teste = strlen (implode ( " ",$pat));
-                   $x = $contpath;
-                   $contpath = $x+ $teste;
-                //
-                 echo "contpath : " . $contpath . json_encode($pat). "<br>"; 
-                        
+                $contperguntas = array(
+                'question_id' => $perg->id,
+                'question_type' => $perg->tipo_perg,
+                'question' => $perg->pergunta,
+                'room_type' => $perg->room_type,
 
 
+ );
+
+
+                $teste = strlen (implode ( " ",$contperguntas));
+                   $x = $contagemperg;
+                   $contagemperg = $x+ $teste;
+                     
     }
 
 
+
+$jsnnn = array (
+       'maze_id' => $sala->id,
+       'starting_question'=> $proxpergid [0],
+       'time_limit' => $sala->duracao,
+        'theme' => $sala->tematica,
+         );
+
+
+$teste = strlen (implode ( " ",$jsnnn));
+$contjsn =  $teste + 71;
+
+
+
+
+$total = $contagemperg + $contagem;
+
+echo "</br>" . "contagemperg :". $contagemperg .  "</br>".  "contagem :" . $contagem . "Total :" . $total . " contjsn ". $contjsn;
+
+
+
+
+
+
  //----------------- Array das perguntas -------------//
+
+
          if(count($reforcoid) > 0){
              $arperg [] = $perguntas;
             $arperg [] = $ref; 
 
-         
-
-        
-
-
+ 
 }
 
 
@@ -453,25 +463,60 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
   }
  
 
-  
+
+  echo "</br>"."-------------------Separador de blocos ---------------"."</br>";
+
+
+
+ $controle = $controle + $total;
+
+
+
+if($flag == 0 ) {
+
+$controle = $controle + $contjsn ;
+
+  if ( $controle <= 2500 ) {
+
+   $jsn = [
+       "maze_id" => $sala->id,
+       "starting_question"=> $proxpergid [0],
+       "time_limit" => $sala->duracao,
+        "theme" => $sala->tematica,
+        "questions" => $arperg
+];
+
+  }
+
+  if ( $controle > 2500 ) {
+
+   //programação
+
+    $flag ++;
+  }
+
+
 
 }
 
+}
 
  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
-//
-//        $jsn = [
-//        "maze_id" => $sala->id,
-//        "starting_question"=> $proxpergid [0],
-//        "time_limit" => $sala->duracao,
-//        "theme" => $sala->tematica,
-//         "questions" => $arperg
-//        
-//
-//    ];
 
-    
-  //echo json_encode($jsn);
+       $jsn = [
+       "maze_id" => $sala->id,
+       "starting_question"=> $proxpergid [0],
+       "time_limit" => $sala->duracao,
+        "theme" => $sala->tematica,
+        "questions" => $arperg
+        
+
+    ];
+
+ 
+ //echo json_encode($jsn);
+
+  //return view('qrcode')->with(['json'=>  json_encode($jsn) ]);
 
  
 
