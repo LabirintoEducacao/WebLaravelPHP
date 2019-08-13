@@ -6,7 +6,7 @@
 
 
         <!------- Estrutura de repetição (CARD)------------------->
-        @foreach($data as $item)
+       
 
         <div class="col-md-3">
             <div class="card ">
@@ -16,7 +16,7 @@
 
             </div>
         </div>
-        @endforeach
+   
     </div>
 </body>
 
