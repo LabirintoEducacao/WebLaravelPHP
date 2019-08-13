@@ -171,6 +171,12 @@ foreach ($ref_resp as  $value) {
                    $teste = strlen (implode ( " ",$resp_ref));
                    $x = $contrespref;
                    $contrespref = $x+ $teste + $conttrue;
+
+
+                   $idsala = Sala::all()->last()->id;
+
+                   echo "teste de sala: " . $idsala . "</br>";
+
                  echo "contrespref : " . $contrespref . json_encode($resp_ref ). "<br>";
 
  }
@@ -366,18 +372,19 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
             );
         }}
 
-                  if( $pat['availability'] == 'right'){
+                  if( $pat['availability'] == 'right' ) {
                      
-                      if( $pat['end_game'] == true){
+                      if( $pat['end_game'] == true ){
 
                        $conttrue = 58;
-                   }else{
+
+                   } else {
 
                       $conttrue = 59;
 
                    }
 
-                   }else{
+                   } else {
 
                       $conttrue = 62;
 
@@ -447,8 +454,10 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
   }
  
 
+  
 
 }
+
 
  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
 

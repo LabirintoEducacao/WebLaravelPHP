@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use App\Sala;
+use File;
 
 class SalaController extends Controller
 {
@@ -67,10 +68,25 @@ class SalaController extends Controller
                 'message' => 'Sala criada com sucesso!!!',
                 'alert-type' => 'success'
             );
+
+
+               $idsala = Sala::all()->last()->id;
+
+
+           // public function salvar($objArquivo, $objProjeto, $objDataAtualizacao) {
+    $strCaminho = public_path() . '/sala/' . $idsala; // 'public\projetos_arquivos\codigo_projeto'
+
+    if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
+        $objProjetoDiretorio = File::makeDirectory($strCaminho);
+    }
+
+
+
             return redirect('admin/sala')->with($notification);
     }
     
     
+
     public function edit_sala(Request $request)
     {
         
@@ -175,6 +191,14 @@ class SalaController extends Controller
                 'message' => 'Sala deletada com sucesso!!!',
                 'alert-type' => 'success'
             );
+
+        $strCaminho = public_path() . '/sala/' . $id;
+
+
+            File::deleteDirectory($strCaminho);
+
+
+
       return redirect('admin/sala')->with($notification);
     }
 
@@ -188,6 +212,9 @@ class SalaController extends Controller
                 'message' => 'Usuário adicionado com sucesso!!!',
                 'alert-type' => 'success'
             );
+
+
+
         return redirect('admin/alunos'. $request->get('sala_id'))->with($notification);
 
     }
