@@ -348,41 +348,40 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
 
             if($path[0]->disp == 1){
 
-      $pat= array(
-                'availability' => $disponivel,
-                'widht' => $path[0]->largura,
-                'heigh' => $path[0]->tamanho,
-                'type' => $path[0]->ambiente_perg,
-                'end_game'=> true
-            );
-        }}
+                $pat= array(
+                    'availability' => $disponivel,
+                    'widht' => $path[0]->largura,
+                    'heigh' => $path[0]->tamanho,
+                    'type' => $path[0]->ambiente_perg,
+                    'end_game'=> true
+                );
+            }
+                if($path[0]->disp == 0){
 
-           if ($i >= count($proxpergid)){  // Verificando se é ultima pergunta
-
-             // Definindo os campos do Jason com o path reforço
-
-            if($path[0]->disp == 0){
-
-      $pat= array(
-                'availability' => $disponivel,
-                'widht' => $path[0]->largura,
-                'heigh' => $path[0]->tamanho,
-                'type' => $path[0]->ambiente_perg,
-                'conect_question'=> $conect
-            );
-        }}
+                    $pat= array(
+                        'availability' => $disponivel,
+                        'widht' => $path[0]->largura,
+                        'heigh' => $path[0]->tamanho,
+                        'type' => $path[0]->ambiente_perg,
+                        'conect_question'=> $conect
+                    );
+                }       
+           }
 
                   if( $pat['availability'] == 'right' ) {
                      
-                      if( $pat['end_game'] == true ){
 
-                       $conttrue = 58;
+                         if(isset($pat['end_game'])){
+                          if( $pat['end_game'] == true){
 
-                   } else {
+                               $conttrue = 58;
+                           }else{
 
-                      $conttrue = 59;
 
-                   }
+                              $conttrue = 59;
+
+                           }
+                      }
 
                    } else {
 
@@ -425,7 +424,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                    $x = $contpath;
                    $contpath = $x+ $teste;
                 //
-                 echo "contpath : " . $contpath . json_encode($pat ). "<br>"; 
+                 echo "contpath : " . $contpath . json_encode($pat). "<br>"; 
                         
 
 
@@ -460,16 +459,16 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
 
 
  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
-
-        $jsn = [
-        "maze_id" => $sala->id,
-        "starting_question"=> $proxpergid [0],
-        "time_limit" => $sala->duracao,
-        "theme" => $sala->tematica,
-         "questions" => $arperg
-        
-
-    ];
+//
+//        $jsn = [
+//        "maze_id" => $sala->id,
+//        "starting_question"=> $proxpergid [0],
+//        "time_limit" => $sala->duracao,
+//        "theme" => $sala->tematica,
+//         "questions" => $arperg
+//        
+//
+//    ];
 
     
   //echo json_encode($jsn);
@@ -514,4 +513,3 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
         //
     }
 }
-
