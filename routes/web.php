@@ -116,28 +116,30 @@ Route::prefix('/admin')->group(function(){
 
 /*Rotas da pergunta e Resposta*/
 
-Route::get('/editar-sala/{id}', 'PerguntaRespostaController@index');
+Route::get('/editar-sala/{id}', 'PerguntaRespostaController@index')->middleware(['auth', 'auth.admin']);
 Route::post('/editar-sala/{id}', 'PerguntaRespostaController@store');
 Route::post('/editar-resp', 'PerguntaRespostaController@edit_resp');
 Route::post('/editar-perg', 'PerguntaRespostaController@edit_perg');
-Route::post('/editar-ambi', 'PerguntaRespostaController@edit_ambi');
-Route::get('/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy');
+Route::post('/editar-ambi', 'PerguntaRespostaController@edit_ambi')->middleware(['auth', 'auth.admin']);
+Route::get('/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy')->middleware(['auth', 'auth.admin']);
 Route::get('/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
 Route::post('/alterar-ordem','PerguntaRespostaController@alterar');
+
 Route::get('/pergunta', function () {
     return view('questions');
-});
+})->middleware(['auth', 'auth.admin']);
 
 
 
 //Rotas da salas
 
-Route::get('/adicionar-sala', 'SalaController@index');
+Route::get('/adicionar-sala', 'SalaController@index')->middleware(['auth', 'auth.admin']);
 Route::post('/sala', 'SalaController@store');
-Route::get('/add-aluno', 'SalaController@add_user');
+Route::get('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
 Route::get('/virtual', 'SalaController@entrar');
 Route::post('/editar-sala','SalaController@edit_sala');
-Route::get('/deletar-sala/{id}', 'SalaController@destroy' );
+Route::get('/deletar-sala/{id}', 'SalaController@destroy' )->middleware(['auth', 'auth.admin']);
+
 Route::get('/sala', function () {
 
     $data = \App\Sala::all ();
@@ -151,15 +153,15 @@ Route::get('/virtual/{id}','Json@show');
 
 
 // Rotas para usuarios
-Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar');
+Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar')->middleware(['auth', 'auth.admin']);
 Route::delete('/settings/delete/{id}', 'Admin\UserController@destroy');
-Route::get('/alunos/{id}', 'Admin\UserController@add_user');
+Route::get('/alunos/{id}', 'Admin\UserController@add_user')->middleware(['auth', 'auth.admin']);
 Route::post('/aluno', 'Admin\UserController@store');
 Route::post('/new/user', 'Admin\UserController@user');
 
 Route::get('/newuser', function () {
     return view('admin.users.newuser');
-});
+})->middleware(['auth', 'auth.admin']);
 
 
 /*  Rotas do Email */
