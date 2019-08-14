@@ -20,4 +20,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/admin/sala','SalaController@indexJson');
 Route::get('/login', 'Auth\LoginController@teste');
-

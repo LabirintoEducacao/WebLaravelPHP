@@ -269,4 +269,19 @@ class SalaController extends Controller
         $salas =  Sala::select('id','prof_id','name','duracao','tematica','public')->get();
          return json_decode($salas);
     }
+
+
+ 
+
+    //  public function teste(Request $request)
+    // {
+
+    //      $salas = DB::table('salas')
+    //         ->where('public','=',1)
+    //         ->select('id','prof_id','name','duracao','tematica','public')
+    //         ->get();
+
+    //     return response()->json( $salas );
+    // }
+
 }

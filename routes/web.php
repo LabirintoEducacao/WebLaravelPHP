@@ -202,6 +202,8 @@ Route::prefix('/virtual')->group(function(){
 Route::get('/', 'SalaController@entrar');
 Route::get('/', 'SalaController@entrar_guest');
 
+
+
 });
 
 // Buscar Publico não precisa logar
@@ -211,6 +213,9 @@ Route::get('/', 'SalaController@buscar');
 Route::post('/', 'SalaController@buscar');
 
 });
+
+
+// Route::post( 'api/virtual', ['json' => 'PessoaController@teste'] );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
