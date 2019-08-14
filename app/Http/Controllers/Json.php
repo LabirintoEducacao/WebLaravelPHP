@@ -8,6 +8,7 @@ use App\Sala;
 use App\Pergunta;
 use App\Resposta;
 use App\Path;
+use QrCode;
 
 
 
@@ -86,17 +87,12 @@ $flag = 0;
     $i++;   
 
     $pergid = $perg->id;
-    $contrespref = 0;
-    $contpath = 0;
-     $contresp = 0;
     unset($resposta);
     unset($arresp);
     unset($paths);
     unset($reforco);
     unset($respref);
     unset($respost);
-    $contagem =0;
-    $contagemperg = 0;
 
      //- Puxando o id das resposta da tabela de Relação Perg_resp
     $reforcoid = DB::table('perg_ref')->where('perg_id',$pergid)->get();
@@ -155,24 +151,7 @@ if(count($reforcoid) > 0){
                 'conect_question' => $idperg 
             );
 
-                 if( $pathref['availability'] == true){
-
-                       $conttrue = 3;
-                   }else{
-
-                      $conttrue = 5;
-
-                   }
-
-            $contpathref = strlen (implode ( " ",$pathref)) + 60 + $conttrue;
-           
-       
-
-
-
-
-
-
+      
 
  // ------------------ Perunta Reforço -------------------------    
 
@@ -202,27 +181,7 @@ foreach ($ref_resp as  $value) {
                 $respref[] = $resp_ref;
                     
 
-                   if( $resp_ref['correct'] == true){
-
-                       $conttrue = 38;
-                   }else{
-
-                      $conttrue = 40;
-
-                   }
-
-                   $teste = strlen (implode ( " ",$resp_ref));
-                   $x = $contrespref;
-                   $contrespref = $x+ $teste + $conttrue;
-                   
-
-
-             
-
  }
-
-
-               
 
 
                $ref = array(
@@ -232,27 +191,9 @@ foreach ($ref_resp as  $value) {
                 'room_type' => $reforco[0]->room_type,
                 'path' => $pathref,
                 'answer' => $respref
-
- );
-
-
-             // Contar letras do contrref 
-               $contref = array(
-                'question_id' => $reforco[0]->id,
-                'question_type' => $reforco[0]->tipo_perg,
-                'question' => $reforco[0]->pergunta,
-                'room_type' => $reforco[0]->room_type
+);
 
 
-                 );
-
-
-
-             $contrefref = strlen (implode ( " ",$contref)) + 61 ;       
-       
-            $contagemref = ( $contrefref + $contpathref + $contrespref );
-            $contagem = $contagem + $contagemref;
-      
 
  }
 
@@ -283,20 +224,6 @@ foreach ($ref_resp as  $value) {
             $respost[] = $arresp;
 
 
-
-                  if( $arresp['correct'] == true){
-
-                       $conttrue = 38;
-                   }else{
-
-                      $conttrue = 40;
-
-                   }
-
-                    $teste = strlen (implode ( " ",$arresp));
-                   $x = $contagemperg;
-                   $contagemperg = $x+ $teste+$conttrue;
-              
      
 
     }
@@ -308,7 +235,7 @@ foreach ($ref_resp as  $value) {
 
 $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
 
-        $conttrue = 62;
+        
 
         if($path[0]->disp == 1){
 
@@ -371,14 +298,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                 }       
            }
 
-                 
-        
-                  $paths[]= $pat;
-
-                $teste = strlen (implode ( " ",$pat));
-                   $x = $contagemperg;
-                   $contagemperg = $x+ $teste + $conttrue;
-            
+                 $paths [] = $pat;
 
     }
 
@@ -399,45 +319,8 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
 
  );
 
-
-                   
-
-                $contperguntas = array(
-                'question_id' => $perg->id,
-                'question_type' => $perg->tipo_perg,
-                'question' => $perg->pergunta,
-                'room_type' => $perg->room_type,
-
-
- );
-
-
-                $teste = strlen (implode ( " ",$contperguntas));
-                   $x = $contagemperg;
-                   $contagemperg = $x+ $teste;
-                     
+               
     }
-
-
-
-$jsnnn = array (
-       'maze_id' => $sala->id,
-       'starting_question'=> $proxpergid [0],
-       'time_limit' => $sala->duracao,
-        'theme' => $sala->tematica,
-         );
-
-
-$teste = strlen (implode ( " ",$jsnnn));
-$contjsn =  $teste + 71;
-
-
-
-
-$total = $contagemperg + $contagem;
-
-echo "</br>" . "contagemperg :". $contagemperg .  "</br>".  "contagem :" . $contagem . "Total :" . $total . " contjsn ". $contjsn;
-
 
 
 
@@ -461,49 +344,13 @@ echo "</br>" . "contagemperg :". $contagemperg .  "</br>".  "contagem :" . $cont
  
 
   }
+
  
 
-
-  echo "</br>"."-------------------Separador de blocos ---------------"."</br>";
-
-
-
- $controle = $controle + $total;
-
-
-
-if($flag == 0 ) {
-
-$controle = $controle + $contjsn ;
-
-  if ( $controle <= 2500 ) {
-
-   $jsn = [
-       "maze_id" => $sala->id,
-       "starting_question"=> $proxpergid [0],
-       "time_limit" => $sala->duracao,
-        "theme" => $sala->tematica,
-        "questions" => $arperg
-];
-
-  }
-
-  if ( $controle > 2500 ) {
-
-   //programação
-
-    $flag ++;
-  }
-
-
-
 }
 
-}
 
- //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
-
-       $jsn = [
+$jsn = [
        "maze_id" => $sala->id,
        "starting_question"=> $proxpergid [0],
        "time_limit" => $sala->duracao,
@@ -511,12 +358,58 @@ $controle = $controle + $contjsn ;
         "questions" => $arperg
         
 
-    ];
+    ]; 
+ 
+
+ // $files = glob(public_path('js/*'));
+ //        \Zipper::make(public_path('test.zip'))->add($files)->close();
+
+        
+echo json_encode($jsn);
+
+
+
+// if($flag == 0 ) {
+
+
+//   if ( $controle <= 2500 ) {
 
  
- //echo json_encode($jsn);
 
-  //return view('qrcode')->with(['json'=>  json_encode($jsn) ]);
+//    // echo " Controle <= 2500:" .   $controle . "</br>";
+
+
+   
+
+
+//   }
+
+//   if ( $controle > 2500 ) {
+
+      
+// //echo " Controle > 2500:" .   $controle . "</br>";
+
+
+
+// QrCode::format('png')->size(500)->generate( json_encode($jsn) , '../public/sala/17/qrcode.png');
+
+//     $flag ++;
+//   }
+
+
+
+// }
+
+// }
+
+//  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
+
+       
+
+ 
+//  echo json_encode($jsn);
+
+//   //return view('qrcode')->with(['json'=>  json_encode($jsn) ]);
 
  
 
