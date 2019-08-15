@@ -274,7 +274,7 @@ class SalaController extends Controller
     {
 
 
-            $json = $_REQUEST['json'];
+            $json = $_REQUEST['id'];
 
             $user = DB::table('users')->where('id','=',$json)->select('id','name','email')->get();
 
