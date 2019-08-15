@@ -274,13 +274,40 @@ class SalaController extends Controller
     {
 
 
-    $json = $_REQUEST['json'];
+            $json = $_REQUEST['json'];
 
+            $user = DB::table('users')->where('id','=',$json)->select('id','name','email')->get();
 
-            $salas = DB::table('salas')
+            if(count($user)> 0){
+
+                $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
+                if(count($salas_user)>0){
+                    foreach($salas_user as $sala_user){
+                        $sala = DB::table('salas')
+                                ->where('id','=',$sala_user->sala_id)
+                                ->where('public','=',0)
+                                ->select('id','prof_id','name','duracao','tematica','public')->get();
+                                if(count($sala)>0)
+                                    echo json_encode($sala);
+                    }
+                }
+                // echo json_encode($user);
+
+            }
+
+            $salas_publicas = DB::table('salas')
             ->where('public','=',1)->select('id','prof_id','name','duracao','tematica','public')->get();
 
-            echo json_encode($salas);
+            echo json_encode($salas_publicas);
+            
+
+
+            //Teste com join
+            // $sala = DB::table('salas')
+            //                     ->join('sala_user', 'salas.id', '=', 'sala_user.user_id')
+            //                     ->where('sala_user.user_id','=',$json)
+            //                     ->where('public','=',0)
+            //                     ->select('id','prof_id','name','duracao','tematica','public')->get();
 
 
 
