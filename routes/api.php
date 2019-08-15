@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/admin/sala','SalaController@indexJson');
 Route::get('/login', 'Auth\LoginController@teste');
+Route::Post('/virtual', 'SalaController@teste' );
+
+
+
+// Route::get('/virtual', 'SalaController@teste');
+
+// Route::post('/virtual', function(){
+
+//         $id   = Input::get('id');
+
+     
+//   return redirect()->action('SalaController@teste', ['json' => $id]);
+
+//  });
+
+
+
+
+ 
+
+
+
+
+
+
+

@@ -8,6 +8,11 @@
         <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search" name="buscar" id="buscar">
         <button class="btn btn-outline-info" type="submit">Buscar</button>
     </form>
+    <form class="form-inline mr-auto" action="/api/virtual" method="POST">
+        @csrf
+        <input class="form-control mr-sm-2" type="text" placeholder="ID" aria-label="Search" name="id" id="buscar">
+        <button class="btn btn-outline-info" type="submit">teste</button>
+    </form>
 </div>
 @if (session('status'))
 <div class="alert alert-warning" role="alert">

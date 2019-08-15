@@ -270,18 +270,32 @@ class SalaController extends Controller
          return json_decode($salas);
     }
 
+    public function teste()
+    {
 
- 
 
-    //  public function teste(Request $request)
-    // {
+    $json = $_REQUEST['json'];
 
-    //      $salas = DB::table('salas')
-    //         ->where('public','=',1)
-    //         ->select('id','prof_id','name','duracao','tematica','public')
-    //         ->get();
 
-    //     return response()->json( $salas );
-    // }
+            $salas = DB::table('salas')
+            ->where('public','=',1)->select('id','prof_id','name','duracao','tematica','public')->get();
+
+            echo json_encode($salas);
+
+
+
+        //  $salas = Sala::where('public','=',1)->get();
+
+        // $professores = DB::table('users')
+        //     ->join('role_user', 'users.id', '=', 'role_user.user_id')
+        //     ->orderBy('name')
+        //     ->where('role_user.role_id','=',2)
+        //     ->get();
+
+        // return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
+
+       
+    }
+
 
 }
