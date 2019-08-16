@@ -20,6 +20,10 @@ class CreateSalaUserTable extends Migration
             $table->timestamps();
         });
 
+         Schema::table('sala_user', function($table) {
+           $table->foreign('sala_id')->references('id')->on('salas')->onDelete('cascade');
+        });
+
     }
 
     /**
