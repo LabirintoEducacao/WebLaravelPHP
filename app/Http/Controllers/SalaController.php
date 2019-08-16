@@ -272,15 +272,23 @@ class SalaController extends Controller
 
     public function teste()
     {
-
-
             $json = $_REQUEST['id'];
+
+             $erro1 = 1 ;
+             $erro2 = 2 ;
+             $erro3 = 3 ;
+
 
             $user = DB::table('users')->where('id','=',$json)->select('id','name','email')->get();
 
-            if(count($user)> 0){
+           if(count($user)== 0){
 
-                $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
+                echo $erro1 . ' - ' . 'Usuario nao existente'. "    ";
+
+           }else{
+
+            echo json_encode($user). "    ";
+             $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
                 if(count($salas_user)>0){
                     foreach($salas_user as $sala_user){
                         $sala = DB::table('salas')
@@ -288,39 +296,29 @@ class SalaController extends Controller
                                 ->where('public','=',0)
                                 ->select('id','prof_id','name','duracao','tematica','public')->get();
                                 if(count($sala)>0)
-                                    echo json_encode($sala);
+
+                                echo json_encode($sala). "    ";
                     }
+                }else{
+
+                    echo $erro2 . ' - ' . 'Nenhuma sala Privada vinculada a esse usuario'. "    ";
                 }
-                // echo json_encode($user);
 
-            }
-
+           }
             $salas_publicas = DB::table('salas')
             ->where('public','=',1)->select('id','prof_id','name','duracao','tematica','public')->get();
 
-            echo json_encode($salas_publicas);
-            
+            if((count($salas_publicas) == 0) && (count($user)> 0)) {
 
+                echo $erro3 . ' - ' . 'Nenhuma sala publica criada'. "   ";
 
-            //Teste com join
-            // $sala = DB::table('salas')
-            //                     ->join('sala_user', 'salas.id', '=', 'sala_user.user_id')
-            //                     ->where('sala_user.user_id','=',$json)
-            //                     ->where('public','=',0)
-            //                     ->select('id','prof_id','name','duracao','tematica','public')->get();
+            }else if(count($salas_publicas) == 0){
 
+              
+            }else{
 
-
-        //  $salas = Sala::where('public','=',1)->get();
-
-        // $professores = DB::table('users')
-        //     ->join('role_user', 'users.id', '=', 'role_user.user_id')
-        //     ->orderBy('name')
-        //     ->where('role_user.role_id','=',2)
-        //     ->get();
-
-        // return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
-
+                echo json_encode($salas_publicas);
+            }
        
     }
 
