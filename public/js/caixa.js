@@ -91,48 +91,50 @@
                if (this.checked) {
                    $('.abcd', $parent).append(
                        '<div class="hea">' +
-                       '<h4 style="color: red;">Selecionar o ambiente errado para a pergunta:</h4>' +
-                       '<div class="form-group">' +
-                       '<span class="col-md-3">Tipo:&emsp;</span>' +
-                       '<select name ="answer_boolean_perg">' +
+                       '<br>' +
+                       '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
+                       '<div class="form-group row">' +
+                       '<label for="answer_boolean_perg" class="col">Tipo:</label>' +
+                       '<select name="answer_boolean_perg" id="answer_boolean_perg" class="col">' +
                        '<option selected value="1">Corredor</option>' +
                        '<option value="2">Labirinto</option>' +
                        '</select>' +
                        '</div>' +
-                       '<div class="form-group">' +
-                       '<span class="col-md-3">Tamanho:</span>' +
-                       '<select name ="tamanho_perg">' +
+                       '<div class="form-group row">' +
+                       '<label for="tamanho_perg" class="col">Tamanho:</label>' +
+                       '<select name="tamanho_perg" id="tamanho_perg" class="col">' +
                        '<option selected value="1">Pequeno</option>' +
                        '<option value="2">Medio</option>' +
                        '<option value="3">Grande</option>' +
                        '</select>' +
                        '</div>' +
-                       '<div class="form-group">' +
-                       '<span class="col-md-3">Largura:&emsp;</span>' +
-                       '<select name ="largura_perg">' +
+                       '<div class="form-group row">' +
+                       '<label for="largura_perg" class="col">Largura:</label>' +
+                       '<select name="largura_perg" id="largura_perg" class="col">' +
                        '<option selected value="1">Pequeno</option>' +
                        '<option value="2">Medio</option>' +
                        '<option value="3">Grande</option>' +
                        '</select>' +
                        '</div>' +
                        '</div>' +
-                       '<div class="form-group hea">' +
+                       '<div class="form-group hea row">' +
                        '<br>' +
-                       '<h4>Pergunta Reforço:</h4>' +
-                       '<input id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" style="width: 500px;" maxlength="80" required>' +
+                       '<br>' +
+                       '<label for="pergunta" class="col">Pergunta:</label>' +
+                       '<input class="col" id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" maxlength="80" required>' +
                        '</div>' +
-                       '<div class="form-group hea">' +
-                       '<h4 style="display: inline;"> Tipo da pergunta:&emsp;</h4>' +
-                       '<select  name ="question_type_ref">' +
+                       '<div class="form-group hea row">' +
+                       '<label for="question_type_ref" class="col">Tipo da pergunta:</label>' +
+                       '<select name ="question_type_ref" id="question_type_ref" class="col">' +
                        '<option selected value="1">Texto</option>' +
                        '<option value="2">Imagem</option>' +
                        '<option value="3">video</option>' +
                        '<option value="4">Audio</option>' +
                        '</select>' +
                        '</div>' +
-                       '<div class="form-group hea">' +
-                       '<h4 style="display: inline;">Interação:&emsp;</h4>' +
-                       '<select name ="room_type_ref">' +
+                       '<div class="form-group hea row">' +
+                       '<label for="room_type_ref" class="col">Interação:</label>' +
+                       '<select name="room_type_ref" id="room_type_ref" class="col">' +
                        '<option selected value="key">Chave</option>' +
                        '<option value="door">Porta</option>' +
                        '<option value="diamond">Diamante</option>' +
@@ -168,25 +170,26 @@
                        '</table>' +
                        '<div class="hea">' +
                        '<br>' +
-                       '<h4 style="color: black;">Selecionar o ambiente para pergunta reforço:</h4>' +
-                       '<div class="form-group">' +
-                       '<span class="col-md-3">Tipo:&emsp;</span>' +
-                       '<select name ="answer_boolean_ref">' +
+                       '<span style="color: black;">Selecionar o ambiente para pergunta reforço:</span><br>' +
+                       '<br>' +
+                       '<div class="form-group row">' +
+                       '<label for="answer_boolean_ref" class="col">Tipo:</label>' +
+                       '<select name="answer_boolean_ref" id="answer_boolean_ref" class="col">' +
                        '<option selected value="1">Corredor</option>' +
                        '<option value="2">Labirinto</option>' +
                        '</select>' +
                        '</div>' +
-                       '<div class="form-group">' +
-                       '<span class="col-md-3">Tamanho:</span>' +
-                       '<select name ="tamanho_ref">' +
+                       '<div class="form-group row">' +
+                       '<label for="tamanho_ref" class="col">Tamanho:</label>' +
+                       '<select name="tamanho_ref" id="tamanho_ref" class="col">' +
                        '<option selected value="1">Pequeno</option>' +
                        '<option value="2">Medio</option>' +
                        '<option value="3">Grande</option>' +
                        '</select>' +
                        '</div>' +
                        '<div class="form-group">' +
-                       '<span class="col-md-3">Largura:&emsp;</span>' +
-                       '<select name ="largura_ref">' +
+                       '<label for="largura_ref" class="col">Largura:</label>' +
+                       '<select name="largura_ref" id="largura_ref" class="col">' +
                        '<option selected value="1">Pequeno</option>' +
                        '<option value="2">Medio</option>' +
                        '<option value="3">Grande</option>' +
