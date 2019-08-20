@@ -497,7 +497,7 @@
                                     <td>
                                         <select id="resposta_correct" name="resposta_correct" class="form-control">
                                             <option value="1">Certa</option>
-                                            <option value="2">Errada</option>
+                                            <option value="0">Errada</option>
                                         </select>
                                     </td>
                                     <td>

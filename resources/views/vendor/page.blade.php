@@ -12,6 +12,7 @@
 <head>
     <base href="./">
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
@@ -731,6 +732,7 @@
     <script src="{{ asset('admin/node_modules/pace-progress/pace.min.js')}}"></script>
     <script src="{{ asset('admin/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
     <script src="{{ asset('admin/node_modules/@coreui/coreui/dist/js/coreui.min.js')}}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
 </body>
 
 </html>
