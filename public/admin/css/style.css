@@ -16,7 +16,7 @@
 
 
 
- a:not([href]):not([tabindex]):hover, 
+a:not([href]):not([tabindex]):hover,
 :root {
     --blue: #20a8d8;
     --indigo: #6610f2;
@@ -55,19 +55,21 @@
     box-sizing: border-box;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 1009px) {
     .mobile-hide {
         display: none !important;
     }
-}
 
-@media only screen and (max-width: 400px) {
-    .mobile-hide {
+    .desktop-hide {
         display: inline !important;
     }
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 1010px) {
+    .mobile-hide {
+        display: inline !important;
+    }
+
     .desktop-hide {
         display: none !important;
     }
@@ -114,6 +116,22 @@ body {
     background-color: #e4e5e6;
 }
 */
+
+
+.home {
+    color: #979a9d;
+    font-weight: 600;
+    font-size: 0.984rem;
+    text-decoration: none;
+}
+
+.home:hover {
+    color: #73818f;
+    font-weight: 600;
+    font-size: 0.984rem;
+    text-decoration: none;
+}
+
 
 .sortable {
     list-style-type: none;
@@ -9168,10 +9186,11 @@ button.bg-dark:focus {
     margin-top: auto !important;
 }
 
+/*
 .mr-auto,
 .mx-auto {
     margin-right: auto !important;
-}
+}*/
 
 .mb-auto,
 .my-auto {
