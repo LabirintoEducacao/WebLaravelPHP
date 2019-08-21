@@ -23,6 +23,16 @@
         </button>
         <?php } ?>
     </p>
+    <div align="right">
+        <div class="row">
+            <label class="col-3 offset-8">Total de Perguntas: </label>
+            <input value="{{$c_perg}}" disabled class="col">
+        </div>
+        <div class="row">
+            <label class="col-3 offset-8">Total de Perguntasde Reforço: </label>
+            <input value="{{$c_ref}}" disabled class="col">
+        </div>
+    </div>
 
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -163,21 +173,23 @@
             </div>
         </div>
     </div>
-
+    <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
 
     <div class="container-fluid row" style="padding-top: 10px; ">
-        <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
+
         <!------- Estrutura de repetição (CARD)------------------->
         <div class="col-md-12" style="padding-top:20px;" display="inline">
             <h2 style="text-align: center;">Perguntas</h2>
             <br>
             @foreach($data as $item)
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <h4 display="inline" class="col-1"><?php echo $x; ?></h4>
-                        <h4 display="inline" class="col">{{$item->pergunta}}</h4>
+                            @if($item->ordem==null)
+                            <h4 display="inline" class="col-4">Reforço:</h4>
+                            @else
+                            <h4 display="inline" class="col-3">Pergunta:</h4>
+                            @endif
                         <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
                         <?php $errado=0; ?>
                         @foreach($path_perg as $pp)
@@ -200,7 +212,6 @@
                         <?php $errado++; ?>
                         @endif
                         @endforeach
-                        <?php $x++; ?>
                     </div>
                     <br><br><br>
 
@@ -228,71 +239,27 @@
                 </div>
 
             </div>
+
+
             <?php $y=0; ?>
             <br><br><br>
             <hr style="border: 0.5px solid #c2c2c2;">
             <br>
             @endforeach
+
+            <div class="container">
+                {{$data->links()}}
+            </div>
             <div align="right">
                 <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal">Alterar sequência</button>
             </div>
             <br>
-            <br>
-            <h2 style="text-align: center;">Perguntas de Reforço</h2>
-            <br>
-            <?php $z=1 ?>
-            @foreach($ref as $item)
-            <div class="row">
-                <div align="left" class="col-md-12">
-                    <h4 display="inline" class="col-md-1"><?php echo $z; ?></h4>
-                    <h4 display="inline" class="col-md">{{$item->pergunta}}</h4>
-                    <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
-                    @foreach($path_perg as $pp)
-                    @if($pp->perg_id==$item->id)
-                    @foreach($paths as $path)
-                    @if($path->id==$pp->path_id)
-                    <span class="col">
-                        <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whatever="<?php echo $z; ?>" data-whatevernome="{{$item->pergunta}}" data-whatevertype="{{$item->tipo_perg}}" data-whateveridperg="{{$item->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whateverroom="{{$item->room_type}}"></button>
-                        <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
-                    </span>
-                    @endif
-                    @endforeach
-                    @endif
-                    @endforeach
-                    <?php $z++; ?>
 
-
-                </div>
-                <div class="col-md-12">
-                    @foreach($respostas as $resposta)
-                    @foreach($perg_resp as $pergresp)
-                    @if($pergresp->perg_id==$item->id)
-                    @if($pergresp->resp_id==$resposta->id)
-                    <div class="row">
-                        &emsp;&emsp;&emsp;
-                        <h4 display="inline" class="col-md-1"><?php echo $letras[$y]; ?></h4>
-                        <h4 display="inline" align="left" class="col">{{$resposta->resposta}}</h4>
-                        <span class="col">
-                            <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}"></button>
-                            <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
-                        </span>
-                        <?php $y++; ?>
-                        <br><br>
-                    </div>
-                    @endif
-                    @endif
-                    @endforeach
-                    @endforeach
-                </div>
-            </div>
-            <?php $y=0;; ?>
-            <hr style="border: 0.5px solid #c2c2c2;">
-
-            @endforeach
         </div>
 
 
     </div>
+
 
     <div class="modal fade" id="alteraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
@@ -306,8 +273,9 @@
                     <input type="hidden" value="{{$id}}" name="sala_id" id="sala_id">
                     <div class="modal-body">
                         <ul id="sortable" class="sortable">
-                            @foreach($data as $item)
-                            <li class="ui-state-default" value="{{$item->id}}">{{$item->pergunta}}</li>
+                            <?php $ab=1 ;?>
+                            @foreach($pergs as $item)
+                            <li class="ui-state-default" value="{{$item->id}}"><?php echo $ab++;?>:&nbsp;{{$item->pergunta}}</li>
                             @endforeach
                         </ul>
                     </div>

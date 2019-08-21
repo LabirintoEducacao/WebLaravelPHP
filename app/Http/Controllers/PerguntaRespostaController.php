@@ -25,27 +25,55 @@ class PerguntaRespostaController extends Controller
     // }
 
 
+    public function index2($id)
+    {
+      // dessa forma mostra sem paginação uma lista de usuarios
+      //return view('admin.users.index')->with('users', User::all());
+
+      //Com paginação
+        $perguntas = Pergunta::where('sala_id', '=', $id)->paginate(5);
+        $respostas = DB::table('respostas')
+            ->where('sala_id','=',$id)
+            ->get();
+        $perg_resps =  DB::table('perg_resp')
+            ->get();
+      return view('teste_perg')->with(['data' => $perguntas, 'resps' =>$respostas, 'perg_resps' => $perg_resps]);
+    }
+    
+    
+    
     public function index($id)
     {
-        
-        $perg = DB::table('perguntas')
-            ->where('sala_id','=',$id )->whereNotNull('ordem')
-            ->orderBy('ordem')
-            ->get();
+        $perguntas = Pergunta::where('sala_id', '=', $id)->paginate(10);
         $path_perg = DB::table('path_perg')
             ->get();
         $paths = DB::table('paths')
             ->get();
         $ref = DB::table('perguntas')
             ->where('sala_id','=',$id )->whereNull('ordem')
+            ->get();
+        $pergs = DB::table('perguntas')
+            ->where('sala_id','=',$id )->whereNotNull('ordem')
             ->orderBy('ordem')
             ->get();
+        if(count($pergs)>0){
+            $count_pergs=count($pergs);
+        }else{
+            $count_pergs=0;
+        }
+        
+        
+        if(count($ref)>0){
+            $count_ref=count($ref);
+        }else{
+            $count_ref=0;
+        }
         $respostas = DB::table('respostas')
             ->where('sala_id','=',$id)
             ->get();
         $perg_resp =  DB::table('perg_resp')
             ->get();   
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perg, 'ref' => $ref, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths]);
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref]);
     }
     
     public function alterar(Request $request){
@@ -84,13 +112,9 @@ class PerguntaRespostaController extends Controller
 
     public function edit_resp(Request $request){
         $data = $request->all();
-        if($request->input('resposta_end') == null)
-            $end=0;
-        else
-            $end=1;
         DB::table('respostas')
             ->where('id','=', $data['resposta_id'])
-            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name'],'corret' => $data['resposta_correct'],'end_game' => $end]);
+            ->update(['tipo_resp' => $data['resposta_type'],'resposta' => $data['resposta_name'],'corret' => $data['resposta_correct']]);
 
         $perg = DB::table('perguntas')
             ->where('sala_id','=',$data['sala_id'])

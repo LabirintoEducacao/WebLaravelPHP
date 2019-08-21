@@ -115,7 +115,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 Route::prefix('/admin')->group(function(){
 
 /*Rotas da pergunta e Resposta*/
-
+Route::get('/teste/{id}', 'PerguntaRespostaController@index2')->middleware(['auth', 'auth.admin']);
 Route::get('/editar-sala/{id}', 'PerguntaRespostaController@index')->middleware(['auth', 'auth.admin']);
 Route::post('/editar-sala/{id}', 'PerguntaRespostaController@store');
 Route::post('/editar-resp', 'PerguntaRespostaController@edit_resp');
@@ -218,12 +218,3 @@ Route::post('/', 'SalaController@buscar');
 // Route::post( 'api/virtual', ['json' => 'PessoaController@teste'] );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
