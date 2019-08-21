@@ -80,31 +80,31 @@
                     <li class="nav-title">MENU DO PROFESSOR</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin/sala')}}">
-                            <i class="nav-icon icon-drop"></i> Editar Salas</a>
+                            <i class="nav-icon icon-pencil"></i> Editar Salas</a>
                     </li>
                     @endhasrole
                     @hasrole('user')
                     <li class="nav-title">MENU DO USUÁRIO</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin/virtual')}}">
-                            <i class="nav-icon icon-drop"></i> Espaço Virtual</a>
+                            <i class="nav-icon fa fa-rocket"></i> Espaço Virtual</a>
                     </li>
                     @endhasrole
                     @hasrole('admin')
                     <li class="nav-title">MENU DO ADMINISTRADOR</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin/users')}}">
-                            <i class="nav-icon icon-drop"></i> Usuários</a>
+                            <i class="nav-icon icon-people"></i> Usuários</a>
                     </li>
                     @endhasrole
                     <li class="nav-title">CONFIGURAÇÕES</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin/settings')}}">
-                            <i class="nav-icon icon-drop"></i> Editar Perfil</a>
+                            <i class="nav-icon icon-user"></i> Editar Perfil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin/settings/password')}}">
-                            <i class="nav-icon icon-drop"></i> Editar Senha</a>
+                            <i class="nav-icon icon-settings"></i> Editar Senha</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
