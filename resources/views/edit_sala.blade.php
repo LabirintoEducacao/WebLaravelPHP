@@ -198,7 +198,10 @@
                         @foreach($paths as $path)
                         @if($path->id==$pp->path_id)
                         <!--                    <input value="{{$path->id}}"><br><br>-->
+                        @if($path->disp == 1)
                         <h4 display="inline" align="left" class="col">{{$item->pergunta}}</h4>
+                        @else
+                        @endif
                         <span class="col-1">
                             @if($errado==1)
                             <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambientex="{{$path->ambiente_perg}}" data-whatevertamanhox="{{$path->tamanho}}" data-whateverlargurax="{{$path->largura}}" title="Editar path do reforço"></button>
@@ -215,7 +218,6 @@
                         @endforeach
                     </div>
                     <br><br><br>
-
                 </div>
                 <div class="col-md-12">
                     @foreach($respostas as $resposta)
@@ -233,10 +235,32 @@
                     </div>
                     <?php $y++; ?>
                     <br><br>
+
+
                     @endif
                     @endif
                     @endforeach
                     @endforeach
+
+                    @foreach($data as $item)
+                          @foreach($reforco as $ref)
+                      
+                            @if($ref->perg_id == $item->id)
+                             <?php
+                                $refid = $ref->ref_id;
+                               ?>
+                                @foreach($perg_ref as $refp)
+
+                                    @if($refid == $refp->id)
+                                       
+                                     <p>{{$refp->pergunta}}</p>
+                                     
+                                     @endif
+
+                                @endforeach
+                              @endif
+                             @endforeach
+                        @endforeach
                 </div>
 
             </div>
@@ -246,6 +270,7 @@
             <br><br><br>
             <hr style="border: 0.5px solid #c2c2c2;">
             <br>
+
             @endforeach
 
             <div class="container">

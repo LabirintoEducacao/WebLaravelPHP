@@ -43,7 +43,11 @@ class PerguntaRespostaController extends Controller
     
     public function index($id)
     {
-        $perguntas = Pergunta::where('sala_id', '=', $id)->paginate(10);
+
+        $ref =0; 
+        
+        $perguntas = Pergunta::where('sala_id', $id)->whereNotNull('ordem')
+        ->orderBy('ordem')->paginate(10);
         $path_perg = DB::table('path_perg')
             ->get();
         $paths = DB::table('paths')
@@ -51,10 +55,35 @@ class PerguntaRespostaController extends Controller
         $ref = DB::table('perguntas')
             ->where('sala_id','=',$id )->whereNull('ordem')
             ->get();
+
         $pergs = DB::table('perguntas')
             ->where('sala_id','=',$id )->whereNotNull('ordem')
             ->orderBy('ordem')
             ->get();
+
+
+
+
+
+
+                $perg_ref = 0;
+
+            foreach ($perguntas as $value) {
+              
+                $perg_ref = DB::table('perg_ref')->where('perg_id', $value->id)->get();
+
+                if (count($perg_ref) >0 ){
+
+                    $pergref = $perg_ref;
+
+                }            
+            }
+
+
+
+
+
+
         if(count($pergs)>0){
             $count_pergs=count($pergs);
         }else{
@@ -72,7 +101,7 @@ class PerguntaRespostaController extends Controller
             ->get();
         $perg_resp =  DB::table('perg_resp')
             ->get();   
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref]);
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref, 'reforco'=> $pergref, 'perg_ref' =>$ref]);
     }
     
     public function alterar(Request $request){
