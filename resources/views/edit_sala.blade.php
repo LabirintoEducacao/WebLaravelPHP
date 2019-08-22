@@ -185,7 +185,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                            @if($item->ordem==null)
+                            @if($item->ordem === null)
                             <h4 display="inline" class="col-4">Reforço:</h4>
                             @else
                             <h4 display="inline" class="col-3">Pergunta:</h4>
@@ -198,6 +198,7 @@
                         @foreach($paths as $path)
                         @if($path->id==$pp->path_id)
                         <!--                    <input value="{{$path->id}}"><br><br>-->
+                        <h4 display="inline" align="left" class="col">{{$item->pergunta}}</h4>
                         <span class="col-1">
                             @if($errado==1)
                             <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#caminhoModal" data-whatever="{{$path->id}}" data-whateverambientex="{{$path->ambiente_perg}}" data-whatevertamanhox="{{$path->tamanho}}" data-whateverlargurax="{{$path->largura}}" title="Editar path do reforço"></button>

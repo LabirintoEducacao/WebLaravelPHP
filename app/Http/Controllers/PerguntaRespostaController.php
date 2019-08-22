@@ -41,7 +41,6 @@ class PerguntaRespostaController extends Controller
     }
     
     
-    
     public function index($id)
     {
         $perguntas = Pergunta::where('sala_id', '=', $id)->paginate(10);
