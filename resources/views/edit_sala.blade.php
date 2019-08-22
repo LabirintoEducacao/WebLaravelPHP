@@ -118,7 +118,7 @@
                                                     <option value="0">Errada</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" maxlength="80"></td>
+                                            <td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required></td>
                                             <td><button type="button" name="add" id="add" class="btn btn-outline-succcess fa fa-plus"></button></td>
                                         </tr>
                                     </tbody>
@@ -185,12 +185,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                            @if($item->ordem === null)
-                            <h4 display="inline" class="col-4">Reforço:</h4>
-                            @else
-                            <h4 display="inline" class="col-3">Pergunta:</h4>
-                            @endif
-                        <!--             <td class="col-md-3">POR ENQUANTO NADA</td> -->
                         <?php $errado=0; ?>
                         @foreach($path_perg as $pp)
                         @if($pp->perg_id==$item->id)
@@ -199,8 +193,8 @@
                         @if($path->id==$pp->path_id)
                         <!--                    <input value="{{$path->id}}"><br><br>-->
                         @if($path->disp == 1)
+                        <h4 display="inline" class="col-3">Pergunta:</h4>
                         <h4 display="inline" align="left" class="col">{{$item->pergunta}}</h4>
-                        @else
                         @endif
                         <span class="col-1">
                             @if($errado==1)
@@ -220,6 +214,7 @@
                     <br><br><br>
                 </div>
                 <div class="col-md-12">
+                    <?php $y=0; ?>
                     @foreach($respostas as $resposta)
                     @foreach($perg_resp as $pergresp)
                     @if($pergresp->perg_id==$item->id)
@@ -235,40 +230,69 @@
                     </div>
                     <?php $y++; ?>
                     <br><br>
-
-
                     @endif
                     @endif
                     @endforeach
                     @endforeach
 
-                    @foreach($data as $item)
-                          @foreach($reforco as $ref)
-                      
-                            @if($ref->perg_id == $item->id)
-                             <?php
-                                $refid = $ref->ref_id;
-                               ?>
-                                @foreach($perg_ref as $refp)
-
-                                    @if($refid == $refp->id)
-                                       
-                                     <p>{{$refp->pergunta}}</p>
-                                     
-                                     @endif
-
-                                @endforeach
-                              @endif
-                             @endforeach
-                        @endforeach
                 </div>
 
             </div>
 
 
             <?php $y=0; ?>
+
+            @foreach($perg_refs as $perg_ref)
+            @if($perg_ref->perg_id==$item->id)
+            @foreach($refs as $ref)
+            @if($ref->id==$perg_ref->ref_id)
             <br><br><br>
             <hr style="border: 0.5px solid #c2c2c2;">
+            <br>
+            <div class="row">
+                @foreach($path_perg as $pp)
+                @if($pp->perg_id==$ref->id)
+                <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
+                @foreach($paths as $path)
+                @if($path->id==$pp->path_id)
+                <!--                    <input value="{{$path->id}}"><br><br>-->
+                <h4 display="inline" class="col-3">Reforço:</h4>
+                <h4 display="inline" align="left" class="col">{{$ref->pergunta}}</h4>
+                <span class="col-1">
+                    <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#perguntaModal" data-whateverpath="{{$path->id}}" data-whateverambiente="{{$path->ambiente_perg}}" data-whatevertamanho="{{$path->tamanho}}" data-whateverlargura="{{$path->largura}}" data-whatever="<?php echo $x?>" data-whatevernome="{{$ref->pergunta}}" data-whatevertype="{{$ref->tipo_perg}}" data-whateveridperg="{{$ref->id}}" data-whateverroom="{{$ref->room_type}}" title="Editar path da pergunta reforço"></button>
+                    <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+
+                </span>
+                @endif
+                @endforeach
+                @endif
+                @endforeach
+            </div>
+            @foreach($respostas as $resposta)
+            @foreach($perg_resp as $pergresp)
+            @if($pergresp->perg_id==$ref->id)
+            @if($pergresp->resp_id==$resposta->id)
+            <div class="row">
+                &emsp;&emsp;&emsp;
+                <h4 display="inline" class="col-1"><?php echo $letras[$y]; ?></h4>
+                <h4 display="inline" align="left" class="col">{{$resposta->resposta}}</h4>
+                <span class="col">
+                    <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#respostaModal" data-whatevern="<?php echo $y; ?>" data-whateverresp="{{$resposta->resposta}}" data-whatevertyperesp="{{$resposta->tipo_resp}}" data-whateveridresp="{{$resposta->id}}" data-whatevercorrect="{{$resposta->corret}}"></button>
+                    <a href="{{ url('admin/deletar-resposta/'.$resposta->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
+                </span>
+            </div>
+            <?php $y++; ?>
+            <br><br>
+            @endif
+            @endif
+            @endforeach
+            @endforeach
+            @endif
+            @endforeach
+            @endif
+            @endforeach
+            <br><br><br>
+            <hr style="border: 0.8px solid #afafaf;">
             <br>
 
             @endforeach

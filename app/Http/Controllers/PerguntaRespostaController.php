@@ -47,11 +47,14 @@ class PerguntaRespostaController extends Controller
         $ref =0; 
         
         $perguntas = Pergunta::where('sala_id', $id)->whereNotNull('ordem')
-        ->orderBy('ordem')->paginate(10);
+        ->orderBy('ordem')->paginate(5);
         $path_perg = DB::table('path_perg')
-            ->get();
+                ->join('perguntas','perguntas.id','=','path_perg.perg_id')
+                ->where('perguntas.sala_id', '=', $id)
+                ->get();
         $paths = DB::table('paths')
             ->get();
+    
         $ref = DB::table('perguntas')
             ->where('sala_id','=',$id )->whereNull('ordem')
             ->get();
@@ -60,28 +63,10 @@ class PerguntaRespostaController extends Controller
             ->where('sala_id','=',$id )->whereNotNull('ordem')
             ->orderBy('ordem')
             ->get();
-
-
-
-
-
-
-                $perg_ref = 0;
-
-            foreach ($perguntas as $value) {
-              
-                $perg_ref = DB::table('perg_ref')->where('perg_id', $value->id)->get();
-
-                if (count($perg_ref) >0 ){
-
-                    $pergref = $perg_ref;
-
-                }            
-            }
-
-
-
-
+        $perg_refs = DB::table('perg_ref')
+                ->join('perguntas','perguntas.id','=','perg_ref.perg_id')
+                ->where('perguntas.sala_id', '=', $id)
+                ->get();
 
 
         if(count($pergs)>0){
@@ -101,7 +86,7 @@ class PerguntaRespostaController extends Controller
             ->get();
         $perg_resp =  DB::table('perg_resp')
             ->get();   
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref, 'reforco'=> $pergref, 'perg_ref' =>$ref]);
+        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref, 'refs' =>$ref,'perg_refs'=>$perg_refs]);
     }
     
     public function alterar(Request $request){

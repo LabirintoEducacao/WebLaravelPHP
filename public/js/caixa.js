@@ -27,7 +27,7 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" maxlength="80" /></td>' +
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required/></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
                    a++;
@@ -67,7 +67,7 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" /></td>' +
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required/></td>' +
                        '<td><button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn_remove2">X</button></td>' +
                        '</tr>');
                    b++;
@@ -164,7 +164,7 @@
                        '<option value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80"></td>' +
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required></td>' +
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
                        '</table>' +
@@ -187,7 +187,7 @@
                        '<option value="3">Grande</option>' +
                        '</select>' +
                        '</div>' +
-                       '<div class="form-group">' +
+                       '<div class="form-group row">' +
                        '<label for="largura_ref" class="col">Largura:</label>' +
                        '<select name="largura_ref" id="largura_ref" class="col">' +
                        '<option selected value="1">Pequeno</option>' +
