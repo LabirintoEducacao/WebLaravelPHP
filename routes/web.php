@@ -124,6 +124,9 @@ Route::post('/editar-ambi', 'PerguntaRespostaController@edit_ambi')->middleware(
 Route::get('/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy')->middleware(['auth', 'auth.admin']);
 Route::get('/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
 Route::post('/alterar-ordem','PerguntaRespostaController@alterar');
+Route::post('/busca-perg', 'PerguntaRespostaController@buscar');
+    
+Route::get('/teste/{id}', 'PerguntaRespostaController@teste');
 
 Route::get('/pergunta', function () {
     return view('questions');
