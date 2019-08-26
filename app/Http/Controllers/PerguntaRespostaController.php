@@ -728,4 +728,53 @@ class PerguntaRespostaController extends Controller
             );
         return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with($notification);
     }
+
+
+
+       public function indexJson($id)
+    {
+       
+      // $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+
+
+
+      //   foreach ($pergunta as $value ) {
+
+      //       $id_perg = $value->id;
+      //       $resp_rel = DB::table('perg_resp')->select('resp_id') ->where('perg_id',$id_perg)->get();
+          
+
+
+      //        foreach ($resp_rel as $key ) {
+                 
+      //           $resposta[] =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $key->resp_id)->get();
+
+
+
+      //            $res = array(
+
+      //           'perg_id' =>  $id_perg,
+      //           'perguntas'=> $resposta
+      //        );
+
+
+      //        }
+
+      //        $respjsn[] = $res;
+      //        unset($resposta);
+
+
+      //   }
+
+      //       return json_encode($respjsn);
+
+
+          
+      //       }
+
+       $respostas =  Resposta::select('id','tipo_resp','corret','resposta')->get();
+       return $respostas->toJson();
+    }
+
+
 }

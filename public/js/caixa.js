@@ -410,6 +410,32 @@
                });
            }
 
+        function carregarResposta() {
+        $.getJSON('/api/produtos', function(produtos) { 
+            for(i=0;i<produtos.length;i++) {
+                linha = montarLinha(produtos[i]);
+                $('#tabelaProdutos>tbody').append(linha);
+            }
+        });        
+       }
+
+        function editar(id) {
+        $.getJSON('/api/admin/editar-sala/+id', function(data) { 
+            console.log(data);
+            $('#id').val(data.id);
+            $('#nomeProduto').val(data.nome);
+            $('#precoProduto').val(data.preco);
+            $('#quantidadeProduto').val(data.estoque);
+            $('#categoriaProduto').val(data.categoria_id);
+            $('#respostaModal').modal('show');            
+        });        
+       }
+
+
+
+
+
+
        });
 
 
