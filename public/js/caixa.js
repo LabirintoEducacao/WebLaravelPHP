@@ -86,7 +86,7 @@
 
 
            ///////////////////////////////////////////////////////////////////
-           $('input[type="checkbox"]').on('change', function () {
+           $('#check-reforco').on('change', function () {
                var $parent = $(this).parents('.hovereffect');
                if (this.checked) {
                    $('.abcd', $parent).append(
@@ -120,8 +120,9 @@
                        '<div class="form-group hea row">' +
                        '<br>' +
                        '<br>' +
+                       '<input id="perg-reforco-id" name="perg-reforco-id" type="hidden">' +
                        '<label for="pergunta" class="col">Pergunta:</label>' +
-                       '<input class="col" id="pergunta" type="text" name="reforco"  placeholder=" Pergunta" maxlength="80" required>' +
+                       '<input class="col" id="pergunta-reforco" type="text" name="reforco"  placeholder=" Pergunta" maxlength="80" required>' +
                        '</div>' +
                        '<div class="form-group hea row">' +
                        '<label for="question_type_ref" class="col">Tipo da pergunta:</label>' +
@@ -249,6 +250,89 @@
                });
            });
 
+           $('#addPerg').on('show.bs.modal', function (event) {
+               var modal = $(this);
+               var button = $(event.relatedTarget);
+               var w=0,x=0,y=0,z=0;
+               if (button.data('whatever')) {
+                   var recipient = button.data('whatever');
+                   console.log(recipient);
+                   $.ajax({
+                       url: 'http://127.0.0.1:8000/admin/busca-perg',
+                       method: "POST",
+                       data: {id: recipient},
+                       dataType: 'json',
+                       error: function (error) {
+                       console.log(error);
+                        },
+                       success: function (data) {
+                           console.log(data);
+                           $.each(data, function(i, val){
+                               if(x==0){
+                                   modal.find('#pergunta').val(val.question);
+                                   modal.find('#perg-id').val(val.question_id);
+                                   modal.find('#room_type').val(val.room_type);
+                                   modal.find('#question_type').val(val.question_type);
+                                   $.each(val.path, function(a,path){
+                                       if(w==0){
+                                           modal.find('#answer_boolean').val(path.type);
+                                           modal.find('#largura').val(path.widht);
+                                           modal.find('#tamanho').val(path.heigh);
+                                           w++;
+                                       }else{
+                                           $('#check-reforco').prop("checked", true);
+                                           modal.find('#answer_boolean_perg').val(path.type);
+                                           modal.find('#largura_perg').val(path.widht);
+                                           modal.find('#tamanho_perg').val(path.heigh);
+                                       }
+                                   });
+                                   $.each(val.answer, function(j,resp){
+                                       modal.find('#corret').val(resp.correct);
+                                       modal.find('#resposta').val(resp.answer);
+                                   });
+                                   x++;
+                               }else{
+                                   modal.find('#pergunta-reforco').val(val.question);
+                                   modal.find('#perg-reforco-id').val(val.question_id);
+                                   modal.find('#room_type_ref').val(val.room_type);
+                                   modal.find('#question_type_ref').val(val.question_type);
+                                    modal.find('#answer_boolean_ref').val(path.type);
+                                    modal.find('#largura_ref').val(path.widht);
+                                    modal.find('#tamanho_ref').val(path.heigh);
+                                   $.each(val.answer, function(j,resp){
+                                       modal.find('#corret').val(resp.correct);
+                                       modal.find('#resposta').val(resp.answer);
+                                   });
+                                   
+                               }
+                               
+                           });
+                       }
+                   });
+
+
+                   //           var modal = $(this);
+                   //           modal.find('.modal-title').text('Nº ' + recipient);
+                   //           modal.find('#id-curso').val(recipient);
+                   //           modal.find('#pergunta_name').val(recipientnome);
+                   //           modal.find('#pergunta_type').val(recipientperg);
+                   //           modal.find('#pergunta_ambiente').val(recipientdetalhes);
+                   //           modal.find('#pergunta_tamanho').val(recipienttamanho);
+                   //           modal.find('#pergunta_largura').val(recipientlargura);
+                   //           modal.find('#perg_room_type').val(recipientroom);
+                   //           modal.find('#pergunta_path').val(recipientpath);
+                   //           modal.find('#pergunta_id').val(recipientid);
+               }else{
+                   modal.find('#pergunta').val('');
+                    modal.find('#perg-id').val(0);
+                    modal.find('#room_type').val('key');
+                    modal.find('#question_type').val(1);
+                   $('#check-reforco').prop("checked", false);
+                   
+               }
+
+           });
+
            //Add Action to buttton submit Data to DB
 
            $('#submit').click(function () {
@@ -264,7 +348,7 @@
 
                            printErrorMsg(data.error);
                        } else {
-                             window.location.reload();
+                           window.location.reload();
                            i = 1;
                            $('.dynamic-added').remove();
                            $('#add_name')[0].reset();
@@ -417,4 +501,3 @@
 
            $("ul, li").disableSelection();
        });
-
