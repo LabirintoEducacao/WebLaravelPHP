@@ -26,7 +26,8 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/></td>' +
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/>'+
+                        '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
                    a++;
@@ -67,7 +68,8 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required/></td>' +
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required/>'+
+                        '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
                        '<td><button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn_remove2">X</button></td>' +
                        '</tr>');
                    b++;
@@ -120,7 +122,7 @@
                        '<div class="form-group hea row">' +
                        '<br>' +
                        '<br>' +
-                       '<input id="perg-reforco-id" name="perg-reforco-id" type="hidden">' +
+                       '<input id="perg-reforco-id" name="perg_reforco_id" type="hidden">' +
                        '<label for="pergunta" class="col">Pergunta:</label>' +
                        '<input class="col" id="pergunta-reforco" type="text" name="reforco"  placeholder=" Pergunta" maxlength="80" required>' +
                        '</div>' +
@@ -152,7 +154,7 @@
                        '<tbody>' +
                        '<tr>' +
                        '<td>' +
-                       '<select name ="tipo_resp_ref[]" class="form-control">' +
+                       '<select name ="tipo_resp_ref[]" class="form-control tipo_resp_ref">' +
                        '<option selected value="1">Texto</option>' +
                        '<option value="2">imagem</option>' +
                        '<option value="3">video</option>' +
@@ -160,12 +162,13 @@
                        '</select>' +
                        '</td>' +
                        '<td>' +
-                       '<select name ="corret_ref[]" class="form-control">' +
+                       '<select name ="corret_ref[]" class="form-control corret_ref">' +
                        '<option selected value="1">Certa</option>' +
                        '<option value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required></td>' +
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="80" required>'+
+                        '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
                        '</table>' +
@@ -272,7 +275,7 @@
                            $.each(data, function(i, val){
                                if(x==0){
                                    modal.find('#pergunta').val(val.question);
-                                   modal.find('#perg-id').val(val.question_id);
+                                   modal.find('#perg_id').val(val.question_id);
                                    modal.find('#room_type').val(val.room_type);
                                    modal.find('#question_type').val(val.question_type);
                                    $.each(val.path, function(a,path){
@@ -306,19 +309,26 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/></td>' +
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/>'+
+                        '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
                                            a++;
                                        }
-                                       modal.find(document.getElementsByClassName("tipo_resp")[v]).val(resp.correct);
-                                       modal.find(document.getElementsByClassName("corret")[v]).val(resp.correct);
+                                       modal.find(document.getElementsByClassName("tipo_resp")[v]).val(resp.tipo_resp);
+                                       modal.find(document.getElementsByClassName("resp_id")[v]).val(resp.answer_id);
+                                       if(resp.correct===true){
+                                            modal.find(document.getElementsByClassName("corret")[v]).val(1);
+                                       }else{
+                                           modal.find(document.getElementsByClassName("corret")[v]).val(0);
+                                       }
                                        modal.find(document.getElementsByClassName("resposta")[v]).val(resp.answer);
                                        v++;
                                        
                                    });
                                    x++;
                                }else{
+                                   v=0;
                                    modal.find('#pergunta-reforco').val(val.question);
                                    modal.find('#perg-reforco-id').val(val.question_id);
                                    modal.find('#room_type_ref').val(val.room_type);
@@ -327,8 +337,39 @@
 //                                    modal.find('#largura_ref').val(path.widht);
 //                                    modal.find('#tamanho_ref').val(path.heigh);
                                    $.each(val.answer, function(j,resp){
-//                                       modal.find('#corret').val(resp.correct);
-//                                       modal.find('#resposta').val(resp.answer);
+                                    if(v>0){
+                                          $('#dynamic_field2').append('' +
+                                       '<tr id="row' + i2 + '" class="dynamic-added">' +
+                                       '<td>' +
+                                       '<select name ="tipo_resp_ref[]" class="form-control tipo_resp_ref">' +
+                                       '<option selected value="1">Texto</option>' +
+                                       '<option value="2">Imagem</option>' +
+                                       '<option value="3">video</option>' +
+                                       '<option value="4">Audio</option>' +
+                                       '</select>' +
+                                       '</td>' +
+                                       '<td>' +
+                                       '<select name ="corret_ref[]" class="form-control corret_ref">' +
+                                       '<option value="1">Certa</option>' +
+                                       '<option selected value="0">Errada</option>' +
+                                       '</select>' +
+                                       '</td>' +
+                                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="80" required/>'+
+                                        '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
+                                       '<td><button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn_remove2">X</button></td>' +
+                                       '</tr>');
+                                   b++;
+                                    }
+                                       modal.find(document.getElementsByClassName("tipo_resp_ref")[v]).val(resp.tipo_resp);
+                                       modal.find(document.getElementsByClassName("resp_ref_id")[v]).val(resp.answer_id);
+                                       if(resp.correct===true){
+                                        modal.find(document.getElementsByClassName("corret_ref")[v]).val(1);
+                                       }else{
+                                           modal.find(document.getElementsByClassName("corret_ref")[v]).val(0);
+                                       }
+                                       modal.find(document.getElementsByClassName("resposta_ref")[v]).val(resp.answer);
+                                       v++;
+                                       
                                    });
                                    
                                }
@@ -351,7 +392,7 @@
                    //           modal.find('#pergunta_id').val(recipientid);
                }else{
                    modal.find('#pergunta').val('');
-                    modal.find('#perg-id').val(0);
+                    modal.find('#perg_id').val(0);
                     modal.find('#room_type').val('key');
                     modal.find('#question_type').val(1);
                    $('#check-reforco').prop("checked", false);

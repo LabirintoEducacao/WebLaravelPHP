@@ -101,6 +101,7 @@ class PerguntaRespostaController extends Controller
                 $resp_ref = array(
                 'answer_id' => $respostaref[0]->id,
                 'answer' => $respostaref[0]->resposta,
+                'tipo_resp' => $respostaref[0]->tipo_resp,
                 'correct'=> $answ
                 );
 
@@ -132,6 +133,7 @@ class PerguntaRespostaController extends Controller
             $arresp = array(
             'answer_id' => $resposta[0]->id,
             'answer' => $resposta[0]->resposta,
+            'tipo_resp' => $resposta[0]->tipo_resp,
             'correct'=> $answ
             );
             $respost[] = $arresp;
@@ -454,6 +456,8 @@ class PerguntaRespostaController extends Controller
 
               }  
           
+//          if($request->perg_id===0){
+          
                         ////////Perguntas///////////
                      $sala_id = $request->sala_id;
                      $tipo_perg = $request->question_type;
@@ -604,8 +608,59 @@ class PerguntaRespostaController extends Controller
             return response()->json(['success' => 'sucesso.']);
               
    }
-} 
-    
+//      }else{
+//
+//        DB::table('perguntas')
+//            ->where('id','=', $request->perg_id)
+//            ->update(['tipo_perg' => $request->question_type,'pergunta' => $request->pergunta,'room_type' => $request->room_type]);
+//          
+//          $respostas = table('respostas')
+//              ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
+//                ->where('perg_resp.perg_id','=', $request->perg_id)
+//              ->get();
+//          
+//          /////Resposta1////////////
+//            $tipo_resp = $request->tipo_resp;
+//            $resposta = $request->resposta;
+//            $resp_id = $request->resp_id;
+//            $corret = $request->corret;
+//            $sala_id = $request->sala_id;
+//                    
+//            if(count($resposta)== count($respostas)){
+//                for($count = 0; $count < count($resposta); $count++)
+//            {
+//                
+//            $id = DB::table('respostas')
+//                ->where('id','=',$resp_id)
+//                ->get();
+//                    if(count($id)>0){
+//                        DB::table('respostas')
+//                            ->where('id','=', $resp_id[$count])
+//                            ->update(['tipo_resp' => $tipo_resp[$count],'resposta' => $resposta[$count],'corret' => $corret[$count]]);
+//                    }else{
+//                        
+//                        $resposta_id_s = DB::table('respostas')->insertGetId(array(
+//
+//                                 'sala_id'  => $request->sala_id,
+//                                 'tipo_resp' => $tipo_resp[$count],
+//                                 'resposta' => $resposta[$count],
+//                                 'corret' => $corret[$count]
+//
+//
+//                           ));
+//
+//                       DB::table('perg_resp')->insert(array('perg_id' => $request->perg_id, 'resp_id' => $resposta_id_s));
+//                        
+//                    }
+//
+//
+//            }
+//            }
+//          
+//              return response()->json(['success' => 'sucesso.']);
+//
+//} 
+    }
 
     /**
      * Display the specified resource.

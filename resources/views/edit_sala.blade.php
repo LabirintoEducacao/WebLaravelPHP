@@ -87,7 +87,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group row">
-                                    <input type="hidden" id="perg-id">
+                                    <input type="hidden" value="0" name="perg_id">
                                     <label for="pergunta" class="col">Pergunta:</label>
                                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="80" required>
                                 </div>
@@ -119,7 +119,9 @@
                                                     <option value="0">Errada</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required></td>
+                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required>
+                                            <input type="hidden" name="resp_id[]" class="resp_id">
+                                            </td>
                                             <td><button type="button" name="add" id="add" class="btn btn-outline-succcess fa fa-plus"></button></td>
                                         </tr>
                                     </tbody>
@@ -157,7 +159,7 @@
                             <div id="pergReforco" class="tab-pane fade" style="margin-right:2%">
                                 <div class="hovereffect">
                                     <div class="overlay">
-                                        <input type="checkbox" id="check-reforco">&nbsp;Pergunta Refoço
+                                        <input type="checkbox" id="check-reforco">&nbsp;Pergunta Reforço
                                     </div>
                                     <div class="abcd">
 
@@ -169,7 +171,7 @@
 
                     <div class="modal-footer">
                         <a class="btn btn-outline-dark btnModalClose" data-dismiss="modal">Close</a>
-                        <button name="submit" id="submit" class="btn btn-info" value="submit">Save changes</button>
+                        <button name="submit" id="submit" class="btn btn-info" value="submit">Salvar</button>
                     </div>
                 </form>
             </div>
