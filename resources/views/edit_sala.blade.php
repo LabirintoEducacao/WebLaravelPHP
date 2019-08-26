@@ -198,6 +198,7 @@
                         <h4 display="inline" align="left" class="col">{{$item->pergunta}}</h4>
                         <span class="col-1">
                              <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>
+                              <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
 
                         </span>
                         @endif

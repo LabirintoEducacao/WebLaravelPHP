@@ -917,4 +917,16 @@ public function buscar(Request $request){
             );
         return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with($notification);
     }
+
+
+
+       public function indexJson($id)
+    {
+       
+
+       $respostas =  Resposta::select('id','tipo_resp','corret','resposta')->get();
+       return $respostas->toJson();
+    }
+
+
 }
