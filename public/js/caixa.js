@@ -9,12 +9,11 @@
            var b = 0;
 
            $('#add').click(function () {
-
                if (a < 3) {
                    $('#dynamic_field').append('' +
                        '<tr id="row' + i + '" class="dynamic-added">' +
                        '<td>' +
-                       '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control">' +
+                       '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control tipo_resp">' +
                        '<option selected value="1">Texto</option>' +
                        '<option value="2">Imagem</option>' +
                        '<option value="3">video</option>' +
@@ -22,12 +21,12 @@
                        '</select>' +
                        '</td>' +
                        '<td>' +
-                       '<select name ="corret[]" class="form-control">' +
+                       '<select name ="corret[]" class="form-control corret">' +
                        '<option value="1">Certa</option>' +
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required/></td>' +
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
                    a++;
@@ -45,6 +44,7 @@
                var button_id = $(this).attr("id");
                $('#row' + button_id + '').remove();
                a--;
+               console.log(a);
            });
 
 
@@ -253,7 +253,7 @@
            $('#addPerg').on('show.bs.modal', function (event) {
                var modal = $(this);
                var button = $(event.relatedTarget);
-               var w=0,x=0,y=0,z=0;
+               var v=0,w=0,x=0,y=0,z=0;
                if (button.data('whatever')) {
                    var recipient = button.data('whatever');
                    console.log(recipient);
@@ -267,6 +267,8 @@
                         },
                        success: function (data) {
                            console.log(data);
+                           a = 0;
+                            b = 0;
                            $.each(data, function(i, val){
                                if(x==0){
                                    modal.find('#pergunta').val(val.question);
@@ -287,8 +289,33 @@
                                        }
                                    });
                                    $.each(val.answer, function(j,resp){
-                                       modal.find('#corret').val(resp.correct);
-                                       modal.find('#resposta').val(resp.answer);
+                                       if(v>0){
+                                           $('#dynamic_field').append('' +
+                       '<tr id="row' + i + '" class="dynamic-added">' +
+                       '<td>' +
+                       '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control tipo_resp">' +
+                       '<option selected value="1">Texto</option>' +
+                       '<option value="2">Imagem</option>' +
+                       '<option value="3">video</option>' +
+                       '<option value="4">Audio</option>' +
+                       '</select>' +
+                       '</td>' +
+                       '<td>' +
+                       '<select name ="corret[]" class="form-control corret">' +
+                       '<option value="1">Certa</option>' +
+                       '<option selected value="0">Errada</option>' +
+                       '</select>' +
+                       '</td>' +
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/></td>' +
+                       '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
+                       '</tr>');
+                                           a++;
+                                       }
+                                       modal.find(document.getElementsByClassName("tipo_resp")[v]).val(resp.correct);
+                                       modal.find(document.getElementsByClassName("corret")[v]).val(resp.correct);
+                                       modal.find(document.getElementsByClassName("resposta")[v]).val(resp.answer);
+                                       v++;
+                                       
                                    });
                                    x++;
                                }else{
@@ -296,12 +323,12 @@
                                    modal.find('#perg-reforco-id').val(val.question_id);
                                    modal.find('#room_type_ref').val(val.room_type);
                                    modal.find('#question_type_ref').val(val.question_type);
-                                    modal.find('#answer_boolean_ref').val(path.type);
-                                    modal.find('#largura_ref').val(path.widht);
-                                    modal.find('#tamanho_ref').val(path.heigh);
+//                                    modal.find('#answer_boolean_ref').val(path.type);
+//                                    modal.find('#largura_ref').val(path.widht);
+//                                    modal.find('#tamanho_ref').val(path.heigh);
                                    $.each(val.answer, function(j,resp){
-                                       modal.find('#corret').val(resp.correct);
-                                       modal.find('#resposta').val(resp.answer);
+//                                       modal.find('#corret').val(resp.correct);
+//                                       modal.find('#resposta').val(resp.answer);
                                    });
                                    
                                }
@@ -365,6 +392,13 @@
                });
 
            });
+           
+           $('.btnModalClose').click(function(){
+               $('#add_name')[0].reset();
+               $('.dynamic-added').remove();
+               a = 0;
+                b = 0;
+           })
 
            // Print error Message
            function printErrorMsg(msg) {

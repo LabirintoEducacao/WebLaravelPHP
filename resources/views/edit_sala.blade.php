@@ -39,7 +39,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar Pergunta</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -106,7 +106,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <select name="tipo_resp[]" id="tipo_opcao" class="form-control">
+                                                <select name="tipo_resp[]" id="tipo_opcao" class="form-control tipo_resp">
                                                     <option selected value="1">Texto</option>
                                                     <option value="2">imagem</option>
                                                     <option value="3">video</option>
@@ -114,16 +114,17 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="corret[]" class="form-control">
+                                                <select name="corret[]" class="form-control corret">
                                                     <option selected value="1">Certa</option>
                                                     <option value="0">Errada</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list" maxlength="80" required></td>
+                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required></td>
                                             <td><button type="button" name="add" id="add" class="btn btn-outline-succcess fa fa-plus"></button></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            
                             </div>
 
                             <!-- AMBIENTE -->
@@ -167,7 +168,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <a class="btn btn-outline-dark btnModalClose" data-dismiss="modal">Close</a>
                         <button name="submit" id="submit" class="btn btn-info" value="submit">Save changes</button>
                     </div>
                 </form>
@@ -175,6 +176,7 @@
         </div>
     </div>
     <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
+    
 
     <div class="container-fluid row" style="padding-top: 10px; ">
 
