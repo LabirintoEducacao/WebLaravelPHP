@@ -79,7 +79,6 @@ foreach($arquivos as $img){
 
 echo 'Total:'.count($arquivos);
 
-
 ?>
 
 </div>

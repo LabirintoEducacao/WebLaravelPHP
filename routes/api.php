@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('/admin/editar-sala/{id}', 'PerguntaRespostaController@indexJson');
 Route::get('/admin/sala','SalaController@indexJson');
 Route::get('/login', 'Auth\LoginController@teste');
 Route::Post('/virtual', 'SalaController@teste' );

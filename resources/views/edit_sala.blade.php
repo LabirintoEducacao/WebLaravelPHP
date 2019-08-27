@@ -39,7 +39,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar Pergunta</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -87,7 +87,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group row">
-                                    <input type="hidden" id="perg-id">
+                                    <input type="hidden" value="0" name="perg_id">
                                     <label for="pergunta" class="col">Pergunta:</label>
                                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="80" required>
                                 </div>
@@ -106,7 +106,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <select name="tipo_resp[]" id="tipo_opcao" class="form-control">
+                                                <select name="tipo_resp[]" id="tipo_opcao" class="form-control tipo_resp">
                                                     <option selected value="1">Texto</option>
                                                     <option value="2">imagem</option>
                                                     <option value="3">video</option>
@@ -114,16 +114,19 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="corret[]" class="form-control">
+                                                <select name="corret[]" class="form-control corret">
                                                     <option selected value="1">Certa</option>
                                                     <option value="0">Errada</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list" maxlength="80" required></td>
+                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required>
+                                            <input type="hidden" name="resp_id[]" class="resp_id">
+                                            </td>
                                             <td><button type="button" name="add" id="add" class="btn btn-outline-succcess fa fa-plus"></button></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            
                             </div>
 
                             <!-- AMBIENTE -->
@@ -156,7 +159,7 @@
                             <div id="pergReforco" class="tab-pane fade" style="margin-right:2%">
                                 <div class="hovereffect">
                                     <div class="overlay">
-                                        <input type="checkbox" id="check-reforco">&nbsp;Pergunta Refoço
+                                        <input type="checkbox" id="check-reforco">&nbsp;Pergunta Reforço
                                     </div>
                                     <div class="abcd">
 
@@ -167,14 +170,15 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
-                        <button name="submit" id="submit" class="btn btn-info" value="submit">Save changes</button>
+                        <a class="btn btn-outline-dark btnModalClose" data-dismiss="modal">Close</a>
+                        <button name="submit" id="submit" class="btn btn-info" value="submit">Salvar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
+    
 
     <div class="container-fluid row" style="padding-top: 10px; ">
 
@@ -198,6 +202,7 @@
                         <h4 display="inline" align="left" class="col">{{$item->pergunta}}</h4>
                         <span class="col-1">
                              <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>
+                              <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
 
                         </span>
                         @endif
