@@ -678,7 +678,7 @@ class PerguntaRespostaController extends Controller
             ->where('id','=', $request->path_id)
             ->update(['ambiente_perg' => $request->answer_boolean,'tamanho' => $request->tamanho,'largura' => $request->largura]);
           
-          if($request->perg_reforco_id!=0 && $request->perg_reforco==1){
+          if($request->perg_reforco_id>0 && $request->perg_reforco==1){
               
               DB::table('perguntas')
             ->where('id','=', $request->perg_reforco_id)
@@ -699,7 +699,7 @@ class PerguntaRespostaController extends Controller
               
               DB::table('paths')
             ->where('id','=', $request->path_errado_id)
-            ->update(['ambiente_perg' => $request->answer_boolean_perg,'tamanho' => $request->tamanho_perg,'largura' => $request_perg->largura]);
+            ->update(['ambiente_perg' => $request->answer_boolean_perg,'tamanho' => $request->tamanho_perg,'largura' => $request->largura_perg]);
           
             foreach($respostas_ref as $resp_ref){
                 $v=0;
@@ -724,7 +724,7 @@ class PerguntaRespostaController extends Controller
                 ->get();
                     if(count($id_ref)>0){
                         DB::table('respostas')
-                            ->where('id','=', $resp_id[$count])
+                            ->where('id','=', $resp_ref_id[$count])
                             ->update(['tipo_resp' => $tipo_resp_ref[$count],'resposta' => $resposta_ref[$count],'corret' => $corret_ref[$count]]);
                     }else{
                         
@@ -824,24 +824,44 @@ class PerguntaRespostaController extends Controller
           }
           }else{
               
-            $ref_path = DB::table('paths')
-              ->join('path_perg','path_perg.path_id','=','paths.id')
-                ->where('path_perg.perg_id','=', $request->perg_reforco_id)
-              ->get();
-              if(count($ref_path)>0){
-                  $perg_refs = DB::table('perg_ref')
-                ->where('ref_id','=', $request->perg_reforco_id)
-              ->get();
               $perg_path = DB::table('paths')
               ->join('path_perg','path_perg.path_id','=','paths.id')
-                ->where('path_perg.perg_id','=', $perg_refs->perg_id)
+                ->where('path_perg.perg_id','=', $request->perg_id)
               ->get();
                   if(count($perg_path)==2){
-                      $perg_path[1]->delete();
-                    $ref_path->delete();
-                  }
+                      $perg_refs = DB::table('perg_ref')
+                      ->where('perg_id','=', $request->perg_id)
+                      ->get();
+                      if(count($perg_refs)>0){
+                            $ref_path = DB::table('paths')
+                          ->join('path_perg','path_perg.path_id','=','paths.id')
+                            ->where('path_perg.perg_id','=', $perg_refs[0]->ref_id)
+                          ->get();
+                            if(count($ref_path)>0){
+                                $resps = DB::table('respostas')
+              ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
+                ->where('perg_resp.perg_id','=', $perg_refs[0]->ref_id)
+              ->delete();
+                                DB::table('paths')
+                          ->join('path_perg','path_perg.path_id','=','paths.id')
+                            ->where('path_perg.perg_id','=', $perg_refs[0]->ref_id)->delete();
+
+                                DB::table('paths')
+                                ->where('id','=', $perg_path[1]->id)
+                              ->delete();
+//                                DB::table('perguntas')->where('id', '=',  $perg_refs->ref_id)->delete();
+//                                $perg_refs->delete();
+                                
+                                
+                            }
                   
-              }
+                        }
+                      
+                    
+                  }
+              
+            
+              
               
           }
                     
