@@ -1,23 +1,38 @@
 <html>
 
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 <body>
     <!------------------------ Espaço das Salas  --------------------------->
+
+
     <div class="container-fluid" align="center">
 
 
         <!------- Estrutura de repetição (CARD)------------------->
        
+        
+     
+     	<h1> Qr com Zip </h1>
+		<img src="http://192.168.240.222/sala/{{$data}}/0.png">
 
-        <div class="col-md-3">
-            <div class="card ">
+               
 
-                {!! QrCode::size(400)->generate( $json ); !!}
+				<h1> Qr sem ZIP - (Json File) </h1>
 
+				<img src="http://192.168.240.222/sala/{{$data}}/json.png"> 
 
-            </div>
-        </div>
-   
+				
+				<p>  {{$json}} </p>
+
+				
     </div>
+
+
+
+
+
+
 </body>
 
 </html>

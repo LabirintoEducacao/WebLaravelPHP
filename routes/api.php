@@ -23,6 +23,9 @@ Route::get('/admin/sala','SalaController@indexJson');
 Route::get('/login', 'Auth\LoginController@teste');
 Route::Post('/virtual', 'SalaController@teste' );
 
+//Api para passar o json
+Route::get('salauser', 'Json@api');
+
 
 
 // Route::get('/virtual', 'SalaController@teste');
