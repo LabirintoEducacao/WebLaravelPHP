@@ -291,6 +291,7 @@
                                        }else{
 
                                            $('#check-reforco').prop("checked", true);
+                                        $("#check-reforco").trigger('change');
                                            modal.find('#answer_boolean_perg').val(path.type);
                                            modal.find('#largura_perg').val(path.widht);
                                            modal.find('#tamanho_perg').val(path.heigh);
