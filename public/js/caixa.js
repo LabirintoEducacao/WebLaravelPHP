@@ -123,7 +123,7 @@
                        '<div class="form-group hea row">' +
                        '<br>' +
                        '<br>' +
-                       '<input id="perg-reforco-id" name="perg_reforco_id" type="hidden">' +
+                       '<input id="perg-reforco-id" name="perg_reforco_id" type="hidden" value="0">' +
                        '<label for="pergunta" class="col">Pergunta:</label>' +
                        '<input class="col" id="pergunta-reforco" type="text" name="reforco"  placeholder=" Pergunta" maxlength="80" required>' +
                        '</div>' +
@@ -402,6 +402,7 @@
                     modal.find('#perg_id').val(0);
                     modal.find('#room_type').val('key');
                     modal.find('#question_type').val(1);
+                   modal.find('#perg-reforco-id').val(0);
                    $('#check-reforco').prop("checked", false);
                    
                }

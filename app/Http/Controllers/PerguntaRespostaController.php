@@ -791,17 +791,17 @@ class PerguntaRespostaController extends Controller
 
                      ////////Tabela Pergunta ////////////////////////
                      $pergid2 = DB::table('perguntas')->insertGetId(array(
-                        'sala_id' => $sala_id_ref,
+                        'sala_id' => $sala_id,
                         'tipo_perg' => $tipo_perg_ref,
                         'pergunta' => $pergunta_ref,
                         'room_type' => $room_type_ref
                     ));  
                      
-                     DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' =>  $pathidperg));
+                     DB::table('path_perg')->insert(array('perg_id' => $request->perg_id, 'path_id' =>  $pathidperg));
 
                      DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
                                        
-                     DB::table('perg_ref')->insert(array('perg_id' => $pergid, 'ref_id' => $pergid2));
+                     DB::table('perg_ref')->insert(array('perg_id' => $request->perg_id, 'ref_id' => $pergid2));
 
                      
                      ////////////////Tabela Resposta2//////////////////////
