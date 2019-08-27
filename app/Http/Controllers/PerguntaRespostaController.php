@@ -821,44 +821,45 @@ class PerguntaRespostaController extends Controller
                          
                          DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
               
-          }
-          }else{
-              
-              $perg_path = DB::table('paths')
-              ->join('path_perg','path_perg.path_id','=','paths.id')
-                ->where('path_perg.perg_id','=', $request->perg_id)
-              ->get();
-                  if(count($perg_path)==2){
-                      $perg_refs = DB::table('perg_ref')
-                      ->where('perg_id','=', $request->perg_id)
-                      ->get();
-                      if(count($perg_refs)>0){
-                            $ref_path = DB::table('paths')
-                          ->join('path_perg','path_perg.path_id','=','paths.id')
-                            ->where('path_perg.perg_id','=', $perg_refs[0]->ref_id)
-                          ->get();
-                            if(count($ref_path)>0){
-                                $resps = DB::table('respostas')
-              ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
-                ->where('perg_resp.perg_id','=', $perg_refs[0]->ref_id)
-              ->delete();
-                                DB::table('paths')
-                          ->join('path_perg','path_perg.path_id','=','paths.id')
-                            ->where('path_perg.perg_id','=', $perg_refs[0]->ref_id)->delete();
-
-                                DB::table('paths')
-                                ->where('id','=', $perg_path[1]->id)
+          }}
+          else{
+              $path = DB::table('paths')
+                  ->join('path_perg','path_perg.path_id','=','paths.id')
+                  ->where('path_perg.perg_id','=',$request->perg_id)
+                  ->get();
+              if(count($path)==2){
+                  $ref = DB::table('perguntas')
+                  ->join('perg_ref','perg_ref.ref_id','=','perguntas.id')
+                  ->where('perg_ref.perg_id','=',$request->perg_id)
+                  ->get();
+                  if(count($ref)>0){
+                      DB::table('respostas')
+                                  ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
+                                  ->where('perg_resp.perg_id','=',$ref->ref_id)
+                                  ->delete();
+                      DB::table('paths')
+                              ->join('path_perg','path_perg.path_id','=','paths.id')
+                              ->where('path_perg.perg_id','=',$ref->ref_id)
                               ->delete();
-//                                DB::table('perguntas')->where('id', '=',  $perg_refs->ref_id)->delete();
-//                                $perg_refs->delete();
-                                
-                                
-                            }
-                  
+                      DB::table('perguntas')
+                  ->join('perg_ref','perg_ref.ref_id','=','perguntas.id')
+                  ->where('perg_ref.perg_id','=',$request->perg_id)
+                  ->delete();
+                      
+                      for($i=0;$i<count($path);$i++){
+                          if($i==1){
+                              DB::table('paths')
+                              ->join('path_perg','path_perg.path_id','=','paths.id')
+                              ->where('path_perg.perg_id','=',$request->perg_id)
+                            ->where('paths.id','=',$path[$i]->id)
+                              ->delete();
+                              
+                          }
                         }
                       
-                    
                   }
+              }
+              
               
             
               
