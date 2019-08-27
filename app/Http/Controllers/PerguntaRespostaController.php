@@ -616,7 +616,7 @@ class PerguntaRespostaController extends Controller
             ->where('id','=', $request->perg_id)
             ->update(['tipo_perg' => $request->question_type,'pergunta' => $request->pergunta,'room_type' => $request->room_type]);
           
-          $respostas = table('respostas')
+          $respostas = DB::table('respostas')
               ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
                 ->where('perg_resp.perg_id','=', $request->perg_id)
               ->get();
@@ -625,14 +625,18 @@ class PerguntaRespostaController extends Controller
             $resp_id = $request->resp_id;
             $corret = $request->corret;
             $sala_id = $request->sala_id;
+              $count=0;
+              DB::table('respostas')
+                            ->where('id','=', $resp_id[$count])
+                            ->update(['tipo_resp' => $tipo_resp[$count],'resposta' => $resposta[$count],'corret' => $corret[$count]]);
           
             foreach($respostas as $resp){
                 $v=0;
                 for($i=0;$i<count($resposta);$i++){
-                    if($i==(count($resposta)-1)){
-                        if($resp_id[$i]==$resp->id){
+                    if($resp_id[$i]==$resp->id){
                             $v++;
                         }
+                    if($i==(count($resposta)-1)){
                         if($v==0){
                             $deleteResp = Resposta::find($resp->id);
                             $deleteResp->delete();
@@ -644,13 +648,14 @@ class PerguntaRespostaController extends Controller
           for($count = 0; $count < count($resposta); $count++)
             {
                 
-            $id = DB::table('respostas')
-                ->where('id','=',$resp_id)
+            $att_resp_id = DB::table('respostas')
+                ->where('id','=',$resp_id[$count])
                 ->get();
-                    if(count($id)>0){
+                    if(count($att_resp_id)>0){
                         DB::table('respostas')
                             ->where('id','=', $resp_id[$count])
                             ->update(['tipo_resp' => $tipo_resp[$count],'resposta' => $resposta[$count],'corret' => $corret[$count]]);
+                        
                     }else{
                         
                         $resposta_id_s = DB::table('respostas')->insertGetId(array(
@@ -699,10 +704,10 @@ class PerguntaRespostaController extends Controller
             foreach($respostas_ref as $resp_ref){
                 $v=0;
                 for($i=0;$i<count($resposta_ref);$i++){
-                    if($i==(count($resposta_ref)-1)){
-                        if($resp_ref_id[$i]==$resp_ref->id){
+                    if($resp_ref_id[$i]==$resp_ref->id){
                             $v++;
                         }
+                    if($i==(count($resposta_ref)-1)){
                         if($v==0){
                             $deleteRespRef = Resposta::find($resp_ref->id);
                             $deleteRespRef->delete();
@@ -715,7 +720,7 @@ class PerguntaRespostaController extends Controller
             {
                 
             $id_ref = DB::table('respostas')
-                ->where('id','=',$resp_ref_id)
+                ->where('id','=',$resp_ref_id[$count])
                 ->get();
                     if(count($id_ref)>0){
                         DB::table('respostas')
