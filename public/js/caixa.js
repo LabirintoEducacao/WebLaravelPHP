@@ -96,6 +96,7 @@
                        '<br>' +
                        '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
                        '<div class="form-group row">' +
+                       '<input type="hidden" name="path_errado_id" id="path_errado_id">'+
                        '<label for="answer_boolean_perg" class="col">Tipo:</label>' +
                        '<select name="answer_boolean_perg" id="answer_boolean_perg" class="col">' +
                        '<option selected value="1">Corredor</option>' +
@@ -177,6 +178,7 @@
                        '<span style="color: black;">Selecionar o ambiente para pergunta reforço:</span><br>' +
                        '<br>' +
                        '<div class="form-group row">' +
+                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                        '<label for="answer_boolean_ref" class="col">Tipo:</label>' +
                        '<select name="answer_boolean_ref" id="answer_boolean_ref" class="col">' +
                        '<option selected value="1">Corredor</option>' +
@@ -276,6 +278,7 @@
                                if(x==0){
                                    modal.find('#pergunta').val(val.question);
                                    modal.find('#perg_id').val(val.question_id);
+                                   console.log(val.question_id);
                                    modal.find('#room_type').val(val.room_type);
                                    modal.find('#question_type').val(val.question_type);
                                    $.each(val.path, function(a,path){
@@ -283,12 +286,14 @@
                                            modal.find('#answer_boolean').val(path.type);
                                            modal.find('#largura').val(path.widht);
                                            modal.find('#tamanho').val(path.heigh);
+                                           modal.find('#path_id').val(path.path_id);
                                            w++;
                                        }else{
                                            $('#check-reforco').prop("checked", true);
                                            modal.find('#answer_boolean_perg').val(path.type);
                                            modal.find('#largura_perg').val(path.widht);
                                            modal.find('#tamanho_perg').val(path.heigh);
+                                           modal.find('#path_errado_id').val(path.path_id);
                                        }
                                    });
                                    $.each(val.answer, function(j,resp){
@@ -333,9 +338,10 @@
                                    modal.find('#perg-reforco-id').val(val.question_id);
                                    modal.find('#room_type_ref').val(val.room_type);
                                    modal.find('#question_type_ref').val(val.question_type);
-//                                    modal.find('#answer_boolean_ref').val(path.type);
-//                                    modal.find('#largura_ref').val(path.widht);
-//                                    modal.find('#tamanho_ref').val(path.heigh);
+                                    modal.find('#path_reforco_id').val(val.path.path_id);
+                                    modal.find('#answer_boolean_ref').val(val.path.type);
+                                    modal.find('#largura_ref').val(val.path.widht);
+                                    modal.find('#tamanho_ref').val(val.path.heigh);
                                    $.each(val.answer, function(j,resp){
                                     if(v>0){
                                           $('#dynamic_field2').append('' +
