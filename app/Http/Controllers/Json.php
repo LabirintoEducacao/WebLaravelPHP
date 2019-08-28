@@ -447,38 +447,14 @@ return view('qrcode',['data' => $salaid, 'json'=> json_encode($jsn)] );
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function api()
+    public function api(Request $request)
     {
 
 
 
-
-$pat  = file_get_contents("sala/12/novo.json");
-$api = json_decode($pat, true);
-
-
-
-
-
-
-//---------------------------------Api começa aqui-------------////
-
-
-       
-//         $id_user = $_REQUEST['id'];
-//         $id = $_REQUEST['sala'];
-
-//         $iduser = DB::table('sala_user')->where('user_id',$id_user)->where('sala_id',$id)->get();
-
-
-//         if(count($iduser) > 0 ){
-// //---------------------------------------------------------------------------------
-
-
-
-//           $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-//           $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-//           $sala = Sala::find($id);
+          $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+           $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+             $sala = Sala::find($id);
 
 
 

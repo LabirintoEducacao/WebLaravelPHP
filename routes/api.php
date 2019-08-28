@@ -28,17 +28,6 @@ Route::get('salauser', 'Json@api');
 
 
 
-// Route::get('/virtual', 'SalaController@teste');
-
-// Route::post('/virtual', function(){
-
-//         $id   = Input::get('id');
-
-     
-//   return redirect()->action('SalaController@teste', ['json' => $id]);
-
-//  });
-
 
 
 
