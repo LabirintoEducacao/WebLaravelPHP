@@ -96,6 +96,7 @@
                        '<br>' +
                        '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
                        '<div class="form-group row">' +
+                       '<input type="hidden" name="path_errado_id" id="path_errado_id">'+
                        '<label for="answer_boolean_perg" class="col">Tipo:</label>' +
                        '<select name="answer_boolean_perg" id="answer_boolean_perg" class="col">' +
                        '<option selected value="1">Corredor</option>' +
@@ -122,7 +123,7 @@
                        '<div class="form-group hea row">' +
                        '<br>' +
                        '<br>' +
-                       '<input id="perg-reforco-id" name="perg_reforco_id" type="hidden">' +
+                       '<input id="perg-reforco-id" name="perg_reforco_id" type="hidden" value="0">' +
                        '<label for="pergunta" class="col">Pergunta:</label>' +
                        '<input class="col" id="pergunta-reforco" type="text" name="reforco"  placeholder=" Pergunta" maxlength="80" required>' +
                        '</div>' +
@@ -177,6 +178,7 @@
                        '<span style="color: black;">Selecionar o ambiente para pergunta reforço:</span><br>' +
                        '<br>' +
                        '<div class="form-group row">' +
+                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                        '<label for="answer_boolean_ref" class="col">Tipo:</label>' +
                        '<select name="answer_boolean_ref" id="answer_boolean_ref" class="col">' +
                        '<option selected value="1">Corredor</option>' +
@@ -276,6 +278,7 @@
                                if(x==0){
                                    modal.find('#pergunta').val(val.question);
                                    modal.find('#perg_id').val(val.question_id);
+                                   console.log(val.question_id);
                                    modal.find('#room_type').val(val.room_type);
                                    modal.find('#question_type').val(val.question_type);
                                    $.each(val.path, function(a,path){
@@ -283,12 +286,16 @@
                                            modal.find('#answer_boolean').val(path.type);
                                            modal.find('#largura').val(path.widht);
                                            modal.find('#tamanho').val(path.heigh);
+                                           modal.find('#path_id').val(path.path_id);
                                            w++;
                                        }else{
+
                                            $('#check-reforco').prop("checked", true);
+                                        $("#check-reforco").trigger('change');
                                            modal.find('#answer_boolean_perg').val(path.type);
                                            modal.find('#largura_perg').val(path.widht);
                                            modal.find('#tamanho_perg').val(path.heigh);
+                                           modal.find('#path_errado_id').val(path.path_id);
                                        }
                                    });
                                    $.each(val.answer, function(j,resp){
@@ -333,9 +340,10 @@
                                    modal.find('#perg-reforco-id').val(val.question_id);
                                    modal.find('#room_type_ref').val(val.room_type);
                                    modal.find('#question_type_ref').val(val.question_type);
-//                                    modal.find('#answer_boolean_ref').val(path.type);
-//                                    modal.find('#largura_ref').val(path.widht);
-//                                    modal.find('#tamanho_ref').val(path.heigh);
+                                    modal.find('#path_reforco_id').val(val.path.path_id);
+                                    modal.find('#answer_boolean_ref').val(val.path.type);
+                                    modal.find('#largura_ref').val(val.path.widht);
+                                    modal.find('#tamanho_ref').val(val.path.heigh);
                                    $.each(val.answer, function(j,resp){
                                     if(v>0){
                                           $('#dynamic_field2').append('' +
@@ -378,7 +386,7 @@
                        }
                    });
 
-
+                   
                    //           var modal = $(this);
                    //           modal.find('.modal-title').text('Nº ' + recipient);
                    //           modal.find('#id-curso').val(recipient);
@@ -395,6 +403,7 @@
                     modal.find('#perg_id').val(0);
                     modal.find('#room_type').val('key');
                     modal.find('#question_type').val(1);
+                   modal.find('#perg-reforco-id').val(0);
                    $('#check-reforco').prop("checked", false);
                    
                }
@@ -410,6 +419,9 @@
                    method: "POST",
                    data: $('#add_name').serialize(),
                    type: 'json',
+                   error: function (error) {
+                       console.log(error);
+                        },
 
                    success: function (data) {
                        if (data.error) {
@@ -428,6 +440,7 @@
                        a = 0;
                        b = 0;
 
+                       
                    }
 
                });
@@ -439,6 +452,7 @@
                $('.dynamic-added').remove();
                a = 0;
                 b = 0;
+                window.location.reload();
            })
 
            // Print error Message
@@ -450,32 +464,6 @@
                    $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
                });
            }
-
-        function carregarResposta() {
-        $.getJSON('/api/produtos', function(produtos) { 
-            for(i=0;i<produtos.length;i++) {
-                linha = montarLinha(produtos[i]);
-                $('#tabelaProdutos>tbody').append(linha);
-            }
-        });        
-       }
-
-        function editar(id) {
-        $.getJSON('/api/admin/editar-sala/+id', function(data) { 
-            console.log(data);
-            $('#id').val(data.id);
-            $('#nomeProduto').val(data.nome);
-            $('#precoProduto').val(data.preco);
-            $('#quantidadeProduto').val(data.estoque);
-            $('#categoriaProduto').val(data.categoria_id);
-            $('#respostaModal').modal('show');            
-        });        
-       }
-
-
-
-
-
 
        });
 

@@ -39,7 +39,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar Pergunta</h5>
-                    <button type="button" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
+                    <button type="submit" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -47,8 +47,17 @@
                     <input type="hidden" value="{{$id}}" name="sala_id">
                     <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
                     <div class="modal-body">
+            
                         @csrf
                         {{ csrf_field() }}
+                        <div class="alert alert-danger print-error-msg" style="display: none;">
+                            <ul></ul>
+                        </div>
+                        <div class="alert alert-success print-success-msg" style="display: none;">
+                            <ul></ul>
+                        </div>
+                        <br><br>
+
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#perg">Pergunta</a>
@@ -88,7 +97,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group row">
-                                    <input type="hidden" value="0" name="perg_id">
+                                    <input type="hidden" value="0" name="perg_id" id="perg_id">
                                     <label for="pergunta" class="col">Pergunta:</label>
                                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="80" required>
                                 </div>
@@ -134,6 +143,7 @@
                             <div id="ambiente" class="tab-pane fade" style="margin-right:2%">
                                 <br>
                                 <div class="form-group row">
+                                    <input type="hidden" name="path_id" id="path_id">
                                     <label for="answer_boolean" class="col">Tipo:</label>
                                     <select name="answer_boolean" id="answer_boolean" class="col">
                                         <option selected value="1">Corredor</option>
