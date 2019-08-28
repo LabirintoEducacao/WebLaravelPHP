@@ -28,8 +28,8 @@ Route::Post('/login','SalaController@login');
 Route::get('/login', 'Auth\LoginController@teste');
 Route::Post('/virtual', 'SalaController@teste' );
 
-
-
+//Api para passar o json
+Route::get('salauser', 'Json@api');
 
 
 
@@ -43,6 +43,7 @@ Route::Post('/virtual', 'SalaController@teste' );
 //   return redirect()->action('SalaController@teste', ['json' => $id]);
 
 //  });
+
 
 
 
