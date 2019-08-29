@@ -219,6 +219,10 @@ Route::post('/', 'SalaController@buscar');
 });
 
 
+Route::GET('manual', function(){
+
+return view('manual');
+});
 // Route::post( 'api/virtual', ['json' => 'PessoaController@teste'] );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

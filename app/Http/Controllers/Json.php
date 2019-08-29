@@ -8,7 +8,7 @@ use App\Sala;
 use App\Pergunta;
 use App\Resposta;
 use App\Path;
-use QrCode;
+use QrCode; 
 
 
 
@@ -19,9 +19,11 @@ class Json extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+
+        $salaid = $id;
+        return view('qrcode',['data' => $salaid] );
     }
 
     /**
@@ -63,8 +65,9 @@ class Json extends Controller
           $sala = Sala::find($id);
 
 
-$controle =0;
-   
+$salaid = $sala->id;  
+$ijson = 0;
+$conta =0;
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
@@ -79,12 +82,13 @@ $controle =0;
        
 
 $i=0;
-$flag = 0;
+
 
 
 // --------------------- Começo do Foreach das Perguntas------------------//
    foreach  ($pergunta as $perg) {
     $i++;   
+
 
     $pergid = $perg->id;
     unset($resposta);
@@ -152,7 +156,7 @@ if(count($reforcoid) > 0){
             );
 
       
-
+                $path_ref[]=$pathref;
  // ------------------ Perunta Reforço -------------------------    
 
 foreach ($ref_resp as  $value) {
@@ -189,7 +193,7 @@ foreach ($ref_resp as  $value) {
                 'question_type' => $reforco[0]->tipo_perg,
                 'question' => $reforco[0]->pergunta,
                 'room_type' => $reforco[0]->room_type,
-                'path' => $pathref,
+                'path' => $path_ref,
                 'answer' => $respref
 );
 
@@ -270,11 +274,14 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
 
         if ($i >= count($proxpergid)){  // Verificando se é ultima pergunta
 
+         $end = 1;
              // Definindo os campos do Jason com o path
 
             if($path[0]->disp == 1){
 
                 $conttrue = 58;
+
+                
 
                 $pat= array(
                     'availability' => $disponivel,
@@ -346,10 +353,6 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
   }
 
  
-
-}
-
-
 $jsn = [
        "maze_id" => $sala->id,
        "starting_question"=> $proxpergid [0],
@@ -357,62 +360,83 @@ $jsn = [
         "theme" => $sala->tematica,
         "questions" => $arperg
         
+ ]; 
 
-    ]; 
- 
-
- // $files = glob(public_path('js/*'));
- //        \Zipper::make(public_path('test.zip'))->add($files)->close();
-
-        
-echo json_encode($jsn);
+ }
 
 
-
-// if($flag == 0 ) {
-
-
-//   if ( $controle <= 2500 ) {
-
- 
-
-//    // echo " Controle <= 2500:" .   $controle . "</br>";
-
-
-   
-
-
-//   }
-
-//   if ( $controle > 2500 ) {
-
-      
-// //echo " Controle > 2500:" .   $controle . "</br>";
-
-
-
-// QrCode::format('png')->size(500)->generate( json_encode($jsn) , '../public/sala/17/qrcode.png');
-
-//     $flag ++;
-//   }
-
-
-
-// }
-
-// }
 
 //  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
 
-       
+  
+$fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'teste.json', 'w');
+
+ fwrite($fp, json_encode($jsn));
+ fclose($fp);
+
+
+$array = array(
+
+            "maze_id" => 10,
+            "user_id" => 51
+);
+
+$pa = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'novo.json', 'w');
+fwrite($pa, json_encode($array));
+fclose($pa);
+
+
+
+$gzdata = gzencode(json_encode($jsn) , 9);
+$fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip', "w");
+fwrite($fp, $gzdata);
+fclose($fp);
+
+
+$myfile = file_get_contents( 
+'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip'); 
+
+
+$base = base64_encode($myfile);
+
+
+
+$total = strlen($base);
+$i =0;
+
+
+
+
+if ($total <=2000){
+
+QrCode::format('png')->size(500)->generate($base, '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$i.'.png');
+
+}
+
+
+if($total > 2000){
+
+while($conta < $total){
+
+$rest = substr($base, $conta, 2000);
+$conta = $conta + strlen($rest);
+
+QrCode::format('png')->size(500)->generate( $rest , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$i.".png");
+$i ++;
+
+}
+
+
+}
+
+
+
+QrCode::format('png')->size(500)->generate( json_encode($jsn) , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR."json.png");
+
+
+return view('qrcode',['data' => $salaid, 'json'=> json_encode($jsn)] );
 
  
-//  echo json_encode($jsn);
-
-//   //return view('qrcode')->with(['json'=>  json_encode($jsn) ]);
-
- 
-
 
 
 }
@@ -423,9 +447,20 @@ echo json_encode($jsn);
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function api(Request $request)
     {
-        //
+
+
+
+          $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+           $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+             $sala = Sala::find($id);
+
+
+
+   
+
+
     }
 
     /**

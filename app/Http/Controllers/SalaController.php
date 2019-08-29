@@ -263,11 +263,31 @@ class SalaController extends Controller
     }
 
 
-    public function indexJson()
+    // public function indexJson()
+    // {
+
+    //     $salas =  Sala::select('id','prof_id','name','duracao','tematica','public')->get();
+    //      return json_decode($salas);
+    // }
+
+    public function indexJson(Request $request)
     {
 
-        $salas =  Sala::select('id','prof_id','name','duracao','tematica','public')->get();
-         return json_decode($salas);
+      
+    }
+
+     public function login(Request $request)
+    {
+                 //print_r($request->all());
+
+                $teste = $request->all();
+
+                //print_r($teste['id']);
+
+                 return $teste;
+
+
+         
     }
 
     public function teste()

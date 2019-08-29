@@ -18,10 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::get('/admin/editar-sala/{id}', 'PerguntaRespostaController@indexJson');
-Route::get('/admin/sala','SalaController@indexJson');
+Route::get('/sala','SalaController@indexJson');
+
+Route::Post('/login','SalaController@login');
+
+
 Route::get('/login', 'Auth\LoginController@teste');
 Route::Post('/virtual', 'SalaController@teste' );
+
+//Api para passar o json
+Route::get('salauser', 'Json@api');
 
 
 
@@ -35,6 +43,7 @@ Route::Post('/virtual', 'SalaController@teste' );
 //   return redirect()->action('SalaController@teste', ['json' => $id]);
 
 //  });
+
 
 
 
