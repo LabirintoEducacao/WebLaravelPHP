@@ -22,7 +22,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/admin/editar-sala/{id}', 'PerguntaRespostaController@indexJson');
 Route::get('/sala','SalaController@indexJson');
 
+
 Route::Post('/login','SalaController@login');
+
+//Route::Post('/login','SalaController@login');
 
 
 Route::get('/login', 'Auth\LoginController@teste');

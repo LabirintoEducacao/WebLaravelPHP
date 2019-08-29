@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use App\Sala;
@@ -277,18 +278,40 @@ class SalaController extends Controller
     }
 
      public function login(Request $request)
-    {
-                 //print_r($request->all());
+      {
+   
 
-                $teste = $request->all();
+                 $email = $request->all('email');
+                 $senha = $request->all('password');
 
-                //print_r($teste['id']);
+                 $senha2 = $senha['password'];
+                
+                $user = DB::table('users')->where('email', $email)->get();
 
-                 return $teste;
+
+                  if (count($user) > 0 && (Hash::check($senha2, $user[0]->password))){
 
 
-         
-    }
+                        $user2 = array(
+
+                            'id' => $user[0]->id,
+                            'name' => $user[0]->name
+                        );
+
+ 
+                    }else{
+
+                        $user2 = array(
+
+                            'id' => 0
+
+                        );
+                    }
+
+
+                    return $user2;
+
+        }
 
     public function teste()
     {
