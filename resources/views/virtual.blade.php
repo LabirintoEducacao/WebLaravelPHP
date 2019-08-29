@@ -29,10 +29,12 @@
             <br><br>
 
             <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
+
+            
  
             <!----------------------Botao do Modal-------------------------->
-           <!--  <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
- -->
+            <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+
 
         </div>
     </div>
@@ -42,44 +44,7 @@
     @if($user == $sala->user_id)
     <?php $id=$item->id ?>
 
-<?php 
-$pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
-if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
 
-
-$arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
-
-$i = 0;
-
-?>
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 300px;"> 
-  <div class="carousel-inner ">
-    <?php
-foreach($arquivos as $img){ 
-
-          $b = explode('/', $img, 2);
-       
-    ?>
-
-   @if($i == 0)
-    <div class="carousel-item active">
-        <img class="card-img-top" src="{{ asset($b[1]) }}" class="d-block w-100" alt="..."/>
-    </div>
-    @else
-     <div class="carousel-item">
-        <img class="card-img-top" src="{{ asset($b[1]) }}" class="d-block w-100" alt="..."/>
-    </div>
-    @endif
-
-    <?php 
-     
-     $i++;
-}
-
-
-echo 'Total:'.count($arquivos);
-
-?>
 
 </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -123,13 +88,54 @@ echo 'Total:'.count($arquivos);
                 <div class="modal-header" style="background-color:#2F4F4F;">
                     <h5 class="modal-title"></h5>
                     <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
-        " id="exampleModalScrollableTitle">Qr Code </h5>
+        " id="exampleModalScrollableTitle"> </h5>
 
                 </div>
                 <div class="modal-body">
 
                     <h3 class="sala_name" align="center">Sala</h3>
-                    <p style="padding-left: 170px;">{!! QrCode::size(250)->generate( 'http://127.0.0.1:8000/admin/virtual/1' ); !!}</p>
+              <?php 
+
+$pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
+if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
+
+
+$arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
+
+$i = 0;
+
+?>
+
+<?php echo 'Total:'.count($arquivos); ?>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width: 300px;"> 
+  <div class="carousel-inner ">
+    <?php
+foreach($arquivos as $img){ 
+          
+          $b = explode('public/', $img,2);
+        
+            
+    ?>
+
+   @if($i == 0)
+    <div class="carousel-item active">
+        <img class="card-img-top" src="{{ asset($b[1]) }}" class="d-block w-100" alt="..."/>
+    </div>
+    @else
+     <div class="carousel-item">
+        <img class="card-img-top" src="{{ asset($b[1]) }}" class="d-block w-100" alt="..."/>
+    </div>
+    @endif
+
+    <?php 
+     
+     $i++;
+}
+
+
+
+
+?>
                     <input type="hidden" name="sala_id" id="sala_id">
                 </div>
                 <div class="modal-footer">
