@@ -746,6 +746,48 @@ class PerguntaRespostaController extends Controller
             }
               
           }elseif($request->perg_reforco_id==0 && $request->perg_reforco==1){
+              
+              
+              $perg_ref = DB::table('perg_ref')
+                          ->where('perg_id','=',$request->perg_id)
+                          ->get();      
+                  
+                  if(count($perg_ref)>0){
+                      DB::table('perguntas')
+                    ->where('id','=', $perg_ref[0]->ref_id)
+                    ->update(['tipo_perg' => $request->question_type_ref,'pergunta' => $request->reforco,'room_type' => $request->room_type_ref]);
+                  
+                      $respostas_ref = DB::table('respostas')
+              ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
+                ->where('perg_resp.perg_id','=', $perg_ref[0]->ref_id)
+              ->get();
+                        foreach($respostas_ref as $resp_ref){
+                            $deleteRespRef = Resposta::find($resp_ref->id);
+                            $deleteRespRef->delete();
+                        }
+                      
+                    $tipo_resp_ref = $request->tipo_resp_ref;
+                     $resposta_ref = $request->resposta_ref;
+                     $corret_ref = $request->corret_ref;
+                      for($count = 0; $count < count($resposta_ref); $count++)
+            {
+                    $resposta_id_ref = DB::table('respostas')->insertGetId(array(
+
+                                 'sala_id'  => $request->sala_id,
+                                 'tipo_resp' => $tipo_resp_ref[$count],
+                                 'resposta' => $resposta_ref[$count],
+                                 'corret' => $corret_ref[$count]
+
+
+                           ));
+
+                       DB::table('perg_resp')->insert(array('perg_id' => $perg_ref[0]->ref_id, 'resp_id' => $resposta_id_ref));
+                      }
+                  
+                  
+                  
+                  }else{
+                      
               //  ////////////////Patch errado da Pergunta/////////
                      $ambiente = $request->answer_boolean_perg;
                      $tamanho_perg = $request->tamanho_perg;
@@ -821,54 +863,57 @@ class PerguntaRespostaController extends Controller
                          
                          DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
               
-          }}
+          }
+                  }}
           else{
-              $path = DB::table('paths')
-                  ->join('path_perg','path_perg.path_id','=','paths.id')
-                  ->where('path_perg.perg_id','=',$request->perg_id)
+              
+              $paths_perg = DB::table('path_perg')
+                  ->where('perg_id','=',$request->perg_id)
                   ->get();
-              if(count($path)==2){
-                  $ref = DB::table('perguntas')
-                  ->join('perg_ref','perg_ref.ref_id','=','perguntas.id')
-                  ->where('perg_ref.perg_id','=',$request->perg_id)
-                  ->get();
-                  if(count($ref)>0){
-                      DB::table('respostas')
-                                  ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
-                                  ->where('perg_resp.perg_id','=',$ref->ref_id)
-                                  ->delete();
-                      DB::table('paths')
-                              ->join('path_perg','path_perg.path_id','=','paths.id')
-                              ->where('path_perg.perg_id','=',$ref->ref_id)
-                              ->delete();
+              
+              if(count($paths_perg)>1){
+                  $perg_ref = DB::table('perg_ref')
+                          ->where('perg_id','=',$request->perg_id)
+                          ->get();      
+                  
+                  if(count($perg_ref)>0){
+                      $repostas_ref = DB::table('perg_resp')
+                                  ->where('perg_id','=',$perg_ref[0]->ref_id)
+                                  ->get();
+                      $paths_ref = DB::table('path_perg')
+                        ->where('perg_id','=',$perg_ref[0]->ref_id)
+                          ->get();
                       DB::table('perguntas')
-                  ->join('perg_ref','perg_ref.ref_id','=','perguntas.id')
-                  ->where('perg_ref.perg_id','=',$request->perg_id)
-                  ->delete();
+                          ->where('id','=',$perg_ref[0]->ref_id)
+                          ->delete();
                       
-                      for($i=0;$i<count($path);$i++){
-                          if($i==1){
-                              DB::table('paths')
-                              ->join('path_perg','path_perg.path_id','=','paths.id')
-                              ->where('path_perg.perg_id','=',$request->perg_id)
-                            ->where('paths.id','=',$path[$i]->id)
-                              ->delete();
-                              
-                          }
-                        }
+                      foreach($repostas_ref as $resp_ref){
+                         $deleteRespRef = Resposta::find($resp_ref->resp_id);
+                            $deleteRespRef->delete();
+                      }
+                       
+                                $deletePathRef = Path::find($paths_ref[0]->path_id);
+                            $deletePathRef->delete();
+
+                      }
+
+                      
+                      $x=0;
+                      foreach($paths_perg as $path){
+                          if($x==1)
+                            DB::table('paths')->where('id', $path->path_id)->delete();
+                          $x++;
+                      }
                       
                   }
               }
               
               
-            
               
-              
-          }
                     
             
           
-              return response()->json(['success' => 'sucesso.']);
+              return response()->json(['success' => 'Operação bem sucedida!']);
 
       }
       }
