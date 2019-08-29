@@ -6,13 +6,14 @@
 
 
 <!------------------------ Espaço das Salas  --------------------------->
-  <form action="{{ url('admin/aluno') }}" method="POST" class="col-md-8">
+    <div style="margin-top:2%;">
+  <form action="{{ url('admin/aluno') }}" method="POST" style="float:left;">
     @csrf
     {{ csrf_field() }}
-    <div>
-      <input type="hidden" value="{{$id}}" name="sala_id">
+    <div class="row">
+      <input type="hidden" value="{{$id}}" name="sala_id" class="col">
 <!--      <em>Escolha o aluno a ser adicionado</em>&emsp;-->
-      <select data-placeholder="Escolha o aluno a ser adicionado..." class="chosen-select" tabindex="2" display="inline" name="user_id" onchange="selecionado()">
+      <select data-placeholder="Escolha o aluno a ser adicionado..." class="chosen-select col" tabindex="2" display="inline" name="user_id" onchange="selecionado()">
         <option value=""></option>
         @foreach($alunos as $aluno)
           @if($aluno->hasAnyRole('user'))
@@ -20,29 +21,28 @@
           @endif
         @endforeach
       </select>
-      <button type="submit" class="btn btn-outline-success">Adicionar</button>
+      &nbsp;<button type="submit" class="btn btn-outline-success" class="col">Adicionar</button>
     </div>
-  </form>
-  <span class="col-md-1"></span>
-  <button type="button" class="btn btn-outline-cyan col-md-3" data-toggle="modal" data-target="#alunoModal" display="inline">Aluno ainda não cadastrado</button>
-
+  </form>&emsp;&nbsp;
+  <button type="button" class="btn btn-outline-cyan" data-toggle="modal" data-target="#alunoModal">Aluno ainda não cadastrado</button>
+</div>
 
   <div class="col-md-12" style="padding-top:20px;">
     <div class="card">
-      <table>
+      <table class="row">
         <tr>
-          <th class="col-md-3">Nome</th>
-          <th class="col-md-3">Email</th>
+          <th class="col">Nome</th>
+          <th class="col">Email</th>
           <!-- <th class="col-md-3">Resposta</th> -->
-          <th class="col-md-3"></th>
+          <th class="col"></th>
         </tr>
 
         @foreach($data as $item)
           @if($item->sala_id==$id)
             <tr>
-              <td class="col-md-3">{{$item->name}}</td>
-              <td class="col-md-3">{{$item->email}}</td>
-              <td>
+              <td class="col">{{$item->name}}</td>
+              <td class="col">{{$item->email}}</td>
+              <td class="col">
                 <a href="{{ url('admin/deletar-aluno/'.$item->id.'/'.$id) }}" class="btn btn-outline-danger fa fa-trash"></a>
               </td>
             </tr>
