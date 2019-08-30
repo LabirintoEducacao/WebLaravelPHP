@@ -283,10 +283,11 @@ class SalaController extends Controller
 
                  $email = $request->all('email');
                  $senha = $request->all('password');
-
+                 
                  $senha2 = $senha['password'];
+
                 
-                $user = DB::table('users')->where('email', $email)->get();
+               $user = DB::table('users')->where('email', $email)->get();
 
 
                   if (count($user) > 0 && (Hash::check($senha2, $user[0]->password))){
@@ -315,53 +316,72 @@ class SalaController extends Controller
 
     public function teste()
     {
-            $json = $_REQUEST['id'];
+           //  $json = $_REQUEST['id'];
 
-             $erro1 = 1 ;
-             $erro2 = 2 ;
-             $erro3 = 3 ;
+           //   $erro1 = 1 ;
+           //   $erro2 = 2 ;
+           //   $erro3 = 3 ;
 
 
-            $user = DB::table('users')->where('id','=',$json)->select('id','name','email')->get();
+           //  $user = DB::table('users')->where('id','=',$json)->select('id','name','email')->get();
 
-           if(count($user)== 0){
+           // if(count($user)== 0){
 
-                echo $erro1 . ' - ' . 'Usuario nao existente'. "    ";
+           //      echo $erro1 . ' - ' . 'Usuario nao existente'. "    ";
 
-           }else{
+           // }else{
 
-            echo json_encode($user). "    ";
-             $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
-                if(count($salas_user)>0){
+           //  echo json_encode($user). "    ";
+           //   $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
+           //      if(count($salas_user)>0){
+           //          foreach($salas_user as $sala_user){
+           //              $sala = DB::table('salas')
+           //                      ->where('id','=',$sala_user->sala_id)
+           //                      ->where('public','=',0)
+           //                      ->select('id','prof_id','name','duracao','tematica','public')->get();
+           //                      if(count($sala)>0)
+
+           //                      echo json_encode($sala). "    ";
+           //          }
+           //      }else{
+
+           //          echo $erro2 . ' - ' . 'Nenhuma sala Privada vinculada a esse usuario'. "    ";
+           //      }
+
+           // }
+           //  $salas_publicas = DB::table('salas')
+           //  ->where('public','=',1)->select('id','prof_id','name','duracao','tematica','public')->get();
+
+           //  if((count($salas_publicas) == 0) && (count($user)> 0)) {
+
+           //      echo $erro3 . ' - ' . 'Nenhuma sala publica criada'. "   ";
+
+           //  }else if(count($salas_publicas) == 0){
+
+              
+           //  }else{
+
+           //      echo json_encode($salas_publicas);
+           //    }
+
+
+                 $json = $_REQUEST['id'];
+
+                 $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
+
+                  if(count($salas_user)>0){
                     foreach($salas_user as $sala_user){
                         $sala = DB::table('salas')
                                 ->where('id','=',$sala_user->sala_id)
                                 ->where('public','=',0)
-                                ->select('id','prof_id','name','duracao','tematica','public')->get();
+                                ->select('id','name')->get();
                                 if(count($sala)>0)
 
                                 echo json_encode($sala). "    ";
+
                     }
-                }else{
-
-                    echo $erro2 . ' - ' . 'Nenhuma sala Privada vinculada a esse usuario'. "    ";
                 }
-
-           }
-            $salas_publicas = DB::table('salas')
-            ->where('public','=',1)->select('id','prof_id','name','duracao','tematica','public')->get();
-
-            if((count($salas_publicas) == 0) && (count($user)> 0)) {
-
-                echo $erro3 . ' - ' . 'Nenhuma sala publica criada'. "   ";
-
-            }else if(count($salas_publicas) == 0){
-
-              
-            }else{
-
-                echo json_encode($salas_publicas);
-            }
+            
        
     }
 
