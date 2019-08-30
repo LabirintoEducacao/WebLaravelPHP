@@ -140,6 +140,7 @@
         </div>
     </footer>
 
+    <script src="{{ asset('docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
     <script src="{{ asset('docsupport/prism.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('docsupport/init.js') }}" type="text/javascript" charset="utf-8"></script>

@@ -435,7 +435,7 @@
                            $(".print-success-msg").find("ul").html('');
                            $(".print-success-msg").css('display', 'block');
                            $(".print-error-msg").css('display', 'none');
-                           $(".print-success-msg").find("ul").append('<li>Registro inserido com sucesso.</li>');
+                           $(".print-success-msg").find("ul").append('<li>'+data.success+'</li>');
                        }
                        a = 0;
                        b = 0;
@@ -452,7 +452,7 @@
                $('.dynamic-added').remove();
                a = 0;
                 b = 0;
-                window.location.reload();
+//                window.location.reload();
            })
 
            // Print error Message

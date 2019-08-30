@@ -90,8 +90,8 @@
                                     <br>
                                     <label for="room_type" class="col">Interação:</label>
                                     <select name="room_type" id="room_type" class="col">
-                                        <option selected value="right_key">Chave</option>
-                                        <option value="hope_door">Porta da esperança</option>
+                                        <option value="right_key">Chave</option>
+                                        <option value="hope_door" selected>Porta da esperança</option>
                                         <option value="true_or_false">Verdadeiro ou Falso </option>
                                         <option value="multiple_forms">Multiplas Formas</option>
                                     </select>
@@ -191,27 +191,26 @@
     <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
     
 
-    <div class="container-fluid row" style="padding-top: 10px; ">
+    <div class="container-fluid row desktop" style="padding-top: 10px;">
 
         <!------- Estrutura de repetição (CARD)------------------->
         <div class="col-md-12" style="padding-top:20px;" display="inline">
-            <h2 style="text-align: center;">Perguntas</h2>
             <br>
             @foreach($data as $item)
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12">
                     <div class="row">
                         <?php $errado=0; ?>
                         @foreach($path_perg as $pp)
                         @if($pp->perg_id==$item->id)
-                        <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
+
                         @foreach($paths as $path)
                         @if($path->id==$pp->path_id)
-                        <!--                    <input value="{{$path->id}}"><br><br>-->
+
                         @if($path->disp == 1)
-                        <h4 display="inline" class="col-3">Pergunta:</h4>
-                        <h4 display="inline" align="left" class="col">{{$item->pergunta}}</h4>
-                        <span class="col-1">
+                        <h4 display="inline" class="col-sm-12 col-md-3">Pergunta:&emsp;</h4>
+                        <h4 display="inline" align="left" class="col-sm-12 col-md-8">{{$item->pergunta}}</h4>
+                        <span class="col-sm-12 col-md-1">
                              <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>
                               <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
 
@@ -232,10 +231,8 @@
                     @if($pergresp->perg_id==$item->id)
                     @if($pergresp->resp_id==$resposta->id)
                     <div class="row">
-                        &emsp;&emsp;&emsp;
-                        <h4 display="inline" class="col-1"><?php echo $letras[$y]; ?></h4>
-                        <h4 display="inline" align="left" class="col">{{$resposta->resposta}}</h4>
-                        
+                        <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
+                        <h4 display="inline" align="left" class="col-sm-12 col-md-11">{{$resposta->resposta}}</h4>
                     </div>
                     <?php $y++; ?>
                     <br><br>
@@ -265,8 +262,8 @@
                 @foreach($paths as $path)
                 @if($path->id==$pp->path_id)
                 <!--                    <input value="{{$path->id}}"><br><br>-->
-                <h4 display="inline" class="col-3">Reforço:</h4>
-                <h4 display="inline" align="left" class="col">{{$ref->pergunta}}</h4>
+                <h4 display="inline" class="col-sm-12 col-md-2">Reforço:&emsp;</h4>
+                <h4 display="inline" align="left" class="col-sm-12 col-md-10">{{$ref->pergunta}}</h4>
                 
                 @endif
                 @endforeach
@@ -278,9 +275,8 @@
             @if($pergresp->perg_id==$ref->id)
             @if($pergresp->resp_id==$resposta->id)
             <div class="row">
-                &emsp;&emsp;&emsp;
-                <h4 display="inline" class="col-1"><?php echo $letras[$y]; ?></h4>
-                <h4 display="inline" align="left" class="col">{{$resposta->resposta}}</h4>
+                <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
+                <h4 display="inline" align="left" class="col-sm-12 col-md-1">{{$resposta->resposta}}</h4>
                 
             </div>
             <?php $y++; ?>
@@ -311,6 +307,7 @@
 
 
     </div>
+    
 
 
     

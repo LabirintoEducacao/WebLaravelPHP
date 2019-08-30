@@ -31,21 +31,20 @@
     <div class="col-md-3 sala" style="padding-top:20px;" align="center">
         <div class="card">
 
-            <p class="card-title">
-                <h4> {{$item->name}} </h4>
-            </p>
+     
+                <h4>{{$item->name}}</h4>
+       
 
-            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto"><br>
+            <img src=" {{ asset('img/1.jpg')}} " style="width: 70%;margin-bottom: 10px;" alt="imagen labirinto"><br>
             <div class="row">
-                &emsp;
-                <a href="{{ url('/admin/virtual/'.$item->id)}}" class="btn btn-sm btn-outline-dark fa fa-qrcode col"></a>
+                <a href="{{ url('/admin/virtual/'.$item->id)}}" class="btn btn-sm btn-outline-dark fa fa-qrcode col" style="margin-left:4%"></a>
                 &emsp;
                 <a class="btn btn-sm btn-outline-cyan fa fa-cogs col" data-toggle="modal" data-target="#salaEModal" data-whatevernome="{{$item->name}}" data-whatevertype="{{$item->duracao}}" data-whatevertema="{{$item->tematica}}" data-whateverpublic="{{$item->public}}" data-whateverid="{{$item->id}}"></a>
                 &emsp;
                 <a href="{{ url('admin/editar-sala/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-pencil-square-o col"></a>
                 &emsp;
-                <a href="{{ url('admin/deletar-sala/'.$item->id)}}" class="btn btn-sm btn-outline-danger fa fa-trash col"></a>
-                &emsp;
+                <a href="{{ url('admin/deletar-sala/'.$item->id)}}" class="btn btn-sm btn-outline-danger fa fa-trash col" style="margin-right:4%"></a>
+
             </div>
 
         </div>
