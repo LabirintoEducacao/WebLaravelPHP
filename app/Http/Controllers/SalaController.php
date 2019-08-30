@@ -369,15 +369,44 @@ class SalaController extends Controller
 
                  $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
 
+                   $refperg = DB::table('perg_ref')->select('id')->get();
+                 
+
                   if(count($salas_user)>0){
+
                     foreach($salas_user as $sala_user){
+                          
+                         $perguntas = DB::table('perguntas')->where('id','=',$refperg->ref_id)->get();
+
+                          
+                           if(count($perguntas)>0){
+
+                          
+                              $i = 0;
+                              //$i2 = 0;
+
+                    foreach($perguntas as $perguntas){
+
+                        //$perguntaref = DB::table('perguntas')->where('id','=',$refperg)->get();
+
+
+
+                                $i++;
+                             }
+
+                           }
+
+                        //$reforco = $i - $i2;
+
                         $sala = DB::table('salas')
                                 ->where('id','=',$sala_user->sala_id)
                                 ->where('public','=',0)
                                 ->select('id','name')->get();
                                 if(count($sala)>0)
 
-                                echo json_encode($sala). "    ";
+                                // echo json_encode($sala). "    "."Pergunta:".$i."Reforco:".$reforco ;
+
+                            echo json_encode($sala). "    ".$i;
 
                     }
                 }

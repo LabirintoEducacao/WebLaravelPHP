@@ -44,7 +44,6 @@
 
 <?php 
 
-$id = 3;
 $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
 if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
 
@@ -59,7 +58,7 @@ $i = 0;
     <?php
 foreach($arquivos as $img){ 
 
-          $b = explode('/', $img, 2);
+          $b = explode('public/', $img, 2);
 
           var_dump($b);
        
