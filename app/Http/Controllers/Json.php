@@ -68,7 +68,7 @@ class Json extends Controller
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
-$limite = 2100;
+$limite = 200;
 $n=1;
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
@@ -400,27 +400,23 @@ $total = strlen($base);
 
 $cast = $total / $limite;
 
-
+$ntotal = intval($cast);
 
 $cast = number_format($cast, 2, '.', ',');
-
-
 
 $cast = substr($cast, -2);
 
 
 
 
-
-
-
-$ntotal = $cast;
-
+if($cast > 0){
+$ntotal = $ntotal + 1;
+}
 
 
 if ($total <= $limite){
 
-$append  = "append :" . $n . "|" . (int)$ntotal ."|";
+$append  = "append|" . $n . "|" . $ntotal ."|";
 $qr = $append.$base;
 // $qr = $base;
 QrCode::format('png')->size(500)->generate($qr,'../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png');
@@ -437,7 +433,7 @@ $rest = substr($base, $conta, $limite);
 $conta = $conta + strlen($rest);
 
 
-$append  = "append :" . $n . "|" . $ntotal ."|";
+$append  = "append|" . $n . "|" . $ntotal ."|";
 $qr = $append.$base;
 
 QrCode::format('png')->size(500)->generate( $qr , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.".png");
@@ -450,13 +446,7 @@ $n ++;
 
 
 
- QrCode::format('png')->size(500)->generate( json_encode($jsn) , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR."json.png");
-
-
-//return view('qrcode',['data' => $salaid, 'json'=> json_encode($jsn)] );
-
  
-
 
 }
  
