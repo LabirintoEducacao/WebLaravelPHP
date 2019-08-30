@@ -68,7 +68,7 @@ class Json extends Controller
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
-$limite = 2000;
+$limite = 2100;
 $n=1;
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
@@ -396,8 +396,25 @@ $base = base64_encode($myfile);
 
 $total = strlen($base);
 
+echo "total " . $total."</br>";
 
-$ntotal = intval($total / $limite); 
+$cast = $total / $limite;
+
+echo "divisao : " . $cast."</br>";
+
+$cast = number_format($cast, 2, '.', ',');
+
+echo "dois numeros : " . $cast."</br>";
+
+$cast = substr($cast, -2);
+
+echo "ultimos numeros : " . $cast."</br>";
+
+
+
+
+
+$ntotal = $cast;
 
 
 
@@ -436,7 +453,7 @@ $n ++;
 // QrCode::format('png')->size(500)->generate( json_encode($jsn) , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR."json.png");
 
 
-return view('qrcode',['data' => $salaid, 'json'=> json_encode($jsn)] );
+//return view('qrcode',['data' => $salaid, 'json'=> json_encode($jsn)] );
 
  
 
