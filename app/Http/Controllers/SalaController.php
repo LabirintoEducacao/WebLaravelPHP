@@ -304,7 +304,7 @@ class SalaController extends Controller
 
                         $user2 = array(
 
-                            'id' => 0
+                            'id' => -1
 
                         );
                     }

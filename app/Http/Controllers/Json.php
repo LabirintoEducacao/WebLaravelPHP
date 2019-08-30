@@ -68,6 +68,8 @@ class Json extends Controller
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
+$limite = 200;
+$n=1;
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
@@ -375,16 +377,6 @@ $fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'teste.json',
  fclose($fp);
 
 
-$array = array(
-
-            "maze_id" => 10,
-            "user_id" => 51
-);
-
-$pa = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'novo.json', 'w');
-fwrite($pa, json_encode($array));
-fclose($pa);
-
 
 
 $gzdata = gzencode(json_encode($jsn) , 9);
@@ -401,28 +393,51 @@ $base = base64_encode($myfile);
 
 
 
+
 $total = strlen($base);
-$i =0;
+
+
+
+$cast = $total / $limite;
+
+$ntotal = intval($cast);
+
+$cast = number_format($cast, 2, '.', ',');
+
+$cast = substr($cast, -2);
 
 
 
 
-if ($total <=2000){
+if($cast > 0){
+$ntotal = $ntotal + 1;
+}
 
-QrCode::format('png')->size(500)->generate($base, '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$i.'.png');
+
+if ($total <= $limite){
+
+$append  = "append|" . $n . "|" . $ntotal ."|";
+$qr = $append.$base;
+// $qr = $base;
+QrCode::format('png')->size(500)->generate($qr,'../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png');
 
 }
 
 
-if($total > 2000){
+if($total > $limite){
 
 while($conta < $total){
 
-$rest = substr($base, $conta, 2000);
+
+$rest = substr($base, $conta, $limite);
 $conta = $conta + strlen($rest);
 
-QrCode::format('png')->size(500)->generate( $rest , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$i.".png");
-$i ++;
+
+$append  = "append|" . $n . "|" . $ntotal ."|";
+$qr = $append.$base;
+
+QrCode::format('png')->size(500)->generate( $qr , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.".png");
+$n ++;
 
 }
 
@@ -430,14 +445,8 @@ $i ++;
 }
 
 
-
-QrCode::format('png')->size(500)->generate( json_encode($jsn) , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR."json.png");
-
-
-return view('qrcode',['data' => $salaid, 'json'=> json_encode($jsn)] );
 
  
-
 
 }
  
