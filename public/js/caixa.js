@@ -590,3 +590,11 @@
 
            $("ul, li").disableSelection();
        });
+
+
+    function qrcode(qrN){
+        if(document.getElementById(qrN).style.display == 'none')
+            document.getElementById(qrN).style.display = 'block';
+        else
+            document.getElementById(qrN).style.display = 'none';
+    }
