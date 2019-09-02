@@ -11,7 +11,7 @@
     </div>
 </div>
 <!------------------------ Espaço das Salas  --------------------------->
-<div class="container-fluid" style="padding-top: 10px; ">
+<div class="container-fluid row" style="padding-top: 10px; ">
 
 
     <!------- Estrutura de repetição (CARD)------------------->
@@ -29,65 +29,26 @@
 
             <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
 
+
             <!----------------------Botao do Modal-------------------------->
             <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+
+        
 
 
         </div>
     </div>
+
+        </div>
+            
+        </div>
+    </div>
+
     @else
     @foreach($sala_user as $sala)
     @if($item->id==$sala->sala_id)
     @if($user == $sala->user_id)
-    <?php $id=$item->id ?>
 
-
-<?php 
-$pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
-if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
-
-var_dump($pasta);
-
-
-$arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
-
-$i = 0;
-
-?>
-
-<div id="carouselExampleControls"  class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner ">
-
-    @foreach($arquivos as $img){ 
-
-    <?php  $b = explode('public/', $img,2); ?>
-
-     @if($i == 0)
-    <div class="carousel-item active">
-      <img src="{{ asset($b[1]) }}" class="d-block w-100" alt="...">
-    </div>
-    @endif
-
-    @if($i > 0)
-    <div class="carousel-item">
-      <img  src="{{ asset($b[1]) }}" class="d-block w-100" alt="...">
-    </div>
-    @endif
-    <?php
-    $i ++;
-     ?>
-    @endforeach
-
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="fa fa-arrow-left" style="font-size: 20px; color:#000000;"aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="fa fa-arrow-right" style="font-size: 20px; color:#000000;" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 
 
     <div class="col-md-3" style="padding-top:20px;">
@@ -100,19 +61,80 @@ $i = 0;
 
             <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
 
-            <!----------------------Botao do Modal-------------------------->
+            
             <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+        
+
+        
+</div>
 
 
-        </div>
+
+<!-- 
+    <?php
+    $id=19;
+    $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
+if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
+
+
+
+$arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
+
+$i = 0;
+     
+ foreach($arquivos as $img){
+          
+          $b = explode('public/', $img,2); ?>
+
+     @if($i == 0)
+         
+    <div class="carousel-item active">
+      <img src="{{ asset($b[1]) }}"class="d-block w-100" alt="...">
     </div>
     @endif
+
+    @if($i > 0)
+    <div class="carousel-item">
+      <img  src="{{ asset($b[1]) }}" class="d-block w-100" alt="...">
+    </div>
+    @endif
+    <?php
+    $i ++;
+     ?>
+
+  </div>
+
+
+<?php
+    
+      }
+          ?>
+      
+        </div>
+
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="fa fa-arrow-left" style="font-size: 20px; color:#000000;"aria-hidden="true"></span>
+    <span class="sr-only"> Anterior </span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="fa fa-arrow-right" style="font-size: 20px; color:#000000;" aria-hidden="true"></span>
+    <span class="sr-only"> Proximo  </span>
+
+  </a>
+      
+</div> -->
+
+
+   </div>      
+
+    @endif
     @endif
 
     @endforeach
 
     @endif
     @endforeach
+
 
 
     <div class="modal fade" id="salaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -120,15 +142,18 @@ $i = 0;
             <div class="modal-content ">
                 <div class="modal-header" style="background-color:#2F4F4F;">
                     <h5 class="modal-title"></h5>
+
                     <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
         " id="exampleModalScrollableTitle">Qr Code </h5>
 
                 </div>
+
+
                 <div class="modal-body">
 
                     <h3 class="sala_name" align="center">Sala</h3>
                     <p style="padding-left: 170px;">{!! QrCode::size(250)->generate( 'http://127.0.0.1:8000/admin/virtual/1' ); !!}</p>
-                    <input type="hidden" name="sala_id" id="sala_id">
+                    <input type="hidden" name="sala_id" id="sala_id" >
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -138,6 +163,25 @@ $i = 0;
         </div>
     </div>
 
+
+
     @endsection
 
+    @section('script')
+    
+    
+        @section('script')
+    
+<!--
+    <script>
+function carrega(){
+    
+}
 
+
+</script>
+-->
+    @endsection
+    
+    
+    @endsection
