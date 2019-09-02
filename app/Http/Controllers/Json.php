@@ -431,10 +431,10 @@ while($conta < $total){
 
 $rest = substr($base, $conta, $limite);
 $conta = $conta + strlen($rest);
-
+ 
 
 $append  = "append|" . $n . "|" . $ntotal ."|";
-$qr = $append.$base;
+$qr = $append.$rest;
 
 QrCode::format('png')->size(500)->generate( $qr , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.".png");
 $n ++;

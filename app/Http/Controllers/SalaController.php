@@ -456,7 +456,6 @@ class SalaController extends Controller
                   }else{
 
                    $jsn = array(); 
-                  }
 
                     $resultado = array(
                          
@@ -465,19 +464,95 @@ class SalaController extends Controller
 
                     );
 
+
                     return $resultado;
-
-                
-              }else{
-
-                echo "eroo10";
+     
               }
+
+
+              }else if($tipo == 0){
+
+                     $salas_publicas = DB::table('salas')
+                ->where('public','=',1)->select('id','name')->get();
+                   
+
+                foreach($salas_publicas as $salas){
+
+                 $perguntasref = DB::table('perguntas')
+                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
+                 ->where('sala_id','=', $salas->id)->get();
+
+                 $perguntas = DB::table('perguntas')
+                 ->where('sala_id','=', $salas->id)->get();
+
+                    if(count($perguntasref)>0){
+
+                              $i = 0;      
+
+                    foreach($perguntasref as $perguntasref){
+
+                                $i++;
+                             }
+
+                           }
+
+                    if(count($perguntas)>0){
+
+                        $i2 = 0 ;
+
+                    foreach($perguntas as $perguntas){
+
+                                    $i2++;
+                                 }
+
+                    }
+
+                    $total = $i2 - $i;
+
+
+
+                            $jsn[] = array(
+
+                                    'id' => $salas->id,
+                                    'name' => $salas->name,
+                                    'Pergunta' => $total,
+                                    'Reforco' => $i
+                            ); 
+
+                    }
+                    echo json_encode($jsn);
+
+                 }else{
+
+                 $jsn = array(); 
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => -1
+
+                    );
+
+
+                    return $resultado;
+              }
+              
             }else{
 
-                echo "eroo1";
+                $jsn = array(); 
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => -1
+
+                    );
+
+
+                    return $resultado;
               }
                
-          }
+    }
 
 
 }
