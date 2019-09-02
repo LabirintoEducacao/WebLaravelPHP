@@ -28,7 +28,7 @@
             <br><br>
 
             <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
- 
+
             <!----------------------Botao do Modal-------------------------->
             <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
 
@@ -40,7 +40,6 @@
     @if($item->id==$sala->sala_id)
     @if($user == $sala->user_id)
     <?php $id=$item->id ?>
-
 
 
 <?php 

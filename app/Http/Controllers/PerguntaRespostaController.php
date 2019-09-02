@@ -24,8 +24,7 @@ class PerguntaRespostaController extends Controller
     //     return view ( 'edit_sala' )->withData ( $data );
     // }
     
-    
-    
+     
     public function buscar(Request $request){
         $id = $request->id;
         $pergunta = DB::table('perguntas')->where('id',$id)->get();

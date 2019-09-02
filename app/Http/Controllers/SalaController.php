@@ -316,87 +316,56 @@ class SalaController extends Controller
 
     public function teste()
     {
-           //  $json = $_REQUEST['id'];
+   
 
-           //   $erro1 = 1 ;
-           //   $erro2 = 2 ;
-           //   $erro3 = 3 ;
+                 if(isset( $_REQUEST['type'])){
 
-
-           //  $user = DB::table('users')->where('id','=',$json)->select('id','name','email')->get();
-
-           // if(count($user)== 0){
-
-           //      echo $erro1 . ' - ' . 'Usuario nao existente'. "    ";
-
-           // }else{
-
-           //  echo json_encode($user). "    ";
-           //   $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
-           //      if(count($salas_user)>0){
-           //          foreach($salas_user as $sala_user){
-           //              $sala = DB::table('salas')
-           //                      ->where('id','=',$sala_user->sala_id)
-           //                      ->where('public','=',0)
-           //                      ->select('id','prof_id','name','duracao','tematica','public')->get();
-           //                      if(count($sala)>0)
-
-           //                      echo json_encode($sala). "    ";
-           //          }
-           //      }else{
-
-           //          echo $erro2 . ' - ' . 'Nenhuma sala Privada vinculada a esse usuario'. "    ";
-           //      }
-
-           // }
-           //  $salas_publicas = DB::table('salas')
-           //  ->where('public','=',1)->select('id','prof_id','name','duracao','tematica','public')->get();
-
-           //  if((count($salas_publicas) == 0) && (count($user)> 0)) {
-
-           //      echo $erro3 . ' - ' . 'Nenhuma sala publica criada'. "   ";
-
-           //  }else if(count($salas_publicas) == 0){
-
-              
-           //  }else{
-
-           //      echo json_encode($salas_publicas);
-           //    }
+                 $tipo = $_REQUEST['type'];
 
 
-                 $json = $_REQUEST['id'];
+                  if(isset( $_REQUEST['id'])){
+
+                    $json = $_REQUEST['id'];
+
 
                  $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
 
-                   $refperg = DB::table('perg_ref')->select('id')->get();
-                 
+               
+                  if(count($salas_user)>0 && ($tipo == 1)){
 
-                  if(count($salas_user)>0){
+                 foreach($salas_user as $sala_user){
 
-                    foreach($salas_user as $sala_user){
-                          
-                         $perguntas = DB::table('perguntas')->where('id','=',$refperg->ref_id)->get();
+                 $perguntasref = DB::table('perguntas')
+                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
+                 ->where('sala_id','=', $sala_user->sala_id)->get();
 
-                          
-                           if(count($perguntas)>0){
+                 $perguntas = DB::table('perguntas')
+                 ->where('sala_id','=', $sala_user->sala_id)->get();
 
-                          
-                              $i = 0;
-                              //$i2 = 0;
+                    if(count($perguntasref)>0){
 
-                    foreach($perguntas as $perguntas){
+                              $i = 0;      
 
-                        //$perguntaref = DB::table('perguntas')->where('id','=',$refperg)->get();
-
-
+                    foreach($perguntasref as $perguntasref){
 
                                 $i++;
                              }
 
                            }
 
-                        //$reforco = $i - $i2;
+                    if(count($perguntas)>0){
+
+                        $i2 = 0 ;
+
+                    foreach($perguntas as $perguntas){
+
+                                    $i2++;
+                                 }
+
+                    }
+
+                    $total = $i2 - $i;
+
 
                         $sala = DB::table('salas')
                                 ->where('id','=',$sala_user->sala_id)
@@ -404,15 +373,111 @@ class SalaController extends Controller
                                 ->select('id','name')->get();
                                 if(count($sala)>0)
 
-                                // echo json_encode($sala). "    "."Pergunta:".$i."Reforco:".$reforco ;
+                       $jsn[] = array(
 
-                            echo json_encode($sala). "    ".$i;
+                                    'id' => $sala[0]->id,
+                                    'name' => $sala[0]->name,
+                                    'Pergunta' => $total,
+                                    'Reforco' => $i
+                            ); 
 
                     }
-                }
+
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => 1
+
+                    );
+
+
+                    return $resultado;
+
+                }else if($tipo == 0){
+
+                 $salas_publicas = DB::table('salas')
+                ->where('public','=',1)->select('id','name')->get();
+                   
+
+                foreach($salas_publicas as $salas){
+
+                 $perguntasref = DB::table('perguntas')
+                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
+                 ->where('sala_id','=', $salas->id)->get();
+
+                 $perguntas = DB::table('perguntas')
+                 ->where('sala_id','=', $salas->id)->get();
+
+                    if(count($perguntasref)>0){
+
+                              $i = 0;      
+
+                    foreach($perguntasref as $perguntasref){
+
+                                $i++;
+                             }
+
+                           }
+
+                    if(count($perguntas)>0){
+
+                        $i2 = 0 ;
+
+                    foreach($perguntas as $perguntas){
+
+                                    $i2++;
+                                 }
+
+                    }
+
+                    $total = $i2 - $i;
+
+                          $jsn[] = array(
+
+                                    'id' => $salas->id,
+                                    'name' => $salas->name,
+                                    'Pergunta' => $total,
+                                    'Reforco' => $i
+                            ); 
+
+                    }
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => 1
+
+                    );
+
+
+                    return $resultado;
             
-       
-    }
+                  }else{
+
+                   $jsn = array(); 
+                  }
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => -1
+
+                    );
+
+                    return $resultado;
+
+                
+              }else{
+
+                echo "eroo10";
+              }
+            }else{
+
+                echo "eroo1";
+              }
+               
+          }
 
 
 }
