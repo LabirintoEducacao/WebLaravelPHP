@@ -8,7 +8,6 @@
             <h1>Jogos</h1>
         </div>
 
-
     </div>
 </div>
 <!------------------------ Espaço das Salas  --------------------------->
@@ -30,25 +29,81 @@
 
             <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
 
+            <form action="{{ url('admin/qrcode/$item->id') }}" method="GET">
+            <button type="submit" class="btn btn-outline-cyan btn-sm fa fa-qrcode" > Qr Code</button></form>
             
+            <a class="btn btn-primary" data-toggle="collapse" href="#id{{$sala->sala_id}}" role="button" aria-expanded="false" aria-controls="">Gerar Qr</a>
+  
  
-            <!----------------------Botao do Modal-------------------------->
-            <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="id{{$sala->sala_id}}">
+      <div class="card card-body">
+        
 
+
+
+
+
+        
+      </div>
+    </div>
+  </div>
+</div>
 
         </div>
     </div>
+
+         <!--  <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button></
+ -->
+            
+        </div>
+    </div>
+
     @else
     @foreach($sala_user as $sala)
     @if($item->id==$sala->sala_id)
     @if($user == $sala->user_id)
-    <?php $id = $item->id ?>
+
+
+
+
+
+    <div class="col-md-3" style="padding-top:20px;">
+        <div class="card ">
+
+            <p class="card-title"> {{$item->name}} </p>
+
+            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
+
+
+            <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
+
+            <!----------------------Botao do Modal-------------------------->
+            <form action="qrcode{{$sala->sala_id}}" method="GET">
+            <button type="submit" class="btn btn-outline-cyan btn-sm fa fa-qrcode" > Qr Code</button></form>
+
+            <!-- <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+ -->        
+
+        
+  <a class="btn btn-primary" data-toggle="collapse" href="#teste" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">teste</a>
+  
+ 
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="teste">
+      <div class="card card-body">
+        
+
 
 
 <?php 
-$id=16;
+$id  = $sala->sala_id ;
 $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
 if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
+
+var_dump($pasta);
 
 
 $arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
@@ -57,7 +112,10 @@ $i = 0;
 
 ?>
 
+
 <div id="carouselExampleControls"  class="carousel slide" data-ride="carousel" style="width:200px">
+
+
   <div class="carousel-inner ">
 
     @foreach($arquivos as $img){ 
@@ -81,32 +139,29 @@ $i = 0;
     @endforeach
 
   </div>
+
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="fa fa-arrow-left" style="font-size: 20px; color:#000000;"aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+    <span class="sr-only"> Anterior </span>
   </a>
   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
     <span class="fa fa-arrow-right" style="font-size: 20px; color:#000000;" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
+    <span class="sr-only"> Proximo  </span>
+
   </a>
 </div>
 
+                
+    </div>
 
 
 
-    <div class="col-md-3" style="padding-top:20px;">
-        <div class="card ">
-
-            <p class="card-title"> {{$item->name}} </p>
-
-            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
 
 
-            <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
-
-            <!----------------------Botao do Modal-------------------------->
-            <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#salaModal" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
-
+      </div>
+    </div>
+  </div>
+</div>
 
         </div>
     </div>
@@ -119,25 +174,33 @@ $i = 0;
     @endforeach
 
 
-    <div class="modal fade " id="salaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable"  role="document">
-            <div class="modal-content "  >
+   <!--  <div class="modal fade" id="salaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content ">
                 <div class="modal-header" style="background-color:#2F4F4F;">
                     <h5 class="modal-title"></h5>
-                    <h5 style="  font-size: 20px;  margin-left:250px; color:#ffffff;
-        " id="exampleModalScrollableTitle"> </h5>
+
+                    <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
+        " id="exampleModalScrollableTitle">Qr Code </h5>
 
                 </div>
-                <div class="modal-body " >
-
-                    <h3 class="sala_name" align="center">Sala</h3> 
 
 
-</div>
-</div>
-</div>
-</div>
+                <div class="modal-body">
 
-@endsection
+                    <h3 class="sala_name" align="center">Sala</h3>
+                    <p style="padding-left: 170px;">{!! QrCode::size(250)->generate( 'http://127.0.0.1:8000/admin/virtual/1' ); !!}</p>
+                    <input type="hidden" name="sala_id" id="sala_id" >
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    @endsection
 
 
