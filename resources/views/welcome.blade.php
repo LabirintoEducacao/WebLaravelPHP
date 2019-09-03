@@ -80,11 +80,11 @@
                     @endauth
                 </div>
             @endif
-             <div class="content" style="margin: 100% 2% 2% 13%">
+             <div class="content">
                 <p class="title m-b-md">
                     Labirinto
                 </p>
-                <div class="row">
+                <div class="row logins">
                     <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
                         <div class="card-header">Aluno</div>
                         <div class="card-body text-info">

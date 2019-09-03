@@ -61,6 +61,9 @@ a:not([href]):not([tabindex]):hover,
     .desktop-hide {
         display: inline !important;
     }
+    .logins{
+        margin: 100% 2% 2% 13%;
+    }
 }
 
 @media only screen and (min-width: 1010px) {
@@ -70,6 +73,9 @@ a:not([href]):not([tabindex]):hover,
 
     .desktop-hide {
         display: none !important;
+    }
+    .logins{
+        margin: 5% 2% 2% 13%;
     }
 }
 
