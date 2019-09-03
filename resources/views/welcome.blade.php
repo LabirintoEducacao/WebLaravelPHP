@@ -84,8 +84,8 @@
                 <p class="title m-b-md">
                     Labirinto
                 </p>
-                <div class="row">
-                    <div class="card border-info mb-3 col" style="max-width: 20rem;">
+                <div class="row" style="margin: 2% 2% 2% 2%">
+                    <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
                         <div class="card-header">Aluno</div>
                         <div class="card-body text-info">
                             <img class="card-img-top" src="{{ asset('img/aluno.png') }}" width="50"/>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </div>&emsp;&emsp;&emsp;
-                    <div class="card border-info mb-3 col" style="max-width: 20rem;">
+                    <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
                         <div class="card-header">Professor</div>
                         <div class="card-body text-info">
                             <img class="card-img-top" src="{{ asset('img/professor.png') }}" width="50"/>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                     </div>&emsp;&emsp;&emsp;
-                    <div class="card border-info mb-3 col" style="max-width: 20rem;">
+                    <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
                         <div class="card-header">Jogos Públicos</div>
                         <div class="card-body text-info">
                             <img class="card-img-top" src="{{ asset('img/console.png') }}" width="50"/>
