@@ -41,8 +41,7 @@
 
         </div>
             
-        </div>
-    </div>
+
 
     @else
     @foreach($sala_user as $sala)
