@@ -314,24 +314,113 @@ class SalaController extends Controller
 
         }
 
-    public function teste()
+    
+
+public function teste()
     {
    
 
-                 if(isset( $_REQUEST['type']) && $_REQUEST['type']!=null){
 
-                 $tipo = $_REQUEST['type'];
+       
+                if(isset($_REQUEST['type']) && $_REQUEST['type']!=null){
+
+                $tipo =(int) $_REQUEST['type'];
+
+                }
+                else{
+
+                $tipo = -1;
+                }    
+                     
+                 if($tipo == 0){
+            
 
 
-                  if(isset( $_REQUEST['id'])){
+                $salas_publicas = DB::table('salas')
+                ->where('public','=',1)->select('id','name')->get();
 
+
+                if(count($salas_publicas)>0){
+                   
+
+                foreach($salas_publicas as $salas){
+
+                 $perguntasref = DB::table('perguntas')
+                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
+                 ->where('sala_id','=', $salas->id)->get();
+
+                 $perguntas = DB::table('perguntas')
+                 ->where('sala_id','=', $salas->id)->get();
+
+
+                   if(count($perguntas) >= 0 ){
+
+                        $i2 = 0 ;
+                        $i = 0;
+
+
+
+                    foreach($perguntasref as $perguntasref){
+
+                                $i++;
+                             }
+
+                    foreach($perguntas as $perguntas){
+
+                                    $i2++;
+                                 }
+
+                    }
+
+
+                    $total = $i2 - $i;
+
+                          $jsn[] = array(
+
+                                    'id' => $salas->id,
+                                    'name' => $salas->name,
+                                    'Pergunta' => $total,
+                                    'Reforco' => $i
+                            ); 
+
+                    }
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => 1
+
+                    );
+
+
+                    return $resultado;
+
+
+                }else{
+
+
+                    $jsn = array(); 
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => -1
+
+                    );
+
+                    return $resultado;
+                }
+
+                }elseif($tipo == 1 && isset($_REQUEST['id'])){
+
+                    
                     $json = $_REQUEST['id'];
 
 
                  $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
 
                
-                  if(count($salas_user)>0 && ($tipo == 1)){
+                if(count($salas_user)>0){
 
                  foreach($salas_user as $sala_user){
 
@@ -342,20 +431,17 @@ class SalaController extends Controller
                  $perguntas = DB::table('perguntas')
                  ->where('sala_id','=', $sala_user->sala_id)->get();
 
-                    if(count($perguntasref)>0){
+                    if(count($perguntas) >= 0  ){
 
-                              $i = 0;      
+                        $i2 = 0;
+                        $i = 0;
+
+
 
                     foreach($perguntasref as $perguntasref){
 
                                 $i++;
                              }
-
-                           }
-
-                    if(count($perguntas)>0){
-
-                        $i2 = 0 ;
 
                     foreach($perguntas as $perguntas){
 
@@ -390,72 +476,13 @@ class SalaController extends Controller
                           "success" => 1
 
                     );
-
-
-                    return $resultado;
-
-                }else if($tipo == 0){
-
-                 $salas_publicas = DB::table('salas')
-                ->where('public','=',1)->select('id','name')->get();
                    
 
-                foreach($salas_publicas as $salas){
+                      return $resultado;
 
-                 $perguntasref = DB::table('perguntas')
-                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
-                 ->where('sala_id','=', $salas->id)->get();
+                   }else{
 
-                 $perguntas = DB::table('perguntas')
-                 ->where('sala_id','=', $salas->id)->get();
-
-                    if(count($perguntasref)>0){
-
-                              $i = 0;      
-
-                    foreach($perguntasref as $perguntasref){
-
-                                $i++;
-                             }
-
-                           }
-
-                    if(count($perguntas)>0){
-
-                        $i2 = 0 ;
-
-                    foreach($perguntas as $perguntas){
-
-                                    $i2++;
-                                 }
-
-                    }
-
-                    $total = $i2 - $i;
-
-                          $jsn[] = array(
-
-                                    'id' => $salas->id,
-                                    'name' => $salas->name,
-                                    'Pergunta' => $total,
-                                    'Reforco' => $i
-                            ); 
-
-                    }
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => 1
-
-                    );
-
-
-                    return $resultado;
-            
-                  }else{
-
-                   $jsn = array(); 
+                     $jsn = array(); 
 
                     $resultado = array(
                          
@@ -466,72 +493,11 @@ class SalaController extends Controller
 
 
                     return $resultado;
-     
-              }
 
-
-              }else if($tipo == 0){
-
-                     $salas_publicas = DB::table('salas')
-                ->where('public','=',1)->select('id','name')->get();
-                   
-
-                foreach($salas_publicas as $salas){
-
-                 $perguntasref = DB::table('perguntas')
-                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
-                 ->where('sala_id','=', $salas->id)->get();
-
-                 $perguntas = DB::table('perguntas')
-                 ->where('sala_id','=', $salas->id)->get();
-
-                    if(count($perguntasref)>0){
-
-                              $i = 0;      
-
-                    foreach($perguntasref as $perguntasref){
-
-                                $i++;
-                             }
-
-                           }
-
-                    if(count($perguntas)>0){
-
-                        $i2 = 0 ;
-
-                    foreach($perguntas as $perguntas){
-
-                                    $i2++;
-                                 }
-
-                    }
-
-                    $total = $i2 - $i;
-
- 						$jsn[] = array(
-
-                                    'id' => $salas->id,
-                                    'name' => $salas->name,
-                                    'Pergunta' => $total,
-                                    'Reforco' => $i
-                            ); 
-
-                    }
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => 1
-
-                    );
-
-
-                    return $resultado;
-
-                 }else{
-
-                 $jsn = array(); 
+                   }
+                  
+                }else{
+                         $jsn = array(); 
 
                     $resultado = array(
                          
@@ -542,24 +508,8 @@ class SalaController extends Controller
 
 
                     return $resultado;
-              }
-              
-            }else{
-
-                $jsn = array(); 
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => -1
-
-                    );
-
-
-                    return $resultado;
-              }
-               
-    }
-
+                 }
+                    
+   }
 
 }
