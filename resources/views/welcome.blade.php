@@ -63,10 +63,28 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            @media (max-width: 760px) {
+                .logins{
+                    margin: 2% 14% 2% 4%;
+                }
+                .title{
+
+                    display: none;
+                }
+                .mobile-hide{
+
+                     display: none;
+                }
+            }
+
+
+               
+
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links mobile-hide">
                     @auth
@@ -80,35 +98,35 @@
                     @endauth
                 </div>
             @endif
-             <div class="content">
-                <p class="title m-b-md">
+             <div class="content logins row">
+                <p class="col-md-12 title m-b-md justify-content-center" style="margin-top: 10%;">
                     Labirinto
                 </p>
-                <div class="row logins">
-                    <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
+                <div class="row col-md-12" style="margin-left: 8%;">
+                    <div class="card border-info col-md-3 col-sm-12">
                         <div class="card-header">Aluno</div>
                         <div class="card-body text-info">
-                            <img class="card-img-top" src="{{ asset('img/aluno.png') }}" width="50"/>
+                            <img class="card-img-top" src="{{ asset('img/aluno.png') }}" width="80%"/>
                             <div class="card-text links">
                                 <a href="{{ url('usuario/login') }}">Login</a><br>
                                 <a href="{{ url('usuario/register') }}">Cadastre-se</a>
                             </div>
                         </div>
                     </div>&emsp;&emsp;&emsp;
-                    <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
+                    <div class="card border-info col-md-3 col-sm-12">
                         <div class="card-header">Professor</div>
                         <div class="card-body text-info">
-                            <img class="card-img-top" src="{{ asset('img/professor.png') }}" width="50"/>
+                            <img class="card-img-top" src="{{ asset('img/professor.png') }}" width="80%"/>
                             <div class="card-text links">
                                 <a href="{{ url('login') }}">Login</a><br>
                                 <a href="{{ url('register') }}">Cadastre-se</a>
                             </div>
                         </div>
                     </div>&emsp;&emsp;&emsp;
-                    <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
+                    <div class="card border-info col-md-3 col-sm-12">
                         <div class="card-header">Jogos Públicos</div>
                         <div class="card-body text-info">
-                            <img class="card-img-top" src="{{ asset('img/console.png') }}" width="50"/>
+                            <img class="card-img-top" src="{{ asset('img/console.png') }}" width="80%"/>
                             <div class="card-text links">
                                 <a href="{{ url('virtual') }}">Jogar</a><br>
                             </div>

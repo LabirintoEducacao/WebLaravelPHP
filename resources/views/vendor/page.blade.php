@@ -25,7 +25,7 @@
     <link href="{{ asset('admin/node_modules/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('admin/node_modules/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet">
     <!-- Main styles for this application-->
-    <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet" defer>
     <link href="{{ asset('admin/vendors/pace-progress/css/pace.min.css')}}" rel="stylesheet">
 
     <!-- Select com busca -->
