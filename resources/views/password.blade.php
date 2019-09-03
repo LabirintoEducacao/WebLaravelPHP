@@ -14,7 +14,7 @@
                     @endif
 
 <!--                    {{Form::model(['method' => 'POST', 'url' => 'perfil/editar'])}}  -->
-                    <form action="{{ url('home') }}" method="POST" style="margin-left: 25%;margin-right:1%">
+                    <form action="{{ url('home') }}" method="POST" style="margin-left: 1%;margin-right:1%">
 <!--                        @method('POST')-->
                         {{ csrf_field() }}
                         

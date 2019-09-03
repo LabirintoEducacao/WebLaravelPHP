@@ -14,7 +14,7 @@
                     @endif
 
                     <!--                    {{Form::model(['method' => 'POST', 'url' => 'perfil/editar'])}}  -->
-                    <form action="sala" method="POST" style="margin-left: 25%;margin-right:1%">
+                    <form action="sala" method="POST" style="margin-left: 1%;margin-right:1%">
 
                         <p style="font-size:50px; "> Definições sobre o Labirinto</p>
                         <!--                        @method('POST')-->
@@ -24,7 +24,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"-->
                         <div class="form-group">
                             {{ Form::label('name', 'Criador do labirinto:') }}
-                            {{ Form::text('name',Auth::user()->name,['class'=>'form-control', 'autofocus', 'placeholder'=>'Nome']) }}
+                            {{ Form::text('name',Auth::user()->name,['class'=>'form-control', 'autofocus', 'placeholder'=>'Nome','disabled']) }}
                         </div>
 
                         <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">

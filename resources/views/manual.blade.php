@@ -26,25 +26,18 @@
     <li> Tempo de duração de cada sala : Aqui o usuario colocará o tempo maximo que um jogador permanecer dentro do labirinto. O tempo é dado em segundos. Se o usuario não inserir nenhum tempo o programa não define tempo para sala sendo assim não existe tempo limitante no labirinto.</li>
     <li> Tema : o Tema se refere ao cenario do labirinto. </li>
     <li> Sala Publica : O jogo tem a opção de criar uma sala restrita, ou uma sala aberta a todos os jogadores. Se a opção Sala publica for marcada, qualquer jogador terá acesso a sua sala. </li></ul>
+    
     <p>Após configurar os parametros clique no botão "ADICIONAR SALA" para criar sala ou no botão "CANCELAR" para descartar o progresso.</p>
     <img src="/img/conf_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
 
      <h4>2 - Adicionar Perguntas e Respostas</h4>
      <p>Se você chegou até aqui pela etapa 1, então após clicar em "CRIAR SALA" você foi redirecionado para a parte 'EDITAR SALA', aqui você tem acesso a todas as salas criadas pelo usuario. Você notará que existe 4 botões abaixo de sua sala</p>
      <h5>Definições dos Botões</h5>
-     
-      <h5>Barcode :</h5><p class="fa fa-qrcode" style="font-size: 20px; padding-bottom: 10px;"> Esse botão</p> </br>
-
-
-
-
-
-
-
-      <li class=" fa fa-cogs" style="font-size: 20px; padding-bottom: 10px;">  Engrenagem :</li> </br>
-      <li class="fa fa-pencil-square-o" style="font-size: 20px; padding-bottom: 10px;"> Lapis :</li> </br>
-      <li class="fa fa-trash" style="font-size: 20px; padding-bottom: 10px;"> Lixo :</li> </br>
-     </ul>
+<ul>
+      <li class=" fa fa-cogs" style="font-size: 20px; padding-bottom: 10px;">  Engrenagem : Editar os atributos da sala (Nome, tempo de duração, tema, se é pública ou privada)</li> <br>
+      <li class="fa fa-pencil-square-o" style="font-size: 20px; padding-bottom: 10px;"> Lapis : Adicionar/editar perguntas, respostas e alunos</li> <br>
+      <li class="fa fa-trash" style="font-size: 20px; padding-bottom: 10px;"> Lixo : Deletar sala</li> <br>
+</ul>
 
 
 </div>

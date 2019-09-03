@@ -12,7 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                       <form action="{{ url('profile/edit') }}" method="POST" style="margin-left: 25%;margin-right:1%">
+                       <form action="{{ url('profile/edit') }}" method="POST" style="margin-left: 1%;margin-right:1%">
 <!--                        @method('POST')-->
                         {{ csrf_field() }}
                         @if (\Request::is('admin/settings')) 

@@ -82,8 +82,8 @@
                                     <select name="question_type" id="question_type" class="col">
                                         <option selected value="1">Texto</option>
                                         <option value="2">Imagem</option>
-                                        <option value="3">video</option>
-                                        <option value="4">Audio</option>
+                                        <option value="3">Vídeo</option>
+                                        <option value="4">Áudio</option>
                                     </select>
                                 </div>
                                 <div class="form-group row">
@@ -119,8 +119,8 @@
                                                 <select name="tipo_resp[]" id="tipo_opcao" class="form-control tipo_resp">
                                                     <option selected value="1">Texto</option>
                                                     <option value="2">imagem</option>
-                                                    <option value="3">video</option>
-                                                    <option value="4">Audio</option>
+                                                    <option value="3">Vídeo</option>
+                                                    <option value="4">Áudio</option>
                                                 </select>
                                             </td>
                                             <td>
