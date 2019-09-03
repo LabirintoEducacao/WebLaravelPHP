@@ -509,9 +509,7 @@ class SalaController extends Controller
 
                     $total = $i2 - $i;
 
-
-
-                            $jsn[] = array(
+ 						$jsn[] = array(
 
                                     'id' => $salas->id,
                                     'name' => $salas->name,
@@ -520,7 +518,16 @@ class SalaController extends Controller
                             ); 
 
                     }
-                    echo json_encode($jsn);
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => 1
+
+                    );
+
+
+                    return $resultado;
 
                  }else{
 
