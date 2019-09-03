@@ -318,7 +318,7 @@ class SalaController extends Controller
     {
    
 
-                 if(isset( $_REQUEST['type'])){
+                 if(isset( $_REQUEST['type']) && $_REQUEST['type']!=null){
 
                  $tipo = $_REQUEST['type'];
 
