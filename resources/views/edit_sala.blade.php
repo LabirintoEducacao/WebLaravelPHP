@@ -302,6 +302,10 @@
                 <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal">Alterar sequência</button>
             </div>
             <br>
+            <br>
+            <div>
+                <a style="width:100%" class="btn btn-outline-cyan" href="{{ url('/admin/virtual/'.$id)}}">SALVAR TODAS AS ALTERAÇÕES</a>
+            </div>
 
         </div>
 
