@@ -53,32 +53,6 @@ a:not([href]):not([tabindex]):hover,
     box-sizing: border-box;
 }
 
-@media only screen and (max-width: 1009px) {
-    .mobile-hide {
-        display: none !important;
-    }
-
-    .desktop-hide {
-        display: inline !important;
-    }
-    .logins{
-        margin: 100% 2% 2% 13%;
-    }
-}
-
-@media only screen and (min-width: 1010px) {
-    .mobile-hide {
-        display: inline !important;
-    }
-
-    .desktop-hide {
-        display: none !important;
-    }
-    .logins{
-        margin: 5% 2% 2% 13%;
-    }
-}
-
 html,
 body {
     margin: 0;
@@ -18133,3 +18107,7 @@ body {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+
+
+
