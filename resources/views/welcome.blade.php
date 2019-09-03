@@ -68,7 +68,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links mobile-hide">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
@@ -80,11 +80,11 @@
                     @endauth
                 </div>
             @endif
-             <div class="content">
+             <div class="content" style="margin: 100% 2% 2% 13%">
                 <p class="title m-b-md">
                     Labirinto
                 </p>
-                <div class="row" style="margin: 2% 2% 2% 2%">
+                <div class="row">
                     <div class="card border-info col-md-3 col-sm-12" style="max-width: 20rem;">
                         <div class="card-header">Aluno</div>
                         <div class="card-body text-info">
