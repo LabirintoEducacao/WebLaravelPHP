@@ -59,7 +59,7 @@
                 $i = 0;
                 ?>
                 <div id="controlsmd{{$item->id}}" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" style="margin-left:auto;margin-right:auto;display:block;">
+                    <div class="carousel-inner" style="margin-left:auto;margin-right:auto;display:block;padding-right:2%;padding-left:2%">
                         <h5> {{$item->name}} </h5>
                         @foreach($arquivos as $img) 
                             <?php 
@@ -87,7 +87,7 @@
                         <span class="sr-only">Anterior</span>
                     </a>
                     <a class="carousel-control-next" href="#controlsmd{{$item->id}}" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-arrow-circle-right"></i></span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Próximo</span>
                     </a>
                 </div>
@@ -146,7 +146,7 @@
                 $i = 0;
                 ?>
                 <div id="controlsmd{{$item->id}}" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" style="margin-left:auto;margin-right:auto;display:block;">
+                    <div class="carousel-inner" style="margin-left:auto;margin-right:auto;display:block;padding-right:2%;padding-left:2%">
                         <h5> {{$item->name}} </h5>
                         @foreach($arquivos as $img) 
                             <?php 
