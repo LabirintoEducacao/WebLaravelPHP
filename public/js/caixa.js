@@ -584,13 +584,15 @@
 
        });
 
-       $(function () {
-           $("#sortable").sortable({
-               revert: true
-           });
+//       $(function () {
+//           $("#sortable").sortable({
+//               revert: true
+//           });
+//
+//           $("ul, li").disableSelection();
+//       });
 
-           $("ul, li").disableSelection();
-       });
+$('.ui-state-default').draggable();
 
 
     function qrcode(qrN){
