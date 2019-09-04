@@ -315,6 +315,32 @@
 
     </div>
     
+    <div class="modal fade" id="alteraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <form>
+                    {{ csrf_field() }}
+                    <input type="hidden" value="{{$id}}" name="sala_id" id="sala_id">
+                    <div class="modal-body">
+                        <ul id="sortable" class="sortable">
+                            @foreach($data as $item)
+                            <li class="ui-state-default" value="{{$item->id}}">{{$item->pergunta}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <button type="button" class="btn btn-outline-success altera" id="altera" name="altera">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 
 
     
