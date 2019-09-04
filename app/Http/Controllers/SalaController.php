@@ -319,7 +319,7 @@ public function teste()
                 }
                 else{
 
-                $tipo = -1;
+                $tipo = 1;
                 }    
                      
                  if($tipo == 0){

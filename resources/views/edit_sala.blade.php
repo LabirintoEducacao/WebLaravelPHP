@@ -89,12 +89,15 @@
                                 <div class="form-group row">
                                     <br>
                                     <label for="room_type" class="col">Interação:</label>
-                                    <select name="room_type" id="room_type" class="col">
-                                        <option value="right_key">Chave</option>
-                                        <option value="hope_door" selected>Porta da esperança</option>
-                                        <option value="true_or_false">Verdadeiro ou Falso </option>
+
+                                    <select name="room_type" id="room_typ" class="col">
+                                        <option selected value="right_key">Chave</option>
+                                        <option value="hope_door">Porta da esperança</option>
+                                        <option value="true_or_false">Verdadeiro ou Falso</option>
                                         <option value="multiple_forms">Multiplas Formas</option>
                                     </select>
+
+
                                 </div>
                                 <div class="form-group row">
                                     <input type="hidden" value="0" name="perg_id" id="perg_id">
@@ -310,6 +313,32 @@
         </div>
 
 
+    </div>
+    
+    <div class="modal fade" id="alteraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel"></h4>
+                </div>
+                <form>
+                    {{ csrf_field() }}
+                    <input type="hidden" value="{{$id}}" name="sala_id" id="sala_id">
+                    <div class="modal-body">
+                        <ul id="sortable" class="sortable">
+                            @foreach($data as $item)
+                            <li class="ui-state-default" value="{{$item->id}}">{{$item->pergunta}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                        <button type="button" class="btn btn-outline-success altera" id="altera" name="altera">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     
 

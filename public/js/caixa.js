@@ -139,9 +139,10 @@
                        '<div class="form-group hea row">' +
                        '<label for="room_type_ref" class="col">Interação:</label>' +
                        '<select name="room_type_ref" id="room_type_ref" class="col">' +
-                       '<option selected value="key">Chave</option>' +
-                       '<option value="door">Porta</option>' +
-                       '<option value="diamond">Diamante</option>' +
+                       '<option selected value="right_key">Chave</option>' +
+                       '<option value="hope_door" selected>Porta da esperança</option>' +
+                       '<option value="true_or_false">Verdadeiro ou Falso </option>' +
+                       '<option value="multiple_forms">Multiplas Formas</option>' +
                        '</select>' +
                        '</div>' +
                        '<table class="table table-bordered table-hover hea" id="dynamic_field2" border="0">' +
@@ -157,7 +158,7 @@
                        '<td>' +
                        '<select name ="tipo_resp_ref[]" class="form-control tipo_resp_ref">' +
                        '<option selected value="1">Texto</option>' +
-                       '<option value="2">imagem</option>' +
+                       '<option value="2">Imagem</option>' +
                        '<option value="3">Vídeo</option>' +
                        '<option value="4">Áudio</option>' +
                        '</select>' +
