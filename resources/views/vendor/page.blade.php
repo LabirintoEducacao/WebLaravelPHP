@@ -157,6 +157,7 @@
     <script src="{{ asset('admin/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
     <script src="{{ asset('admin/node_modules/@coreui/coreui/dist/js/coreui.min.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
 </body>
 
 </html>

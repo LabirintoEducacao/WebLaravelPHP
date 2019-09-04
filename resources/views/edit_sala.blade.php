@@ -307,7 +307,7 @@
             <br>
             <br>
             <div>
-                <a style="width:100%" class="btn btn-outline-cyan" href="{{ url('/admin/virtual/'.$id)}}">SALVAR TODAS AS ALTERAÇÕES</a>
+                <a style="width:100%" class="btn btn-outline-cyan" href="{{ url('/admin/virtual/'.$id)}}">SALVAR ALTERAÇÕES</a>
             </div>
 
         </div>
