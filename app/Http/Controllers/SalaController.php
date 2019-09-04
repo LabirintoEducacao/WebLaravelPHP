@@ -394,22 +394,26 @@ public function teste()
                     $resultado = array(
                          
                           "salas" => $jsn,
-                          "success" => -1
+                          "success" => 1
 
                     );
 
                     return $resultado;
                 }
 
+
                 }elseif($tipo == 1 && isset($_REQUEST['id'])){
 
                     
-                    $json = $_REQUEST['id'];
+                $json = $_REQUEST['id'];
 
+                $user = DB::table('users')->where('id','=',$json)->get();
 
-                 $salas_user = DB::table('sala_user')->where('user_id','=',$json)->select('id','user_id','sala_id')->get();
-
-               
+            
+                if(count($user)>0){
+                      
+                 $salas_user = DB::table('sala_user')->where('user_id','=',$json)->get();
+                  
                 if(count($salas_user)>0){
 
                  foreach($salas_user as $sala_user){
@@ -477,7 +481,7 @@ public function teste()
                     $resultado = array(
                          
                           "salas" => $jsn,
-                          "success" => -1
+                          "success" => 1
 
                     );
 
@@ -485,9 +489,11 @@ public function teste()
                     return $resultado;
 
                    }
-                  
-                }else{
-                         $jsn = array(); 
+
+
+                   }else{
+                     
+                   $jsn = array(); 
 
                     $resultado = array(
                          
@@ -498,8 +504,24 @@ public function teste()
 
 
                     return $resultado;
-                 }
-                    
-   }
+
+                   }
+                  
+                }else{
+
+                  $jsn = array(); 
+
+                    $resultado = array(
+                         
+                          "salas" => $jsn,
+                          "success" => -1
+
+                    );
+
+
+                    return $resultado;                    
+   
+                }
+    }
 
 }
