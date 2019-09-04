@@ -319,7 +319,7 @@ public function teste()
                 }
                 else{
 
-                $tipo = -1;
+                $tipo = 1;
                 }    
                      
                  if($tipo == 0){
@@ -394,7 +394,7 @@ public function teste()
                     $resultado = array(
                          
                           "salas" => $jsn,
-                          "success" => -1
+                          "success" => 1
 
                     );
 

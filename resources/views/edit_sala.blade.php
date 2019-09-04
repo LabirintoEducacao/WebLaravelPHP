@@ -89,12 +89,15 @@
                                 <div class="form-group row">
                                     <br>
                                     <label for="room_type" class="col">Interação:</label>
-                                    <select name="room_type" id="room_type" class="col">
-                                        <option value="right_key">Chave</option>
-                                        <option value="hope_door" selected>Porta da esperança</option>
-                                        <option value="true_or_false">Verdadeiro ou Falso </option>
+
+                                    <select name="room_type" id="room_typ" class="col">
+                                        <option selected value="right_key">Chave</option>
+                                        <option value="hope_door">Porta da esperança</option>
+                                        <option value="true_or_false">Verdadeiro ou Falso</option>
                                         <option value="multiple_forms">Multiplas Formas</option>
                                     </select>
+
+
                                 </div>
                                 <div class="form-group row">
                                     <input type="hidden" value="0" name="perg_id" id="perg_id">
