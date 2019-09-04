@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container" style="padding-right: 100px; padding-left: 100px;">
+<div class="container" style="padding-right: 5%; padding-left: 5%;">
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
@@ -23,14 +23,18 @@
         </button>
         <?php } ?>
     </p>
-    <div align="right">
+    <div style="float:right;">
         <div class="row">
-            <label class="col-3 offset-8">Total de Perguntas: </label>
-            <input value="{{$c_perg}}" disabled class="col">
+            <div class="col">
+            <label>Total de Perguntas: </label>
+            <input value="{{$c_perg}}" disabled>
+        </div>
         </div>
         <div class="row">
-            <label class="col-3 offset-8">Total de Perguntasde Reforço: </label>
-            <input value="{{$c_ref}}" disabled class="col">
+            <div class="col">
+            <label>Total de Reforços: </label>
+            <input value="{{$c_ref}}" disabled>
+        </div>
         </div>
     </div>
 
@@ -121,7 +125,7 @@
                                             <td>
                                                 <select name="tipo_resp[]" id="tipo_opcao" class="form-control tipo_resp">
                                                     <option selected value="1">Texto</option>
-                                                    <option value="2">imagem</option>
+                                                    <option value="2">Imagem</option>
                                                     <option value="3">Vídeo</option>
                                                     <option value="4">Áudio</option>
                                                 </select>
@@ -194,10 +198,10 @@
     <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
     
 
-    <div class="container-fluid row desktop" style="padding-top: 10px;">
+    <div class="container-fluid row desktop">
 
         <!------- Estrutura de repetição (CARD)------------------->
-        <div class="col-md-12" style="padding-top:20px;" display="inline">
+        <div class="col-md-12">
             <br>
             @foreach($data as $item)
             <div class="row">
@@ -211,9 +215,9 @@
                         @if($path->id==$pp->path_id)
 
                         @if($path->disp == 1)
-                        <h4 display="inline" class="col-sm-12 col-md-3">Pergunta:&emsp;</h4>
-                        <h4 display="inline" align="left" class="col-sm-12 col-md-8">{{$item->pergunta}}</h4>
-                        <span class="col-sm-12 col-md-1">
+                        <h4 display="inline" class="col-xs-12 col-md-3">Pergunta:&emsp;</h4>
+                        <h4 display="inline" align="left" class="col-xs-12 col-md-8">{{$item->pergunta}}</h4>
+                        <span class="col-xs-12 col-md-1">
                              <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>
                               <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
 
@@ -340,6 +344,7 @@
             </div>
         </div>
     </div>
+</div>
     
 
 

@@ -237,7 +237,7 @@
                console.log(lista2);
 
                $.ajax({
-                   url: 'http://127.0.0.1:8000/admin/alterar-ordem',
+                   url: 'http://192.168.240.222/admin/alterar-ordem',
                    method: "POST",
                    data: {
                        lista: lista

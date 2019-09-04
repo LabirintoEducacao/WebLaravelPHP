@@ -51,7 +51,7 @@
                 <div class="modal-header" style="background-color:#2F4F4F;">
                     <h5 class="modal-title"></h5>
 
-                    <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
+                    <h5 style="  font-size: 20px;color:#ffffff;
         " id="exampleModalScrollableTitle">Qr Code </h5>
 
                 </div>
@@ -96,7 +96,7 @@ $i = 0;
 
  @if($i == 0)
     <div class="carousel-item active">
-      <img class="d-block w-100" src="{{ asset($b[1]) }}" alt="First slide">
+      <img class="d-block w-100" src="{{ asset($b[1]) }}" alt="First slide" width="40%">
       <p> Qr Code: {{$i}} </p>
     </div>
    
@@ -138,7 +138,7 @@ $i++;
 </div>
 
             <div class="modal-footer">
-             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 
 </div>
 </div>
@@ -185,7 +185,7 @@ $i++;
                 <div class="modal-header" style="background-color:#2F4F4F;">
                     <h5 class="modal-title"></h5>
 
-                    <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
+                    <h5 style="  font-size: 20px;color:#ffffff;
         " id="exampleModalScrollableTitle">Qr Code </h5>
 
                 </div>
@@ -263,7 +263,7 @@ $i++;
 </div>
 
 <div class="col-1"> 
-    <a class="carousel-control-next" href="#controlsmd{{$item->id}}" role="button" data-slide="next" style=" padding-right:20px; font-size: 20px;">
+    <a class="carousel-control-next" href="#controlsmd{{$item->id}}" role="button" data-slide="next" >
     <span class="fa fa-arrow-circle-right"  style="color:#000000;" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
@@ -271,8 +271,8 @@ $i++;
 
 </div>
 
-            <div class="modal-footer">
-             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+<div class="modal-footer">
+ <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 
 </div>
 </div>
