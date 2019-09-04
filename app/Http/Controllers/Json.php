@@ -8,7 +8,9 @@ use App\Sala;
 use App\Pergunta;
 use App\Resposta;
 use App\Path;
-use QrCode; 
+use QrCode;
+use File;
+
 
 
 
@@ -56,7 +58,31 @@ class Json extends Controller
      public function show($id)
     {   
         
-               
+          
+
+
+
+//-------------------- Deletando Pasta-------------------//
+$strCaminho = public_path() . '/sala/' . $id;
+
+ if(file_exists($strCaminho)) { 
+
+            File::deleteDirectory($strCaminho);
+            
+        }
+
+
+//-------------------- Deletando Pasta-------------------//            
+
+
+ $strCaminho = public_path() . '/sala/' . $id; // 'public\projetos_arquivos\codigo_projeto'
+
+    if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
+        $objProjetoDiretorio = File::makeDirectory($strCaminho);
+    }
+
+
+
 // --------------------- Consultando Dados da Tabela ------------------//
 
 
@@ -68,8 +94,18 @@ class Json extends Controller
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
-$limite = 200;
+$limite = 2000;
 $n=1;
+
+
+if(count($pergunta) == 0){
+
+
+    return redirect('admin/sala');
+
+
+}
+
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
@@ -444,9 +480,8 @@ $n ++;
 
 }
 
-
-
  
+    return redirect('admin/sala');
 
 }
  

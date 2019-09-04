@@ -14,16 +14,16 @@
         
      
      	<h1> Qr com Zip </h1>
-		<img src="http://192.168.240.222/sala/{{$data}}/0.png">
+		
 
                
 
 				<h1> Qr sem ZIP - (Json File) </h1>
 
-				<img src="http://192.168.240.222/sala/{{$data}}/json.png"> 
+				 
 
 				
-				<p>  {{$json}} </p>
+		
 
 				
     </div>

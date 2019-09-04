@@ -1,6 +1,7 @@
 @extends('vendor.page')
 
 @section('content')
+
 <!------------------------ Cabeçalho ------------------------>
 <div class="container-fluid" style="border-bottom: solid; ">
     <div class="row">
@@ -39,7 +40,7 @@
         </div>
     </div>
 
-        </div>
+       
             
 
 
@@ -67,65 +68,10 @@
         
 </div>
 
-
-
-<!-- 
-    <?php
-    $id=19;
-    $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
-if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
-
-
-
-$arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
-
-$i = 0;
-     
- foreach($arquivos as $img){
-          
-          $b = explode('public/', $img,2); ?>
-
-     @if($i == 0)
-         
-    <div class="carousel-item active">
-      <img src="{{ asset($b[1]) }}"class="d-block w-100" alt="...">
-    </div>
-    @endif
-
-    @if($i > 0)
-    <div class="carousel-item">
-      <img  src="{{ asset($b[1]) }}" class="d-block w-100" alt="...">
-    </div>
-    @endif
-    <?php
-    $i ++;
-     ?>
-
-  </div>
-
-
-<?php
-    
-      }
-          ?>
-      
-        </div>
-
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="fa fa-arrow-left" style="font-size: 20px; color:#000000;"aria-hidden="true"></span>
-    <span class="sr-only"> Anterior </span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="fa fa-arrow-right" style="font-size: 20px; color:#000000;" aria-hidden="true"></span>
-    <span class="sr-only"> Proximo  </span>
-
-  </a>
-      
-</div> -->
-
-
    </div>      
+    </div>
 
+   
     @endif
     @endif
 
@@ -162,25 +108,4 @@ $i = 0;
         </div>
     </div>
 
-
-
-    @endsection
-
-    @section('script')
-    
-    
-        @section('script')
-    
-<!--
-    <script>
-function carrega(){
-    
-}
-
-
-</script>
--->
-    @endsection
-    
-    
-    @endsection
+@endsection
