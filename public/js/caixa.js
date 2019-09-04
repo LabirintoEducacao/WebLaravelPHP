@@ -139,7 +139,7 @@
                        '<div class="form-group hea row">' +
                        '<label for="room_type_ref" class="col">Interação:</label>' +
                        '<select name="room_type_ref" id="room_type_ref" class="col">' +
-                       '<option value="right_key">Chave</option>' +
+                       '<option selected value="right_key">Chave</option>' +
                        '<option value="hope_door" selected>Porta da esperança</option>' +
                        '<option value="true_or_false">Verdadeiro ou Falso </option>' +
                        '<option value="multiple_forms">Multiplas Formas</option>' +
@@ -584,15 +584,13 @@
 
        });
 
-//       $(function () {
-//           $("#sortable").sortable({
-//               revert: true
-//           });
-//
-//           $("ul, li").disableSelection();
-//       });
+       $(function () {
+           $("#sortable").sortable({
+               revert: true
+           });
 
-$('.ui-state-default').draggable();
+           $("ul, li").disableSelection();
+       });
 
 
     function qrcode(qrN){

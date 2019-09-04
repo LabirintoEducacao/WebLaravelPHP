@@ -34,9 +34,6 @@
     <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
     <!-- Global site tag (gtag.js) - Google Analytics-->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-    
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
-    <script src="jquery.ui.touch-punch.min.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -159,7 +156,7 @@
     <script src="{{ asset('admin/node_modules/pace-progress/pace.min.js')}}"></script>
     <script src="{{ asset('admin/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
     <script src="{{ asset('admin/node_modules/@coreui/coreui/dist/js/coreui.min.js')}}"></script>
-    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
 </body>
 
 </html>
