@@ -34,16 +34,25 @@
 
 
             <!----------------------Botao do Modal-------------------------->
-             <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+            
+                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
 
-    
-</div>
-</div>
+             <?php
+                $id = $item->id;
+                $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
+                if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
+                $arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
+                $i = 0;
+                
+                foreach($arquivos as $img){
 
-
-        
-<!-- Modal -------------------->
-<div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                    $i++;
+                }
+                        
+               ?>
+           
+ @if($i > 0)
+    <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#2F4F4F;">
@@ -58,22 +67,22 @@
                 $arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
                 $i = 0;
                 ?>
+                <h5> {{$item->name}} </h5>
                 <div id="controlsmd{{$item->id}}" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" style="margin-left:auto;margin-right:auto;display:block;padding-right:2%;padding-left:2%">
-                        <h5> {{$item->name}} </h5>
                         @foreach($arquivos as $img) 
                             <?php 
                                 $b = explode('public/', $img,2);         
                             ?>
                             @if($i == 0)
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset($b[1]) }}" alt="First slide" width="40%">
+                                <img class="d-block img-fluid" src="{{ asset($b[1]) }}" alt="First slide">
                                 <p> Qr Code: {{$i}} </p>
                             </div>
                             @endif
                             @if($i > 0)
                             <div class="carousel-item ">
-                                <img class="d-block w-100" src="{{ asset($b[1]) }}" alt="Second slide">
+                                <img class="d-block " src="{{ asset($b[1]) }}" alt="Second slide">
                                 <p> Qr Code: {{$i}} </p>
                             </div>
                             @endif   
@@ -98,6 +107,32 @@
         </div>
     </div>
 </div>
+@else
+ <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content ">
+            <div class="modal-header" style="background-color:#2F4F4F;">
+                <h5 class="modal-title"></h5>
+                <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
+            </div>
+            <div class="modal-body">
+             <h5> {{$item->name}} </h5>
+             <h4 style="color: red;"> Não Existe QRCODE para esse labirinto verifique se existe perguntas ou se está salvo as alterações do labirinto.</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+ @endif
+</div>
+</div>
+
+
+        
+<!-- Modal -------------------->
+
 <!--- Fim Modal --->
 
        
@@ -109,28 +144,38 @@
     @if($user == $sala->user_id)
 
 
-
-    <div class="col-md-3" style="padding-top:20px;">
-        <div class="card">
+    
+       <div class="col-md-3" style="padding-top:20px;">
+        <div class="card ">
 
             <p class="card-title"> {{$item->name}} </p>
 
             <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
-
+            <br><br>
 
             <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
 
+
+            <!----------------------Botao do Modal-------------------------->
             
-            <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
 
+             <?php
+                $id = $item->id;
+                $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
+                if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
+                $arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
+                $i = 0;
+                
+                foreach($arquivos as $img){
 
-  
-</div>
-</div>
-
-
- <!-- Modal -------------------->
-<div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                    $i++;
+                }
+                        
+               ?>
+           
+ @if($i > 0)
+    <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#2F4F4F;">
@@ -145,22 +190,22 @@
                 $arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
                 $i = 0;
                 ?>
+                <h5> {{$item->name}} </h5>
                 <div id="controlsmd{{$item->id}}" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" style="margin-left:auto;margin-right:auto;display:block;padding-right:2%;padding-left:2%">
-                        <h5> {{$item->name}} </h5>
                         @foreach($arquivos as $img) 
                             <?php 
                                 $b = explode('public/', $img,2);         
                             ?>
                             @if($i == 0)
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{ asset($b[1]) }}" alt="First slide" width="40%">
+                                <img class="d-block img-fluid" src="{{ asset($b[1]) }}" alt="First slide">
                                 <p> Qr Code: {{$i}} </p>
                             </div>
                             @endif
                             @if($i > 0)
                             <div class="carousel-item ">
-                                <img class="d-block w-100" src="{{ asset($b[1]) }}" alt="Second slide">
+                                <img class="d-block " src="{{ asset($b[1]) }}" alt="Second slide">
                                 <p> Qr Code: {{$i}} </p>
                             </div>
                             @endif   
@@ -184,6 +229,27 @@
             </div>
         </div>
     </div>
+</div>
+@else
+ <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content ">
+            <div class="modal-header" style="background-color:#2F4F4F;">
+                <h5 class="modal-title"></h5>
+                <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
+            </div>
+            <div class="modal-body">
+             <h5> {{$item->name}} </h5>
+             <h4 style="color: red;"> Não Existe QRCODE para esse labirinto verifique se existe perguntas ou se está salvo as alterações do labirinto.</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+ @endif
+</div>
 </div>
 
 <!--- Fim Modal --->
