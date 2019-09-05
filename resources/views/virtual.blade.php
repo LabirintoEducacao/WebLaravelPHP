@@ -25,17 +25,13 @@
     <div class="col-md-3" style="padding-top:20px;">
         <div class="card ">
 
-            <p class="card-title"> {{$item->name}} </p>
+            <p class="card-title" style="margin-right:auto;margin-left:auto"> {{$item->name}} </p>
 
-            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
-            <br><br>
-
-            <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
-
-
-            <!----------------------Botao do Modal-------------------------->
+            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; margin-right:auto;margin-left:auto" alt="imagen labirinto">
+            <br>
+            <!--------------------Botao do Modal-------------------------->
             
-                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}" style="margin-right:auto;margin-left:auto;width:80%"> Qr Code</button>
 
              <?php
                 $id = $item->id;
@@ -117,7 +113,7 @@
             </div>
             <div class="modal-body">
              <h5> {{$item->name}} </h5>
-             <h4 style="color: red;"> Não Existe QRCODE para esse labirinto verifique se existe perguntas ou se está salvo as alterações do labirinto.</h4>
+             <h4 style="color: red;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -148,14 +144,10 @@
        <div class="col-md-3" style="padding-top:20px;">
         <div class="card ">
 
-            <p class="card-title"> {{$item->name}} </p>
+            <p class="card-title" style="margin-right:auto;margin-left:auto"> {{$item->name}} </p>
 
-            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; " alt="imagen labirinto">
-            <br><br>
-
-            <a href="virtual/{{$item->id}}" class="btn btn-sm btn-outline-info fa fa-gamepad ">&ensp;Jogar</a>
-
-
+            <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; margin-right:auto;margin-left:auto" alt="imagen labirinto">
+            <br>
             <!----------------------Botao do Modal-------------------------->
             
                  <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
@@ -240,7 +232,7 @@
             </div>
             <div class="modal-body">
              <h5> {{$item->name}} </h5>
-             <h4 style="color: red;"> Não Existe QRCODE para esse labirinto verifique se existe perguntas ou se está salvo as alterações do labirinto.</h4>
+             <h4 style="color: red;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
