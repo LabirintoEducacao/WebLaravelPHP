@@ -44,13 +44,13 @@
         <div class="card ">
 
 
-            <h5 style="color:green"> {{$item->name}} </h5>
+            <h5 style="color:green; margin-right: auto; margin-left: auto; "> {{$item->name}} </h5>
 
             <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; margin-right:auto;margin-left:auto" alt="imagen labirinto">
             <br>
             <!----------------------Botao do Modal-------------------------->
             
-                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                 <button type="button" class="btn btn-outline-cyan  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
 
   
 <?php 
@@ -194,13 +194,13 @@
         <div class="card ">
 
 
-            <h5 style="color:green"> {{$item->name}} </h5>
+            <h5 style="color:green; margin-right: auto; margin-left: auto; "> {{$item->name}} </h5>
 
             <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; margin-right:auto;margin-left:auto" alt="imagen labirinto">
             <br>
             <!----------------------Botao do Modal-------------------------->
             
-                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                 <button type="button" class="btn btn-outline-cyan  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
 
   
 <?php 
