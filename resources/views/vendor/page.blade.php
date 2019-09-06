@@ -49,7 +49,7 @@
     </script>
 </head>
 
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show" style="position:relative;">
     <header class="app-header navbar row">
 
         <div class="d-lg-none mr-auto" align="left">

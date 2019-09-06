@@ -603,4 +603,6 @@
 
 $('.carousel').carousel({
   interval: 1000
-})
+});
+
+$('body').scrollspy({ target: '#list-example' });
