@@ -103,15 +103,15 @@
                                 $b = explode('public/', $img,2);         
                             ?>
                             @if($i == 0)
-                            <div class="carousel-item active">
-                                <img class="d-block img-fluid " src="{{ asset($b[1]) }}" alt="First slide">
-                                <p> Qr Code: {{$i}} </p>
+                            <div class="carousel-item active col">
+                                <img class="d-block img-fluid  " src="{{ asset($b[1]) }}" alt="First slide">
+                                <p> Qr Code: {{$i+1}} </p>
                             </div>
                             @endif
                             @if($i > 0)
-                            <div class="carousel-item ">
-                                <img class="d-block " src="{{ asset($b[1]) }}" alt="Second slide">
-                                <p> Qr Code: {{$i}} </p>
+                            <div class="carousel-item col ">
+                                <img class="d-block img-fluid  " src="{{ asset($b[1]) }}" alt="Second slide">
+                                <p> Qr Code: {{$i+1}} </p>
                             </div>
                             @endif   
                             <?php 
@@ -252,18 +252,20 @@
                             <?php 
                                 $b = explode('public/', $img,2);         
                             ?>
+                            
                             @if($i == 0)
-                            <div class="carousel-item active">
+                            <div class="carousel-item active col ">
                                 <img class="d-block img-fluid " src="{{ asset($b[1]) }}" alt="First slide">
-                                <p> Qr Code: {{$i}} </p>
+                                <p> Qr Code: {{$i+1}} </p>
                             </div>
                             @endif
                             @if($i > 0)
-                            <div class="carousel-item ">
-                                <img class="d-block " src="{{ asset($b[1]) }}" alt="Second slide">
-                                <p> Qr Code: {{$i}} </p>
+                            <div class="carousel-item col">
+                                <img class="d-block img-fluid" src="{{ asset($b[1]) }}" alt="Second slide">
+                                <p> Qr Code: {{$i+1}} </p>
                             </div>
-                            @endif   
+                            @endif  
+                            
                             <?php 
                             $i++; 
                             ?>

@@ -599,3 +599,8 @@
         else
             document.getElementById(qrN).style.display = 'none';
     }
+
+
+$('.carousel').carousel({
+  interval: 1000
+})

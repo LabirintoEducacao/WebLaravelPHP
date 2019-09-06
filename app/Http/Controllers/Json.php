@@ -94,7 +94,7 @@ $strCaminho = public_path() . '/sala/' . $id;
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
-$limite = 100;
+$limite = 200;
 $n=1;
 
 
