@@ -14,14 +14,16 @@
 
 <!------------------------ Espaço das Salas  --------------------------->
 
+<?php $user = Auth::user()->id;?>
+<?php $linha = 0; ?>
+
 <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
 
     <h4> Salas Privadas </h4>
 
 
   
-    <?php $user = Auth::user()->id;?>
-    <?php $linha = 0; ?>
+    
     @foreach($data as $item)
 
     @foreach($sala_user as $sala)
@@ -36,34 +38,34 @@
 
        
 
-        
-       <div class="col-md-3 " style="padding-top:20px;">
+
+
+    <div class="col-md-3" style="padding-top:20px;">
         <div class="card ">
 
 
-           <h5 style="color:green"> {{$item->name}} </h5>
-
+            <h5 style="color:green"> {{$item->name}} </h5>
 
             <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; margin-right:auto;margin-left:auto" alt="imagen labirinto">
-   
+            <br>
+            <!----------------------Botao do Modal-------------------------->
             
-                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}" style="margin-right:auto;margin-left:auto;width:80%"> Qr Code</button>
+                 <button type="button" class="btn btn-outline-cyan btn-sm fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
 
-             </div>
-            </div>
-
-
-
-        <?php 
+  
+<?php 
          $flag = 0;
          $linha++; ?> 
 
          @if($linha > 4 )
         <?php $flag = 1; ?>  
         </div>
-         @endif           
+         @endif 
 
-   <?php
+
+
+
+             <?php
                 $id = $item->id;
                 $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
                 if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
@@ -78,7 +80,6 @@
                ?>
            
  @if($i > 0)
-
     <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
@@ -86,8 +87,7 @@
                 <h5 class="modal-title"></h5>
                 <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
-
-            <div class="modal-body">
+            <div class="modal-body ">
                 <?php
                 $id = $item->id;
                 $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
@@ -104,7 +104,7 @@
                             ?>
                             @if($i == 0)
                             <div class="carousel-item active">
-                                <img class="d-block img-fluid" src="{{ asset($b[1]) }}" alt="First slide">
+                                <img class="d-block img-fluid " src="{{ asset($b[1]) }}" alt="First slide">
                                 <p> Qr Code: {{$i}} </p>
                             </div>
                             @endif
@@ -119,6 +119,7 @@
                             ?>
                         @endforeach
                     </div>
+
                     <a class="carousel-control-prev" href="#controlsmd{{$item->id}}" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Anterior</span>
@@ -129,14 +130,12 @@
                     </a>
                 </div>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-
 @else
  <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -156,26 +155,24 @@
     </div>
 </div>
  @endif
-
+</div>
+</div>
 
 
 
 
 <!--- Fim Modal --->
 
-   
     @endif
     @endif
     @endforeach
     @endforeach
 
-       @if($flag == 0 )
+    @if($flag == 0 )
         </div>
         @endif  
-    </div>
 
-
-
+</div>
 
   <!------- Estrutura de repetição (CARD)------------------->
   
@@ -316,7 +313,6 @@
 
 <!--- Fim Modal --->
 
-       
 
     @endif
     @endforeach
@@ -325,6 +321,7 @@
         </div>
         @endif  
 
-</div>
 
+
+       
 @endsection

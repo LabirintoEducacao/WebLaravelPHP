@@ -74,7 +74,7 @@ class SalaController extends Controller
                $idsala = Sala::all()->last()->id;
 
 
-           // public function salvar($objArquivo, $objProjeto, $objDataAtualizacao) {
+    // public function salvar($objArquivo, $objProjeto, $objDataAtualizacao) {
     $strCaminho = public_path() . '/sala/' . $idsala; // 'public\projetos_arquivos\codigo_projeto'
 
     if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
@@ -139,10 +139,7 @@ class SalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -221,6 +218,7 @@ class SalaController extends Controller
     }
 
     public function entrar(){
+
         $salas = Sala::all();
         
         $sala_user = DB::table('sala_user')
@@ -228,6 +226,8 @@ class SalaController extends Controller
 
         return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user]);
     }
+
+    
     public function entrar_guest(){
         $salas = Sala::where('public','=',1)->get();
 
