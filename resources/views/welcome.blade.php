@@ -76,10 +76,7 @@
 
                      display: none;
                 }
-            }
-
-
-               
+            }     
 
         </style>
     </head>

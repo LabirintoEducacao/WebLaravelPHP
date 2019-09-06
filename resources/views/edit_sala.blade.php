@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container" style="padding-right: 5%; padding-left: 5%;">
+<div class="container margin" style="margin-top: 20px;">
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
@@ -11,29 +11,33 @@
 
     <input type="hidden" value="52" id="num_y">
 
-    <p style="font-size:35px;" align="center">
-        <a class="btn btn-outline-success" href="{{ url('admin/alunos/'.$id) }}">ADICIONAR ALUNOS</a>
-        &emsp;EDIÇÃO DA SALA&emsp;
-
+    <div class="row">
+        <div class="col">
+        <a class="btn btn-outline-success tamanhobutton" href="{{ url('admin/alunos/'.$id) }}">ADICIONAR ALUNOS</a>
+        </div>
+        <div class="col">
+         <div class="tamanhofonte">EDIÇÃO DA SALA</div>
+        </div>
         <?php if(count($data)>=20){ ?>
-        <button class="btn btn-outline-info" data-toggle="modal" data-target="#addPerg" disabled>ADICIONAR PERGUNTA E RESPOSTA
+        <div class="col ">
+        <button class="btn btn-outline-info tamanhobutton button" data-toggle="modal" data-target="#addPerg" disabled>ADICIONAR PERGUNTA E RESPOSTA
         </button>
+        </div>
         <?php }else{ ?>
-        <button class="btn btn-outline-info" data-toggle="modal" data-target="#addPerg">ADICIONAR PERGUNTA E RESPOSTA
+        <div class="col">
+        <button class="btn btn-outline-info tamanhobutton button" data-toggle="modal" data-target="#addPerg">ADICIONAR PERGUNTA E RESPOSTA
         </button>
+        </div>
         <?php } ?>
-    </p>
-    <div style="float:right;">
-        <div class="row">
-            <div class="col">
-            <label>Total de Perguntas: </label>
-            <input value="{{$c_perg}}" disabled>
+    </div>
+
+    <div class="container" style="margin-top: 30px;">
+        <div class="row justify-content-end">
+            <label>Total de Perguntas: {{$c_perg}}</label>
         </div>
-        </div>
-        <div class="row">
-            <div class="col">
-            <label>Total de Reforços: </label>
-            <input value="{{$c_ref}}" disabled>
+        <div class="row justify-content-end" style="margin-right: -9px;">
+            <div>
+            <label>Total de Reforços: {{$c_ref}}</label>
         </div>
         </div>
     </div>
@@ -198,14 +202,14 @@
     <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
     
 
-    <div class="container-fluid row desktop">
+    <div class="container paddin">
 
         <!------- Estrutura de repetição (CARD)------------------->
         <div class="col-md-12">
             <br>
             @foreach($data as $item)
             <div class="row">
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-12 col-sm-12" style="margin-top: 20px;">
                     <div class="row">
                         <?php $errado=0; ?>
                         @foreach($path_perg as $pp)
@@ -215,15 +219,11 @@
                         @if($path->id==$pp->path_id)
 
                         @if($path->disp == 1)
-                        <h4 display="inline" class="col-xs-12 col-md-3">Pergunta:&emsp;</h4>
-                        <h4 display="inline" align="left" class="col-xs-12 col-md-8">{{$item->pergunta}}</h4>
-                        <span class="col-xs-12 col-md-1">
-                             <button type="button" class="btn btn-outline-info fa fa-pencil" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>
-                              <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash"></a>
-
-                        </span>
+                        <h4 class="col">Pergunta:&emsp;</h4>
+                             <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
+                              <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
+                        <p align="left" class="col-12" style=" font-size: 120%; margin-top: 20px; line-height: 30px;">&emsp;{{$item->pergunta}}</p>
                         @endif
-                        
                         @endif
                         @endforeach
                         @endif
@@ -238,8 +238,8 @@
                     @if($pergresp->perg_id==$item->id)
                     @if($pergresp->resp_id==$resposta->id)
                     <div class="row">
-                        <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
-                        <h4 display="inline" align="left" class="col-sm-12 col-md-11">{{$resposta->resposta}}</h4>
+                        <h5 class="col-1"><?php echo $letras[$y];?></h5>
+                        <p class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
                     </div>
                     <?php $y++; ?>
                     <br><br>

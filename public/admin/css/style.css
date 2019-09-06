@@ -18110,4 +18110,58 @@ body {
 
 
 
+/* Telefones em paisagem e abaixo */
+@media (max-width: 480px) { 
+
+
+ 
+ }
+
+/* Telefones em paisagem a tablet em retrato */
+@media (max-width: 767px) {
+    .tamanhofonte{
+         font-size: 150%;
+         text-align: center;
+    }
+
+    .tamanhobutton{
+
+         font-size: 80%;
+    }
+    .buttonperg{
+       font-size: 50%;
+       margin-left: 75%;
+
+    }
+
+
+}
+
+/* Tablet em retrato a paisagem e desktop */
+@media (min-width: 768px) and (max-width: 1199px) {
+        .tamanhofonte{
+         font-size: 250%;
+          text-align: center;
+    }
+}
+/* Desktop grande */
+@media (min-width: 1200px) {
+      .tamanhofonte{
+         font-size: 300%;
+
+    }
+
+      .button{
+         margin-left: 50%;
+      }
+
+      .margin{
+         padding-right: 5%; 
+         padding-left: 5%;
+      }
+ 
+}
+
+
+
 
