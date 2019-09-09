@@ -19,6 +19,7 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
    
     <title>Labirinto</title>
+
     <!-- Icons-->
     <link href="{{ asset('admin/node_modules/@coreui/icons/css/coreui-icons.min.css')}}" rel="stylesheet">
     <link href="{{ asset('admin/node_modules/flag-icon-css/css/flag-icon.min.css')}}" rel="stylesheet">
@@ -47,6 +48,103 @@
         gtag('config', 'UA-118965717-5');
 
     </script>
+    <style>
+        #toast {
+            visibility: hidden;
+            max-width: 50px;
+            height: 50px;
+            /*margin-left: -125px;*/
+            margin: auto;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+
+            position: fixed;
+            z-index: 1;
+            left: 0;right:0;
+            bottom: 30px;
+            font-size: 17px;
+            white-space: nowrap;
+        }
+        #toast #img{
+            width: 50px;
+            height: 50px;
+
+            float: left;
+
+            padding-top: 16px;
+            padding-bottom: 16px;
+
+            box-sizing: border-box;
+
+            color: #fff;
+        }
+        #toast #desc{
+
+
+            color: #fff;
+
+            padding: 16px;
+
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        #toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;} 
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes expand {
+            from {min-width: 50px} 
+            to {min-width: 350px}
+        }
+
+        @keyframes expand {
+            from {min-width: 50px}
+            to {min-width: 350px}
+        }
+        @-webkit-keyframes stay {
+            from {min-width: 350px} 
+            to {min-width: 350px}
+        }
+
+        @keyframes stay {
+            from {min-width: 350px}
+            to {min-width: 350px}
+        }
+        @-webkit-keyframes shrink {
+            from {min-width: 350px;} 
+            to {min-width: 50px;}
+        }
+
+        @keyframes shrink {
+            from {min-width: 350px;} 
+            to {min-width: 50px;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;} 
+            to {bottom: 60px; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 60px; opacity: 0;}
+        }
+            </style>
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show" style="position:relative;">
@@ -72,6 +170,45 @@
 
     </header>
     <div class="app-body">
+        <div id="toast"><div id="img"></div><div id="desc"></div></div>
+        <script>
+        @if(Session::has('message'))
+        var type = "{{Session::get('alert-type','info')}}";
+        document.getElementById("desc").innerHTML = "{{ Session::get('message') }}";
+
+
+        switch (type) {
+            case 'info':
+                document.getElementById("img").style = "background-color:#004077;";
+                document.getElementById("img").innerHTML = '<i class="fa fa-info"></i>';
+                document.getElementById('toast').style = "background-color:#3c8fd6;";
+                break;
+            case 'success':
+                document.getElementById("img").style = "background-color:#018830";
+                document.getElementById("img").innerHTML = '<i class="fa fa-check-circle"></i>';
+                document.getElementById('toast').style = "background-color:#04af40;";
+                break;
+            case 'warning':
+                document.getElementById('img').style = "background-color:#b5a700;";
+                document.getElementById("img").innerHTML = '<i class="fa fa-exclamation-triangle"></i>';
+                document.getElementById('toast').style = "background-color:#e5d40e;";
+                break;
+            case 'error':
+                document.getElementById('img').style = "background-color:#860000;";
+                document.getElementById("img").innerHTML = '<i class="fa fa-times"></i>';
+                document.getElementById('toast').style = "background-color:#cb0c0c;";
+                break;
+        }
+            
+        var x = document.getElementById("toast");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+        @endif
+        
+
+    </script>
+        
+        
 
         <div class="sidebar">
             <nav class="sidebar-nav">
@@ -140,8 +277,8 @@
         </div>
     </footer>
 
-    
-    @yield('script')
+
+
     
     <script src="{{ asset('docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
@@ -150,7 +287,7 @@
 
     <!-- CoreUI and necessary plugins-->
     <script src="{{ asset('js/caixa.js')}}" defer></script>
-    <script src="{{ asset('admin/node_modules/jquery/dist/jquery.min.js')}}"></script>
+<!--    <script src="{{ asset('admin/node_modules/jquery/dist/jquery.min.js')}}"></script>-->
     <script src="{{ asset('admin/node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
     <script src="{{ asset('admin/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('admin/node_modules/pace-progress/pace.min.js')}}"></script>

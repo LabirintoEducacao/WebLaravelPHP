@@ -3,11 +3,12 @@
 @section('content')
 <div class="container">
     
-    @if(Auth::user()->hasAnyRole('professor'))
+    
     <div class="bd-example" style="width: 100%; margin-top:2%;">
         <div class="row">
             <div class="col-3">
                 <div id="list-example" class="list-group">
+                    @if(Auth::user()->hasAnyRole('professor'))
                     <a class="list-group-item list-group-item-action" href="manual#list-item-1">Sala
                         <div id="list-example" class="list-group">
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-1">&emsp;Criar</a>
@@ -25,10 +26,16 @@
                             <a class="list-group-item list-group-item-action" href="manual#list-item-2-5">&emsp;Salvar todas as alterações</a>
                         </div>
                     </a>
+                    @elseif(Auth::user()->hasAnyRole('user'))
+                    <a class="list-group-item list-group-item-action" href="manual#list-item-virtual">Espaço Virtual</a>
+                    @endif
+                    <a class="list-group-item list-group-item-action" href="manual#list-item-perfil">Editar Perfil</a>
+                    <a class="list-group-item list-group-item-action" href="manual#list-item-senha">Editar Senha</a>
                 </div>
             </div>
             <div class="col-9">
                 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="overflow-y: scroll;height: 400px;">
+                    @if(Auth::user()->hasAnyRole('professor'))
                     <div>
                         <h4 id="list-item-1">
                             Salas
@@ -233,17 +240,50 @@
                     <h4 id="list-item-4">Item 4</h4>
                     <p>...</p>
 -->
+                    @elseif(Auth::user()->hasAnyRole('user'))
+                    <div>
+                        <h4 id="list-item-virtual">
+                            Espaço Virtual
+                        </h4>
+                        <p>
+                            É o item do menu que, ao ser clicado, mostra ao usuário todas as salas em que ele pode jogar.
+                            <br>
+                            <img src="/img/virtual.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                        </p>
+                        
+                    </div>
+    
+    
+    
+
+
+                    @endif
+                    <div>
+                        <h4 id="list-item-perfil">
+                            Editar Perfil
+                        </h4>
+                        <p>
+                            Para alterar os dados do perfil (nome e/ou e-mail), é só clicar na opção Editar Perfil.
+                            <br>
+                            <img src="/img/perfil.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                        </p>
+                        
+                    </div>
+                    <div>
+                        <h4 id="list-item-senha">
+                            Editar Senha
+                        </h4>
+                        <p>
+                            Para alterar a senha é só clicar na opção Editar Senha.
+                            <br>
+                            <img src="/img/senha.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                        </p>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    @elseif(Auth::user()->hasAnyRole('user'))
     
-    
-    
-    
-
-
-    @endif
 </div>
 @endsection

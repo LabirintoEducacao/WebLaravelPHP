@@ -66,7 +66,7 @@ class SalaController extends Controller
             $sala->save();
             
             $notification = array(
-                'message' => 'Sala criada com sucesso!!!',
+                'message' => 'Sala criada com sucesso!',
                 'alert-type' => 'success'
             );
 
@@ -115,7 +115,7 @@ class SalaController extends Controller
                 $sala->public=1;
             $sala->save();
             $notification = array(
-                'message' => 'Sala alterada com sucesso!!!',
+                'message' => 'Sala alterada com sucesso!',
                 'alert-type' => 'success'
             );
 
@@ -186,7 +186,7 @@ class SalaController extends Controller
            $sala->delete();         
        }
         $notification = array(
-                'message' => 'Sala deletada com sucesso!!!',
+                'message' => 'Sala deletada com sucesso!',
                 'alert-type' => 'success'
             );
 
@@ -254,7 +254,7 @@ class SalaController extends Controller
         if(count($salas)<=0){
             $salas = Sala::where('public','=',1)->get();
             $notification = array(
-                'message' => 'Você não tem permissão para editar!!',
+                'message' => 'Você não tem permissão para editar!',
                 'alert-type' => 'warning'
             );
             return redirect('virtual')->with($notification);

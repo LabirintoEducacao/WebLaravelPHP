@@ -7,6 +7,7 @@
            // botao para add resposta fields
            var a = 0;
            var b = 0;
+//           launch_toast();
 
            $('#add').click(function () {
                if (a < 3) {
@@ -606,3 +607,10 @@ $('.carousel').carousel({
 });
 
 $('body').scrollspy({ target: '#list-example' });
+
+
+function launch_toast() {
+    var x = document.getElementById("toast")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+}
