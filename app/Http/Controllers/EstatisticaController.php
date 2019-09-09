@@ -53,7 +53,9 @@ class EstatisticaController extends Controller
 
 
           if($event == "maze_start"){
-
+                if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null){
+                    return 'erro';
+                }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
 
@@ -66,9 +68,12 @@ class EstatisticaController extends Controller
                     ));
 
                     return 'maze_start';
+                }
 
              }else if($event == "question_start"){
-
+                    if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null || $wrong_count==null || $correct_count==null){
+                    return 'erro';
+                }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
 
@@ -82,9 +87,12 @@ class EstatisticaController extends Controller
                               
                     ));
                  return 'question_start';
+                }
 
           }else if($event == "question_read"){
-
+                if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null){
+                    return 'erro';
+                }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
 
@@ -95,9 +103,12 @@ class EstatisticaController extends Controller
 
                     ));
                  return 'question_read';
+                }
 
           }else if($event == "answer_read"){
-
+            if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $answer_id==null){
+                    return 'erro';
+                }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
 
@@ -109,9 +120,12 @@ class EstatisticaController extends Controller
 
                     ));
                  return 'answer_read';
+            }
 
-          }else if($event == "answer_interaction"){
-
+          }elseif($event == "answer_interaction"){
+              if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $answer_id==null || $correct==null){
+                    return 'erro';
+                }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
 
@@ -125,9 +139,12 @@ class EstatisticaController extends Controller
                     ));
 
                  return 'answer_interaction';
+              }
 
           }else if($event == "question_end"){
-
+                  if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null || $correct==null || $wrong_count==null || $correct_count==null){
+                    return 'erro';
+                }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
 
@@ -143,9 +160,12 @@ class EstatisticaController extends Controller
                     ));
                     
                  return 'question_end';
+                  }
 
           }else if($event == "maze_end"){
-
+              if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null || $wrong_count==null || $correct_count==null){
+                    return 'erro';
+                }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
 
@@ -159,6 +179,7 @@ class EstatisticaController extends Controller
                     ));
                     
                  return 'maze_end';
+              }
           }else{
 
             echo "Erro";
