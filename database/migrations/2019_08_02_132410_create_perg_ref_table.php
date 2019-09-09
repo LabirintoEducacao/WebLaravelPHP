@@ -19,6 +19,7 @@ class CreatePergRefTable extends Migration
             $table->bigInteger('ref_id')->unsigned()->nullable();
             $table->timestamps();
         });
+        
         Schema::table('perg_ref', function($table) {
            $table->foreign('perg_id')->references('id')->on('perguntas')->onDelete('cascade');
            $table->foreign('ref_id')->references('id')->on('perguntas')->onDelete('cascade');
