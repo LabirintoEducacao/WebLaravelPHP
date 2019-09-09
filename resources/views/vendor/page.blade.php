@@ -109,29 +109,29 @@
 
         @-webkit-keyframes expand {
             from {min-width: 50px} 
-            to {min-width: 350px}
+            to {min-width: 500px}
         }
 
         @keyframes expand {
             from {min-width: 50px}
-            to {min-width: 350px}
+            to {min-width: 500px}
         }
         @-webkit-keyframes stay {
-            from {min-width: 350px} 
-            to {min-width: 350px}
+            from {min-width: 500px} 
+            to {min-width: 500px}
         }
 
         @keyframes stay {
-            from {min-width: 350px}
-            to {min-width: 350px}
+            from {min-width: 500px}
+            to {min-width: 500px}
         }
         @-webkit-keyframes shrink {
-            from {min-width: 350px;} 
+            from {min-width: 500px;} 
             to {min-width: 50px;}
         }
 
         @keyframes shrink {
-            from {min-width: 350px;} 
+            from {min-width: 500px;} 
             to {min-width: 50px;}
         }
 

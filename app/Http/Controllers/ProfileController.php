@@ -16,13 +16,13 @@ class ProfileController extends Controller
         
         if($update){
             $notification = array(
-                'message' => 'Perfil atualizado com sucesso!!',
+                'message' => 'Perfil atualizado com sucesso!',
                 'alert-type' => 'success'
             );
             return redirect('admin/sala')->with($notification);
         }else
             $notification = array(
-                'message' => 'Perfil não pode ser atualizado!!',
+                'message' => 'Perfil não pode ser atualizado!',
                 'alert-type' => 'warning'
             );
         return view('home')->with($notification);
@@ -38,20 +38,20 @@ class ProfileController extends Controller
                 $update = auth()->user()->update($data);
                 if($update)
                     $notification = array(
-                        'message' => 'Senha atualizada com sucesso!!',
+                        'message' => 'Senha atualizada com sucesso!',
                         'alert-type' => 'success'
                     );
             }else{
             unset($data['password']);
             $notification = array(
-                        'message' => 'Senha não pôde ser atualizada!!',
+                        'message' => 'Senha não pôde ser atualizada!',
                         'alert-type' => 'warning'
                     );
             }
         }else{
             unset($data['password']);
             $notification = array(
-                        'message' => 'Senha não pôde ser atualizada!!',
+                        'message' => 'Senha não pôde ser atualizada!',
                         'alert-type' => 'warning'
                     );
         }
@@ -67,13 +67,13 @@ class ProfileController extends Controller
            $user->roles()->detach();
            $user->delete();
            $notification = array(
-                        'message' => 'Usuário deletado com sucesso!!',
+                        'message' => 'Usuário deletado com sucesso!',
                         'alert-type' => 'success'
                     );
            return redirect('usuario/login')->with($notification);
        }
         $notification = array(
-                        'message' => 'Usuário não pôde ser deletado!!',
+                        'message' => 'Usuário não pôde ser deletado!',
                         'alert-type' => 'warning'
                     );
         return redirect('usuario/login')->with($notification);

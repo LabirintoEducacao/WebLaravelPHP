@@ -40,7 +40,7 @@ class UserController extends Controller
 
         if(Auth::user()->id == $id){
             $notification = array(
-                'message' => 'Você não tem permissão para editar!!',
+                'message' => 'Você não tem permissão para editar!',
                 'alert-type' => 'warning'
             );
             return redirect()->route('admin.users.index')->with($notification);
@@ -61,7 +61,7 @@ class UserController extends Controller
     {
          if(Auth::user()->id == $id){
             $notification = array(
-                'message' => 'Você não tem permissão para editar!!',
+                'message' => 'Você não tem permissão para editar este usuáio!',
                 'alert-type' => 'warning'
             );
             return redirect()->route('admin.users.index')->with($notification);
@@ -71,7 +71,7 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
 
         $notification = array(
-                'message' => 'Usuário atualizado com sucesso!!',
+                'message' => 'Usuário atualizado com sucesso!',
                 'alert-type' => 'success'
             );
         return redirect()->route('admin.users.index')->with($notification);
@@ -87,7 +87,7 @@ class UserController extends Controller
     {
        if(Auth::user()->id == $id){
         $notification = array(
-                'message' => 'Você não tem permissão para deletar!!',
+                'message' => 'Você não tem permissão para deletar este usuário!',
                 'alert-type' => 'warning'
             );
        return redirect()->route('admin.users.index')->with($notification);
@@ -99,13 +99,13 @@ class UserController extends Controller
            $user->roles()->detach();
            $user->delete();
            $notification = array(
-                'message' => 'Usuário deletado com sucesso!!',
+                'message' => 'Usuário deletado com sucesso!',
                 'alert-type' => 'success'
             );
            return redirect()->route('admin.users.index')->with($notification);
        }
        $notification = array(
-                'message' => 'Este usuário não pode ser deletado!!',
+                'message' => 'Este usuário não pode ser deletado!',
                 'alert-type' => 'warning'
             );
        return redirect()->route('admin.users.index')->with($notification);
@@ -129,7 +129,7 @@ class UserController extends Controller
         }
         
         $notification = array(
-                'message' => 'Usuário cadastrado com sucesso!!',
+                'message' => 'Usuário cadastrado com sucesso!',
                 'alert-type' => 'success'
             );
 
@@ -151,7 +151,7 @@ class UserController extends Controller
             if($user){
                 \Mail::to($data['email'])->send(new LinkSala($sala->name,Auth::user()->name,Auth::user()->id));
                 $notification = array(
-                'message' => 'E-mail enviado com sucesso!!',
+                'message' => 'E-mail enviado com sucesso!',
                 'alert-type' => 'success'
                 );
                 return redirect()->route('admin.users.index')->with($notification);
@@ -159,7 +159,7 @@ class UserController extends Controller
         }
         \Mail::to($data['email'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id,$data['email']));
         $notification = array(
-                'message' => 'E-mail para cadastro enviado com sucesso!!',
+                'message' => 'E-mail para cadastro enviado com sucesso!',
                 'alert-type' => 'success'
                 );
       return redirect('admin/alunos/'. $data['sala_id'])->with($notification);
@@ -181,7 +181,7 @@ class UserController extends Controller
             return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
         }else{
              $notification = array(
-                'message' => 'Esta sala é pública, não há como adicionar alunos!!',
+                'message' => 'Esta sala é pública, não há como adicionar alunos!',
                 'alert-type' => 'warning'
                 );
       return redirect('admin/sala')->with($notification);
@@ -212,7 +212,7 @@ class UserController extends Controller
             \Mail::to($user->email)->send(new LinkSala($sala->name,$prof->name,$request->get('sala_id')));
 
             $notification = array(
-                'message' => 'Aluno adicionado com sucesso!!',
+                'message' => 'Aluno adicionado com sucesso!',
                 'alert-type' => 'success'
             );
 
@@ -221,7 +221,7 @@ class UserController extends Controller
         return redirect('admin/alunos/'. $request->get('sala_id'))->with($notification);
         }
         $notification = array(
-                'message' => 'Aluno já cadastrado nesta sala!!',
+                'message' => 'Aluno já cadastrado nesta sala!',
                 'alert-type' => 'warning'
             );
         return redirect('admin/alunos/'. $request->get('sala_id'))->with($notification);
@@ -232,7 +232,7 @@ class UserController extends Controller
 
         DB::table('sala_user')->where('id','=',$id)->delete();
         $notification = array(
-                'message' => 'Aluno deletado com sucesso!!',
+                'message' => 'Aluno deletado com sucesso!',
                 'alert-type' => 'success'
                 );
 

@@ -336,7 +336,7 @@ class PerguntaRespostaController extends Controller
             ->where('sala_id','=',$data['sala_id'])
             ->get();
             $notification = array(
-                'message' => 'Resposta alterada com sucesso!!',
+                'message' => 'Resposta alterada com sucesso!',
                 'alert-type' => 'success'
             );
         return redirect('admin/editar-sala/'. $data['sala_id'])->with(['data' => $perg, 'respostas' => $respostas])->with($notification);
@@ -370,7 +370,7 @@ class PerguntaRespostaController extends Controller
             ->get();   
 
         $notification = array(
-                'message' => 'Pergunta alterada com sucesso!!',
+                'message' => 'Pergunta alterada com sucesso!',
                 'alert-type' => 'success'
             );
 
@@ -403,7 +403,7 @@ class PerguntaRespostaController extends Controller
 
 
         $notification = array(
-                'message' => 'Ambiente alterado com sucesso!!',
+                'message' => 'Ambiente alterado com sucesso!',
                 'alert-type' => 'success'
             );
 
@@ -1018,7 +1018,7 @@ class PerguntaRespostaController extends Controller
         }
         
         $notification = array(
-                'message' => 'Pergunta deletada com sucesso!!',
+                'message' => 'Pergunta deletada com sucesso!',
                 'alert-type' => 'success'
             );
         return redirect('admin/editar-sala/'. $perg->sala_id)->with($notification);
@@ -1034,7 +1034,7 @@ class PerguntaRespostaController extends Controller
         DB::table('perg_resp')->where('resp_id', '=', $id)->delete();
         DB::table('respostas')->where('id', '=', $id)->delete();
         $notification = array(
-                'message' => 'Resposta deletada com sucesso!!',
+                'message' => 'Resposta deletada com sucesso!',
                 'alert-type' => 'success'
             );
         return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with($notification);
