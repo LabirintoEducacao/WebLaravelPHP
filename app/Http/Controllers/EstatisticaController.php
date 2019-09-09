@@ -50,10 +50,34 @@ class EstatisticaController extends Controller
              $elapsed_time = $resposta['elapsed_time'];
              $answers_read_count = $resposta['answers_read_count'];
              $async_timestamp = $resposta['async_timestamp'];
-
+        $x=0;
+        
+        if($user_id!=null && $maze_id!=null && $elapsed_time!=null){
+        
+            $user = DB::table('users')
+                    ->where('id', '=', $user_id)
+                    ->get();
+                    if(count($user)>0){
+                        $x++;
+                        $sala = DB::table('salas')
+                        ->where('id', '=', $maze_id)
+                        ->get();
+                        if(count($sala)>0){
+                            $x++;
+                            if($question_id!=null){
+                                $perg = DB::table('perguntas')
+                                ->where('id', '=', $question_id)
+                                ->get();
+                                if(count($perg)>0){
+                                    $x++;
+                                }
+                            }
+                        }
+                    }
+            }
 
           if($event == "maze_start"){
-                if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null){
+                if($x!=3 || $async_timestamp==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
@@ -70,8 +94,8 @@ class EstatisticaController extends Controller
                     return 'maze_start';
                 }
 
-             }else if($event == "question_start"){
-                    if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null || $wrong_count==null || $correct_count==null){
+             }elseif($event == "question_start"){
+                    if($x!=3 || $async_timestamp==null || $wrong_count==null || $correct_count==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
@@ -89,8 +113,8 @@ class EstatisticaController extends Controller
                  return 'question_start';
                 }
 
-          }else if($event == "question_read"){
-                if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null){
+          }elseif($event == "question_read"){
+                if($x!=3){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
@@ -106,7 +130,7 @@ class EstatisticaController extends Controller
                 }
 
           }else if($event == "answer_read"){
-            if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $answer_id==null){
+            if($x!=3 || $answer_id==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
@@ -123,7 +147,7 @@ class EstatisticaController extends Controller
             }
 
           }elseif($event == "answer_interaction"){
-              if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $answer_id==null || $correct==null){
+              if($x!=3 || $answer_id==null || $correct==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
@@ -141,8 +165,8 @@ class EstatisticaController extends Controller
                  return 'answer_interaction';
               }
 
-          }else if($event == "question_end"){
-                  if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null || $correct==null || $wrong_count==null || $correct_count==null){
+          }elseif($event == "question_end"){
+                  if($x!=3 || $async_timestamp==null || $correct==null || $wrong_count==null || $correct_count==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
@@ -162,8 +186,8 @@ class EstatisticaController extends Controller
                  return 'question_end';
                   }
 
-          }else if($event == "maze_end"){
-              if($user_id==null || $maze_id==null || $question_id==null || $elapsed_time==null || $async_timestamp==null || $wrong_count==null || $correct_count==null){
+          }elseif($event == "maze_end"){
+              if($x!=2 || $async_timestamp==null || $wrong_count==null || $correct_count==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
