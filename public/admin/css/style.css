@@ -18143,6 +18143,9 @@ body {
          font-size: 250%;
           text-align: center;
     }
+    .bd-example{
+        display:none;
+    }
 }
 /* Desktop grande */
 @media (min-width: 1200px) {
@@ -18161,6 +18164,7 @@ body {
       }
  
 }
+
 
 
 

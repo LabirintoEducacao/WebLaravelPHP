@@ -2,43 +2,248 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        
-        <h1> Manual do Usuario</h1>
-    </div>
-    <h4>Etapas para construir seu labirinto</h4>
-    <p> A seguir listamos todos os passos para o desenvolvimento de seu jogo. </p>
-    <ol>
-        <li> Criação da Sala </li>
-        <li> Adicionar Perguntas e Respostas</li>
-        <li> Salvar seu Conteudo</li>
-    </ol>
- <h4>1 - Criação da Sala</h4>
- <p> Para criar a sala no menu clique em <a href="/admin/sala">editar sala </a>, esta parte esta associada a criação e edição de salas, se você já tem alguma sala vinculada ao seu usuario então irá aparecer as opções para editar. Para criar uma sala novo, clique no botao <a href="/admin/adicionar-sala">ADICIONAR SALA"</a> que fica localizado na parte superior do site.</p>
-<img src="/img/criar_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
-
-
-<h5> 1.1 - Configuração da Sala </h5>
-<p> Ao clicar no botão "ADICIONAR SALA" uma nova pagina se abrirá, ali você terá a que configurar algumas opções.</p>
-<ul>
-    <li> Criador do Labirinto : Aqui o site puxará o nome do usuario</li>
-    <li> Nome de sua sala : Esse nome será para controle do usuario não será mostrado dentro do jogo.</li>
-    <li> Tempo de duração de cada sala : Aqui o usuario colocará o tempo maximo que um jogador permanecer dentro do labirinto. O tempo é dado em segundos. Se o usuario não inserir nenhum tempo o programa não define tempo para sala sendo assim não existe tempo limitante no labirinto.</li>
-    <li> Tema : o Tema se refere ao cenario do labirinto. </li>
-    <li> Sala Publica : O jogo tem a opção de criar uma sala restrita, ou uma sala aberta a todos os jogadores. Se a opção Sala publica for marcada, qualquer jogador terá acesso a sua sala. </li></ul>
     
-    <p>Após configurar os parametros clique no botão "ADICIONAR SALA" para criar sala ou no botão "CANCELAR" para descartar o progresso.</p>
-    <img src="/img/conf_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+    @if(Auth::user()->hasAnyRole('professor'))
+    <div class="bd-example" style="width: 100%; margin-top:2%;">
+        <div class="row">
+            <div class="col-3">
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="manual#list-item-1">Sala
+                        <div id="list-example" class="list-group">
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-1">&emsp;Criar</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-2">&emsp;Editar</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-3">&emsp;Deletar</a>
+                        </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action"></a>
+                    <a class="list-group-item list-group-item-action" href="manual#list-item-2">Perguntas e Respostas
+                        <div id="list-example" class="list-group">
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-2-1">&emsp;Criar</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-2-2">&emsp;Editar</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-2-3">&emsp;Alterar Sequência</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-2-4">&emsp;Deletar</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-2-5">&emsp;Salvar todas as alterações</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-9">
+                <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="overflow-y: scroll;height: 400px;">
+                    <div>
+                        <h4 id="list-item-1">
+                            Salas
+                        </h4>
+                        <p>
+                            Para acessar a área de configuração de salas, vá ao menu e clique em Editar Salas. Caso já possua salas cadastradas, elas apareceram.
+                            <img src="/img/salas.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                        </p>
+                        <div style="padding-left: 5%">
+                            <!--                            CRIAR SALA                 -->
+                            <h5 id="list-item-1-1">
+                                Criar Sala
+                            </h5>
+                            <p>
+                                Para criar uma nova sala, clique em “ADICIONAR SALA" que fica localizado na parte superior direita do site.
+                                <br>
+                                <img src="/img/criar_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                                <br>
+                                Após clicar no botão, você será guiado para outra página com os seguintes campos:
+                            </p>
+                            
+                                <ul style="list-style-type:square;padding-left:18%">
+                                    <li>
+                                        Criador do Labirinto: preenchido com o seu nome de usuário;
+                                    </li>
+                                    <li>
+                                        Nome da Sala: é o que irá aparecer para os alunos;
+                                    </li>
+                                    <li>
+                                        Tempo de duração de cada sala: é o tempo (em segundos) em que o usuário pode permanecer dentro do labirinto. Caso não haja tempo pré-definido, o usuário permanecerá no labirinto até o jogo acabar;
+                                    </li>
+                                    <li>
+                                        Tema: cenário do labirinto;
+                                    </li>
+                                    <li>
+                                        Sala Pública: este campo deverá marcado se a sala tiver que ser aberta a todos os jogadores, caso contrário apenas usuários escolhidos pelo criador do labirinto poderão acessar o jogo.
+                                    </li>
+                                </ul>
 
-     <h4>2 - Adicionar Perguntas e Respostas</h4>
-     <p>Se você chegou até aqui pela etapa 1, então após clicar em "CRIAR SALA" você foi redirecionado para a parte 'EDITAR SALA', aqui você tem acesso a todas as salas criadas pelo usuario. Você notará que existe 4 botões abaixo de sua sala</p>
-     <h5>Definições dos Botões</h5>
-<ul>
-      <li class=" fa fa-cogs" style="font-size: 20px; padding-bottom: 10px;">  Engrenagem : Editar os atributos da sala (Nome, tempo de duração, tema, se é pública ou privada)</li> <br>
-      <li class="fa fa-pencil-square-o" style="font-size: 20px; padding-bottom: 10px;"> Lapis : Adicionar/editar perguntas, respostas e alunos</li> <br>
-      <li class="fa fa-trash" style="font-size: 20px; padding-bottom: 10px;"> Lixo : Deletar sala</li> <br>
-</ul>
+                                <img src="/img/nova_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                            <p>
+                                Após preencher todos os campos necessários, basta clicar em “CRIAR SALA”.
+                            </p>
+                            
+                            
+                            
+                            <!--                            EDITAR SALA                           -->
+                            <h5 id="list-item-1-2">
+                                Editar Sala
+                            </h5>
+                            <p>
+                                Após criar a sala, se algum dos campos tiver sido preenchido de forma errada, é só clicar no botão <i class="fa fa-cogs"></i> e ele abrirá um editor de texto com os mesmos campos da página de criar sala e, ao finalizar, clique em “SALVAR ALTERAÇÕES”.
+                                <br>
+                                <img src="/img/editar_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                               
+                            </p>
+                            
+                            <!--                            DELETAR SALA                           -->
+                            <h5 id="list-item-1-3">
+                                Deletar Sala
+                            </h5>
+                            <p>
+                                Para deletar uma sala, basta clicar no botão <i class="fa fa-trash"></i>.
+                                <br>
+                                <img src="/img/deletar_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <h4 id="list-item-2">
+                            Perguntas e Respostas
+                        </h4>
+                        <p>
+                            Para acessar a área de perguntas e repostas, clique em <i class="fa fa-pencil-square-o"></i>
+                            <img src="/img/editar_sala_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                        </p>
+                        <div style="padding-left: 5%">
+                            <!--                            CRIAR SALA                 -->
+                            <h5 id="list-item-2-1">
+                                Cadastrar Pergunta e Resposta
+                            </h5>
+                            <p>
+                                Para criar uma nova sala, clique em “ADICIONAR PERGUNTA E RESPOSTA" que fica localizado na parte superior direita do site.
+                                <br>
+                                <img src="/img/nova_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                                <br>
+                                Após clicar no botão, aparecerá uma caixa:
+                            </p>
+                            
+                                <ul style="list-style-type:square;padding-left:18%">
+                                    <li>
+                                        Pergunta:
+                                        <ul style="list-style-type:circle;padding-left:6%">
+                                            <li>
+                                                Tipo da pergunta: se é texto, imagem, vídeo ou áudio;
+                                            </li>
+                                            <li>
+                                                Interação: como irá interagir com o usuário;
+                                            </li>
+                                            <li>
+                                                Pergunta: este campo irá variar de acordo com o que foi selecionado no campo tipo de pergunta: se for texto, aparecerá um campo para digitar, se for imagem ou áudio, aparecerá um campo para realizar o upload do arquivo e, caso seja vídeo, aparecrá um campo para digitar a url do mesmo.
+                                            </li>
+                                        </ul>
+                                        <img src="/img/add_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                    </li>
+                                    <li>
+                                        Resposta:
+                                        <ul style="list-style-type:circle;padding-left:6%">
+                                            <li>
+                                                Tipo da resposta: se é texto, imagem, vídeo ou áudio;
+                                            </li>
+                                            <li>
+                                                Definição da resposta: se esta certa ou errada;
+                                            </li>
+                                            <li>
+                                                Resposta: este campo irá variar de acordo com o que foi selecionado no campo tipo de resposta: se for texto, aparecerá um campo para digitar, se for imagem ou áudio, aparecerá um campo para realizar o upload do arquivo e, caso seja vídeo, aparecrá um campo para digitar a url do mesmo;
+                                            </li>
+                                            <li>
+                                                Se for a primeira resposta, aparecerá um botão para adicionar mais uma resposta, caso contrário, aparecerá um botão para deletar a resposta.
+                                            </li>
+                                        </ul>
+                                        <img src="/img/add_resp.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                    </li>
+                                    <li>
+                                        Ambiente:
+                                        <ul style="list-style-type:circle;padding-left:6%">
+                                            <li>
+                                                Tipo do ambiente: se será um corredor ou um labirinto;
+                                            </li>
+                                            <li>
+                                                Tamanho: pequeno, médio ou grande;
+                                            </li>
+                                            <li>
+                                                Largura: pequeno, médio ou grande;
+                                            </li>
+                                        </ul>
+                                        <img src="/img/add_ambiente.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                    </li>
+                                    <li>
+                                        Reforço: inicialmente só há um campo que, ao ser clicado, mostra os campos para preencher uma pergunta de reforço, esses campos serão exatamente iguais aos anteriores, a única diferença é que há duas configurações de ambientes diferentes: a primeira é o caminho que usuário irá percorrer para achar o reforço e o outro será o caminho pelo qual ele passará quando acertar a pergunta.
+                                        <img src="/img/ref.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                        <img src="/img/add_ref.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                    </li>
+                                    
+                                </ul>
+
+                                <!--                            imagem                 -->
+                            <p>
+                                Após preencher todos os campos necessários, basta clicar em “SALVAR”.
+                            </p>
+                            
+                            
+                            
+                            <!--                            EDITAR SALA                           -->
+                            <h5 id="list-item-2-2">
+                                Editar Pergunta/Resposta
+                            </h5>
+                            <p>
+                                Após criar as perguntas, se algum dos campos tiver sido preenchido de forma errada, é só clicar no botão <i class="fa fa-pencil-square-o"></i> e ele abrirá um editor de texto com os mesmos campos da caixa de criar pergunta e, ao finalizar, clique em “SALVAR ALTERAÇÕES”.
+                                <br>
+                                <img src="/img/editar_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            <!--                            ALTERAR ORDEM                          -->
+                            <h5 id="list-item-2-3">
+                                Alterar Sequência
+                            </h5>
+                            <p>
+                                É o botão no canto inferior direito, serve para alterar a ordem em que o jogador verá as perguntas. Para alterar a ordem, basta arrastar a perqunta para a posição desejada.
+                                <br>
+                                <img src="/img/ordem_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                <img src="/img/ordem.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            
+                            <!--                            DELETAR SALA                           -->
+                            <h5 id="list-item-2-4">
+                                Deletar Pergunta
+                            </h5>
+                            <p>
+                                Para deletar uma pergunta, basta clicar no botão <i class="fa fa-trash"></i>.
+                                <br>
+                                <span style="color:#aa0000">Obs.: ao clicar em <i class="fa fa-trash"></i>, a(s) resposta(s) e, se houver, o reforço serão deletados juntos a pergunta.</span>
+                                <br>
+                                <img src="/img/deletar_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            <h5 id="list-item-2-5">
+                                Salvar todas as alterações
+                            </h5>
+                            <p>
+                                No canto inferior da página, há um botão que garante que todas as perguntas e respostas sejam salvas, para que o QrCode seja gerado.
+                                <br>
+                                <img src="/img/salvar.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            
+                        </div>
+                    </div>
+<!--
+                    <h4 id="list-item-2">Item 2</h4>
+                    <p>...</p>
+                    <h4 id="list-item-3">Item 3</h4>
+                    <p>...</p>
+                    <h4 id="list-item-4">Item 4</h4>
+                    <p>...</p>
+-->
+                </div>
+            </div>
+        </div>
+    </div>
+    @elseif(Auth::user()->hasAnyRole('user'))
+    
+    
+    
+    
 
 
+    @endif
 </div>
 @endsection

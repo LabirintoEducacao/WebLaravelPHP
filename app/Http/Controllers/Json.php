@@ -94,7 +94,7 @@ $strCaminho = public_path() . '/sala/' . $id;
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
-$limite = 2000;
+$limite = 200;
 $n=1;
 
 
@@ -407,7 +407,7 @@ $jsn = [
 //  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
 
   
-$fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'teste.json', 'w');
+$fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.json', 'w');
 
  fwrite($fp, json_encode($jsn));
  fclose($fp);
@@ -491,17 +491,20 @@ $n ++;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function api(Request $request)
+
+    public function api(REQUEST $request)
     {
 
 
+        $salaid = $_REQUEST['id'];
+        
 
-          $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-           $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-             $sala = Sala::find($id);
+        
 
+$file = file_get_contents( 
+'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.json'); 
 
-
+return($file);  
    
 
 
