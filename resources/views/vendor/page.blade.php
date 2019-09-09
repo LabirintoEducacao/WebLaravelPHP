@@ -236,6 +236,10 @@
                     @endhasrole
                     <li class="nav-title">CONFIGURAÇÕES</li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{url('/manual')}}">
+                            <i class="nav-icon fa fa-book"></i> Manual</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin/settings')}}">
                             <i class="nav-icon icon-user"></i> Editar Perfil</a>
                     </li>

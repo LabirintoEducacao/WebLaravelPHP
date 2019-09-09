@@ -26,7 +26,8 @@
                             <a class="list-group-item list-group-item-action" href="manual#list-item-2-5">&emsp;Salvar todas as alterações</a>
                         </div>
                     </a>
-                    @elseif(Auth::user()->hasAnyRole('user'))
+                    @endif
+                    @if(Auth::user()->hasAnyRole('user'))
                     <a class="list-group-item list-group-item-action" href="manual#list-item-virtual">Espaço Virtual</a>
                     @endif
                     <a class="list-group-item list-group-item-action" href="manual#list-item-perfil">Editar Perfil</a>
@@ -240,7 +241,8 @@
                     <h4 id="list-item-4">Item 4</h4>
                     <p>...</p>
 -->
-                    @elseif(Auth::user()->hasAnyRole('user'))
+                    @endif
+                    @if(Auth::user()->hasAnyRole('user'))
                     <div>
                         <h4 id="list-item-virtual">
                             Espaço Virtual
