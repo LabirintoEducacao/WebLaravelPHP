@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -90,7 +92,7 @@ $strCaminho = public_path() . '/sala/' . $id;
           $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
           $sala = Sala::find($id);
 
-
+$sala_name = $sala->name; 
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
@@ -393,6 +395,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
  
 $jsn = [
        "maze_id" => $sala->id,
+       "maze_name"=>$sala_name,
        "starting_question"=> $proxpergid [0],
        "time_limit" => $sala->duracao,
         "theme" => $sala->tematica,
