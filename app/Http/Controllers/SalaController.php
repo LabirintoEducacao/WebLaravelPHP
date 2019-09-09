@@ -329,11 +329,16 @@ public function teste()
                 $salas_publicas = DB::table('salas')
                 ->where('public','=',1)->select('id','name')->get();
 
+                
+
 
                 if(count($salas_publicas)>0){
-                   
+   
 
                 foreach($salas_publicas as $salas){
+
+
+
 
                  $perguntasref = DB::table('perguntas')
                  ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
@@ -342,7 +347,8 @@ public function teste()
                  $perguntas = DB::table('perguntas')
                  ->where('sala_id','=', $salas->id)->get();
 
-
+                 
+                 
                    if(count($perguntas) >= 0 ){
 
                         $i2 = 0 ;
