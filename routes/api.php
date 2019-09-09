@@ -34,6 +34,9 @@ Route::Post('/virtual', 'SalaController@teste' );
 //Api para passar o json
 Route::get('jsn', 'Json@api');
 
+// Rota da estatistica //
+Route::Post('/data', 'EstatisticaController@store');
+
 
 
 // Route::get('/virtual', 'SalaController@teste');
