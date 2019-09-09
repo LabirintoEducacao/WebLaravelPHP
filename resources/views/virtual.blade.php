@@ -15,7 +15,7 @@
 <!------------------------ Espaço das Salas  --------------------------->
 
 <?php $user = Auth::user()->id;?>
-<?php $linha = 0; ?>
+<?php $linha = 0; $flag = 0;?>
 
 <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
 
