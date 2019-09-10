@@ -52,10 +52,10 @@ class EstatisticaController extends Controller
 
                $resto2 = $teste2%60;
 
-              $resultado =  ($resto2 * 100) +  $resto + ($teste3 *10000);
+              $resultadot =  ($resto2 * 100) +  $resto + ($teste3 *10000);
              }else{
 
-             $resultado =  ($teste2 * 100) +  $resto;
+             $resultadot =  ($teste2 * 100) +  $resto;
 
             }
 
@@ -69,7 +69,7 @@ class EstatisticaController extends Controller
              $correct = $resposta['correct'];
              $elapsed_time = (int)$resposta['elapsed_time'];
              $answers_read_count = (int)$resposta['answers_read_count'];
-             $async_timestamp = $resultado;
+             $async_timestamp = $resultadot;
 
               $maze_start = array(
 
@@ -82,7 +82,7 @@ class EstatisticaController extends Controller
            );
 
 
-        $x=0;
+        $x=0;$y=0;
         
         if($user_id!=null || $maze_id!=null || $elapsed_time!=null){
         
@@ -102,6 +102,39 @@ class EstatisticaController extends Controller
                                 ->get();
                                 if(count($perg)>0){
                                     $x++;
+                                    if($answer_id!=null && ($event == 'answer_interaction' || $event == 'answer_read')){
+                                        $perg_resp = DB::table('perg_resp')
+                                                    ->where('perg_id', '=', $question_id)
+                                                    ->get();
+                                    $resps = DB::table('respostas')
+                                    ->where('id', '=', $answer_id)
+                                    ->get();
+                                    if(count($resps)>0){
+                                        foreach($perg_resp as $resp){
+                                            if($resp->resp_id == $resps[0]->id){
+                                                $x++;
+                                            }else{
+                                                $y++;
+                                            }
+                                        }
+                                        if($y==count($perg_resp)){
+                                            $invalido = array(
+
+                                              'answer' => 'Invalido',
+                                              'success' => -1
+
+                                        );
+                                        }
+                                    }else{
+
+                                         $invalido = array(
+
+                                              'answer' => 'Invalido',
+                                              'success' => -1
+
+                                        );
+                                    }
+                                    }
                                 }else{
 
                                      $invalido = array(
@@ -186,12 +219,12 @@ class EstatisticaController extends Controller
 
                  $resultado = array(
                      
-                      "event_name" => "maze_start",
+                      "event_name" => $event,
                       "success" => 1
 
                  );
 
-                 return $resultado;
+
 
              }elseif($event == "question_start"){
                     if($x!=3 || $async_timestamp==null || $wrong_count==null || $correct_count==null){
@@ -199,7 +232,7 @@ class EstatisticaController extends Controller
                 }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
-
+                        'event' =>$event,
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
                      'question_id' => $question_id,
@@ -209,7 +242,14 @@ class EstatisticaController extends Controller
                      'async_timestamp' => $async_timestamp
                               
                     ));
-                 return 'question_start';
+                 $resultado = array(
+                     
+                      "event_name" => $event,
+                      "success" => 1
+
+                 );
+
+
                 }
 
           }elseif($event == "question_read"){
@@ -218,23 +258,30 @@ class EstatisticaController extends Controller
                 }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
-
+                        'event' =>$event,
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
                      'question_id' => $question_id,
                      'elapsed_time' => $elapsed_time
 
                     ));
-                 return 'question_read';
+                 $resultado = array(
+                     
+                      "event_name" => $event,
+                      "success" => 1
+
+                 );
+
+
                 }
 
-          }else if($event == "answer_read"){
-            if($x!=3 || $answer_id==null){
+          }elseif($event == "answer_read"){
+            if($x!=4 || $answer_id==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
-
+                        'event' =>$event,
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
                      'question_id' => $question_id,
@@ -242,16 +289,22 @@ class EstatisticaController extends Controller
                      'answer_id'    => $answer_id 
 
                     ));
-                 return 'answer_read';
+                 $resultado = array(
+                     
+                      "event_name" => $event,
+                      "success" => 1
+
+                 );
+
             }
 
           }elseif($event == "answer_interaction"){
-              if($x!=3 || $answer_id==null || $correct==null){
+              if($x!=4 || $answer_id==null || $correct==null){
                     return 'erro';
                 }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
-
+                        'event' =>$event,
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
                      'question_id' => $question_id,
@@ -261,7 +314,14 @@ class EstatisticaController extends Controller
 
                     ));
 
-                 return 'answer_interaction';
+                 $resultado = array(
+                     
+                      "event_name" => $event,
+                      "success" => 1
+
+                 );
+
+
               }
 
           }elseif($event == "question_end"){
@@ -270,7 +330,7 @@ class EstatisticaController extends Controller
                 }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
-
+                        'event' =>$event,
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
                      'question_id' => $question_id,
@@ -282,7 +342,14 @@ class EstatisticaController extends Controller
 
                     ));
                     
-                 return 'question_end';
+                 $resultado = array(
+                     
+                      "event_name" => $event,
+                      "success" => 1
+
+                 );
+
+
                   }
 
           }elseif($event == "maze_end"){
@@ -291,7 +358,7 @@ class EstatisticaController extends Controller
                 }else{
                     ////////Tabela Data ////////////////////////
                     DB::table('data')->insertGetId(array(
-
+                        'event' =>$event,
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
                      'elapsed_time' => $elapsed_time,
@@ -301,7 +368,13 @@ class EstatisticaController extends Controller
 
                     ));
                     
-                 return 'maze_end';
+                 $resultado = array(
+                     
+                      "event_name" => $event,
+                      "success" => 1
+
+                 );
+
               }
           }else{
 
@@ -313,11 +386,11 @@ class EstatisticaController extends Controller
                      );
 
 
-                return $resultado;
+               
 
             
           }
-         
+          return $resultado;
              
     }
 
