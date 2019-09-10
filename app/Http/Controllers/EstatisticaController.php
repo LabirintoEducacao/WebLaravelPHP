@@ -91,8 +91,9 @@ class EstatisticaController extends Controller
                     ->get();
                     if(count($user)>0){
                         $x++;
-                        $sala = DB::table('salas')
-                        ->where('id', '=', $maze_id)
+                        $sala = DB::table('sala_user')
+                        ->where('sala_id', '=', $maze_id)
+                        ->where('user_id', '=', $user_id)
                         ->get();
                         if(count($sala)>0){
                             $x++;
