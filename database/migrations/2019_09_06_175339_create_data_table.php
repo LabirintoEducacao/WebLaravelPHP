@@ -18,6 +18,7 @@ class CreateDataTable extends Migration
           $table->bigIncrements('id');
           $table->integer('user_id');
           $table->integer('maze_id');
+          $table->string('event');
           $table->integer('question_id')->nullable();
           $table->integer('answer_id')->nullable();
           $table->integer('wrong_count')->nullable();

@@ -15,7 +15,8 @@
 <!------------------------ Espaço das Salas  --------------------------->
 
 <?php $user = Auth::user()->id;?>
-<?php $linha = 0; $flag = 0;?>
+<?php $linha = 0; $flag = 0; $flag_sala =0; $flag_salap =0;
+?>
 
 <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
 
@@ -24,16 +25,19 @@
 
   
     
-    @foreach($data as $item)
-
+    @foreach($data as $item) 
     @foreach($sala_user as $sala)
     @if($item->id==$sala->sala_id)
     @if($user == $sala->user_id)
-
+    <?php $flag_sala = 1;  ?>
                 
          @if($linha > 4 || $linha == 0)
          <div class="row">
-         <?php $linha = 1 ?>   
+         <?php $linha = 1;
+        	   
+       		?>
+         
+   
          @endif
 
        
@@ -168,7 +172,7 @@
     @endforeach
     @endforeach
 
-    @if($flag == 0 )
+    @if($flag == 0 && $flag_sala == 1 )
         </div>
         @endif  
 
@@ -177,13 +181,15 @@
   <!------- Estrutura de repetição (CARD)------------------->
   
 
-  <div class="container-fluid " style="margin-top: 2%; padding-top: 10px; background-color: #ffffff; border-radius: 20px; ">
+  <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
     <h4> Salas Publicas </h4>
 
     <?php $linha = 0; ?>
     @foreach($data as $item)
 
     @if($item->public==1)
+
+   <?php $flag_salap = 1; ?>
 
     @if($linha > 4 || $linha == 0)
          <div class="row">
@@ -319,7 +325,7 @@
     @endif
     @endforeach
 
-    @if($flag == 0 )
+    @if($flag == 0 && $flag_salap == 0 )
         </div>
         @endif  
 

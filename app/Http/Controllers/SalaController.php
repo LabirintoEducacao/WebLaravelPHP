@@ -332,7 +332,7 @@ public function teste()
                 
 
 
-                if(count($salas_publicas)>0){
+                if(count($salas_publicas) > 0){
    
 
                 foreach($salas_publicas as $salas){
@@ -349,7 +349,7 @@ public function teste()
 
                  
                  
-                   if(count($perguntas) >= 0 ){
+                   if(count($perguntas) > 0 ){
 
                         $i2 = 0 ;
                         $i = 0;
@@ -366,10 +366,13 @@ public function teste()
                                     $i2++;
                                  }
 
-                    }
+                   
 
 
                     $total = $i2 - $i;
+
+
+                        
 
                           $jsn[] = array(
 
@@ -378,9 +381,10 @@ public function teste()
                                     'Pergunta' => $total,
                                     'Reforco' => $i
                             ); 
-
+                      
+                           }
                     }
-
+                    
                     $resultado = array(
                          
                           "salas" => $jsn,
@@ -388,7 +392,7 @@ public function teste()
 
                     );
 
-
+                    
                     return $resultado;
 
 
@@ -420,7 +424,7 @@ public function teste()
                       
                  $salas_user = DB::table('sala_user')->where('user_id','=',$json)->get();
                   
-                if(count($salas_user)>0){
+                if(count($salas_user) > 0){
 
                  foreach($salas_user as $sala_user){
 
@@ -431,7 +435,7 @@ public function teste()
                  $perguntas = DB::table('perguntas')
                  ->where('sala_id','=', $sala_user->sala_id)->get();
 
-                    if(count($perguntas) >= 0  ){
+                    if(count($perguntas) > 0  ){
 
                         $i2 = 0;
                         $i = 0;
@@ -448,7 +452,7 @@ public function teste()
                                     $i2++;
                                  }
 
-                    }
+                    
 
                     $total = $i2 - $i;
 
@@ -467,7 +471,7 @@ public function teste()
                                     'Reforco' => $i
                             ); 
 
-                    }
+                    }}
 
 
                     $resultado = array(
