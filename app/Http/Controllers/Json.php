@@ -26,8 +26,7 @@ class Json extends Controller
     public function index($id)
     {
 
-        $salaid = $id;
-        return view('qrcode',['data' => $salaid] );
+       
     }
 
     /**
@@ -61,7 +60,7 @@ class Json extends Controller
     {   
         
           
-
+ $sala = Sala::find($id);
 
 
 //-------------------- Deletando Pasta-------------------//
@@ -504,10 +503,31 @@ $n ++;
 
         
 
-$file = file_get_contents( 
-'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.json'); 
 
-return($file);  
+
+$strCaminho = public_path() . '/sala/' .DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.json';
+
+
+if(file_exists($strCaminho)) {
+
+ $file = file_get_contents( 
+'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.json');
+       
+
+return($file);
+
+}
+  
+  else{
+
+    $erro = array(
+        "erro" => "Arquivo nao encontrado",
+        "success" => -1
+    );
+
+    return $erro;
+
+  }
    
 
 
