@@ -1,34 +1,35 @@
-"use strict";
-
-/* eslint-disable object-curly-newline */
-
-/* global Chart */
-
-/**
- * --------------------------------------------------------------------------
- * CoreUI Free Boostrap Admin Template (v2.1.15): main.js
- * Licensed under MIT (https://coreui.io/license)
- * --------------------------------------------------------------------------
- */
-
-/* eslint-disable no-magic-numbers */
-// random Numbers
+//"use strict";
+//
+///* eslint-disable object-curly-newline */
+//
+///* global Chart */
+//
+///**
+// * --------------------------------------------------------------------------
+// * CoreUI Free Boostrap Admin Template (v2.1.15): main.js
+// * Licensed under MIT (https://coreui.io/license)
+// * --------------------------------------------------------------------------
+// */
+//
+///* eslint-disable no-magic-numbers */
+//// random Numbers
 var random = function random() {
   return Math.round(Math.random() * 100);
 }; // eslint-disable-next-line no-unused-vars
-
-
-var lineChart = new Chart($('#canvas-1'), {
+//
+//
+var ctx1 = document.getElementById('canvas-1').getContext('2d');
+var canvas1 = new Chart(ctx1, {
   type: 'line',
   data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], //x
     datasets: [{
       label: 'My First dataset',
       backgroundColor: 'rgba(220, 220, 220, 0.2)',
       borderColor: 'rgba(220, 220, 220, 1)',
       pointBackgroundColor: 'rgba(220, 220, 220, 1)',
       pointBorderColor: '#fff',
-      data: [random(), random(), random(), random(), random(), random(), random()]
+      data: [random(), random(), random(), random(), random(), random(), random()] //y
     }, {
       label: 'My Second dataset',
       backgroundColor: 'rgba(151, 187, 205, 0.2)',
@@ -43,7 +44,8 @@ var lineChart = new Chart($('#canvas-1'), {
   }
 }); // eslint-disable-next-line no-unused-vars
 
-var barChart = new Chart($('#canvas-2'), {
+var ctx2 = document.getElementById('canvas-2').getContext('2d');
+var barChart = new Chart(ctx2, {
   type: 'bar',
   data: {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -66,7 +68,8 @@ var barChart = new Chart($('#canvas-2'), {
   }
 }); // eslint-disable-next-line no-unused-vars
 
-var doughnutChart = new Chart($('#canvas-3'), {
+var ctx3 = document.getElementById('canvas-3').getContext('2d');
+var doughnutChart = new Chart(ctx3, {
   type: 'doughnut',
   data: {
     labels: ['Red', 'Green', 'Yellow'],
@@ -81,7 +84,8 @@ var doughnutChart = new Chart($('#canvas-3'), {
   }
 }); // eslint-disable-next-line no-unused-vars
 
-var radarChart = new Chart($('#canvas-4'), {
+var ctx4 = document.getElementById('canvas-4').getContext('2d');
+var radarChart = new Chart(ctx4, {
   type: 'radar',
   data: {
     labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
@@ -110,7 +114,8 @@ var radarChart = new Chart($('#canvas-4'), {
   }
 }); // eslint-disable-next-line no-unused-vars
 
-var pieChart = new Chart($('#canvas-5'), {
+var ctx5 = document.getElementById('canvas-5').getContext('2d');
+var pieChart = new Chart(ctx5, {
   type: 'pie',
   data: {
     labels: ['Red', 'Green', 'Yellow'],
@@ -125,7 +130,8 @@ var pieChart = new Chart($('#canvas-5'), {
   }
 }); // eslint-disable-next-line no-unused-vars
 
-var polarAreaChart = new Chart($('#canvas-6'), {
+var ctx6 = document.getElementById('canvas-6').getContext('2d');
+var polarAreaChart = new Chart(ctx6, {
   type: 'polarArea',
   data: {
     labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
@@ -139,3 +145,32 @@ var polarAreaChart = new Chart($('#canvas-6'), {
   }
 });
 //# sourceMappingURL=charts.js.map
+
+
+
+//
+//var ctx1 = document.getElementById('canvas-1').getContext('2d');
+//var canvas1 = new Chart(ctx1, {
+//    type: 'line',
+//    data: {
+//        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//        datasets: [{
+//      label: 'My First dataset',
+//      backgroundColor: 'rgba(220, 220, 220, 0.2)',
+//      borderColor: 'rgba(220, 220, 220, 1)',
+//      pointBackgroundColor: 'rgba(220, 220, 220, 1)',
+//      pointBorderColor: '#fff',
+//      data: [random(), random(), random(), random(), random(), random(), random()]
+//    }, {
+//      label: 'My Second dataset',
+//      backgroundColor: 'rgba(151, 187, 205, 0.2)',
+//      borderColor: 'rgba(151, 187, 205, 1)',
+//      pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+//      pointBorderColor: '#fff',
+//      data: [random(), random(), random(), random(), random(), random(), random()]
+//    }]
+//  },
+//  options: {
+//    responsive: true
+//  }
+//});

@@ -41,6 +41,7 @@
                 <a href="{{ url('/admin/virtual/'.$item->id)}}" class="btn btn-sm btn-outline-dark fa fa-qrcode col" style="margin-left:4%"></a>
                 &emsp;
 -->
+                <a href="{{ url('/admin/estatistica/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-star col"></a>
                 <a class="btn btn-sm btn-outline-cyan fa fa-cogs col" data-toggle="modal" data-target="#salaEModal" data-whatevernome="{{$item->name}}" data-whatevertype="{{$item->duracao}}" data-whatevertema="{{$item->tematica}}" data-whateverpublic="{{$item->public}}" data-whateverid="{{$item->id}}" style="margin-left:4%"></a>
                 &emsp;
                 <a href="{{ url('admin/editar-sala/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-pencil-square-o col"></a>

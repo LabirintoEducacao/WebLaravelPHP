@@ -33,8 +33,13 @@
     <!-- <link rel="stylesheet" href="{{ asset('docsupport/style.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('docsupport/prism.css') }}">
     <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css" integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+    
+    
     <!-- Global site tag (gtag.js) - Google Analytics-->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js" integrity="sha256-arMsf+3JJK2LoTGqxfnuJPFTU4hAK57MtIPdFpiHXOU=" crossorigin="anonymous"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -283,6 +288,11 @@
 
 
 
+    @yield('myscript')
+
+    
+
+    
     
     <script src="{{ asset('docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
@@ -299,6 +309,8 @@
     <script src="{{ asset('admin/node_modules/@coreui/coreui/dist/js/coreui.min.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script>
+    
+
 </body>
 
 </html>

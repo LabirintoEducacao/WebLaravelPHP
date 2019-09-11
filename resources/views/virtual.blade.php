@@ -3,7 +3,7 @@
 @section('content')
 
 <!------------------------ Cabeçalho ------------------------>
-<div class="container-fluid" style="border-bottom: solid; ">
+<div class="container-fluid" style="margin-bottom:2%;">
     <div class="row">
         <div class="col-md-8 ">
             <h1>Jogos</h1>

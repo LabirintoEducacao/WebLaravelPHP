@@ -533,5 +533,29 @@ public function teste()
    
                 }
     }
+    
+    
+    
+    
+    public function estatistica($id){
+        $salas = DB::table('salas')
+            ->where('id','=',$id)
+            ->get();
+        $users = DB::table('users')
+            ->join('sala_user','sala_user.user_id','=','users.id')
+            ->where('sala_user.sala_id',$id)
+            ->get();
+        $perguntas = DB::table('perguntas')
+            ->where('sala_id','=',$id)
+            ->get();
+        //acertos
+        //erros
+        
+        if(count($salas)>0){
+//            return view('grafico');
+            return view('grafico')->with(['salas' => $salas, 'users' => $users, 'perguntas' =>$perguntas]);
+        }
+        
+    }
 
 }

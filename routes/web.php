@@ -138,6 +138,12 @@ Route::get('/pergunta', function () {
 //Rotas da salas
 
 Route::get('/adicionar-sala', 'SalaController@index')->middleware(['auth', 'auth.admin']);
+Route::get('/estatistica/{id}', 'SalaController@estatistica');
+//Route::get('/estatistica/', function(){
+//    return view('grafico');
+//});   
+    
+//Route::post('/estatistica/{id}', 'SalaController@index');
 Route::post('/sala', 'SalaController@store');
 Route::get('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
 Route::get('/virtual', 'SalaController@entrar');
