@@ -26,7 +26,7 @@ class CreateDataTable extends Migration
           $table->boolean('correct')->nullable();
           $table->integer('elapsed_time');
           $table->integer('answers_read_count')->nullable();
-          $table->time('async_timestamp')->nullable();
+          $table->Timestamp('async_timestamp')->nullable();
           $table->timestamps();
         });
 

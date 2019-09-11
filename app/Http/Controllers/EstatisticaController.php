@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Data;
+use DateTime;
+use DateTimeZone;
 
 class EstatisticaController extends Controller
 {
@@ -40,25 +42,46 @@ class EstatisticaController extends Controller
     $resposta = $request->all(['event_name', 'user_id', 'maze_id', 'question_id', 'answer_id', 'wrong_count', 'correct_count', 'correct', 'elapsed_time', 'answers_read_count','async_timestamp']);
 
 
-             $teste = (int)$resposta['async_timestamp'];
+            //  $teste = (int)$resposta['async_timestamp'];
 
-             $teste2 = intdiv($teste, 60);
+            //  $teste2 = intdiv($teste, 60);
 
-             $resto = $teste%60;
+            //  $resto = $teste%60;
 
-             if($teste2 >= 60){
+            //  if($teste2 >= 60){
 
-               $teste3 = intdiv($teste2, 60);
+            //    $teste3 = intdiv($teste2, 60);
 
-               $resto2 = $teste2%60;
+            //    $resto2 = $teste2%60;
 
-              $resultado =  ($resto2 * 100) +  $resto + ($teste3 *10000);
-             }else{
+            //   $resultado =  ($resto2 * 100) +  $resto + ($teste3 *10000);
 
-             $resultado =  ($teste2 * 100) +  $resto;
+            //  }else{
 
-            }
+            //  $resultado =  ($teste2 * 100) +  $resto;
 
+            // }
+
+
+
+
+
+              //$nova = time();
+
+
+
+           if($resposta['async_timestamp'] == 0){
+                   
+             $date = NULL;
+
+           }else{
+              $async_timestamp = $resposta['async_timestamp'];
+              $formDate = new DateTime('', new DateTimeZone('America/Sao_Paulo'));
+              $formDate->setTimeStamp($async_timestamp);
+              $date = $formDate->format('Y/m/d H:i:s');
+           }
+         
+            
              $event = $resposta['event_name'];
              $user_id = (int)$resposta['user_id'];
              $maze_id = (int)$resposta['maze_id'];
@@ -69,7 +92,8 @@ class EstatisticaController extends Controller
              $correct = $resposta['correct'];
              $elapsed_time = (int)$resposta['elapsed_time'];
              $answers_read_count = (int)$resposta['answers_read_count'];
-             $async_timestamp = $resultado;
+             $async_timestamp =  $date;
+              
 
               $maze_start = array(
 
@@ -77,9 +101,18 @@ class EstatisticaController extends Controller
                     'maze_id' => $maze_id,
                     'question_id' => $question_id,
                     'elapsed_time' =>  $elapsed_time,
-                    'async_timestamp' => $async_timestamp
 
-           );
+              );
+
+              $question_start = array(
+
+                     'user_id' => $user_id,
+                     'maze_id' =>  $maze_id,
+                     'question_id' => $question_id,
+                     'elapsed_time' => $elapsed_time,
+                     'wrong_count' => $wrong_count,
+                     'correct_count' => $correct_count,
+               );
 
 
         $x=0;
@@ -104,43 +137,46 @@ class EstatisticaController extends Controller
                                     $x++;
                                 }else{
 
-                                     $invalido = array(
+                                    $invalido = array(
+                                    
+                                    'error' => array(
 
-                                          'question' => 'Invalido',
-                                          'success' => -1
-                                       
-                                    );
-                                }
+                                      'question_id' => 'invalido'
+                                   ),
+
+                                       'success' => -1
+                                   );
+
+                                        }
                             }
                         }else{
 
-                            $invalido = array(
+                          $invalido = array(
 
-                              'maze' => 'Invalido',
-                              'success' => -1
-                           
-                        );
+                            'error' => array(
 
+                              'maze' => 'invalido'
+                           ),
+
+                               'success' => -1
+                           );
 
                         }
 
                     }else{
 
                         $invalido = array(
+                            
+                            'error' => array(
 
-                              'user' => 'Invalido',
-                              'success' => -1
-                           
-                        );
+                              'user' => 'invalido'
+                           ),
+
+                               'success' => -1
+                           );
+
 
                     }
-
-                 if(isset($invalido)){
-                
-                
-                return $invalido;
-
-            }
 
         }
 
@@ -159,13 +195,12 @@ class EstatisticaController extends Controller
                }
 
               if(isset($erro)){
-               
-
 
               $total = array(
-                         
-                          'campos vazios:' => $erro
-
+                          'error' => array(
+                          'campos vazios' => $erro
+                           ),
+                          'success' => -1
                     );
                 
                 return $total;
@@ -193,26 +228,56 @@ class EstatisticaController extends Controller
 
                  return $resultado;
 
-             }elseif($event == "question_start"){
-                    if($x!=3 || $async_timestamp==null || $wrong_count==null || $correct_count==null){
-                    return 'erro';
-                }else{
-                    ////////Tabela Data ////////////////////////
-                    DB::table('data')->insertGetId(array(
+             }else if($event == "question_start"){
 
-                     'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'question_id' => $question_id,
-                     'elapsed_time' => $elapsed_time,
-                     'wrong_count' => $wrong_count,
-                     'correct_count' => $correct_count,
-                     'async_timestamp' => $async_timestamp
-                              
-                    ));
-                 return 'question_start';
+
+               foreach ($question_start as $key => $value) {
+
+
+                  if($value == NULL){
+                     
+                     $erro[] = $key; 
+                    
+                  }
+                  
+               }
+
+              if(isset($erro)){
+
+              $total = array(
+                          'error' => array(
+                          'campos vazios' => $erro
+                           ),
+                          'success' => -1
+                    );
+                
+                return $total;
+
                 }
 
-          }elseif($event == "question_read"){
+               ////////Tabela Data ////////////////////////
+                DB::table('data')->insertGetId(array(
+
+                 'user_id' => $user_id,
+                 'maze_id' =>  $maze_id,
+                 'event'  =>   $event,
+                 'question_id' => $question_id,
+                 'elapsed_time' => $elapsed_time,
+                 'wrong_count' => $wrong_count,
+                 'correct_count' => $correct_count
+
+                ));
+
+                 $resultado = array(
+                     
+                      "event_name" => "question_start",
+                      "success" => 1
+
+                 );
+
+                 return $resultado;
+
+             }elseif($event == "question_read"){
                 if($x!=3){
                     return 'erro';
                 }else{
@@ -221,6 +286,7 @@ class EstatisticaController extends Controller
 
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
+                     'event'  =>   $event,
                      'question_id' => $question_id,
                      'elapsed_time' => $elapsed_time
 
@@ -237,6 +303,7 @@ class EstatisticaController extends Controller
 
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
+                     'event'  =>   $event,
                      'question_id' => $question_id,
                      'elapsed_time' => $elapsed_time,
                      'answer_id'    => $answer_id 
@@ -254,6 +321,7 @@ class EstatisticaController extends Controller
 
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
+                     'event'  =>   $event,
                      'question_id' => $question_id,
                      'elapsed_time' => $elapsed_time,
                      'answer_id'    => $answer_id,
@@ -273,6 +341,7 @@ class EstatisticaController extends Controller
 
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
+                     'event'  =>   $event,
                      'question_id' => $question_id,
                      'elapsed_time' => $elapsed_time,
                      'correct'   => $correct,
@@ -294,6 +363,7 @@ class EstatisticaController extends Controller
 
                      'user_id' => $user_id,
                      'maze_id' =>  $maze_id,
+                     'event'  =>   $event,
                      'elapsed_time' => $elapsed_time,
                      'wrong_count' => $wrong_count,
                      'correct_count' => $correct_count,
@@ -305,18 +375,16 @@ class EstatisticaController extends Controller
               }
           }else{
 
-                    $resultado = array(
-                         
-                          "event_name" => "Nome do evento nao corresponde",
-                          "success" => -1
-
-                     );
-
-
+                $resultado = array(
+                          'error' => array(
+                          'event_name' => 'Nome do evento nao corresponde'
+                           ),
+                          'success' => -1
+                    );
+                
                 return $resultado;
 
-            
-          }
+                }
          
              
     }
