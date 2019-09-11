@@ -36,7 +36,7 @@ class EstatisticaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
         
     $resposta = $request->all(['event_name', 'user_id', 'maze_id', 'question_id', 'answer_id', 'wrong_count', 'correct_count', 'correct', 'elapsed_time', 'answers_read_count','async_timestamp']);
@@ -385,7 +385,7 @@ class EstatisticaController extends Controller
                 return $resultado;
 
                 }
-         
+   
              
     }
 
