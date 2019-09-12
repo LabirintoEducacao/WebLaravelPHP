@@ -8,6 +8,10 @@
             <h1> Controle de Salas </h1>
         </div>
         <div class="col-md-2" style="padding-top: 30px; ">
+            <a class="btn btn-outline-danger fa fa-ban" href="{{ url('admin/sala-disable') }}" style="text-decoration: none;"> Salas Desativadas</a>
+        </div>
+
+        <div class="col-md-2" style="padding-top: 30px; ">
             <a class="btn btn-outline-success fa fa-plus" href="{{ url('admin/adicionar-sala') }}" style="text-decoration: none;">Adicionar sala</a>
         </div>
 
@@ -42,7 +46,7 @@
                 &emsp;
 -->
                 <a href="{{ url('/admin/estatistica/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-star col"></a>
-                <a class="btn btn-sm btn-outline-cyan fa fa-cogs col" data-toggle="modal" data-target="#salaEModal" data-whatevernome="{{$item->name}}" data-whatevertype="{{$item->duracao}}" data-whatevertema="{{$item->tematica}}" data-whateverpublic="{{$item->public}}" data-whateverid="{{$item->id}}" style="margin-left:4%"></a>
+                <a class="btn btn-sm btn-outline-cyan fa fa-cogs col" data-toggle="modal" data-target="#salaEModal" data-whatevernome="{{$item->name}}" data-whatevertype="{{$item->duracao}}" data-whatevertema="{{$item->tematica}}" data-whateverpublic="{{$item->public}}" data-whateverid="{{$item->id}}" data-whateverenable="{{$item->enable}}" style="margin-left:4%"></a>
                 &emsp;
                 <a href="{{ url('admin/editar-sala/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-pencil-square-o col"></a>
                 &emsp;
@@ -104,6 +108,8 @@
                     <div class="form-group">
                         <input type="checkbox" name="public" id="public">Sala Pública
                     </div>
+                    <span><input type="checkbox" name="enable" id="enable" >Ativo</span>
+
 
                 </div>
                 <div class="modal-footer">

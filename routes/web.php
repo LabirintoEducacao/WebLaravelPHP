@@ -150,9 +150,18 @@ Route::get('/virtual', 'SalaController@entrar');
 Route::post('/editar-sala','SalaController@edit_sala');
 Route::get('/deletar-sala/{id}', 'SalaController@destroy' )->middleware(['auth', 'auth.admin']);
 
+Route::GET('/sala-disable', function(){
+
+ $data = \App\Sala::where('enable', 0)->get();
+
+return view ( 'sala-disable' )->withData ( $data );
+});
+
+
+
 Route::get('/sala', function () {
 
-    $data = \App\Sala::all ();
+    $data = \App\Sala::where('enable',1)->get();
     return view ( 'sala' )->withData ( $data );
 
 })->middleware(['auth', 'auth.admin']);
