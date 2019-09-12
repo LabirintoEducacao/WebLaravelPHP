@@ -210,21 +210,6 @@ class PerguntaRespostaController extends Controller
 //        $teste_perg=Pergunta::find(49);
 //        echo $teste_perg->sala_id;
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public function index2($id)
     {
       // dessa forma mostra sem paginação uma lista de usuarios

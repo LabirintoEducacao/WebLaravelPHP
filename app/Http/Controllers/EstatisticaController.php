@@ -17,7 +17,23 @@ class EstatisticaController extends Controller
      */
     public function index()
     {
-         return 'ok';
+
+    	   $data = DB::table('data')->select('maze_id')->get();
+
+    	   if(count($data) > 0){
+
+                  $sala_user = DB::table('sala_user')->where('sala_id', '=', '$data')->select('user_id')->get();
+
+              foreach($sala_user as $salasuser){
+             
+                   
+                     $resultado = $salasuser->user_id;
+    	     }
+
+    	 }
+
+    	  return view ('home')->with(['data' => $resultado]);
+
     }
 
     /**
