@@ -5,15 +5,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 ">
-            <h1> Controle de Salas </h1>
+            <h1> Salas Desativadas </h1>
         </div>
         <div class="col-md-2" style="padding-top: 30px; ">
-            <a class="btn btn-outline-danger fa fa-ban" href="{{ url('admin/sala-disable') }}" style="text-decoration: none;"> Salas Desativadas</a>
+            <a class="btn btn-outline-success fa fa-thumbs-up" href="{{ url('admin/sala') }}" style="text-decoration: none;"> Salas Ativas</a>
         </div>
 
-        <div class="col-md-2" style="padding-top: 30px; ">
-            <a class="btn btn-outline-success fa fa-plus" href="{{ url('admin/adicionar-sala') }}" style="text-decoration: none;">Adicionar sala</a>
-        </div>
 
     </div>
 </div>

@@ -20,6 +20,7 @@ class CreateSalasTable extends Migration
             $table->integer('duracao');
             $table->integer('tematica');
             $table->boolean('public');
+            $table->boolean('enable');
             $table->timestamps();
         });
     }

@@ -59,10 +59,25 @@ class SalaController extends Controller
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
             $sala->tematica = $request->input('theme');
-            if($request->public==null)
+            if($request->public==null){
                 $sala->public=0;
-            else
+            }
+            else{
                 $sala->public=1;
+            }
+           
+
+           if($request->enable == null){
+
+            $sala->enable = 0;
+           }
+           else{
+
+            $sala->enable =1;
+           }
+                
+            
+            
             $sala->save();
             
             $notification = array(
@@ -109,10 +124,21 @@ class SalaController extends Controller
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
             $sala->tematica = $request->input('theme');
-            if($request->public==null)
+            if($request->public==null){
                 $sala->public=0;
-            else
+            }
+            else{
                 $sala->public=1;
+            }
+             if($request->enable == null){
+
+            $sala->enable = 0;
+           }
+           else{
+
+            $sala->enable =1;
+           }
+
             $sala->save();
             $notification = array(
                 'message' => 'Sala alterada com sucesso!',
