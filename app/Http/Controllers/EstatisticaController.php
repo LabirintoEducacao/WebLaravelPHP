@@ -22,7 +22,7 @@ class EstatisticaController extends Controller
 
     	   if(count($data) > 0){
 
-                  $sala_user = DB::table('sala_user')->where('sala_id', '=', '$data')->select('user_id')->get();
+          $sala_user = DB::table('sala_user')->where('sala_id', '=', '$data')->select('user_id','sala_id')->get();
 
               foreach($sala_user as $salasuser){
              
@@ -620,9 +620,9 @@ class EstatisticaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function load($id)
+    public function show($id)
     {
-        
+        //
     }
 
     /**

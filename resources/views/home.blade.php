@@ -8,7 +8,7 @@
             <h1>Estatísticas</h1>
 </div>
 
-   <p>{{$data}}</p>
+  
 </div>
 </div>
 <div class="container-fluid">
@@ -109,11 +109,6 @@
   </div>
 
   
-
-
-
-
-
 
 @endsection
 
