@@ -208,6 +208,13 @@ class SalaController extends Controller
 
         $sala = Sala::find($id);
 
+        if($sala->enable == 1){
+
+            $enable =1;
+        }else{
+            $enable =0;
+        }
+
         if(isset($sala)){
            $sala->delete();         
        }
@@ -222,8 +229,12 @@ class SalaController extends Controller
             File::deleteDirectory($strCaminho);
 
 
-
+        if($enable == 1){
       return redirect('admin/sala')->with($notification);
+  }
+    else{
+       return redirect('admin/sala-disable')->with($notification); 
+    }
     }
 
     public function add_user(Request $request){
@@ -337,7 +348,7 @@ public function teste()
    
 
 
-       
+                $jsn=array();
                 if(isset($_REQUEST['type']) && $_REQUEST['type']!=null){
 
                 $tipo =(int) $_REQUEST['type'];
@@ -348,12 +359,15 @@ public function teste()
                 $tipo = 1;
                 }    
                      
+
+                   
                  if($tipo == 0){
             
 
+               
 
                 $salas_publicas = DB::table('salas')
-                ->where('public','=',1)->select('id','name')->get();
+                ->where('public','=',1)->select('id','name','enable')->get();
 
                 
 
@@ -364,6 +378,7 @@ public function teste()
                 foreach($salas_publicas as $salas){
 
 
+                if($salas->enable == 1){
 
 
                  $perguntasref = DB::table('perguntas')
@@ -409,8 +424,9 @@ public function teste()
                             ); 
                       
                            }
-                    }
                     
+                    }
+                }
                     $resultado = array(
                          
                           "salas" => $jsn,
@@ -421,8 +437,8 @@ public function teste()
                     
                     return $resultado;
 
-
-                }else{
+                
+               }else{
 
 
                     $jsn = array(); 
@@ -437,7 +453,6 @@ public function teste()
                     return $resultado;
                 }
 
-
                 }elseif($tipo == 1 && isset($_REQUEST['id'])){
 
                     
@@ -449,10 +464,18 @@ public function teste()
                 if(count($user)>0){
                       
                  $salas_user = DB::table('sala_user')->where('user_id','=',$json)->get();
+
+
+                
+
                   
                 if(count($salas_user) > 0){
 
                  foreach($salas_user as $sala_user){
+
+                $salas  = DB::table('salas')->where('id',$sala_user->sala_id)->select('enable')->get();
+                      
+                 if($salas[0]->enable == '1'){
 
                  $perguntasref = DB::table('perguntas')
                  ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
@@ -487,7 +510,7 @@ public function teste()
                                 ->where('id','=',$sala_user->sala_id)
                                 ->where('public','=',0)
                                 ->select('id','name')->get();
-                                if(count($sala)>0)
+                                if(count($sala)>0){
 
                        $jsn[] = array(
 
@@ -496,8 +519,11 @@ public function teste()
                                     'Pergunta' => $total,
                                     'Reforco' => $i
                             ); 
+                    }
+                    }
+                    }
+                    }
 
-                    }}
 
 
                     $resultado = array(
@@ -509,8 +535,9 @@ public function teste()
                    
 
                       return $resultado;
-
-                   }else{
+                      
+                   
+               }else{
 
                      $jsn = array(); 
 
@@ -525,7 +552,7 @@ public function teste()
                     return $resultado;
 
                    }
-
+               
 
                    }else{
                      
@@ -558,9 +585,9 @@ public function teste()
                     return $resultado;                    
    
                 }
+    
+    
     }
-    
-    
     
     
     public function estatistica($id){
