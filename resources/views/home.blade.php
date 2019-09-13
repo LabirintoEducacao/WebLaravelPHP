@@ -14,6 +14,7 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="card-columns cols-2">
+            @if(Auth::user()->hasAnyRole('professor'))
             <div class="card">
                 <div class="card-header">
                     Line Chart
@@ -29,27 +30,32 @@
                     </div>
                 </div>
             </div>
-
+            @endif
+            
         </div>
     </div>
 </div>
 
 <script>
+    @if(isset($salas))
     var salas = <?php echo $salas; ?>;
     console.log(salas);
     var salasNome = [];
     var salasId = [];
+    var randomico = [];
+    var random = function random() {
+        return Math.round(Math.random() * 100);
+    };
 
     for (var i = 0; i < salas.length; i++) {
         salasNome[i] = salas[i].name;
         salasId[i] = salas[i].id;
+        randomico[i] = random();
         console.log(salasNome[i]);
     }
 
 
-    var random = function random() {
-        return Math.round(Math.random() * 100);
-    };
+    
 
 
     var ctxs = document.getElementById('salas').getContext('2d');
@@ -63,14 +69,14 @@
                 borderColor: 'rgba(255, 0, 0, 0.8)',
                 highlightFill: 'rgba(255, 0, 0, 0.75)',
                 highlightStroke: 'rgb(255, 0, 0)',
-                data: [random(), random()]
+                data: randomico
             }, {
                 label: 'Acertos',
                 backgroundColor: 'rgba(0, 255, 9, 0.5)',
                 borderColor: 'rgba(0, 255, 9, 0.8)',
                 highlightFill: 'rgba(0, 255, 9, 0.75)',
                 highlightStroke: 'rgba(0, 255, 9, 1)',
-                data: [random(), random()]
+                data: randomico
             }]
         },
         options: {
@@ -89,6 +95,6 @@
             }
         }
     });
-
+    @endif
 </script>
 @endsection
