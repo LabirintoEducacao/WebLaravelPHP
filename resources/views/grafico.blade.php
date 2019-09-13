@@ -16,7 +16,7 @@
         <div class="card-columns cols-2">
             <div class="card">
                 <div class="card-header">
-                    Gráfico Dinâmico
+                    Acertos e erros por pergunta
                     <div class="card-actions">
                         <a href="http://www.chartjs.org">
                             <small class="text-muted">docs</small>
@@ -25,7 +25,22 @@
                 </div>
                 <div class="card-body">
                     <div class="chart-wrapper">
-                        <canvas id="grafico"></canvas>
+                        <canvas id="perguntas"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Acertos e erros por usuário
+                    <div class="card-actions">
+                        <a href="http://www.chartjs.org">
+                            <small class="text-muted">docs</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-wrapper">
+                        <canvas id="users"></canvas>
                     </div>
                 </div>
             </div>
@@ -47,23 +62,31 @@
     var perguntas = <?php echo $perguntas; ?>;
     var perguntasNome=[];
     var perguntasId=[];
-
-    perguntas.forEach(function(pergunta){
-        console.log(pergunta);
-    });
     
     for (var i = 0; i < perguntas.length; i++) {
         perguntasNome[i] = perguntas[i].pergunta;
+        perguntasId[i] = perguntas[i].id;
         console.log(perguntasNome[i]);
     }
+    
+    var users = <?php echo $users; ?>;
+    var usersNome=[];
+    var usersId=[];
+    
+    for (var i = 0; i < users.length; i++) {
+        usersNome[i] = users[i].name;
+        usersId[i] = users[i].id;
+        console.log(perguntasNome[i]);
+    }
+    
     
     var random = function random() {
         return Math.round(Math.random() * 100);
     };
 
 
-    var ctxg = document.getElementById('grafico').getContext('2d');
-    var barChart = new Chart(ctxg, {
+    var ctxp = document.getElementById('perguntas').getContext('2d');
+    var barChart = new Chart(ctxp, {
         type: 'horizontalBar',
         data: {
             labels: perguntasNome,
@@ -73,21 +96,56 @@
                 borderColor: 'rgba(255, 0, 0, 0.8)',
                 highlightFill: 'rgba(255, 0, 0, 0.75)',
                 highlightStroke: 'rgb(255, 0, 0)',
-                data: [random(), random(), random(), random(), random(), random(), random()]
+                data: [random(), random()]
             }, {
                 label: 'Acertos',
                 backgroundColor: 'rgba(0, 255, 9, 0.5)',
                 borderColor: 'rgba(0, 255, 9, 0.8)',
                 highlightFill: 'rgba(0, 255, 9, 0.75)',
                 highlightStroke: 'rgba(0, 255, 9, 1)',
-                data: [random(), random(), random(), random(), random(), random(), random()]
+                data: [random(), random()]
             }]
         },
         options: {
-            title: {
-                display: true,
-                text: 'Chart.js Bar Chart - Stacked'
+            tooltips: {
+                mode: 'index',
+                intersect: false
             },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        }
+    });
+    
+    
+    var ctxu = document.getElementById('users').getContext('2d');
+    var barChart = new Chart(ctxu, {
+        type: 'horizontalBar',
+        data: {
+            labels: usersNome,
+            datasets: [{
+                label: 'Erros',
+                backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                borderColor: 'rgba(255, 0, 0, 0.8)',
+                highlightFill: 'rgba(255, 0, 0, 0.75)',
+                highlightStroke: 'rgb(255, 0, 0)',
+                data: [random(), random()]
+            }, {
+                label: 'Acertos',
+                backgroundColor: 'rgba(0, 255, 9, 0.5)',
+                borderColor: 'rgba(0, 255, 9, 0.8)',
+                highlightFill: 'rgba(0, 255, 9, 0.75)',
+                highlightStroke: 'rgba(0, 255, 9, 1)',
+                data: [random(), random()]
+            }]
+        },
+        options: {
             tooltips: {
                 mode: 'index',
                 intersect: false
