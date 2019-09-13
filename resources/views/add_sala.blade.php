@@ -57,7 +57,9 @@
                         <div class="form-group">
                             <input type="checkbox" name="public">Sala Pública
                         </div>
-                        <span><input type="checkbox" name="enable" checked>Ativo</span>
+                        <div class="form-group">
+                            <input type="checkbox" name="enable" checked>Ativo
+                        </div>
 
                         <div>
                             <button type="submit" class="btn btn-outline-success btn-lg btn-block">CRIAR SALA</button>
