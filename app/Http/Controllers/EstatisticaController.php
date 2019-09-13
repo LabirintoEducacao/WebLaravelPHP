@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use App\Sala;
+use App\Pergunta;
+use App\Resposta;
+use App\Path;
 use App\Data;
 use DateTime;
 use DateTimeZone;
@@ -261,7 +266,7 @@ class EstatisticaController extends Controller
                foreach ($maze_start as $key => $value) {
 
 
-                  if($value == NULL){
+                  if($value === NULL){
                      
                      $erro[] = $key; 
                     
@@ -309,7 +314,7 @@ class EstatisticaController extends Controller
                foreach ($question_start as $key => $value) {
 
 
-                  if($value == NULL){
+                  if($value === NULL){
                      
                      $erro[] = $key; 
                     
@@ -357,7 +362,7 @@ class EstatisticaController extends Controller
 	                  foreach ($maze_start as $key => $value) {
 
 
-	                  if($value == NULL){
+	                  if($value === NULL){
 	                     
 	                     $erro[] = $key; 
 	                    
@@ -405,7 +410,7 @@ class EstatisticaController extends Controller
                foreach ($answer_read as $key => $value) {
 
 
-	                  if($value == NULL){
+	                  if($value === NULL){
 	                     
 	                     $erro[] = $key; 
 	                    
@@ -454,7 +459,7 @@ class EstatisticaController extends Controller
           	  foreach ($answer_interaction as $key => $value) {
 
 
-	                  if($value == NULL){
+	                  if($value === NULL){
 	                     
 	                     $erro[] = $key; 
 	                    
@@ -503,7 +508,7 @@ class EstatisticaController extends Controller
           	      foreach ($question_end as $key => $value) {
 
 
-	                  if($value == NULL){
+	                  if($value === NULL){
 	                     
 	                     $erro[] = $key; 
 	                    
@@ -555,7 +560,7 @@ class EstatisticaController extends Controller
           	          foreach ($maze_end as $key => $value) {
 
 
-	                  if($value == NULL){
+	                  if($value === NULL){
 	                     
 	                     $erro[] = $key; 
 	                    
@@ -620,6 +625,49 @@ class EstatisticaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    public function load(Request $request)
+    {
+        $id = $_REQUEST['user_id'];
+        $maze = $_REQUEST['maze_id'];
+        $lastquestion = 0;
+        $end =0;
+
+
+
+        $tperg = Pergunta::select('id')->where('sala_id',$maze)->orderBy('ordem')->get();
+        $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$maze)->get();
+
+       
+
+        foreach ($save as $stop) {
+
+    
+
+          if($stop->event == "question_end"){
+
+            $lastquestion = $stop->question_id;
+
+          }
+
+          if($stop->event == "maze_end"){
+
+            $end = 1;
+          }
+        }
+
+        if($end == 0){
+
+          return $lastquestion;
+        
+        }else{
+
+          return "Lab Completo";
+        }
+    }
+
+
     public function show($id)
     {
         //
