@@ -633,13 +633,49 @@ class EstatisticaController extends Controller
         $maze = $_REQUEST['maze_id'];
         $lastquestion = 0;
         $end =0;
+        $nextquestion = -1;
+        $indexperg =0;
 
 
 
-        $tperg = Pergunta::select('id')->where('sala_id',$maze)->orderBy('ordem')->get();
+        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();
         $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$maze)->get();
 
+
+
+    foreach($tperg as $perg){
+        if($indexperg == 0){
+
+        $startquestion = $perg->id; 
+
+        }  
+
+        $indexperg ++;
+
+        if($perg->id == $lastquestion){
+
+          $stopped =  $indexperg;
+          $nextquestion = $perg->ordem +1;
+
+        }
+
+        if($perg->ordem == $nextquestion){
+
+          $nextquestion = $perg->id;
+        }
+
+        
+        $endquestion = $perg->id;
+        }
+
+        if($nextquestion == -1){
+          $nextquestion = $startquestion;
+        }
+
+
+
        
+        if(count($save)>0){
 
         foreach ($save as $stop) {
 
@@ -657,14 +693,42 @@ class EstatisticaController extends Controller
           }
         }
 
+
+      
         if($end == 0){
 
-          return $lastquestion;
+          $load = array(
+
+            "stopped_question"=>$lastquestion,
+            "next_question"=>$nextquestion
+            
+          );
+
+          return $load;
         
         }else{
 
-          return "Lab Completo";
+     $load = array(
+          "stopped_question"=>$endquestion,
+          "next_question"=>NULL
+        );
+
+     return $load;
+
         }
+
+}else{
+
+$load = array(
+
+            "stopped_question"=> NULL,
+            "next_question"=>$startquestion
+            
+          );
+          
+          return $load;
+}
+
     }
 
 

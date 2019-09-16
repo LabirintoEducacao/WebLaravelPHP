@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use App\Data;
 use App\Sala;
 use File;
 
@@ -349,6 +350,12 @@ public function teste()
 
 
                 $jsn=array();
+
+                $id = $_REQUEST['id'];
+                $end = 0;
+                $indexperg = 0;
+
+
                 if(isset($_REQUEST['type']) && $_REQUEST['type']!=null){
 
                 $tipo =(int) $_REQUEST['type'];
@@ -369,8 +376,7 @@ public function teste()
                 $salas_publicas = DB::table('salas')
                 ->where('public','=',1)->select('id','name','enable')->get();
 
-                
-
+                  
 
                 if(count($salas_publicas) > 0){
    
@@ -388,7 +394,56 @@ public function teste()
                  $perguntas = DB::table('perguntas')
                  ->where('sala_id','=', $salas->id)->get();
 
-                 
+                
+
+//--------------------------------------LOAD ---------------------------//
+
+                    $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$salas->id)->get();
+
+          if(count($save) > 0){          
+          foreach ($save as $stop) {
+
+    
+             if($stop->event == "question_end"){
+
+            $lastquestion = $stop->question_id;
+
+          }
+
+            if($stop->event == "maze_end"){
+
+            $end = 1;
+          }
+        }
+
+       foreach($perguntas as $perg){
+        
+        $indexperg ++;
+
+        if($perg->id == $lastquestion){
+
+          $stopped = $indexperg;
+
+        }
+        }
+
+        $gameplayed = (int)(($stopped*100)/$indexperg);
+    }
+
+    else{
+
+         $gameplayed = 0;
+    }    
+
+if($end == 1){
+
+     $gameplayed = 100;   
+    } 
+
+
+
+//-------------------------------FIM DO LOAD ----------------------------// 
+
                  
                    if(count($perguntas) > 0 ){
 
@@ -419,6 +474,7 @@ public function teste()
 
                                     'id' => $salas->id,
                                     'name' => $salas->name,
+                                    "game_played"=> $gameplayed,
                                     'Pergunta' => $total,
                                     'Reforco' => $i
                             ); 
@@ -484,6 +540,60 @@ public function teste()
                  $perguntas = DB::table('perguntas')
                  ->where('sala_id','=', $sala_user->sala_id)->get();
 
+
+
+
+//--------------------------------------LOAD ---------------------------//
+
+             $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$sala_user->sala_id)->get();
+
+
+
+          if(count($save)>0){
+
+          foreach ($save as $stop) {
+
+    
+             if($stop->event == "question_end"){
+
+            $lastquestion = $stop->question_id;
+
+          }
+
+            if($stop->event == "maze_end"){
+
+            $end = 1;
+          }
+        }
+
+       foreach($perguntas as $perg){
+        
+        $indexperg ++;
+
+        if($perg->id == $lastquestion){
+
+          $stopped = $indexperg;
+
+        }
+        }
+
+        $gameplayed = (int)(($stopped*100)/$indexperg);
+
+}   else{
+
+         $gameplayed = 0;
+    }   
+    if($end == 1){
+
+     $gameplayed = 100;   
+    } 
+
+
+//-------------------------------FIM DO LOAD ----------------------------// 
+
+
+
+
                     if(count($perguntas) > 0  ){
 
                         $i2 = 0;
@@ -516,6 +626,7 @@ public function teste()
 
                                     'id' => $sala[0]->id,
                                     'name' => $sala[0]->name,
+                                    "game_played"=> $gameplayed,
                                     'Pergunta' => $total,
                                     'Reforco' => $i
                             ); 
