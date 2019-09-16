@@ -18,7 +18,12 @@
 <?php $linha = 0; $flag = 0; $flag_sala =0; $flag_salap =0;
 ?>
 
-<div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
+@if(count($salapr)>0)
+                      
+    <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px;display:block;">
+@else
+    <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px;display:none;">
+@endif
 
     <h4> Salas Privadas </h4>
 
@@ -28,6 +33,7 @@
     @foreach($data as $item) 
     @foreach($sala_user as $sala)
     @if($item->id==$sala->sala_id)
+    @if($item->public == 0)
     @if($user == $sala->user_id)
     <?php $flag_sala = 1;  ?>
                 
@@ -169,19 +175,25 @@
 
     @endif
     @endif
+    @endif
     @endforeach
     @endforeach
 
     @if($flag == 0 && $flag_sala == 1 )
         </div>
-        @endif  
+    @endif  
 
 </div>
 
   <!------- Estrutura de repetição (CARD)------------------->
   
 
-  <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
+  @if(count($salapu)>0)
+                      
+    <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px;display:block;">
+@else
+    <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px;display:none;">
+@endif
     <h4> Salas Publicas </h4>
 
     <?php $linha = 0; ?>
@@ -318,6 +330,7 @@
 
 
 
+    
 
 <!--- Fim Modal --->
 
@@ -328,7 +341,6 @@
     @if($flag == 0 && $flag_salap == 0 )
         </div>
         @endif  
-
 
 
        
