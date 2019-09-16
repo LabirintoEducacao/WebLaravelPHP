@@ -260,15 +260,17 @@ class SalaController extends Controller
         $salas = Sala::all();
         
         $sala_user = DB::table('sala_user')
-        ->get();
+                        ->get();
         $salapu = DB::table('salas')
-                    ->where('salas.public','=','1')
+                    ->where('public','=','1')
+                    ->where('enable','=','1')
                     ->get();
         
         $salapr = DB::table('salas')
                     ->join('sala_user','salas.id','=','sala_user.sala_id')
                     ->where('sala_user.user_id','=',Auth::user()->id)
                     ->where('salas.public','=','0')
+                    ->where('salas.enable','=','1')
                     ->get();
 
         return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user, 'salapu'=>$salapu, 'salapr'=>$salapr]);
