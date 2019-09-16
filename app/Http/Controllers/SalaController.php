@@ -255,14 +255,23 @@ class SalaController extends Controller
 
     }
 
-    public function entrar(){
+     public function entrar(){
 
         $salas = Sala::all();
         
         $sala_user = DB::table('sala_user')
         ->get();
+        $salapu = DB::table('salas')
+                    ->where('salas.public','=','1')
+                    ->get();
+        
+        $salapr = DB::table('salas')
+                    ->join('sala_user','salas.id','=','sala_user.sala_id')
+                    ->where('sala_user.user_id','=',Auth::user()->id)
+                    ->where('salas.public','=','0')
+                    ->get();
 
-        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user]);
+        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user, 'salapu'=>$salapu, 'salapr'=>$salapr]);
     }
 
     
