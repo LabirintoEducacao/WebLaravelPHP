@@ -54,37 +54,8 @@ class EstatisticaController extends Controller
      */
      public function store(Request $request)
     {
-        
+      
     $resposta = $request->all(['event_name', 'user_id', 'maze_id', 'question_id', 'answer_id', 'wrong_count', 'correct_count', 'correct', 'elapsed_time', 'answers_read_count','async_timestamp']);
-
-
-            //  $teste = (int)$resposta['async_timestamp'];
-
-            //  $teste2 = intdiv($teste, 60);
-
-            //  $resto = $teste%60;
-
-            //  if($teste2 >= 60){
-
-            //    $teste3 = intdiv($teste2, 60);
-
-            //    $resto2 = $teste2%60;
-
-            //   $resultado =  ($resto2 * 100) +  $resto + ($teste3 *10000);
-
-            //  }else{
-
-            //  $resultado =  ($teste2 * 100) +  $resto;
-
-            // }
-
-
-
-
-
-              //$nova = time();
-
-
 
            if($resposta['async_timestamp'] == 0){
                    
@@ -97,112 +68,82 @@ class EstatisticaController extends Controller
               $date = $formDate->format('Y/m/d H:i:s');
            }
          
-            
+     
              $event = $resposta['event_name'];
-             $user_id = (int)$resposta['user_id'];
-             $maze_id = (int)$resposta['maze_id'];
-             $question_id = (int)$resposta['question_id'];
-             $answer_id = (int)$resposta['answer_id'];
-             $wrong_count = (int)$resposta['wrong_count'];
-             $correct_count =(int) $resposta['correct_count'];
-             $correct = $resposta['correct'];
-             $elapsed_time = (int)$resposta['elapsed_time'];
-             $answers_read_count = (int)$resposta['answers_read_count'];
-             $async_timestamp =  $date;
-              
 
-              $maze_start = array(
+              $eventos_gerais = array(
 
-                    'user_id' =>  $user_id,
-                    'maze_id' => $maze_id,
-                    'question_id' => $question_id,
-                    'elapsed_time' =>  $elapsed_time
+                'maze_start' => array ('event_name' => 'maze_start',
+                                  'user_id'   =>  $resposta['user_id'],
+                                  'maze_id' => $resposta['maze_id'], 
+                                  'question_id' => $resposta['question_id'],
+                                  'elapsed_time' =>  $resposta['elapsed_time']
+                                ),
+              'question_start' => array ('event_name' => 'question_start',
+                              'user_id'   =>  $resposta['user_id'],
+                              'maze_id' => $resposta['maze_id'], 
+                              'question_id' => $resposta['question_id'],
+                              'elapsed_time' =>  $resposta['elapsed_time'],
+                              'wrong_count'  => $resposta['wrong_count'],
+                              'correct_count' => $resposta['correct_count']
+                            ),
+              'question_read' => array ('event_name' => 'question_read',
+                                'user_id'   =>  $resposta['user_id'],
+                                'maze_id' => $resposta['maze_id'], 
+                                'question_id' => $resposta['question_id'],
+                                'elapsed_time' =>  $resposta['elapsed_time']
+                              ),
+              'answer_read' => array ('event_name' => 'answer_read',
+                              'user_id'   =>  $resposta['user_id'],
+                              'maze_id' => $resposta['maze_id'], 
+                              'question_id' => $resposta['question_id'],
+                              'elapsed_time' =>  $resposta['elapsed_time'],
+                              'answer_id'    =>  $resposta['answer_id']
+                            ),
+              'answer_interaction' => array ('event_name' => 'answer_interaction',
+                                              'user_id'   =>  $resposta['user_id'],
+                                              'maze_id' => $resposta['maze_id'], 
+                                              'question_id' => $resposta['question_id'],
+                                              'elapsed_time' =>  $resposta['elapsed_time'],
+                                              'answer_id'    =>  $resposta['answer_id'],
+                                              'correct'      => $resposta['correct'],
+                                              ),
+             'question_end' => array ('event_name' => 'question_end',
+                                      'user_id'   =>  $resposta['user_id'],
+                                      'maze_id' => $resposta['maze_id'], 
+                                      'question_id' => $resposta['question_id'],
+                                      'elapsed_time' =>  $resposta['elapsed_time'],
+                                      'correct'      => $resposta['correct'],
+                                      'wrong_count'  => $resposta['wrong_count'],
+                                      'correct_count' => $resposta['correct_count']
+                                      ),
+             'maze_end' => array ('event_name' => 'maze_end',
+                                  'user_id'   =>  $resposta['user_id'],
+                                  'maze_id' => $resposta['maze_id'], 
+                                  'elapsed_time' =>  $resposta['elapsed_time'],
+                                  'wrong_count'  => $resposta['wrong_count'],
+                                  'correct_count' =>$resposta['correct_count']
+                                  )
 
-              );
+              );   
 
-              $question_start = array(
-
-                     'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'question_id' => $question_id,
-                     'elapsed_time' => $elapsed_time,
-                     'wrong_count' => $wrong_count,
-                     'correct_count' => $correct_count
-               );
-
-                $question_read = array(
-
-                    'user_id' =>  $user_id,
-                    'maze_id' => $maze_id,
-                    'question_id' => $question_id,
-                    'elapsed_time' =>  $elapsed_time
-
-               );
-
-	             $answer_read = array(
-
-	                 'user_id' => $user_id,
-	                 'maze_id' =>  $maze_id,
-	                 'event'  =>   $event,
-	                 'question_id' => $question_id,
-	                 'elapsed_time' => $elapsed_time,
-	                 'answer_id'    => $answer_id 
-	             );
-
-	             $answer_interaction = array(
-
-
-	             	 'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'event'  =>   $event,
-                     'question_id' => $question_id,
-                     'elapsed_time' => $elapsed_time,
-                     'answer_id'    => $answer_id,
-                     'correct'   => $correct
-
-
-	             );
-
-	             $question_end = array(
-                   
-                     'user_id' => $user_id,
-	                 'maze_id' =>  $maze_id,
-	                 'event'  =>   $event,
-	                 'question_id' => $question_id,
-	                 'elapsed_time' => $elapsed_time,
-	                 'correct'   => $correct,
-	                 'wrong_count' => $wrong_count,
-	                 'correct_count' => $correct_count,
-
-	             );
-
-                  $maze_end = array(
-	                 'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'event'  =>   $event,
-                     'elapsed_time' => $elapsed_time,
-                     'wrong_count' => $wrong_count,
-                     'correct_count' => $correct_count
-                  );
-
-
-        $x=0;
+               $x=0;
         
-        if($user_id!=null || $maze_id!=null){
+        if(isset($_REQUEST['user_id']) && isset($resposta['maze_id'])){
         
             $user = DB::table('users')
-                    ->where('id', '=', $user_id)
+                    ->where('id', '=', $resposta['user_id'])
                     ->get();
-                    if(count($user)>0){
+                    if(count($user)>0 || $_REQUEST['user_id'] == '0'){
                         $x++;
                         $sala = DB::table('salas')
-                        ->where('id', '=', $maze_id)
+                        ->where('id', '=', $resposta['maze_id'])
                         ->get();
                         if(count($sala)>0){
                             $x++;
-                            if($question_id!=null && $event != 'maze_end'){
+                            if( $resposta['question_id'] !=null && $event != 'maze_end'){
                                 $perg = DB::table('perguntas')
-                                ->where('id', '=', $question_id)
+                                ->where('id', '=', $resposta['question_id'])
                                 ->get();
                                 if(count($perg)>0){
                                     $x++;
@@ -238,379 +179,493 @@ class EstatisticaController extends Controller
                           return $invalido;
 
                         }
+              }else{
 
-                    }else{
-
-                        $invalido = array(
-                            
-                            'error' => array(
-
-                              'user' => 'invalido'
-                           ),
-
-                               'success' => -1
-                           );
-
-                         return $invalido;
-
-                    }
-
-        }if($event == "maze_start"){
-
-
-               foreach ($maze_start as $key => $value) {
-
-
-                  if($value == NULL){
-                     
-                     $erro[] = $key; 
-                    
-                  }
-                  
-               }
-
-              if(isset($erro)){
-
-              $total = array(
-                          'error' => array(
-                          'campos vazios' => $erro
-                           ),
-                          'success' => -1
-                    );
-                
-                return $total;
-
-                }
-
-               ////////Tabela Data ////////////////////////
-                DB::table('data')->insertGetId(array(
-
-                 'user_id' => $user_id,
-                 'maze_id' =>  $maze_id,
-                 'event'  =>   $event,
-                 'question_id' => $question_id,
-                 'elapsed_time' => $elapsed_time,
-                 'async_timestamp' => $async_timestamp
-
-                ));
-
-                 $resultado = array(
-                     
-                      "event_name" => "maze_start",
-                      "success" => 1
-
-                 );
-
-                 return $resultado;
-
-             }else if($event == "question_start"){
-
-
-               foreach ($question_start as $key => $value) {
-
-
-                  if($value == NULL){
-                     
-                     $erro[] = $key; 
-                    
-                  }
-                  
-               }
-
-              if(isset($erro)){
-
-              $total = array(
-                          'error' => array(
-                          'campos vazios' => $erro
-                           ),
-                          'success' => -1
-                    );
-                
-                return $total;
-
-                }
-
-               ////////Tabela Data ////////////////////////
-                DB::table('data')->insertGetId(array(
-
-                 'user_id' => $user_id,
-                 'maze_id' =>  $maze_id,
-                 'event'  =>   $event,
-                 'question_id' => $question_id,
-                 'elapsed_time' => $elapsed_time,
-                 'wrong_count' => $wrong_count,
-                 'correct_count' => $correct_count
-
-                ));
-
-                 $resultado = array(
-                     
-                      "event_name" => "question_start",
-                      "success" => 1
-
-                 );
-
-                 return $resultado;
-
-             }elseif($event == "question_read"){
-
-	                  foreach ($maze_start as $key => $value) {
-
-
-	                  if($value == NULL){
-	                     
-	                     $erro[] = $key; 
-	                    
-	                  }
-	                  
-	               }
-
-	              if(isset($erro)){
-
-	              $total = array(
-	                          'error' => array(
-	                          'campos vazios' => $erro
-	                           ),
-	                          'success' => -1
-	                    );
-	                
-	                return $total;
-
-	                }
-
-               
-                    ////////Tabela Data ////////////////////////
-                    DB::table('data')->insertGetId(array(
-
-                     'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'event'  =>   $event,
-                     'question_id' => $question_id,
-                     'elapsed_time' => $elapsed_time
-
-                    ));
-
-	                 $resultado = array(
-	                     
-	                      "event_name" => "question_read",
-	                      "success" => 1
-
-	                 );
-
-	                 return $resultado;
-              
-
-          }else if($event == "answer_read"){
-
-               foreach ($answer_read as $key => $value) {
-
-
-	                  if($value == NULL){
-	                     
-	                     $erro[] = $key; 
-	                    
-	                  }
-	                  
-	               }
-
-	              if(isset($erro)){
-
-	              $total = array(
-	                          'error' => array(
-	                          'campos vazios' => $erro
-	                           ),
-	                          'success' => -1
-	                    );
-	                
-	                return $total;
-
-	                }
-
-
- 
-                    ////////Tabela Data ////////////////////////
-                    DB::table('data')->insertGetId(array(
-
-                     'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'event'  =>   $event,
-                     'question_id' => $question_id,
-                     'elapsed_time' => $elapsed_time,
-                     'answer_id'    => $answer_id 
-
-                    ));
-  
-                     $resultado = array(
-	                     
-	                      "event_name" => "answer_read",
-	                      "success" => 1
-
-	                 );
-
-	                 return $resultado;
-
-          }elseif($event == "answer_interaction"){
-
-          	  foreach ($answer_interaction as $key => $value) {
-
-
-	                  if($value == NULL){
-	                     
-	                     $erro[] = $key; 
-	                    
-	                  }
-	                  
-	               }
-
-	              if(isset($erro)){
-
-	              $total = array(
-	                          'error' => array(
-	                          'campos vazios' => $erro
-	                           ),
-	                          'success' => -1
-	                    );
-	                
-	                return $total;
-
-	                }
-              
-                    ////////Tabela Data ////////////////////////
-                    DB::table('data')->insertGetId(array(
-
-                     'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'event'  =>   $event,
-                     'question_id' => $question_id,
-                     'elapsed_time' => $elapsed_time,
-                     'answer_id'    => $answer_id,
-                     'correct'   => $correct
-
-                    ));
-
-                     $resultado = array(
-	                     
-	                      "event_name" => "answer_interaction",
-	                      "success" => 1
-
-	                 );
-
-	                 return $resultado;
-       
-          }elseif($event == "question_end"){
-
-
-          	      foreach ($question_end as $key => $value) {
-
-
-	                  if($value == NULL){
-	                     
-	                     $erro[] = $key; 
-	                    
-	                  }
-	                  
-	               }
-
-	              if(isset($erro)){
-
-	              $total = array(
-	                          'error' => array(
-	                          'campos vazios' => $erro
-	                           ),
-	                          'success' => -1
-	                    );
-	                
-	                return $total;
-
-	                }
-                 
-                    ////////Tabela Data ////////////////////////
-                    DB::table('data')->insertGetId(array(
-
-                     'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'event'  =>   $event,
-                     'question_id' => $question_id,
-                     'elapsed_time' => $elapsed_time,
-                     'correct'   => $correct,
-                     'wrong_count' => $wrong_count,
-                     'correct_count' => $correct_count,
-                     'async_timestamp' => $async_timestamp
-
-                    ));
-
-
-                     $resultado = array(
-	                     
-	                      "event_name" => "question_end",
-	                      "success" => 1
-
-	                 );
-
-	                 return $resultado;
-                    
-
-          }elseif($event == "maze_end"){
-
-          	          foreach ($maze_end as $key => $value) {
-
-
-	                  if($value == NULL){
-	                     
-	                     $erro[] = $key; 
-	                    
-	                  }
-	                  
-	               }
-
-	              if(isset($erro)){
-
-	              $total = array(
-	                          'error' => array(
-	                          'campos vazios' => $erro
-	                           ),
-	                          'success' => -1
-	                    );
-	                
-	                return $total;
-
-	                }
              
+                  $invalido = array(
 
-                    ////////Tabela Data ////////////////////////
-                    DB::table('data')->insertGetId(array(
+                      'error' => array(
 
-                     'user_id' => $user_id,
-                     'maze_id' =>  $maze_id,
-                     'event'  =>   $event,
-                     'elapsed_time' => $elapsed_time,
-                     'wrong_count' => $wrong_count,
-                     'correct_count' => $correct_count,
-                     'async_timestamp' => $async_timestamp
+                        'user' => 'invalido'
+                     ),
 
-                    ));
+                         'success' => -1
+                     );
 
-                     $resultado = array(
-	                     
-	                      "event_name" => "maze_end",
-	                      "success" => 1
+                    return $invalido;
 
-	                 );
+              }
+            }
 
-	                 return $resultado;
+        foreach ($eventos_gerais  as $key => $value){
+            
 
-          }else{
+                   if($value['event_name'] == $event){
 
-                $resultado = array(
+                       $valor[] = $value;
+                   }
+
+            }  
+
+             if(isset($valor)){
+
+
+            foreach ($valor[0] as $key => $value) {
+
+
+                  if($value === NULL){
+                     
+
+                     $erro[] = $key; 
+                    
+                  }
+                  
+               }
+
+                if(isset($erro)){
+
+               $total = array(
+                      'error' => array(
+                      'campos vazios' => $erro
+                       ),
+                      'success' => -1
+                      );
+                  
+                  return $total;
+
+                  }
+
+
+            if($_REQUEST['user_id'] == '0'){
+
+               DB::table('data_guest')->insertGetId(array(
+            'maze_id' => isset($_REQUEST['maze_id']) ? $_REQUEST['maze_id'] : NULL,
+            'event'  =>   $event,
+            'question_id' => isset($_REQUEST['question_id']) ? $_REQUEST['question_id'] : NULL,
+            'answer_id'   =>  isset($_REQUEST['answer_id']) ? $_REQUEST['answer_id'] : NULL,
+            'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
+            'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
+            'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
+            'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
+            'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
+            'async_timestamp' => $date
+
+                      ));
+
+
+            }else{
+
+               //////Tabela Data ////////////////////////
+                DB::table('data')->insertGetId(array(
+
+      'user_id' => isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : NULL ,
+      'maze_id' => isset($_REQUEST['maze_id']) ? $_REQUEST['maze_id'] : NULL,
+      'event'  =>   $event,
+      'question_id' => isset($_REQUEST['question_id']) ? $_REQUEST['question_id'] : NULL,
+      'answer_id'   =>  isset($_REQUEST['answer_id']) ? $_REQUEST['answer_id'] : NULL,
+      'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
+      'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
+      'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
+      'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
+      'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
+      'async_timestamp' => $date
+
+                ));
+
+            }
+
+          
+
+                 $resultado = array(
+                     
+                      "event_name" =>  $event,
+                      "success" => 1
+
+                 );
+
+                 return $resultado;
+              
+
+             }else{
+
+              $resultado = array(
                           'error' => array(
-                          'event_name' => 'Nome do evento nao corresponde'
+                          'event_name' => 'Event invalido'
                            ),
                           'success' => -1
                     );
                 
                 return $resultado;
 
-                }
+             }
+
+
+
+            
+
+          
+                    
+
+
+
+
+
+        // if($event == "maze_start"){
+
+
+        //        foreach ($maze_start as $key => $value) {
+
+
+        //           if($value === NULL){
+                     
+        //              $erro[] = $key; 
+                    
+        //           }
+                  
+        //        }
+
+        //       if(isset($erro)){
+
+        //       $total = array(
+        //                   'error' => array(
+        //                   'campos vazios' => $erro
+        //                    ),
+        //                   'success' => -1
+        //             );
+                
+        //         return $total;
+
+        //         }
+
+        //        ////////Tabela Data ////////////////////////
+        //         DB::table('data')->insertGetId(array(
+
+        //          'user_id' => $user_id,
+        //          'maze_id' =>  $maze_id,
+        //          'event'  =>   $event,
+        //          'question_id' => $question_id,
+        //          'elapsed_time' => $elapsed_time,
+        //          'async_timestamp' => $async_timestamp
+
+        //         ));
+
+        //          $resultado = array(
+                     
+        //               "event_name" => "maze_start",
+        //               "success" => 1
+
+        //          );
+
+        //          return $resultado;
+
+        //      }else if($event == "question_start"){
+
+
+        //        foreach ($question_start as $key => $value) {
+
+
+        //           if($value === NULL){
+                     
+        //              $erro[] = $key; 
+                    
+        //           }
+                  
+        //        }
+
+        //       if(isset($erro)){
+
+        //       $total = array(
+        //                   'error' => array(
+        //                   'campos vazios' => $erro
+        //                    ),
+        //                   'success' => -1
+        //             );
+                
+        //         return $total;
+
+        //         }
+
+        //        ////////Tabela Data ////////////////////////
+        //         DB::table('data')->insertGetId(array(
+
+        //          'user_id' => $user_id,
+        //          'maze_id' =>  $maze_id,
+        //          'event'  =>   $event,
+        //          'question_id' => $question_id,
+        //          'elapsed_time' => $elapsed_time,
+        //          'wrong_count' => $wrong_count,
+        //          'correct_count' => $correct_count
+
+        //         ));
+
+        //          $resultado = array(
+                     
+        //               "event_name" => "question_start",
+        //               "success" => 1
+
+        //          );
+
+        //          return $resultado;
+
+        //      }elseif($event == "question_read"){
+
+	       //            foreach ($maze_start as $key => $value) {
+
+
+	       //            if($value === NULL){
+	                     
+	       //               $erro[] = $key; 
+	                    
+	       //            }
+	                  
+	       //         }
+
+	       //        if(isset($erro)){
+
+	       //        $total = array(
+	       //                    'error' => array(
+	       //                    'campos vazios' => $erro
+	       //                     ),
+	       //                    'success' => -1
+	       //              );
+	                
+	       //          return $total;
+
+	       //          }
+
+               
+        //             ////////Tabela Data ////////////////////////
+        //             DB::table('data')->insertGetId(array(
+
+        //              'user_id' => $user_id,
+        //              'maze_id' =>  $maze_id,
+        //              'event'  =>   $event,
+        //              'question_id' => $question_id,
+        //              'elapsed_time' => $elapsed_time
+
+        //             ));
+
+	       //           $resultado = array(
+	                     
+	       //                "event_name" => "question_read",
+	       //                "success" => 1
+
+	       //           );
+
+	       //           return $resultado;
+              
+
+        //   }else if($event == "answer_read"){
+
+        //        foreach ($answer_read as $key => $value) {
+
+
+	       //            if($value === NULL){
+	                     
+	       //               $erro[] = $key; 
+	                    
+	       //            }
+	                  
+	       //         }
+
+	       //        if(isset($erro)){
+
+	       //        $total = array(
+	       //                    'error' => array(
+	       //                    'campos vazios' => $erro
+	       //                     ),
+	       //                    'success' => -1
+	       //              );
+	                
+	       //          return $total;
+
+	       //          }
+
+
+ 
+        //             ////////Tabela Data ////////////////////////
+        //             DB::table('data')->insertGetId(array(
+
+        //              'user_id' => $user_id,
+        //              'maze_id' =>  $maze_id,
+        //              'event'  =>   $event,
+        //              'question_id' => $question_id,
+        //              'elapsed_time' => $elapsed_time,
+        //              'answer_id'    => $answer_id 
+
+        //             ));
+  
+        //              $resultado = array(
+	                     
+	       //                "event_name" => "answer_read",
+	       //                "success" => 1
+
+	       //           );
+
+	       //           return $resultado;
+
+        //   }elseif($event == "answer_interaction"){
+
+        //   	  foreach ($answer_interaction as $key => $value) {
+
+
+	       //            if($value == NULL){
+	                     
+	       //               $erro[] = $key; 
+	                    
+	       //            }
+	                  
+	       //         }
+
+	       //        if(isset($erro)){
+
+	       //        $total = array(
+	       //                    'error' => array(
+	       //                    'campos vazios' => $erro
+	       //                     ),
+	       //                    'success' => -1
+	       //              );
+	                
+	       //          return $total;
+
+	       //          }
+              
+        //             ////////Tabela Data ////////////////////////
+        //             DB::table('data')->insertGetId(array(
+
+        //              'user_id' => $user_id,
+        //              'maze_id' =>  $maze_id,
+        //              'event'  =>   $event,
+        //              'question_id' => $question_id,
+        //              'elapsed_time' => $elapsed_time,
+        //              'answer_id'    => $answer_id,
+        //              'correct'   => $correct
+
+        //             ));
+
+        //              $resultado = array(
+	                     
+	       //                "event_name" => "answer_interaction",
+	       //                "success" => 1
+
+	       //           );
+
+	       //           return $resultado;
+       
+        //   }elseif($event == "question_end"){
+
+
+        //   	      foreach ($question_end as $key => $value) {
+
+
+	       //            if($value == NULL){
+	                     
+	       //               $erro[] = $key; 
+	                    
+	       //            }
+	                  
+	       //         }
+
+	       //        if(isset($erro)){
+
+	       //        $total = array(
+	       //                    'error' => array(
+	       //                    'campos vazios' => $erro
+	       //                     ),
+	       //                    'success' => -1
+	       //              );
+	                
+	       //          return $total;
+
+	       //          }
+                 
+        //             ////////Tabela Data ////////////////////////
+        //             DB::table('data')->insertGetId(array(
+
+        //              'user_id' => $user_id,
+        //              'maze_id' =>  $maze_id,
+        //              'event'  =>   $event,
+        //              'question_id' => $question_id,
+        //              'elapsed_time' => $elapsed_time,
+        //              'correct'   => $correct,
+        //              'wrong_count' => $wrong_count,
+        //              'correct_count' => $correct_count,
+        //              'async_timestamp' => $async_timestamp
+
+        //             ));
+
+
+        //              $resultado = array(
+	                     
+	       //                "event_name" => "question_end",
+	       //                "success" => 1
+
+	       //           );
+
+	       //           return $resultado;
+                    
+
+        //   }elseif($event == "maze_end"){
+
+        //   	          foreach ($maze_end as $key => $value) {
+
+
+	       //            if($value == NULL){
+	                     
+	       //               $erro[] = $key; 
+	                    
+	       //            }
+	                  
+	       //         }
+
+	       //        if(isset($erro)){
+
+	       //        $total = array(
+	       //                    'error' => array(
+	       //                    'campos vazios' => $erro
+	       //                     ),
+	       //                    'success' => -1
+	       //              );
+	                
+	       //          return $total;
+
+	       //          }
+             
+
+        //             ////////Tabela Data ////////////////////////
+        //             DB::table('data')->insertGetId(array(
+
+        //              'user_id' => $user_id,
+        //              'maze_id' =>  $maze_id,
+        //              'event'  =>   $event,
+        //              'elapsed_time' => $elapsed_time,
+        //              'wrong_count' => $wrong_count,
+        //              'correct_count' => $correct_count,
+        //              'async_timestamp' => $async_timestamp
+
+        //             ));
+
+        //              $resultado = array(
+	                     
+	       //                "event_name" => "maze_end",
+	       //                "success" => 1
+
+	       //           );
+
+	       //           return $resultado;
+
+        //   }else{
+
+        //         $resultado = array(
+        //                   'error' => array(
+        //                   'event_name' => 'Nome do evento nao corresponde'
+        //                    ),
+        //                   'success' => -1
+        //             );
+                
+        //         return $resultado;
+
+        //         }
              
     }
 
