@@ -59,7 +59,9 @@ class EstatisticaController extends Controller
      */
      public function store(Request $request)
     {
-      
+
+    $jogadas = 1;
+   
     $resposta = $request->all(['event_name', 'user_id', 'maze_id', 'question_id', 'answer_id', 'wrong_count', 'correct_count', 'correct', 'elapsed_time', 'answers_read_count','async_timestamp']);
 
            if($resposta['async_timestamp'] == 0){
@@ -76,28 +78,27 @@ class EstatisticaController extends Controller
      
              $event = $resposta['event_name'];
 
+
              $start = DB::table('data')->where('maze_id', $resposta['maze_id'])->select('event', 'start')->get();
+
+
+       
+      
 
              foreach ($start as $value) {
 
-
-                  $jogadas = $value->start;
-
-                  if($value->start === NULL){
-
-                       $jogadas = 1;
-                  }
+                  
 
                   if($value->event == 'maze_end'){
 
                   
-                    $jogadas++;
+                    $jogadas = (int)$value->start;
+                    $jogadas ++;
 
 
                   }
 
              }
-
 
               $eventos_gerais = array(
 
@@ -273,7 +274,7 @@ class EstatisticaController extends Controller
             'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
             'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
             'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
-            'start' => $jogadas; 
+            'start' => $jogadas, 
             'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
             'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
             'async_timestamp' => $date
@@ -294,7 +295,7 @@ class EstatisticaController extends Controller
       'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
       'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
       'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
-      'start' => $jogadas; 
+     'start' => $jogadas,
       'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
       'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
       'async_timestamp' => $date
