@@ -14,6 +14,8 @@
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-1">&emsp;Criar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-2">&emsp;Editar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-3">&emsp;Deletar</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-4">&emsp;Desabilitadas</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-5">&emsp;Habilitadas</a>
                         </div>
                     </a>
                     <a class="list-group-item list-group-item-action"></a>
@@ -72,7 +74,10 @@
                                         Tema: cenário do labirinto;
                                     </li>
                                     <li>
-                                        Sala Pública: este campo deverá marcado se a sala tiver que ser aberta a todos os jogadores, caso contrário apenas usuários escolhidos pelo criador do labirinto poderão acessar o jogo.
+                                        Sala Pública: este campo deverá ser marcado se a sala tiver que ser aberta a todos os jogadores, caso contrário apenas usuários escolhidos pelo criador do labirinto poderão acessar o jogo.
+                                    </li>
+                                    <li>
+                                        Ativo: este campo é marcado por padrão, ele permite que os alunos cadastrados na sala possam vê-la. Se não estiver marcado, os dados estatísticos serão mantidos, mas nenhum aluno poderá jogar o labirinto.
                                     </li>
                                 </ul>
 
@@ -102,6 +107,27 @@
                                 Para deletar uma sala, basta clicar no botão <i class="fa fa-trash"></i>.
                                 <br>
                                 <img src="/img/deletar_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            
+                            <!--                            DESABILITAR SALA                           -->
+                            <h5 id="list-item-1-4">
+                                Desabilitar Sala
+                            </h5>
+                            <p>
+                                Para ver as salas desabilitadas, basta clicar em:
+                                <br>
+                                <img src="/img/disabled.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            
+                            
+                            <!--                            HABILITAR SALA                           -->
+                            <h5 id="list-item-1-5">
+                                Habilitar Sala
+                            </h5>
+                            <p>
+                                Para ver as salas habilitadas, basta clicar em:
+                                <br>
+                                <img src="/img/enabled.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             
                         </div>

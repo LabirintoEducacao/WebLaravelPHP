@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use App\Sala;
 use File;
 
@@ -249,8 +250,21 @@ class SalaController extends Controller
         
         $sala_user = DB::table('sala_user')
         ->get();
+        $sala_user = DB::table('sala_user')
+        ->get();
+        $salapu = DB::table('salas')
+            ->where('public','=',1)->get();
+        
+        $salapu2 = count($salapu);
+        
+        $salapr = DB::table('salas')
+            ->join('sala_user','sala_user.sala_id','=','salas.id')
+            ->where('sala_user.user_id','=',Auth::user()->id)
+            ->where('public','=',0)->get();
 
-        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user]);
+        $salapr2 = count($salapr);
+        
+        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user,'salapu'=>$salapu2,'salapr'=>$salapr2]);
     }
 
     

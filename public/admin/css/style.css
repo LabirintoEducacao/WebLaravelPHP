@@ -11217,6 +11217,7 @@ a.text-dark:focus {
 
     body {
         min-width: 992px !important;
+        line-height: 1.5;
     }
 
     .container {

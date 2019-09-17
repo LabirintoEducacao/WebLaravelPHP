@@ -18,7 +18,11 @@
 <?php $linha = 0; $flag = 0; $flag_sala =0; $flag_salap =0;
 ?>
 
-<div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
+@if($salapr>0)
+  <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; display:block">
+@else
+<div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px;display:none">
+@endif
 
     <h4> Salas Privadas </h4>
 
@@ -180,8 +184,11 @@
 
   <!------- Estrutura de repetição (CARD)------------------->
   
-
-  <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; ">
+@if($salapu>0)
+  <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; display:block">
+@else
+<div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px;display:none">
+@endif
     <h4> Salas Publicas </h4>
 
     <?php $linha = 0; ?>
