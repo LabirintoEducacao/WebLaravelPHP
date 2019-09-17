@@ -16,16 +16,16 @@ class CreateDataTable extends Migration
         
         Schema::create('data', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->integer('user_id');
-          $table->integer('maze_id');
-          $table->string('event');
+          $table->integer('user_id')->nullable();
+          $table->integer('maze_id')->nullable();
+          $table->string('event')->nullable();
           $table->integer('question_id')->nullable();
           $table->integer('answer_id')->nullable();
           $table->integer('wrong_count')->nullable();
           $table->integer('correct_count')->nullable();
           $table->boolean('correct')->nullable();
           $table->integer('termino')->nullable();
-          $table->integer('elapsed_time');
+          $table->integer('elapsed_time')->nullable();
           $table->integer('answers_read_count')->nullable();
           $table->Timestamp('async_timestamp')->nullable();
           $table->timestamps();

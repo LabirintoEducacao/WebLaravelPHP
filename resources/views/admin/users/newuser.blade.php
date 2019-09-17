@@ -8,7 +8,7 @@
 
 @section('content')
     @if(Auth::user()->hasAnyRole('admin'))
-        <form method="POST" action="{{ url('/admin/new/user') }}" style="width:60%;margin-top:2%;margin-left:15%" class="justify-content-center">
+        <form method="POST" action="{{ url('/admin/new/user') }}" style="width:60%;margin-left:22%">
 
                         @csrf
 

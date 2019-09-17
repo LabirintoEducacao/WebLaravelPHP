@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
-use App\Data;
 use App\Sala;
 use File;
 
@@ -209,13 +208,6 @@ class SalaController extends Controller
 
         $sala = Sala::find($id);
 
-        if($sala->enable == 1){
-
-            $enable =1;
-        }else{
-            $enable =0;
-        }
-
         if(isset($sala)){
            $sala->delete();         
        }
@@ -230,12 +222,8 @@ class SalaController extends Controller
             File::deleteDirectory($strCaminho);
 
 
-        if($enable == 1){
+
       return redirect('admin/sala')->with($notification);
-  }
-    else{
-       return redirect('admin/sala-disable')->with($notification); 
-    }
     }
 
     public function add_user(Request $request){
@@ -349,13 +337,7 @@ public function teste()
    
 
 
-                $jsn=array();
-
-                $id = $_REQUEST['id'];
-                $end = 0;
-                $indexperg = 0;
-
-
+       
                 if(isset($_REQUEST['type']) && $_REQUEST['type']!=null){
 
                 $tipo =(int) $_REQUEST['type'];
@@ -366,17 +348,15 @@ public function teste()
                 $tipo = 1;
                 }    
                      
-
-                   
                  if($tipo == 0){
             
 
-               
 
                 $salas_publicas = DB::table('salas')
-                ->where('public','=',1)->select('id','name','enable')->get();
+                ->where('public','=',1)->select('id','name')->get();
 
-                  
+                
+
 
                 if(count($salas_publicas) > 0){
    
@@ -384,7 +364,6 @@ public function teste()
                 foreach($salas_publicas as $salas){
 
 
-                if($salas->enable == 1){
 
 
                  $perguntasref = DB::table('perguntas')
@@ -394,56 +373,7 @@ public function teste()
                  $perguntas = DB::table('perguntas')
                  ->where('sala_id','=', $salas->id)->get();
 
-                
-
-//--------------------------------------LOAD ---------------------------//
-
-                    $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$salas->id)->get();
-
-          if(count($save) > 0){          
-          foreach ($save as $stop) {
-
-    
-             if($stop->event == "question_end"){
-
-            $lastquestion = $stop->question_id;
-
-          }
-
-            if($stop->event == "maze_end"){
-
-            $end = 1;
-          }
-        }
-
-       foreach($perguntas as $perg){
-        
-        $indexperg ++;
-
-        if($perg->id == $lastquestion){
-
-          $stopped = $indexperg;
-
-        }
-        }
-
-        $gameplayed = (int)(($stopped*100)/$indexperg);
-    }
-
-    else{
-
-         $gameplayed = 0;
-    }    
-
-if($end == 1){
-
-     $gameplayed = 100;   
-    } 
-
-
-
-//-------------------------------FIM DO LOAD ----------------------------// 
-
+                 
                  
                    if(count($perguntas) > 0 ){
 
@@ -474,15 +404,13 @@ if($end == 1){
 
                                     'id' => $salas->id,
                                     'name' => $salas->name,
-                                    "game_played"=> $gameplayed,
                                     'Pergunta' => $total,
                                     'Reforco' => $i
                             ); 
                       
                            }
-                    
                     }
-                }
+                    
                     $resultado = array(
                          
                           "salas" => $jsn,
@@ -493,8 +421,8 @@ if($end == 1){
                     
                     return $resultado;
 
-                
-               }else{
+
+                }else{
 
 
                     $jsn = array(); 
@@ -509,6 +437,7 @@ if($end == 1){
                     return $resultado;
                 }
 
+
                 }elseif($tipo == 1 && isset($_REQUEST['id'])){
 
                     
@@ -520,18 +449,10 @@ if($end == 1){
                 if(count($user)>0){
                       
                  $salas_user = DB::table('sala_user')->where('user_id','=',$json)->get();
-
-
-                
-
                   
                 if(count($salas_user) > 0){
 
                  foreach($salas_user as $sala_user){
-
-                $salas  = DB::table('salas')->where('id',$sala_user->sala_id)->select('enable')->get();
-                      
-                 if($salas[0]->enable == '1'){
 
                  $perguntasref = DB::table('perguntas')
                  ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
@@ -539,60 +460,6 @@ if($end == 1){
 
                  $perguntas = DB::table('perguntas')
                  ->where('sala_id','=', $sala_user->sala_id)->get();
-
-
-
-
-//--------------------------------------LOAD ---------------------------//
-
-             $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$sala_user->sala_id)->get();
-
-
-
-          if(count($save)>0){
-
-          foreach ($save as $stop) {
-
-    
-             if($stop->event == "question_end"){
-
-            $lastquestion = $stop->question_id;
-
-          }
-
-            if($stop->event == "maze_end"){
-
-            $end = 1;
-          }
-        }
-
-       foreach($perguntas as $perg){
-        
-        $indexperg ++;
-
-        if($perg->id == $lastquestion){
-
-          $stopped = $indexperg;
-
-        }
-        }
-
-        $gameplayed = (int)(($stopped*100)/$indexperg);
-
-}   else{
-
-         $gameplayed = 0;
-    }   
-    if($end == 1){
-
-     $gameplayed = 100;   
-    } 
-
-
-//-------------------------------FIM DO LOAD ----------------------------// 
-
-
-
 
                     if(count($perguntas) > 0  ){
 
@@ -620,21 +487,17 @@ if($end == 1){
                                 ->where('id','=',$sala_user->sala_id)
                                 ->where('public','=',0)
                                 ->select('id','name')->get();
-                                if(count($sala)>0){
+                                if(count($sala)>0)
 
                        $jsn[] = array(
 
                                     'id' => $sala[0]->id,
                                     'name' => $sala[0]->name,
-                                    "game_played"=> $gameplayed,
                                     'Pergunta' => $total,
                                     'Reforco' => $i
                             ); 
-                    }
-                    }
-                    }
-                    }
 
+                    }}
 
 
                     $resultado = array(
@@ -646,9 +509,8 @@ if($end == 1){
                    
 
                       return $resultado;
-                      
-                   
-               }else{
+
+                   }else{
 
                      $jsn = array(); 
 
@@ -663,7 +525,7 @@ if($end == 1){
                     return $resultado;
 
                    }
-               
+
 
                    }else{
                      
@@ -696,9 +558,9 @@ if($end == 1){
                     return $resultado;                    
    
                 }
-    
-    
     }
+    
+    
     
     
     public function estatistica($id){

@@ -74,12 +74,6 @@
                                     <li>
                                         Sala Pública: este campo deverá marcado se a sala tiver que ser aberta a todos os jogadores, caso contrário apenas usuários escolhidos pelo criador do labirinto poderão acessar o jogo.
                                     </li>
-                                    <li>
-                                        Ativa: é uma forma de controlar o acesso à sala sem precisar deleta-la. Se o campo estiver marcado, significa que os usuários podem jogar, e se não estiver marcada, não aparecerá para os usuários no espaço virtual. Se a sala estiver desativada, é só clicar em '<i class="fa fa-ban"></i>Salas Desativadas' para vê-la.
-                                        <img src="/img/desativada.png" class="img-fluid" style="width: 700px; padding-bottom: 50px; padding-top:50px; ">
-                                        E, para voltar às salas ativadas, basta clicar em '<i class="fa fa-fa-thumbs-up"></i>Salas Ativadas'
-                                        <img src="/img/ativar.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
-                                    </li>
                                 </ul>
 
                                 <img src="/img/nova_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
