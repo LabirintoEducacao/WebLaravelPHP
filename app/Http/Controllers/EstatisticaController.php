@@ -76,6 +76,29 @@ class EstatisticaController extends Controller
      
              $event = $resposta['event_name'];
 
+             $start = DB::table('data')->where('maze_id', $resposta['maze_id'])->select('event', 'start')->get();
+
+             foreach ($start as $value) {
+
+
+                  $jogadas = $value->start;
+
+                  if($value->start === NULL){
+
+                       $jogadas = 1;
+                  }
+
+                  if($value->event == 'maze_end'){
+
+                  
+                    $jogadas++;
+
+
+                  }
+
+             }
+
+
               $eventos_gerais = array(
 
                 'maze_start' => array ('event_name' => 'maze_start',
@@ -240,7 +263,6 @@ class EstatisticaController extends Controller
 
                   }
 
-
             if($_REQUEST['user_id'] == '0'){
 
                DB::table('data_guest')->insertGetId(array(
@@ -251,6 +273,7 @@ class EstatisticaController extends Controller
             'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
             'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
             'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
+            'start' => $jogadas; 
             'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
             'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
             'async_timestamp' => $date
@@ -271,6 +294,7 @@ class EstatisticaController extends Controller
       'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
       'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
       'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
+      'start' => $jogadas; 
       'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
       'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
       'async_timestamp' => $date
