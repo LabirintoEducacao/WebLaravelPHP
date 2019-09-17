@@ -19,7 +19,8 @@ class CreatePathsTable extends Migration
             $table->integer('tamanho');
             $table->integer('largura');
             $table->boolean('disp');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -17,7 +17,8 @@ class CreatePergRespTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('perg_id')->unsigned()->nullable();
             $table->bigInteger('resp_id')->unsigned()->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
         
         Schema::table('perg_resp', function($table) {

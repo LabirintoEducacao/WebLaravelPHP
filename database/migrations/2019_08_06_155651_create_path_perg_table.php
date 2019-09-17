@@ -17,7 +17,8 @@ class CreatePathPergTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('perg_id')->unsigned()->nullable();
             $table->bigInteger('path_id')->unsigned()->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
         Schema::table('path_perg', function($table) {
             $table->foreign('perg_id')->references('id')->on('perguntas')->onDelete('cascade');
