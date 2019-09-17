@@ -55,30 +55,38 @@
 
 @section('myscript')
 <script>
+    
+    function random() {
+        return Math.round(Math.random() * 100);
+    };
+    
+    
     var perguntas = <?php echo $perguntas; ?>;
     var perguntasNome = [];
     var perguntasId = [];
+    var randomicoP = [];
 
     for (var i = 0; i < perguntas.length; i++) {
         perguntasNome[i] = perguntas[i].pergunta;
         perguntasId[i] = perguntas[i].id;
+        randomicoP[i] = random();
         console.log(perguntasNome[i]);
     }
 
     var users = <?php echo $users; ?>;
     var usersNome = [];
     var usersId = [];
+    var randomicoU = [];
 
     for (var i = 0; i < users.length; i++) {
         usersNome[i] = users[i].name;
         usersId[i] = users[i].id;
+        randomicoU[i] = random();
         console.log(perguntasNome[i]);
     }
 
 
-    function random() {
-        return Math.round(Math.random() * 100);
-    };
+    
 
 
     var ctxp = document.getElementById('perguntas').getContext('2d');
@@ -86,25 +94,21 @@
         type: 'horizontalBar',
         data: {
             labels: perguntasNome,
-            borderColor: 'rgba(255, 0, 0, 0.8)',
-            highlightFill: 'rgba(255, 0, 0, 0.75)',
-            highlightStroke: 'rgb(255, 0, 0)',
-            data: [random(), random()],
-        datasets: [{
-            label: 'Erros',
-            backgroundColor: 'rgba(255, 0, 0, 0.5)',
-            borderColor: 'rgba(255, 0, 0, 0.8)',
-            highlightFill: 'rgba(255, 0, 0, 0.75)',
-            highlightStroke: 'rgb(255, 0, 0)',
-            data: [random(), random()]
-        }, {
-            label: 'Acertos',
-            backgroundColor: 'rgba(0, 255, 9, 0.5)',
-            borderColor: 'rgba(0, 255, 9, 0.8)',
-            highlightFill: 'rgba(0, 255, 9, 0.75)',
-            highlightStroke: 'rgba(0, 255, 9, 1)',
-            data: [random(), random()]
-        }]
+            datasets: [{
+                label: 'Erros',
+                backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                borderColor: 'rgba(255, 0, 0, 0.8)',
+                highlightFill: 'rgba(255, 0, 0, 0.75)',
+                highlightStroke: 'rgb(255, 0, 0)',
+                data: randomicoP
+            }, {
+                label: 'Acertos',
+                backgroundColor: 'rgba(0, 255, 9, 0.5)',
+                borderColor: 'rgba(0, 255, 9, 0.8)',
+                highlightFill: 'rgba(0, 255, 9, 0.75)',
+                highlightStroke: 'rgba(0, 255, 9, 1)',
+                data: randomicoP
+            }]
 
     },
     options: {
@@ -136,14 +140,14 @@
                 borderColor: 'rgba(255, 0, 0, 0.8)',
                 highlightFill: 'rgba(255, 0, 0, 0.75)',
                 highlightStroke: 'rgb(255, 0, 0)',
-                data: [random(), random()]
+                data: randomicoU
             }, {
                 label: 'Acertos',
                 backgroundColor: 'rgba(0, 255, 9, 0.5)',
                 borderColor: 'rgba(0, 255, 9, 0.8)',
                 highlightFill: 'rgba(0, 255, 9, 0.75)',
                 highlightStroke: 'rgba(0, 255, 9, 1)',
-                data: [random(), random()]
+                data: randomicoU
             }]
         },
         options: {

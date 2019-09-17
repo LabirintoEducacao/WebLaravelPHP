@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="container-fluid" style="margin-bottom:2%;">
     <div class="row">
         <div class="col-md-8 ">
@@ -14,6 +15,7 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
       <div class="card-columns cols-2">
+          @if(Auth::user()->hasAnyRole('professor'))
         <div class="card">
           <div class="card-header">
             Acertos e erros por sala
@@ -29,6 +31,7 @@
             </div>
           </div>
         </div>
+          @endif
       </div>
     </div>
   </div>
@@ -39,19 +42,25 @@
 
 @section('myscript')
 <script>
+    @if(isset($salas))
 	var salas = <?php echo $salas; ?>;
     var salasNome = [];
     var salasId = [];
-
-    for (var i = 0; i < salas.length; i++) {
-        salasNome[i] = salas[i].name;
-        salasId[i] = salas[i].id;
-        console.log(salasNome[i]);
-    }
-
+    var randomicoS = [];
+    
+    
     function random() {
         return Math.round(Math.random() * 100);
     };
+    
+    for (var i = 0; i < salas.length; i++) {
+        salasNome[i] = salas[i].name;
+        salasId[i] = salas[i].id;
+        randomicoS[i] = random();
+        console.log(salasNome[i]);
+    }
+
+    
 
 
     var ctxp = document.getElementById('salas').getContext('2d');
@@ -59,24 +68,20 @@
         type: 'horizontalBar',
         data: {
             labels: salasNome,
-            borderColor: 'rgba(255, 0, 0, 0.8)',
-            highlightFill: 'rgba(255, 0, 0, 0.75)',
-            highlightStroke: 'rgb(255, 0, 0)',
-            data: [random(), random()],
         datasets: [{
             label: 'Erros',
             backgroundColor: 'rgba(255, 0, 0, 0.5)',
             borderColor: 'rgba(255, 0, 0, 0.8)',
             highlightFill: 'rgba(255, 0, 0, 0.75)',
             highlightStroke: 'rgb(255, 0, 0)',
-            data: [random(), random()]
+            data: randomicoS
         }, {
             label: 'Acertos',
             backgroundColor: 'rgba(0, 255, 9, 0.5)',
             borderColor: 'rgba(0, 255, 9, 0.8)',
             highlightFill: 'rgba(0, 255, 9, 0.75)',
             highlightStroke: 'rgba(0, 255, 9, 1)',
-            data: [random(), random()]
+            data: randomicoS
         }]
 
     },
@@ -96,5 +101,6 @@
         }
     }
     });
+    @endif
 </script>
 @endsection
