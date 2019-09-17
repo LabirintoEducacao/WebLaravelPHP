@@ -20,7 +20,8 @@ class CreatePerguntasTable extends Migration
             $table->string('pergunta');
             $table->integer('ordem')->nullable();
             $table->string('room_type');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
        Schema::table('perguntas', function($table) {

@@ -24,11 +24,12 @@ class CreateDataTable extends Migration
           $table->integer('wrong_count')->nullable();
           $table->integer('correct_count')->nullable();
           $table->boolean('correct')->nullable();
-          $table->integer('termino')->nullable();
+          $table->integer('start')->nullable();
           $table->integer('elapsed_time')->nullable();
           $table->integer('answers_read_count')->nullable();
-          $table->Timestamp('async_timestamp')->nullable();
-          $table->timestamps();
+          $table->timestamp('async_timestamp')->nullable();
+          $table->timestamp('created_at')->useCurrent();
+          $table->timestamp('updated_at')->useCurrent();
         });
 
     }

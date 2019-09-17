@@ -17,7 +17,8 @@ class CreateSalaUserTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('sala_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
          Schema::table('sala_user', function($table) {
