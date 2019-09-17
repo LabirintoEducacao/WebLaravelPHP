@@ -44,7 +44,7 @@
     var salasId = [];
 
     for (var i = 0; i < salas.length; i++) {
-        salasNome[i] = salas[i].pergunta;
+        salasNome[i] = salas[i].name;
         salasId[i] = salas[i].id;
         console.log(salasNome[i]);
     }
