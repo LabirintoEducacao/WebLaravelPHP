@@ -16,6 +16,7 @@
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-3">&emsp;Deletar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-4">&emsp;Desabilitadas</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-5">&emsp;Habilitadas</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-6">&emsp;Estatísticas</a>
                         </div>
                     </a>
                     <a class="list-group-item list-group-item-action"></a>
@@ -128,6 +129,16 @@
                                 Para ver as salas habilitadas, basta clicar em:
                                 <br>
                                 <img src="/img/enabled.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                            </p>
+                            
+                            <!--                            ESTATÍSTICAS SALA                           -->
+                            <h5 id="list-item-1-6">
+                                Estatísticas da Sala
+                            </h5>
+                            <p>
+                                Para os dados estatísticos da sala (acertos e erros por pergunta, acertos e erros por usuário), basta clicar em:
+                                <br>
+                                <img src="/img/estatistica.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             
                         </div>
