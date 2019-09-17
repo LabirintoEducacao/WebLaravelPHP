@@ -24,6 +24,7 @@ class CreateDataTable extends Migration
           $table->integer('wrong_count')->nullable();
           $table->integer('correct_count')->nullable();
           $table->boolean('correct')->nullable();
+          $table->integer('termino')->nullable();
           $table->integer('elapsed_time');
           $table->integer('answers_read_count')->nullable();
           $table->Timestamp('async_timestamp')->nullable();

@@ -632,14 +632,14 @@ class EstatisticaController extends Controller
         $id = $_REQUEST['user_id'];
         $maze = $_REQUEST['maze_id'];
         $lastquestion = 0;
-        $end =0;
+        $gamestat = 0;
         $nextquestion = -1;
         $indexperg =0;
 
 
 
         $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();
-        $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$maze)->get();
+        $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->get();
 
 
 
@@ -679,7 +679,11 @@ class EstatisticaController extends Controller
 
         foreach ($save as $stop) {
 
-    
+          if($stop->event == "maze_start"){
+
+            $gamestat = 0;
+          }
+
 
           if($stop->event == "question_end"){
 
@@ -687,15 +691,16 @@ class EstatisticaController extends Controller
 
           }
 
+
           if($stop->event == "maze_end"){
 
-            $end = 1;
+            $gamestat = 1;
           }
         }
 
 
       
-        if($end == 0){
+        if($gamestat == 0){
 
           $load = array(
 
