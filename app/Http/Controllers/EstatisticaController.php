@@ -79,7 +79,7 @@ class EstatisticaController extends Controller
              $event = $resposta['event_name'];
 
 
-             $start = DB::table('data')->where('maze_id', $resposta['maze_id'])->select('event', 'start')->get();
+             $start = DB::table('data')->where('maze_id', $resposta['maze_id'])->where('user_id',$resposta['user_id'])->select('event', 'start')->get();
 
 
        
@@ -351,8 +351,17 @@ class EstatisticaController extends Controller
 
 
         $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();
-        $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->get();
 
+        $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
+
+        foreach($start as $value){
+
+          $jogada = $value->start;
+        }
+
+       
+
+        $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
 
 
     foreach($tperg as $perg){
@@ -410,7 +419,10 @@ class EstatisticaController extends Controller
           }
         }
 
+        if($lastquestion == 0){
 
+          $lastquestion = NULL;
+        }
       
         if($gamestat == 0){
 

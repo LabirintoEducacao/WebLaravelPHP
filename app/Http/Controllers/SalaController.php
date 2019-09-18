@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use App\Pergunta;
 use App\Sala;
+use App\Data;
 use File;
 
 class SalaController extends Controller
@@ -360,7 +362,12 @@ public function teste()
                 else{
 
                 $tipo = 1;
-                }    
+                }
+
+
+
+
+
                      
                  if($tipo == 0){
             
@@ -376,6 +383,66 @@ public function teste()
    
 
                 foreach($salas_publicas as $salas){
+
+
+
+
+//------------------------------------Porcentagem---------------------------//
+                    
+        $maze = $salas->id;
+        $id =   $_REQUEST['id'];          
+
+        $indexperg = 1;
+        $progress = 0;        
+
+        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();
+
+        $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
+
+        foreach($start as $value){
+
+          $jogada = $value->start;
+        }
+
+    
+        $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
+
+
+       
+        if(count($save)>0){
+
+        foreach ($save as $stop) {
+
+        if($stop->event == "question_end"){
+
+            $progress = $stop->question_id;
+
+            }
+         }
+
+         $total = count($tperg);
+
+         foreach($tperg as $value){
+
+          if($value->id == $progress ) {
+
+            $progress = $indexperg;
+          }
+
+            $indexperg ++;
+
+         }
+
+         $progress = ($progress*100)/$total;
+
+        }else {
+
+            $progress = 0;
+        }
+
+   
+
+//---------------------------Termino Porcentagem--------------------------------//   
 
 
 
@@ -419,7 +486,8 @@ public function teste()
                                     'id' => $salas->id,
                                     'name' => $salas->name,
                                     'Pergunta' => $total,
-                                    'Reforco' => $i
+                                    'Reforco' => $i,
+                                    'Progress'=>$progress
                             ); 
                       
                            }
@@ -454,6 +522,10 @@ public function teste()
 
                 }elseif($tipo == 1 && isset($_REQUEST['id'])){
 
+
+ 
+
+
                     
                 $json = $_REQUEST['id'];
 
@@ -467,6 +539,70 @@ public function teste()
                 if(count($salas_user) > 0){
 
                  foreach($salas_user as $sala_user){
+
+
+
+
+//------------------------------------Contagem ---------------------------//
+                    
+        $maze = $sala_user->id;
+        $id =   $_REQUEST['id'];          
+
+        $indexperg = 1;
+        $progress = 0;        
+        
+
+        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();
+
+        $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
+
+        foreach($start as $value){
+
+          $jogada = $value->start;
+        }
+
+    
+        $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
+
+
+       
+        if(count($save)>0){
+
+        foreach ($save as $stop) {
+
+        if($stop->event == "question_end"){
+
+            $progress = $stop->question_id;
+
+            }
+         }
+
+         $total = count($tperg);
+
+         foreach($tperg as $value){
+
+          if($value->id == $progress ) {
+
+            $progress = $indexperg;
+          }
+
+            $indexperg ++;
+
+         }
+
+         $progress = ($progress*100)/$total;
+
+        }else {
+
+            $progress = 0;
+        }
+
+      
+
+//---------------------------Termino Contagem --------------------------------// 
+
+
+
 
                  $perguntasref = DB::table('perguntas')
                  ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
@@ -508,7 +644,8 @@ public function teste()
                                     'id' => $sala[0]->id,
                                     'name' => $sala[0]->name,
                                     'Pergunta' => $total,
-                                    'Reforco' => $i
+                                    'Reforco' => $i,
+                                    'Progress'=>$progress
                             ); 
 
                     }}
