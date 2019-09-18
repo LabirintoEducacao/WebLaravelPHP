@@ -252,17 +252,16 @@ class SalaController extends Controller
         
         $sala_user = DB::table('sala_user')
         ->get();
-        $sala_user = DB::table('sala_user')
-        ->get();
+     
         $salapu = DB::table('salas')
-            ->where('public','=',1)->get();
+            ->where('public','=',1)->where('enable',1)->get();
         
         $salapu2 = count($salapu);
         
         $salapr = DB::table('salas')
             ->join('sala_user','sala_user.sala_id','=','salas.id')
             ->where('sala_user.user_id','=',Auth::user()->id)
-            ->where('public','=',0)->get();
+            ->where('public',0)->where('enable',1)->get();
 
         $salapr2 = count($salapr);
         
