@@ -25,32 +25,13 @@
           </div>
           <div class="card-body">
             <div class="chart-wrapper">
-              <canvas id="perguntas"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            Acertos e erros por usuário
-            <div class="card-actions">
-              <a href="http://www.chartjs.org">
-                <small class="text-muted">docs</small>
-              </a>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="chart-wrapper">
-              <canvas id="users"></canvas>
+              <canvas id="perguntas" style="height: 400px;"></canvas>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
 @endsection
 
 @section('myscript')
@@ -72,7 +53,6 @@
         randomicoP[i] = random();
         console.log(perguntasNome[i]);
     }
-
     var users = <?php echo $users; ?>;
     var usersNome = [];
     var usersId = [];
