@@ -192,7 +192,7 @@ if(count($reforcoid) > 0){
                 'widht' => $pathrefs[0]->largura,
                 'heigh' => $pathrefs[0]->tamanho,
                 'type' => $pathrefs[0]->ambiente_perg,
-                'conect_question' => $idperg 
+                'connected_question' => $idperg 
             );
 
       
@@ -223,6 +223,7 @@ foreach ($ref_resp as  $value) {
                 'correct'=> $answ
             );
                 $respref[] = $resp_ref;
+                $tipo_ref = $respostaref[0]->tipo_resp;
                     
 
  }
@@ -230,11 +231,12 @@ foreach ($ref_resp as  $value) {
 
                $ref = array(
                 'question_id' => $reforco[0]->id,
+                'answer_type' => $tipo_ref,
                 'question_type' => $reforco[0]->tipo_perg,
                 'question' => $reforco[0]->pergunta,
                 'room_type' => $reforco[0]->room_type,
                 'path' => $path_ref,
-                'answer' => $respref
+                'answers' => $respref
 );
 
 
@@ -268,7 +270,7 @@ foreach ($ref_resp as  $value) {
             $respost[] = $arresp;
 
 
-     
+     $tipo = $resposta[0]->tipo_resp;
 
     }
 
@@ -307,7 +309,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                 'widht' => $path[0]->largura,
                 'heigh' => $path[0]->tamanho,
                 'type' => $path[0]->ambiente_perg,
-                'conect_question' => $conect
+                'connected_question' => $conect
             );
 
         }
@@ -340,7 +342,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                         'widht' => $path[0]->largura,
                         'heigh' => $path[0]->tamanho,
                         'type' => $path[0]->ambiente_perg,
-                        'conect_question'=> $conect
+                        'connected_question'=> $conect
                     );
                 }       
            }
@@ -357,11 +359,12 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
   
                $perguntas = array(
                 'question_id' => $perg->id,
+                'answer_type' => $tipo,
                 'question_type' => $perg->tipo_perg,
                 'question' => $perg->pergunta,
                 'room_type' => $perg->room_type,
                 'path' => $paths,
-                'answer' =>  $respost
+                'answers' =>  $respost
 
 
  );
@@ -396,7 +399,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
 $jsn = [
        "maze_id" => $sala->id,
        "maze_name"=>$sala_name,
-       "starting_question"=> $proxpergid [0],
+       "starting_question_id"=> $proxpergid [0],
        "time_limit" => $sala->duracao,
         "theme" => $sala->tematica,
         "questions" => $arperg
@@ -485,6 +488,7 @@ $n ++;
 
  
     return redirect('admin/sala');
+         
 
 }
  
