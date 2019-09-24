@@ -233,7 +233,7 @@ foreach ($ref_resp as  $value) {
                 'question_type' => $reforco[0]->tipo_perg,
                 'question' => $reforco[0]->pergunta,
                 'room_type' => $reforco[0]->room_type,
-                'path' => $path_ref,
+                'paths' => $path_ref,
                 'answer' => $respref
 );
 
@@ -360,7 +360,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                 'question_type' => $perg->tipo_perg,
                 'question' => $perg->pergunta,
                 'room_type' => $perg->room_type,
-                'path' => $paths,
+                'paths' => $paths,
                 'answer' =>  $respost
 
 

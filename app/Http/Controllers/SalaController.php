@@ -392,7 +392,8 @@ public function teste()
         $id =   $_REQUEST['id'];          
 
         $indexperg = 1;
-        $progress = 0;        
+        $progress = 0; 
+        $jogada =0;      
 
         $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();
 
@@ -548,7 +549,9 @@ public function teste()
         $id =   $_REQUEST['id'];          
 
         $indexperg = 1;
-        $progress = 0;        
+        $progress = 0;
+        $jogada=0;
+        $jsn = array();        
         
 
         $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();

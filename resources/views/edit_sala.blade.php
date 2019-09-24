@@ -110,7 +110,7 @@
                                 <div class="form-group row">
                                     <input type="hidden" value="0" name="perg_id" id="perg_id">
                                     <label for="pergunta" class="col">Pergunta:</label>
-                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="80" required>
+                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="500" required>
                                 </div>
                             </div>
 
@@ -140,7 +140,7 @@
                                                     <option value="0">Errada</option>
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required>
+                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required>
                                             <input type="hidden" name="resp_id[]" class="resp_id">
                                             </td>
                                             <td><button type="button" name="add" id="add" class="btn btn-outline-succcess fa fa-plus"></button></td>

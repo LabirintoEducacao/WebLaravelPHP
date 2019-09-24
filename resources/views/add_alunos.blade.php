@@ -25,6 +25,16 @@
     </div>
   </form>&emsp;&nbsp;
   <button type="button" class="btn btn-outline-cyan" data-toggle="modal" data-target="#alunoModal">Aluno ainda não cadastrado</button>
+
+
+
+<!--botao modal-->
+
+
+  <button class="btn btn-md bg-primary" data-toggle="modal" data-target="#grupomodal"> Cadastrar Grupos</button>
+
+
+
 </div>
 
   <div class="col-md-12" style="padding-top:20px;">
@@ -94,6 +104,43 @@
           <button type="submit" class="btn btn-outline-success">Save changes</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!------------------------------------ Modal 2--------------------->
+
+
+
+
+<div class="modal fade" id="grupomodal" role="dialog" aria-labelledby="Modal grupo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content " >
+      <div class="modal-header" style="background-color:#2F4F4F;" >
+        <h5 > Adicionar Grupo</h5>
+        
+      </div>
+
+  <!--     <form method="POST" action="{{ url('/admin/grupo') }}"> -->
+         @csrf
+
+      <div class="modal-body" >
+        <h5> Digite o nome do grupo:</h5>
+        <input name="group"placeholder="NOME GRUPO">
+         
+          <h5> Vincular Alunos ao Grupo </h5>
+          <input name="alunosearch" id="alunosearch" value="" placeholder="NOME DO ALUNO"> 
+          <button class="btn btn-sm bg-primary" onclick="buscaraluno()"> Buscar</button>
+
+
+          
+      
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+          <button type="submit" class="btn btn-outline-success">Save changes</button>
+        </div>
+     <!--  </form> -->
     </div>
   </div>
 </div>

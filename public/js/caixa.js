@@ -27,7 +27,7 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/>'+
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required/>'+
                         '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
@@ -69,7 +69,7 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="80" required/>'+
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list" maxlength="500" required/>'+
                         '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
                        '<td><button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn_remove2">X</button></td>' +
                        '</tr>');
@@ -126,7 +126,7 @@
                        '<br>' +
                        '<input id="perg-reforco-id" name="perg_reforco_id" type="hidden" value="0">' +
                        '<label for="pergunta" class="col">Pergunta:</label>' +
-                       '<input class="col" id="pergunta-reforco" type="text" name="reforco"  placeholder=" Pergunta" maxlength="80" required>' +
+                       '<input class="col" id="pergunta-reforco" type="text" name="reforco"  placeholder=" Pergunta" maxlength="500" required>' +
                        '</div>' +
                        '<div class="form-group hea row">' +
                        '<label for="question_type_ref" class="col">Tipo da pergunta:</label>' +
@@ -170,7 +170,7 @@
                        '<option value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="80" required>'+
+                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="500" required>'+
                         '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
                        '<td><input type="button" class="teste" value="Add" /></td>' +
                        '</tbody>' +
@@ -318,7 +318,7 @@
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
                        '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="80" required/>'+
+                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required/>'+
                         '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
                        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
                        '</tr>');
@@ -364,7 +364,7 @@
                                        '<option selected value="0">Errada</option>' +
                                        '</select>' +
                                        '</td>' +
-                                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="80" required/>'+
+                                       '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="500" required/>'+
                                         '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
                                        '<td><button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn_remove2">X</button></td>' +
                                        '</tr>');
@@ -619,4 +619,15 @@ function launch_toast() {
     var x = document.getElementById("toast")
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+}
+
+function buscaraluno(){
+
+ var aluno = document.getElementById("alunosearch").value;
+  console.log(aluno);
+
+
+  
+
+
 }
