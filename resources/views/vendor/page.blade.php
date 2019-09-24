@@ -25,6 +25,7 @@
     <link href="{{ asset('admin/node_modules/flag-icon-css/css/flag-icon.min.css')}}" rel="stylesheet">
     <link href="{{ asset('admin/node_modules/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('admin/node_modules/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet">
+    <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">-->
     <!-- Main styles for this application-->
     <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet" defer>
     <link href="{{ asset('admin/vendors/pace-progress/css/pace.min.css')}}" rel="stylesheet">
@@ -298,6 +299,8 @@
     <script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
     <script src="{{ asset('docsupport/prism.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('docsupport/init.js') }}" type="text/javascript" charset="utf-8"></script>
+   
+    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js" defer></script>-->
 
     <!-- CoreUI and necessary plugins-->
     <script src="{{ asset('js/caixa.js')}}" defer></script>

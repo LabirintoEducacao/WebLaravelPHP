@@ -42,8 +42,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar Pergunta</h5>
@@ -110,7 +110,11 @@
                                 <div class="form-group row">
                                     <input type="hidden" value="0" name="perg_id" id="perg_id">
                                     <label for="pergunta" class="col">Pergunta:</label>
+
                                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="500" required>
+
+                                    <!--  <textarea id="pergunta" name="pergunta"></textarea> -->
+
                                 </div>
                             </div>
 
@@ -222,7 +226,7 @@
                         <h4 class="col">Pergunta:&emsp;</h4>
                              <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
                               <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
-                        <p align="left" class="col-12" style=" font-size: 120%; margin-top: 20px; line-height: 30px;">&emsp;{{$item->pergunta}}</p>
+                       <!-- <pre onmouseover="this.innerHTML='{{$item->pergunta}}'"><p>{{$item->pergunta}}</p></pre>-->
                         @endif
                         @endif
                         @endforeach
