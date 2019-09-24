@@ -1,4 +1,9 @@
+      
        $(document).ready(function () {
+
+
+  //$('#pergunta').summernote();
+
 
            var postURL = 'editar-sala';
            var i = 1;
@@ -279,6 +284,9 @@
                            $.each(data, function(i, val){
                                if(x==0){
                                    modal.find('#pergunta').val(val.question);
+                                  //   $('#pergunta').summernote(
+                                  //    'code', val.question
+                                  // );
                                    modal.find('#perg_id').val(val.question_id);
                                    console.log(val.question_id);
                                    modal.find('#room_type').val(val.room_type);
