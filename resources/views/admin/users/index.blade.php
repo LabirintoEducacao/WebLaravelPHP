@@ -1,4 +1,4 @@
-@extends('vendor.page')
+@extends('vendor.menu')
 
 @section('title', 'Dashboard')
 

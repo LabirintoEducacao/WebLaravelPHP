@@ -1,125 +1,532 @@
-@extends('vendor.page')
-
+@extends('vendor.menu')
 @section('content')
-<!------------------------ Cabeçalho ------------------------>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 ">
-            <h1> Controle de Salas </h1>
-        </div>
-        <div class="col-md-2" style="padding-top: 30px; ">
-            <a class="btn btn-outline-danger fa fa-ban" href="{{ url('admin/sala-disable') }}" style="text-decoration: none;"> Salas Desativadas</a>
-        </div>
-
-        <div class="col-md-2" style="padding-top: 30px; ">
-            <a class="btn btn-outline-success fa fa-plus" href="{{ url('admin/adicionar-sala') }}" style="text-decoration: none;">Adicionar sala</a>
-        </div>
-
-    </div>
-</div>
-<!------------------------ Espaço das Salas  --------------------------->
-<div class="container-fluid row" style="padding-top: 10px; ">
-
-
-    <!------- Estrutura de repetição (CARD)------------------->
-    @foreach($data as $item)
-
-    <?php $user = Auth::user()->id; 
-         $prof = $item->prof_id; ?>
-
-
-    @if($user == $prof)
-
-    <?php $id= $item->id ?>
-
-    <div class="col-md-3 sala" style="padding-top:20px;" align="center">
-        <div class="card">
-
-     
-                <h4>{{$item->name}}</h4>
-       
-
-            <img src=" {{ asset('img/1.jpg')}} " style="width: 70%;margin-bottom: 10px;" alt="imagen labirinto"><br>
-            <div class="row">
-<!--
-                <a href="{{ url('/admin/virtual/'.$item->id)}}" class="btn btn-sm btn-outline-dark fa fa-qrcode col" style="margin-left:4%"></a>
-                &emsp;
--->
-                <a href="{{ url('/admin/estatistica/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-star col" style="margin-left:4%"></a>
-                <a class="btn btn-sm btn-outline-cyan fa fa-cogs col" data-toggle="modal" data-target="#salaEModal" data-whatevernome="{{$item->name}}" data-whatevertype="{{$item->duracao}}" data-whatevertema="{{$item->tematica}}" data-whateverpublic="{{$item->public}}" data-whateverid="{{$item->id}}" data-whateverenable="{{$item->enable}}" style="margin-left:4%"></a>
-                &emsp;
-                <a href="{{ url('admin/editar-sala/'.$item->id) }}" class="btn btn-sm btn-outline-info fa fa-pencil-square-o col"></a>
-                &emsp;
-                <a href="{{ url('admin/deletar-sala/'.$item->id)}}" class="btn btn-sm btn-outline-danger fa fa-trash col" style="margin-right:4%"></a>
-
-            </div>
-
-        </div>
-    </div>
-    &emsp;
-    @endif
-    @endforeach
-</div>
-
-
-<div class="modal fade" id="salaEModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel"></h4>
-            </div>
-            <form action="{{ url('admin/editar-sala') }}" method="POST" style="margin-left: 5%;margin-right:1%">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        {{ Form::label('name', 'Criador do labirinto:') }}
-                        {{ Form::text('name',Auth::user()->name,['class'=>'form-control', 'autofocus', 'placeholder'=>'Nome','disabled' => 'disabled']) }}
-                    </div>
-
-                    <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
-
-                    <input type="hidden" name="sala_id" id="sala_id">
-                    <div class="form-group">
-                        <strong> Nome de sua sala:</strong>
-                        <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" placeholder="nome">
-
-                        @if ($errors->has('nome'))
-                        <div class="help-block">
-                            {{ $errors->first('nome') }}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <h4 class="nav-tabs-title">
+                                Controle de Salas
+                                <button type="button" class="btn btn-info btn-just-icon" data-toggle="modal" data-target="#addSalaModal">
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </h4>
+                            <ul class="nav nav-tabs" data-tabs="tabs" style="float:right;">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#todos" data-toggle="tab">
+                                        <!--                            <i class="material-icons">bug_report</i>-->
+                                        Todas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#publicas" data-toggle="tab">
+                                        <!--                            <i class="material-icons">code</i>-->
+                                        Públicas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#privadas" data-toggle="tab">
+                                        <!--                            <i class="material-icons">code</i>-->
+                                        Privadas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#ativas" data-toggle="tab">
+                                        <!--                            <i class="material-icons">code</i>-->
+                                        Ativadas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#desativadas" data-toggle="tab">
+                                        <!--                            <i class="material-icons">cloud</i>-->
+                                        Desativadas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        @endif
-
                     </div>
-                    <div class="form-group">
-                        <strong> Tempo de Duração de cada sala:</strong>
-                        <input type="text" name="time" id="time" value="" class="form-control" placeholder="Tempo em Segundos">
-                    </div>
-                    <div class="form-group">
-                        <strong> Tema: </strong>
-                        <select name="theme" id="theme">
-                            <option value="1">Deserto</option>
-                            <option value="2">Cidade Abandonada</option>
-                            <option value="3">Casa</option>
-                            <option value="4">Floresta</option>
-                        </select>
-
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="public" id="public">Sala Pública
-                    </div>
-                    <span><input type="checkbox" name="enable" id="enable" >Ativo</span>
-
-
                 </div>
-                <div class="modal-footer">
-                    <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-outline-success">Save changes</button>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active table-responsive" id="todos">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Tema
+                                    </th>
+                                    <th>
+                                        Tempo
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Ativa
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+
+                                    @foreach($salas as $sala)
+                                    <tr>
+                                        <td>{{$sala->name}}</td>
+                                        <td>
+                                            @if($sala->tematica==1)
+                                            Deserto
+                                            @elseif($sala->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($sala->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                        </td>
+                                        <td>{{$sala->duracao}}</td>
+                                        <td>
+                                            @if($sala->public==0)
+                                            Privada
+                                            @else
+                                            Pública
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($sala->enable==1)
+                                            Sim
+                                            @else
+                                            Não
+                                            @endif
+                                        </td>
+                                        <td>
+
+                                            <a class="nav-link" href="#pablo" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
+                                                <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
+                                                <a class="dropdown-item" href="#">Editar</a>
+                                                @if($sala->enable==1)
+                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                @else
+                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                @endif
+                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane table-responsive" id="publicas">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Tema
+                                    </th>
+                                    <th>
+                                        Tempo
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Ativa
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+
+                                    @foreach($salas as $sala)
+                                    @if($sala->public==1)
+                                    <tr>
+                                        <td>{{$sala->name}}</td>
+                                        <td>
+                                            @if($sala->tematica==1)
+                                            Deserto
+                                            @elseif($sala->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($sala->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                        </td>
+                                        <td>{{$sala->duracao}}</td>
+                                        <td>
+                                            @if($sala->public==0)
+                                            Privada
+                                            @else
+                                            Pública
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($sala->enable==1)
+                                            Sim
+                                            @else
+                                            Não
+                                            @endif
+                                        </td>
+                                        <td>
+
+                                            <a class="nav-link" href="#pablo" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
+                                                <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
+                                                <a class="dropdown-item" href="#">Editar</a>
+                                                @if($sala->enable==1)
+                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                @else
+                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                @endif
+                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane table-responsive" id="privadas">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Tema
+                                    </th>
+                                    <th>
+                                        Tempo
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Ativa
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+
+                                    @foreach($salas as $sala)
+                                    @if($sala->public==0)
+                                    <tr>
+                                        <td>{{$sala->name}}</td>
+                                        <td>
+                                            @if($sala->tematica==1)
+                                            Deserto
+                                            @elseif($sala->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($sala->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                        </td>
+                                        <td>{{$sala->duracao}}</td>
+                                        <td>
+                                            @if($sala->public==0)
+                                            Privada
+                                            @else
+                                            Pública
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($sala->enable==1)
+                                            Sim
+                                            @else
+                                            Não
+                                            @endif
+                                        </td>
+                                        <td>
+
+                                            <a class="nav-link" href="#pablo" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
+                                                <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
+                                                <a class="dropdown-item" href="#">Editar</a>
+                                                @if($sala->enable==1)
+                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                @else
+                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                @endif
+                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane table-responsive" id="ativas">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Tema
+                                    </th>
+                                    <th>
+                                        Tempo
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Ativa
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+
+                                    @foreach($salas as $sala)
+                                    @if($sala->enable==1)
+                                    <tr>
+                                        <td>{{$sala->name}}</td>
+                                        <td>
+                                            @if($sala->tematica==1)
+                                            Deserto
+                                            @elseif($sala->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($sala->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                        </td>
+                                        <td>{{$sala->duracao}}</td>
+                                        <td>
+                                            @if($sala->public==0)
+                                            Privada
+                                            @else
+                                            Pública
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($sala->enable==1)
+                                            Sim
+                                            @else
+                                            Não
+                                            @endif
+                                        </td>
+                                        <td>
+
+                                            <a class="nav-link" href="#pablo" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
+                                                <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
+                                                <a class="dropdown-item" href="#">Editar</a>
+                                                @if($sala->enable==1)
+                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                @else
+                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                @endif
+                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane table-responsive" id="desativadas">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Tema
+                                    </th>
+                                    <th>
+                                        Tempo
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Ativa
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+
+                                    @foreach($salas as $sala)
+                                    @if($sala->enable==0)
+                                    <tr>
+                                        <td>{{$sala->name}}</td>
+                                        <td>
+                                            @if($sala->tematica==1)
+                                            Deserto
+                                            @elseif($sala->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($sala->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                        </td>
+                                        <td>{{$sala->duracao}}</td>
+                                        <td>
+                                            @if($sala->public==0)
+                                            Privada
+                                            @else
+                                            Pública
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($sala->enable==1)
+                                            Sim
+                                            @else
+                                            Não
+                                            @endif
+                                        </td>
+                                        <td>
+
+                                            <a class="nav-link" href="#pablo" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">more_vert</i>
+
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
+                                                <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
+                                                <a class="dropdown-item" href="#">Editar</a>
+                                                @if($sala->enable==1)
+                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                @else
+                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                @endif
+                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--    MODAL ADICIONAR SALA-->
+
+    <div class="modal fade bd-example-modal-lg" id="addSalaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/sala') }}" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="sala_id" id="sala_id">
+                        <div class="form-group">
+                            <label for="nome" display="inline">Nome da Sala:</label>
+                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
+
+                            @if ($errors->has('nome'))
+                            <div class="help-block">
+                                {{ $errors->first('nome') }}
+                            </div>
+                            @endif
+
+                        </div>
+                        <div class="form-group" style="margin-top:3.5%">
+                            <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
+                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="theme"> Tema: </label>
+<!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
+                                <select id="theme" name="theme">
+                                    <option value="1">Deserto</option>
+                                    <option value="2">Cidade Abandonada</option>
+                                    <option value="3">Casa</option>
+                                    <option value="4">Floresta</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="0" name="public" id="public">Sala Pública
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            </div>
+                            <div class="form-group col">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable">Ativo
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-success">Save changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
-
+</div>
 @endsection

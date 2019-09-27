@@ -114,6 +114,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 
 Route::prefix('/admin')->group(function(){
 
+Route::get('/teste1','SalaController@testeTabela');
 /*Rotas da pergunta e Resposta*/
 Route::get('/teste/{id}', 'PerguntaRespostaController@index2')->middleware(['auth', 'auth.admin']);
 Route::get('/editar-sala/{id}', 'PerguntaRespostaController@index')->middleware(['auth', 'auth.admin']);
@@ -159,12 +160,9 @@ return view ( 'sala-disable' )->withData ( $data );
 
 
 
-Route::get('/sala', function () {
-
-    $data = \App\Sala::where('enable',1)->get();
-    return view ( 'sala' )->withData ( $data );
-
-})->middleware(['auth', 'auth.admin']);
+Route::get('/sala', 'SalaController@getSalas');
+    
+Route::get('/visualizar/{id}', 'SalaController@getSala');
 
 
 // Rotas para gerar o jason

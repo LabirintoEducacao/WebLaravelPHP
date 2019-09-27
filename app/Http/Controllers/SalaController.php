@@ -19,6 +19,34 @@ class SalaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function getSalas(){
+//        $salas = DB::table('salas')
+//                ->where('prof_id','=',Auth::user()->id)
+//                ->paginate(6);
+        $salas = DB::table('salas')
+                ->where('prof_id','=',Auth::user()->id)
+                ->get();
+            if(count($salas)>0)
+                return view('sala')->with(["salas" => $salas]);
+    }
+    
+    
+    public function getSala($id){
+        $sala = DB::table('salas')
+                ->where('id','=',$id)
+                ->get();
+        if(count($sala)>0){
+            $perguntas = DB::table('perguntas')
+                        ->where('sala_id','=',$id)
+                        ->get();
+//            $respostas = DB::table('respostas')
+//                        ->join('perg_resp','perg_resp.resp_id'.'respostas.id')
+           return view('visu')->with(['sala'=>$sala[0],'perguntas'=>$perguntas]);
+                        
+        }
+    }
+
     public function index()
     {
         return view('add_sala');

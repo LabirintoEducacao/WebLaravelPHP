@@ -1,4 +1,4 @@
-@extends('vendor.page')
+@extends('vendor.menu')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
