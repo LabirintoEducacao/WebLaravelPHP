@@ -484,9 +484,9 @@
 
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="theme"> Tema: </label>
+                                <label for="theme">Tema:&emsp;</label>
 <!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
-                                <select id="theme" name="theme">
+                                <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
                                     <option value="1">Deserto</option>
                                     <option value="2">Cidade Abandonada</option>
                                     <option value="3">Casa</option>
@@ -495,7 +495,7 @@
 
                             </div>
                             <div class="form-group col">
-                            <div class="form-check">
+                            <div class="form-check" style="margin-left:10%;margin-top:17%">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="checkbox" value="0" name="public" id="public">Sala Pública
                                     <span class="form-check-sign">
@@ -505,7 +505,7 @@
                             </div>
                             </div>
                             <div class="form-group col">
-                            <div class="form-check">
+                            <div class="form-check" style="margin-top:17%">
                                 <label class="form-check-label">
                                     <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable">Ativo
                                     <span class="form-check-sign">

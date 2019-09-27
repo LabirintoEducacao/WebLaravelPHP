@@ -23,6 +23,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "bootstrap-select": "^1.13.11",
         "chart.js": "^2.8.0"
     }
 }
