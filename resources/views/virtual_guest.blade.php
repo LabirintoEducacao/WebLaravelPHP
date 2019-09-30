@@ -53,7 +53,7 @@
     <div class="modal fade" id="salaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content ">
-                <div class="modal-header" style="background-color:#2F4F4F;">
+                <div class="modal-header" style="background-color:#4D226D;">
                     <h2 style="color:#ffffff; margin-left:40%">Qr Code </h2>
 
                 </div>
