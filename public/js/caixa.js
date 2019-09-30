@@ -635,8 +635,6 @@ function buscaraluno(){
 
 }
 
-
-
 $(document).ready(function(){
 
   // PAINEL PARA MOSTRAR PERGUNTA
@@ -650,4 +648,33 @@ $(document).ready(function(){
 });
 
 
+$('#editarSalaModal').on('show.bs.modal', function (event) {
+           var button = $(event.relatedTarget); // Button that triggered the modal
+           var recipientnome = button.data('whatevernome');
+    console.log('chegouuu');
+           var recipientid = button.data('whateverid');
+           var recipienttempo = button.data('whatevertempo');
+           var recipienttema = button.data('whatevertema');
+           var recipientcorrect = button.data('whateverpublic');
+           var recipientenable = button.data('whateverenable');
+           // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+           var modal = $(this);
+           modal.find('#nome').val(recipientnome);
+           modal.find('#time').val(recipienttempo);
+           modal.find('#sala_id').val(recipientid);
+           modal.find('#theme').val(recipienttema);
+
+
+           if (recipientcorrect == 1)
+               $('#public').prop("checked", true);
+           else
+               $('#public').prop("checked", false);
+           //modal.find('#public').val(recipientcorrect);
+
+           if(recipientenable == 1)
+            $('#enable').prop("checked",true);
+          else
+            $('#public').prop("checked",false);
+       });
 

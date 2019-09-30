@@ -328,7 +328,6 @@
             @endif
             @endforeach
             @endforeach
-
         </div>
             @endif
             @endforeach

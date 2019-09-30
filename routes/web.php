@@ -115,6 +115,10 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 Route::prefix('/admin')->group(function(){
 
 Route::get('/teste1','SalaController@testeTabela');
+    
+Route::get('/desativar/{id}','SalaController@desativar');
+Route::get('/ativar/{id}','SalaController@ativar');
+    
 /*Rotas da pergunta e Resposta*/
 Route::get('/teste/{id}', 'PerguntaRespostaController@index2')->middleware(['auth', 'auth.admin']);
 Route::get('/editar-sala/{id}', 'PerguntaRespostaController@index')->middleware(['auth', 'auth.admin']);

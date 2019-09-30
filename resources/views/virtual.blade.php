@@ -52,7 +52,7 @@
         <div class="card ">
 
 
-            <h5 style="color:green; margin-right: auto; margin-left: auto; "> {{$item->name}} </h5>
+            <h5 style="color:purple; margin-right: auto; margin-left: auto; "> {{$item->name}} </h5>
 
             <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; margin-right:auto;margin-left:auto" alt="imagen labirinto">
             <br>
@@ -91,7 +91,7 @@
     <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
-            <div class="modal-header" style="background-color:#2F4F4F;">
+            <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
                 <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
@@ -148,13 +148,13 @@
  <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
-            <div class="modal-header" style="background-color:#2F4F4F;">
+            <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
                 <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
             <div class="modal-body">
              <h5> {{$item->name}} </h5>
-             <h4 style="color: red;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
+             <h4 style="color: purple;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -207,7 +207,7 @@
         <div class="card ">
 
 
-            <h5 style="color:green; margin-right: auto; margin-left: auto; "> {{$item->name}} </h5>
+            <h5 style="color:purple; margin-right: auto; margin-left: auto; "> {{$item->name}} </h5>
 
             <img src=" {{ asset('img/1.jpg')}} " style="width:200px; margin-bottom: 10px; margin-right:auto;margin-left:auto" alt="imagen labirinto">
             <br>
@@ -246,7 +246,7 @@
     <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
-            <div class="modal-header" style="background-color:#2F4F4F;">
+            <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
                 <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
@@ -305,13 +305,13 @@
  <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
-            <div class="modal-header" style="background-color:#2F4F4F;">
+            <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
                 <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
             <div class="modal-body">
              <h5> {{$item->name}} </h5>
-             <h4 style="color: red;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
+             <h4 style="color: purple;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
