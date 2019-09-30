@@ -9,6 +9,7 @@ use App\Sala;
 use App\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Mail\LinkCadastro;
 use App\Mail\LinkSala;
@@ -169,16 +170,24 @@ class UserController extends Controller
     public function add_user($id)
     {
         $sala = Sala::find($id);
-        if($sala->public ==0){
+        if($sala->public==0){
             $data = DB::table('users')
                 ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
                 ->orderBy('name')
                 ->where('sala_user.sala_id','=',$id)
                 ->get();
+//            var_dump($data);
+            
+            $alunos = DB::table('users')
+                ->join('role_user','users.id','=','role_user.user_id')
+                ->orderBy('name')
+                ->where('role_user.role_id','=',3)
+                ->get();
+        
 
-            $alunos = \App\User::orderBy('name')->get();
+//            $alunos = \App\User::orderBy('name')->get();
 
-            return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
+            return view ( 'teste', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
         }else{
              $notification = array(
                 'message' => 'Esta sala é pública, não há como adicionar alunos!',
@@ -187,29 +196,39 @@ class UserController extends Controller
       return redirect('admin/sala')->with($notification);
             
         }
+        
     }
 
 
     public function store(Request $request)
     {
         $data = DB::table('sala_user')
-            ->where([['sala_id','=',$request->get('sala_id')],['user_id','=',$request->get('user_id')]])
+            ->where('sala_id','=',$request->sala_id)
+            ->where('user_id','=',$request->user_id)
             ->get();
-            var_dump(count($data));
 
-            $user = User::find($request->get('user_id'));
 
-            $sala = Sala::find($request->get('sala_id'));
+            $user = DB::table('users')
+                    ->where('id','=',$request->user_id)
+                    ->get();
 
-            $prof = User::find($sala->prof_id);
+            $sala = DB::table('salas')
+                    ->where('id','=',$request->sala_id)
+                    ->get();
+        
+          
+
+                $prof = DB::table('users')
+                    ->where('id','=',$request->user_id)
+                    ->get();
+//        var_dump($sala);
+       
 
 
         if(count($data) == 0){
-             DB::table('sala_user')->insert(
-                array('sala_id' => $request->get('sala_id'), 'user_id' => $request->get('user_id'))
-            );
+             DB::table('sala_user')->insert(array('sala_id' => $request->sala_id, 'user_id' => $request->user_id));
 
-            \Mail::to($user->email)->send(new LinkSala($sala->name,$prof->name,$request->get('sala_id')));
+//            \Mail::to($user[0]->email)->send(new LinkSala($sala[0]->name,$prof[0]->name,$request->sala_id));
 
             $notification = array(
                 'message' => 'Aluno adicionado com sucesso!',

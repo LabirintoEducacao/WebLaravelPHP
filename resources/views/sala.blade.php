@@ -126,7 +126,9 @@
                                                 @else
                                                 <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                                 @endif
-                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                                @if($sala->public==0)
+                                                <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
@@ -203,7 +205,7 @@
                                                 @else
                                                 <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                                 @endif
-                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+<!--                                                <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>-->
                                             </div>
                                         </td>
                                     </tr>
@@ -281,7 +283,8 @@
                                                 @else
                                                 <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                                 @endif
-                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                                <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
+                                            
                                             </div>
                                         </td>
                                     </tr>
@@ -358,7 +361,9 @@
                                                 <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
                                                
                                        
-                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                                @if($sala->public==0)
+                                                <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
@@ -434,7 +439,9 @@
                                                 
                                                 <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                           
-                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                                @if($sala->public==0)
+                                                <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
