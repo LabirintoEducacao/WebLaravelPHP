@@ -11,7 +11,7 @@
 
     <input type="hidden" value="52" id="num_y">
 
-    <div class="row">
+<!--     <div class="row">
         <div class="col">
         <a class="btn btn-outline-success tamanhobutton" href="{{ url('admin/alunos/'.$id) }}">ADICIONAR ALUNOS</a>
         </div>
@@ -29,8 +29,8 @@
         </button>
         </div>
         <?php } ?>
-    </div>
-
+    </div> -->
+<!-- 
     <div class="container" style="margin-top: 30px;">
         <div class="row justify-content-end">
             <label>Total de Perguntas: {{$c_perg}}</label>
@@ -40,7 +40,7 @@
             <label>Total de Reforços: {{$c_ref}}</label>
         </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
@@ -209,12 +209,11 @@
     <div class="container paddin">
 
         <!------- Estrutura de repetição (CARD)------------------->
-        <div class="col-md-12">
-            <br>
+         
+
             @foreach($data as $item)
-            <div class="row">
-                <div class="col-md-12 col-sm-12" style="margin-top: 20px;">
-                    <div class="row">
+
+                     <div id="flip">
                         <?php $errado=0; ?>
                         @foreach($path_perg as $pp)
                         @if($pp->perg_id==$item->id)
@@ -223,19 +222,39 @@
                         @if($path->id==$pp->path_id)
 
                         @if($path->disp == 1)
-                        <h4 class="col">Pergunta:&emsp;</h4>
+                        <!-- 
                              <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
                               <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
-                       <!-- <pre onmouseover="this.innerHTML='{{$item->pergunta}}'"><p>{{$item->pergunta}}</p></pre>-->
+ -->
+                        <div class="row align-items-center">
+                        <div class="col-auto mr-auto">
+                        <h4 class="col">Pergunta:&emsp;</h4>
+                         {{$item->pergunta}}
+                        </div>
+                        <div class="col-auto">
+                        <a class="nav-link" href="#pablo" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i id="teste" class="material-icons">more_vert</i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="">
+                            <a class="dropdown-item" href="">Visualizar</a>
+                            <a class="dropdown-item" href="#">Editar</a>
+                           
+                            <a class="dropdown-item" href="#">Desativar</a>
+                  
+                            <a class="dropdown-item" href="#">Ativar</a>
+                        
+                            <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                        </div>
+                        </div>
+                       </div>
+  
                         @endif
                         @endif
                         @endforeach
                         @endif
                         @endforeach
-                    </div>
-                    <br><br><br>
                 </div>
-                <div class="col-md-12">
+                <div id="panel">
                     <?php $y=0; ?>
                     @foreach($respostas as $resposta)
                     @foreach($perg_resp as $pergresp)
@@ -251,36 +270,49 @@
                     @endif
                     @endforeach
                     @endforeach
-
+                 <?php $y=0; ?>
                 </div>
-
-            </div>
-
-
-            <?php $y=0; ?>
-
+          
+            <div id="flip2">
             @foreach($perg_refs as $perg_ref)
             @if($perg_ref->perg_id==$item->id)
             @foreach($refs as $ref)
             @if($ref->id==$perg_ref->ref_id)
-            <br><br><br>
-            <hr style="border: 0.5px solid #c2c2c2;">
-            <br>
-            <div class="row">
+
                 @foreach($path_perg as $pp)
                 @if($pp->perg_id==$ref->id)
                 <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
                 @foreach($paths as $path)
                 @if($path->id==$pp->path_id)
                 <!--                    <input value="{{$path->id}}"><br><br>-->
-                <h4 display="inline" class="col-sm-12 col-md-2">Reforço:&emsp;</h4>
-                <h4 display="inline" align="left" class="col-sm-12 col-md-10">{{$ref->pergunta}}</h4>
-                
+             
+                <div class="row align-items-center">
+                        <div class="col-auto mr-auto">
+                         {{$ref->pergunta}}
+                        </div>
+                        <div class="col-auto">
+                        <a class="nav-link" href="#pablo" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i id="teste" class="material-icons">more_vert</i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="">
+                            <a class="dropdown-item" href="">Visualizar</a>
+                            <a class="dropdown-item" href="#">Editar</a>
+                           
+                            <a class="dropdown-item" href="#">Desativar</a>
+                  
+                            <a class="dropdown-item" href="#">Ativar</a>
+                        
+                            <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                        </div>
+                        </div>
+                       </div>
+  
                 @endif
                 @endforeach
                 @endif
                 @endforeach
-            </div>
+        </div>
+        <div id="panel2">
             @foreach($respostas as $resposta)
             @foreach($perg_resp as $pergresp)
             @if($pergresp->perg_id==$ref->id)
@@ -296,6 +328,8 @@
             @endif
             @endforeach
             @endforeach
+
+        </div>
             @endif
             @endforeach
             @endif
@@ -317,10 +351,6 @@
             <div>
                 <a style="width:100%" class="btn btn-outline-cyan" href="{{ url('/admin/virtual/'.$id)}}">SALVAR ALTERAÇÕES</a>
             </div>
-
-        </div>
-
-
     </div>
     
     <div class="modal fade" id="alteraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

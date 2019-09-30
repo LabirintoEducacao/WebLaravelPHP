@@ -32,6 +32,7 @@
   <link href="{{asset('assets/css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
+  <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 </head>
 
@@ -307,6 +308,7 @@
   <script src="{{asset('assets/js/material-dashboard.js?v=2.1.1')}}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{asset('assets/demo/demo.js')}}"></script>
+  <script src="{{ asset('js/caixa.js')}}" defer></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {

@@ -1,0 +1,57 @@
+/* CSS DO PAINEL DE MOSTRAR AS PERGUNTAS */
+
+ #flip {
+	  padding: 5px;
+	  text-align: center;
+	  background-color: #e5eecc;
+	  border-radius: 4px 4px 0px 0px;
+	  background: linear-gradient(60deg, #26c6da, #00acc1);
+	  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+      }
+
+    #panel {
+
+    padding: 50px;
+    display: none;
+    border-radius: 0px 0px 4px 4px;
+    color: #333333;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+a:hover #teste{
+
+	 box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+     border-radius: 50%;
+
+ }
+
+ #flip2 {
+      padding: 5px;
+      text-align: center;
+      background-color: rgba(255, 255, 207, 0.85);
+      border-radius: 4px 4px 0px 0px;
+      box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+      }
+
+    #panel2 {
+
+    padding: 50px;
+    display: none;
+    border-radius: 0px 0px 4px 4px;
+    color: #333333;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+a:hover #teste{
+
+     box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+     border-radius: 50%;
+
+ }
+
+ 
+/*///////////////////////////////////*/

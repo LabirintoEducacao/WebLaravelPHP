@@ -1,7 +1,6 @@
       
        $(document).ready(function () {
 
-
   //$('#pergunta').summernote();
 
 
@@ -634,8 +633,21 @@ function buscaraluno(){
  var aluno = document.getElementById("alunosearch").value;
   console.log(aluno);
 
-
-  
-
-
 }
+
+
+
+$(document).ready(function(){
+
+  // PAINEL PARA MOSTRAR PERGUNTA
+    $("#flip").click(function(){
+        $("#panel").slideToggle("slow");
+    });
+   // PAINEL PARA MOSTRAR reforco
+    $("#flip2").click(function(){
+        $("#panel2").slideToggle("slow");
+    });
+});
+
+
+

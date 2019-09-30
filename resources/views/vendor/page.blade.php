@@ -39,8 +39,7 @@
     
     
     <!-- Global site tag (gtag.js) - Google Analytics-->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js" integrity="sha256-arMsf+3JJK2LoTGqxfnuJPFTU4hAK57MtIPdFpiHXOU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js" integrity="sha256-arMsf+3JJK2LoTGqxfnuJPFTU4hAK57MtIPdFpiHXOU=" crossorigin="anonymous"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -288,17 +287,14 @@
     </footer>
 
 
-
     @yield('myscript')
 
-    
-
-    
     
     <script src="{{ asset('docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
     <script src="{{ asset('docsupport/prism.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('docsupport/init.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
    
     <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js" defer></script>-->
 

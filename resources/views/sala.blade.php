@@ -116,7 +116,7 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
-                                                <a class="dropdown-item" href="#">Editar</a>
+                                                <a class="dropdown-item" href="{{ url('admin/editar-sala/'.$sala->id) }}">Editar</a>
                                                 @if($sala->enable==1)
                                                 <a class="dropdown-item" href="#">Desativar</a>
                                                 @else
