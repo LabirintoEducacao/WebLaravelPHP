@@ -156,6 +156,7 @@ class SalaController extends Controller
         $objProjetoDiretorio = File::makeDirectory($strCaminho);
     }
         }else{
+            
             $sala = Sala::find($request->sala_id);
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
@@ -180,6 +181,10 @@ class SalaController extends Controller
                 'message' => 'Sala alterada com sucesso!',
                 'alert-type' => 'success'
             );
+            if($request->page==0)
+                return redirect('admin/sala')->with($notification);
+            else
+                return redirect('admin/visualizar/'.$request->sala_id)->with($notification);
 
         }
 
@@ -190,50 +195,50 @@ class SalaController extends Controller
     
     
 
-    public function edit_sala(Request $request)
-    {
-        
-           $request->validate([
-
-                  'nome' => 'required|max:20'
-
-           ]);
-
-            $time = $request->input('time');
-
-           if($time == ""){
-               
-            $time = 0;
-
-           }
-        
-            $sala = Sala::find($request->sala_id);
-            $sala->name = $request->input('nome');
-            $sala->duracao = $time;
-            $sala->tematica = $request->input('theme');
-            if($request->public==null){
-                $sala->public=0;
-            }
-            else{
-                $sala->public=1;
-            }
-             if($request->enable == null){
-
-            $sala->enable = 0;
-           }
-           else{
-
-            $sala->enable =1;
-           }
-
-            $sala->save();
-            $notification = array(
-                'message' => 'Sala alterada com sucesso!',
-                'alert-type' => 'success'
-            );
-
-            return redirect('admin/sala')->with($notification);
-    }
+//    public function edit_sala(Request $request)
+//    {
+//        
+//           $request->validate([
+//
+//                  'nome' => 'required|max:20'
+//
+//           ]);
+//
+//            $time = $request->input('time');
+//
+//           if($time == ""){
+//               
+//            $time = 0;
+//
+//           }
+//        
+//            $sala = Sala::find($request->sala_id);
+//            $sala->name = $request->input('nome');
+//            $sala->duracao = $time;
+//            $sala->tematica = $request->input('theme');
+//            if($request->public==null){
+//                $sala->public=0;
+//            }
+//            else{
+//                $sala->public=1;
+//            }
+//             if($request->enable == null){
+//
+//            $sala->enable = 0;
+//           }
+//           else{
+//
+//            $sala->enable =1;
+//           }
+//
+//            $sala->save();
+//            $notification = array(
+//                'message' => 'Sala alterada com sucesso!',
+//                'alert-type' => 'success'
+//            );
+//
+//            return redirect('admin/sala')->with($notification);
+//    }
 
     /**
      * Display the specified resource.
