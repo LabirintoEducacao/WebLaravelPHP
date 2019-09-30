@@ -195,9 +195,9 @@
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
                                                 <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
                                                 @if($sala->enable==1)
-                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
                                                 @else
-                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                                 @endif
                                                 <a class="dropdown-item" href="#">Adicionar Alunos</a>
                                             </div>
@@ -273,9 +273,9 @@
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
                                                <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
                                                 @if($sala->enable==1)
-                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
                                                 @else
-                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                                 @endif
                                                 <a class="dropdown-item" href="#">Adicionar Alunos</a>
                                             </div>
@@ -350,11 +350,10 @@
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
                                                 <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
-                                                @if($sala->enable==1)
-                                                <a class="dropdown-item" href="#">Desativar</a>
-                                                @else
-                                                <a class="dropdown-item" href="#">Ativar</a>
-                                                @endif
+                                    
+                                                <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
+                                               
+                                       
                                                 <a class="dropdown-item" href="#">Adicionar Alunos</a>
                                             </div>
                                         </td>
@@ -428,11 +427,9 @@
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
                                                 <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
-                                                @if($sala->enable==1)
-                                                <a class="dropdown-item" href="#">Desativar</a>
-                                                @else
-                                                <a class="dropdown-item" href="#">Ativar</a>
-                                                @endif
+                                                
+                                                <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
+                                          
                                                 <a class="dropdown-item" href="#">Adicionar Alunos</a>
                                             </div>
                                         </td>
