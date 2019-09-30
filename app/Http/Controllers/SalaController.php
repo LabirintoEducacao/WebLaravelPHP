@@ -46,6 +46,34 @@ class SalaController extends Controller
                         
         }
     }
+    
+    public function desativar($id){
+        $sala = Sala::find($id);
+
+        $sala->enable = 0;
+        $sala->save();
+        
+        $notification = array(
+            'message' => 'Sala desativada com sucesso!',
+            'alert-type' => 'success'
+        );
+
+        return redirect('admin/sala')->with($notification);
+    }
+    
+    public function ativar($id){
+        $sala = Sala::find($id);
+
+        $sala->enable = 1;
+        $sala->save();
+        
+        $notification = array(
+            'message' => 'Sala desativada com sucesso!',
+            'alert-type' => 'success'
+        );
+
+        return redirect('admin/sala')->with($notification);
+    }
 
     public function index()
     {
@@ -84,6 +112,7 @@ class SalaController extends Controller
             $time = 0;
 
            }
+        if($request->sala_id==0){
         
             $sala = new Sala();
             $sala->prof_id = $request->input('id_prof');
@@ -126,6 +155,33 @@ class SalaController extends Controller
     if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
         $objProjetoDiretorio = File::makeDirectory($strCaminho);
     }
+        }else{
+            $sala = Sala::find($request->sala_id);
+            $sala->name = $request->input('nome');
+            $sala->duracao = $time;
+            $sala->tematica = $request->input('theme');
+            if($request->public==null){
+                $sala->public=0;
+            }
+            else{
+                $sala->public=1;
+            }
+             if($request->enable == null){
+
+            $sala->enable = 0;
+           }
+           else{
+
+            $sala->enable =1;
+           }
+
+            $sala->save();
+            $notification = array(
+                'message' => 'Sala alterada com sucesso!',
+                'alert-type' => 'success'
+            );
+
+        }
 
 
 

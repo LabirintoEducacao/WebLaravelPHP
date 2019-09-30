@@ -116,11 +116,11 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
-                                                <a class="dropdown-item" href="#">Editar</a>
+                                                <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="width:93%;">Editar</button>
                                                 @if($sala->enable==1)
-                                                <a class="dropdown-item" href="#">Desativar</a>
+                                                <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
                                                 @else
-                                                <a class="dropdown-item" href="#">Ativar</a>
+                                                <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                                 @endif
                                                 <a class="dropdown-item" href="#">Adicionar Alunos</a>
                                             </div>
@@ -193,7 +193,7 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
-                                                <a class="dropdown-item" href="#">Editar</a>
+                                                <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
                                                 @if($sala->enable==1)
                                                 <a class="dropdown-item" href="#">Desativar</a>
                                                 @else
@@ -265,13 +265,13 @@
                                         </td>
                                         <td>
 
-                                            <a class="nav-link" href="#pablo" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="material-icons">more_vert</i>
 
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
-                                                <a class="dropdown-item" href="#">Editar</a>
+                                               <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
                                                 @if($sala->enable==1)
                                                 <a class="dropdown-item" href="#">Desativar</a>
                                                 @else
@@ -343,13 +343,13 @@
                                         </td>
                                         <td>
 
-                                            <a class="nav-link" href="#pablo" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="material-icons">more_vert</i>
 
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
-                                                <a class="dropdown-item" href="#">Editar</a>
+                                                <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
                                                 @if($sala->enable==1)
                                                 <a class="dropdown-item" href="#">Desativar</a>
                                                 @else
@@ -427,7 +427,7 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
-                                                <a class="dropdown-item" href="#">Editar</a>
+                                                <a class="dropdown-item" href="#addSalaModal" data-toggle="modal" data-target="#addSalaModal" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}">Editar</a>
                                                 @if($sala->enable==1)
                                                 <a class="dropdown-item" href="#">Desativar</a>
                                                 @else
@@ -456,7 +456,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Sala</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -465,7 +465,7 @@
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
-                        <input type="hidden" name="sala_id" id="sala_id">
+                        <input type="hidden" name="sala_id" id="sala_id" value="0">
                         <div class="form-group">
                             <label for="nome" display="inline">Nome da Sala:</label>
                             <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
@@ -507,7 +507,7 @@
                             <div class="form-group col">
                             <div class="form-check" style="margin-top:17%">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable">Ativo
+                                    <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable" checked>Ativo
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -520,13 +520,92 @@
 
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-                        <button type="submit" class="btn btn-success">Save changes</button>
+                        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div class="modal fade bd-example-modal-lg" id="editarSalaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Sala</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/sala') }}" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="sala_id" id="sala_id" value="0">
+                        <div class="form-group">
+                            <label for="nome" display="inline">Nome da Sala:</label>
+                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
+
+                            @if ($errors->has('nome'))
+                            <div class="help-block">
+                                {{ $errors->first('nome') }}
+                            </div>
+                            @endif
+
+                        </div>
+                        <div class="form-group" style="margin-top:3.5%">
+                            <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
+                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="theme">Tema:&emsp;</label>
+<!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
+                                <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
+                                    <option value="1">Deserto</option>
+                                    <option value="2">Cidade Abandonada</option>
+                                    <option value="3">Casa</option>
+                                    <option value="4">Floresta</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col">
+                            <div class="form-check" style="margin-left:10%;margin-top:17%">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="0" name="public" id="public">Sala Pública
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            </div>
+                            <div class="form-group col">
+                            <div class="form-check" style="margin-top:17%">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable" checked>Ativo
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+                        <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-</div>
+
 @endsection
