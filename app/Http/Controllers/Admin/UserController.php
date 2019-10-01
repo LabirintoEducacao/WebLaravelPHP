@@ -29,6 +29,16 @@ class UserController extends Controller
       //Com paginação
       return view('admin.users.index')->with('users', User::paginate(5));
     }
+    
+    public function getUsers()
+    {
+      // dessa forma mostra sem paginação uma lista de usuarios
+      //return view('admin.users.index')->with('users', User::all());
+
+      //Com paginação
+      return view('teste')->with(['users'=> User::all(), 'roles' => Role::all()]);
+    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -113,6 +123,39 @@ class UserController extends Controller
     }
     
     
+    
+    
+    public function deleteUser($id)
+    {
+       if(Auth::user()->id == $id){
+        $notification = array(
+                'message' => 'Você não tem permissão para deletar este usuário!',
+                'alert-type' => 'warning'
+            );
+       return redirect('admin/teste')->with($notification);
+       }
+
+       $user = User::find($id);
+
+       if($user){
+           $user->roles()->detach();
+           $user->delete();
+           $notification = array(
+                'message' => 'Usuário deletado com sucesso!',
+                'alert-type' => 'success'
+            );
+           return redirect('admin/teste')->with($notification);
+       }
+       $notification = array(
+                'message' => 'Este usuário não pode ser deletado!',
+                'alert-type' => 'warning'
+            );
+       return redirect('admin/teste')->with($notification);
+    }
+    
+    
+    
+    
     /*UM ADMINISTRADOR PODE CADASTRAR UM NOVO USUARIO*/
     public function user(Request $request){
     	$data = $request->all();
@@ -187,7 +230,7 @@ class UserController extends Controller
 
 //            $alunos = \App\User::orderBy('name')->get();
 
-            return view ( 'teste', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
+            return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
         }else{
              $notification = array(
                 'message' => 'Esta sala é pública, não há como adicionar alunos!',

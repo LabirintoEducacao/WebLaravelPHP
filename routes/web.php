@@ -108,11 +108,14 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 
 });
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // ADMIN
 
 Route::prefix('/admin')->group(function(){
+    
+Route::get('/deletar/{id}','Admin\UserController@deleteUser');
 
 Route::get('/teste1','SalaController@testeTabela');
     
@@ -133,6 +136,9 @@ Route::post('/alterar-ordem','PerguntaRespostaController@alterar');
 Route::post('/busca-perg', 'PerguntaRespostaController@buscar');
     
 Route::get('/teste/{id}', 'PerguntaRespostaController@teste');
+    
+    
+Route::get('/teste', 'Admin\UserController@getUsers');
 
 Route::get('/pergunta', function () {
     return view('questions');

@@ -1,118 +1,125 @@
 @extends('vendor.menu')
-
 @section('content')
-<!------------------------ Cabeçalho ------------------------>
-<div class="container-fluid">
+<div class="container">
+    <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Controle de Jogadores
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addAlunoModal">
+                        Adicionar aluno já cadastrado
+                    </button>
+                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
+                        Adicionar aluno não cadastrado
+                    </button>
+                      </h4>
+                  <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          Nome
+                        </th>
+                        <th>
+                          E-mail
+                        </th>
+                        <th>
+                            Remover
+                        </th>
+                      </thead>
+                      <tbody>
+             
+                            @foreach($data as $aluno)
+                                <tr>
+                                    <td>{{$aluno->name}}</td>
+                                    <td>
+                                      {{$aluno->email}}
+                                    
+                                    </td>
+                                    <td>
+                                        <a class="nav-link" href="{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}">
+                                          <i class="material-icons">clear</i>
 
-
-<!------------------------ Espaço das Salas  --------------------------->
-    <div style="margin-top:2%;">
-  <form action="{{ url('admin/aluno') }}" method="POST" style="float:left;">
-    @csrf
-    {{ csrf_field() }}
-    <div class="row">
-      <input type="hidden" value="{{$id}}" name="sala_id" class="col">
-<!--      <em>Escolha o aluno a ser adicionado</em>&emsp;-->
-      <select data-placeholder="Escolha o aluno a ser adicionado..." class="chosen-select col" tabindex="2" display="inline" name="user_id" onchange="selecionado()">
-        <option value=""></option>
-        @foreach($alunos as $aluno)
-          @if($aluno->hasAnyRole('user'))
-            <option value="{{$aluno->id}}">{{$aluno->email}}</option>
-          @endif
-        @endforeach
-      </select>
-      &nbsp;<button type="submit" class="btn btn-outline-success" class="col">Adicionar</button>
-    </div>
-  </form>&emsp;&nbsp;
-  <button type="button" class="btn btn-outline-cyan" data-toggle="modal" data-target="#alunoModal">Aluno ainda não cadastrado</button>
-
-
-
-<!--botao modal-->
-
-
-  <button class="btn btn-md bg-primary" data-toggle="modal" data-target="#grupomodal"> Cadastrar Grupos</button>
-
-
-
-</div>
-
-  <div class="col-md-12" style="padding-top:20px;">
-    <div class="card">
-      <table class="row">
-        <tr>
-          <th class="col">Nome</th>
-          <th class="col">Email</th>
-          <!-- <th class="col-md-3">Resposta</th> -->
-          <th class="col"></th>
-        </tr>
-
-        @foreach($data as $item)
-          @if($item->sala_id==$id)
-            <tr>
-              <td class="col">{{$item->name}}</td>
-              <td class="col">{{$item->email}}</td>
-              <td class="col">
-                <a href="{{ url('admin/deletar-aluno/'.$item->id.'/'.$id) }}" class="btn btn-outline-danger fa fa-trash"></a>
-              </td>
-            </tr>
-          @endif
-        @endforeach
-
-        
-      </table>
-    </div>
-  </div>
-
-</div>
-
-
-
-
-<div class="modal fade" id="alunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content " >
-      <div class="modal-header" style="background-color:#2F4F4F;" >
-        <h5 class="modal-title"></h5>
-        <h5 style="  font-size: 20px;  margin-left:250px;  color:#ffffff;
-        "  id="exampleModalScrollableTitle">Cadastrar Aluno</h5>
-
-      </div>
-      <form method="POST" action="{{ url('/admin/new/email') }}">
-        <input type="hidden" value="{{$id}}" name="sala_id">
-        <div class="modal-body" >
-          @csrf
-          <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-
-            <div class="col-md-6">
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-              @error('email')
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                </span>
-              @enderror
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+              
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          
-      
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
-          <button type="submit" class="btn btn-outline-success">Save changes</button>
-        </div>
-      </form>
     </div>
-  </div>
+    <div class="modal fade bd-example-modal-lg" id="addAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Adicionar aluno</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/aluno') }}" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
+                         <div class="form-group" style="margin-top:3.5%">
+                            <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
+                            <select placeholder="Escolha o aluno a ser adicionado..." class="chosen-select col" tabindex="2" display="inline" name="user_id" id="user_id" onchange="selecionado()">
+                                <option value=""></option>
+                                @foreach($alunos as $aluno)
+
+                                    <option value="{{$aluno->id}}">{{$aluno->email}}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+                        <button type="submit" class="btn btn-success">Adicionar aluno</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-lg" id="addNovoAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Adicionar aluno</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/admin/new/email') }}" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
+                        <div class="form-group" style="margin-top:3.5%">
+                            <label for="email" display="inline">E-mail do aluno</label>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+                        <button type="submit" class="btn btn-success">Enviar convite</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!------------------------------------ Modal 2--------------------->
 
 
 
-
+<!--
 <div class="modal fade" id="grupomodal" role="dialog" aria-labelledby="Modal grupo" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content " >
@@ -121,7 +128,7 @@
         
       </div>
 
-  <!--     <form method="POST" action="{{ url('/admin/grupo') }}"> -->
+  <!--     <form method="POST" action="{{ url('/admin/grupo') }}">
          @csrf
 
       <div class="modal-body" >
@@ -140,10 +147,10 @@
           <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
           <button type="submit" class="btn btn-outline-success">Save changes</button>
         </div>
-     <!--  </form> -->
+     <!-- </form> 
     </div>
   </div>
 </div>
-
+-->
 
 @endsection
