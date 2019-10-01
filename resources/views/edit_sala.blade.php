@@ -205,15 +205,22 @@
     </div>
     <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
     
-
-    <div class="container paddin">
-
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div id ="teste2" class="card-header card-header-primary">
+                    <h3 class="card-title" style="text-align:center">
+                      {{$sala->name}}
+                    </h3>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
         <!------- Estrutura de repetição (CARD)------------------->
          
-
             @foreach($data as $item)
 
-                     <div id="flip">
+                     
                         <?php $errado=0; ?>
                         @foreach($path_perg as $pp)
                         @if($pp->perg_id==$item->id)
@@ -226,26 +233,21 @@
                              <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
                               <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
  -->
+                        <div id="flip" onclick="abrir('panel'+{{$item->id}});">
                         <div class="row align-items-center">
                         <div class="col-auto mr-auto">
-                        <h4 class="col">Pergunta:&emsp;</h4>
                          {{$item->pergunta}}
                         </div>
                         <div class="col-auto">
-                        <a class="nav-link" href="#pablo" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link"  id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i id="teste" class="material-icons">more_vert</i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="">
-                            <a class="dropdown-item" href="">Visualizar</a>
-                            <a class="dropdown-item" href="#">Editar</a>
-                           
-                            <a class="dropdown-item" href="#">Desativar</a>
-                  
-                            <a class="dropdown-item" href="#">Ativar</a>
-                        
-                            <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
+                            <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$item->id) }}">Excluir</a>
                         </div>
                         </div>
+                       </div>
                        </div>
   
                         @endif
@@ -253,27 +255,28 @@
                         @endforeach
                         @endif
                         @endforeach
-                </div>
-                <div id="panel">
+                
+               
                     <?php $y=0; ?>
+                    <div class="panel" id="panel{{$item->id}}">
                     @foreach($respostas as $resposta)
                     @foreach($perg_resp as $pergresp)
                     @if($pergresp->perg_id==$item->id)
                     @if($pergresp->resp_id==$resposta->id)
+                    
                     <div class="row">
                         <h5 class="col-1"><?php echo $letras[$y];?></h5>
                         <p class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
                     </div>
                     <?php $y++; ?>
-                    <br><br>
+                
                     @endif
                     @endif
                     @endforeach
                     @endforeach
-                 <?php $y=0; ?>
                 </div>
-          
-            <div id="flip2">
+                 <?php $y=0; ?>
+         
             @foreach($perg_refs as $perg_ref)
             @if($perg_ref->perg_id==$item->id)
             @foreach($refs as $ref)
@@ -285,18 +288,19 @@
                 @foreach($paths as $path)
                 @if($path->id==$pp->path_id)
                 <!--                    <input value="{{$path->id}}"><br><br>-->
-             
+            <div id="flip2" onclick="abrir('panel'+{{$ref->id}});"  data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
+            <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
                 <div class="row align-items-center">
                         <div class="col-auto mr-auto">
                          {{$ref->pergunta}}
                         </div>
                         <div class="col-auto">
-                        <a class="nav-link" href="#pablo" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i id="teste" class="material-icons">more_vert</i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="">
                             <a class="dropdown-item" href="">Visualizar</a>
-                            <a class="dropdown-item" href="#">Editar</a>
+                            <a class="dropdown-item" href="">Editar</a>
                            
                             <a class="dropdown-item" href="#">Desativar</a>
                   
@@ -306,39 +310,36 @@
                         </div>
                         </div>
                        </div>
-  
+                    </div>
                 @endif
                 @endforeach
                 @endif
                 @endforeach
-        </div>
-        <div id="panel2">
+       
+        
             @foreach($respostas as $resposta)
             @foreach($perg_resp as $pergresp)
             @if($pergresp->perg_id==$ref->id)
             @if($pergresp->resp_id==$resposta->id)
+            <div class="panel2" id="panel{{$ref->id}}">
             <div class="row">
                 <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
-                <h4 display="inline" align="left" class="col-sm-12 col-md-1">{{$resposta->resposta}}</h4>
+                <h4 class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</h4>
                 
             </div>
             <?php $y++; ?>
-            <br><br>
+            </div>
             @endif
             @endif
             @endforeach
             @endforeach
-        </div>
             @endif
             @endforeach
             @endif
             @endforeach
-            <br><br><br>
             <hr style="border: 0.8px solid #afafaf;">
-            <br>
 
             @endforeach
-
             <div class="container">
                 {{$data->links()}}
             </div>
@@ -350,6 +351,12 @@
             <div>
                 <a style="width:100%" class="btn btn-outline-cyan" href="{{ url('/admin/virtual/'.$id)}}">SALVAR ALTERAÇÕES</a>
             </div>
+    </div>
+
+    
+            </div>
+        </div>
+    </div>
     </div>
     
     <div class="modal fade" id="alteraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

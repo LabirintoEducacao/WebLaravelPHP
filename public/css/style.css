@@ -3,27 +3,30 @@
  #flip {
 	  padding: 5px;
 	  text-align: center;
-	  background-color: #e5eecc;
-	  border-radius: 4px 4px 0px 0px;
-	  background: linear-gradient(60deg, #26c6da, #00acc1);
-	  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
-      }
-
-    #panel {
+    background: #fff;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.1);
+    }
+#flip:hover  {
+    padding: 5px;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 6);
+    }
+    .panel {
 
     padding: 50px;
     display: none;
-    border-radius: 0px 0px 4px 4px;
-    color: #333333;
     background: #fff;
     width: 100%;
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 0.6);
 }
 
 a:hover #teste{
 
 	 box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
-     border-radius: 50%;
+  border-radius: 50%;
 
  }
 
@@ -31,27 +34,48 @@ a:hover #teste{
       padding: 5px;
       text-align: center;
       background-color: rgba(255, 255, 207, 0.85);
-      border-radius: 4px 4px 0px 0px;
-      box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+      box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.1);
       }
 
-    #panel2 {
+   #flip2:hover {
+    padding: 5px;
+    text-align: center;
+    background-color: rgba(255, 255, 207, 0.85);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 6);
+    }
 
+    .panel2 {
     padding: 50px;
     display: none;
     border-radius: 0px 0px 4px 4px;
     color: #333333;
     background: #fff;
     width: 100%;
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
-}
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 0.6);
+  }
 
 a:hover #teste{
 
      box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
      border-radius: 50%;
-
  }
 
+/*#texto {
+  background-color: rgba(235, 235, 235, 0.9);
+  box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 4px 4px 4px 4px;
+  text-align: center;
+  width: 50%;
+  display: none;
+  position: absolute;
+  z-index: 9999;
+
+}*/
+/* #flip2:hover #texto {
+  display: block;
  
+ animation-duration: 5s;
+}*/
 /*///////////////////////////////////*/

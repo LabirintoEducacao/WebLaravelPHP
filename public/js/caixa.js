@@ -637,14 +637,25 @@ function buscaraluno(){
 
 $(document).ready(function(){
 
-  // PAINEL PARA MOSTRAR PERGUNTA
-    $("#flip").click(function(){
-        $("#panel").slideToggle("slow");
+///// Tempo do aleta reforco    
+// function enter() {
+
+    //     $("#texto").fadeOut("slow");
+        
+    //   }
+    //  $("#flip2").mouseenter(function(){
+
+    //    $("#texto").fadeIn("slow");
+    //     setTimeout(enter, 2000);
+       
+    // });
+
+
+     $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
     });
-   // PAINEL PARA MOSTRAR reforco
-    $("#flip2").click(function(){
-        $("#panel2").slideToggle("slow");
-    });
+
+
 });
 
 
