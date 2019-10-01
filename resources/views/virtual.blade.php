@@ -41,7 +41,7 @@ $flag =0;
                             <li class="nav-item">
                                 <a class="nav-link" href="#privadas" data-toggle="tab">
                                     <!--                            <i class="material-icons">code</i>-->
-                                    Privado
+                                    Privadas
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
@@ -156,7 +156,7 @@ $flag =0;
                                         </td>
                                         <td>{{$item->duracao}}</td>
                                        
-                                    <td>Publica</td>
+                                    <td>Pública</td>
                                     <td>
 
                                         <a href="" class="btn btn-primary "> Estatisticas</a>
@@ -212,7 +212,7 @@ $flag =0;
                                             Pública
                                             @endif
                                         </td>
-                                    <td>Privada</td>
+    
                                     <td>
 
                                         <a href="" class="btn btn-primary "> Estatisticas</a>
