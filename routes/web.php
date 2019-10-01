@@ -138,7 +138,7 @@ Route::post('/busca-perg', 'PerguntaRespostaController@buscar');
 Route::get('/teste/{id}', 'PerguntaRespostaController@teste');
     
     
-Route::get('/teste', 'Admin\UserController@getUsers');
+Route::get('/users', 'Admin\UserController@getUsers');
 
 Route::get('/pergunta', function () {
     return view('questions');
