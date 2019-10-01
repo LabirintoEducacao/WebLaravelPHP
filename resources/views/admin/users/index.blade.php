@@ -39,6 +39,7 @@
                                 <tbody>
 
                                     @foreach($users as $user)
+                                        @if(Auth::user()->hasAnyRole('admin'))
                                     <tr>
                                         <td>{{$user->name}}</td>
                                         <td>
@@ -61,6 +62,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    
                                     
                                     <div class="modal fade bd-example-modal-sm" id="modal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
@@ -99,7 +101,40 @@
             </div>
         </div>
     </div>
-@endforeach
+
+                                    @elseif(Auth::user()->hasAnyRole('professor'))
+                                    
+                                        @if($user->hasAnyRole('user'))
+                                            <tr>
+                                                <td>{{$user->name}}</td>
+                                                <td>
+                                                    {{$user->email}}
+
+                                                </td>
+                                                <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
+                                                <td>
+                                                    @if(!$user->hasAnyRole('admin'))
+                                                        @if($user->id!=Auth::user()->id)
+                                                        <a class="nav-link" id="user{{$user->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="material-icons">more_vert</i>
+
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="user{{$user->id}}">
+
+                                                            <a class="dropdown-item" href="{{ url('admin/deletar/'.$user->id) }}">Deletar</a>
+
+
+
+
+
+                                                        </div>
+                                                        @endif
+                                                     @endif
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
