@@ -376,7 +376,15 @@
       md.initDashboardPageCharts();
 
     });
+
+
+     function abrir(id){
+      console.log(id);
+      $("#"+id).slideToggle("slow");
+    }
+   
   </script>
+
 </body>
 
 </html>

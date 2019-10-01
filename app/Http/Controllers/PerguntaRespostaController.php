@@ -227,9 +227,14 @@ class PerguntaRespostaController extends Controller
     
     
     public function index($id)
-    {
+    {  
 
         $ref =0; 
+
+
+         $sala = DB::table('salas')
+                ->where('id','=',$id)
+                ->get();
         
         $perguntas = Pergunta::where('sala_id', $id)->whereNotNull('ordem')
         ->orderBy('ordem')->paginate(5);
@@ -271,7 +276,7 @@ class PerguntaRespostaController extends Controller
             ->get();
         $perg_resp =  DB::table('perg_resp')
             ->get();   
-        return view ( 'edit_sala', ['id' => $id] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref, 'refs' =>$ref,'perg_refs'=>$perg_refs]);
+        return view ( 'edit_sala', ['id' => $id, 'sala'=>$sala[0] ] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref, 'refs' =>$ref,'perg_refs'=>$perg_refs]);
     }
     
     public function alterar(Request $request){
