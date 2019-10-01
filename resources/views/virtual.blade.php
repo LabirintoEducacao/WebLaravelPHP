@@ -39,7 +39,7 @@ $flag =0;
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#privado" data-toggle="tab">
+                                <a class="nav-link" href="#privadas" data-toggle="tab">
                                     <!--                            <i class="material-icons">code</i>-->
                                     Privado
                                     <div class="ripple-container"></div>
@@ -74,7 +74,7 @@ $flag =0;
                                     Tempo
                                 </th>
                                 <th>
-                                    Publica
+                                    Tipo
                                 </th>
                                 <th>
 
@@ -129,7 +129,7 @@ $flag =0;
                                
                                 <th> Tematica </th>
                                  <th> Tempo </th>
-                                <th> Publica </th>
+                                <th> Tipo </th>
                                 <th>
 
                                 </th>
@@ -180,7 +180,7 @@ $flag =0;
                                 
                                 <th> Tematica </th>
                                 <th> Tempo </th>
-                                <th> Publica </th>
+                                <th> Tipo </th>
                                 <th>
 
                                 </th>
