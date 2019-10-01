@@ -662,7 +662,6 @@ $(document).ready(function(){
 $('#editarSalaModal1').on('show.bs.modal', function (event) {
            var button = $(event.relatedTarget); // Button that triggered the modal
            var recipientnome = button.data('whatevernome');
-    console.log('chegouuu');
            var recipientid = button.data('whateverid');
            var recipienttempo = button.data('whatevertempo');
            var recipienttema = button.data('whatevertema');
@@ -675,24 +674,23 @@ $('#editarSalaModal1').on('show.bs.modal', function (event) {
            modal.find('#time').val(recipienttempo);
            modal.find('#sala_id').val(recipientid);
            modal.find('#theme').val(recipienttema);
-
+            console.log(recipientcorrect);
+    console.log(recipientenable);
 
            if (recipientcorrect == 1)
-               $('#public').prop("checked", true);
+               $('#public1').prop("checked", true);
            else
-               $('#public').prop("checked", false);
-           //modal.find('#public').val(recipientcorrect);
+               $('#public1').prop("checked", false);
 
            if(recipientenable == 1)
-            $('#enable').prop("checked",true);
+            $('#enable1').prop("checked",true);
           else
-            $('#public').prop("checked",false);
+            $('#enable1').prop("checked",false);
        });
 
 $('#editarSalaModal2').on('show.bs.modal', function (event) {
            var button = $(event.relatedTarget); // Button that triggered the modal
            var recipientnome = button.data('whatevernome');
-    console.log('chegouuu');
            var recipientid = button.data('whateverid');
            var recipienttempo = button.data('whatevertempo');
            var recipienttema = button.data('whatevertema');
@@ -716,6 +714,8 @@ $('#editarSalaModal2').on('show.bs.modal', function (event) {
            if(recipientenable == 1)
             $('#enable').prop("checked",true);
           else
-            $('#public').prop("checked",false);
+            $('#enable').prop("checked",false);
        });
+
+
 
