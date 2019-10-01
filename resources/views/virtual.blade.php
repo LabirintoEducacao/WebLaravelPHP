@@ -7,194 +7,237 @@
 
 
 <!------------------------ Espaço das Salas  --------------------------->
- 
+
 <?php $user = Auth::user()->id;
 $flag =0;
 ?>
 
 <?php $linha = 0; $flag = 0; $flag_sala =0; $flag_salap =0;
 ?>
- -->
 
-<!-- @if($salapr>0)
-  <div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px; display:block">
-@else
-<div class="container-fluid " style=" margin-top:20px; padding-top: 10px; padding-top: 10px; background-color:#ffffff; border-radius: 20px;display:none">
-@endif
- -->
+
+
 
 
 <div class="container">
-        <div class="col-md-12">
-            <div class="card">
+    <div class="col-md-12">
+        <div class="card">
 
-                <div class="card-header card-header-tabs card-header-primary ">
-                    <div class="nav-tabs-navigation">
-                        <div class="nav-tabs-wrapper">
-                            
-                                        <h4 class="nav-tabs-title col-md-3">
-                                            Espaço Virtual
-                                         </h4>
-                                  <ul class="nav nav-tabs" data-tabs="tabs" style="float:right;">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#todos" data-toggle="tab">
-                                        <!--                            <i class="material-icons">bug_report</i>-->
-                                        Todas
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#privado" data-toggle="tab">
-                                        <!--                            <i class="material-icons">code</i>-->
-                                        Privado
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" href="#publicas" data-toggle="tab">
-                                        <!--                            <i class="material-icons">code</i>-->
-                                        Públicas
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                        
-                        </div>
+            <div class="card-header card-header-tabs card-header-primary ">
+                <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+
+                        <h4 class="nav-tabs-title col-md-3">
+                            Espaço Virtual
+                        </h4>
+                        <ul class="nav nav-tabs" data-tabs="tabs" style="float:right;">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#todos" data-toggle="tab">
+                                    <!--                            <i class="material-icons">bug_report</i>-->
+                                    Todas
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#privado" data-toggle="tab">
+                                    <!--                            <i class="material-icons">code</i>-->
+                                    Privado
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#publicas" data-toggle="tab">
+                                    <!--                            <i class="material-icons">code</i>-->
+                                    Públicas
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                        </ul>
+
                     </div>
                 </div>
+            </div>
 
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active table-responsive" id="todos">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Nome
-                                    </th>
-                                    <th>
-                                        Tempo
-                                    </th>
-                                    <th>
-                                        Tematica
-                                    </th>
-                                    <th>
-                                        Publica
-                                    </th>
-                                     <th>
-                                       
-                                    </th>
-                                    
-                                     <th>
-                                      
-                                    </th>
-                                    
-                                    
-                                </thead>
-                                <tbody>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane active table-responsive" id="todos">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>
+                                    Nome
+                                </th>
+                                
+                                <th>
+                                    Tematica
+                                </th>
+                                <th>
+                                    Tempo
+                                </th>
+                                <th>
+                                    Publica
+                                </th>
+                                <th>
 
-                                    @foreach($data as $item)
-                                    <tr>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->duracao}}</td>
-                                        <td>{{$item->tematica}}</td>
-                                        <td>{{$item->public}}</td>
-                                        <td style="float:right;">
+                                </th>
 
-                                            <a href="" class="btn btn-primary " > Estatisticas</a>            
-                                            <a href="" class="btn btn-info btn-small"> Qr Code</a>
-                                           
+
+                            </thead>
+                            <tbody>
+
+                                @foreach($data as $item)
+                                <tr>
+                                    <td>{{$item->name}}</td>
+                        
+                                    <td>
+                                            @if($item->tematica==1)
+                                            Deserto
+                                            @elseif($item->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($item->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
                                         </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
-
-                        <div class="tab-pane table-responsive" id="publicas">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th> Nome </th>
-                                    <th> Tempo </th>
-                                    <th> Tematica </th>
-                                    <th> Publica </th> 
-                                         <th>
-                                       
-                                    </th>
-                                    
-                                     <th>
-                                      
-                                    </th> 
-                                </thead>
-                                <tbody>
-
-                                    @foreach($data as $item)
-                                    @if($item->public == 1)
-                                    <tr>
-                                        <td>{{$item->name}}</td>
                                         <td>{{$item->duracao}}</td>
-                                        <td>{{$item->tematica}}</td>
-                                        <td>Publica</td>
-                                       <td style="float:right;">
-
-                                            <a href="" class="btn btn-primary " > Estatisticas</a>            
-                                            <a href="" class="btn btn-info btn-small"> Qr Code</a>
-                                           
+                                        <td>
+                                            @if($item->public==0)
+                                            Privada
+                                            @else
+                                            Pública
+                                            @endif
                                         </td>
-                                    </tr>
-                                    @endif
-                                    @endforeach
+                                    <td>
 
-                                </tbody>
-                            </table>
-                        </div>
+                                        <a href="" class="btn btn-primary "> Estatisticas</a>
+                                        @if($item->enable==1)
+                                        <a href="" class="btn btn-info btn-small"> Qr Code</a>
+                                        @endif
 
-                           <div class="tab-pane table-responsive" id="privadas">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th> Nome </th>
-                                    <th> Tempo </th>
-                                    <th> Tematica </th>
-                                    <th> Publica </th> 
-                                         <th>
-                                       
-                                    </th>
-                                    
-                                     <th>
-                                      
-                                    </th>  
-                                </thead>
-                                <tbody>
-
-                                    @foreach($data as $item)
-
-                                    @if($item->public == 0 && $flag ++)
-                                    <tr>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->duracao}}</td>
-                                        <td>{{$item->tematica}}</td>
-                                        <td>Privada</td>
-                                       <td style="float:right;">
-
-                                            <a href="" class="btn btn-primary " > Estatisticas</a>            
-                                            <a href="" class="btn btn-info btn-small"> Qr Code</a>
-                                           
-                                        </td>
-                                    </tr>
-                                    @endif
-                                    @endforeach
-                                    <?php $flag =0; ?>
-
-                                </tbody>
-                            </table>
-                        </div>
-
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
+
+
+                    <div class="tab-pane table-responsive" id="publicas">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th> Nome </th>
+                               
+                                <th> Tematica </th>
+                                 <th> Tempo </th>
+                                <th> Publica </th>
+                                <th>
+
+                                </th>
+
+                            </thead>
+                            <tbody>
+
+                                @foreach($data as $item)
+                                
+                                @if($item->public == 1)
+                                <tr>
+                                    <td>{{$item->name}}</td>
+                         
+                                    <td>
+                                            @if($item->tematica==1)
+                                            Deserto
+                                            @elseif($item->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($item->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                        </td>
+                                        <td>{{$item->duracao}}</td>
+                                       
+                                    <td>Publica</td>
+                                    <td>
+
+                                        <a href="" class="btn btn-primary "> Estatisticas</a>
+                                        @if($item->enable==1)
+                                        <a href="" class="btn btn-info btn-small"> Qr Code</a>
+                                        @endif
+
+                                    </td>
+                                </tr>
+                                @endif
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane table-responsive" id="privadas">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th> Nome </th>
+                                
+                                <th> Tematica </th>
+                                <th> Tempo </th>
+                                <th> Publica </th>
+                                <th>
+
+                                </th>
+                            </thead>
+                            <tbody>
+
+                                @foreach($data as $item)
+                         
+                                @if($item->public == 0)
+                                <tr>
+                                    <td>{{$item->name}}</td>
+                                 
+                                    <td>
+                                            @if($item->tematica==1)
+                                            Deserto
+                                            @elseif($item->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($item->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                        </td>
+                                        <td>{{$item->duracao}}</td>
+                                        <td>
+                                            @if($item->public==0)
+                                            Privada
+                                            @else
+                                            Pública
+                                            @endif
+                                        </td>
+                                    <td>Privada</td>
+                                    <td>
+
+                                        <a href="" class="btn btn-primary "> Estatisticas</a>
+                                       @if($item->enable==1)
+                                        <a href="" class="btn btn-info btn-small"> Qr Code</a>
+                                        @endif
+
+                                    </td>
+                                </tr>
+                                @endif
+                              
+                                @endforeach
+                                <?php $flag =0; ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-  
+
+
 <!-- 
 
              <?php
@@ -300,17 +343,9 @@ $flag =0;
 
 <!--- Fim Modal --->
 
-    <!-- @endif
-    @endif
-    @endforeach
-    @endforeach
 
-    @if($flag == 0 && $flag_sala == 1 )
-        </div>
-        @endif   -->
- 
 </div>
 
-  
-       
+
+
 @endsection
