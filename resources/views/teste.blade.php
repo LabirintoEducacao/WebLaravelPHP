@@ -13,7 +13,7 @@
                         Adicionar novo usuário
                         </a>
                         @elseif(Auth::user()->hasAnyRole('professor'))
-                        <a data-toggle="modal" data-target="#addUserModal" class="btn btn-info" style="float:right">
+                        <a data-toggle="modal" data-target="#addEmailModal" class="btn btn-info" style="float:right">
                             Adicionar novo usuário
                         </a>
                         @endif
@@ -186,7 +186,7 @@
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
-                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
                     </div>
                 </form>
         
@@ -194,6 +194,40 @@
         </div>
     </div>
 
+
+    <div class="modal fade bd-example-modal-sm" id="addEmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <form method="POST" action="{{ url('/admin/new/email') }}"  style="width:100%;margin-top:2%" class="justify-content-center">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group" style="margin-top:3.5%">
+                            <label for="email">E-mail:</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+                        <button type="submit" class="btn btn-success">Enviar convite</button>
+                    </div>
+                </form>
+        
+            </div>
+        </div>
+    </div>
 
 
 @endsection

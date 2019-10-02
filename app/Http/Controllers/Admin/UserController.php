@@ -36,7 +36,7 @@ class UserController extends Controller
       //return view('admin.users.index')->with('users', User::all());
 
       //Com paginação
-      return view('teste')->with(['users'=> User::all(), 'roles' => Role::all()]);
+      return view('admin.users.index')->with(['users'=> User::all(), 'roles' => Role::all()]);
     }
     
 
@@ -57,7 +57,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with($notification);
         }
 
-        return view('admin.users.edit')->with(['user'=> User::find($id), 'roles' => Role::all()]);
+        return redirect('admin/users')->with(['user'=> User::find($id), 'roles' => Role::all()]);
        
     }
 
@@ -75,7 +75,7 @@ class UserController extends Controller
                 'message' => 'Você não tem permissão para editar este usuáio!',
                 'alert-type' => 'warning'
             );
-            return redirect()->route('admin.users.index')->with($notification);
+            return redirect('admin/users')->with($notification);
         }
 
         $user = User::find($id);
@@ -85,7 +85,7 @@ class UserController extends Controller
                 'message' => 'Usuário atualizado com sucesso!',
                 'alert-type' => 'success'
             );
-        return redirect()->route('admin.users.index')->with($notification);
+        return redirect('admin/users')->with($notification);
     }
 
     /**
@@ -101,7 +101,7 @@ class UserController extends Controller
                 'message' => 'Você não tem permissão para deletar este usuário!',
                 'alert-type' => 'warning'
             );
-       return redirect()->route('admin.users.index')->with($notification);
+       return redirect('admin/users')->with($notification);
        }
 
        $user = User::find($id);
@@ -113,13 +113,13 @@ class UserController extends Controller
                 'message' => 'Usuário deletado com sucesso!',
                 'alert-type' => 'success'
             );
-           return redirect()->route('admin.users.index')->with($notification);
+           return redirect('admin/users')->with($notification);
        }
        $notification = array(
                 'message' => 'Este usuário não pode ser deletado!',
                 'alert-type' => 'warning'
             );
-       return redirect()->route('admin.users.index')->with($notification);
+       return redirect('admin/users')->with($notification);
     }
     
     
@@ -132,7 +132,7 @@ class UserController extends Controller
                 'message' => 'Você não tem permissão para deletar este usuário!',
                 'alert-type' => 'warning'
             );
-       return redirect('admin/teste')->with($notification);
+       return redirect('admin/users')->with($notification);
        }
 
        $user = User::find($id);
@@ -144,13 +144,13 @@ class UserController extends Controller
                 'message' => 'Usuário deletado com sucesso!',
                 'alert-type' => 'success'
             );
-           return redirect('admin/teste')->with($notification);
+           return redirect('admin/users')->with($notification);
        }
        $notification = array(
                 'message' => 'Este usuário não pode ser deletado!',
                 'alert-type' => 'warning'
             );
-       return redirect('admin/teste')->with($notification);
+       return redirect('admin/users')->with($notification);
     }
     
     
@@ -177,7 +177,7 @@ class UserController extends Controller
                 'alert-type' => 'success'
             );
 
-        return redirect()->route('admin.users.index')->with($notification);
+        return redirect('admin/users')->with($notification);
 
     }
     
@@ -186,22 +186,22 @@ class UserController extends Controller
     public function email(Request $request){
         $data = $request->all();
 
-        $users = User::where('email', '=', $data['email'])->get();
+        $users = User::where('email', '=', $data['email2'])->get();
         
         $sala = Sala::find($request->sala_id);
 
         foreach ($users as $user)
         {
             if($user){
-                \Mail::to($data['email'])->send(new LinkSala($sala->name,Auth::user()->name,Auth::user()->id));
+                \Mail::to($data['email2'])->send(new LinkSala($sala->name,Auth::user()->name,Auth::user()->id));
                 $notification = array(
                 'message' => 'E-mail enviado com sucesso!',
                 'alert-type' => 'success'
                 );
-                return redirect()->route('admin.users.index')->with($notification);
+                return redirect('admin/users')->with($notification);
             }
         }
-        \Mail::to($data['email'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id,$data['email']));
+        \Mail::to($data['email2'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id,$data['email2']));
         $notification = array(
                 'message' => 'E-mail para cadastro enviado com sucesso!',
                 'alert-type' => 'success'
