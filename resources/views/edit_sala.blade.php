@@ -42,6 +42,324 @@
         </div>
     </div> -->
 
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div id ="teste2" class="card-header card-header-primary">
+                    <h3 class="card-title" style="text-align:center">{{$sala->name}}
+                        <button class="btn btn-warning btn-just-icon" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i></button>
+                    </h3>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <div>
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Tempo de duração (em minutos)
+                                    </th>
+                                    <th>
+                                        Tema
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Ativa
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {{$sala->duracao}}
+                                        </td>
+                                        <td>
+                                            @if($sala->tematica==1)
+                                                Deserto
+                                            @elseif($sala->tematica==2)
+                                                Cidade Abandonada
+                                            @elseif($sala->tematica==3)
+                                                Casa
+                                            @else
+                                                Floresta
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($sala->public==0)
+                                                Privada
+                                            @else
+                                                Pública
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($sala->enable==0)
+                                                Não
+                                            @else
+                                                Sim
+                                            @endif
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="meio" style="padding-bottom:10%;">
+                        <button type="button" class="btn btn-primary" style="float:left;">Estatistícas</button>
+                        @if($sala->public==0)
+                            <a class="btn btn-info" href="{{url('admin/alunos/'.$sala->id)}}" style="float:right;">Vincular Alunos</a>
+                        @endif
+                    </div>
+             
+        
+          
+           
+                <div class="row justify-content-start">
+                <div class="col col-1 col-sm-2 col-2 ">
+                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="position: absolute; z-index: 2;">sequência</button>
+                 </div>
+                <div class="col col-2 col-sm-2 col-xs-2" >
+                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="position: absolute; z-index: 2;">Adicionar Pergunta</button>
+                </div>
+              
+                 <div class="col col-2 col-sm-2 col-xs-2">
+                <a class="btn btn-info btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="position: absolute; z-index: 2;">Gerar QR Code</a>
+                </div>
+                 </div>
+
+                <hr style="border: 0.5px solid: grey;" >
+                
+          
+             
+                     <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
+                        
+                                        <table class="table">
+                                                    <thead class=" text-primary">
+                                                        <th>
+                                                           Perguntas
+                                                        </th>
+                                                        <th>
+                                         
+                                                        </th>
+                                                        <th>
+                                                    <div style="float:right;"> Ações </div>
+                                                    <div style="float:right; margin-right: 10%;"> Resposta </div>
+                                                    
+                                                        </th>                                  
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                            </table>
+                            <!------- Estrutura de repetição (CARD)------------------->
+                             
+                                @foreach($data as $item)
+
+                                         
+                                            <?php $errado=0; ?>
+                                            @foreach($path_perg as $pp)
+                                            @if($pp->perg_id==$item->id)
+
+                                            @foreach($paths as $path)
+                                            @if($path->id==$pp->path_id)
+
+                                            @if($path->disp == 1)
+                                            <!-- 
+                                                 <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
+                                                  <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
+                     -->
+                                            <div id="flip" onclick="abrir('panel'+{{$item->id}});">
+                                            <div class="row align-items-center">
+                                            <div class="col-auto mr-auto">
+                                             {{$item->pergunta}}
+                                            </div>
+                                            <div class="col-auto">
+                                            <a class="nav-link"  id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i id="teste" class="material-icons">more_vert</i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="">
+                                                <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
+                                                <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$item->id) }}">Excluir</a>
+                                            </div>
+                                            </div>
+                                           </div>
+                                           </div>
+                      
+                                            @endif
+                                            @endif
+                                            @endforeach
+                                            @endif
+                                            @endforeach
+                                    
+                                   
+                                        <?php $y=0; ?>
+                                        <div class="panel" id="panel{{$item->id}}">
+                                        @foreach($respostas as $resposta)
+                                        @foreach($perg_resp as $pergresp)
+                                        @if($pergresp->perg_id==$item->id)
+                                        @if($pergresp->resp_id==$resposta->id)
+                                        
+                                        <div class="row">
+                                            <h5 class="col-1"><?php echo $letras[$y];?></h5>
+                                            <p class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
+                                        </div>
+                                        <?php $y++; ?>
+                                    
+                                        @endif
+                                        @endif
+                                        @endforeach
+                                        @endforeach
+                                    </div>
+                                     <?php $y=0; ?>
+                             
+                                @foreach($perg_refs as $perg_ref)
+                                @if($perg_ref->perg_id==$item->id)
+                                @foreach($refs as $ref)
+                                @if($ref->id==$perg_ref->ref_id)
+
+                                    @foreach($path_perg as $pp)
+                                    @if($pp->perg_id==$ref->id)
+                                    <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
+                                    @foreach($paths as $path)
+                                    @if($path->id==$pp->path_id)
+                                    <!--                    <input value="{{$path->id}}"><br><br>-->
+                                <div id="flip2" onclick="abrir('panel'+{{$ref->id}});"  data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
+                                <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
+                                    <div class="row align-items-center">
+                                            <div class="col-auto mr-auto">
+                                             {{$ref->pergunta}}
+                                            </div>
+                                            <div class="col-auto">
+                                            <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i id="teste" class="material-icons">more_vert</i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="">
+                                                <a class="dropdown-item" href="">Visualizar</a>
+                                                <a class="dropdown-item" href="">Editar</a>
+                                               
+                                                <a class="dropdown-item" href="#">Desativar</a>
+                                      
+                                                <a class="dropdown-item" href="#">Ativar</a>
+                                            
+                                                <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                            </div>
+                                            </div>
+                                           </div>
+                                        </div>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                    @endforeach
+                           
+                            
+                                @foreach($respostas as $resposta)
+                                @foreach($perg_resp as $pergresp)
+                                @if($pergresp->perg_id==$ref->id)
+                                @if($pergresp->resp_id==$resposta->id)
+                                <div class="panel2" id="panel{{$ref->id}}">
+                                <div class="row">
+                                    <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
+                                    <h4 class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</h4>
+                                    
+                                </div>
+                                <?php $y++; ?>
+                                </div>
+                                @endif
+                                @endif
+                                @endforeach
+                                @endforeach
+                                @endif
+                                @endforeach
+                                @endif
+                                @endforeach
+                                <hr style="border: 0.8px solid #afafaf;">
+
+                                @endforeach
+                                <div class="container">
+                                    {{$data->links()}}
+                                </div>
+                            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="editarSalaModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edição de Sala</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/sala') }}" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="sala_id" id="sala_id" value="0">
+                        <input type="hidden" value="1" id="page" name="page">
+                        <div class="form-group">
+                            <label for="nome" display="inline">Nome da Sala:</label>
+                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
+
+                            @if ($errors->has('nome'))
+                            <div class="help-block">
+                                {{ $errors->first('nome') }}
+                            </div>
+                            @endif
+
+                        </div>
+                        <div class="form-group" style="margin-top:3.5%">
+                            <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
+                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="theme">Tema:&emsp;</label>
+<!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
+                                <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
+                                    <option value="1">Deserto</option>
+                                    <option value="2">Cidade Abandonada</option>
+                                    <option value="3">Casa</option>
+                                    <option value="4">Floresta</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col">
+                            <div class="form-check" style="margin-left:10%;margin-top:17%">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="0" name="public" id="public">Sala Pública
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            </div>
+                            <div class="form-group col">
+                            <div class="form-check" style="margin-top:17%">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable">Ativo
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
             <div class="modal-content">
@@ -203,161 +521,7 @@
             </div>
         </div>
     </div>
-    <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
-    
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div id ="teste2" class="card-header card-header-primary">
-                    <h3 class="card-title" style="text-align:center">
-                      {{$sala->name}}
-                    </h3>
-                    <p class="card-category"></p>
-                </div>
-                <div class="card-body">
-        <!------- Estrutura de repetição (CARD)------------------->
-         
-            @foreach($data as $item)
 
-                     
-                        <?php $errado=0; ?>
-                        @foreach($path_perg as $pp)
-                        @if($pp->perg_id==$item->id)
-
-                        @foreach($paths as $path)
-                        @if($path->id==$pp->path_id)
-
-                        @if($path->disp == 1)
-                        <!-- 
-                             <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
-                              <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
- -->
-                        <div id="flip" onclick="abrir('panel'+{{$item->id}});">
-                        <div class="row align-items-center">
-                        <div class="col-auto mr-auto">
-                         {{$item->pergunta}}
-                        </div>
-                        <div class="col-auto">
-                        <a class="nav-link"  id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i id="teste" class="material-icons">more_vert</i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
-                            <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$item->id) }}">Excluir</a>
-                        </div>
-                        </div>
-                       </div>
-                       </div>
-  
-                        @endif
-                        @endif
-                        @endforeach
-                        @endif
-                        @endforeach
-                
-               
-                    <?php $y=0; ?>
-                    <div class="panel" id="panel{{$item->id}}">
-                    @foreach($respostas as $resposta)
-                    @foreach($perg_resp as $pergresp)
-                    @if($pergresp->perg_id==$item->id)
-                    @if($pergresp->resp_id==$resposta->id)
-                    
-                    <div class="row">
-                        <h5 class="col-1"><?php echo $letras[$y];?></h5>
-                        <p class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
-                    </div>
-                    <?php $y++; ?>
-                
-                    @endif
-                    @endif
-                    @endforeach
-                    @endforeach
-                </div>
-                 <?php $y=0; ?>
-         
-            @foreach($perg_refs as $perg_ref)
-            @if($perg_ref->perg_id==$item->id)
-            @foreach($refs as $ref)
-            @if($ref->id==$perg_ref->ref_id)
-
-                @foreach($path_perg as $pp)
-                @if($pp->perg_id==$ref->id)
-                <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
-                @foreach($paths as $path)
-                @if($path->id==$pp->path_id)
-                <!--                    <input value="{{$path->id}}"><br><br>-->
-            <div id="flip2" onclick="abrir('panel'+{{$ref->id}});"  data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
-            <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
-                <div class="row align-items-center">
-                        <div class="col-auto mr-auto">
-                         {{$ref->pergunta}}
-                        </div>
-                        <div class="col-auto">
-                        <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i id="teste" class="material-icons">more_vert</i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="">
-                            <a class="dropdown-item" href="">Visualizar</a>
-                            <a class="dropdown-item" href="">Editar</a>
-                           
-                            <a class="dropdown-item" href="#">Desativar</a>
-                  
-                            <a class="dropdown-item" href="#">Ativar</a>
-                        
-                            <a class="dropdown-item" href="#">Adicionar Alunos</a>
-                        </div>
-                        </div>
-                       </div>
-                    </div>
-                @endif
-                @endforeach
-                @endif
-                @endforeach
-       
-        
-            @foreach($respostas as $resposta)
-            @foreach($perg_resp as $pergresp)
-            @if($pergresp->perg_id==$ref->id)
-            @if($pergresp->resp_id==$resposta->id)
-            <div class="panel2" id="panel{{$ref->id}}">
-            <div class="row">
-                <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
-                <h4 class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</h4>
-                
-            </div>
-            <?php $y++; ?>
-            </div>
-            @endif
-            @endif
-            @endforeach
-            @endforeach
-            @endif
-            @endforeach
-            @endif
-            @endforeach
-            <hr style="border: 0.8px solid #afafaf;">
-
-            @endforeach
-            <div class="container">
-                {{$data->links()}}
-            </div>
-            <div align="right">
-                <button type="button" align="right" class="btn btn-outline-danger" data-toggle="modal" data-target="#alteraModal">Alterar sequência</button>
-            </div>
-            <br>
-            <br>
-            <div>
-                <a style="width:100%" class="btn btn-outline-cyan" href="{{ url('/admin/virtual/'.$id)}}">SALVAR ALTERAÇÕES</a>
-            </div>
-    </div>
-
-    
-            </div>
-        </div>
-    </div>
-    </div>
     
     <div class="modal fade" id="alteraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
