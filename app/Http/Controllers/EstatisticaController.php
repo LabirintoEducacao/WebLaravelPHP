@@ -347,20 +347,25 @@ class EstatisticaController extends Controller
         $gamestat = 0;
         $nextquestion = -1;
         $indexperg =0;
+        $jogada=0;
+        $next = 0;
+        $ordem = 0;
 
-
-
-        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->WhereNotNull('ordem')->orderBy('ordem')->get();
+        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->whereNotNull('ordem')->orderBy('ordem')->get();
 
         $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
 
 
+if(count($tperg)== 0){
 
+  $result = array(
+    'error'=>array('nao existe registro com essas informacoes'),
+    'success'=> -1
+  );
 
-      if(isset($_REQUEST['user_id']) && isset($_REQUEST['maze_id'])){
-        
-           
+    return $result;
 
+} else{
         foreach($start as $value){
 
           $jogada = $value->start;
@@ -371,104 +376,127 @@ class EstatisticaController extends Controller
         $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
 
 
-              foreach($tperg as $perg){
-                  if($indexperg == 0){
-
-                  $startquestion = $perg->id; 
-
-                  }  
-
-                  $indexperg ++;
-
-                  if($perg->id == $lastquestion){
-
-                    $stopped =  $indexperg;
-                    $nextquestion = $perg->ordem +1;
-
-                  }
-
-                  if($perg->ordem == $nextquestion){
-
-                    $nextquestion = $perg->id;
-                  }
-
-                  
-                  $endquestion = $perg->id;
-                  
-                  }
-
-                  if($nextquestion == -1){
-                    $nextquestion = $startquestion;
-                  }
 
 
 
-                 
-                  if(count($save)>0){
+      if(count($save)>0){
+      foreach ($save as $stop) {
 
-                  foreach ($save as $stop) {
+          if($stop->event == "maze_start"){
 
-                    if($stop->event == "maze_start"){
-
-                      $gamestat = 0;
-                    }
+            $gamestat = 0;
+          }
 
 
-                    if($stop->event == "question_end"){
+          if($stop->event == "question_end"){
 
-                      $lastquestion = $stop->question_id;
+            $lastquestion = $stop->question_id;
 
-                    }
+          }
 
 
-                    if($stop->event == "maze_end"){
+          if($stop->event == "maze_end"){
 
-                      $gamestat = 1;
-                    }
-                  }
+            $gamestat = 1;
+          }
+        }}    
 
-                  if($lastquestion == 0){
+        
 
-                    $lastquestion = NULL;
-                  }
-                
-                  if($gamestat == 0){
+    foreach($tperg as $perg){
 
-                    $load = array(
+        $next = $perg->ordem;
 
-                      "stopped_question"=>$lastquestion,
-                      "next_question"=>$nextquestion
-                      
-                    );
+        if($indexperg == 0){
 
-                    return $load;
-                  
-                  }else{
+        $startquestion = $perg->id; 
 
-               $load = array(
-                    "stopped_question"=>$endquestion,
-                    "next_question"=>NULL
-                  );
+        }  
 
-               return $load;
+        $indexperg ++;
 
-                  }
+      
 
-            }else{
+        if($perg->id == $lastquestion){
 
-            $load = array(
+          $stopped =  $indexperg;
+          $nextquestion = $perg->ordem +1;
+          $ordem = $nextquestion;
+        }
+    
+        $endquestion = $perg->id;
 
-                      "stopped_question"=> NULL,
-                      "next_question"=>$startquestion
-                      
-                    );
-                    
-                    return $load;
-            }
+        }
 
-      }
+        if($next < $ordem){
 
-    }
+          $nextquestion = null;
+
+        }
+
+
+
+
+        if($perg->ordem == $nextquestion){
+
+          $nextquestion = $perg->id;
+        
+        }
+
+       
+
+        if($nextquestion == -1){
+          $nextquestion = $startquestion;
+        }
+
+
+
+       
+        if(count($save)>0){
+
+
+        if($lastquestion == 0){
+
+          $lastquestion = NULL;
+        }
+      
+        if($gamestat == 0){
+
+          $load = array(
+
+            "stopped_question"=>$lastquestion,
+            "next_question"=>$nextquestion
+            
+          );
+
+          return $load;
+        
+        }else{
+
+     $load = array(
+          "stopped_question"=>$endquestion,
+          "next_question"=>NULL
+        );
+
+     return $load;
+
+        }
+
+}else{
+
+$load = array(
+
+            "stopped_question"=> NULL,
+            "next_question"=>$startquestion
+            
+          );
+          
+          return $load;
+}
+
+    }}
+
+
 
     public function show($id)
     {
