@@ -68,7 +68,7 @@
                         </div>
                         <br><br>
 
-                        <ul class="nav nav-tabs">
+                        <ul class="nav nav-tabs" style="margin-left:-1.28%">
                             <li class="nav-item ">
                                 <a class="navcolor active" data-toggle="tab" href="#perg">Pergunta</a>
                             </li>
@@ -82,7 +82,7 @@
                                 <a class="navcolor" data-toggle="tab" href="#pergReforco">Reforço</a>
                             </li>
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content" style="padding-top:1.85%">
 
                             <!-- PERGUNTAS -->
                             <div id="perg" class="tab-pane fade " style="margin-right:2%">
@@ -296,7 +296,7 @@
                         </div>
                         <div class="col-4 col-md-auto">
                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
-                                </i> Perg</button>
+                                </i> Perguntas</button>
                         </div>
 
                         <div class="col-4 col-md-auto">
