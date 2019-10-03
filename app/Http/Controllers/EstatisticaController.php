@@ -354,6 +354,13 @@ class EstatisticaController extends Controller
 
         $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
 
+
+
+
+      if(isset($_REQUEST['user_id']) && isset($_REQUEST['maze_id'])){
+        
+           
+
         foreach($start as $value){
 
           $jogada = $value->start;
@@ -364,102 +371,104 @@ class EstatisticaController extends Controller
         $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
 
 
-    foreach($tperg as $perg){
-        if($indexperg == 0){
+              foreach($tperg as $perg){
+                  if($indexperg == 0){
 
-        $startquestion = $perg->id; 
+                  $startquestion = $perg->id; 
 
-        }  
+                  }  
 
-        $indexperg ++;
+                  $indexperg ++;
 
-        if($perg->id == $lastquestion){
+                  if($perg->id == $lastquestion){
 
-          $stopped =  $indexperg;
-          $nextquestion = $perg->ordem +1;
+                    $stopped =  $indexperg;
+                    $nextquestion = $perg->ordem +1;
 
-        }
+                  }
 
-        if($perg->ordem == $nextquestion){
+                  if($perg->ordem == $nextquestion){
 
-          $nextquestion = $perg->id;
-        }
+                    $nextquestion = $perg->id;
+                  }
 
-        
-        $endquestion = $perg->id;
-        }
+                  
+                  $endquestion = $perg->id;
+                  
+                  }
 
-        if($nextquestion == -1){
-          $nextquestion = $startquestion;
-        }
-
-
-
-       
-        if(count($save)>0){
-
-        foreach ($save as $stop) {
-
-          if($stop->event == "maze_start"){
-
-            $gamestat = 0;
-          }
+                  if($nextquestion == -1){
+                    $nextquestion = $startquestion;
+                  }
 
 
-          if($stop->event == "question_end"){
 
-            $lastquestion = $stop->question_id;
+                 
+                  if(count($save)>0){
 
-          }
+                  foreach ($save as $stop) {
+
+                    if($stop->event == "maze_start"){
+
+                      $gamestat = 0;
+                    }
 
 
-          if($stop->event == "maze_end"){
+                    if($stop->event == "question_end"){
 
-            $gamestat = 1;
-          }
-        }
+                      $lastquestion = $stop->question_id;
 
-        if($lastquestion == 0){
+                    }
 
-          $lastquestion = NULL;
-        }
-      
-        if($gamestat == 0){
 
-          $load = array(
+                    if($stop->event == "maze_end"){
 
-            "stopped_question"=>$lastquestion,
-            "next_question"=>$nextquestion
-            
-          );
+                      $gamestat = 1;
+                    }
+                  }
 
-          return $load;
-        
-        }else{
+                  if($lastquestion == 0){
 
-     $load = array(
-          "stopped_question"=>$endquestion,
-          "next_question"=>NULL
-        );
+                    $lastquestion = NULL;
+                  }
+                
+                  if($gamestat == 0){
 
-     return $load;
+                    $load = array(
 
-        }
+                      "stopped_question"=>$lastquestion,
+                      "next_question"=>$nextquestion
+                      
+                    );
 
-}else{
+                    return $load;
+                  
+                  }else{
 
-$load = array(
+               $load = array(
+                    "stopped_question"=>$endquestion,
+                    "next_question"=>NULL
+                  );
 
-            "stopped_question"=> NULL,
-            "next_question"=>$startquestion
-            
-          );
-          
-          return $load;
-}
+               return $load;
+
+                  }
+
+            }else{
+
+            $load = array(
+
+                      "stopped_question"=> NULL,
+                      "next_question"=>$startquestion
+                      
+                    );
+                    
+                    return $load;
+            }
+
+      }
 
     }
-
 
     public function show($id)
     {
@@ -499,4 +508,5 @@ $load = array(
     {
         //
     }
+}
 }

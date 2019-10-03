@@ -43,17 +43,36 @@
     </div> -->
 
     <div class="container">
-    <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div id ="teste2" class="card-header card-header-primary">
                     <h3 class="card-title" style="text-align:center">{{$sala->name}}
-                        <button class="btn btn-warning btn-just-icon" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i></button>
                     </h3>
                     <p class="card-category"></p>
                 </div>
                 <div class="card-body">
                     <div>
+
+                    <br>
+                    <br>
+              <div class="row" style="margin-bottom: -35px;">
+
+                <div class="col-4 col-md-auto" >
+                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Estatistica</button>
+                 </div>
+
+                <div class="col-4 col-md-auto">
+                <a class="btn btn-primary btn-sm"  href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
+                </i>Aluno</a>
+                </div>
+
+                <div class="col-4 col-md-auto">
+                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i>Editar</button>
+                 </div>
+              
+                </div>
+
+                <hr style="border: 0.5px solid: grey;" >
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
@@ -104,33 +123,24 @@
                         </table>
                         
                     </div>
-                    <div class="meio" style="padding-bottom:10%;">
-                        <button type="button" class="btn btn-primary" style="float:left;">Estatistícas</button>
-                        @if($sala->public==0)
-                            <a class="btn btn-info" href="{{url('admin/alunos/'.$sala->id)}}" style="float:right;">Vincular Alunos</a>
-                        @endif
-                    </div>
-             
-        
-          
-           
-                <div class="row justify-content-start">
-                <div class="col col-1 col-sm-2 col-2 ">
-                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="position: absolute; z-index: 2;">sequência</button>
+                    <br>
+                    <br>
+                <div class="row" style="margin-bottom: -35px;">
+                <div class="col-4 col-md-auto" >
+                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Sequência</button>
                  </div>
-                <div class="col col-2 col-sm-2 col-xs-2" >
-                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="position: absolute; z-index: 2;">Adicionar Pergunta</button>
+                <div class="col-4 col-md-auto">
+                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
+                </i> Perg</button>
                 </div>
               
-                 <div class="col col-2 col-sm-2 col-xs-2">
-                <a class="btn btn-info btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="position: absolute; z-index: 2;">Gerar QR Code</a>
+                 <div class="col-4 col-md-auto">
+                <a class="btn btn-info btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
                 </div>
-                 </div>
+                </div>
 
                 <hr style="border: 0.5px solid: grey;" >
                 
-          
-             
                      <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
                         
                                         <table class="table">
@@ -250,7 +260,6 @@
                                     @endif
                                     @endforeach
                            
-                            
                                 @foreach($respostas as $resposta)
                                 @foreach($perg_resp as $pergresp)
                                 @if($pergresp->perg_id==$ref->id)
@@ -276,12 +285,10 @@
                                 @endforeach
                                 <div class="container">
                                     {{$data->links()}}
-                                </div>
-                            
+                                </div>      
                 </div>
             </div>
         </div>
-    </div>
 </div>
 <div class="modal fade bd-example-modal-lg" id="editarSalaModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -370,6 +377,8 @@
                     </button>
                 </div>
                 <form name="add_name" id="add_name">
+
+                    
                     <input type="hidden" value="{{$id}}" name="sala_id">
                     <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
                     <div class="modal-body">
