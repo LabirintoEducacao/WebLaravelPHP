@@ -60,34 +60,22 @@ $flag =0;
 
             <div class="card-body">
                 <div class="tab-content">
+
+
                     <div class="tab-pane active table-responsive" id="todos">
                         <table class="table">
                             <thead class=" text-primary">
-                                <th>
-                                    Nome
-                                </th>
-                                
-                                <th>
-                                    Tematica
-                                </th>
-                                <th>
-                                    Tempo
-                                </th>
-                                <th>
-                                    Tipo
-                                </th>
-                                <th>
-
-                                </th>
-
-
-                            </thead>
-                            <tbody>
-
-                                @foreach($data as $item)
-                                <tr>
+                                <th>Nome</th>
+                                <th>Tematica</th>
+                                <th>Tempo</th>
+                                <th>Tipo</th>
+                                <th></th>
+                             </thead>
+                                <tbody>
+                                    @foreach($data as $item)
+                                    @if($item->enable == 1)
+                                    <tr>
                                     <td>{{$item->name}}</td>
-                        
                                     <td>
                                             @if($item->tematica==1)
                                             Deserto
@@ -107,92 +95,42 @@ $flag =0;
                                             Pública
                                             @endif
                                         </td>
-                                    <td>
+                                        <td>
+                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+                                         @if($item->enable==1)
 
-                                        <a href="" class="btn btn-primary "> Estatisticas</a>
-                                        @if($item->enable==1)
-                                        <a href="" class="btn btn-info btn-small"> Qr Code</a>
+                                            <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+
                                         @endif
-
                                     </td>
-                                </tr>
+                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
 
+
+<!---------------------------------------------------------------------->
 
                     <div class="tab-pane table-responsive" id="publicas">
                         <table class="table">
                             <thead class=" text-primary">
-                                <th> Nome </th>
-                               
-                                <th> Tematica </th>
-                                 <th> Tempo </th>
-                                <th> Tipo </th>
-                                <th>
-
-                                </th>
-
-                            </thead>
-                            <tbody>
-
-                                @foreach($data as $item)
-                                
-                                @if($item->public == 1)
                                 <tr>
-                                    <td>{{$item->name}}</td>
-                         
-                                    <td>
-                                            @if($item->tematica==1)
-                                            Deserto
-                                            @elseif($item->tematica==2)
-                                            Cidade Abandonada
-                                            @elseif($item->tematica==3)
-                                            Casa
-                                            @else
-                                            Floresta
-                                            @endif
-                                        </td>
-                                        <td>{{$item->duracao}}</td>
-                                       
-                                    <td>Pública</td>
-                                    <td>
-
-                                        <a href="" class="btn btn-primary "> Estatisticas</a>
-                                        @if($item->enable==1)
-                                        <a href="" class="btn btn-info btn-small"> Qr Code</a>
-                                        @endif
-
-                                    </td>
-                                </tr>
-                                @endif
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="tab-pane table-responsive" id="privadas">
-                        <table class="table">
-                            <thead class=" text-primary">
                                 <th> Nome </th>
-                                
                                 <th> Tematica </th>
                                 <th> Tempo </th>
                                 <th> Tipo </th>
-                                <th>
-
-                                </th>
+                                <th></th>
+                                </tr>
                             </thead>
                             <tbody>
 
                                 @foreach($data as $item)
-                         
-                                @if($item->public == 0)
-                                <tr>
+                                @if($item->enable == 1)
+                                @if($item->public == 1)
+                                 <tr scope="row">
                                     <td>{{$item->name}}</td>
-                                 
                                     <td>
                                             @if($item->tematica==1)
                                             Deserto
@@ -205,42 +143,79 @@ $flag =0;
                                             @endif
                                         </td>
                                         <td>{{$item->duracao}}</td>
+                                        <td>Pública</td>
                                         <td>
-                                            @if($item->public==0)
-                                            Privada
-                                            @else
-                                            Pública
-                                            @endif
-                                        </td>
-    
-                                    <td>
-
-                                        <a href="" class="btn btn-primary "> Estatisticas</a>
-                                       @if($item->enable==1)
-                                        <a href="" class="btn btn-info btn-small"> Qr Code</a>
+                                            <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+                                             @if($item->enable==1)
+                                             <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
                                         @endif
-
                                     </td>
                                 </tr>
                                 @endif
-                              
+                                @endif
                                 @endforeach
-                                <?php $flag =0; ?>
-
                             </tbody>
-                        </table>
+                        </table>      
                     </div>
 
-                </div>
-            </div>
+
+<!---------------------------------------------------------------------->
+
+                <div class="tab-pane table-responsive" id="privadas">
+                 <table class="table">
+                            <thead class=" text-primary">
+                                <th> Nome </th>
+                                <th> Tematica </th>
+                                <th> Tempo </th>
+                                <th> Tipo </th>
+                                <th>  </th>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $item)
+                                @if($item->enable == 1)  
+                                @if($item->public == 0)
+                                <tr>
+                                <td>{{$item->name}}</td>
+                                <td>
+                                            @if($item->tematica==1)
+                                            Deserto
+                                            @elseif($item->tematica==2)
+                                            Cidade Abandonada
+                                            @elseif($item->tematica==3)
+                                            Casa
+                                            @else
+                                            Floresta
+                                            @endif
+                                </td>
+                                <td>{{$item->duracao}}</td>   
+                                <td>Privada</td>
+                                <td>
+                                    <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+                                    @if($item->enable==1)
+                                    <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                                @endif
+                                </td>
+                                </tr>
+                                        @endif
+                                        @endif
+                                        @endforeach
+                            </tbody>
+                    </table>
+                  </div>
+             </div>
         </div>
-    </div>
+       </div>
+  </div>
+ </div>
+</div>
 
 
 
-<!-- 
 
-             <?php
+@foreach($data as $item)
+@if($item->enable == 1)
+
+ <?php
                 $id = $item->id;
                 $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
                 if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
@@ -251,14 +226,10 @@ $flag =0;
 
                     $i++;
                 }
-                        
+      
                ?>
-           
+    
  @if($i > 0)
-
-
-
-
 
     <div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -334,18 +305,7 @@ $flag =0;
         </div>
     </div>
 </div>
- @endif
-</div>
-</div>
-
-
-
-
-<!--- Fim Modal --->
-
-
-</div>
-
-
-
+   @endif
+  @endif
+ @endforeach
 @endsection
