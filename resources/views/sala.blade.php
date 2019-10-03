@@ -78,11 +78,11 @@
                                     </th>
                                 </thead>
                                 <tbody>
-
                                     @foreach($salas as $sala)
-                                    <tr>
-                                        <td>{{$sala->name}}</td>
-                                        <td>
+                                    
+                                    <tr id="sala">
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
                                             Deserto
                                             @elseif($sala->tematica==2)
@@ -93,15 +93,15 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td>{{$sala->duracao}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
                                             @else
                                             Pública
                                             @endif
                                         </td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->enable==1)
                                             Sim
                                             @else
@@ -131,6 +131,7 @@
                                                 @endif
                                             </div>
                                         </td>
+                                        
                                     </tr>
                                     @endforeach
 
@@ -164,8 +165,8 @@
                                     @foreach($salas as $sala)
                                     @if($sala->public==1)
                                     <tr>
-                                        <td>{{$sala->name}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
                                             Deserto
                                             @elseif($sala->tematica==2)
@@ -176,15 +177,15 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td>{{$sala->duracao}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
                                             @else
                                             Pública
                                             @endif
                                         </td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->enable==1)
                                             Sim
                                             @else
@@ -242,8 +243,8 @@
                                     @foreach($salas as $sala)
                                     @if($sala->public==0)
                                     <tr>
-                                        <td>{{$sala->name}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
                                             Deserto
                                             @elseif($sala->tematica==2)
@@ -254,15 +255,15 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td>{{$sala->duracao}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
                                             @else
                                             Pública
                                             @endif
                                         </td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->enable==1)
                                             Sim
                                             @else
@@ -321,8 +322,8 @@
                                     @foreach($salas as $sala)
                                     @if($sala->enable==1)
                                     <tr>
-                                        <td>{{$sala->name}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
                                             Deserto
                                             @elseif($sala->tematica==2)
@@ -333,15 +334,15 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td>{{$sala->duracao}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
                                             @else
                                             Pública
                                             @endif
                                         </td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->enable==1)
                                             Sim
                                             @else
@@ -400,8 +401,8 @@
                                     @foreach($salas as $sala)
                                     @if($sala->enable==0)
                                     <tr>
-                                        <td>{{$sala->name}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
                                             Deserto
                                             @elseif($sala->tematica==2)
@@ -412,15 +413,15 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td>{{$sala->duracao}}</td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
                                             @else
                                             Pública
                                             @endif
                                         </td>
-                                        <td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->enable==1)
                                             Sim
                                             @else
@@ -618,5 +619,21 @@
             </div>
         </div>
     </div>
+
+
+@section('js')
+    <script>
+        $(document).ready(function(){
+            $('.teste').on('cilck', function (event) {
+               var button = $(event.relatedTarget); // Button that triggered the modal
+                console.log(button);
+
+           });
+        }
+        
+
+
+    </script>
+@endsection
 
 @endsection
