@@ -14593,14 +14593,18 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   margin: 0 15px;
 }
 
-.sidebar .nav li:hover>a,
+/*HOVER MENU*/
+.sidebar .nav li:hover > a,
 .sidebar .nav li .dropdown-menu a:hover,
 .sidebar .nav li .dropdown-menu a:focus,
-.sidebar .nav li.active>[data-toggle="collapse"] {
-  background-color: rgba(200, 200, 200, 0.2);
-  color: #3C4858;
-  box-shadow: none;
+.sidebar .nav li.active > [data-toggle="collapse"] {
+    background-color: #9c27b0;
+    color: #ffffff;
+    /*    color: ##3C4858;*/
+    box-shadow: none;
 }
+
+
 
 .sidebar .nav li.active>[data-toggle="collapse"] i {
   color: #a9afbb;

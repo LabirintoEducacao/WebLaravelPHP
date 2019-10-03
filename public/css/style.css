@@ -3,21 +3,23 @@
 
 
 
- #flip {
-	  padding: 5px;
-	  text-align: center;
+#flip {
+    padding: 5px;
+    text-align: center;
     background: #fff;
     border-radius: 4px 4px 0px 0px;
-    box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.1);
-    }
-#flip:hover  {
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+#flip:hover {
     padding: 5px;
     text-align: center;
     background: #fff;
     border-radius: 4px 4px 0px 0px;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 6);
-    }
-    .panel {
+}
+
+.panel {
 
     padding: 50px;
     display: none;
@@ -26,28 +28,28 @@
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 0.6);
 }
 
-a:hover #teste{
+a:hover #teste {
 
-	 box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
+    box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
 
- }
+}
 
- #flip2 {
-      padding: 5px;
-      text-align: center;
-      background-color: rgba(255, 255, 207, 0.85);
-      box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.1);
-      }
+#flip2 {
+    padding: 5px;
+    text-align: center;
+    background-color: rgba(255, 255, 207, 0.85);
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
 
-   #flip2:hover {
+#flip2:hover {
     padding: 5px;
     text-align: center;
     background-color: rgba(255, 255, 207, 0.85);
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 6);
-    }
+}
 
-    .panel2 {
+.panel2 {
     padding: 50px;
     display: none;
     border-radius: 0px 0px 4px 4px;
@@ -55,20 +57,20 @@ a:hover #teste{
     background: #fff;
     width: 100%;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 0.6);
-  }
+}
 
-a:hover #teste{
+a:hover #teste {
 
-     box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
-     border-radius: 50%;
- }
+    box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
 
 
 
-.navcolor{
+.navcolor {
 
     position: relative;
-    color: purple;
+    color: #9c27b0;
     border: 0;
     margin: 0;
     border-radius: 3px;
@@ -80,11 +82,11 @@ a:hover #teste{
     transition: 0.3s background-color 0s;
 }
 
-.navcolor:hover{
+.navcolor:hover {
 
-  border-radius: 5px;
-  color: #fff;
-  background-color: rgba(77, 34, 109,0.85);;
+    border-radius: 5px;
+    color: #fff;
+    background-color: rgba(156, 39, 176, 0.85);
 }
 
 /*#texto {

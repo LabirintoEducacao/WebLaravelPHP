@@ -70,13 +70,13 @@
 
                         <ul class="nav nav-tabs">
                             <li class="nav-item ">
-                                <a class=" navcolor" data-toggle="tab" href="#perg">Pergunta</a>
+                                <a class="navcolor active" data-toggle="tab" href="#perg">Pergunta</a>
                             </li>
                             <li class="nav-item">
-                                <a class="navcolor active" data-toggle="tab" href="#resp">Resposta</a>
+                                <a class="navcolor" data-toggle="tab" href="#resp">Resposta</a>
                             </li>
                             <li class="nav-item">
-                                <a class=" navcolor" data-toggle="tab" href="#ambiente">Ambiente</a>
+                                <a class="navcolor" data-toggle="tab" href="#ambiente">Ambiente</a>
                             </li>
                             <li class="nav-item">
                                 <a class="navcolor" data-toggle="tab" href="#pergReforco">Reforço</a>
@@ -218,15 +218,12 @@
                     </h3>
                     <p class="card-category"></p>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="padding-top:2.34%;">
                     <div>
-
-                        <br>
-                        <br>
-                        <div class="row" style="margin-bottom: -35px;">
+                        <div class="row" style="margin-bottom: -35px;margin-left: -2.679%;">
 
                             <div class="col-4 col-md-auto">
-                                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Estatistica</button>
+                                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal">Estatistica</button>
                             </div>
 
                             <div class="col-4 col-md-auto">
@@ -293,9 +290,9 @@
                     </div>
                     <br>
                     <br>
-                    <div class="row" style="margin-bottom: -35px;">
+                    <div class="row"  style="margin-bottom: -35px;margin-left: -2.679%;">
                         <div class="col-4 col-md-auto">
-                            <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Sequência</button>
+                            <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal">Sequência</button>
                         </div>
                         <div class="col-4 col-md-auto">
                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
