@@ -72,12 +72,14 @@
                             <li class="nav-item ">
                                 <a class="navcolor active" data-toggle="tab" href="#perg">Pergunta</a>
                             </li>
+<!--
                             <li class="nav-item">
                                 <a class="navcolor" data-toggle="tab" href="#resp">Resposta</a>
                             </li>
                             <li class="nav-item">
                                 <a class="navcolor" data-toggle="tab" href="#ambiente">Ambiente</a>
                             </li>
+-->
                             <li class="nav-item">
                                 <a class="navcolor" data-toggle="tab" href="#pergReforco">Reforço</a>
                             </li>
@@ -85,7 +87,7 @@
                         <div class="tab-content" style="padding-top:1.85%">
 
                             <!-- PERGUNTAS -->
-                            <div id="perg" class="tab-pane fade " style="margin-right:2%">
+                            <div id="perg" class="tab-pane fade show active" style="margin-right:2%">
                                 <div class="form-group row">
                                     <br>
                                     <label for="question_type" class="col">Tipo da pergunta:</label>
@@ -118,10 +120,8 @@
                                     <!--  <textarea id="pergunta" name="pergunta"></textarea> -->
 
                                 </div>
-                            </div>
-
-                            <!-- RESPOSTAS -->
-                            <div id="resp" class="tab-pane fade show active " style="margin-right:2%">
+                            <br>
+                                <h6>Respostas</h6>
                                 <table class="table table-bordered table-hover" id="dynamic_field" border="0">
                                     <thead>
                                         <tr>
@@ -154,11 +154,8 @@
                                     </tbody>
                                 </table>
 
-                            </div>
-
-                            <!-- AMBIENTE -->
-                            <div id="ambiente" class="tab-pane fade" style="margin-right:2%">
-                                <br>
+                            <br>
+                                <h6>Ambiente</h6>
                                 <div class="form-group row">
                                     <input type="hidden" name="path_id" id="path_id">
                                     <label for="answer_boolean" class="col">Tipo:</label>
