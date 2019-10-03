@@ -121,7 +121,7 @@ $flag =0;
                                 <th> Tematica </th>
                                 <th> Tempo </th>
                                 <th> Tipo </th>
-                                <th>Teste</th>
+                                <th></th>
                                 </tr>
                             </thead>
                             <tbody>
