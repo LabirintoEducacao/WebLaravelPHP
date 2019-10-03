@@ -93,7 +93,7 @@
 
 
            ///////////////////////////////////////////////////////////////////
-           $('#check-reforco').on('change', function () {
+           $('#check-reforco').on('click',  function () {
                var $parent = $(this).parents('.hovereffect');
                if (this.checked) {
                    $('.abcd', $parent).append(
@@ -261,6 +261,12 @@
                });
            });
 
+
+
+
+
+
+
            $('#addPerg').on('show.bs.modal', function (event) {
                var modal = $(this);
                var button = $(event.relatedTarget);
@@ -299,8 +305,8 @@
                                            w++;
                                        }else{
 
-                                        $('#check-reforco').prop("checked", true);
-                                        $("#check-reforco").trigger('change');
+                                          //$('#check-reforco').prop("checked", false);
+                                           $("#check-reforco").trigger('click');
                                            modal.find('#answer_boolean_perg').val(path.type);
                                            modal.find('#largura_perg').val(path.widht);
                                            modal.find('#tamanho_perg').val(path.heigh);
@@ -461,7 +467,7 @@
                $('.dynamic-added').remove();
                a = 0;
                 b = 0;
-//                window.location.reload();
+             window.location.reload();
            })
 
            // Print error Message

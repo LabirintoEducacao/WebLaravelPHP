@@ -1,5 +1,8 @@
 /* CSS DO PAINEL DE MOSTRAR AS PERGUNTAS */
 
+
+
+
  #flip {
 	  padding: 5px;
 	  text-align: center;
@@ -59,6 +62,30 @@ a:hover #teste{
      box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
      border-radius: 50%;
  }
+
+
+
+.navcolor{
+
+    position: relative;
+    color: purple;
+    border: 0;
+    margin: 0;
+    border-radius: 3px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 15px;
+    background-color: transparent;
+    transition: 0.3s background-color 0s;
+}
+
+.navcolor:hover{
+
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgba(77, 34, 109,0.85);;
+}
 
 /*#texto {
   background-color: rgba(235, 235, 235, 0.9);

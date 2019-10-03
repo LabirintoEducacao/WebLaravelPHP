@@ -350,7 +350,7 @@ class EstatisticaController extends Controller
 
 
 
-        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->orderBy('ordem')->get();
+        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->WhereNotNull('ordem')->orderBy('ordem')->get();
 
         $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
 
@@ -508,5 +508,4 @@ class EstatisticaController extends Controller
     {
         //
     }
-}
 }

@@ -236,7 +236,7 @@ $flag =0;
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
-                <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
+                <h5 style="  font-size: 20px; color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
             <div class="modal-body ">
                 <?php
