@@ -175,7 +175,7 @@ Route::get('/sala', 'SalaController@getSalas');
 Route::get('/visualizar/{id}', 'SalaController@getSala');
 
 
-// Rotas para gerar o jason
+// Rotas para gerar o json
 Route::get('/virtual/{id}','Json@show');
 
 

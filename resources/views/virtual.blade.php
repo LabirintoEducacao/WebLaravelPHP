@@ -86,7 +86,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao}}</td>
+                                    <td>{{$item->duracao / 60}}:00 min</td>
                                     <td>
                                         @if($item->public==0)
                                         Privada
@@ -139,7 +139,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao}}</td>
+                                    <td>{{$item->duracao  / 60}}:00 min </td>
                                     <td>Pública</td>
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
@@ -182,7 +182,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao}}</td>
+                                    <td>{{$item-> duracao / 60}}:00 min</td>
                                     <td>Privada</td>
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm">Estatisticas</a>

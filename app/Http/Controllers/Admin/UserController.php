@@ -219,16 +219,17 @@ class UserController extends Controller
                 ->orderBy('name')
                 ->where('sala_user.sala_id','=',$id)
                 ->get();
-//            var_dump($data);
+          
             
             $alunos = DB::table('users')
-                ->join('role_user','users.id','=','role_user.user_id')
+                ->join('role_user','users.id','=','role_user.id')
                 ->orderBy('name')
                 ->where('role_user.role_id','=',3)
                 ->get();
-        
+            
+           
 
-//            $alunos = \App\User::orderBy('name')->get();
+           $alunos = \App\User::orderBy('name')->get();
 
             return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
         }else{

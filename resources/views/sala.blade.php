@@ -53,6 +53,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane active table-responsive" id="todos">
@@ -78,9 +81,11 @@
                                     </th>
                                 </thead>
                                 <tbody>
+
+
                                     @foreach($salas as $sala)
                                     
-                                    <tr id="sala">
+                                    <tr id="sala"style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -93,7 +98,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60 }}:00 min</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -110,7 +115,7 @@
                                         </td>
                                         <td>
 
-                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                                 <i class="material-icons">more_vert</i>
 
                                             </a>
@@ -164,7 +169,7 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->public==1)
-                                    <tr>
+                                    <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -177,7 +182,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60}}:00 min</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -194,7 +199,7 @@
                                         </td>
                                         <td>
 
-                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                                 <i class="material-icons" >more_vert</i>
 
                                             </a>
@@ -242,7 +247,7 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->public==0)
-                                    <tr>
+                                    <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -255,7 +260,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60}}:00 min</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -272,7 +277,7 @@
                                         </td>
                                         <td>
 
-                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                                 <i class="material-icons" >more_vert</i>
 
                                             </a>
@@ -321,7 +326,7 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->enable==1)
-                                    <tr>
+                                    <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -334,7 +339,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60}}:00 min</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -351,7 +356,7 @@
                                         </td>
                                         <td>
 
-                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                                 <i class="material-icons">more_vert</i>
 
                                             </a>
@@ -400,7 +405,7 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->enable==0)
-                                    <tr>
+                                    <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -413,7 +418,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao}}</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao /60}}:00 min</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -430,7 +435,7 @@
                                         </td>
                                         <td>
 
-                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                            <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                                 <i class="material-icons">more_vert</i>
 
                                             </a>

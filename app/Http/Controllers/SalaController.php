@@ -27,8 +27,9 @@ class SalaController extends Controller
         $salas = DB::table('salas')
                 ->where('prof_id','=',Auth::user()->id)
                 ->get();
-            if(count($salas)>0)
+           
                 return view('sala')->with(["salas" => $salas]);
+         
     }
     
     
@@ -112,6 +113,10 @@ class SalaController extends Controller
             $time = 0;
 
            }
+
+           $time = $time*60;
+
+           
         if($request->sala_id==0){
         
             $sala = new Sala();
