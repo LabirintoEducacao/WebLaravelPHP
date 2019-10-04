@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div class="container margin" style="margin-top: 20px;">
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
@@ -10,16 +9,33 @@
     @endif
 
     <input type="hidden" value="52" id="num_y">
-
-
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Adicionar Pergunta</h5>
-                    <button type="submit" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
+          <div class="card card-nav-tabs card-plain">
+                <div class="card-header card-header-primary">
+                    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                    <div class="container row align-items-center">
+                    <div class="col-11">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#perg" data-toggle="tab">Pergunta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#pergReforco" data-toggle="tab">Reforço</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-1">
+                      <button  type="submit" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    </div>
+                  </div>
                 </div>
                 <form name="add_name" id="add_name">
 
@@ -37,28 +53,12 @@
                         <div class="alert alert-success print-success-msg" style="display: none;">
                             <ul></ul>
                         </div>
-                        <br><br>
+                        <div class="card">
+                        <!-- Pergunta  -->
 
-                        <ul class="nav nav-tabs" style="margin-left:-1.28%">
-                            <li class="nav-item ">
-                                <a class="navcolor active" data-toggle="tab" href="#perg">Pergunta</a>
-                            </li>
-<!--
-                            <li class="nav-item">
-                                <a class="navcolor" data-toggle="tab" href="#resp">Resposta</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="navcolor" data-toggle="tab" href="#ambiente">Ambiente</a>
-                            </li>
--->
-                            <li class="nav-item">
-                                <a class="navcolor" data-toggle="tab" href="#pergReforco">Reforço</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" style="padding-top:1.85%">
+                            <div class="tab-content text-center">
+                                <div class="tab-pane active" id="perg">
 
-                            <!-- PERGUNTAS -->
-                            <div id="perg" class="tab-pane fade show active" style="margin-right:2%">
                                 <div class="form-group row">
                                     <br>
                                     <label for="question_type" class="col">Tipo da pergunta:</label>
@@ -89,11 +89,11 @@
                                     <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="500" required>
 
                                     <!--  <textarea id="pergunta" name="pergunta"></textarea> -->
-
                                 </div>
-                            <br>
-                                <h6>Respostas</h6>
-                                <table class="table table-bordered table-hover" id="dynamic_field" border="0">
+
+                              <!--   Resposta -->
+
+                                 <table class="table table-bordered table-hover" id="dynamic_field" border="0">
                                     <thead>
                                         <tr>
                                             <td>Tipo da Resposta</td>
@@ -125,8 +125,8 @@
                                     </tbody>
                                 </table>
 
-                            <br>
-                                <h6>Ambiente</h6>
+                               <!--  Ambiente -->
+                                <br>
                                 <div class="form-group row">
                                     <input type="hidden" name="path_id" id="path_id">
                                     <label for="answer_boolean" class="col">Tipo:</label>
@@ -151,11 +151,13 @@
                                         <option value="3">Grande</option>
                                     </select>
                                 </div>
-                            </div>
 
+                                </div>
 
-                            <div id="pergReforco" class="tab-pane fade" style="margin-right:2%">
-                                <div class="hovereffect">
+                                <!-- Aba do reforco -->
+
+                                <div class="tab-pane" id="pergReforco">
+                                   <div class="hovereffect">
                                     <div class="overlay">
                                         <input type="checkbox" id="check-reforco">&nbsp;Pergunta Reforço
                                     </div>
@@ -163,20 +165,20 @@
 
                                     </div>
                                 </div>
+                                </div>
                             </div>
-
-
                         </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <a class="btn btn-outline-dark btnModalClose" data-dismiss="modal">Close</a>
-                        <button name="submit" id="submit" class="btn btn-info" value="submit">Salvar</button>
-                    </div>
-                </form>
+                      </div>
+                               <div class="modal-footer">
+                                <a class="btn btn-outline-dark btnModalClose" data-dismiss="modal">Close</a>
+                                <button name="submit" id="submit" class="btn btn-info" value="submit">Salvar</button>
+                               </div> 
+                     </form>
+                    </div> 
+                </div>
             </div>
         </div>
-    </div>
+
 
     <div class="container">
         <div class="col-md-12">
@@ -262,13 +264,13 @@
                     </div>
                     <br>
                     <br>
-                    <div class="row"  style="margin-bottom: -35px;margin-left: -2.679%;">
+                    <div class="row" style="margin-bottom: -35px;">
                         <div class="col-4 col-md-auto">
-                            <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal">Sequência</button>
+                            <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Sequência</button>
                         </div>
                         <div class="col-4 col-md-auto">
                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
-                                </i> Perguntas</button>
+                                </i> Perg</button>
                         </div>
 
                         <div class="col-4 col-md-auto">
@@ -314,13 +316,13 @@
                                                  <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
                                                   <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
                      -->
-                    <div id="flip" onclick="abrir('panel'+{{$item->id}});">
-                        <div class="row align-items-center">
-                            <div class="col-auto mr-auto">
+                    <div id="flip">
+                        <div class="row align-items-center" style="cursor: pointer;">
+                            <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$item->id}});">
                                 {{$item->pergunta}}
                             </div>
-                            <div class="col-auto">
-                                <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="col-2 col-sm-1">
+                                <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                     <i id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
@@ -369,25 +371,19 @@
                     @foreach($paths as $path)
                     @if($path->id==$pp->path_id)
                     <!--                    <input value="{{$path->id}}"><br><br>-->
-                    <div id="flip2" onclick="abrir('panel'+{{$ref->id}});" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
+                    <div id="flip2" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
-                        <div class="row align-items-center">
-                            <div class="col-auto mr-auto">
+                        <div class="row align-items-center" style="cursor: pointer;">
+                            <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$ref->id}});">
                                 {{$ref->pergunta}}
                             </div>
-                            <div class="col-auto">
-                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="col-2 col-sm-1">
+                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                     <i id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
-                                    <a class="dropdown-item" href="">Visualizar</a>
-                                    <a class="dropdown-item" href="">Editar</a>
-
-                                    <a class="dropdown-item" href="#">Desativar</a>
-
-                                    <a class="dropdown-item" href="#">Ativar</a>
-
-                                    <a class="dropdown-item" href="#">Adicionar Alunos</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$ref->id}}">Editar</a>
+                                     <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$ref->id) }}">Excluir</a>
                                 </div>
                             </div>
                         </div>
@@ -396,23 +392,24 @@
                     @endforeach
                     @endif
                     @endforeach
-
+                    
+                    <div class="panel2" id="panel{{$ref->id}}">
                     @foreach($respostas as $resposta)
                     @foreach($perg_resp as $pergresp)
                     @if($pergresp->perg_id==$ref->id)
                     @if($pergresp->resp_id==$resposta->id)
-                    <div class="panel2" id="panel{{$ref->id}}">
+                   
                         <div class="row">
                             <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
                             <h4 class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</h4>
 
                         </div>
-                        <?php $y++; ?>
+                        <?php $y++; ?>     
+                    @endif
+                    @endif
+                    @endforeach
+                    @endforeach
                     </div>
-                    @endif
-                    @endif
-                    @endforeach
-                    @endforeach
                     @endif
                     @endforeach
                     @endif
@@ -529,7 +526,6 @@
             </div>
         </div>
     </div>
-</div>
 
 
 
