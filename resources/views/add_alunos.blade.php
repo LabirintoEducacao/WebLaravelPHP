@@ -39,7 +39,7 @@
                                     
                                     </td>
                                     <td>
-                                        <a class="nav-link" href="{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}">
+                                        <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) {{$aluno->name}}? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
                                           <i class="material-icons">clear</i>
 
                                         </a>
