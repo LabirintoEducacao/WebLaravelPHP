@@ -73,6 +73,11 @@ $flag =0;
                             </thead>
                             <tbody>
                                 @foreach($data as $item)
+                                @if($item->public == 0)
+                                @foreach($sala_user as $sala)
+                                @if($item->id==$sala->sala_id)
+                                @if($user == $sala->user_id)
+                                
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td>
@@ -86,7 +91,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao}}</td>
+                                    <td>{{$item->duracao / 60}}:00 min</td>
                                     <td>
                                         @if($item->public==0)
                                         Privada
@@ -103,6 +108,42 @@ $flag =0;
                                         @endif
                                     </td>
                                 </tr>
+                                @endif
+                                @endif
+                                
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        @if($item->tematica==1)
+                                        Deserto
+                                        @elseif($item->tematica==2)
+                                        Cidade Abandonada
+                                        @elseif($item->tematica==3)
+                                        Casa
+                                        @else
+                                        Floresta
+                                        @endif
+                                    </td>
+                                    <td>{{$item->duracao / 60}}:00 min</td>
+                                    <td>
+                                        @if($item->public==0)
+                                        Privada
+                                        @else
+                                        Pública
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+                                        @if($item->enable==1)
+
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -139,7 +180,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao}}</td>
+                                    <td>{{$item->duracao  / 60}}:00 min </td>
                                     <td>Pública</td>
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
@@ -168,6 +209,9 @@ $flag =0;
                             </thead>
                             <tbody>
                                 @foreach($data as $item)
+                                @foreach($sala_user as $sala)
+                                @if($item->id==$sala->sala_id)
+                                @if($user == $sala->user_id)
                                 @if($item->public == 0)
                                 <tr>
                                     <td>{{$item->name}}</td>
@@ -182,7 +226,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao}}</td>
+                                    <td>{{$item-> duracao / 60}}:00 min</td>
                                     <td>Privada</td>
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm">Estatisticas</a>
@@ -192,6 +236,9 @@ $flag =0;
                                     </td>
                                 </tr>
                                 @endif
+                                @endif
+                                @endif
+                                @endforeach
                                 @endforeach
                             </tbody>
                         </table>

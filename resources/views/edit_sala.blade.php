@@ -7,7 +7,6 @@
         {{ session('status') }}
     </div>
     @endif
-
     <input type="hidden" value="52" id="num_y">
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
@@ -178,8 +177,6 @@
                 </div>
             </div>
         </div>
-
-
     <div class="container">
         <div class="col-md-12">
             <div class="card">

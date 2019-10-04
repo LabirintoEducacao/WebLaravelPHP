@@ -39,7 +39,7 @@
                                     
                                     </td>
                                     <td>
-                                        <a class="nav-link" href="{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}">
+                                        <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) {{$aluno->name}}? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
                                           <i class="material-icons">clear</i>
 
                                         </a>
@@ -54,6 +54,10 @@
               </div>
             </div>
     </div>
+
+
+
+    
     <div class="modal fade bd-example-modal-lg" id="addAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

@@ -30,7 +30,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            {{$sala->duracao}}
+                                            {{$sala->duracao / 60}}:00 min
                                         </td>
                                         <td>
                                             @if($sala->tematica==1)
@@ -86,7 +86,7 @@
                         </div>
                        </div>
                     </div>
-                    <div id="panel">Hello world!</div>               
+                    <div id="panel"></div>               
                 </div>
             </div>
         </div>
