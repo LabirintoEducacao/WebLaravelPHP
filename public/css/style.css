@@ -5,14 +5,12 @@
 
  #flip {
 	  padding: 5px;
-	  text-align: center;
     background: #fff;
     border-radius: 4px 4px 0px 0px;
     box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.1);
     }
 #flip:hover  {
     padding: 5px;
-    text-align: center;
     background: #fff;
     border-radius: 4px 4px 0px 0px;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 6);
@@ -35,14 +33,12 @@ a:hover #teste{
 
  #flip2 {
       padding: 5px;
-      text-align: center;
       background-color: rgba(255, 255, 207, 0.85);
       box-shadow:  0 1px 2px 1px rgba(0, 0, 0, 0.1);
       }
 
    #flip2:hover {
     padding: 5px;
-    text-align: center;
     background-color: rgba(255, 255, 207, 0.85);
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 6);
     }
@@ -63,6 +59,20 @@ a:hover #teste{
      border-radius: 50%;
  }
 
+#closeborda{
+
+     box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+     border-radius: 50%;
+ }
+
+
+ .close:hover {
+
+  box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;  
+  padding: 5px 15px;
+
+ }
 
 
 .navcolor{
