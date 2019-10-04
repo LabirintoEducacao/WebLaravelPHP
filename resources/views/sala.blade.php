@@ -22,20 +22,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#publicas" data-toggle="tab">
-                                        <!--                            <i class="material-icons">code</i>-->
-                                        Públicas
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#privadas" data-toggle="tab">
-                                        <!--                            <i class="material-icons">code</i>-->
-                                        Privadas
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="#ativas" data-toggle="tab">
                                         <!--                            <i class="material-icons">code</i>-->
                                         Ativadas
@@ -46,6 +32,20 @@
                                     <a class="nav-link" href="#desativadas" data-toggle="tab">
                                         <!--                            <i class="material-icons">cloud</i>-->
                                         Desativadas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#publicas" data-toggle="tab">
+                                        <!--                            <i class="material-icons">code</i>-->
+                                        Públicas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#privadas" data-toggle="tab">
+                                        <!--                            <i class="material-icons">code</i>-->
+                                        Privadas
                                         <div class="ripple-container"></div>
                                     </a>
                                 </li>
@@ -84,8 +84,11 @@
 
 
                                     @foreach($salas as $sala)
-                                    
+                                    @if($sala->enable == 0)
+                                    <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                    @else
                                     <tr id="sala"style="cursor: pointer;">
+                                    @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -98,7 +101,11 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60 }}:00 min</td>
+                                        <?php
+                                            $x = gmdate("H:i:s", $sala->duracao);
+                                            
+                                        ?>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -122,9 +129,7 @@
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }} ">Visualizar</a>
 
-                                                <a class="dropdown-item" href="{{ url('admin/editar-sala/'.$sala->id) }}">Editar perg</a>
-
-                                                <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="width:93%; cursor: pointer;" style="cursor: pointer;">Editar</button>
+                                                <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{ $x }}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="width:93%; cursor: pointer;" style="cursor: pointer;">Editar</button>
 
                                                 @if($sala->enable==1)
                                                 <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
@@ -169,7 +174,15 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->public==1)
-                                    <tr style="cursor: pointer;">
+                                    <?php
+                                            $x = gmdate("H:i:s", $sala->duracao);
+                                            
+                                        ?>
+                                    @if($sala->enable == 0)
+                                    <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                    @else
+                                    <tr id="sala"style="cursor: pointer;">
+                                    @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -182,7 +195,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60}}:00 min</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -247,7 +260,15 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->public==0)
-                                    <tr style="cursor: pointer;">
+                                    <?php
+                                            $x = gmdate("H:i:s", $sala->duracao);
+                                            
+                                        ?>
+                                    @if($sala->enable == 0)
+                                    <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                    @else
+                                    <tr id="sala"style="cursor: pointer;">
+                                    @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -260,7 +281,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60}}:00 min</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -326,6 +347,10 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->enable==1)
+                                    <?php
+                                            $x = gmdate("H:i:s", $sala->duracao);
+                                            
+                                        ?>
                                     <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
@@ -339,7 +364,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao / 60}}:00 min</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -405,7 +430,12 @@
 
                                     @foreach($salas as $sala)
                                     @if($sala->enable==0)
-                                    <tr style="cursor: pointer;">
+                                    <?php
+                                            $x = gmdate("H:i:s", $sala->duracao);
+                                            
+                                        ?>
+
+                                    <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->tematica==1)
@@ -418,7 +448,7 @@
                                             Floresta
                                             @endif
                                         </td>
-                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->duracao /60}}:00 min</td>
+                                        <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
                                             @if($sala->public==0)
                                             Privada
@@ -493,7 +523,8 @@
                         </div>
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
-                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
+                            <input type="time" name="time2" id="time2" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,0);">
+                            <input type="hidden" name="time5" id="time5" class="form-control">
                         </div>
 
                         <div class="form-row">
@@ -576,7 +607,8 @@
                         </div>
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
-                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
+                            <input type="time" name="time3" id="time3" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,1);">
+                            <input type="hidden" name="time4" id="time4" class="form-control">
                         </div>
 
                         <div class="form-row">
@@ -635,7 +667,9 @@
 
            });
         }
+                          
         
+                          
 
 
     </script>

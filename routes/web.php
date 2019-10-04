@@ -172,7 +172,7 @@ return view ( 'sala-disable' )->withData ( $data );
 
 Route::get('/sala', 'SalaController@getSalas');
     
-Route::get('/visualizar/{id}', 'SalaController@getSala');
+Route::get('/visualizar/{id}', 'PerguntaRespostaController@index');
 
 
 // Rotas para gerar o json

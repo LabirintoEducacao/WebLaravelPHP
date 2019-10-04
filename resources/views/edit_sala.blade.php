@@ -11,36 +11,7 @@
 
     <input type="hidden" value="52" id="num_y">
 
-    <!--     <div class="row">
-        <div class="col">
-        <a class="btn btn-outline-success tamanhobutton" href="{{ url('admin/alunos/'.$id) }}">ADICIONAR ALUNOS</a>
-        </div>
-        <div class="col">
-         <div class="tamanhofonte">EDIÇÃO DA SALA</div>
-        </div>
-        <?php if(count($data)>=20){ ?>
-        <div class="col ">
-        <button class="btn btn-outline-info tamanhobutton button" data-toggle="modal" data-target="#addPerg" disabled>ADICIONAR PERGUNTA E RESPOSTA
-        </button>
-        </div>
-        <?php }else{ ?>
-        <div class="col">
-        <button class="btn btn-outline-info tamanhobutton button" data-toggle="modal" data-target="#addPerg">ADICIONAR PERGUNTA E RESPOSTA
-        </button>
-        </div>
-        <?php } ?>
-    </div> -->
-    <!-- 
-    <div class="container" style="margin-top: 30px;">
-        <div class="row justify-content-end">
-            <label>Total de Perguntas: {{$c_perg}}</label>
-        </div>
-        <div class="row justify-content-end" style="margin-right: -9px;">
-            <div>
-            <label>Total de Reforços: {{$c_ref}}</label>
-        </div>
-        </div>
-    </div> -->
+
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
             <div class="modal-content">
@@ -229,7 +200,11 @@
                             </div>
 
                             <div class="col-4 col-md-auto">
-                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i>Editar</button>
+                                <?php
+                                            $x = gmdate("H:i:s", $sala->duracao);
+                                            
+                                        ?>
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{ $x }}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i>Editar</button>
                             </div>
 
                         </div>
@@ -253,7 +228,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        {{$sala->duracao}}
+                                        {{ $x }}
                                     </td>
                                     <td>
                                         @if($sala->tematica==1)
@@ -480,7 +455,8 @@
                         </div>
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
-                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
+                            <input type="time" name="time3" id="time3" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,1);">
+                            <input type="hidden" name="time4" id="time4" class="form-control">
                         </div>
 
                         <div class="form-row">

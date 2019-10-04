@@ -39,9 +39,16 @@ $flag =0;
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#privadas" data-toggle="tab">
+                                <a class="nav-link" href="#ativas" data-toggle="tab">
                                     <!--                            <i class="material-icons">code</i>-->
-                                    Privadas
+                                    Ativadas
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#desativadas" data-toggle="tab">
+                                    <!--                            <i class="material-icons">cloud</i>-->
+                                    Desativadas
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
@@ -49,6 +56,13 @@ $flag =0;
                                 <a class="nav-link" href="#publicas" data-toggle="tab">
                                     <!--                            <i class="material-icons">code</i>-->
                                     Públicas
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#privadas" data-toggle="tab">
+                                    <!--                            <i class="material-icons">code</i>-->
+                                    Privadas
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
@@ -73,12 +87,20 @@ $flag =0;
                             </thead>
                             <tbody>
                                 @foreach($data as $item)
+                                <?php
+                                            $x = gmdate("H:i:s", $item->duracao);
+                                            
+                                        ?>
                                 @if($item->public == 0)
                                 @foreach($sala_user as $sala)
                                 @if($item->id==$sala->sala_id)
                                 @if($user == $sala->user_id)
-                                
-                                <tr>
+
+                                @if($item->enable == 0)
+                                <tr id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                @else
+                                <tr id="sala" style="cursor: pointer;">
+                                @endif
                                     <td>{{$item->name}}</td>
                                     <td>
                                         @if($item->tematica==1)
@@ -91,7 +113,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao / 60}}:00 min</td>
+                                    <td>{{ $x }}</td>
                                     <td>
                                         @if($item->public==0)
                                         Privada
@@ -110,10 +132,14 @@ $flag =0;
                                 </tr>
                                 @endif
                                 @endif
-                                
+
                                 @endforeach
                                 @else
-                                <tr>
+                                @if($item->enable == 0)
+                                <tr id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                @else
+                                <tr id="sala" style="cursor: pointer;">
+                                @endif
                                     <td>{{$item->name}}</td>
                                     <td>
                                         @if($item->tematica==1)
@@ -126,7 +152,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao / 60}}:00 min</td>
+                                    <td>{{ $x }}</td>
                                     <td>
                                         @if($item->public==0)
                                         Privada
@@ -148,6 +174,191 @@ $flag =0;
                             </tbody>
                         </table>
                     </div>
+                    
+                    
+                    
+                    <div class="tab-pane table-responsive" id="ativas">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>Nome</th>
+                                <th>Tematica</th>
+                                <th>Tempo</th>
+                                <th>Tipo</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $item)
+                                <?php
+                                            $x = gmdate("H:i:s", $item->duracao);
+                                            
+                                        ?>
+                                @if($item->enable==1)
+                                @if($item->public == 0)
+                                @foreach($sala_user as $sala)
+                                @if($item->id==$sala->sala_id)
+                                @if($user == $sala->user_id)
+                                
+                                <tr id="sala" style="cursor: pointer;">
+                         
+                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        @if($item->tematica==1)
+                                        Deserto
+                                        @elseif($item->tematica==2)
+                                        Cidade Abandonada
+                                        @elseif($item->tematica==3)
+                                        Casa
+                                        @else
+                                        Floresta
+                                        @endif
+                                    </td>
+                                    <td>{{ $x }}</td>
+                                    <td>
+                                        @if($item->public==0)
+                                        Privada
+                                        @else
+                                        Pública
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+
+                                    </td>
+                                </tr>
+                                @endif
+                                @endif
+
+                                @endforeach
+                                @else
+                                <tr id="sala" style="cursor: pointer;">
+                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        @if($item->tematica==1)
+                                        Deserto
+                                        @elseif($item->tematica==2)
+                                        Cidade Abandonada
+                                        @elseif($item->tematica==3)
+                                        Casa
+                                        @else
+                                        Floresta
+                                        @endif
+                                    </td>
+                                    <td>{{ $x }}</td>
+                                    <td>
+                                        @if($item->public==0)
+                                        Privada
+                                        @else
+                                        Pública
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+
+                                    </td>
+                                </tr>
+                                @endif
+                                @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    
+                    
+                                        
+                    <div class="tab-pane table-responsive" id="desativadas">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>Nome</th>
+                                <th>Tematica</th>
+                                <th>Tempo</th>
+                                <th>Tipo</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $item)
+                                <?php
+                                            $x = gmdate("H:i:s", $item->duracao);
+                                            
+                                        ?>
+                                @if($item->enable==0)
+                                @if($item->public == 0)
+                                @foreach($sala_user as $sala)
+                                @if($item->id==$sala->sala_id)
+                                @if($user == $sala->user_id)
+                                
+                                <tr scope="row" id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                         
+                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        @if($item->tematica==1)
+                                        Deserto
+                                        @elseif($item->tematica==2)
+                                        Cidade Abandonada
+                                        @elseif($item->tematica==3)
+                                        Casa
+                                        @else
+                                        Floresta
+                                        @endif
+                                    </td>
+                                    <td>{{ $x }}</td>
+                                    <td>
+                                        @if($item->public==0)
+                                        Privada
+                                        @else
+                                        Pública
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+
+                                    </td>
+                                </tr>
+                                @endif
+                                @endif
+
+                                @endforeach
+                                @else
+                                <tr scope="row" id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        @if($item->tematica==1)
+                                        Deserto
+                                        @elseif($item->tematica==2)
+                                        Cidade Abandonada
+                                        @elseif($item->tematica==3)
+                                        Casa
+                                        @else
+                                        Floresta
+                                        @endif
+                                    </td>
+                                    <td>{{ $x }}</td>
+                                    <td>
+                                        @if($item->public==0)
+                                        Privada
+                                        @else
+                                        Pública
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
+
+                                    </td>
+                                </tr>
+                                @endif
+                                @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    
+                    
+                    
 
 
                     <!---------------------------------------------------------------------->
@@ -166,8 +377,16 @@ $flag =0;
                             <tbody>
 
                                 @foreach($data as $item)
+                                <?php
+                                            $x = gmdate("H:i:s", $item->duracao);
+                                            
+                                        ?>
                                 @if($item->public == 1)
-                                <tr scope="row">
+                                @if($item->enable == 0)
+                                <tr scope="row" id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                @else
+                                <tr id="sala" style="cursor: pointer;">
+                                @endif
                                     <td>{{$item->name}}</td>
                                     <td>
                                         @if($item->tematica==1)
@@ -180,7 +399,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item->duracao  / 60}}:00 min </td>
+                                    <td>{{ $x }}</td>
                                     <td>Pública</td>
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
@@ -209,11 +428,19 @@ $flag =0;
                             </thead>
                             <tbody>
                                 @foreach($data as $item)
+                                <?php
+                                            $x = gmdate("H:i:s", $item->duracao);
+                                            
+                                        ?>
                                 @foreach($sala_user as $sala)
                                 @if($item->id==$sala->sala_id)
                                 @if($user == $sala->user_id)
                                 @if($item->public == 0)
-                                <tr>
+                                @if($item->enable == 0)
+                                <tr scope="row" id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                @else
+                                <tr id="sala" style="cursor: pointer;">
+                                @endif
                                     <td>{{$item->name}}</td>
                                     <td>
                                         @if($item->tematica==1)
@@ -226,7 +453,7 @@ $flag =0;
                                         Floresta
                                         @endif
                                     </td>
-                                    <td>{{$item-> duracao / 60}}:00 min</td>
+                                    <td>{{ $x }}</td>
                                     <td>Privada</td>
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm">Estatisticas</a>

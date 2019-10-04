@@ -670,6 +670,7 @@ $('#editarSalaModal1').on('show.bs.modal', function (event) {
            var recipientnome = button.data('whatevernome');
            var recipientid = button.data('whateverid');
            var recipienttempo = button.data('whatevertempo');
+            console.log(recipienttempo);
            var recipienttema = button.data('whatevertema');
            var recipientcorrect = button.data('whateverpublic');
            var recipientenable = button.data('whateverenable');
@@ -677,7 +678,7 @@ $('#editarSalaModal1').on('show.bs.modal', function (event) {
            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
            var modal = $(this);
            modal.find('#nome').val(recipientnome);
-           modal.find('#time').val(recipienttempo);
+           modal.find('#time3').val(recipienttempo);
            modal.find('#sala_id').val(recipientid);
            modal.find('#theme').val(recipienttema);
             console.log(recipientcorrect);
@@ -706,7 +707,7 @@ $('#editarSalaModal2').on('show.bs.modal', function (event) {
            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
            var modal = $(this);
            modal.find('#nome').val(recipientnome);
-           modal.find('#time').val(recipienttempo);
+           modal.find('#time3').val(recipienttempo);
            modal.find('#sala_id').val(recipientid);
            modal.find('#theme').val(recipienttema);
 

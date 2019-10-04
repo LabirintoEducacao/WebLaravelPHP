@@ -403,6 +403,19 @@
             console.log(id);
             $("#" + id).slideToggle("slow");
         }
+            
+        function transforma(tempo,campo){
+            var x = 0;
+            console.log(tempo);
+            resultado = tempo.split(":");
+            x = parseInt(resultado[0]*3600);
+            x += parseInt(resultado[1]*60);
+            x += parseInt(resultado[2]);
+            if(campo == 0)
+                document.getElementById("time5").value = x;
+            else
+                document.getElementById("time4").value = x;
+        }
 
 
 

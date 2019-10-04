@@ -26,6 +26,7 @@ class SalaController extends Controller
 //                ->paginate(6);
         $salas = DB::table('salas')
                 ->where('prof_id','=',Auth::user()->id)
+                ->orderBy('enable', 'desc')
                 ->get();
            
                 return view('sala')->with(["salas" => $salas]);
@@ -106,19 +107,11 @@ class SalaController extends Controller
 
            ]);
 
-            $time = $request->input('time');
-
-           if($time == ""){
-               
-            $time = 0;
-
-           }
-
-           $time = $time*60;
+            
 
            
         if($request->sala_id==0){
-        
+            $time = $request->input('time5');
             $sala = new Sala();
             $sala->prof_id = $request->input('id_prof');
             $sala->name = $request->input('nome');
@@ -161,7 +154,7 @@ class SalaController extends Controller
         $objProjetoDiretorio = File::makeDirectory($strCaminho);
     }
         }else{
-            
+            $time = $request->input('time4');
             $sala = Sala::find($request->sala_id);
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
@@ -342,20 +335,27 @@ class SalaController extends Controller
 
     public function entrar(){
 
-        $salas = Sala::all();
+        $salas = DB::table('salas')
+//            ->where('enable',1)             //só busca as salas ativas
+            ->orderBy('enable', 'desc')
+            ->get();;
         
         $sala_user = DB::table('sala_user')
         ->get();
      
         $salapu = DB::table('salas')
-            ->where('public','=',1)->where('enable',1)->get();
+            ->where('public','=',1)
+            ->where('enable',1)
+            ->get();
         
         $salapu2 = count($salapu);
         
         $salapr = DB::table('salas')
             ->join('sala_user','sala_user.sala_id','=','salas.id')
             ->where('sala_user.user_id','=',Auth::user()->id)
-            ->where('public',0)->where('enable',1)->get();
+            ->where('public','=',0)
+            ->where('enable','=',1)
+            ->get();
 
         $salapr2 = count($salapr);
         
