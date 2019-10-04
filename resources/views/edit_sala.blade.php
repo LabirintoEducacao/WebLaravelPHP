@@ -193,11 +193,11 @@
                         <div class="row" style="margin-bottom: -35px;margin-left: -2.679%;">
 
                             <div class="col-4 col-md-auto">
-                                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal">Estatistica</button>
+                                <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal">Estatistica</button>
                             </div>
 
                             <div class="col-4 col-md-auto">
-                                <a class="btn btn-primary btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
+                                <a class="btn btn-success btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
                                     </i>Aluno</a>
                             </div>
 
@@ -206,7 +206,7 @@
                                             $x = gmdate("H:i:s", $sala->duracao);
                                             
                                         ?>
-                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{ $x }}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i>Editar</button>
+                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{ $x }}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i>Editar</button>
                             </div>
 
                         </div>
@@ -266,15 +266,15 @@
                     <br>
                     <div class="row" style="margin-bottom: -35px;">
                         <div class="col-4 col-md-auto">
-                            <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Sequência</button>
+                            <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Sequência</button>
                         </div>
                         <div class="col-4 col-md-auto">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
                                 </i> Perg</button>
                         </div>
 
                         <div class="col-4 col-md-auto">
-                            <a class="btn btn-info btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
+                            <a class="btn btn-warning btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
                         </div>
                     </div>
 
