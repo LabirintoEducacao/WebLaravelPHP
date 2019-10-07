@@ -200,6 +200,10 @@
                         <br>
                         <br>
                         <div class="row" style="margin-bottom: -35px;">
+                            <?php
+                                            $x = gmdate("H:i:s", $sala->duracao);
+                                            
+                                        ?>
 
                             <div class="col-12 col-md-auto">
                                 <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
@@ -211,12 +215,13 @@
                             </div>
 
                             <div class="col-12 col-md-auto">
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
+                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$x}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
                             </div>
 
                         </div>
 
                         <hr style="border: 0.5px solid: grey;">
+                        
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>
@@ -235,7 +240,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        {{$sala->duracao}}
+                                        {{$x}}
                                     </td>
                                     <td>
                                         @if($sala->tematica==1)
@@ -461,7 +466,9 @@
                         </div>
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
-                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
+                            <input type="time" name="time3" id="time3" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,1);">
+                            <input type="hidden" name="time4" id="time4" class="form-control">
+
                         </div>
 
                         <div class="form-row">
