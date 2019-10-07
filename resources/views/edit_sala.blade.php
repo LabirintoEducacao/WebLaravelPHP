@@ -320,6 +320,7 @@
                         <div class="row align-items-center" style="cursor: pointer;">
                             <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$item->id}});">
                                 {{$item->pergunta}}
+                                
                             </div>
                             <div class="col-2 col-sm-1">
                                 <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
@@ -330,7 +331,11 @@
                                     <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$item->id) }}">Excluir</a>
                                 </div>
                             </div>
+                            <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$item->id}});">
+                                <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute;z-index:9999; margin-left:46.7%;">
+                            </div>
                         </div>
+<!--                        <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute;z-index:9999; margin-left:45.65%;padding-bottom:10%;">-->
                     </div>
 
                     @endif
