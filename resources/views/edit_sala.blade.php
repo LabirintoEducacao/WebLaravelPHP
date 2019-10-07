@@ -131,7 +131,7 @@
                                    <label class="col" style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:</label>
                                     <div class="col-5">
                                     <label for="question_type">Tipo da Resposta:</label>
-                                    <select name="tipo_resp[]" id="tipo_opcao" class="tipo_resp">
+                                    <select name="tipo_resp" id="tipo_opcao" class="tipo_resp">
                                         <option selected value="1">Texto</option>
                                         <option value="2">Imagem</option>
                                         <option value="3">Vídeo</option>
@@ -202,16 +202,16 @@
                         <div class="row" style="margin-bottom: -35px;">
 
                             <div class="col-12 col-md-auto">
-                                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
+                                <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
                             </div>
 
                             <div class="col-12 col-md-auto">
-                                <a class="btn btn-primary btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
+                                <a class="btn btn-success btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
                                     </i>Aluno</a>
                             </div>
 
                             <div class="col-12 col-md-auto">
-                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
+                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
                             </div>
 
                         </div>
@@ -271,15 +271,15 @@
                     <br>
                     <div class="row" style="margin-bottom: -35px;">
                         <div class="col-12 col-md-auto">
-                            <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
+                            <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
                         </div>
                         <div class="col-12 col-md-auto">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
                                 </i> Pergunta</button>
                         </div>
 
                         <div class="col-12 col-md-auto">
-                            <a class="btn btn-info btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
+                            <a class="btn btn-warning btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
                         </div>
                     </div>
 
@@ -321,10 +321,11 @@
                                                  <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
                                                   <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
                      -->
-                    <div id="flip">
+                     <div id="flip">
                         <div class="row align-items-center" style="cursor: pointer;">
                             <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$item->id}});">
                                 {{$item->pergunta}}
+                                
                             </div>
                             <div class="col-2 col-sm-1">
                                 <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
@@ -334,6 +335,9 @@
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
                                     <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$item->id) }}">Excluir</a>
                                 </div>
+                            </div>
+                            <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$item->id}});">
+                                <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute; margin-left:46.7%;">
                             </div>
                         </div>
                     </div>

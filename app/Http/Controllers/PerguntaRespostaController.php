@@ -502,7 +502,7 @@ class PerguntaRespostaController extends Controller
                         $id = DB::table('respostas')->insertGetId(array(
 
                                  'sala_id'  =>  $sala_id,
-                                 'tipo_resp' => $tipo_resp[$count],
+                                 'tipo_resp' => $tipo_resp,
                                  'resposta' => $resposta[$count],
                                  'corret' => $corret[$count]
 
