@@ -13,28 +13,57 @@
            var b = 0;
 //           launch_toast();
 
-           $('#add').click(function () {
-               if (a < 3) {
+           // $('#add').click(function () {
+           //     if (a < 3) {
+           //         $('#dynamic_field').append('' +
+           //             '<tr id="row' + i + '" class="dynamic-added">' +
+           //             '<td>' +
+           //             '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control tipo_resp">' +
+           //             '<option selected value="1">Texto</option>' +
+           //             '<option value="2">Imagem</option>' +
+           //             '<option value="3">Vídeo</option>' +
+           //             '<option value="4">Áudio</option>' +
+           //             '</select>' +
+           //             '</td>' +
+           //             '<td>' +
+           //             '<select name ="corret[]" class="form-control corret">' +
+           //             '<option value="1">Certa</option>' +
+           //             '<option selected value="0">Errada</option>' +
+           //             '</select>' +
+           //             '</td>' +
+           //             '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required/>'+
+           //              '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
+           //             '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
+           //             '</tr>');
+           //         a++;
+           //     } else {
+
+
+           //     }
+
+           // });
+
+            $('#add').click(function () {
+               if (a < 2) {
                    $('#dynamic_field').append('' +
-                       '<tr id="row' + i + '" class="dynamic-added">' +
-                       '<td>' +
-                       '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control tipo_resp">' +
-                       '<option selected value="1">Texto</option>' +
-                       '<option value="2">Imagem</option>' +
-                       '<option value="3">Vídeo</option>' +
-                       '<option value="4">Áudio</option>' +
-                       '</select>' +
-                       '</td>' +
-                       '<td>' +
+                       '<div id="row' + i + '" class="dynamic-added">' +
+                        '<br>'+
+                       '<div class="textareaborda2">'+
+                       '<textarea type="text" name="resposta[]" placeholder="'+(a+3)+'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>'+
+                       '<input type="hidden" name="resp_id[]" class="resp_id">' +
+                       '</div>'+
+                       '<div class="row">'+
+                       '<div class="col-6">'+
                        '<select name ="corret[]" class="form-control corret">' +
                        '<option value="1">Certa</option>' +
                        '<option selected value="0">Errada</option>' +
                        '</select>' +
-                       '</td>' +
-                       '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required/>'+
-                        '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
-                       '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
-                       '</tr>');
+                       '</div>'+
+                       '<div class="col-6">'+
+                       '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button>' +
+                       '</div>'+
+                       '</div>'+
+                       '</div>');
                    a++;
                } else {
 

@@ -7,7 +7,6 @@
         {{ session('status') }}
     </div>
     @endif
-
     <input type="hidden" value="52" id="num_y">
     <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
@@ -44,114 +43,124 @@
 
                     <input type="hidden" value="{{$id}}" name="sala_id">
                     <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
-                    <div class="modal-body">
-
-
+                    
                         <div class="alert alert-danger print-error-msg" style="display: none;">
                             <ul></ul>
                         </div>
                         <div class="alert alert-success print-success-msg" style="display: none;">
                             <ul></ul>
                         </div>
-                        <div class="card">
+                        <div style="margin-top: -20px; ">
                         <!-- Pergunta  -->
+                            <div class="tab-content">
+                            <div class="tab-pane active" id="perg">
+                            <div class=" container">
+                            <div class="card houvercard">
+                            <div class=" container">
+                            <div class="row" style="margin-top: 10px;">
+                            <div class="col">
+                                <input type="hidden" value="0" name="perg_id" id="perg_id">
+                                <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
+                            </div>
+                            <div class="col col-md-auto">
+                                <label for="question_type">Tipo da pergunta:</label>
+                                <select class="selectborda" name="question_type" id="question_type">
+                                    <option selected value="1">Texto</option>
+                                    <option value="2">Imagem</option>
+                                    <option value="3">Vídeo</option>
+                                    <option value="4">Áudio</option>
+                                </select>
+                            </div>
+                            <div class="col col-lg-4">
+                                <label for="room_type">Interação:</label>
+                                <select  class="selectborda" name="room_type" id="room_typ">
+                                    <option selected value="right_key">Chave</option>
+                                    <option value="hope_door">Porta da esperança</option>
+                                    <option value="true_or_false">Verdadeiro ou Falso</option>
+                                    <option value="multiple_forms">Multiplas Formas</option>
+                                </select>
+                            </div>
+                            </div>
+                            </div>
+        
+                                <div class="container">
+                                    <div class="textareaborda2">
+                                 <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class= " form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
+                                  </div>
+                                 </div>
+                              
+                                <!--   Ambinete  -->
+                                    <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
+                                  <div class=" container">
+                                   <div class="row" style="line-height: 40px; margin-bottom: 10px;">
+                                   <div class="col-4">
+                                    <input type="hidden" name="path_id" id="path_id">
+                                    <label for="answer_boolean">Caminho do jogo:</label>
+                                    <select class="selectborda" name="answer_boolean" id="answer_boolean">
+                                        <option selected value="1">Corredor</option>
+                                        <option value="2">Labirinto</option>
+                                    </select>
+                                 </div>
+                                <div class="col-4">
+                                    <label for="tamanho">Tamanho do labirinto:</label>
+                                    <select class="selectborda" name="tamanho" id="tamanho">
+                                        <option selected value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="largura">Largura do labirinto:</label>
+                                    <select class="selectborda" name="largura" id="largura">
+                                        <option selected value="1">Pequeno</option>
+                                        <option value="2">Medio</option>
+                                        <option value="3">Grande</option>
+                                    </select>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                 </div>
 
-                            <div class="tab-content text-center">
-                                <div class="tab-pane active" id="perg">
-
-                                <div class="form-group row">
-                                    <br>
-                                    <label for="question_type" class="col">Tipo da pergunta:</label>
-                                    <select name="question_type" id="question_type" class="col">
+                              <div class=" container" style=" margin-top: -20px;">
+                              <div class="card houvercard">
+                              <!--   Resposta -->
+                              <div class=" container" style=" margin-top: 10px;">
+                              
+                                <div class= "row  align-items-center">
+                                   <label class="col" style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:</label>
+                                    <div class="col-5">
+                                    <label for="question_type">Tipo da Resposta:</label>
+                                    <select name="tipo_resp[]" id="tipo_opcao" class="tipo_resp">
                                         <option selected value="1">Texto</option>
                                         <option value="2">Imagem</option>
                                         <option value="3">Vídeo</option>
                                         <option value="4">Áudio</option>
                                     </select>
-                                </div>
-                                <div class="form-group row">
-                                    <br>
-                                    <label for="room_type" class="col">Interação:</label>
-
-                                    <select name="room_type" id="room_typ" class="col">
-                                        <option selected value="right_key">Chave</option>
-                                        <option value="hope_door">Porta da esperança</option>
-                                        <option value="true_or_false">Verdadeiro ou Falso</option>
-                                        <option value="multiple_forms">Multiplas Formas</option>
-                                    </select>
-
-
-                                </div>
-                                <div class="form-group row">
-                                    <input type="hidden" value="0" name="perg_id" id="perg_id">
-                                    <label for="pergunta" class="col">Pergunta:</label>
-
-                                    <input id="pergunta" type="text" name="pergunta" class="@error('pergunta') is-invalid @enderror col" placeholder=" Pergunta" maxlength="500" required>
-
-                                    <!--  <textarea id="pergunta" name="pergunta"></textarea> -->
+                                   </div>
+                                  <div class="col">
+                                 <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
+                                 </div>
                                 </div>
 
-                              <!--   Resposta -->
-
-                                 <table class="table table-bordered table-hover" id="dynamic_field" border="0">
-                                    <thead>
-                                        <tr>
-                                            <td>Tipo da Resposta</td>
-                                            <td>Definição da Resposta</td>
-                                            <td>Resposta</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <select name="tipo_resp[]" id="tipo_opcao" class="form-control tipo_resp">
-                                                    <option selected value="1">Texto</option>
-                                                    <option value="2">Imagem</option>
-                                                    <option value="3">Vídeo</option>
-                                                    <option value="4">Áudio</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <select name="corret[]" class="form-control corret">
+                               <div class="dynamic-added" id="dynamic_field" border="0">
+                                <div class="textareaborda2">
+                                    <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
+                                    <input type="hidden" name="resp_id[]" class="resp_id">
+                                </div>
+                                <br>
+                                  <div class="textareaborda2">
+                                    <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
+                                    <input type="hidden" name="resp_id[]" class="resp_id">
+                                </div>
+                                           <!--  <select name="corret[]" class="form-control corret">
                                                     <option selected value="1">Certa</option>
                                                     <option value="0">Errada</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="text" name="resposta[]" id="resposta" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required>
-                                                <input type="hidden" name="resp_id[]" class="resp_id">
-                                            </td>
-                                            <td><button type="button" name="add" id="add" class="btn btn-outline-succcess fa fa-plus"></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                               <!--  Ambiente -->
-                                <br>
-                                <div class="form-group row">
-                                    <input type="hidden" name="path_id" id="path_id">
-                                    <label for="answer_boolean" class="col">Tipo:</label>
-                                    <select name="answer_boolean" id="answer_boolean" class="col">
-                                        <option selected value="1">Corredor</option>
-                                        <option value="2">Labirinto</option>
-                                    </select>
+                                            </select> -->
                                 </div>
-                                <div class="form-group row">
-                                    <label for="tamanho" class="col">Tamanho:</label>
-                                    <select name="tamanho" id="tamanho" class="col">
-                                        <option selected value="1">Pequeno</option>
-                                        <option value="2">Medio</option>
-                                        <option value="3">Grande</option>
-                                    </select>
+                                 </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="largura" class="col">Largura:</label>
-                                    <select name="largura" id="largura" class="col">
-                                        <option selected value="1">Pequeno</option>
-                                        <option value="2">Medio</option>
-                                        <option value="3">Grande</option>
-                                    </select>
                                 </div>
-
                                 </div>
 
                                 <!-- Aba do reforco -->
@@ -168,7 +177,6 @@
                                 </div>
                             </div>
                         </div>
-                      </div>
                                <div class="modal-footer">
                                 <a class="btn btn-outline-dark btnModalClose" data-dismiss="modal">Close</a>
                                 <button name="submit" id="submit" class="btn btn-info" value="submit">Salvar</button>
@@ -178,8 +186,6 @@
                 </div>
             </div>
         </div>
-
-
     <div class="container">
         <div class="col-md-12">
             <div class="card">
@@ -188,25 +194,24 @@
                     </h3>
                     <p class="card-category"></p>
                 </div>
-                <div class="card-body" style="padding-top:2.34%;">
+                <div class="card-body">
                     <div>
-                        <div class="row" style="margin-bottom: -35px;margin-left: -2.679%;">
 
-                            <div class="col-4 col-md-auto">
-                                <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal">Estatistica</button>
+                        <br>
+                        <br>
+                        <div class="row" style="margin-bottom: -35px;">
+
+                            <div class="col-12 col-md-auto">
+                                <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
                             </div>
 
-                            <div class="col-4 col-md-auto">
-                                <a class="btn btn-success btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
+                            <div class="col-12 col-md-auto">
+                                <a class="btn btn-primary btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
                                     </i>Aluno</a>
                             </div>
 
-                            <div class="col-4 col-md-auto">
-                                <?php
-                                            $x = gmdate("H:i:s", $sala->duracao);
-                                            
-                                        ?>
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{ $x }}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right;"><i class="material-icons">create</i>Editar</button>
+                            <div class="col-12 col-md-auto">
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
                             </div>
 
                         </div>
@@ -230,7 +235,7 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        {{ $x }}
+                                        {{$sala->duracao}}
                                     </td>
                                     <td>
                                         @if($sala->tematica==1)
@@ -265,16 +270,16 @@
                     <br>
                     <br>
                     <div class="row" style="margin-bottom: -35px;">
-                        <div class="col-4 col-md-auto">
-                            <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="margin-left: -10%;">Sequência</button>
+                        <div class="col-12 col-md-auto">
+                            <button type="button" align="right" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
                         </div>
-                        <div class="col-4 col-md-auto">
-                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
-                                </i> Perg</button>
+                        <div class="col-12 col-md-auto">
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
+                                </i> Pergunta</button>
                         </div>
 
-                        <div class="col-4 col-md-auto">
-                            <a class="btn btn-warning btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
+                        <div class="col-12 col-md-auto">
+                            <a class="btn btn-info btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
                         </div>
                     </div>
 
@@ -320,7 +325,6 @@
                         <div class="row align-items-center" style="cursor: pointer;">
                             <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$item->id}});">
                                 {{$item->pergunta}}
-                                
                             </div>
                             <div class="col-2 col-sm-1">
                                 <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
@@ -331,11 +335,7 @@
                                     <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$item->id) }}">Excluir</a>
                                 </div>
                             </div>
-                            <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$item->id}});">
-                                <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute;z-index:9999; margin-left:46.7%;">
-                            </div>
                         </div>
-<!--                        <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute;z-index:9999; margin-left:45.65%;padding-bottom:10%;">-->
                     </div>
 
                     @endif
@@ -457,8 +457,7 @@
                         </div>
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
-                            <input type="time" name="time3" id="time3" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,1);">
-                            <input type="hidden" name="time4" id="time4" class="form-control">
+                            <input type="number" name="time" id="time" class="form-control" min="0" max="120">
                         </div>
 
                         <div class="form-row">
