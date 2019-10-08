@@ -39,7 +39,7 @@
                                     
                                     </td>
                                     <td>
-                                        <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) {{$aluno->name}}? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
+                                        <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) \'{{$aluno->name}}\'? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
                                           <i class="material-icons">clear</i>
 
                                         </a>
@@ -73,14 +73,13 @@
                         <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
                          <div class="form-group" style="margin-top:3.5%">
                             <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
-                            <select placeholder="Escolha o aluno a ser adicionado..." class="chosen-select col" tabindex="2" display="inline" name="user_id" id="user_id" onchange="selecionado()">
-                                <option value=""></option>
+                            <table>
                                 @foreach($alunos as $aluno)
 
-                                    <option value="{{$aluno->id}}">{{$aluno->email}}</option>
+<!--                                    <option value="{{$aluno->id}}">{{$aluno->email}}</option>-->
 
                                 @endforeach
-                            </select>
+                            </table>
                         </div>
                     </div>
                     <div class="modal-footer">

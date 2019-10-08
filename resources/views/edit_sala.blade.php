@@ -410,7 +410,8 @@
                     @foreach($paths as $path)
                     @if($path->id==$pp->path_id)
                     <!--                    <input value="{{$path->id}}"><br><br>-->
-                    <div id="flip2" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
+                    
+                    <div id="flip2" data-toggle="tooltip" data-placement="top" title="Reforço da pergunta {{$item->pergunta}}">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
                         <div class="row align-items-center" style="cursor: pointer;">
                             <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$ref->id}});">
@@ -424,6 +425,9 @@
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$ref->id}}">Editar</a>
                                      <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$ref->id) }}">Excluir</a>
                                 </div>
+                            </div>
+                            <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$ref->id}});">
+                                <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute; margin-left:46.7%;">
                             </div>
                         </div>
                     </div>
