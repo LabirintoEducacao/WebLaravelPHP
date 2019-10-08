@@ -464,6 +464,7 @@
                    method: "POST",
                    data: $('#add_name').serialize(),
                    type: 'json',
+                   
                    error: function (error) {
                          console.log(error);
                
