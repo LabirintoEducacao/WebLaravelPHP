@@ -4,7 +4,7 @@
   //$('#pergunta').summernote();
 
 
-           var postURL = 'editar-sala';
+           var postURL = 'editar-sala/';
            var i = 1;
            var i2 = 1;
 
@@ -49,7 +49,7 @@
                        '<div id="row' + i + '" class="dynamic-added">' +
                         '<br>'+
                        '<div class="textareaborda2">'+
-                       '<textarea type="text" name="resposta[]" placeholder="'+(a+3)+'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>'+
+                       '<input type="text" name="resposta[]" placeholder="'+(a+3)+'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>'+
                        '<input type="hidden" name="resp_id[]" class="resp_id">' +
                        '</div>'+
                        '<div class="row">'+
@@ -456,21 +456,24 @@
 
            //Add Action to buttton submit Data to DB
 
-           $('#submit').click(function () {
+           $('#submit').click(function (e) {
+            var x = document.getElementById('sala_id');
                $.ajax({
-
-                   url: postURL,
+                   
+                   url: postURL+x,
                    method: "POST",
                    data: $('#add_name').serialize(),
                    type: 'json',
                    error: function (error) {
-                       console.log(error);
+                         console.log(error);
+               
                         },
 
                    success: function (data) {
                        if (data.error) {
 
                            printErrorMsg(data.error);
+    
                        } else {
                            window.location.reload();
                            i = 1;
@@ -486,6 +489,7 @@
 
                        
                    }
+
 
                });
 
@@ -752,6 +756,82 @@ $('#editarSalaModal2').on('show.bs.modal', function (event) {
           else
             $('#enable').prop("checked",false);
        });
+
+
+
+
+$(document).ready(function(){
+    $(".checkbox").Sswitch({
+      onSwitchChange: function(_this) {
+      }
+    });
+  });
+
+
+(function($) {
+    $.fn.Sswitch = function(element, options ) {
+        this.$element = $(this);
+        
+        this.options = $.extend({}, $.fn.Sswitch.defaults, {
+            state: this.$element.is(":checked"),
+            disabled: this.$element.is(":disabled"),
+            readonly: this.$element.is("[readonly]"),
+            parentClass: this.$element.data("parent"),
+            onSwitchChange: element.onSwitchChange
+        },options);
+
+        this.$container = $("<div>", {
+          "class": (function(_this){
+                return function(){
+                    var classes;
+                    classes = [_this.options.parentClass];
+                    classes.push(_this.options.state ? "" + _this.options.parentClass + "-on" : "" + _this.options.parentClass + "-off");
+                    if (_this.options.disabled) {
+                        classes.push("" + _this.options.parentClass + "-disabled");
+                    }
+                    if (_this.options.readonly) {
+                        classes.push("" + _this.options.parentClass + "-readonly");
+                    }
+                    if (_this.$element.attr("id")) {
+                        classes.push("" + _this.options.parentClass + "-id-" + (_this.$element.attr("id")));
+                    }
+                    return classes.join(" ");
+                };
+            })(this)()
+        });
+        this.$label = $("<span>", {
+          html: this.options.labelText,
+          "class": "" + this.options.parentClass + "-label"
+        });
+        this.$container = this.$element.wrap(this.$container).parent();
+        this.$element.before(this.$label);
+        
+        return this.$container.on("click", (function(_this) {
+            return function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                if (_this.options.readonly || _this.options.disabled) {
+                  return _this.target;
+                }
+                _this.options.state = !_this.options.state;
+                _this.$element.prop("checked", _this.options.state);
+                _this.$container.addClass(_this.options.state ? "" + _this.options.parentClass + "-on" : "" + _this.options.parentClass + "-off").removeClass(_this.options.state ? "" + _this.options.parentClass + "-off" : "" + _this.options.parentClass + "-on");
+                _this.options.onSwitchChange(_this);
+                return _this;
+            };
+        })(this));
+        return this.$element;
+    },
+    $.fn.Sswitch.defaults = {
+        text     : '',
+        fontsize : 10,
+        state: true,
+        disabled: false,
+        readonly: false,
+        parentClass: "s-switch",
+        onSwitchChange: function() {}
+    };
+}(jQuery));
 
 
 

@@ -131,7 +131,7 @@
                                    <label class="col" style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:</label>
                                     <div class="col-5">
                                     <label for="question_type">Tipo da Resposta:</label>
-                                    <select name="tipo_resp[]" id="tipo_opcao" class="tipo_resp">
+                                    <select  class="selectborda" name="tipo_resp" id="tipo_opcao" class="tipo_resp">
                                         <option selected value="1">Texto</option>
                                         <option value="2">Imagem</option>
                                         <option value="3">Vídeo</option>
@@ -144,19 +144,43 @@
                                 </div>
 
                                <div class="dynamic-added" id="dynamic_field" border="0">
+                                 <div class="card houvercard">
                                 <div class="textareaborda2">
                                     <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
                                     <input type="hidden" name="resp_id[]" class="resp_id">
+                                     
                                 </div>
+                                <select name="corret[]" class="form-control corret">
+                                        <option selected value="1">Certa</option>
+                                        <option value="0">Errada</option>
+                                </select>
+
+                                 <!-- Default checked -->
+
+                                    <div class="cls-scroller col-md-2">
+                                      <div class="row">
+                                        <div class="col-md-4">
+                                          <input class="checkbox" name="checkboxName" type="checkbox">
+                                        </div>
+                                      </div>
+                                      <hr>
+                                    </div>
+                                                            
+                                 </div>
                                 <br>
+                                <div class="card houvercard">
+                                 <div class="container">
                                   <div class="textareaborda2">
                                     <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
                                     <input type="hidden" name="resp_id[]" class="resp_id">
                                 </div>
-                                           <!--  <select name="corret[]" class="form-control corret">
+                                 </div>
+                                 <select name="corret[]" class="form-control corret">
                                                     <option selected value="1">Certa</option>
                                                     <option value="0">Errada</option>
-                                            </select> -->
+                                            </select>
+                                 </div>
+                                            
                                 </div>
                                  </div>
                                 </div>
