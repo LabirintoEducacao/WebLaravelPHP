@@ -407,12 +407,17 @@
         function transforma(tempo,campo){
             var x = 0;
             console.log(tempo);
-            if(tempo>0){
-                resultado = tempo.split(":");
+            
+            
+            resultado = tempo.split(":");
+            y = parseInt(resultado[0]) + parseInt(resultado[1]) + parseInt(resultado[2]);
+            if(y>0){
                 x = parseInt(resultado[0]*3600);
                 x += parseInt(resultado[1]*60);
                 x += parseInt(resultado[2]);
             }
+            console.log(x);
+
             if(campo == 0)
                 document.getElementById("time5").value = x;
             else
