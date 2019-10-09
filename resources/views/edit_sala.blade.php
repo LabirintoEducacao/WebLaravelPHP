@@ -131,7 +131,8 @@
                                    <label class="col" style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:</label>
                                     <div class="col-5">
                                     <label for="question_type">Tipo da Resposta:</label>
-                                    <select name="tipo_resp" id="tipo_opcao" class="tipo_resp">
+                                    <select  class="selectborda" name="tipo_resp" id="tipo_opcao" class="tipo_resp">
+
                                         <option selected value="1">Texto</option>
                                         <option value="2">Imagem</option>
                                         <option value="3">Vídeo</option>
@@ -144,19 +145,43 @@
                                 </div>
 
                                <div class="dynamic-added" id="dynamic_field" border="0">
+                                 <div class="card houvercard">
                                 <div class="textareaborda2">
                                     <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
                                     <input type="hidden" name="resp_id[]" class="resp_id">
+                                     
                                 </div>
+                                <select name="corret[]" class="form-control corret">
+                                        <option selected value="1">Certa</option>
+                                        <option value="0">Errada</option>
+                                </select>
+
+                                 <!-- Default checked -->
+
+                                    <div class="cls-scroller col-md-2">
+                                      <div class="row">
+                                        <div class="col-md-4">
+                                          <input class="checkbox" name="checkboxName" type="checkbox">
+                                        </div>
+                                      </div>
+                                      <hr>
+                                    </div>
+                                                            
+                                 </div>
                                 <br>
+                                <div class="card houvercard">
+                                 <div class="container">
                                   <div class="textareaborda2">
                                     <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
                                     <input type="hidden" name="resp_id[]" class="resp_id">
                                 </div>
-                                           <!--  <select name="corret[]" class="form-control corret">
+                                 </div>
+                                 <select name="corret[]" class="form-control corret">
                                                     <option selected value="1">Certa</option>
                                                     <option value="0">Errada</option>
-                                            </select> -->
+                                            </select>
+                                 </div>
+                                            
                                 </div>
                                  </div>
                                 </div>
@@ -385,7 +410,8 @@
                     @foreach($paths as $path)
                     @if($path->id==$pp->path_id)
                     <!--                    <input value="{{$path->id}}"><br><br>-->
-                    <div id="flip2" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
+                    
+                    <div id="flip2" data-toggle="tooltip" data-placement="top" title="Reforço da pergunta {{$item->pergunta}}">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
                         <div class="row align-items-center" style="cursor: pointer;">
                             <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$ref->id}});">
@@ -399,6 +425,9 @@
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$ref->id}}">Editar</a>
                                      <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$ref->id) }}">Excluir</a>
                                 </div>
+                            </div>
+                            <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$ref->id}});">
+                                <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute; margin-left:46.7%;">
                             </div>
                         </div>
                     </div>

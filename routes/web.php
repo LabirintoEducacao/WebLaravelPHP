@@ -124,9 +124,8 @@ Route::get('/ativar/{id}','SalaController@ativar');
     
 /*Rotas da pergunta e Resposta*/
 Route::get('/teste/{id}', 'PerguntaRespostaController@index2')->middleware(['auth', 'auth.admin']);
-Route::get('/editar-sala/{id}', 'PerguntaRespostaController@index')->middleware(['auth', 'auth.admin']);
 
-Route::post('/editar-sala/{id}', 'PerguntaRespostaController@store');
+Route::post('/visualizar/editar-sala/{id}', 'PerguntaRespostaController@store');
 Route::post('/editar-resp', 'PerguntaRespostaController@edit_resp');
 Route::post('/editar-perg', 'PerguntaRespostaController@edit_perg');
 Route::post('/editar-ambi', 'PerguntaRespostaController@edit_ambi')->middleware(['auth', 'auth.admin']);
@@ -172,7 +171,7 @@ return view ( 'sala-disable' )->withData ( $data );
 
 Route::get('/sala', 'SalaController@getSalas');
     
-Route::get('/visualizar/{id}', 'PerguntaRespostaController@index');
+Route::get('/visualizar/{id}', 'PerguntaRespostaController@index')->middleware(['auth', 'auth.admin']);
 
 
 // Rotas para gerar o json

@@ -523,7 +523,7 @@
                         </div>
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
-                            <input type="time" name="time2" id="time2" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,0);">
+                            <input type="time" name="time2" id="time2" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,0);" value="00:00:00">
                             <input type="hidden" name="time5" id="time5" class="form-control">
                         </div>
 
