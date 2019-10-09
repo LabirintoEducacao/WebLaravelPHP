@@ -146,18 +146,25 @@
 
                                <div class="dynamic-added" id="dynamic_field" border="0">
                                  <div class="card houvercard">
-                                <div class="textareaborda2">
-                                    <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
-                                    <input type="hidden" name="resp_id[]" class="resp_id">
+
                                      
-                                </div>
-                                <select name="corret[]" class="form-control corret">
-                                        <option selected value="1">Certa</option>
-                                        <option value="0">Errada</option>
-                                </select>
+                                     <div class="textareaborda2">
+                       <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>
+                                    <input type="hidden" name="resp_id[]" class="resp_id">
+                       <input type="hidden" name="resp_id[]" class="resp_id">
+                       </div>
+                       <div class="row">
+                       <div class="col-6">
+                       <select name ="corret[]" class="form-control corret">
+                       <option value="1">Certa</option>
+                       <option selected value="0">Errada</option>
+                       </select>
+                       </div>
+                                     </div>
 
                                  <!-- Default checked -->
 
+<!--
                                     <div class="cls-scroller col-md-2">
                                       <div class="row">
                                         <div class="col-md-4">
@@ -166,6 +173,7 @@
                                       </div>
                                       <hr>
                                     </div>
+-->
                                                             
                                  </div>
                                 <br>
@@ -193,6 +201,7 @@
                                 <div class="tab-pane" id="pergReforco">
                                    <div class="hovereffect">
                                     <div class="overlay">
+                                        <br><br>
                                         <input type="checkbox" id="check-reforco">&nbsp;Pergunta Reforço
                                     </div>
                                     <div class="abcd">
@@ -422,7 +431,7 @@
                                     <i id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$ref->id}}">Editar</a>
+                                    
                                      <a class="dropdown-item" href="{{ url('admin/deletar-pergunta/'.$ref->id) }}">Excluir</a>
                                 </div>
                             </div>
