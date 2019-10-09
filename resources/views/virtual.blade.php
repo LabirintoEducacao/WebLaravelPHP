@@ -125,7 +125,7 @@ $flag =0;
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
 
-                                         <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> teste</button>
+                                         <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
                                         @endif
                                     </td>
@@ -164,7 +164,7 @@ $flag =0;
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
 
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> teste</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
 
                                         @endif
@@ -224,7 +224,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
 
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
                                     </td>
                                 </tr>
@@ -257,7 +257,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
 
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                                       <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
                                     </td>
                                 </tr>
@@ -405,7 +405,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
                                         @endif
                                     </td>
                                 </tr>
@@ -459,7 +459,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm">Estatisticas</a>
                                         @if($item->enable==1)
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
                                         @endif
                                     </td>
                                 </tr>
@@ -491,10 +491,9 @@ $flag =0;
             <div class="modal-body ">
               
                 <h5 id="nomeqrsala"> Nome: </h5>
+                <input id="hiddenid" type="hidden" value="">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" id="corouselimg" style="margin-left:auto;margin-right:auto;display:block;padding-right:2%;padding-left:2%">
-                     
-                        
+                    <div class="carousel-inner" id="corouselimg" >   
                     </div>
 
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -516,7 +515,7 @@ $flag =0;
 
 
 
-<div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="noinfomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#4D226D;">
@@ -524,7 +523,6 @@ $flag =0;
                 <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
             <div class="modal-body">
-                <h5> Nome:  </h5>
                 <h4 style="color: purple;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
             </div>
             <div class="modal-footer">

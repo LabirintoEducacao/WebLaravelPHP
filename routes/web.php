@@ -177,6 +177,8 @@ Route::get('/visualizar/{id}', 'PerguntaRespostaController@index')->middleware([
 // Rotas para gerar o json
 Route::get('/virtual/{id}','Json@show');
 
+Route::get('/virtualdelete/{id}','Json@filedelete');
+
 
 // Rotas para usuarios
 Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar')->middleware(['auth', 'auth.admin']);

@@ -56,33 +56,34 @@ class Json extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+
      */
-     public function show($id)
-    {   
-        
-          
 
-$idd = $id;
 
-//-------------------- Deletando Pasta-------------------//
-$strCaminho = public_path() . '/sala/' . $id;
 
- if(file_exists($strCaminho)) { 
+
+
+    public function filedelete($id){
+
+      $strCaminho = public_path() . '/sala/' . $id;
+
+            if(file_exists($strCaminho)) { 
 
             File::deleteDirectory($strCaminho);
             
         }
 
-
-//-------------------- Deletando Pasta-------------------//            
-
-
- $strCaminho = public_path() . '/sala/' . $id; // 'public\projetos_arquivos\codigo_projeto'
-
-    if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
-        $objProjetoDiretorio = File::makeDirectory($strCaminho);
     }
 
+
+
+
+     public function show($id) {   
+        
+          
+$idd = $id;
+
+           
 
 
 // --------------------- Consultando Dados da Tabela ------------------//
@@ -103,10 +104,21 @@ $n=1;
 if(count($pergunta) == 0){
 
 
-    return "Sem Perguntas";
+    return "null";
 
 
-}
+} else {
+
+
+
+
+ $strCaminho = public_path() . '/sala/' . $id; // 'public\projetos_arquivos\codigo_projeto'
+
+    if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
+        $objProjetoDiretorio = File::makeDirectory($strCaminho);
+    }
+
+
 
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
@@ -190,7 +202,7 @@ if(count($reforcoid) > 0){
                 $pathref = array(
                 'availability' => $dispref,
                 'widht' => $pathrefs[0]->largura,
-                'heigh' => $pathrefs[0]->tamanho,
+                'height' => $pathrefs[0]->tamanho,
                 'type' => $pathrefs[0]->ambiente_perg,
                 'connected_question' => $idperg 
             );
@@ -308,7 +320,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
       $pat= array(
                 'availability' => $disponivel,
                 'widht' => $path[0]->largura,
-                'heigh' => $path[0]->tamanho,
+                'height' => $path[0]->tamanho,
                 'type' => $path[0]->ambiente_perg,
                 'connected_question' => $conect
             );
@@ -329,7 +341,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                 $pat= array(
                     'availability' => $disponivel,
                     'widht' => $path[0]->largura,
-                    'heigh' => $path[0]->tamanho,
+                    'height' => $path[0]->tamanho,
                     'type' => $path[0]->ambiente_perg,
                     'end_game'=> true
                 );
@@ -341,7 +353,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                     $pat= array(
                         'availability' => $disponivel,
                         'widht' => $path[0]->largura,
-                        'heigh' => $path[0]->tamanho,
+                        'height' => $path[0]->tamanho,
                         'type' => $path[0]->ambiente_perg,
                         'connected_question'=> $conect
                     );
@@ -415,13 +427,6 @@ $img=array(
       0=>$sala->name
 );
 
-//  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
-
-  
-$fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.json', 'w');
-
- fwrite($fp, json_encode($jsn));
- fclose($fp);
 
 
 
@@ -496,7 +501,7 @@ $n ++;
 }
 
 
-}
+}}
 
  
     return json_encode($img);
@@ -511,33 +516,13 @@ $n ++;
      * @return \Illuminate\Http\Response
      */
 
-    public function api(REQUEST $request)
-    {
+    public function api(REQUEST $request) {
 
 
         $id = $_REQUEST['id'];
         
 
  
-//-------------------- Deletando Pasta-------------------//
-$strCaminho = public_path() . '/sala/' . $id;
-
- if(file_exists($strCaminho)) { 
-
-            File::deleteDirectory($strCaminho);
-            
-        }
-
-
-//-------------------- Deletando Pasta-------------------//            
-
-
- $strCaminho = public_path() . '/sala/' . $id; // 'public\projetos_arquivos\codigo_projeto'
-
-    if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
-        $objProjetoDiretorio = File::makeDirectory($strCaminho);
-    }
-
 
 
 // --------------------- Consultando Dados da Tabela ------------------//
@@ -555,13 +540,6 @@ $limite = 2000;
 $n=1;
 
 
-if(count($pergunta) == 0){
-
-
-    return redirect('admin/sala');
-
-
-}
 
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
@@ -645,7 +623,7 @@ if(count($reforcoid) > 0){
                 $pathref = array(
                 'availability' => $dispref,
                 'widht' => $pathrefs[0]->largura,
-                'heigh' => $pathrefs[0]->tamanho,
+                'height' => $pathrefs[0]->tamanho,
                 'type' => $pathrefs[0]->ambiente_perg,
                 'connected_question' => $idperg 
             );
@@ -763,7 +741,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
       $pat= array(
                 'availability' => $disponivel,
                 'widht' => $path[0]->largura,
-                'heigh' => $path[0]->tamanho,
+                'height' => $path[0]->tamanho,
                 'type' => $path[0]->ambiente_perg,
                 'connected_question' => $conect
             );
@@ -784,7 +762,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                 $pat= array(
                     'availability' => $disponivel,
                     'widht' => $path[0]->largura,
-                    'heigh' => $path[0]->tamanho,
+                    'height' => $path[0]->tamanho,
                     'type' => $path[0]->ambiente_perg,
                     'end_game'=> true
                 );
@@ -796,7 +774,7 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
                     $pat= array(
                         'availability' => $disponivel,
                         'widht' => $path[0]->largura,
-                        'heigh' => $path[0]->tamanho,
+                        'height' => $path[0]->tamanho,
                         'type' => $path[0]->ambiente_perg,
                         'connected_question'=> $conect
                     );

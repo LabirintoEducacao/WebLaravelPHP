@@ -430,27 +430,34 @@
     
 
 
-         function qrcodebtn(id){        
+        function qrcodebtn(id){        
          
         
-        console.log(id);
-        $.get("virtual/"+id, function(data){
-
-
+        
+        $.get("virtual/"+id).done( function(data){
 
         var parse = JSON.parse(data);
+        
+            if(data == "null"){
+        
+             $('#noinfomodal').modal('show');
 
-            console.log( parse);
+            }
 
-             $('#nomeqrsala').append(parse[0]);
+            else {
+
+
+             $('#nomeqrsala').append(parse[0] );
+             $('#hiddenid').val(id);
+
 
             for(var i=1; i< parse.length; i++){
 
                 if(i == 1){
                 $('#corouselimg').append(
                 '<div class="carousel-item active col" >'+
-                            '<img class="d-block img-fluid " src="'+ parse[i] +'" alt="First slide">'+
-                            '<p> Qr Code:'+ i +'  </p>'+
+                            '<img class="d-block w-100 " src="'+ parse[i] +'" alt="First slide">'+
+                            '<p> Qr Code:'+ i +":" + (parse.length -1 )+'  </p>'+
                         '</div>'
                 );
             }
@@ -458,8 +465,8 @@
 
                  $('#corouselimg').append(
                 '<div class="carousel-item  col" >'+
-                            '<img class="d-block img-fluid " src="'+ parse[i] +'" alt="First slide">'+
-                            '<p> Qr Code: '+ i +' </p>'+
+                            '<img class="d-block w-100 " src="'+ parse[i] +'" alt="First slide">'+
+                            '<p> Qr Code: '+ i +":" + (parse.length -1)+ ' </p>'+
                         '</div>'
                 );
 
@@ -467,6 +474,7 @@
              }
 
             $('#qrmodal').modal('show');
+        }
         });
  
      }
@@ -474,10 +482,16 @@
 
      $('#qrmodal').on('hide.bs.modal', function (e) {
 
-        console.log('entrou no fechar');
-        $('#corouselimg').empty();
-         $('#nomeqrsala').empty();
+        var idmodal = $('#hiddenid').val();
+    
+        $.get("virtualdelete/"+idmodal).done( function(){
 
+            $('#corouselimg').empty();
+            $('#nomeqrsala').empty();
+            $('#qrmodal').slider('refresh');
+            
+        });
+        
 
 });
 

@@ -339,94 +339,100 @@ class EstatisticaController extends Controller
      */
 
 
-    public function load(Request $request)
-    {
-        $id = $_REQUEST['user_id'];
-        $maze = $_REQUEST['maze_id'];
-        $lastquestion = 0;
-        $gamestat = 0;
-        $nextquestion = -1;
-        $indexperg =0;
-        $jogada=0;
-        $next = 0;
-        $ordem = 0;
+    public function load(Request $request){
+      $id = $_REQUEST['user_id'];
+      $maze = $_REQUEST['maze_id'];
+      $lastquestion = 0;
+      $gamestat = 0;
+      $nextquestion = -1;
+      $indexperg =0;
+      $jogada=0;
+      $next = 0;
+      $ordem = 0;
+      $correct_count=0;
+      $wrong_count=0;
+      $startnextquestion = null;
 
-        $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->whereNotNull('ordem')->orderBy('ordem')->get();
+      $tperg = Pergunta::select('id','ordem')->where('sala_id',$maze)->whereNotNull('ordem')->orderBy('ordem')->get();
 
-        $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
+      $start =  Data::select('start')->where('user_id',$id)->where('maze_id',$maze)->get();
 
 
-if(count($tperg)== 0){
+      if(count($tperg)== 0){
 
-  $result = array(
-    'error'=>array('nao existe registro com essas informacoes'),
-    'success'=> -1
-  );
+        $result = array(
+          'error'=>array('nao existe registro com essas informacoes'),
+          'success'=> -1
+        );
 
-    return $result;
+        return $result;
 
-} else{
+      } 
+      else{
         foreach($start as $value){
 
           $jogada = $value->start;
         }
 
-       
-
-        $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
 
 
+        $save =  Data::select('event','question_id','correct_count','wrong_count')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
 
 
 
-      if(count($save)>0){
-      foreach ($save as $stop) {
 
-          if($stop->event == "maze_start"){
 
-            $gamestat = 0;
+        if(count($save)>0){
+          foreach ($save as $stop) {
+
+            if($stop->event == "maze_start"){
+              $gamestat = 0;
+            }
+            if($stop->event == "question_end"){
+              $correct_count = $stop->correct_count;
+              $wrong_count = $stop->wrong_count;
+              $lastquestion = $stop->question_id;
+            }
+            if($stop->event == "maze_end"){
+              $gamestat = 1;
+            }
+
           }
-
-
-          if($stop->event == "question_end"){
-
-            $lastquestion = $stop->question_id;
-
-          }
-
-
-          if($stop->event == "maze_end"){
-
-            $gamestat = 1;
-          }
-        }}    
-
-        
-
-    foreach($tperg as $perg){
-
-        $next = $perg->ordem;
-
-        if($indexperg == 0){
-
-        $startquestion = $perg->id; 
-
         }  
+        foreach($tperg as $perg){
+          $next = $perg->ordem;
+          if($indexperg == 0){
+            $startquestion = $perg->id; 
+          }  
 
-        $indexperg ++;
+          $indexperg ++;
 
-      
 
-        if($perg->id == $lastquestion){
 
-          $stopped =  $indexperg;
-          $nextquestion = $perg->ordem +1;
-          $ordem = $nextquestion;
+          if($perg->id == $lastquestion){
+
+            $stopped =  $indexperg;
+            $nextquestion = $perg->ordem +1;
+            $ordem = $nextquestion;
+          }
+
+          $endquestion = $perg->id;
+
+          if($perg->ordem == $nextquestion){
+            $nextquestion = $perg->id;
+          }
+
+
+          if($perg->ordem == 1){
+
+            $startnextquestion = $perg->id;
+
+
+          }
+
         }
-    
-        $endquestion = $perg->id;
 
-        }
+
 
         if($next < $ordem){
 
@@ -434,67 +440,60 @@ if(count($tperg)== 0){
 
         }
 
-
-
-
-        if($perg->ordem == $nextquestion){
-
-          $nextquestion = $perg->id;
-        
-        }
-
-       
-
         if($nextquestion == -1){
           $nextquestion = $startquestion;
         }
 
 
 
-       
+
         if(count($save)>0){
+          if($lastquestion == 0){
 
+            $lastquestion = null;
+          }
 
-        if($lastquestion == 0){
+          if($gamestat == 0){
 
-          $lastquestion = NULL;
-        }
-      
-        if($gamestat == 0){
+            $load = array(
 
-          $load = array(
+              "stopped_question"=>$lastquestion,
+              "next_question"=>$nextquestion,
+              "correct_count"=>$correct_count,
+              "wrong_count"=>$wrong_count
+              
+            );
 
-            "stopped_question"=>$lastquestion,
-            "next_question"=>$nextquestion
-            
+            return $load;
+
+          }else{
+
+           $load = array(
+            "stopped_question"=>$endquestion,
+            "next_question"=> null, 
+            "correct_count"=>$correct_count,
+            "wrong_count"=>$wrong_count
           );
 
-          return $load;
-        
-        }else{
+           return $load;
 
-     $load = array(
-          "stopped_question"=>$endquestion,
-          "next_question"=>NULL
+         }
+       }else{
+        $load = array(
+          "stopped_question"=> $startquestion,
+          "next_question"=> $startnextquestion, 
+          "correct_count"=>$correct_count,
+          "wrong_count"=>$wrong_count
+              
         );
 
-     return $load;
+        return $load;
+      }
 
-        }
+    }     
 
-}else{
 
-$load = array(
-
-            "stopped_question"=> NULL,
-            "next_question"=>$startquestion
-            
-          );
-          
-          return $load;
-}
-
-    }}
+  }
 
 
 
