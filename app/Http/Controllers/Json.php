@@ -96,14 +96,14 @@ $sala_name = $sala->name;
 $salaid = $sala->id;  
 $ijson = 0;
 $conta =0;
-$limite = 2000;
+$limite = 100;
 $n=1;
 
 
 if(count($pergunta) == 0){
 
 
-    return redirect('admin/sala');
+    return "Sem Perguntas";
 
 
 }
@@ -411,7 +411,9 @@ $jsn = [
 
  }
 
-
+$img=array(
+      0=>$sala->name
+);
 
 //  //-----^^^^^^^^^^  Fim dos foreach das Perguntas ^^^^^^--------------//  
 
@@ -466,6 +468,9 @@ $qr = $append.$base;
 // $qr = $base;
 QrCode::format('png')->size(500)->generate($qr,'../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png');
 
+$img[] = '..'.DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
+
+
 }
 
 
@@ -482,7 +487,11 @@ $append  = "append|" . $n . "|" . $ntotal ."|";
 $qr = $append.$rest;
 
 QrCode::format('png')->size(500)->generate( $qr , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.".png");
+
+$img[] = '..'.DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
+
 $n ++;
+
 
 }
 
@@ -490,7 +499,7 @@ $n ++;
 }
 
  
-    return redirect('admin/editar-sala/'.$idd);
+    return json_encode($img);
          
 
 }

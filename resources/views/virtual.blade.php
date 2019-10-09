@@ -125,7 +125,7 @@ $flag =0;
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
 
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                                         <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> teste</button>
 
                                         @endif
                                     </td>
@@ -164,7 +164,8 @@ $flag =0;
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
 
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" data-toggle="modal" data-target="#md{{$item->id}}" data-whatever="{{$item->id}}" data-whatevernome="{{$item->name}}"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> teste</button>
+
 
                                         @endif
                                     </td>
@@ -479,26 +480,8 @@ $flag =0;
 
 
 
-@foreach($data as $item)
-@if($item->enable == 1)
 
-<?php
-                $id = $item->id;
-                $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
-                if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
-                $arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
-                $i = 0;
-                
-                foreach($arquivos as $img){
-
-                    $i++;
-                }
-      
-               ?>
-
-@if($i > 0)
-
-<div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#4D226D;">
@@ -506,56 +489,34 @@ $flag =0;
                 <h5 style="  font-size: 20px; color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
             <div class="modal-body ">
-                <?php
-                $id = $item->id;
-                $pasta = $_SERVER['DOCUMENT_ROOT'] . '/sala/'.$id; 
-                if(!is_dir($pasta)) die("<h2>O caminho $pasta não existe</h2>");
-                $arquivos = glob("$pasta/{*.[pP][nN][gG]}", GLOB_BRACE);
-                $i = 0;
-                ?>
-                <h5> {{$item->name}} </h5>
-                <div id="controlsmd{{$item->id}}" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" style="margin-left:auto;margin-right:auto;display:block;padding-right:2%;padding-left:2%">
-                        @foreach($arquivos as $img)
-                        <?php 
-                                $b = explode('public/', $img,2);         
-                            ?>
-                        @if($i == 0)
-                        <div class="carousel-item active col">
-                            <img class="d-block img-fluid  " src="{{ asset($b[1]) }}" alt="First slide">
-                            <p> Qr Code: {{$i+1}} </p>
-                        </div>
-                        @endif
-                        @if($i > 0)
-                        <div class="carousel-item col ">
-                            <img class="d-block img-fluid  " src="{{ asset($b[1]) }}" alt="Second slide">
-                            <p> Qr Code: {{$i+1}} </p>
-                        </div>
-                        @endif
-                        <?php 
-                            $i++; 
-                            ?>
-                        @endforeach
+              
+                <h5 id="nomeqrsala"> Nome: </h5>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" id="corouselimg" style="margin-left:auto;margin-right:auto;display:block;padding-right:2%;padding-left:2%">
+                     
+                        
                     </div>
 
-                    <a class="carousel-control-prev" href="#controlsmd{{$item->id}}" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Anterior</span>
                     </a>
-                    <a class="carousel-control-next" href="#controlsmd{{$item->id}}" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Próximo</span>
                     </a>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
 </div>
-@else
-<div class="modal fade" id="md{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+
+
+
+<div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#4D226D;">
@@ -563,16 +524,14 @@ $flag =0;
                 <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
             </div>
             <div class="modal-body">
-                <h5> {{$item->name}} </h5>
+                <h5> Nome:  </h5>
                 <h4 style="color: purple;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar </button>
             </div>
         </div>
     </div>
 </div>
-@endif
-@endif
-@endforeach
+
 @endsection

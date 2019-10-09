@@ -418,6 +418,68 @@
         }
 
 
+         function qrcodebtn(id){        
+         
+        
+        console.log(id);
+        $.get("virtual/"+id, function(data){
+
+
+
+        var parse = JSON.parse(data);
+
+            console.log( parse);
+
+             $('#nomeqrsala').append(parse[0]);
+
+            for(var i=1; i< parse.length; i++){
+
+                if(i == 1){
+                $('#corouselimg').append(
+                '<div class="carousel-item active col" >'+
+                            '<img class="d-block img-fluid " src="'+ parse[i] +'" alt="First slide">'+
+                            '<p> Qr Code:'+ i +'  </p>'+
+                        '</div>'
+                );
+            }
+            if(i>1){
+
+                 $('#corouselimg').append(
+                '<div class="carousel-item  col" >'+
+                            '<img class="d-block img-fluid " src="'+ parse[i] +'" alt="First slide">'+
+                            '<p> Qr Code: '+ i +' </p>'+
+                        '</div>'
+                );
+
+            }
+             }
+
+            $('#qrmodal').modal('show');
+        });
+ 
+     }
+
+
+     $('#qrmodal').on('hide.bs.modal', function (e) {
+
+        console.log('entrou no fechar');
+        $('#corouselimg').empty();
+         $('#nomeqrsala').empty();
+
+
+});
+
+     
+    
+   
+
+
+     
+
+
+
+
+
 
     </script>
     
