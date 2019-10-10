@@ -485,6 +485,9 @@
              }
 
             $('#qrmodal').modal('show');
+                $('.carousel').carousel({
+          interval: 1000
+      });
         }
         });
  
@@ -496,12 +499,14 @@
         var idmodal = $('#hiddenid').val();
     
         $.get("virtualdelete/"+idmodal).done( function(){
-             $('#corouselimg').empty();
+            $('#corouselimg').empty();
              $('#nomeqrsala').empty();
-             location.reload();
-             var idactive = $('#menu a.active').attr('id');
-             url = "/admin/virtual?menu="+idactive;
-             window.location.href = url;          
+            $('#carouselExampleControls').carousel('dispose');
+             
+//             location.reload();
+//             var idactive = $('#menu a.active').attr('id');
+             //url = "/admin/virtual?menu="+idactive;
+             //window.location.href = url;          
             
         });
 
@@ -509,39 +514,39 @@
 
 });
 
-window.onload = function(){
-
-    var idmenu =  $("#menuvalue").val();
-    
-switch (idmenu) {
-
-  case 'mativas':
-    $('#menu a[href="#ativas"]').tab('show');
-    break;
-
-case 'mdesativas':
-    $('#menu a[href="#desativadas"]').tab('show');
-    break; 
-
-case 'mpublicas':
-    $('#menu a[href="#publicas"]').tab('show');
-    break; 
-
-case 'mprivadas':
-    $('#menu a[href="#privadas"]').tab('show');
-    break;     
-
-  default:
-    $('#menu a[href="#todos"]').tab('show');
-
-};
-
-
-
-
-
-
-}
+//window.onload = function(){
+//
+//    var idmenu =  $("#menuvalue").val();
+//    
+//switch (idmenu) {
+//
+//  case 'mativas':
+//    $('#menu a[href="#ativas"]').tab('show');
+//    break;
+//
+//case 'mdesativas':
+//    $('#menu a[href="#desativadas"]').tab('show');
+//    break; 
+//
+//case 'mpublicas':
+//    $('#menu a[href="#publicas"]').tab('show');
+//    break; 
+//
+//case 'mprivadas':
+//    $('#menu a[href="#privadas"]').tab('show');
+//    break;     
+//
+//  default:
+//    $('#menu a[href="#todos"]').tab('show');
+//
+//};
+//
+//
+//
+//
+//
+//
+//}
 
     
 

@@ -30,11 +30,11 @@ $flag =0;
                         <h4 class="nav-tabs-title col-md-3">
                             Espaço Virtual 
                         </h4>
-                        <input type="hidden" id="menuvalue" value="{{$menu}}">
+                    
 
                         <ul class="nav nav-tabs" id="menu" data-tabs="tabs" style="float:right;">
                             <li class="nav-item">
-                                <a class="nav-link" id="mtodos" href="#todos" data-toggle="tab">
+                                <a class="nav-link active" id="mtodos" href="#todos" data-toggle="tab">
                                     <!--                            <i class="material-icons">bug_report</i>-->
                                     Todas
                                     <div class="ripple-container"></div>
@@ -78,7 +78,7 @@ $flag =0;
                 <div class="tab-content">
 
 
-                    <div class="tab-pane  table-responsive" id="todos">
+                    <div class="tab-pane  table-responsive active" id="todos">
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>Nome</th>
