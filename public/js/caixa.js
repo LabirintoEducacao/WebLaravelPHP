@@ -4,8 +4,8 @@
 
 
           var postURL = 'editar-sala/';
-          var i = 1;
-          var i2 = 1;
+          var i = 0;
+          var i2 = 0;
 
           // botao para add resposta fields
           var a = 0;
@@ -87,13 +87,13 @@
 
           //////////////////////////////////////////////////////////////////////////
           $(document).on('click', '.teste', function () {
-              if (b < 3) {
+              if (b < 2) {
                   $('#dynamic_field2').append('' +
-                      '<div id="row' + i2 + '" class="dynamic-added">' +
+                      '<div id="row2' + i2 + '" class="dynamic-added2">' +
                       '<div class="card houvercard">'+    
                       '<div class="container">'+ 
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (a + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
@@ -104,7 +104,7 @@
                       '</select>' +
                       '</div>' +
                       '<div class="col col-sm-1">' +
-                      '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
+                      '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +
@@ -121,7 +121,7 @@
           $(document).on('click', '.btn_remove2', function () {
 
               var button_id2 = $(this).attr("id");
-              $('#row' + button_id2 + '').remove();
+              $('#row2' + button_id2 + '').remove();
               b--;
           });
 
@@ -294,23 +294,23 @@
                     '<div class="card houvercard">'+
                     '<!--   Resposta -->'+
                     '<div class=" container" style=" margin-top: 10px;">'+
-                    '<div class= "row  align-items-center">'+
-                    '<label class="col" style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:</label>'+
-                    '<div class="col-5">'+
-                    '<label for="question_type">Tipo da Resposta:</label>'+
-                    '<select class="selectborda" name ="tipo_resp_ref[]" class="form-control tipo_resp_ref">' +
-                    '<option selected value="1">Texto</option>' +
-                    '<option value="2">Imagem</option>' +
-                    '<option value="3">Vídeo</option>' +
-                    '<option value="4">Áudio</option>' +
-                    '</select>' +
+                    ' <div class= "row  align-items-center">'+
+                    '<div class="col-9">'+
+                    '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>'+
+                    '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>'+
                     '</div>'+
                     '<div class="col">'+
-                    '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>'+
+                    '<label for="question_type">Tipo da Resposta:</label>'+
+                    '<select  class="selectborda" name="tipo_resp_ref" id="tipo_opcao" class="tipo_resp_ref form-control">'+
+                    ' <option selected value="1">Texto</option>'+
+                    '<option value="2">Imagem</option>'+
+                    '<option value="3">Vídeo</option>'+
+                    ' <option value="4">Áudio</option>'+
+                    '</select>'+
                     '</div>'+
                     '</div>'+
 
-                    '<div class="dynamic-added" id="dynamic_field2" border="0">'+
+                    '<div class="dynamic-added2" id="dynamic_field2" border="0">'+
                     '<div class="card houvercard">'+
                     '<div class="container">'+
                     '<div class="textareaborda2" style="margin-top: 10px;">'+
@@ -642,6 +642,7 @@
 
 
               });
+
 
           });
 
