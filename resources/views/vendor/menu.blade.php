@@ -436,7 +436,7 @@
         
         $.get("virtual/"+id).done( function(data){
 
-        var parse = JSON.parse(data);
+            var parse = JSON.parse(data);
         
             if(data == "null"){
         
@@ -451,26 +451,29 @@
              $('#hiddenid').val(id);
 
 
-            for(var i=1; i< parse.length; i++){
+            for(var i=1; i< parse.length; i++)
+            {
 
-                if(i == 1){
+                if(i == 1)
+                {
                 $('#corouselimg').append(
                 '<div class="carousel-item active col" >'+
                             '<img class="d-block w-100 " src="'+ parse[i] +'" alt="First slide">'+
                             '<p> Qr Code:'+ i +":" + (parse.length -1 )+'  </p>'+
                         '</div>'
                 );
-            }
-            if(i>1){
+                }
+
+                if(i>1)
+                {
 
                  $('#corouselimg').append(
                 '<div class="carousel-item  col" >'+
                             '<img class="d-block w-100 " src="'+ parse[i] +'" alt="First slide">'+
-                            '<p> Qr Code: '+ i +":" + (parse.length -1)+ ' </p>'+
-                        '</div>'
+                                    '<p> Qr Code: '+ i +":" + (parse.length -1)+ '</p>'+
+                                        '</div>'
                 );
-
-            }
+                }
              }
 
             $('#qrmodal').modal('show');
@@ -485,18 +488,57 @@
         var idmodal = $('#hiddenid').val();
     
         $.get("virtualdelete/"+idmodal).done( function(){
-
-            $('#corouselimg').empty();
-            $('#nomeqrsala').empty();
-            $('#qrmodal').slider('refresh');
+             $('#corouselimg').empty();
+             $('#nomeqrsala').empty();
+             location.reload();
+             var idactive = $('#menu a.active').attr('id');
+             url = "/admin/virtual?menu="+idactive;
+             window.location.href = url;          
             
         });
+
         
 
 });
 
-     
+window.onload = function(){
+
+    var idmenu =  $("#menuvalue").val();
     
+switch (idmenu) {
+
+  case 'mativas':
+    $('#menu a[href="#ativas"]').tab('show');
+    break;
+
+case 'mdesativas':
+    $('#menu a[href="#desativadas"]').tab('show');
+    break; 
+
+case 'mpublicas':
+    $('#menu a[href="#publicas"]').tab('show');
+    break; 
+
+case 'mprivadas':
+    $('#menu a[href="#privadas"]').tab('show');
+    break;     
+
+  default:
+    $('#menu a[href="#todos"]').tab('show');
+
+};
+
+
+
+
+
+
+}
+
+    
+
+
+
    
 
 
