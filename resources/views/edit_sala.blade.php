@@ -44,12 +44,17 @@
                     <input type="hidden" value="{{$id}}" name="sala_id">
                     <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
                     
-                        <div class="alert alert-danger print-error-msg" style="display: none;">
+                      <!--   <div class="col-4 alert alert-danger print-error-msg" style="display: none; position: absolute; z-index: 99999;">
+                            <ul></ul>
+                        </div> -->
+                        <div class="container" style="margin-top: 10px;">
+                            <div class="row align-items-center">
+                        <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 999999; text-align: center;">
                             <ul></ul>
                         </div>
-                        <div class="alert alert-success print-success-msg" style="display: none;">
-                            <ul></ul>
                         </div>
+                        </div>
+
                         <div style="margin-top: -20px; ">
                         <!-- Pergunta  -->
                         <div class="tab-content">
@@ -126,10 +131,12 @@
                         <div class="card houvercard">
                         <!--   Resposta -->
                         <div class=" container" style=" margin-top: 10px;">
-
                         <div class= "row  align-items-center">
-                        <label class="col" style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:</label>
-                        <div class="col-5">
+                        <div class="col-9">
+                        <label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
+                        <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
+                        </div>
+                        <div class="col">
                         <label for="question_type">Tipo da Resposta:</label>
                         <select  class="selectborda" name="tipo_resp" id="tipo_opcao" class="tipo_resp">
                         <option selected value="1">Texto</option>
@@ -137,9 +144,6 @@
                         <option value="3">Vídeo</option>
                         <option value="4">Áudio</option>
                         </select>
-                        </div>
-                        <div class="col">
-                        <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
                         </div>
                         </div>
 

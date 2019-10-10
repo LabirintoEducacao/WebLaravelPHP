@@ -582,7 +582,7 @@ class PerguntaRespostaController extends Controller
                          $reforcoid = DB::table('respostas')->insertGetId(array(
                              
                              'sala_id'  =>  $sala_id,
-                             'tipo_resp' => $tipo_resp_ref[$i],
+                             'tipo_resp' => $tipo_resp_ref,
                              'resposta' => $resposta_ref[$i],
                              'corret' => $corret_ref[$i]
                              
