@@ -194,8 +194,16 @@
                                 <div class="tab-pane" id="pergReforco">
                                    <div class="hovereffect">
                                     <div class="overlay">
-                                        <br><br>
-                                        <input type="checkbox" id="check-reforco">&nbsp;Pergunta Reforço
+                                        <div class="form-check" style="margin-left:5%;margin-top:5%;margin-bottom:2%">
+                                            <label class="form-check-label">
+                                                
+                                                <input class="form-check-input" type="checkbox" id="check-reforco">
+                                                Pergunta Reforço
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                     <div class="abcd">
 
