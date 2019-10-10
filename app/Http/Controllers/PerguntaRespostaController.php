@@ -1011,7 +1011,7 @@ class PerguntaRespostaController extends Controller
                 'message' => 'Pergunta deletada com sucesso!',
                 'alert-type' => 'success'
             );
-        return redirect('admin/editar-sala/'. $perg->sala_id)->with($notification);
+        return redirect('admin/visualizar/'. $perg->sala_id)->with($notification);
     }
 
     public function destroyresp($id)
@@ -1027,7 +1027,7 @@ class PerguntaRespostaController extends Controller
                 'message' => 'Resposta deletada com sucesso!',
                 'alert-type' => 'success'
             );
-        return redirect('admin/editar-sala/'. $resp[0]->sala_id)->with($notification);
+        return redirect('admin/visualizar/'. $resp[0]->sala_id)->with($notification);
     }
 
 
