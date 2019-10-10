@@ -2,11 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
+    <div class="col-md-8 offset-md-2 col-12">
+        <div class="card">
+            <div id="teste2" class="card-header card-header-primary">
+                <h3 class="card-title" style="text-align:center">Alterar Perfil<!--{{Auth::user()->name}}--></h3>
+                <p class="card-category"></p>
+            </div>
 
-                <div class="card-body">
+            <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -27,10 +30,12 @@
                         {{ Form::password('password',['class'=>'form-control', 'placeholder'=>'Senha','minlength'=>'8', 'required']) }}<br>
 -->
                         <div class="row align-self-center">
-                            {{ Form::submit('SALVAR ALTERAÇÕES', ['class'=>'btn btn-outline-success btn-lg col-md-5','style'=>'margin-left:7%']) }}                         
-                            <a class="btn btn-outline-danger btn-lg offset-md-1 col-md-5" style="margin-left:2%" href="{{ url('/home') }}">
-                                        {{ __('CANCELAR') }}
+                                                  
+                            <a class="btn btn-danger col" href="{{ url('/home') }}">
+                                        {{ __('Cancelar') }}
                             </a>
+                            
+                            {{ Form::submit('Salvar alterações', ['class'=>'btn btn-success col']) }}   
                         </div>
                         @elseif (\Request::is('admin/deletar'))
                         {{ Form::label('name', 'Nome:') }}
@@ -47,9 +52,9 @@
 
                  @endif
 
-                </div>
             </div>
         </div>
     </div>
+
 </div>
 @endsection

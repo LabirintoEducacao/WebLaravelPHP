@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class ProfileController extends Controller
@@ -31,6 +36,13 @@ class ProfileController extends Controller
     
     public function reset_password(Request $request){
         $data = $request->all();
+        $hashedPassword = DB::table("users")
+                          ->where('id','=',Auth::user()->id)
+                          ->get();
+        
+//        var_dump($hashedPassword);
+        if (Hash::check($data['password_atual'], $hashedPassword[0]->password)) {
+        
         
         if($data['password'] != null){
             if($data['password'] == $data['password_confirmation']){
@@ -50,6 +62,12 @@ class ProfileController extends Controller
             }
         }else{
             unset($data['password']);
+            $notification = array(
+                        'message' => 'Senha não pôde ser atualizada!',
+                        'alert-type' => 'warning'
+                    );
+        }
+        }else{
             $notification = array(
                         'message' => 'Senha não pôde ser atualizada!',
                         'alert-type' => 'warning'
