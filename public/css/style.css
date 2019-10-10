@@ -1,5 +1,13 @@
 /* CSS DO PAINEL DE MOSTRAR AS PERGUNTAS */
 
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 250px;
+    overflow-y: auto;
+}
+
 
 #flip {
     padding: 5px;
