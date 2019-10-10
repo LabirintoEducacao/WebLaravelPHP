@@ -471,7 +471,7 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
-                                                <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="width:93%; cursor: pointer" >Editar</button>
+                                                <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$sala->duracao}}" data-tempoo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="width:93%; cursor: pointer" >Editar</button>
                                                 
                                                 <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                           
@@ -524,7 +524,7 @@
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
                             <input type="time" name="time2" id="time2" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,0);" value="00:00:00">
-                            <input type="hidden" name="time5" id="time5" class="form-control">
+                            <input type="hidden" name="time5" id="time5" class="form-control" value="0">
                         </div>
 
                         <div class="form-row">
@@ -608,7 +608,7 @@
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
                             <input type="time" name="time3" id="time3" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,1);">
-                            <input type="hidden" name="time4" id="time4" class="form-control">
+                            <input type="text" name="time4" id="time4" class="form-control">
                         </div>
 
                         <div class="form-row">
