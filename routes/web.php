@@ -157,6 +157,7 @@ Route::get('/estatistica/{id}', 'SalaController@estatistica');
 Route::post('/sala', 'SalaController@store');
 Route::get('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
 Route::get('/virtual', 'SalaController@entrar');
+
 Route::post('/editar-sala','SalaController@edit_sala');
 Route::get('/visualizar/{id}', 'SalaController@destroy' )->middleware(['auth', 'auth.admin']);
 

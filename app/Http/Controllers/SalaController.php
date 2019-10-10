@@ -335,6 +335,13 @@ class SalaController extends Controller
 
     public function entrar(){
 
+        $menu = 0;
+        if(isset($_REQUEST['menu'])){
+
+          $menu = $_REQUEST['menu']; 
+        }
+           
+
         $salas = DB::table('salas')
 //            ->where('enable',1)             //só busca as salas ativas
             ->orderBy('enable', 'desc')
@@ -359,7 +366,7 @@ class SalaController extends Controller
 
         $salapr2 = count($salapr);
         
-        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user,'salapu'=>$salapu2,'salapr'=>$salapr2]);
+        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user,'salapu'=>$salapu2,'salapr'=>$salapr2, 'menu'=>$menu]);
     }
 
     

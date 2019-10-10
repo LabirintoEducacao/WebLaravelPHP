@@ -28,39 +28,41 @@ $flag =0;
                     <div class="nav-tabs-wrapper">
 
                         <h4 class="nav-tabs-title col-md-3">
-                            Espaço Virtual
+                            Espaço Virtual 
                         </h4>
-                        <ul class="nav nav-tabs" data-tabs="tabs" style="float:right;">
+                        <input type="hidden" id="menuvalue" value="{{$menu}}">
+
+                        <ul class="nav nav-tabs" id="menu" data-tabs="tabs" style="float:right;">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#todos" data-toggle="tab">
+                                <a class="nav-link" id="mtodos" href="#todos" data-toggle="tab">
                                     <!--                            <i class="material-icons">bug_report</i>-->
                                     Todas
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#ativas" data-toggle="tab">
+                                <a class="nav-link " id="mativas" href="#ativas" data-toggle="tab">
                                     <!--                            <i class="material-icons">code</i>-->
                                     Ativadas
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#desativadas" data-toggle="tab">
+                                <a class="nav-link "  id="mdesativas" href="#desativadas" data-toggle="tab">
                                     <!--                            <i class="material-icons">cloud</i>-->
                                     Desativadas
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#publicas" data-toggle="tab">
+                                <a class="nav-link"  id="mpublicas" href="#publicas" data-toggle="tab">
                                     <!--                            <i class="material-icons">code</i>-->
                                     Públicas
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#privadas" data-toggle="tab">
+                                <a class="nav-link"  id="mprivadas" href="#privadas" data-toggle="tab">
                                     <!--                            <i class="material-icons">code</i>-->
                                     Privadas
                                     <div class="ripple-container"></div>
@@ -76,7 +78,7 @@ $flag =0;
                 <div class="tab-content">
 
 
-                    <div class="tab-pane active table-responsive" id="todos">
+                    <div class="tab-pane  table-responsive" id="todos">
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>Nome</th>
@@ -492,6 +494,7 @@ $flag =0;
               
                 <h5 id="nomeqrsala"> Nome: </h5>
                 <input id="hiddenid" type="hidden" value="">
+
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" id="corouselimg" >   
                     </div>
@@ -505,6 +508,12 @@ $flag =0;
                         <span class="sr-only">Próximo</span>
                     </a>
                 </div>
+
+
+
+
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
