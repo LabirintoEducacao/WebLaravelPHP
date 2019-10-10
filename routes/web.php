@@ -129,8 +129,8 @@ Route::post('/visualizar/editar-sala/{id}', 'PerguntaRespostaController@store');
 Route::post('/editar-resp', 'PerguntaRespostaController@edit_resp');
 Route::post('/editar-perg', 'PerguntaRespostaController@edit_perg');
 Route::post('/editar-ambi', 'PerguntaRespostaController@edit_ambi')->middleware(['auth', 'auth.admin']);
-Route::get('/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy')->middleware(['auth', 'auth.admin']);
-Route::get('/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
+Route::get('/visualizar/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy')->middleware(['auth', 'auth.admin']);
+Route::get('/visualizar//deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
 Route::post('/alterar-ordem','PerguntaRespostaController@alterar');
 Route::post('/busca-perg', 'PerguntaRespostaController@buscar');
     
@@ -158,7 +158,7 @@ Route::post('/sala', 'SalaController@store');
 Route::get('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
 Route::get('/virtual', 'SalaController@entrar');
 Route::post('/editar-sala','SalaController@edit_sala');
-Route::get('/deletar-sala/{id}', 'SalaController@destroy' )->middleware(['auth', 'auth.admin']);
+Route::get('/visualizar/{id}', 'SalaController@destroy' )->middleware(['auth', 'auth.admin']);
 
 Route::GET('/sala-disable', function(){
 
