@@ -46,18 +46,24 @@
               if (a < 2) {
                   $('#dynamic_field').append('' +
                       '<div id="row' + i + '" class="dynamic-added">' +
-                      '<div class="card houvercard">'+    
-                      '<div class="container">'+ 
+                      '<div class="card houvercard">' +
+                      '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
                       '<textarea type="text" name="resposta[]" placeholder="' + (a + 3) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_id[]" class="resp_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
                       '<div class="col col-sm-11">' +
-                      '<select class="selectborda" name ="corret[]" class="form-control corret">' +
-                      '<option value="1">Certa</option>' +
-                      '<option selected value="0">Errada</option>' +
-                      '</select>' +
+                      '<div class="form-check form-check-radio">' +
+                      'Essa resposta esta correta?&emsp;' +
+                      '<label class="form-check-label">' +
+                      '<input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" value="0">' +
+                      'Sim' +
+                      '<span class="circle">' +
+                      '<span class="check"></span>' +
+                      '</span>' +
+                      '</label>' +
+                      '</div>' +
                       '</div>' +
                       '<div class="col col-sm-1">' +
                       '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
@@ -90,8 +96,8 @@
               if (b < 2) {
                   $('#dynamic_field2').append('' +
                       '<div id="row2' + i2 + '" class="dynamic-added2">' +
-                      '<div class="card houvercard">'+    
-                      '<div class="container">'+ 
+                      '<div class="card houvercard">' +
+                      '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
                       '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
@@ -110,7 +116,7 @@
                       '</div>' +
                       '</div>' +
                       '</div>'
-                      );
+                  );
                   b++;
               } else {
 
@@ -134,13 +140,13 @@
 
 
                       '<div class="hea">' +
-                      '<div class=" container">'+
+                      '<div class=" container">' +
                       '<div class="card houvercard">' +
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
                       '  <div class="col-4">' +
-                    '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
+                      '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
                       '  <label for="answer_boolean_perg">Caminho do jogo:</label>' +
                       '   <select class="selectborda" name="answer_boolean_perg" id="answer_boolean_perg">' +
                       ' <option selected value="1">Corredor</option>' +
@@ -166,32 +172,32 @@
                       '   </div>' +
                       '</div>' +
                       '</div>' +
-//                      '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
-//                      '<div class="form-group row">' +
-//                      '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
-//                      '<label for="answer_boolean_perg" class="col">Tipo:</label>' +
-//                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="col">' +
-//                      '<option selected value="1">Corredor</option>' +
-//                      '<option value="2">Labirinto</option>' +
-//                      '</select>' +
-//                      '</div>' +
-//                      '<div class="form-group row">' +
-//                      '<label for="tamanho_perg" class="col">Tamanho:</label>' +
-//                      '<select name="tamanho_perg" id="tamanho_perg" class="col">' +
-//                      '<option selected value="1">Pequeno</option>' +
-//                      '<option value="2">Medio</option>' +
-//                      '<option value="3">Grande</option>' +
-//                      '</select>' +
-//                      '</div>' +
-//                      '<div class="form-group row">' +
-//                      '<label for="largura_perg" class="col">Largura:</label>' +
-//                      '<select name="largura_perg" id="largura_perg" class="col">' +
-//                      '<option selected value="1">Pequeno</option>' +
-//                      '<option value="2">Medio</option>' +
-//                      '<option value="3">Grande</option>' +
-//                      '</select>' +
+                      //                      '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
+                      //                      '<label for="answer_boolean_perg" class="col">Tipo:</label>' +
+                      //                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="col">' +
+                      //                      '<option selected value="1">Corredor</option>' +
+                      //                      '<option value="2">Labirinto</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<label for="tamanho_perg" class="col">Tamanho:</label>' +
+                      //                      '<select name="tamanho_perg" id="tamanho_perg" class="col">' +
+                      //                      '<option selected value="1">Pequeno</option>' +
+                      //                      '<option value="2">Medio</option>' +
+                      //                      '<option value="3">Grande</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<label for="largura_perg" class="col">Largura:</label>' +
+                      //                      '<select name="largura_perg" id="largura_perg" class="col">' +
+                      //                      '<option selected value="1">Pequeno</option>' +
+                      //                      '<option value="2">Medio</option>' +
+                      //                      '<option value="3">Grande</option>' +
+                      //                      '</select>' +
                       '</div>' +
- 
+
                       //                  PERGUNTAAAAAAA
                       '<div class=" container hea">' +
                       '<div class="card houvercard">' +
@@ -231,7 +237,7 @@
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
                       '  <div class="col-4">' +
-                    '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
+                      '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
                       '   <select class="selectborda" name="answer_boolean_ref" id="answer_boolean_ref">' +
                       ' <option selected value="1">Corredor</option>' +
@@ -291,95 +297,95 @@
                       // '</tbody>' +
                       // '</table>' +
 
-                    '<div class="card houvercard">'+
-                    '<!--   Resposta -->'+
-                    '<div class=" container" style=" margin-top: 10px;">'+
-                    ' <div class= "row  align-items-center">'+
-                    '<div class="col-9">'+
-                    '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>'+
-                    '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>'+
-                    '</div>'+
-                    '<div class="col">'+
-                    '<label for="question_type">Tipo da Resposta:</label>'+
-                    '<select  class="selectborda" name="tipo_resp_ref" id="tipo_opcao" class="tipo_resp_ref form-control">'+
-                    ' <option selected value="1">Texto</option>'+
-                    '<option value="2">Imagem</option>'+
-                    '<option value="3">Vídeo</option>'+
-                    ' <option value="4">Áudio</option>'+
-                    '</select>'+
-                    '</div>'+
-                    '</div>'+
+                      '<div class="card houvercard">' +
+                      '<!--   Resposta -->' +
+                      '<div class=" container" style=" margin-top: 10px;">' +
+                      ' <div class= "row  align-items-center">' +
+                      '<div class="col-9">' +
+                      '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>' +
+                      '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
+                      '</div>' +
+                      '<div class="col">' +
+                      '<label for="question_type">Tipo da Resposta:</label>' +
+                      '<select  class="selectborda" name="tipo_resp_ref" id="tipo_opcao" class="tipo_resp_ref form-control">' +
+                      ' <option selected value="1">Texto</option>' +
+                      '<option value="2">Imagem</option>' +
+                      '<option value="3">Vídeo</option>' +
+                      ' <option value="4">Áudio</option>' +
+                      '</select>' +
+                      '</div>' +
+                      '</div>' +
 
-                    '<div class="dynamic-added2" id="dynamic_field2" border="0">'+
-                    '<div class="card houvercard">'+
-                    '<div class="container">'+
-                    '<div class="textareaborda2" style="margin-top: 10px;">'+
-                    '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 1º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>'+
-                    '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">'+
-                    '</div>'+
-                    '<div class="row">'+
-                    '<div class="col-6" style="margin-bottom: 10px;">'+
-                    '<select class="selectborda" name ="corret_ref[]" class="form-control corret_ref">' +
-                    '<option selected value="1">Certa</option>' +
-                    '<option value="0">Errada</option>' +
-                    '</select>' +
-                    '</div>'+
-                    '</div>'+           
-                    '</div>'+
-                    '</div>'+
-                    '<div class="card houvercard">'+
-                    '<div class="container">'+
-                    '<div class="textareaborda2" style="margin-top: 10px;">'+
-                    '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 2º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>'+
-                    '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">'+
-                    '</div>'+
-                    '<div class="row">'+
-                    '<div class="col-6" style="margin-bottom: 10px;">'+
-                    '<select class="selectborda" name ="corret_ref[]" class="form-control corret_ref">' +
-                    '<option selected value="1">Certa</option>' +
-                    '<option value="0">Errada</option>' +
-                    '</select>' +
-                    '</div>'+
-                    '</div>'+           
-                    '</div>'+
-                    '</div>'+
+                      '<div class="dynamic-added2" id="dynamic_field2" border="0">' +
+                      '<div class="card houvercard">' +
+                      '<div class="container">' +
+                      '<div class="textareaborda2" style="margin-top: 10px;">' +
+                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 1º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>' +
+                      '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
+                      '</div>' +
+                      '<div class="row">' +
+                      '<div class="col-6" style="margin-bottom: 10px;">' +
+                      '<select class="selectborda" name ="corret_ref[]" class="form-control corret_ref">' +
+                      '<option selected value="1">Certa</option>' +
+                      '<option value="0">Errada</option>' +
+                      '</select>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '<div class="card houvercard">' +
+                      '<div class="container">' +
+                      '<div class="textareaborda2" style="margin-top: 10px;">' +
+                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 2º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>' +
+                      '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
+                      '</div>' +
+                      '<div class="row">' +
+                      '<div class="col-6" style="margin-bottom: 10px;">' +
+                      '<select class="selectborda" name ="corret_ref[]" class="form-control corret_ref">' +
+                      '<option selected value="1">Certa</option>' +
+                      '<option value="0">Errada</option>' +
+                      '</select>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
 
-                   '</div>'+
-                   '</div>'+
-                   '</div>'+
-                   '</div>'                       
-                      
-                      
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>'
+
+
                       //reforco path
-//                      '<div class="hea">' +
-//                      '<br>' +
-//                      '<span style="color: black;">Selecionar o ambiente para pergunta reforço:</span><br>' +
-//                      '<br>' +
-//                      '<div class="form-group row">' +
-//                      '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
-//                      '<label for="answer_boolean_ref" class="col">Tipo:</label>' +
-//                      '<select name="answer_boolean_ref" id="answer_boolean_ref" class="col">' +
-//                      '<option selected value="1">Corredor</option>' +
-//                      '<option value="2">Labirinto</option>' +
-//                      '</select>' +
-//                      '</div>' +
-//                      '<div class="form-group row">' +
-//                      '<label for="tamanho_ref" class="col">Tamanho:</label>' +
-//                      '<select name="tamanho_ref" id="tamanho_ref" class="col">' +
-//                      '<option selected value="1">Pequeno</option>' +
-//                      '<option value="2">Medio</option>' +
-//                      '<option value="3">Grande</option>' +
-//                      '</select>' +
-//                      '</div>' +
-//                      '<div class="form-group row">' +
-//                      '<label for="largura_ref" class="col">Largura:</label>' +
-//                      '<select name="largura_ref" id="largura_ref" class="col">' +
-//                      '<option selected value="1">Pequeno</option>' +
-//                      '<option value="2">Medio</option>' +
-//                      '<option value="3">Grande</option>' +
-//                      '</select>' +
-//                      '</div>' +
-//                      '</div>'
+                      //                      '<div class="hea">' +
+                      //                      '<br>' +
+                      //                      '<span style="color: black;">Selecionar o ambiente para pergunta reforço:</span><br>' +
+                      //                      '<br>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
+                      //                      '<label for="answer_boolean_ref" class="col">Tipo:</label>' +
+                      //                      '<select name="answer_boolean_ref" id="answer_boolean_ref" class="col">' +
+                      //                      '<option selected value="1">Corredor</option>' +
+                      //                      '<option value="2">Labirinto</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<label for="tamanho_ref" class="col">Tamanho:</label>' +
+                      //                      '<select name="tamanho_ref" id="tamanho_ref" class="col">' +
+                      //                      '<option selected value="1">Pequeno</option>' +
+                      //                      '<option value="2">Medio</option>' +
+                      //                      '<option value="3">Grande</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<label for="largura_ref" class="col">Largura:</label>' +
+                      //                      '<select name="largura_ref" id="largura_ref" class="col">' +
+                      //                      '<option selected value="1">Pequeno</option>' +
+                      //                      '<option value="2">Medio</option>' +
+                      //                      '<option value="3">Grande</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '</div>'
                   );
                   document.getElementById('perg_reforco').value = 1;
               } else {
@@ -434,7 +440,7 @@
           });
 
 
-          
+
 
 
 
@@ -607,44 +613,61 @@
 
           $('#submit').click(function (e) {
               var x = document.getElementById('sala_id');
-              $.ajax({
+              var y = document.getElementsByName('corret[]');
+              var z = 0;
 
-                  url: postURL + x,
-                  method: "POST",
-                  data: $('#add_name').serialize(),
-                  type: 'json',
+              for (var i = 0; i < y.length; i++) {
+                  if (y[i].value == 1)
+                      z++
+              }
 
-                  error: function (error) {
-                      console.log(error);
+              if (z > 0) {
+                  $.ajax({
 
-                  },
+                      url: postURL + x,
+                      method: "POST",
+                      data: $('#add_name').serialize(),
+                      type: 'json',
 
-                  success: function (data) {
-                      if (data.error) {
+                      error: function (error) {
+                          console.log(error);
 
-                          printErrorMsg(data.error);
+                      },
 
-                      } else {
-                          window.location.reload();
-                          i = 1;
-                          $('.dynamic-added').remove();
-                          $('#add_name')[0].reset();
-                          $(".print-success-msg").find("ul").html('');
-                          $(".print-success-msg").css('display', 'block');
-                          $(".print-error-msg").css('display', 'none');
-                          $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
+                      success: function (data) {
+                          if (data.error) {
+
+                              printErrorMsg(data.error);
+
+                          } else {
+                              window.location.reload();
+                              i = 1;
+                              $('.dynamic-added').remove();
+                              $('#add_name')[0].reset();
+                              $(".print-success-msg").find("ul").html('');
+                              $(".print-success-msg").css('display', 'block');
+                              $(".print-error-msg").css('display', 'none');
+                              $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
+                          }
+                          a = 0;
+                          b = 0;
+
+
                       }
-                      a = 0;
-                      b = 0;
 
 
-                  }
+                  });
+              } else {
+                  alert("Uma das respostas deve estar correta!")
+              }
 
-
-              });
+            
 
 
           });
+
+
+
 
           $('.btnModalClose').click(function () {
               $('#add_name')[0].reset();
@@ -806,7 +829,7 @@
 
 
 
-                $('.carousel').carousel({
+      $('.carousel').carousel({
           interval: 1000
       });
 
@@ -916,8 +939,3 @@
           else
               $('#enable').prop("checked", false);
       });
-
-
-
-
-      

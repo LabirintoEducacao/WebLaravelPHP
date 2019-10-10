@@ -428,9 +428,24 @@
         }
             
             
+            function muda(radio){
+                var y = document.getElementsByName('corret[]');
+                for(var i=0;i<y.length;i++){
+                    //$("input[name='corret']").attr("value", "0");
+                    y[i].value = 0;
+              }
+                $(radio).attr("value", "1");
+            }
             
-            
-            
+            $('radio .correct').change(function(){
+              var y = document.getElementsByName('corret[]');
+              for(var i=0;i<y.length;i++){
+                  if(y[i].checked)
+                      $("input[name='corret']").attr("value", "1");
+                  else
+                      $("input[name='corret']").attr("value", "0");
+              }
+          })
             
 
                  
