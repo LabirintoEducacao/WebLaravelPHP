@@ -213,8 +213,8 @@
                             </div>
                         </div>
                                <div class="modal-footer">
-                                <a class="btn btn-outline-dark btnModalClose" data-dismiss="modal">Close</a>
-                                <button name="submit" id="submit" class="btn btn-info" value="submit">Salvar</button>
+                                <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                                <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
                                </div> 
                      </form>
                     </div> 
@@ -250,7 +250,7 @@
                             </div>
 
                             <div class="col-12 col-md-auto">
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$x}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
+                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$x}}" data-tempoo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
                             </div>
 
                         </div>
@@ -548,7 +548,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+                        <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
                 </form>
@@ -573,8 +573,8 @@
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
-                        <button type="button" class="btn btn-outline-success altera" id="altera" name="altera">Save changes</button>
+                        <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                        <button type="button" class="btn btn-success altera" id="altera" name="altera">Save changes</button>
                     </div>
                 </form>
             </div>

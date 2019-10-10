@@ -434,7 +434,7 @@
           });
 
 
-
+          
 
 
 
@@ -861,11 +861,13 @@
           var recipienttema = button.data('whatevertema');
           var recipientcorrect = button.data('whateverpublic');
           var recipientenable = button.data('whateverenable');
+          var tempo = button.data('tempoo');
           // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
           var modal = $(this);
           modal.find('#nome').val(recipientnome);
           modal.find('#time3').val(recipienttempo);
+          modal.find('#time4').val(tempo);
           modal.find('#sala_id').val(recipientid);
           modal.find('#theme').val(recipienttema);
           console.log(recipientcorrect);
@@ -890,11 +892,13 @@
           var recipienttema = button.data('whatevertema');
           var recipientcorrect = button.data('whateverpublic');
           var recipientenable = button.data('whateverenable');
+          var tempo = button.data('tempoo');
           // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
           var modal = $(this);
           modal.find('#nome').val(recipientnome);
           modal.find('#time3').val(recipienttempo);
+          modal.find('#time5').val(tempo);
           modal.find('#sala_id').val(recipientid);
           modal.find('#theme').val(recipienttema);
 
@@ -914,74 +918,4 @@
 
 
 
-      $(document).ready(function () {
-          $(".checkbox").Sswitch({
-              onSwitchChange: function (_this) {}
-          });
-      });
-
-
-      (function ($) {
-          $.fn.Sswitch = function (element, options) {
-                  this.$element = $(this);
-
-                  this.options = $.extend({}, $.fn.Sswitch.defaults, {
-                      state: this.$element.is(":checked"),
-                      disabled: this.$element.is(":disabled"),
-                      readonly: this.$element.is("[readonly]"),
-                      parentClass: this.$element.data("parent"),
-                      onSwitchChange: element.onSwitchChange
-                  }, options);
-
-                  this.$container = $("<div>", {
-                      "class": (function (_this) {
-                          return function () {
-                              var classes;
-                              classes = [_this.options.parentClass];
-                              classes.push(_this.options.state ? "" + _this.options.parentClass + "-on" : "" + _this.options.parentClass + "-off");
-                              if (_this.options.disabled) {
-                                  classes.push("" + _this.options.parentClass + "-disabled");
-                              }
-                              if (_this.options.readonly) {
-                                  classes.push("" + _this.options.parentClass + "-readonly");
-                              }
-                              if (_this.$element.attr("id")) {
-                                  classes.push("" + _this.options.parentClass + "-id-" + (_this.$element.attr("id")));
-                              }
-                              return classes.join(" ");
-                          };
-                      })(this)()
-                  });
-                  this.$label = $("<span>", {
-                      html: this.options.labelText,
-                      "class": "" + this.options.parentClass + "-label"
-                  });
-                  this.$container = this.$element.wrap(this.$container).parent();
-                  this.$element.before(this.$label);
-
-                  return this.$container.on("click", (function (_this) {
-                      return function (event) {
-                          event.preventDefault();
-                          event.stopPropagation();
-                          if (_this.options.readonly || _this.options.disabled) {
-                              return _this.target;
-                          }
-                          _this.options.state = !_this.options.state;
-                          _this.$element.prop("checked", _this.options.state);
-                          _this.$container.addClass(_this.options.state ? "" + _this.options.parentClass + "-on" : "" + _this.options.parentClass + "-off").removeClass(_this.options.state ? "" + _this.options.parentClass + "-off" : "" + _this.options.parentClass + "-on");
-                          _this.options.onSwitchChange(_this);
-                          return _this;
-                      };
-                  })(this));
-                  return this.$element;
-              },
-              $.fn.Sswitch.defaults = {
-                  text: '',
-                  fontsize: 10,
-                  state: true,
-                  disabled: false,
-                  readonly: false,
-                  parentClass: "s-switch",
-                  onSwitchChange: function () {}
-              };
-      }(jQuery));
+      
