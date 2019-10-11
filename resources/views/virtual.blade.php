@@ -483,13 +483,14 @@ $flag =0;
 
 
 
-<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content " >
             <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
                 <h5 style="  font-size: 20px; color:#ffffff;" >Qr Code </h5>
             </div>
+            
             <div class="modal-body " >
               
                 <h5 id="nomeqrsala"> Nome: </h5>
