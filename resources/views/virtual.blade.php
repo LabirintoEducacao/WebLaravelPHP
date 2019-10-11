@@ -483,14 +483,14 @@ $flag =0;
 
 
 
-<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content ">
+<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content " >
             <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
-                <h5 style="  font-size: 20px; color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
+                <h5 style="  font-size: 20px; color:#ffffff;" >Qr Code </h5>
             </div>
-            <div class="modal-body ">
+            <div class="modal-body " >
               
                 <h5 id="nomeqrsala"> Nome: </h5>
                 <input id="hiddenid" type="hidden" value="">
@@ -511,9 +511,6 @@ $flag =0;
 
 
 
-
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
@@ -521,6 +518,12 @@ $flag =0;
         </div>
     </div>
 </div>
+
+
+
+
+
+
 
 
 
