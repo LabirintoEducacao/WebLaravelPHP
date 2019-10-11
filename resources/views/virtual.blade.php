@@ -491,8 +491,7 @@ $flag =0;
                 <h5 style="  font-size: 20px; color:#ffffff;" >Qr Code </h5>
             </div>
             
-            <div class="modal-body " >
-              
+            <div class="modal-body">
                 <h5 id="nomeqrsala"> Nome: </h5>
                 <input id="hiddenid" type="hidden" value="">
 

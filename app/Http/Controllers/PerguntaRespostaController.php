@@ -410,7 +410,6 @@ class PerguntaRespostaController extends Controller
     public function store(Request $request)
     {
 
-
          $salaid = $request->sala_id;
          $ordem = Pergunta::select('ordem')->where('sala_id', $salaid)->orderBy('ordem')->get();
 
@@ -447,7 +446,7 @@ class PerguntaRespostaController extends Controller
 
               }  
           
-          if($request->perg_id==0){
+          if($request->perg_id == 0){
           
                         ////////Perguntas///////////
                      $sala_id = $request->sala_id;
@@ -492,9 +491,9 @@ class PerguntaRespostaController extends Controller
                       /////Resposta1////////////
                       $tipo_resp = $request->tipo_resp;
                       $resposta = $request->resposta;
-                      $corret = $request->corret;
+                      $corret = explode(',', $request->correto);
                       $sala_id = $request->sala_id;
-                    
+     
 
                       for($count = 0; $count < count($resposta); $count++)
                       {
@@ -534,7 +533,7 @@ class PerguntaRespostaController extends Controller
                      /////Resposta2////////////
                      $tipo_resp_ref = $request->tipo_resp_ref;
                      $resposta_ref = $request->resposta_ref;
-                     $corret_ref = $request->corret_ref;
+                     $corret_ref = explode(',', $request->correto_ref);
 
 
                      ////////////////PatchReforco/////////
@@ -596,7 +595,7 @@ class PerguntaRespostaController extends Controller
 
                 }
 
-            return response()->json(['success' => 'sucesso.']);
+            return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
               
 
       }else{
