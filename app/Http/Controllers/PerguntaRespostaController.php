@@ -616,7 +616,7 @@ class PerguntaRespostaController extends Controller
               $count=0;
               DB::table('respostas')
                             ->where('id','=', $resp_id[$count])
-                            ->update(['tipo_resp' => $tipo_resp,'resposta' => $resposta[$count],'corret' => $corret[$count]]);
+                            ->update(['tipo_resp' => $tipo_resp[$count],'resposta' => $resposta[$count],'corret' => $corret[$count]]);
           
             foreach($respostas as $resp){
                 $v=0;
