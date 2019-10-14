@@ -16,7 +16,7 @@
             <div class="card card-nav-tabs card-plain">
                 <div class="card-header card-header-primary">
                     <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-                        <div class="container " >
+                    <div class="container ">
                         <div class="row align-items-center">
                             <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 9999999999;">
                                 <ul style="list-style-type: none"></ul>
@@ -46,9 +46,9 @@
                         </div>
                     </div>
                 </div>
-                 </div>
+            </div>
 
-                <div class="modal-body">
+            <div class="modal-body">
 
                 <form name="add_name" id="add_name">
 
@@ -61,107 +61,108 @@
                     <!--   <div class="col-4 alert alert-danger print-error-msg" style="display: none; position: absolute; z-index: 99999;">
                             <ul></ul>
                         </div> -->
-                
-                        <!-- Pergunta  -->
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="perg">
-                                <div class=" container" style="margin-top: -40px">
-                                    <div class="card houvercard">
-                                        <div class=" container">
-                                            <div class="row" style="margin-top: 10px;">
-                                                <div class="col">
-                                                    <input type="hidden" value="0" name="perg_id" id="perg_id">
-                                                    <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
-                                                </div>
-                                                <div class="col col-md-auto">
-                                                    <label for="question_type">Tipo da pergunta:</label>
-                                                    <select class="selectborda" name="question_type" id="question_type">
-                                                        <option selected value="1">Texto</option>
-                                                        <option value="2">Imagem</option>
-                                                        <option value="3">Vídeo</option>
-                                                        <option value="4">Áudio</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col col-lg-4">
-                                                    <label for="room_type">Interação:</label>
-                                                    <select class="selectborda" name="room_type" id="room_typ">
-                                                        <option selected value="right_key">Chave</option>
-                                                        <option value="hope_door">Porta da esperança</option>
-                                                        <option value="true_or_false">Verdadeiro ou Falso</option>
-                                                        <option value="multiple_forms">Multiplas Formas</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="container">
-                                            <div class="textareaborda2">
-                                                <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
+                    <!-- Pergunta  -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="perg">
+                            <div class=" container" style="margin-top: -40px">
+                                <div class="card houvercard">
+                                    <div class=" container">
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <input type="hidden" value="0" name="perg_id" id="perg_id">
+                                                <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
                                             </div>
-                                        </div>
+                                            <div class="col col-md-auto">
+                                                <label for="question_type">Tipo da pergunta:</label>
+                                                <select class="selectborda" name="question_type" id="question_type">
+                                                    <option selected value="1">Texto</option>
+                                                    <option value="2">Imagem</option>
+                                                    <option value="3">Vídeo</option>
+                                                    <option value="4">Áudio</option>
+                                                </select>
+                                            </div>
+                                            <div class="col col-lg-4">
+                                                <label for="room_type">Interação:</label>
+                                                <select class="selectborda" name="room_type" id="room_type">
+                                                    <option selected value="right_key">Chave</option>
+                                                    <option value="hope_door">Porta da esperança</option>
+                                                    <option value="true_or_false">Verdadeiro ou Falso</option>
+                                                    <option value="multiple_forms">Multiplas Formas</option>
+                                                </select>
+                                            </div>
 
-                                        <!--   Ambinete  -->
-                                        <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
-                                        <div class=" container">
-                                            <div class="row" style="line-height: 40px; margin-bottom: 10px;">
-                                                <div class="col-4">
-                                                    <input type="hidden" name="path_id" id="path_id">
-                                                    <label for="answer_boolean">Caminho do jogo:</label>
-                                                    <select class="selectborda" name="answer_boolean" id="answer_boolean">
-                                                        <option selected value="1">Corredor</option>
-                                                        <option value="2">Labirinto</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-4">
-                                                    <label for="tamanho">Tamanho do labirinto:</label>
-                                                    <select class="selectborda" name="tamanho" id="tamanho">
-                                                        <option selected value="1">Pequeno</option>
-                                                        <option value="2">Medio</option>
-                                                        <option value="3">Grande</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="largura">Largura do labirinto:</label>
-                                                    <select class="selectborda" name="largura" id="largura">
-                                                        <option selected value="1">Pequeno</option>
-                                                        <option value="2">Medio</option>
-                                                        <option value="3">Grande</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="container">
+                                        <div class="textareaborda2">
+                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!--   Ambinete  -->
+                                    <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
+                                    <div class=" container">
+                                        <div class="row" style="line-height: 40px; margin-bottom: 10px;">
+                                            <div class="col-4">
+                                                <input type="hidden" name="path_id" id="path_id">
+                                                <label for="answer_boolean">Caminho do jogo:</label>
+                                                <select class="selectborda" name="answer_boolean" id="answer_boolean">
+                                                    <option selected value="1">Corredor</option>
+                                                    <option value="2">Labirinto</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="tamanho">Tamanho do labirinto:</label>
+                                                <select class="selectborda" name="tamanho" id="tamanho">
+                                                    <option selected value="1">Pequeno</option>
+                                                    <option value="2">Medio</option>
+                                                    <option value="3">Grande</option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <label for="largura">Largura do labirinto:</label>
+                                                <select class="selectborda" name="largura" id="largura">
+                                                    <option selected value="1">Pequeno</option>
+                                                    <option value="2">Medio</option>
+                                                    <option value="3">Grande</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class=" container" style=" margin-top: -20px;">
-                                    <div class="card houvercard">
-                                        <!--   Resposta -->
-                                        <div class=" container" style=" margin-top: 10px;">
-                                            <div class="row  align-items-center">
-                                                <div class="col-9">
-                                                    <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
-                                                    <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="question_type">Tipo da Resposta:</label>
-                                                    <select class="selectborda" name="tipo_resp" id="tipo_opcao" class="tipo_resp">
-                                                        <option selected value="1">Texto</option>
-                                                        <option value="2">Imagem</option>
-                                                        <option value="3">Vídeo</option>
-                                                        <option value="4">Áudio</option>
-                                                    </select>
-                                                </div>
+                            <div class=" container" style=" margin-top: -20px;">
+                                <div class="card houvercard">
+                                    <!--   Resposta -->
+                                    <div class=" container" style=" margin-top: 10px;">
+                                        <div class="row  align-items-center">
+                                            <div class="col-9">
+                                                <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
+                                                <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
                                             </div>
+                                            <div class="col">
+                                                <label for="question_type">Tipo da Resposta:</label>
+                                                <select class="selectborda" name="tipo_resp" id="tipo_opcao" class="tipo_resp">
+                                                    <option selected value="1">Texto</option>
+                                                    <option value="2">Imagem</option>
+                                                    <option value="3">Vídeo</option>
+                                                    <option value="4">Áudio</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
 
-                                            <div class="dynamic-added" id="dynamic_field" border="0">
-                                                <div class="card houvercard">
-                                                    <div class="container">
-                                                        <div class="textareaborda2" style="margin-top: 10px;">
-                                                            <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
-                                                            <input type="hidden" name="resp_id[]" class="resp_id">
-                                                        </div>
-<!--
+                                        <div class="dynamic-added" id="dynamic_field" border="0">
+                                            <div class="card houvercard">
+                                                <div class="container">
+                                                    <div class="textareaborda2" style="margin-top: 10px;">
+                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
+                                                        <input type="hidden" name="resp_id[]" class="resp_id">
+                                                    </div>
+                                                    <!--
                                                         <div class="row">
                                                             <div class="col-6" style="margin-bottom: 10px;">
                                                                 <select class="selectborda" name="corret[]" class="form-control corret">
@@ -172,75 +173,75 @@
                                                         </div>
 -->
 
-                                                        <div class="form-check form-check-radio">
-                                                            Essa resposta esta correta?&emsp;
-                                                            <label class="form-check-label">
-                                                                <input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" value="0" required>
-                                                                Sim
-                                                                <span class="circle">
-                                                                    <span class="check"></span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
+                                                    <div class="form-check form-check-radio">
+                                                        Essa resposta esta correta?&emsp;
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" value="0" required>
+                                                            Sim
+                                                            <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
                                                     </div>
                                                 </div>
-
-                                                <div class="card houvercard">
-                                                    <div class="container">
-                                                        <div class="textareaborda2" style="margin-top: 10px;">
-                                                            <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
-                                                            <input type="hidden" name="resp_id[]" class="resp_id">
-                                                        </div>
-                                                        <div class="form-check form-check-radio">
-                                                            Essa resposta esta correta?&emsp;
-                                                            <label class="form-check-label">
-                                                                <input class="form-check-input correct" type="radio" name="corret[]" value="0" onclick="muda(this);" required>
-                                                                Sim
-                                                                <span class="circle">
-                                                                    <span class="check"></span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
                                             </div>
+
+                                            <div class="card houvercard">
+                                                <div class="container">
+                                                    <div class="textareaborda2" style="margin-top: 10px;">
+                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
+                                                        <input type="hidden" name="resp_id[]" class="resp_id">
+                                                    </div>
+                                                    <div class="form-check form-check-radio">
+                                                        Essa resposta esta correta?&emsp;
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input correct" type="radio" name="corret[]" value="0" onclick="muda(this);" required>
+                                                            Sim
+                                                            <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Aba do reforco -->
-
-                            <div class="tab-pane" id="pergReforco">
-                                <div class="hovereffect">
-                                    <div class="overlay">
-                                        <div class="form-check" style="margin-left:5%; margin-bottom:2%">
-                                            <label class="form-check-label">
-
-                                                <input class="form-check-input" type="checkbox" id="check-reforco">
-                                                Pergunta Reforço
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="abcd">
-
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Aba do reforco -->
+
+                        <div class="tab-pane" id="pergReforco">
+                            <div class="hovereffect">
+                                <div class="overlay">
+                                    <div class="form-check" style="margin-left:5%; margin-bottom:2%">
+                                        <label class="form-check-label">
+
+                                            <input class="form-check-input" type="checkbox" id="check-reforco">
+                                            Pergunta Reforço
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="abcd">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
-                        <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
-                    </div>
-                </form>
-            
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
+            </div>
+            </form>
+
         </div>
     </div>
 </div>
