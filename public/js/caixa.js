@@ -572,7 +572,7 @@
                                   modal.find('#largura_ref').val(val.path.widht);
                                   modal.find('#tamanho_ref').val(val.path.heigh);
                                   console.log(val.answer)
-                                  $.each(val.answer, function (j, resp) {
+                                  $.each(val.answer, function (j, ref) {
                                       if (v > 1) {
                                           $('#dynamic_field2').append('' +
                                               '<div id="row2' + i2 + '" class="dynamic-added2">' +
@@ -580,7 +580,7 @@
                                               '<div class="container">' +
                                               '<div class="textareaborda2" style="margin-top: 10px;">' +
                                               '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
+                                              '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                                               '</div>' +
                                               '<div class="row align-items-center" style="margin-bottom: 10px;">' +
                                               '<div class="col col-sm-11">' +
@@ -604,16 +604,16 @@
                                               '</div>');
                                           b++;
                                       }
-                                      console.log(resp.answer)
-                                      modal.find(document.getElementsByName("tipo_opcao_ref")).attr("value", resp.tipo_resp);
-                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",resp.answer_id);
-                                      if (resp.correct === true) {
+                                      console.log(ref.answer)
+                                      modal.find(document.getElementsByName("tipo_opcao_ref")[0]).attr("value", ref.tipo_resp);
+                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",ref.answer_id);
+                                      if (ref.correct === true){
                                           modal.find(corretos_ref[v]).attr("value", "1");
                                           modal.find(corretos_ref[v]).attr("checked", "true");
-                                      } else {
+                                      }else {
                                           modal.find(corretos_ref[v]).attr("value", "0");
                                       }
-                                      modal.find(document.getElementsByClassName("resposta_ref")[v]).attr("value",resp.answer);
+                                      modal.find(document.getElementsByClassName("resposta_ref")[v]).attr("value",ref.answer);
                                       v++;
                                       
 
