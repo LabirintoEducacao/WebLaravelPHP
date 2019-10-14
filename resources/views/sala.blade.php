@@ -122,6 +122,7 @@
                                         </td>
                                         <td>
 
+                                            <div class="dropdown">
                                             <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                                 <i class="material-icons">more_vert</i>
 
@@ -139,6 +140,7 @@
                                                 @if($sala->public==0)
                                                 <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
                                                 @endif
+                                             </div>
                                             </div>
                                         </td>
                                         

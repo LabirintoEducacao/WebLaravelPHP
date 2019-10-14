@@ -395,10 +395,11 @@
                             {{$item->pergunta}}
 
                         </div>
-                        <div class="col-2 col-sm-1">
+                        <div class="col-2 col-sm-1 dropdown">
                             <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                 <i id="teste" class="material-icons">more_vert</i>
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="">
                                 <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
                                 <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>
@@ -459,6 +460,7 @@
                             <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                 <i id="teste" class="material-icons">more_vert</i>
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="">
 
                                 <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload);">Excluir</a>
