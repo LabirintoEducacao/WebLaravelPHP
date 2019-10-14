@@ -313,7 +313,7 @@
                       '</div>' +
                       '<div class="col">' +
                       '<label for="question_type">Tipo da Resposta:</label>' +
-                      '<select  class="selectborda" name="tipo_resp_ref" id="tipo_opcao" class="tipo_resp_ref form-control">' +
+                      '<select  class="selectborda" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
                       ' <option selected value="1">Texto</option>' +
                       '<option value="2">Imagem</option>' +
                       '<option value="3">Vídeo</option>' +
@@ -571,7 +571,8 @@
                                   modal.find('#answer_boolean_ref').val(val.path.type);
                                   modal.find('#largura_ref').val(val.path.widht);
                                   modal.find('#tamanho_ref').val(val.path.heigh);
-                                  $.each(val.answer, function (j, resp) {
+                                  console.log(val.answer)
+                                  $.each(val.answer, function (j, ref) {
                                       if (v > 1) {
                                           $('#dynamic_field2').append('' +
                                               '<div id="row2' + i2 + '" class="dynamic-added2">' +
@@ -579,7 +580,7 @@
                                               '<div class="container">' +
                                               '<div class="textareaborda2" style="margin-top: 10px;">' +
                                               '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
+                                              '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                                               '</div>' +
                                               '<div class="row align-items-center" style="margin-bottom: 10px;">' +
                                               '<div class="col col-sm-11">' +
@@ -603,18 +604,18 @@
                                               '</div>');
                                           b++;
                                       }
-                                      modal.find(document.getElementsByClassName("tipo_resp_ref")[0]).val(resp.tipo_resp);
-                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).val(resp.answer_id);
-                                      if (resp.correct === true) {
-                                          console.log("true " + resp.answer)
+                                      console.log(ref.answer)
+                                      modal.find(document.getElementsByName("tipo_opcao_ref")[0]).attr("value", ref.tipo_resp);
+                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",ref.answer_id);
+                                      if (ref.correct === true){
                                           modal.find(corretos_ref[v]).attr("value", "1");
                                           modal.find(corretos_ref[v]).attr("checked", "true");
-                                      } else {
-                                          console.log("false " + resp.answer)
+                                      }else {
                                           modal.find(corretos_ref[v]).attr("value", "0");
                                       }
-                                      modal.find(document.getElementsByClassName("resposta_ref")[v]).val(resp.answer);
+                                      modal.find(document.getElementsByClassName("resposta_ref")[v]).attr("value",ref.answer);
                                       v++;
+                                      
 
                                   });
 

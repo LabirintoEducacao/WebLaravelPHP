@@ -611,7 +611,7 @@ class PerguntaRespostaController extends Controller
           $tipo_resp = $request->tipo_resp;
             $resposta = $request->resposta;
             $resp_id = $request->resp_id;
-            $corret = $request->corret;
+              $corret = explode(',', $request->correto);
             $sala_id = $request->sala_id;
               $count=0;
               DB::table('respostas')
@@ -642,14 +642,14 @@ class PerguntaRespostaController extends Controller
                     if(count($att_resp_id)>0){
                         DB::table('respostas')
                             ->where('id','=', $resp_id[$count])
-                            ->update(['tipo_resp' => $tipo_resp[$count],'resposta' => $resposta[$count],'corret' => $corret[$count]]);
+                            ->update(['tipo_resp' => $tipo_resp,'resposta' => $resposta[$count],'corret' => $corret[$count]]);
                         
                     }else{
                         
                         $resposta_id_s = DB::table('respostas')->insertGetId(array(
 
                                  'sala_id'  => $request->sala_id,
-                                 'tipo_resp' => $tipo_resp[$count],
+                                 'tipo_resp' => $tipo_resp,
                                  'resposta' => $resposta[$count],
                                  'corret' => $corret[$count]
 
@@ -678,7 +678,7 @@ class PerguntaRespostaController extends Controller
               ->get();
                     $tipo_resp_ref = $request->tipo_resp_ref;
                      $resposta_ref = $request->resposta_ref;
-                     $corret_ref = $request->corret_ref;
+                     $corret_ref = explode(',', $request->correto_ref);
               $resp_ref_id = $request->resp_ref_id;
               
               DB::table('paths')
@@ -713,13 +713,13 @@ class PerguntaRespostaController extends Controller
                     if(count($id_ref)>0){
                         DB::table('respostas')
                             ->where('id','=', $resp_ref_id[$count])
-                            ->update(['tipo_resp' => $tipo_resp_ref[$count],'resposta' => $resposta_ref[$count],'corret' => $corret_ref[$count]]);
+                            ->update(['tipo_resp' => $tipo_resp_ref,'resposta' => $resposta_ref[$count],'corret' => $corret_ref[$count]]);
                     }else{
                         
                         $resposta_id_ref = DB::table('respostas')->insertGetId(array(
 
                                  'sala_id'  => $request->sala_id,
-                                 'tipo_resp' => $tipo_resp_ref[$count],
+                                 'tipo_resp' => $tipo_resp_ref,
                                  'resposta' => $resposta_ref[$count],
                                  'corret' => $corret_ref[$count]
 
@@ -756,13 +756,13 @@ class PerguntaRespostaController extends Controller
                       
                     $tipo_resp_ref = $request->tipo_resp_ref;
                      $resposta_ref = $request->resposta_ref;
-                     $corret_ref = $request->corret_ref;
+                     $corret_ref = explode(',', $request->correto_ref);
                       for($count = 0; $count < count($resposta_ref); $count++)
             {
                     $resposta_id_ref = DB::table('respostas')->insertGetId(array(
 
                                  'sala_id'  => $request->sala_id,
-                                 'tipo_resp' => $tipo_resp_ref[$count],
+                                 'tipo_resp' => $tipo_resp_ref,
                                  'resposta' => $resposta_ref[$count],
                                  'corret' => $corret_ref[$count]
 
@@ -793,7 +793,7 @@ class PerguntaRespostaController extends Controller
                      /////Resposta2////////////
                      $tipo_resp_ref = $request->tipo_resp_ref;
                      $resposta_ref = $request->resposta_ref;
-                     $corret_ref = $request->corret_ref;
+                     $corret_ref = explode(',', $request->correto_ref);
 
 
                      ////////////////PatchReforco/////////
@@ -841,7 +841,7 @@ class PerguntaRespostaController extends Controller
                          $reforcoid = DB::table('respostas')->insertGetId(array(
                              
                              'sala_id'  =>  $sala_id,
-                             'tipo_resp' => $tipo_resp_ref[$i],
+                             'tipo_resp' => $tipo_resp_ref,
                              'resposta' => $resposta_ref[$i],
                              'corret' => $corret_ref[$i]
                              
