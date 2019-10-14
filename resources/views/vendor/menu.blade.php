@@ -409,14 +409,30 @@
         function transforma(tempo,campo){
             var x = 0;
             console.log(tempo);
+            var y=0;
             
             
             resultado = tempo.split(":");
-            y = parseInt(resultado[0]) + parseInt(resultado[1]) + parseInt(resultado[2]);
+            console.log(resultado)
+            for(var i=0;i<resultado.length;i++){
+                
+              y += parseInt(resultado[i]);
+//                console.log(y)
+
+            }
+            console.log(y)
             if(y>0){
-                x = parseInt(resultado[0]*3600);
-                x += parseInt(resultado[1]*60);
-                x += parseInt(resultado[2]);
+                if(resultado.length==3){
+                    x = parseInt(resultado[0]*3600);
+                    x += parseInt(resultado[1]*60);
+                    x += parseInt(resultado[2]);
+                }else if(resultado.length==2){
+                    x = parseInt(resultado[0]*3600);
+                    x += parseInt(resultado[1]*60);
+                }else if(resultado.length==1){
+                    x = parseInt(resultado[0]*3600);
+                }else
+                    x=0;
             }
             console.log(x);
 
@@ -436,15 +452,14 @@
                 $(radio).attr("value", "1");
             }
             
-            $('radio .correct').change(function(){
-              var y = document.getElementsByName('corret[]');
-              for(var i=0;i<y.length;i++){
-                  if(y[i].checked)
-                      $("input[name='corret']").attr("value", "1");
-                  else
-                      $("input[name='corret']").attr("value", "0");
+            function muda2(radio){
+                var y = document.getElementsByName('corret_ref[]');
+                for(var i=0;i<y.length;i++){
+                    //$("input[name='corret']").attr("value", "0");
+                    y[i].value = 0;
               }
-          })
+                $(radio).attr("value", "1");
+            }
             
 
                  
@@ -524,17 +539,6 @@
         
 
 });
-
-
-    
-
-
-     
-
-
-
-
-
 
     </script>
     

@@ -16,6 +16,14 @@
             <div class="card card-nav-tabs card-plain">
                 <div class="card-header card-header-primary">
                     <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                        <div class="container " >
+                        <div class="row align-items-center">
+                            <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 9999999999;">
+                                <ul style="list-style-type: none"></ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="container row align-items-center">
                         <div class="col-11">
                             <div class="nav-tabs-navigation">
@@ -53,19 +61,11 @@
                     <!--   <div class="col-4 alert alert-danger print-error-msg" style="display: none; position: absolute; z-index: 99999;">
                             <ul></ul>
                         </div> -->
-                    <div class="container" style="margin-top: 10px;">
-                        <div class="row align-items-center">
-                            <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 999999; text-align: center;">
-                                <ul></ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: -20px; ">
+                
                         <!-- Pergunta  -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="perg">
-                                <div class=" container">
+                                <div class=" container" style="margin-top: -40px">
                                     <div class="card houvercard">
                                         <div class=" container">
                                             <div class="row" style="margin-top: 10px;">
@@ -160,7 +160,6 @@
                                                         <div class="textareaborda2" style="margin-top: 10px;">
                                                             <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
                                                             <input type="hidden" name="resp_id[]" class="resp_id">
-                                                            <input type="hidden" name="resp_id[]" class="resp_id">
                                                         </div>
 <!--
                                                         <div class="row">
@@ -176,7 +175,7 @@
                                                         <div class="form-check form-check-radio">
                                                             Essa resposta esta correta?&emsp;
                                                             <label class="form-check-label">
-                                                                <input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" checked value="1">
+                                                                <input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" value="0" required>
                                                                 Sim
                                                                 <span class="circle">
                                                                     <span class="check"></span>
@@ -191,12 +190,11 @@
                                                         <div class="textareaborda2" style="margin-top: 10px;">
                                                             <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
                                                             <input type="hidden" name="resp_id[]" class="resp_id">
-                                                            <input type="hidden" name="resp_id[]" class="resp_id">
                                                         </div>
                                                         <div class="form-check form-check-radio">
                                                             Essa resposta esta correta?&emsp;
                                                             <label class="form-check-label">
-                                                                <input class="form-check-input correct" type="radio" name="corret[]" value="0" onclick="muda(this);">
+                                                                <input class="form-check-input correct" type="radio" name="corret[]" value="0" onclick="muda(this);" required>
                                                                 Sim
                                                                 <span class="circle">
                                                                     <span class="check"></span>
@@ -219,7 +217,7 @@
                             <div class="tab-pane" id="pergReforco">
                                 <div class="hovereffect">
                                     <div class="overlay">
-                                        <div class="form-check" style="margin-left:5%;margin-top:5%;margin-bottom:2%">
+                                        <div class="form-check" style="margin-left:5%; margin-bottom:2%">
                                             <label class="form-check-label">
 
                                                 <input class="form-check-input" type="checkbox" id="check-reforco">
@@ -236,7 +234,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
@@ -259,9 +256,6 @@
             </div>
             <div class="card-body">
                 <div>
-
-                    <br>
-                    <br>
                     <div class="row" style="margin-bottom: -35px;">
                         <?php
                                             $x = gmdate("H:i:s", $sala->duracao);

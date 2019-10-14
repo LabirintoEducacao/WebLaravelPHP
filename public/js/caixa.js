@@ -104,10 +104,16 @@
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
                       '<div class="col col-sm-11">' +
-                      '<select class="selectborda" name ="corret_ref[]" class="form-control corret">' +
-                      '<option value="1">Certa</option>' +
-                      '<option selected value="0">Errada</option>' +
-                      '</select>' +
+                      '<div class="form-check form-check-radio">' +
+                      'Essa resposta esta correta?&emsp;' +
+                      '<label class="form-check-label">' +
+                      '<input class="form-check-input correct" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
+                      'Sim' +
+                      '<span class="circle">' +
+                      '<span class="check"></span>' +
+                      '</span>' +
+                      '</label>' +
+                      '</div>' +
                       '</div>' +
                       '<div class="col col-sm-1">' +
                       '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
@@ -323,13 +329,16 @@
                       '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 1º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                       '</div>' +
-                      '<div class="row">' +
-                      '<div class="col-6" style="margin-bottom: 10px;">' +
-                      '<select class="selectborda" name ="corret_ref[]" class="form-control corret_ref">' +
-                      '<option selected value="1">Certa</option>' +
-                      '<option value="0">Errada</option>' +
-                      '</select>' +
-                      '</div>' +
+
+                      '<div class="form-check form-check-radio">' +
+                      'Essa resposta esta correta?&emsp;' +
+                      '<label class="form-check-label">' +
+                      '<input class="form-check-input correct" type="radio" name="corret_ref[]" value="1" onclick="muda2(this);" checked>' +
+                      'Sim' +
+                      '<span class="circle">' +
+                      '<span class="check"></span>' +
+                      '</span>' +
+                      '</label>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +
@@ -339,17 +348,18 @@
                       '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 2º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                       '</div>' +
-                      '<div class="row">' +
-                      '<div class="col-6" style="margin-bottom: 10px;">' +
-                      '<select class="selectborda" name ="corret_ref[]" class="form-control corret_ref">' +
-                      '<option selected value="1">Certa</option>' +
-                      '<option value="0">Errada</option>' +
-                      '</select>' +
+                      '<div class="form-check form-check-radio">' +
+                      'Essa resposta esta correta?&emsp;' +
+                      '<label class="form-check-label">' +
+                      '<input class="form-check-input correct" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
+                      'Sim' +
+                      '<span class="circle">' +
+                      '<span class="check"></span>' +
+                      '</span>' +
+                      '</label>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +
-                      '</div>' +
-
                       '</div>' +
                       '</div>' +
                       '</div>' +
@@ -453,6 +463,11 @@
                   x = 0,
                   y = 0,
                   z = 0;
+
+              var corretos = document.getElementsByName('corret[]');
+              var corretos_ref = document.getElementsByName('corret_ref[]');
+
+
               if (button.data('whatever')) {
                   var recipient = button.data('whatever');
                   console.log(recipient);
@@ -497,36 +512,49 @@
                                           modal.find('#path_errado_id').val(path.path_id);
                                       }
                                   });
+                                  console.log(val.answer);
+                                  v = 0;
                                   $.each(val.answer, function (j, resp) {
-                                      if (v > 0) {
+                                      console.log(resp.correct);
+                                      if (v > 1) {
                                           $('#dynamic_field').append('' +
-                                              '<tr id="row' + i + '" class="dynamic-added">' +
-                                              '<td>' +
-                                              '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control tipo_resp">' +
-                                              '<option selected value="1">Texto</option>' +
-                                              '<option value="2">Imagem</option>' +
-                                              '<option value="3">Vídeo</option>' +
-                                              '<option value="4">Áudio</option>' +
-                                              '</select>' +
-                                              '</td>' +
-                                              '<td>' +
-                                              '<select name ="corret[]" class="form-control corret">' +
-                                              '<option value="1">Certa</option>' +
-                                              '<option selected value="0">Errada</option>' +
-                                              '</select>' +
-                                              '</td>' +
-                                              '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
-                                              '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
-                                              '</tr>');
+                                              '<div id="row' + i + '" class="dynamic-added">' +
+                                              '<div class="card houvercard">' +
+                                              '<div class="container">' +
+                                              '<div class="textareaborda2" style="margin-top: 10px;">' +
+                                              '<textarea type="text" name="resposta[]" placeholder="' + (a + 3) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                                              '<input type="hidden" name="resp_id[]" class="resp_id">' +
+                                              '</div>' +
+                                              '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                                              '<div class="col col-sm-11">' +
+                                              '<div class="form-check form-check-radio">' +
+                                              'Essa resposta esta correta?&emsp;' +
+                                              '<label class="form-check-label">' +
+                                              '<input class="form-check-input correct" type="radio" name="corret[]" value="0" onclick="muda(this);">' +
+                                              'Sim' +
+                                              '<span class="circle">' +
+                                              '<span class="check"></span>' +
+                                              '</span>' +
+                                              '</label>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '<div class="col col-sm-1">' +
+                                              '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '</div>');
                                           a++;
                                       }
-                                      modal.find(document.getElementsByClassName("tipo_resp")[v]).val(resp.tipo_resp);
+                                      modal.find(document.getElementsByName("tipo_resp")[0]).val(resp.tipo_resp);
                                       modal.find(document.getElementsByClassName("resp_id")[v]).val(resp.answer_id);
                                       if (resp.correct === true) {
-                                          modal.find(document.getElementsByClassName("corret")[v]).val(1);
+                                          modal.find(corretos[v]).attr("value", "1");
+                                          modal.find(corretos[v]).attr("checked", "true");
                                       } else {
-                                          modal.find(document.getElementsByClassName("corret")[v]).val(0);
+                                          modal.find(corretos[v]).attr("value", "0");
+                                          //                                        modal.find(corretos[v]).attr("checked", "false");
                                       }
                                       modal.find(document.getElementsByClassName("resposta")[v]).val(resp.answer);
                                       v++;
@@ -544,35 +572,46 @@
                                   modal.find('#largura_ref').val(val.path.widht);
                                   modal.find('#tamanho_ref').val(val.path.heigh);
                                   $.each(val.answer, function (j, resp) {
-                                      if (v > 0) {
+                                      if (v > 1) {
                                           $('#dynamic_field2').append('' +
-                                              '<tr id="row' + i2 + '" class="dynamic-added">' +
-                                              '<td>' +
-                                              '<select name ="tipo_resp_ref[]" class="form-control tipo_resp_ref">' +
-                                              '<option selected value="1">Texto</option>' +
-                                              '<option value="2">Imagem</option>' +
-                                              '<option value="3">Vídeo</option>' +
-                                              '<option value="4">Áudio</option>' +
-                                              '</select>' +
-                                              '</td>' +
-                                              '<td>' +
-                                              '<select name ="corret_ref[]" class="form-control corret_ref">' +
-                                              '<option value="1">Certa</option>' +
-                                              '<option selected value="0">Errada</option>' +
-                                              '</select>' +
-                                              '</td>' +
-                                              '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
-                                              '<td><button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn_remove2">X</button></td>' +
-                                              '</tr>');
+                                              '<div id="row2' + i2 + '" class="dynamic-added2">' +
+                                              '<div class="card houvercard">' +
+                                              '<div class="container">' +
+                                              '<div class="textareaborda2" style="margin-top: 10px;">' +
+                                              '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                                              '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
+                                              '</div>' +
+                                              '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                                              '<div class="col col-sm-11">' +
+                                              '<div class="form-check form-check-radio">' +
+                                              'Essa resposta esta correta?&emsp;' +
+                                              '<label class="form-check-label">' +
+                                              '<input class="form-check-input correct" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
+                                              'Sim' +
+                                              '<span class="circle">' +
+                                              '<span class="check"></span>' +
+                                              '</span>' +
+                                              '</label>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '<div class="col col-sm-1">' +
+                                              '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '</div>' +
+                                              '</div>');
                                           b++;
                                       }
-                                      modal.find(document.getElementsByClassName("tipo_resp_ref")[v]).val(resp.tipo_resp);
+                                      modal.find(document.getElementsByClassName("tipo_resp_ref")[0]).val(resp.tipo_resp);
                                       modal.find(document.getElementsByClassName("resp_ref_id")[v]).val(resp.answer_id);
                                       if (resp.correct === true) {
-                                          modal.find(document.getElementsByClassName("corret_ref")[v]).val(1);
+                                          console.log("true " + resp.answer)
+                                          modal.find(corretos_ref[v]).attr("value", "1");
+                                          modal.find(corretos_ref[v]).attr("checked", "true");
                                       } else {
-                                          modal.find(document.getElementsByClassName("corret_ref")[v]).val(0);
+                                          console.log("false " + resp.answer)
+                                          modal.find(corretos_ref[v]).attr("value", "0");
                                       }
                                       modal.find(document.getElementsByClassName("resposta_ref")[v]).val(resp.answer);
                                       v++;
@@ -614,19 +653,44 @@
           $('#submit').click(function (e) {
               var x = document.getElementById('sala_id');
               var y = document.getElementsByName('corret[]');
+              var p = document.getElementsByName('corret_ref[]');
               var z = 0;
+              var teste3 = [];
+              var teste4 = [];
+              var ref = document.getElementById('check-reforco')
+              var i;
 
-              for (var i = 0; i < y.length; i++) {
+              for (i = 0; i < y.length; i++) {
+
+                  teste3[i] = y[i].value;
+
+
                   if (y[i].value == 1)
                       z++
               }
 
-              if (z > 0) {
+              var t = $('#add_name').serialize() + "&correto=" + teste3;
+
+              if (ref.checked) {
+                  for (i = 0; i < p.length; i++) {
+
+                      teste4[i] = p[i].value;
+
+
+                      if (p[i].value == 1)
+                          z++
+                  }
+                  t += "&correto_ref=" + teste4;
+              }
+
+
+
+              if ((z == 1 && !ref.checked) || (z == 2 && ref.checked)) {
                   $.ajax({
 
                       url: postURL + x,
                       method: "POST",
-                      data: $('#add_name').serialize(),
+                      data: t,
                       type: 'json',
 
                       error: function (error) {
@@ -640,7 +704,10 @@
                               printErrorMsg(data.error);
 
                           } else {
-                              window.location.reload();
+                              //window.location.reload();
+                              e.preventDefault();
+                              console.log(data);
+
                               i = 1;
                               $('.dynamic-added').remove();
                               $('#add_name')[0].reset();
@@ -648,20 +715,20 @@
                               $(".print-success-msg").css('display', 'block');
                               $(".print-error-msg").css('display', 'none');
                               $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
+
                           }
+
                           a = 0;
                           b = 0;
 
-
                       }
-
 
                   });
               } else {
                   alert("Uma das respostas deve estar correta!")
+                  e.preventDefault();
               }
 
-            
 
 
           });
