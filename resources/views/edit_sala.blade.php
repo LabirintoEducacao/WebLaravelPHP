@@ -16,14 +16,6 @@
             <div class="card card-nav-tabs card-plain">
                 <div class="card-header card-header-primary">
                     <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-                    <div class="container ">
-                        <div class="row align-items-center">
-                            <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 9999999999;">
-                                <ul style="list-style-type: none"></ul>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="container row align-items-center">
                         <div class="col-11">
                             <div class="nav-tabs-navigation">
@@ -45,12 +37,25 @@
                             </button>
                         </div>
                     </div>
+
                 </div>
             </div>
 
-            <div class="modal-body">
+                <div class="container ">
+                        <div class="row align-items-center">
+                            <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 9999999999;">
+                                <ul style="list-style-type: none"></ul>
+                            </div>
+                        </div>
+                         <div class="col-6 alert alert-danger print-error-msg" style="display: none;">
+                            <ul></ul>
+                        </div>
+                    </div>
+                    
+            <form name="add_name" id="add_name">
+                <div class="modal-body">
 
-                <form name="add_name" id="add_name">
+
 
                     @csrf
                     {{ csrf_field() }}
@@ -58,10 +63,7 @@
                     <input type="hidden" value="{{$id}}" name="sala_id">
                     <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
 
-                    <!--   <div class="col-4 alert alert-danger print-error-msg" style="display: none; position: absolute; z-index: 99999;">
-                            <ul></ul>
-                        </div> -->
-
+                     
                     <!-- Pergunta  -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="perg">
@@ -235,11 +237,11 @@
                             </div>
                         </div>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
-                <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
+                </div>
             </form>
 
         </div>
@@ -342,7 +344,8 @@
                     </div>
 
                     <div class="col-12 col-md-auto">
-                        <a class="btn btn-warning btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
+                        <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}"  onclick="qrcodebtn2({{$sala->id}});"> Qr Code</button>
+                        
                     </div>
                 </div>
 
@@ -390,11 +393,10 @@
                             {{$item->pergunta}}
 
                         </div>
-                        <div class="col-2 col-sm-1 dropdown">
+                        <div class="col-2 col-sm-1">
                             <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                 <i id="teste" class="material-icons">more_vert</i>
                             </a>
-
                             <div class="dropdown-menu" aria-labelledby="">
                                 <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
                                 <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>
@@ -455,7 +457,6 @@
                             <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                 <i id="teste" class="material-icons">more_vert</i>
                             </a>
-
                             <div class="dropdown-menu" aria-labelledby="">
 
                                 <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload);">Excluir</a>
@@ -609,7 +610,7 @@
 
 
 
-<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="qrmodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content " >
             <div class="modal-header" style="background-color:#4D226D;">
@@ -647,13 +648,7 @@
 
 
 
-
-
-
-
-
-
-<div class="modal fade" id="noinfomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="noinfomodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#4D226D;">
@@ -669,10 +664,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 
 @endsection
