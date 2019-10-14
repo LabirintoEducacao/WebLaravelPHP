@@ -47,10 +47,10 @@
                     </div>
                 </div>
             </div>
+            <form name="add_name" id="add_name">
+                <div class="modal-body">
 
-            <div class="modal-body">
 
-                <form name="add_name" id="add_name">
 
                     @csrf
                     {{ csrf_field() }}
@@ -235,11 +235,11 @@
                             </div>
                         </div>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
-                <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
+                </div>
             </form>
 
         </div>
@@ -342,7 +342,8 @@
                     </div>
 
                     <div class="col-12 col-md-auto">
-                        <a class="btn btn-warning btn-sm" href="{{ url('/admin/virtual/'.$id)}}" style="width:100%;">Qr Code</a>
+                        <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}"  onclick="qrcodebtn({{$sala->id}});"> Qr Code</button>
+                        
                     </div>
                 </div>
 
@@ -605,6 +606,67 @@
 </div>
 
 
+
+<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content " >
+            <div class="modal-header" style="background-color:#4D226D;">
+                <h5 class="modal-title"></h5>
+                <h5 style="  font-size: 20px; color:#ffffff;" >Qr Code </h5>
+            </div>
+            
+            <div class="modal-body">
+                <h5 id="nomeqrsala"> Nome: </h5>
+                <input id="hiddenid" type="hidden" value="">
+
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" id="corouselimg" >   
+                    </div>
+
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="noinfomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content ">
+            <div class="modal-header" style="background-color:#4D226D;">
+                <h5 class="modal-title"></h5>
+                <h5 style="  font-size: 20px;color:#ffffff;" id="exampleModalScrollableTitle">Qr Code </h5>
+            </div>
+            <div class="modal-body">
+                <h4 style="color: purple;"> Não existe QrCode para este labirinto, verifique se existem perguntas ou se as alterações do labirinto foram salvas.</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @endsection

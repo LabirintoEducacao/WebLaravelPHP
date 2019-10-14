@@ -99,7 +99,7 @@
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
@@ -210,7 +210,7 @@
                       '<div class=" container">' +
                       '<div class="row" style="margin-top: 10px;">' +
                       '<div class="col">' +
-                      '<input type="hidden" value="0" name="perg_id" id="perg_id">' +
+                      '<input type="hidden" value="0" name="perg_reforco" id="perg-reforco-id">' +
                       '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
                       '</div>' +
                       '<div class="col col-md-auto">' +
@@ -326,7 +326,7 @@
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 1º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>' +
+                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 1º Resposta reforço" rows="2"  class="form-control name_list resposta_ref" maxlength="500" required></textarea>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                       '</div>' +
 
@@ -345,7 +345,7 @@
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 2º Resposta reforço" rows="2"  class="form-control name_list resposta" maxlength="500" required></textarea>' +
+                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 2º Resposta reforço" rows="2"  class="form-control name_list resposta_ref" maxlength="500" required></textarea>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                       '</div>' +
                       '<div class="form-check form-check-radio">' +
@@ -458,7 +458,8 @@
           $('#addPerg').on('show.bs.modal', function (event) {
               var modal = $(this);
               var button = $(event.relatedTarget);
-              var v = 0,
+              var u = 0,
+                  v = 0,
                   w = 0,
                   x = 0,
                   y = 0,
@@ -547,7 +548,7 @@
                                               '</div>');
                                           a++;
                                       }
-                                      modal.find(document.getElementsByName("tipo_resp")[0]).val(resp.tipo_resp);
+                                      modal.find("#tipo_opcao").val(resp.tipo_resp);
                                       modal.find(document.getElementsByClassName("resp_id")[v]).val(resp.answer_id);
                                       if (resp.correct === true) {
                                           modal.find(corretos[v]).attr("value", "1");
@@ -562,7 +563,7 @@
                                   });
                                   x++;
                               } else {
-                                  v = 0;
+                                  u=0;
                                   modal.find('#pergunta-reforco').val(val.question);
                                   modal.find('#perg-reforco-id').val(val.question_id);
                                   modal.find('#room_type_ref').val(val.room_type);
@@ -573,13 +574,13 @@
                                   modal.find('#tamanho_ref').val(val.path.heigh);
                                   console.log(val.answer)
                                   $.each(val.answer, function (j, ref) {
-                                      if (v > 1) {
+                                      if (u > 1) {
                                           $('#dynamic_field2').append('' +
                                               '<div id="row2' + i2 + '" class="dynamic-added2">' +
                                               '<div class="card houvercard">' +
                                               '<div class="container">' +
                                               '<div class="textareaborda2" style="margin-top: 10px;">' +
-                                              '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                                              '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
                                               '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                                               '</div>' +
                                               '<div class="row align-items-center" style="margin-bottom: 10px;">' +
@@ -605,16 +606,18 @@
                                           b++;
                                       }
                                       console.log(ref.answer)
-                                      modal.find(document.getElementsByName("tipo_opcao_ref")[0]).attr("value", ref.tipo_resp);
-                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",ref.answer_id);
+                                      modal.find("#tipo_opcao_ref").val(ref.tipo_resp);
+                                      modal.find(document.getElementsByClassName("resposta_ref")[u]).val(ref.answer);
+                                      modal.find(document.getElementsByClassName("resp_ref_id")[u]).val(ref.answer_id);
                                       if (ref.correct === true){
-                                          modal.find(corretos_ref[v]).attr("value", "1");
-                                          modal.find(corretos_ref[v]).attr("checked", "true");
-                                      }else {
-                                          modal.find(corretos_ref[v]).attr("value", "0");
+                                          modal.find(corretos_ref[u]).attr("value", "1");
+                                          modal.find(corretos_ref[u]).attr("checked", "true");
+                                      }else{
+                                          modal.find(corretos_ref[u]).attr("value", "0");
                                       }
-                                      modal.find(document.getElementsByClassName("resposta_ref")[v]).attr("value",ref.answer);
-                                      v++;
+                                      
+                                      
+                                      u++;
                                       
 
                                   });

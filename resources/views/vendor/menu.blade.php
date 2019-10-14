@@ -379,8 +379,8 @@
 
 
         });
-        
-            
+
+
 
 
         $(document).ready(function() {
@@ -405,143 +405,137 @@
             console.log(id);
             $("#" + id).slideToggle("slow");
         }
-            
-        function transforma(tempo,campo){
+
+        function transforma(tempo, campo) {
             var x = 0;
             console.log(tempo);
-            var y=0;
-            
-            
+            var y = 0;
+
+
             resultado = tempo.split(":");
             console.log(resultado)
-            for(var i=0;i<resultado.length;i++){
-                
-              y += parseInt(resultado[i]);
-//                console.log(y)
+            for (var i = 0; i < resultado.length; i++) {
+
+                y += parseInt(resultado[i]);
+                //                console.log(y)
 
             }
             console.log(y)
-            if(y>0){
-                if(resultado.length==3){
-                    x = parseInt(resultado[0]*3600);
-                    x += parseInt(resultado[1]*60);
+            if (y > 0) {
+                if (resultado.length == 3) {
+                    x = parseInt(resultado[0] * 3600);
+                    x += parseInt(resultado[1] * 60);
                     x += parseInt(resultado[2]);
-                }else if(resultado.length==2){
-                    x = parseInt(resultado[0]*3600);
-                    x += parseInt(resultado[1]*60);
-                }else if(resultado.length==1){
-                    x = parseInt(resultado[0]*3600);
-                }else
-                    x=0;
+                } else if (resultado.length == 2) {
+                    x = parseInt(resultado[0] * 3600);
+                    x += parseInt(resultado[1] * 60);
+                } else if (resultado.length == 1) {
+                    x = parseInt(resultado[0] * 3600);
+                } else
+                    x = 0;
             }
             console.log(x);
 
-            if(campo == 0)
+            if (campo == 0)
                 document.getElementById("time5").value = x;
             else
                 document.getElementById("time4").value = x;
         }
-            
-            
-            function muda(radio){
-                var y = document.getElementsByName('corret[]');
-                for(var i=0;i<y.length;i++){
-                    //$("input[name='corret']").attr("value", "0");
-                    y[i].value = 0;
-              }
-                $(radio).attr("value", "1");
+
+
+        function muda(radio) {
+            var y = document.getElementsByName('corret[]');
+            for (var i = 0; i < y.length; i++) {
+                //$("input[name='corret']").attr("value", "0");
+                y[i].value = 0;
             }
-            
-            function muda2(radio){
-                var y = document.getElementsByName('corret_ref[]');
-                for(var i=0;i<y.length;i++){
-                    //$("input[name='corret']").attr("value", "0");
-                    y[i].value = 0;
-              }
-                $(radio).attr("value", "1");
-            }
-            
-
-                 
-                
-    
-
-
-        function qrcodebtn(id){        
-         
-        
-        
-        $.get("virtual/"+id).done( function(data){
-
-            var parse = JSON.parse(data);
-        
-            if(data == "null"){
-        
-             $('#noinfomodal').modal('show');
-
-            }
-
-            else {
-
-
-             $('#nomeqrsala').append(parse[0] );
-             $('#hiddenid').val(id);
-
-
-            for(var i=1; i< parse.length; i++)
-            {
-
-                if(i == 1)
-                {
-                $('#corouselimg').append(
-                '<div class="carousel-item active col" >'+
-                            '<img class="d-block w-100 " src="'+ parse[i] +'" alt="First slide">'+
-                            '<p> Qr Code:'+ i +":" + (parse.length -1 )+'  </p>'+
-                        '</div>'
-                );
-                }
-
-                if(i>1)
-                {
-
-                 $('#corouselimg').append(
-                '<div class="carousel-item  col" >'+
-                            '<img class="d-block w-100 " src="'+ parse[i] +'" alt="First slide">'+
-                                    '<p> Qr Code: '+ i +":" + (parse.length -1)+ '</p>'+
-                                        '</div>'
-                );
-                }
-             }
-
-            $('#qrmodal').modal('show');
-                $('.carousel').carousel({
-          interval: 1000
-      });
+            $(radio).attr("value", "1");
         }
+
+        function muda2(radio) {
+            var y = document.getElementsByName('corret_ref[]');
+            for (var i = 0; i < y.length; i++) {
+                //$("input[name='corret']").attr("value", "0");
+                y[i].value = 0;
+            }
+            $(radio).attr("value", "1");
+        }
+
+
+
+
+
+
+
+        function qrcodebtn(id) {
+
+
+            $.get("/admin/virtual/" + id).done(function(data) {
+
+                var parse = JSON.parse(data);
+
+                if (data == "null") {
+
+                    $('#noinfomodal').modal('show');
+
+                } else {
+                    console.log(data)
+
+                    $('#nomeqrsala').append(parse[0]);
+                    $('#hiddenid').val(id);
+
+
+                    for (var i = 1; i < parse.length; i++) {
+
+                        if (i == 1) {
+                            $('#corouselimg').append(
+                                '<div class="carousel-item active col" >' +
+                                '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
+                                '<p> Qr Code:' + i + ":" + (parse.length - 1) + '  </p>' +
+                                '</div>'
+                            );
+                        }
+
+                        if (i > 1) {
+
+                            $('#corouselimg').append(
+                                '<div class="carousel-item  col" >' +
+                                '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
+                                '<p> Qr Code: ' + i + ":" + (parse.length - 1) + '</p>' +
+                                '</div>'
+                            );
+                        }
+                    }
+
+                    $('#qrmodal').modal('show');
+                    $('.carousel').carousel({
+                        interval: 1000
+                    });
+                }
+            });
+
+        }
+
+
+        $('#qrmodal').on('hide.bs.modal', function(e) {
+
+            var idmodal = $('#hiddenid').val();
+
+            $.get("virtualdelete/" + idmodal).done(function() {
+                $('#corouselimg').empty();
+                $('#nomeqrsala').empty();
+                $('#carouselExampleControls').carousel('dispose');
+
+
+
+            });
+
+
+
         });
- 
-     }
-
-
-     $('#qrmodal').on('hide.bs.modal', function (e) {
-
-        var idmodal = $('#hiddenid').val();
-    
-        $.get("virtualdelete/"+idmodal).done( function(){
-            $('#corouselimg').empty();
-             $('#nomeqrsala').empty();
-           $('#carouselExampleControls').carousel('dispose');
-             
-       
-            
-        });
-
-        
-
-});
 
     </script>
-    
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
