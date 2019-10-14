@@ -186,14 +186,14 @@ class UserController extends Controller
     public function email(Request $request){
         $data = $request->all();
 
-        $users = User::where('email', '=', $data['email2'])->get();
+        $users = User::where('email', '=', $data['email'])->get();
         
         $sala = Sala::find($request->sala_id);
 
         foreach ($users as $user)
         {
             if($user){
-                \Mail::to($data['email2'])->send(new LinkSala($sala->name,Auth::user()->name,Auth::user()->id));
+                \Mail::to($data['email'])->send(new LinkSala($sala->name,Auth::user()->name,Auth::user()->id));
                 $notification = array(
                 'message' => 'E-mail enviado com sucesso!',
                 'alert-type' => 'success'
@@ -201,7 +201,7 @@ class UserController extends Controller
                 return redirect('admin/users')->with($notification);
             }
         }
-        \Mail::to($data['email2'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id,$data['email2']));
+        \Mail::to($data['email'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id,$data['email']));
         $notification = array(
                 'message' => 'E-mail para cadastro enviado com sucesso!',
                 'alert-type' => 'success'
@@ -241,6 +241,15 @@ class UserController extends Controller
             
         }
         
+    }
+
+    public function showalunos(Request $request){
+
+        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
+
+       return json_encode($aluno);    
+
     }
 
 

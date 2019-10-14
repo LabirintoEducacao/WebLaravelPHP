@@ -534,6 +534,43 @@
 
         });
 
+         $('#addAlunoModal').on('show.bs.modal', function (e) { 
+
+            console.log('funcionou');
+
+             $.get("/admin/showaluno").done( function(data){
+
+                console.log(data);
+               
+                 var parse = JSON.parse(data);
+
+                for( var i =0; i < parse.length; i++){
+
+                    $('#alunotbody').append(
+
+                            '<tr>'+
+                                 ' <th scope="row" >' + parse[i].user_id +'</th>'+
+                                  '<td>'+ parse[i].name +'</td>'+
+                                  '<td>'+ parse[i].email + '</td>'+
+                                  '<td> <button class="btn btn-primary btn-sm">'+ 'Adicionar</button></td>'+
+                               '</tr>'
+
+                        );
+
+
+                }
+
+             });
+
+
+         });
+
+
+
+
+
+
+
     </script>
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
