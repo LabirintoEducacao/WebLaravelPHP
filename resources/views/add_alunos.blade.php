@@ -7,7 +7,7 @@
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Controle de Jogadores
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addAlunoModal">
-                        Adicionar aluno já cadastrado
+                        Adicionar aluno 
                     </button>
                       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
                         Adicionar aluno não cadastrado
@@ -63,7 +63,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar aluno</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close bg-warning" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -73,13 +73,32 @@
                         <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
                          <div class="form-group" style="margin-top:3.5%">
                             <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
-                            <table>
-                                @foreach($alunos as $aluno)
+                            <input id="serach" name="search" type="text" class="fa fa-search">
 
-<!--                                    <option value="{{$aluno->id}}">{{$aluno->email}}</option>-->
+                            
+                            <table class="table container-fluid">
+                              <thead >
+                                <tr>
+                                <th scope="col"> Id: </th>
+                                <th scope="col"> Nome: </th>
+                                <th scope="col"> Email: </th>
+                                <th scope="col"></th>
+                              </tr>
+                              </thead>
+                              <tbody id="alunotbody">
 
-                                @endforeach
+                            
+                              
+                                
+                                
+
+                    
+                              </tbody> 
                             </table>
+
+
+                          
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -90,6 +109,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="modal fade bd-example-modal-lg" id="addNovoAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

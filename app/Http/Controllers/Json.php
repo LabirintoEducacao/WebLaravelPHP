@@ -493,7 +493,7 @@ $qr = $append.$rest;
 
 QrCode::format('png')->size(500)->generate( $qr , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.".png");
 
-$img[] = '..'.DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
+$img[] = DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
 
 $n ++;
 

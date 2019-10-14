@@ -156,6 +156,7 @@ Route::get('/estatistica/{id}', 'SalaController@estatistica');
 //Route::post('/estatistica/{id}', 'SalaController@index');
 Route::post('/sala', 'SalaController@store');
 Route::get('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
+
 Route::get('/virtual', 'SalaController@entrar');
 
 Route::post('/editar-sala','SalaController@edit_sala');
@@ -186,6 +187,7 @@ Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar')->middle
 Route::delete('/settings/delete/{id}', 'Admin\UserController@destroy');
 Route::get('/alunos/{id}', 'Admin\UserController@add_user')->middleware(['auth', 'auth.admin']);
 Route::post('/aluno', 'Admin\UserController@store');
+Route::get('/showaluno','Admin\UserController@showalunos');
 Route::post('/new/user', 'Admin\UserController@user');
 
 Route::get('/newuser', function () {
