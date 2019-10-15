@@ -86,7 +86,7 @@ class ProfileController extends Controller
            $user->delete();
            $notification = array(
                         'message' => 'Usuário deletado com sucesso!',
-                        'alert-type' => 'success'
+                        'alert-type' => 'danger'
                     );
            return redirect('usuario/login')->with($notification);
        }

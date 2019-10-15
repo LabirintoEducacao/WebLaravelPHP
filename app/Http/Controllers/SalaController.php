@@ -304,7 +304,7 @@ class SalaController extends Controller
        }
         $notification = array(
                 'message' => 'Sala deletada com sucesso!',
-                'alert-type' => 'success'
+                'alert-type' => 'danger'
             );
 
         $strCaminho = public_path() . '/sala/' . $id;
