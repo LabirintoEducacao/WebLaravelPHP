@@ -126,6 +126,10 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                    
+<!--                                      BUSCA                    -->
+                    
+<!--
                     <div class="collapse navbar-collapse justify-content-end">
                         <form class="navbar-form">
                             <div class="input-group no-border">
@@ -136,9 +140,8 @@
                                 </button>
                             </div>
                         </form>
-
-
                     </div>
+-->
                 </div>
             </nav>
             <!-- End Navbar -->
