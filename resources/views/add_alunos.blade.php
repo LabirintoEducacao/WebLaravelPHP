@@ -67,13 +67,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/aluno') }}" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
-                    @csrf
+                
                     <div class="modal-body">
                         <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
                          <div class="form-group" style="margin-top:3.5%">
                             <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
-                            <input id="serach" name="search" type="text" class="fa fa-search">
+
+                         <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
 
                             
                             <table class="table container-fluid">
@@ -87,25 +87,28 @@
                               </thead>
                               <tbody id="alunotbody">
 
-                            
-                              
-                                
-                                
-
-                    
                               </tbody> 
                             </table>
-
-
-                          
-
+        
                         </div>
                     </div>
+
+                      <div class="row justify-content-center">
+                          <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                              
+                              
+                            </ul>
+                          </nav>
+                        </div>
+
                     <div class="modal-footer">
                         <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
                         <button type="submit" class="btn btn-success">Adicionar aluno</button>
+
+
                     </div>
-                </form>
+                
             </div>
         </div>
     </div>

@@ -513,70 +513,67 @@
                     });
 
 
-                     $('#qrmodal2').modal('show');
-                    $('.carousel').carousel({
-                        interval: 1000
-                    });
+                
                 }
             });
 
         }
 
          ////////////////////////////
-        function qrcodebtn2(id) {
+        // function qrcodebtn2(id) {
 
 
-            $.get("/admin/virtual/" + id).done(function(data) {
+        //     $.get("/admin/virtual/" + id).done(function(data) {
 
-                var parse = JSON.parse(data);
+        //         var parse = JSON.parse(data);
 
-                if (data == "null") {
+        //         if (data == "null") {
 
-                    $('#noinfomodal2').modal('show');
+        //             $('#noinfomodal2').modal('show');
 
-                } else {
-                    console.log(data)
+        //         } else {
+        //             console.log(data)
 
-                    $('#nomeqrsala').append(parse[0]);
-                    $('#hiddenid').val(id);
-
-
-                    for (var i = 1; i < parse.length; i++) {
-
-                        if (i == 1) {
-                            $('#corouselimg').append(
-                                '<div class="carousel-item active col" >' +
-                                '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-                                '<p> Qr Code:' + i + ":" + (parse.length - 1) + '  </p>' +
-                                '</div>'
-                            );
-                        }
-
-                        if (i > 1) {
-
-                            $('#corouselimg').append(
-                                '<div class="carousel-item  col" >' +
-                                '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-                                '<p> Qr Code: ' + i + ":" + (parse.length - 1) + '</p>' +
-                                '</div>'
-                            );
-                        }
-                    }
-
-                    $('#qrmodal').modal('show');
-                    $('.carousel').carousel({
-                        interval: 1000
-                    });
+        //             $('#nomeqrsala').append(parse[0]);
+        //             $('#hiddenid').val(id);
 
 
-                     $('#qrmodal2').modal('show');
-                    $('.carousel').carousel({
-                        interval: 1000
-                    });
-                }
-            });
+        //             for (var i = 1; i < parse.length; i++) {
 
-        }
+        //                 if (i == 1) {
+        //                     $('#corouselimg').append(
+        //                         '<div class="carousel-item active col" >' +
+        //                         '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
+        //                         '<p> Qr Code:' + i + ":" + (parse.length - 1) + '  </p>' +
+        //                         '</div>'
+        //                     );
+        //                 }
+
+        //                 if (i > 1) {
+
+        //                     $('#corouselimg').append(
+        //                         '<div class="carousel-item  col" >' +
+        //                         '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
+        //                         '<p> Qr Code: ' + i + ":" + (parse.length - 1) + '</p>' +
+        //                         '</div>'
+        //                     );
+        //                 }
+        //             }
+
+        //             $('#qrmodal').modal('show');
+        //             $('.carousel').carousel({
+        //                 interval: 1000
+        //             });
+
+
+        //              $('#qrmodal2').modal('show');
+        //             $('.carousel').carousel({
+        //                 interval: 1000
+        //             });
+        //         }
+        //     });
+
+        // }
 
         /////////////////////////////
 
@@ -599,24 +596,121 @@
 
         /////////////////////////////////////////
 
-         $('#qrmodal2').on('hide.bs.modal', function(e) {
+        //  $('#qrmodal2').on('hide.bs.modal', function(e) {
 
-            var idmodal = $('#hiddenid').val();
+        //     var idmodal = $('#hiddenid').val();
 
-            $.get("virtualdelete/" + idmodal).done(function() {
-                $('#corouselimg').empty();
-                $('#nomeqrsala').empty();
-                $('#carouselExampleControls').carousel('dispose');
-
-
-
-            });
+        //     $.get("virtualdelete/" + idmodal).done(function() {
+        //         $('#corouselimg').empty();
+        //         $('#nomeqrsala').empty();
+        //         $('#carouselExampleControls').carousel('dispose');
 
 
 
-        });
+        //     });
+
+
+
+        // });
 
          /////////////////////////
+
+
+
+
+         $('#addAlunoModal').on('show.bs.modal', function (e) { 
+
+            console.log('funcionou');
+
+            var teste = 1;
+
+            mostrarmaisalunos(teste);
+
+            
+         });
+
+
+
+
+
+
+         function mostrarmaisalunos(teste){
+
+            
+
+            $('#alunotbody').empty();
+            $('.pagination').empty();
+
+           
+
+             $.get("/admin/showaluno").done( function(data){
+
+                 var parse = JSON.parse(data);
+                 var max =7;
+                 var pag =1;
+                 var i = 0;
+                 var conta = ( teste * max );
+                 var cont = Math.ceil(parse.length / max) ;
+                 console.log(cont);
+                 var limite = 0;
+                 
+
+                 for( i = 0; i < cont; i++){
+
+                    if(pag >= (teste -2) && pag <= (teste + 2) ){
+
+                if(pag == teste ){
+
+                    $('.pagination').append( 
+                    '<li class="page-item active"><a class="page-link" onclick="mostrarmaisalunos('+ pag +')">'+ pag +'</a></li>'
+                    ); 
+
+                    
+                    }else { 
+
+                $('.pagination').append( 
+                    '<li class="page-item"><a class="page-link" onclick="mostrarmaisalunos('+ pag +')">'+ pag +'</a></li>'
+                    ); 
+ 
+                    } 
+                    limite ++;
+                    } 
+                    
+                    pag ++;
+                 
+                    }
+
+
+                for( i = conta; i < parse.length; i++){
+
+                    if( i < (conta +max) ){
+
+                    $('#alunotbody').append(
+
+                            '<tr>'+
+                                 ' <th scope="row" >' + parse[i].user_id +'</th>'+
+                                  '<td>'+ parse[i].name +'</td>'+
+                                  '<td>'+ parse[i].email + '</td>'+
+                                  '<td> <button class="btn btn-primary btn-sm">'+ 'Adicionar</button></td>'+
+                               '</tr>'
+
+                        );
+     
+                    }
+                    }
+                
+
+             });
+
+         }
+
+
+
+
+
+
+
+
 
     </script>
 

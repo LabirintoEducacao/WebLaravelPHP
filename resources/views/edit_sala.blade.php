@@ -344,7 +344,7 @@
                     </div>
 
                     <div class="col-12 col-md-auto">
-                        <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}"  onclick="qrcodebtn2({{$sala->id}});"> Qr Code</button>
+                        <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}"  onclick="qrcodebtn({{$sala->id}});"> Qr Code</button>
                         
                     </div>
                 </div>
@@ -503,6 +503,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 <div class="modal fade bd-example-modal-lg" id="editarSalaModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -610,7 +615,7 @@
 
 
 
-<div class="modal fade" id="qrmodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content " >
             <div class="modal-header" style="background-color:#4D226D;">
@@ -648,7 +653,9 @@
 
 
 
-<div class="modal fade" id="noinfomodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<!----------------- Fim Modal ------------------->
+
+<div class="modal fade" id="noinfomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
             <div class="modal-header" style="background-color:#4D226D;">

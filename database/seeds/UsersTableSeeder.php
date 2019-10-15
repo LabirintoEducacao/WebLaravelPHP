@@ -42,6 +42,6 @@ class UsersTableSeeder extends Seeder
         $user->roles()->attach($userRole);
         
         //opcional para preenchr o banco com 50 usuarios
-        //factory(App\User::class, 50)->create();
+        factory(App\User::class, 50)->create();
     }
 }
