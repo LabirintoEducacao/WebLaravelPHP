@@ -41,17 +41,17 @@
                 </div>
             </div>
 
-                <div class="container ">
-                        <div class="row align-items-center">
-                            <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 9999999999;">
-                                <ul style="list-style-type: none"></ul>
-                            </div>
-                        </div>
-                         <div class="col-6 alert alert-danger print-error-msg" style="display: none;">
-                            <ul></ul>
-                        </div>
+            <div class="container ">
+                <div class="row align-items-center">
+                    <div class="col-6 alert alert-success print-success-msg" style="display: none; position: absolute; z-index: 9999999999;">
+                        <ul style="list-style-type: none"></ul>
                     </div>
-                    
+                </div>
+                <div class="col-6 alert alert-danger print-error-msg" style="display: none;">
+                    <ul></ul>
+                </div>
+            </div>
+
             <form name="add_name" id="add_name">
                 <div class="modal-body">
 
@@ -63,7 +63,7 @@
                     <input type="hidden" value="{{$id}}" name="sala_id">
                     <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
 
-                     
+
                     <!-- Pergunta  -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="perg">
@@ -84,16 +84,18 @@
                                                     <option value="4">Áudio</option>
                                                 </select>
                                             </div>
+
+
                                             <div class="col col-lg-4">
-                                                <label for="room_type">Interação:</label>
-                                                <select class="selectborda" name="room_type" id="room_type">
+                                                <label for="room_type" style=" margin-right: 3.5px;">Interação:</label>
+                                                <select class="selectborda" name="room_type" id="room_type" required>
                                                     <option selected value="right_key">Chave</option>
                                                     <option value="hope_door">Porta da esperança</option>
                                                     <option value="true_or_false">Verdadeiro ou Falso</option>
                                                     <option value="multiple_forms">Multiplas Formas</option>
                                                 </select>
                                             </div>
-
+                                            
                                         </div>
                                     </div>
 
@@ -178,7 +180,7 @@
                                                     <div class="form-check form-check-radio">
                                                         Essa resposta esta correta?&emsp;
                                                         <label class="form-check-label">
-                                                            <input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" value="0" required>
+                                                            <input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" value="1" required checked>
                                                             Sim
                                                             <span class="circle">
                                                                 <span class="check"></span>
@@ -268,14 +270,16 @@
                         <div class="col-12 col-md-auto">
                             <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
                         </div>
-
+                        
+                        @if($sala->public==0)
                         <div class="col-12 col-md-auto">
                             <a class="btn btn-success btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
-                                </i>Aluno</a>
+                                </i>&emsp;Aluno</a>
                         </div>
+                        @endif
 
                         <div class="col-12 col-md-auto">
-                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$x}}" data-tempoo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$x}}" data-tempoo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>&emsp;Editar</button>
                         </div>
 
                     </div>
@@ -340,12 +344,17 @@
                     </div>
                     <div class="col-12 col-md-auto">
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
-                            </i> Pergunta</button>
+                            </i>&emsp;Pergunta</button>
                     </div>
 
                     <div class="col-12 col-md-auto">
+<<<<<<< HEAD
                         <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}"  onclick="qrcodebtn({{$sala->id}});"> Qr Code</button>
                         
+=======
+                        <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
+
+>>>>>>> d7a593fe84c5ffdcd4a96a4b3d0d89b6f6698d9d
                     </div>
                 </div>
 
@@ -459,7 +468,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="">
 
-                                <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload);">Excluir</a>
+                                <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>
                             </div>
                         </div>
                         <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$ref->id}});">
@@ -556,7 +565,7 @@
                         <div class="form-group col">
                             <div class="form-check" style="margin-left:10%;margin-top:17%">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="0" name="public" id="public">Sala Pública
+                                    <input class="form-check-input" type="checkbox" name="public1" id="public1">Sala Pública
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -566,7 +575,7 @@
                         <div class="form-group col">
                             <div class="form-check" style="margin-top:17%">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable">Ativo
+                                    <input class="form-check-input" type="checkbox" name="enable1" id="enable1">Ativo
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -624,7 +633,7 @@
             </div>
             
             <div class="modal-body">
-                <h5 id="nomeqrsala"> Nome: </h5>
+                <h5 id="nomeqrsala">Nome: </h5>
                 <input id="hiddenid" type="hidden" value="">
 
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -653,8 +662,11 @@
 
 
 
+<<<<<<< HEAD
 <!----------------- Fim Modal ------------------->
 
+=======
+>>>>>>> d7a593fe84c5ffdcd4a96a4b3d0d89b6f6698d9d
 <div class="modal fade" id="noinfomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">

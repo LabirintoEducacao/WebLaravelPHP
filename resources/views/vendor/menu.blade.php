@@ -126,6 +126,10 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
+                    
+<!--                                      BUSCA                    -->
+                    
+<!--
                     <div class="collapse navbar-collapse justify-content-end">
                         <form class="navbar-form">
                             <div class="input-group no-border">
@@ -136,9 +140,8 @@
                                 </button>
                             </div>
                         </form>
-
-
                     </div>
+-->
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -384,6 +387,7 @@
 
 
         $(document).ready(function() {
+            
             @if(Session::has('message'))
             var type = "{{Session::get('alert-type','info')}}";
             $.notify({
@@ -491,7 +495,7 @@
                             $('#corouselimg').append(
                                 '<div class="carousel-item active col" >' +
                                 '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-                                '<p> Qr Code:' + i + ":" + (parse.length - 1) + '  </p>' +
+                                '<p> Qr Code: ' + i + ":" + (parse.length - 1) + '  </p>' +
                                 '</div>'
                             );
                         }
@@ -513,67 +517,6 @@
                     });
 
 
-                
-                }
-            });
-
-        }
-
-         ////////////////////////////
-        // function qrcodebtn2(id) {
-
-
-        //     $.get("/admin/virtual/" + id).done(function(data) {
-
-        //         var parse = JSON.parse(data);
-
-        //         if (data == "null") {
-
-        //             $('#noinfomodal2').modal('show');
-
-        //         } else {
-        //             console.log(data)
-
-        //             $('#nomeqrsala').append(parse[0]);
-        //             $('#hiddenid').val(id);
-
-
-        //             for (var i = 1; i < parse.length; i++) {
-
-        //                 if (i == 1) {
-        //                     $('#corouselimg').append(
-        //                         '<div class="carousel-item active col" >' +
-        //                         '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-        //                         '<p> Qr Code:' + i + ":" + (parse.length - 1) + '  </p>' +
-        //                         '</div>'
-        //                     );
-        //                 }
-
-        //                 if (i > 1) {
-
-        //                     $('#corouselimg').append(
-        //                         '<div class="carousel-item  col" >' +
-        //                         '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-        //                         '<p> Qr Code: ' + i + ":" + (parse.length - 1) + '</p>' +
-        //                         '</div>'
-        //                     );
-        //                 }
-        //             }
-
-        //             $('#qrmodal').modal('show');
-        //             $('.carousel').carousel({
-        //                 interval: 1000
-        //             });
-
-
-        //              $('#qrmodal2').modal('show');
-        //             $('.carousel').carousel({
-        //                 interval: 1000
-        //             });
-        //         }
-        //     });
-
-        // }
 
         /////////////////////////////
 
@@ -581,7 +524,8 @@
 
             var idmodal = $('#hiddenid').val();
 
-            $.get("virtualdelete/" + idmodal).done(function() {
+
+            $.get("/admin/virtualdelete/" + idmodal).done(function() {
                 $('#corouselimg').empty();
                 $('#nomeqrsala').empty();
                 $('#carouselExampleControls').carousel('dispose');
@@ -589,31 +533,9 @@
 
 
             });
+            
+ });
 
-
-
-        });
-
-        /////////////////////////////////////////
-
-        //  $('#qrmodal2').on('hide.bs.modal', function(e) {
-
-        //     var idmodal = $('#hiddenid').val();
-
-        //     $.get("virtualdelete/" + idmodal).done(function() {
-        //         $('#corouselimg').empty();
-        //         $('#nomeqrsala').empty();
-        //         $('#carouselExampleControls').carousel('dispose');
-
-
-
-        //     });
-
-
-
-        // });
-
-         /////////////////////////
 
 
 

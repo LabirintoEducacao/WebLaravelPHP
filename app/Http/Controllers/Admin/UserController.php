@@ -111,7 +111,7 @@ class UserController extends Controller
            $user->delete();
            $notification = array(
                 'message' => 'Usuário deletado com sucesso!',
-                'alert-type' => 'success'
+                'alert-type' => 'danger'
             );
            return redirect('admin/users')->with($notification);
        }
@@ -142,7 +142,7 @@ class UserController extends Controller
            $user->delete();
            $notification = array(
                 'message' => 'Usuário deletado com sucesso!',
-                'alert-type' => 'success'
+                'alert-type' => 'danger'
             );
            return redirect('admin/users')->with($notification);
        }
@@ -305,7 +305,7 @@ class UserController extends Controller
         DB::table('sala_user')->where('id','=',$id)->delete();
         $notification = array(
                 'message' => 'Aluno deletado com sucesso!',
-                'alert-type' => 'success'
+                'alert-type' => 'danger'
                 );
 
         // if(count($data) == 0){

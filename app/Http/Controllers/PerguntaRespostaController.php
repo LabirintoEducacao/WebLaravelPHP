@@ -901,7 +901,7 @@ class PerguntaRespostaController extends Controller
                     
             
           
-              return response()->json(['success' => 'Operação bem sucedida!']);
+              return response()->json(['success' => 'Pergunta alterada com sucesso!']);
 
       }
       }
@@ -994,7 +994,6 @@ class PerguntaRespostaController extends Controller
                     DB::table('respostas')->where('id', $resp_id2->resp_id)->delete();
                 }
 
-
          }
 
          
@@ -1009,7 +1008,7 @@ class PerguntaRespostaController extends Controller
         
         $notification = array(
                 'message' => 'Pergunta deletada com sucesso!',
-                'alert-type' => 'success'
+                'alert-type' => 'danger'
             );
         return redirect('admin/visualizar/'. $perg->sala_id)->with($notification);
     }
@@ -1025,7 +1024,7 @@ class PerguntaRespostaController extends Controller
         DB::table('respostas')->where('id', '=', $id)->delete();
         $notification = array(
                 'message' => 'Resposta deletada com sucesso!',
-                'alert-type' => 'success'
+                'alert-type' => 'danger'
             );
         return redirect('admin/visualizar/'. $resp[0]->sala_id)->with($notification);
     }

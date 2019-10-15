@@ -492,7 +492,7 @@ $flag =0;
             </div>
             
             <div class="modal-body">
-                <h5 id="nomeqrsala"> Nome: </h5>
+                <h5 id="nomeqrsala">Nome: </h5>
                 <input id="hiddenid" type="hidden" value="">
 
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

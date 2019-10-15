@@ -41,7 +41,9 @@
           //     }
 
           // });
-
+          
+          
+          
           $('#add').click(function () {
               if (a < 2) {
                   $('#dynamic_field').append('' +
@@ -966,15 +968,21 @@
           console.log(recipientcorrect);
           console.log(recipientenable);
 
-          if (recipientcorrect == 1)
+          if (recipientcorrect == 1){
               $('#public1').prop("checked", true);
-          else
+              $('#public1').prop("value", 1);
+          }else{
               $('#public1').prop("checked", false);
+              $('#public1').prop("value", 0);
+          }
 
-          if (recipientenable == 1)
+          if (recipientenable == 1){
               $('#enable1').prop("checked", true);
-          else
+              $('#enable1').prop("value", 1);
+          }else{
               $('#enable1').prop("checked", false);
+              $('#enable1').prop("value", 0);
+          }
       });
 
       $('#editarSalaModal2').on('show.bs.modal', function (event) {
@@ -991,19 +999,48 @@
           var modal = $(this);
           modal.find('#nome').val(recipientnome);
           modal.find('#time3').val(recipienttempo);
-          modal.find('#time5').val(tempo);
+          console.log(tempo)
+          modal.find('#time4').val(tempo);
           modal.find('#sala_id').val(recipientid);
           modal.find('#theme').val(recipienttema);
 
 
-          if (recipientcorrect == 1)
-              $('#public').prop("checked", true);
-          else
-              $('#public').prop("checked", false);
-          //modal.find('#public').val(recipientcorrect);
+          if (recipientcorrect == 1){
+              $('#public1').prop("checked", true);
+              $('#public1').prop("value", 1);
+          }else{
+              $('#public1').prop("checked", false);
+              $('#public1').prop("value", 0);
+          }
 
-          if (recipientenable == 1)
-              $('#enable').prop("checked", true);
-          else
-              $('#enable').prop("checked", false);
+          if (recipientenable == 1){
+              $('#enable1').prop("checked", true);
+              $('#enable1').prop("value", 1);
+          }else{
+              $('#enable1').prop("checked", false);
+              $('#enable1').prop("value", 0);
+          }
       });
+
+
+
+
+
+
+        $('#public1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('public1').value = 1;
+              }else {
+                  document.getElementById('public1').value = 0;
+              }
+
+          });
+
+     $('#enable1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('enable1').value = 1;
+              }else {
+                  document.getElementById('enable1').value = 0;
+              }
+
+          });

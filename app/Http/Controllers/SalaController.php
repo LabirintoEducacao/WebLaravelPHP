@@ -154,18 +154,20 @@ class SalaController extends Controller
         $objProjetoDiretorio = File::makeDirectory($strCaminho);
     }
         }else{
+            var_dump($request->input('enable1'));
+            var_dump($request->input('public1'));
             $time = $request->input('time4');
             $sala = Sala::find($request->sala_id);
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
             $sala->tematica = $request->input('theme');
-            if($request->public==null){
+            if($request->input('public1')==null || $request->input('public1')==0){
                 $sala->public=0;
             }
             else{
                 $sala->public=1;
             }
-             if($request->enable == null){
+             if($request->input('enable1') == null || $request->input('enable1') == 0){
 
             $sala->enable = 0;
            }
@@ -236,7 +238,6 @@ class SalaController extends Controller
 //            );
 //
 //            return redirect('admin/sala')->with($notification);
-//    }
 
     /**
      * Display the specified resource.
@@ -303,7 +304,7 @@ class SalaController extends Controller
        }
         $notification = array(
                 'message' => 'Sala deletada com sucesso!',
-                'alert-type' => 'success'
+                'alert-type' => 'danger'
             );
 
         $strCaminho = public_path() . '/sala/' . $id;
