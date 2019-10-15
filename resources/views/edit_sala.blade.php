@@ -553,7 +553,7 @@
                         <div class="form-group col">
                             <div class="form-check" style="margin-left:10%;margin-top:17%">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="0" name="public" id="public">Sala Pública
+                                    <input class="form-check-input" type="checkbox" value="0" name="public1" id="public1">Sala Pública
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -563,7 +563,7 @@
                         <div class="form-group col">
                             <div class="form-check" style="margin-top:17%">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="0" name="enable" id="enable">Ativo
+                                    <input class="form-check-input" type="checkbox" value="0" name="enable1" id="enable1">Ativo
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>

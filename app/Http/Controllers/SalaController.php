@@ -159,13 +159,13 @@ class SalaController extends Controller
             $sala->name = $request->input('nome');
             $sala->duracao = $time;
             $sala->tematica = $request->input('theme');
-            if($request->public==null){
+            if($request->input('public1')==null || $request->input('public1')==0){
                 $sala->public=0;
             }
             else{
                 $sala->public=1;
             }
-             if($request->enable == null){
+             if($request->input('enable1') == null || $request->input('enable1') == 0){
 
             $sala->enable = 0;
            }
