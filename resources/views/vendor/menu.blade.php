@@ -491,7 +491,7 @@
                             $('#corouselimg').append(
                                 '<div class="carousel-item active col" >' +
                                 '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-                                '<p> Qr Code:' + i + ":" + (parse.length - 1) + '  </p>' +
+                                '<p> Qr Code: ' + i + ":" + (parse.length - 1) + '  </p>' +
                                 '</div>'
                             );
                         }
@@ -513,70 +513,11 @@
                     });
 
 
-                     $('#qrmodal2').modal('show');
-                    $('.carousel').carousel({
-                        interval: 1000
-                    });
                 }
             });
 
         }
 
-         ////////////////////////////
-        function qrcodebtn2(id) {
-
-
-            $.get("/admin/virtual/" + id).done(function(data) {
-
-                var parse = JSON.parse(data);
-
-                if (data == "null") {
-
-                    $('#noinfomodal2').modal('show');
-
-                } else {
-                    console.log(data)
-
-                    $('#nomeqrsala').append(parse[0]);
-                    $('#hiddenid').val(id);
-
-
-                    for (var i = 1; i < parse.length; i++) {
-
-                        if (i == 1) {
-                            $('#corouselimg').append(
-                                '<div class="carousel-item active col" >' +
-                                '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-                                '<p> Qr Code:' + i + ":" + (parse.length - 1) + '  </p>' +
-                                '</div>'
-                            );
-                        }
-
-                        if (i > 1) {
-
-                            $('#corouselimg').append(
-                                '<div class="carousel-item  col" >' +
-                                '<img class="d-block w-100 " src="' + parse[i] + '" alt="First slide">' +
-                                '<p> Qr Code: ' + i + ":" + (parse.length - 1) + '</p>' +
-                                '</div>'
-                            );
-                        }
-                    }
-
-                    $('#qrmodal').modal('show');
-                    $('.carousel').carousel({
-                        interval: 1000
-                    });
-
-
-                     $('#qrmodal2').modal('show');
-                    $('.carousel').carousel({
-                        interval: 1000
-                    });
-                }
-            });
-
-        }
 
         /////////////////////////////
 
@@ -584,7 +525,8 @@
 
             var idmodal = $('#hiddenid').val();
 
-            $.get("virtualdelete/" + idmodal).done(function() {
+
+            $.get("/admin/virtualdelete/" + idmodal).done(function() {
                 $('#corouselimg').empty();
                 $('#nomeqrsala').empty();
                 $('#carouselExampleControls').carousel('dispose');
@@ -592,31 +534,10 @@
 
 
             });
-
-
-
-        });
-
-        /////////////////////////////////////////
-
-         $('#qrmodal2').on('hide.bs.modal', function(e) {
-
-            var idmodal = $('#hiddenid').val();
-
-            $.get("virtualdelete/" + idmodal).done(function() {
-                $('#corouselimg').empty();
-                $('#nomeqrsala').empty();
-                $('#carouselExampleControls').carousel('dispose');
-
-
-
-            });
-
-
+            
 
         });
 
-         /////////////////////////
 
     </script>
 

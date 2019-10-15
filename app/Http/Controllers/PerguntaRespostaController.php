@@ -994,7 +994,6 @@ class PerguntaRespostaController extends Controller
                     DB::table('respostas')->where('id', $resp_id2->resp_id)->delete();
                 }
 
-
          }
 
          
