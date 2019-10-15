@@ -13,10 +13,9 @@
                         <div id="list-example" class="list-group">
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-1">&emsp;Criar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-2">&emsp;Editar</a>
-                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-3">&emsp;Deletar</a>
-                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-4">&emsp;Desabilitadas</a>
-                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-5">&emsp;Habilitadas</a>
-                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-6">&emsp;Estatísticas</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-3">&emsp;Desativadas</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-4">&emsp;Ativas</a>
+                            <a class="list-group-item list-group-item-action" href="manual#list-item-1-5">&emsp;Estatísticas</a>
                         </div>
                     </a>
                     <a class="list-group-item list-group-item-action"></a>
@@ -63,9 +62,6 @@
                             
                                 <ul style="list-style-type:square;padding-left:18%">
                                     <li>
-                                        Criador do Labirinto: preenchido com o seu nome de usuário;
-                                    </li>
-                                    <li>
                                         Nome da Sala: é o que irá aparecer para os alunos;
                                     </li>
                                     <li>
@@ -94,45 +90,36 @@
                                 Editar Sala
                             </h5>
                             <p>
-                                Após criar a sala, se algum dos campos tiver sido preenchido de forma errada, é só clicar no botão <i class="fa fa-cogs"></i> e ele abrirá um editor de texto com os mesmos campos da página de criar sala e, ao finalizar, clique em “SALVAR ALTERAÇÕES”.
+                                Após criar a sala, se algum dos campos tiver sido preenchido de forma errada, é só clicar no botão <i class="material-icons">more_vert</i> e selecionar a opção 'Editar'. Assim, aparecerá uma caixa semelhante a que foi utilizada para criar a sala, mas, desta vez, os campos já aparecerão preenchidos.
                                 <br>
                                 <img src="/img/editar_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                                
                             </p>
                             
-                            <!--                            DELETAR SALA                           -->
-                            <h5 id="list-item-1-3">
-                                Deletar Sala
-                            </h5>
-                            <p>
-                                Para deletar uma sala, basta clicar no botão <i class="fa fa-trash"></i>.
-                                <br>
-                                <img src="/img/deletar_sala.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
-                            </p>
                             
                             <!--                            DESABILITAR SALA                           -->
-                            <h5 id="list-item-1-4">
-                                Desabilitar Sala
+                            <h5 id="list-item-1-3">
+                                Desativar Sala
                             </h5>
                             <p>
-                                Para ver as salas desabilitadas, basta clicar em:
+                                As salas desativadas estarão sinalizadas com outra cor (cinza), mas também podem ser visualizadas na aba 'DESATIVADAS'
                                 <br>
                                 <img src="/img/disabled.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             
                             
                             <!--                            HABILITAR SALA                           -->
-                            <h5 id="list-item-1-5">
-                                Habilitar Sala
+                            <h5 id="list-item-1-4">
+                                Ativar Sala
                             </h5>
                             <p>
-                                Para ver as salas habilitadas, basta clicar em:
+                                As salas ativadas sempre apareceram primeiro nas listas, elas podem ser visualizadas na aba 'ATIVADAS'
                                 <br>
                                 <img src="/img/enabled.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             
                             <!--                            ESTATÍSTICAS SALA                           -->
-                            <h5 id="list-item-1-6">
+                            <h5 id="list-item-1-5">
                                 Estatísticas da Sala
                             </h5>
                             <p>
@@ -148,7 +135,7 @@
                             Perguntas e Respostas
                         </h4>
                         <p>
-                            Para acessar a área de perguntas e repostas, clique em <i class="fa fa-pencil-square-o"></i>
+                            Para acessar a área de perguntas e repostas, clique em <i class="material-icons">more_vert</i> e, depois, na opção 'Visualizar'
                             <img src="/img/editar_sala_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                         </p>
                         <div style="padding-left: 5%">
@@ -157,7 +144,7 @@
                                 Cadastrar Pergunta e Resposta
                             </h5>
                             <p>
-                                Para criar uma nova sala, clique em “ADICIONAR PERGUNTA E RESPOSTA" que fica localizado na parte superior direita do site.
+                                Para criar uma nova sala, clique em “+ PERGUNTA" que fica localizado na parte superior direita do site.
                                 <br>
                                 <img src="/img/nova_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                                 <br>
@@ -178,7 +165,6 @@
                                                 Pergunta: este campo irá variar de acordo com o que foi selecionado no campo tipo de pergunta: se for texto, aparecerá um campo para digitar, se for imagem ou áudio, aparecerá um campo para realizar o upload do arquivo e, caso seja vídeo, aparecrá um campo para digitar a url do mesmo.
                                             </li>
                                         </ul>
-                                        <img src="/img/add_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
                                     </li>
                                     <li>
                                         Resposta:
@@ -196,7 +182,6 @@
                                                 Se for a primeira resposta, aparecerá um botão para adicionar mais uma resposta, caso contrário, aparecerá um botão para deletar a resposta.
                                             </li>
                                         </ul>
-                                        <img src="/img/add_resp.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
                                     </li>
                                     <li>
                                         Ambiente:
@@ -211,7 +196,7 @@
                                                 Largura: pequeno, médio ou grande;
                                             </li>
                                         </ul>
-                                        <img src="/img/add_ambiente.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                        <img src="/img/add_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
                                     </li>
                                     <li>
                                         Reforço: inicialmente só há um campo que, ao ser clicado, mostra os campos para preencher uma pergunta de reforço, esses campos serão exatamente iguais aos anteriores, a única diferença é que há duas configurações de ambientes diferentes: a primeira é o caminho que usuário irá percorrer para achar o reforço e o outro será o caminho pelo qual ele passará quando acertar a pergunta.
@@ -233,7 +218,7 @@
                                 Editar Pergunta/Resposta
                             </h5>
                             <p>
-                                Após criar as perguntas, se algum dos campos tiver sido preenchido de forma errada, é só clicar no botão <i class="fa fa-pencil-square-o"></i> e ele abrirá um editor de texto com os mesmos campos da caixa de criar pergunta e, ao finalizar, clique em “SALVAR ALTERAÇÕES”.
+                                Após criar as perguntas, se algum dos campos tiver sido preenchido de forma errada, é só clicar no botão <i class="material-icons">more_vert</i> e depois em 'Editar', e ele abrirá um editor de texto com os mesmos campos da caixa de criar pergunta e, ao finalizar, clique em “SALVAR ALTERAÇÕES”.
                                 <br>
                                 <img src="/img/editar_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
@@ -242,7 +227,7 @@
                                 Alterar Sequência
                             </h5>
                             <p>
-                                É o botão no canto inferior direito, serve para alterar a ordem em que o jogador verá as perguntas. Para alterar a ordem, basta arrastar a perqunta para a posição desejada.
+                                É o botão que serve para alterar a ordem em que o jogador verá as perguntas. Para alterar a ordem, basta arrastar a perqunta para a posição desejada.
                                 <br>
                                 <img src="/img/ordem_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
                                 <img src="/img/ordem.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
@@ -253,19 +238,11 @@
                                 Deletar Pergunta
                             </h5>
                             <p>
-                                Para deletar uma pergunta, basta clicar no botão <i class="fa fa-trash"></i>.
+                                Para deletar uma pergunta, basta clicar no botão <i class="material-icons">more_vert</i> e, depois, na opção 'Excluir'.
                                 <br>
-                                <span style="color:#aa0000">Obs.: ao clicar em <i class="fa fa-trash"></i>, a(s) resposta(s) e, se houver, o reforço serão deletados juntos a pergunta.</span>
+                                <span style="color:#aa0000">Obs.: ao clicar em 'Excluir', a(s) resposta(s) e, se houver, o reforço serão deletados juntos a pergunta.</span>
                                 <br>
                                 <img src="/img/deletar_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
-                            </p>
-                            <h5 id="list-item-2-5">
-                                Salvar todas as alterações
-                            </h5>
-                            <p>
-                                No canto inferior da página, há um botão que garante que todas as perguntas e respostas sejam salvas, para que o QrCode seja gerado.
-                                <br>
-                                <img src="/img/salvar.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             
                         </div>
