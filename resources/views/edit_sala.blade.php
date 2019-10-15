@@ -88,14 +88,14 @@
 
                                             <div class="col col-lg-4">
                                                 <label for="room_type" style=" margin-right: 3.5px;">Interação:</label>
-                                                <select class="selectborda" name="room_type" id="room_type">
+                                                <select class="selectborda" name="room_type" id="room_type" required>
                                                     <option selected value="right_key">Chave</option>
                                                     <option value="hope_door">Porta da esperança</option>
                                                     <option value="true_or_false">Verdadeiro ou Falso</option>
                                                     <option value="multiple_forms">Multiplas Formas</option>
                                                 </select>
                                             </div>
-
+                                            
                                         </div>
                                     </div>
 
