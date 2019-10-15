@@ -1019,3 +1019,26 @@
               $('#enable1').prop("value", 0);
           }
       });
+
+
+
+
+
+
+        $('#public1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('public1').value = 1;
+              }else {
+                  document.getElementById('public1').value = 0;
+              }
+
+          });
+
+     $('#enable1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('enable1').value = 1;
+              }else {
+                  document.getElementById('enable1').value = 0;
+              }
+
+          });
