@@ -270,11 +270,13 @@
                         <div class="col-12 col-md-auto">
                             <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
                         </div>
-
+                        
+                        @if($sala->public==0)
                         <div class="col-12 col-md-auto">
                             <a class="btn btn-success btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
                                 </i>Aluno</a>
                         </div>
+                        @endif
 
                         <div class="col-12 col-md-auto">
                             <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$x}}" data-tempoo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>Editar</button>
