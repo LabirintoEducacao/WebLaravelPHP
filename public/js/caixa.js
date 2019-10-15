@@ -657,6 +657,11 @@
               var x = document.getElementById('sala_id');
               var y = document.getElementsByName('corret[]');
               var p = document.getElementsByName('corret_ref[]');
+              var reforco = document.getElementsByName('resposta_ref[]');
+              var resposta = document.getElementsByName('resposta[]');
+              var pergunta = document.getElementsByName('pergunta');
+              var pergref = document.getElementsByName('reforco');
+              var m = 0;
               var z = 0;
               var teste3 = [];
               var teste4 = [];
@@ -730,6 +735,53 @@
               } else {
                   alert("Uma das respostas deve estar correta!")
                   e.preventDefault();
+              }
+
+
+              if(ref.checked){
+
+                 for ( i = 0; i < reforco.length; i++){
+                     
+                       if (reforco[i].value == 0){
+
+                         m++;
+
+                       }
+                        
+                  }
+
+                  if( m > 0 || pergref[0].value === "" ){
+
+                  alert("A campos a preencher na aba Refoço verifique!");
+
+                  }
+
+                   var h = 0;
+                  for ( i = 0; i < resposta.length; i++){
+                     
+                       if (resposta[i].value == 0){
+
+                         h++;
+
+                       }
+                        
+                  }
+
+                  if( h > 0 || pergunta[0].value === "" ){
+
+                  alert("A campos a preencher na aba Pergunta verifique!");
+
+                  }
+
+                  // i = 1;
+                  // $('.dynamic-added').remove();
+                  // $('#add_name')[0].reset();
+                  // $(".print-success-msg").find("ul").html('');
+                  // $(".print-success-msg").css('display', 'block');
+                  // $(".print-error-msg").css('display', 'none');
+                  // $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
+
+ 
               }
 
 

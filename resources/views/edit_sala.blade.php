@@ -47,9 +47,9 @@
                         <ul style="list-style-type: none"></ul>
                     </div>
                 </div>
-                <div class="col-6 alert alert-danger print-error-msg" style="display: none;">
+                <!-- <div class="col-6 alert alert-danger print-error-msg" style="display: none;">
                     <ul></ul>
-                </div>
+                </div> -->
             </div>
 
             <form name="add_name" id="add_name">
@@ -88,7 +88,7 @@
 
                                             <div class="col col-lg-4">
                                                 <label for="room_type" style=" margin-right: 3.5px;">Interação:</label>
-                                                <select class="selectborda" name="room_type" id="room_type" required>
+                                                <select class="selectborda" name="room_type" id="room_type">
                                                     <option selected value="right_key">Chave</option>
                                                     <option value="hope_door">Porta da esperança</option>
                                                     <option value="true_or_false">Verdadeiro ou Falso</option>
@@ -348,13 +348,9 @@
                     </div>
 
                     <div class="col-12 col-md-auto">
-<<<<<<< HEAD
-                        <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}"  onclick="qrcodebtn({{$sala->id}});"> Qr Code</button>
-                        
-=======
+
                         <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
 
->>>>>>> d7a593fe84c5ffdcd4a96a4b3d0d89b6f6698d9d
                     </div>
                 </div>
 
@@ -622,8 +618,6 @@
 </div>
 
 
-
-
 <div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content " >
@@ -661,12 +655,9 @@
 </div>
 
 
-
-<<<<<<< HEAD
 <!----------------- Fim Modal ------------------->
 
-=======
->>>>>>> d7a593fe84c5ffdcd4a96a4b3d0d89b6f6698d9d
+
 <div class="modal fade" id="noinfomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content ">
