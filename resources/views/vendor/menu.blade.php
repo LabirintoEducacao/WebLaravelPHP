@@ -527,7 +527,17 @@
             
 
         });
+            
+            
+            
+            
+            
+            $('#addPerg').on('hide.bs.modal', function(e) {
 
+            window.location.reload();
+            
+
+        });
 
 
 
