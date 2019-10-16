@@ -14,7 +14,7 @@
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="abrirmenu">
 
 <head>
     <meta charset="utf-8" />
@@ -41,13 +41,13 @@
 
 <body class="">
     <div class="wrapper " >
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
+        <div class="sidebar"  data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
 
             <div class="logo">
                 <span style="margin-left: 40%">{{ Auth::user()->name }}</span>
             </div>
-            <div class="sidebar-wrapper">
+            <div class="sidebar-wrapper" id="sidebar" >
                 <ul class="nav">
                     <!-- <li class="nav-item active"> -->
                     <li class="nav-item">
@@ -116,12 +116,12 @@
                 </ul>
             </div>
         </div>
-        <div class="main-panel">
+        <div class="main-panel" id="overlayer">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"  aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler"id="botaomenu" type="button" data-toggle="collapse"  aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" onclick="botaomenu()">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
@@ -141,6 +141,11 @@
             <footer class="footer">
 
             </footer>
+
+           <!--  <div class="close-layer visible" id=""></div> -->
+
+
+
         </div>
     </div>
 
@@ -150,7 +155,7 @@
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+   <!--  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> -->
     <!-- Plugin for the momentJs  -->
     <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
     <!--  Plugin for Sweet Alert -->
@@ -554,14 +559,7 @@
             
          });
 
-
-
-
-
-
          function mostrarmaisalunos(teste){
-
-            
 
             $('#alunotbody').empty();
             $('.pagination').empty();
@@ -634,6 +632,50 @@
 
          }
 
+   // perfect-scrollbar-on nav-open
+
+         var t = 0;
+
+         function botaomenu(){
+            if(t == 0){
+
+                var overlayer = '<div class="close-layer visible" onclick="deletalayer()"id="divlayer"></div>';
+
+            $('#botaomenu').attr("class","navbar-toggler toggled");
+            $('#abrirmenu').attr("class","nav-open");
+            $('#overlayer').append(overlayer);
+
+                t = 1;
+
+                
+                $('#sidebar').show();
+                $('#sidebar').show();
+
+                console.log('é' + t);
+                
+
+             }else{
+
+                $('#botaomenu').attr("class","navbar-toggler");
+                 $('#abrirmenu').attr("class","");
+                $('#sidebar').hide();
+
+
+                t = 0;
+                console.log('não e' + t);
+
+             }
+
+         }
+
+         function deletalayer(){
+
+             $('#divlayer').detach();
+              $('#botaomenu').attr("class","navbar-toggler");
+               $('#abrirmenu').attr("class","");
+
+               t = 0;
+         }
 
     </script>
 

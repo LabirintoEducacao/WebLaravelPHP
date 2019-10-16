@@ -216,6 +216,26 @@ a:hover #teste {
 }
 
 
+@media (min-width: 576px) {
+
+  .larguramodal {
+       
+      max-width: 70%;
+      max-height: auto;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .larguramodal {
+      max-width: auto;
+      max-height: auto;
+  }
+
+}
+
+
 /*s-switch input[type='checkbox']{display:none}
 
 .s-switch {

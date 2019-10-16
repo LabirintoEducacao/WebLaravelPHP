@@ -11,7 +11,7 @@
 
 
 <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="max-width: 70%; max-height: auto;">
+    <div class="modal-dialog larguramodal" role="document">
         <div class="modal-content">
             <div class="card card-nav-tabs card-plain">
                 <div class="card-header card-header-primary">
@@ -352,7 +352,7 @@
 
                     <div class="col-12 col-md-auto">
 
-                        <button type="button" class="btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
+                        <button type="button" class="col-12 btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
 
                     </div>
                 </div>
