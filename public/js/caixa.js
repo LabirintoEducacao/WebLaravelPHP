@@ -495,7 +495,7 @@
                                   // );
                                   modal.find('#perg_id').val(val.question_id);
                                   console.log(val.question_id);
-                                  modal.find('#room_type').val(val.room_type);
+                                  modal.find('.room_type').val(val.room_type);
                                   modal.find('#question_type').val(val.question_type);
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {

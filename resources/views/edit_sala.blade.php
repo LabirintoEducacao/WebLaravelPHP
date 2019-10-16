@@ -85,17 +85,20 @@
                                                 </select>
                                             </div>
 
+<!--                                            <div class="col col-lg-6" style="display:none;">-->
+
+
 
                                             <div class="col col-lg-4">
                                                 <label for="room_type" style=" margin-right: 3.5px;">Interação:</label>
-                                                <select class="selectborda" name="room_type" id="room_type">
+                                                <select class="selectborda room_type" name="room_type">
                                                     <option selected value="right_key">Chave</option>
                                                     <option value="hope_door">Porta da esperança</option>
                                                     <option value="true_or_false">Verdadeiro ou Falso</option>
                                                     <option value="multiple_forms">Multiplas Formas</option>
                                                 </select>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
 
@@ -270,7 +273,7 @@
                         <div class="col-12 col-md-auto">
                             <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
                         </div>
-                        
+
                         @if($sala->public==0)
                         <div class="col-12 col-md-auto">
                             <a class="btn btn-success btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
@@ -620,18 +623,18 @@
 
 <div class="modal fade" id="qrmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
-        <div class="modal-content " >
+        <div class="modal-content ">
             <div class="modal-header" style="background-color:#4D226D;">
                 <h5 class="modal-title"></h5>
-                <h5 style="  font-size: 20px; color:#ffffff;" >Qr Code </h5>
+                <h5 style="  font-size: 20px; color:#ffffff;">Qr Code </h5>
             </div>
-            
+
             <div class="modal-body">
                 <h5 id="nomeqrsala">Nome: </h5>
                 <input id="hiddenid" type="hidden" value="">
 
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" id="corouselimg" >   
+                    <div class="carousel-inner" id="corouselimg">
                     </div>
 
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
