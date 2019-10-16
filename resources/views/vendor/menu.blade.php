@@ -30,6 +30,7 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
     <!-- CSS Files -->
     <link href="{{asset('assets/css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -39,8 +40,8 @@
 </head>
 
 <body class="">
-    <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="wrapper " >
+        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
 
             <div class="logo">
@@ -120,25 +121,13 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"  aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end">
-                        <form class="navbar-form">
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </div>
-                        </form>
-
-
-                    </div>
+                   
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -161,6 +150,7 @@
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
     <!-- Plugin for the momentJs  -->
     <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
     <!--  Plugin for Sweet Alert -->
@@ -582,6 +572,11 @@
 
                  for( i = 0; i < cont; i++){
 
+                    $('#divtabela').append(
+                    '<div class="tab-pane fade show active" id="div'+pag+'" role="tabpanel" aria-labelledby="home-tab"><tbody id="alunotbody">teste</tbody>'+ 
+                            '</div>'
+                    );
+
                     if(pag >= (teste -2) && pag <= (teste + 2) ){
 
                 if(pag == teste ){
@@ -610,16 +605,16 @@
 
                     if( i < (conta +max) ){
 
-                    $('#alunotbody').append(
+                    // $('#alunotbody1').append(
 
-                            '<tr>'+
-                                 ' <th scope="row" >' + parse[i].user_id +'</th>'+
-                                  '<td>'+ parse[i].name +'</td>'+
-                                  '<td>'+ parse[i].email + '</td>'+
-                                  '<td> <button class="btn btn-primary btn-sm">'+ 'Adicionar</button></td>'+
-                               '</tr>'
+                    //         '<tr>'+
+                    //              ' <th scope="row" >' + parse[i].user_id +'</th>'+
+                    //               '<td>'+ parse[i].name +'</td>'+
+                    //               '<td>'+ parse[i].email + '</td>'+
+                    //               '<td> <button class="btn btn-primary btn-sm">'+ 'Adicionar</button></td>'+
+                    //            '</tr>'
 
-                        );
+                        // );
      
                     }
                     }
@@ -631,6 +626,8 @@
 
 
     </script>
+
+    
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script>

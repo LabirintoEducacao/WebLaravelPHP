@@ -63,7 +63,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar aluno</h5>
-                    <button type="button" class="close bg-warning" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close bg-primary" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -75,21 +75,23 @@
 
                          <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
 
-                            
-                            <table class="table container-fluid">
-                              <thead >
-                                <tr>
-                                <th scope="col"> Id: </th>
-                                <th scope="col"> Nome: </th>
-                                <th scope="col"> Email: </th>
-                                <th scope="col"></th>
-                              </tr>
-                              </thead>
-                              <tbody id="alunotbody">
+                         <table class="table container-fluid">
+                                <thead >
+                                    <tr>
+                                        <th scope="col"> Id: </th>
+                                        <th scope="col"> Nome: </th>
+                                        <th scope="col"> Email: </th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                
+                            <div class="tab-content" id="divtabela">
+                            </div>
 
-                              </tbody> 
-                            </table>
-        
+                            </table> 
+
+                           
+
                         </div>
                     </div>
 
