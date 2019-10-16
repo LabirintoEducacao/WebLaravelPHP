@@ -752,7 +752,7 @@
 
                   if( m > 0 || pergref[0].value === "" ){
 
-                  alert("A campos a preencher na aba Refoço verifique!");
+                  alert("A campos a preencher na aba Refoço verifique!\nCaso não necessite de reforço desmarque a caixa pergunta refoço.");
 
                   }
 
@@ -781,7 +781,6 @@
                   // $(".print-error-msg").css('display', 'none');
                   // $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
 
- 
               }
 
 
