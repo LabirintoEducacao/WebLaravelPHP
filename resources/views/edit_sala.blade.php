@@ -107,14 +107,16 @@
                                             <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
                                         </div>
                                         
-                                        <div class="form-group form-file-upload form-file-simple" style="display:none;" id="teste">
 <!--
-                                            <input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
-                                            <input type="file" class="inputFileHidden">
--->
-                                            <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        <div class="form-group form-file-upload form-file-simple" style="display:none;" id="teste">
+
+                                            input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
+                                            <input type="file" class="inputFileHidden"
+
+                                            <label for="exampleFormControlFile1">Escolha um arquivo...</label>
+                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                           </div>
+-->
                                     </div>
                                     
 
@@ -176,7 +178,7 @@
                                             <div class="card houvercard">
                                                 <div class="container">
                                                     <div class="textareaborda2" style="margin-top: 10px;">
-                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
+                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder="1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
                                                         <input type="hidden" name="resp_id[]" class="resp_id">
                                                     </div>
                                                     <!--

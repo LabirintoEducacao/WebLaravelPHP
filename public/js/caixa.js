@@ -454,6 +454,62 @@
 
 
 
+        $('#question_type').on('change', function(){
+            var x = $('#question_type').val();
+           if(x!=1){
+               $('#pergunta').attr({placeholder:"Insira a url"});
+               
+           }else{
+               $('#pergunta').attr({placeholder:"Faça sua pergunta"});
+           }
+               
+            console.log($('#question_type').val());
+        });
+          
+          
+//          $('#tipo_opcao_ref').on('change', function(){
+//            var x = $('#tipo_opcao_ref').val();
+//           if(x!=1){
+//               $('#pergunta-reforco').attr({placeholder:"Insira a url"});
+//               
+//           }else{
+//               $('#pergunta-reforco').attr({placeholder:"Faça sua pergunta reforço"});
+//           }
+//               
+//            console.log($('#tipo_opcao_ref').val());
+//        });
+//          
+//          
+//          $('#tipo_opcao').on('change', function(){
+//            var x = $('#tipo_opcao').val();
+//   
+//           if(x!=1){
+//     
+//               document.getElementsByName('resposta[]').attr({placeholder:"Insira a url"});
+// 
+//               
+//           }else{
+//     
+//               document.getElementsByName('resposta[]').attr({placeholder:"Resposta"});
+//
+//           }
+//               
+//            console.log($('#tipo_opcao').val());
+//        });
+//          
+//          
+//          $('#question_type').on('change', function(){
+//            var x = $('#question_type').val();
+//           if(x!=1){
+//               $('#pergunta').attr({placeholder:"Insira a url"});
+//               
+//           }else{
+//               $('#pergunta').attr({placeholder:"Faça sua pergunta"});
+//           }
+//               
+//            console.log($('#question_type').val());
+//        });
+
 
 
 

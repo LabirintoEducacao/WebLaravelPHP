@@ -591,7 +591,7 @@
                     <div class="modal-body">
                         <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
                         <input type="hidden" name="sala_id" id="sala_id" value="0">
-                        <input type="hidden" value="1" id="page" name="page">
+                        <input type="hidden" value="0" id="page" name="page">
                         <div class="form-group">
                             <label for="nome" display="inline">Nome da Sala:</label>
                             <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
