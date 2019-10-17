@@ -75,30 +75,19 @@
 
                          <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
 
-                         <table class="table container-fluid">
-                                <thead >
-                                    <tr>
-                                        <th scope="col"> Id: </th>
-                                        <th scope="col"> Nome: </th>
-                                        <th scope="col"> Email: </th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                
-                            <div class="tab-content" id="divtabela">
-                            </div>
+                        <div class="tab-content" id="divtabela">
 
-                            </table> 
-
-                           
-
+                         
+                          </div>
                         </div>
-                    </div>
+                      </div>
+
 
                       <div class="row justify-content-center">
                           <nav aria-label="...">
-                            <ul class="pagination justify-content-center">
+                            <ul class="pagination justify-content-center">  
                               
+    
                               
                             </ul>
                           </nav>
