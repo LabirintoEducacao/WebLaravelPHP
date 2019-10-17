@@ -14026,13 +14026,11 @@ h2.title {
 
 .dropdown-menu {
   display: none;
-  padding: 0.3125rem 0;
   border: 0;
   opacity: 0;
   transform: scale(0);
   transform-origin: 0 0;
   will-change: transform, opacity;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
@@ -18125,10 +18123,10 @@ Copyright (c) 2015 Daniel Eden
   .nav-open .menu-on-left .main-panel {
     position: initial;
   }
-  html,
+  /*html,
   body {
     overflow-x: hidden;
-  }
+  }*/
   .nav-open .menu-on-left .main-panel,
   .nav-open .menu-on-left .wrapper-full-page,
   .nav-open .menu-on-left .navbar-fixed>div {

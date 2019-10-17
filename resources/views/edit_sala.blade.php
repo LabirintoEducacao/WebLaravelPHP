@@ -75,7 +75,7 @@
                                                 <input type="hidden" value="0" name="perg_id" id="perg_id">
                                                 <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
                                             </div>
-                                            <div class="col col-md-auto">
+                                            <div class="col-12 col-md-auto">
                                                 <label for="question_type">Tipo da pergunta:</label>
                                                 <select class="selectborda" name="question_type" id="question_type">
                                                     <option selected value="1">Texto</option>
@@ -122,7 +122,7 @@
                                     <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
                                     <div class=" container">
                                         <div class="row" style="line-height: 40px; margin-bottom: 10px;">
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
                                                 <label for="answer_boolean">Caminho do jogo:</label>
                                                 <select class="selectborda" name="answer_boolean" id="answer_boolean">
@@ -130,7 +130,7 @@
                                                     <option value="2">Labirinto</option>
                                                 </select>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-4">
                                                 <label for="tamanho">Tamanho do labirinto:</label>
                                                 <select class="selectborda" name="tamanho" id="tamanho">
                                                     <option selected value="1">Pequeno</option>
@@ -138,7 +138,7 @@
                                                     <option value="3">Grande</option>
                                                 </select>
                                             </div>
-                                            <div class="col">
+                                            <div class="col-12 col-sm-4">
                                                 <label for="largura">Largura do labirinto:</label>
                                                 <select class="selectborda" name="largura" id="largura">
                                                     <option selected value="1">Pequeno</option>
@@ -405,11 +405,22 @@
                                                  <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
                                                   <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
                      -->
-                <div id="flip">
-                    <div class="row align-items-center" style="cursor: pointer;">
-                        <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$item->id}});">
-                            {{$item->pergunta}}
 
+                <div id="flip" >
+                    <div class="row align-items-center" style="cursor: pointer;">
+                    <div  class="col-sm-10 container" onclick="abrir('panel'+{{$item->id}});">
+                             <?php
+                                $str2 = $item->pergunta;
+                                $total1 = strlen($str2); 
+                                ?>
+                            @if($total1 > 108)
+                            <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$item->pergunta}}">{{$item->pergunta}}</div>
+                            @else
+                            <div style="font-weight:bold">{{$item->pergunta}}</div>
+                            @endif
+                        </div>
+                        <div class="col-2 col-sm-auto">
+                        <label>Total: {{$c_perg}}</label>
                         </div>
                         <div class="col-2 col-sm-1">
                             <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
@@ -420,8 +431,8 @@
                                 <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>
                             </div>
                         </div>
-                        <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$item->id}});">
-                            <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute; margin-left:46.7%;">
+                        <div class="container col-1 "  onclick="abrir('panel'+{{$item->id}});"  style="margin-top: -10px;">
+                            <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
                         </div>
                     </div>
                 </div>
@@ -441,8 +452,10 @@
                     @if($pergresp->resp_id==$resposta->id)
 
                     <div class="row">
-                        <h5 class="col-1"><?php echo $letras[$y];?></h5>
-                        <p class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
+                        <h5><?php echo $letras[$y];?></h5>
+                        <div class="col" style=" margin-top: -5px;">
+                        <p style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
+                        </div>
                     </div>
                     <?php $y++; ?>
 
@@ -465,12 +478,25 @@
                 @if($path->id==$pp->path_id)
                 <!--                    <input value="{{$path->id}}"><br><br>-->
 
-                <div id="flip2" data-toggle="tooltip" data-placement="top" title="Reforço da pergunta {{$item->pergunta}}">
+                <div id="flip2" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
                     <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
                     <div class="row align-items-center" style="cursor: pointer;">
-                        <div class="col-10 col-sm-11 container" onclick="abrir('panel'+{{$ref->id}});">
-                            {{$ref->pergunta}}
+                        <div class="col-sm-10 container" onclick="abrir('panel'+{{$ref->id}});">
+                        <?php
+                        $str = $ref->pergunta;
+                        $total = strlen($str); 
+                        ?>
+                            @if($total > 108)
+                            <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$ref->pergunta}}">{{$ref->pergunta}}</div>
+                            @else
+                            <div style="font-weight:bold">{{$ref->pergunta}}</div>
+                            @endif
                         </div>
+
+                        <div class="col-2 col-sm-auto">
+                        <label>Total: {{$c_perg}}</label>
+                        </div>
+
                         <div class="col-2 col-sm-1">
                             <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                 <i id="teste" class="material-icons">more_vert</i>
@@ -480,8 +506,8 @@
                                 <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>
                             </div>
                         </div>
-                        <div class="col-12" style="margin-bottom:1.6%" onclick="abrir('panel'+{{$ref->id}});">
-                            <img src="{{asset('img/expand-button.png')}}" width="8px" style="position:absolute; margin-left:46.7%;">
+                        <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
+                            <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
                         </div>
                     </div>
                 </div>
@@ -495,11 +521,11 @@
                     @foreach($perg_resp as $pergresp)
                     @if($pergresp->perg_id==$ref->id)
                     @if($pergresp->resp_id==$resposta->id)
-
                     <div class="row">
-                        <h4 display="inline" class="col-sm-12 col-md-1"><?php echo $letras[$y]; ?>&emsp;</h4>
-                        <h4 class="col" style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</h4>
-
+                        <h5><?php echo $letras[$y];?></h5>
+                        <div class="col" style=" margin-top: -5px;">
+                        <p style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
+                        </div>
                     </div>
                     <?php $y++; ?>
                     @endif

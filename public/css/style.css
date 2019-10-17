@@ -1,5 +1,4 @@
 /* CSS DO PAINEL DE MOSTRAR AS PERGUNTAS */
-
 .modal-dialog{
     overflow-y: initial !important
 }
@@ -215,7 +214,6 @@ a:hover #teste {
   opacity: 0.8;
 }
 
-
 @media (min-width: 576px) {
 
   .larguramodal {
@@ -231,8 +229,22 @@ a:hover #teste {
   .larguramodal {
       max-width: auto;
       max-height: auto;
+     padding-left: 17px;
   }
 
+  html,
+  body {
+  }
+
+}
+
+
+#div2 {
+    white-space: nowrap; 
+    width: 48em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    font-weight:bold;
 }
 
 

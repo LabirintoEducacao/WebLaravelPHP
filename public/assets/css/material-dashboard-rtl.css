@@ -1179,7 +1179,7 @@ html[dir="rtl"] .alert button.close {
 }
 
 html[dir="rtl"] .sidebar .sidebar-wrapper .navbar-form .input-group {
-  padding-right: 17px;
+
   padding-left: unset;
 }
 

@@ -153,7 +153,7 @@
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                      '  <div class="col-4">' +
+                      '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
                       '  <label for="answer_boolean_perg">Caminho do jogo:</label>' +
                       '   <select class="selectborda" name="answer_boolean_perg" id="answer_boolean_perg">' +
@@ -161,7 +161,7 @@
                       ' <option value="2">Labirinto</option>' +
                       '</select>' +
                       ' </div>' +
-                      '  <div class="col-4">' +
+                      '  <div class="col-12 col-sm-4">' +
                       '<label for="tamanho_perg">Tamanho do labirinto:</label>' +
                       ' <select class="selectborda" name="tamanho_perg" id="tamanho_perg">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -169,7 +169,7 @@
                       '  <option value="3">Grande</option>' +
                       '</select>' +
                       ' </div>' +
-                      ' <div class="col">' +
+                      ' <div class="col-12 col-sm-4">' +
                       '<label for="largura_perg">Largura do labirinto:</label>' +
                       '   <select class="selectborda" name="largura_perg" id="largura_perg">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -215,7 +215,7 @@
                       '<input type="hidden" value="0" name="perg_reforco_id" id="perg-reforco-id">' +
                       '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
                       '</div>' +
-                      '<div class="col col-md-auto">' +
+                      '<div class="col-12 col-md-auto">' +
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
                       ' <select class="selectborda" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
@@ -244,7 +244,7 @@
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (REFORÇO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                      '  <div class="col-4">' +
+                      '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
                       '   <select class="selectborda" name="answer_boolean_ref" id="answer_boolean_ref">' +
@@ -252,7 +252,7 @@
                       ' <option value="2">Labirinto</option>' +
                       '</select>' +
                       ' </div>' +
-                      '  <div class="col-4">' +
+                      '  <div class="col-12 col-sm-4">' +
                       '<label for="tamanho_ref">Tamanho do labirinto:</label>' +
                       ' <select class="selectborda" name="tamanho_ref" id="tamanho_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -260,7 +260,7 @@
                       '  <option value="3">Grande</option>' +
                       '</select>' +
                       ' </div>' +
-                      ' <div class="col">' +
+                      ' <div class="col-12 col-sm-4">' +
                       '<label for="largura_ref">Largura do labirinto:</label>' +
                       '   <select class="selectborda" name="largura_ref" id="largura_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -454,20 +454,6 @@
 
 
 
-        $('#question_type').on('change', function(){
-            var x = $('#question_type').val();
-           if(x!=1){
-               $('#pergunta').css('display','none');
-               $('#teste').css('display','block');
-               console.log('sim');
-           }else{
-               $('#pergunta').css('display','block');
-               $('#teste').css('display','none');
-               console.log('nao');
-           }
-               
-//            console.log($('#question_type').val());
-        });
 
 
 
@@ -482,7 +468,6 @@
 
               var corretos = document.getElementsByName('corret[]');
               var corretos_ref = document.getElementsByName('corret_ref[]');
-            
 
 
               if (button.data('whatever')) {
@@ -622,8 +607,8 @@
                                           b++;
                                       }
                                       console.log(ref.answer)
-                                      modal.find("#tipo_opcao_ref").val(ref.tipo_resp);
-                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).val(ref.answer_id);
+                                      modal.find("#tipo_opcao_ref").attr("value", ref.tipo_resp);
+                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",ref.answer_id);
                                       if (ref.correct === true){
                                           modal.find(corretos_ref[v]).attr("value", "1");
                                           modal.find(corretos_ref[v]).attr("checked", "true");

@@ -39,8 +39,8 @@
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="">
-    <div class="wrapper " >
+<body >
+    <div class="wrapper" >
         <div class="sidebar"  data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
 
@@ -154,14 +154,14 @@
 
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-    <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
+   <!--  <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script> -->
    <!--  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> -->
     <!-- Plugin for the momentJs  -->
     <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
     <!--  Plugin for Sweet Alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert2.j')}}s"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2.js')}}"></script>
     <!-- Forms Validations Plugin -->
-    <script src="{{asset('assets/js/plugins/jquery.validate.min.j')}}s"></script>
+    <script src="{{asset('assets/js/plugins/jquery.validate.min.js')}}"></script>
     <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="{{asset('assets/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
     <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -184,8 +184,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Library for adding dinamically elements -->
     <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chartist JS -->
     <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
     <!--  Notifications Plugin    -->
@@ -680,6 +678,10 @@
 
                t = 0;
          }
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
 
     </script>
 
