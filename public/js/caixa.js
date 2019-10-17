@@ -454,6 +454,20 @@
 
 
 
+        $('#question_type').on('change', function(){
+            var x = $('#question_type').val();
+           if(x!=1){
+               $('#pergunta').css('display','none');
+               $('#teste').css('display','block');
+               console.log('sim');
+           }else{
+               $('#pergunta').css('display','block');
+               $('#teste').css('display','none');
+               console.log('nao');
+           }
+               
+//            console.log($('#question_type').val());
+        });
 
 
 
@@ -468,6 +482,7 @@
 
               var corretos = document.getElementsByName('corret[]');
               var corretos_ref = document.getElementsByName('corret_ref[]');
+            
 
 
               if (button.data('whatever')) {
@@ -607,8 +622,8 @@
                                           b++;
                                       }
                                       console.log(ref.answer)
-                                      modal.find("#tipo_opcao_ref").attr("value", ref.tipo_resp);
-                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",ref.answer_id);
+                                      modal.find("#tipo_opcao_ref").val(ref.tipo_resp);
+                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).val(ref.answer_id);
                                       if (ref.correct === true){
                                           modal.find(corretos_ref[v]).attr("value", "1");
                                           modal.find(corretos_ref[v]).attr("checked", "true");

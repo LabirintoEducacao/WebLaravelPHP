@@ -463,8 +463,8 @@
 
 
         function qrcodebtn(id) {
-            $('#'+id).attr('disabled',true);
 
+            $('#'+id).attr('disabled',true);
             $.get("/admin/virtual/" + id).done(function(data) {
 
                 var parse = JSON.parse(data);
@@ -507,12 +507,11 @@
                     $('.carousel').carousel({
                         interval: 1000
                     });
+                     $('#'+id).attr('disabled',false);
 
-                    $('#'+id).attr('disabled',false);
+
                 }
             });
-            
-            
 
         }
 
@@ -520,12 +519,8 @@
         /////////////////////////////
 
         $('#qrmodal').on('hide.bs.modal', function(e) {
-            
-            
-//            $('#'+id).attr('disabled',false);
 
             var idmodal = $('#hiddenid').val();
-            
 
 
             $.get("/admin/virtualdelete/" + idmodal).done(function() {
@@ -656,15 +651,17 @@
 
                 
                 $('#sidebar').show();
-                
+               
 
                 console.log('é' + t);
                 
-            }
+
+             }
+             
 //             else{
 //
 //                $('#botaomenu').attr("class","navbar-toggler");
-//                $('#abrirmenu').attr("class","");
+//                 $('#abrirmenu').attr("class","");
 //                $('#sidebar').hide();
 //
 //
@@ -679,7 +676,6 @@
 
              $('#divlayer').detach();
               $('#botaomenu').attr("class","navbar-toggler");
-             $('#sidebar').hide();
                $('#abrirmenu').attr("class","");
 
                t = 0;
