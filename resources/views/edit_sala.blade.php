@@ -107,14 +107,16 @@
                                             <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
                                         </div>
                                         
-                                        <div class="form-group form-file-upload form-file-simple" style="display:none;" id="teste">
 <!--
-                                            <input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
-                                            <input type="file" class="inputFileHidden">
--->
-                                            <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        <div class="form-group form-file-upload form-file-simple" style="display:none;" id="teste">
+
+                                            input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
+                                            <input type="file" class="inputFileHidden"
+
+                                            <label for="exampleFormControlFile1">Escolha um arquivo...</label>
+                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                           </div>
+-->
                                     </div>
                                     
 

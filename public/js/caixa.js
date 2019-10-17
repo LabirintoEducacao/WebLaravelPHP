@@ -453,21 +453,21 @@
 
 
 
-
-        $('#question_type').on('change', function(){
-            var x = $('#question_type').val();
-           if(x!=1){
-               $('#pergunta').css('display','none');
-               $('#teste').css('display','block');
-               console.log('sim');
-           }else{
-               $('#pergunta').css('display','block');
-               $('#teste').css('display','none');
-               console.log('nao');
-           }
-               
+//
+//        $('#question_type').on('change', function(){
+//            var x = $('#question_type').val();
+//           if(x!=1){
+//               $('#pergunta').css('display','none');
+//               $('#teste').css('display','block');
+//               console.log('sim');
+//           }else{
+//               $('#pergunta').css('display','block');
+//               $('#teste').css('display','none');
+//               console.log('nao');
+//           }
+//               
 //            console.log($('#question_type').val());
-        });
+//        });
 
 
 
