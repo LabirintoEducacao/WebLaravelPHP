@@ -703,6 +703,31 @@
              $('#table'+data).css('display','block');
 
              $('.pagination').empty();
+             
+             if(total <=5 ){
+
+                for(var i=1; i<=total; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+total+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
+
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+total+')">'+ i +'</a></li>'
+                    );
+                }
+
+                }
+                
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+total+')">Ultima</a></li>'
+                    );
+
+            }else{
 
              if(data==1){
 
@@ -757,6 +782,7 @@
                 '<li class="page-item "><a class="page-link active" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'
                 
                 ); }   
+            }
 
 
 
