@@ -178,7 +178,7 @@
                                             <div class="card houvercard">
                                                 <div class="container">
                                                     <div class="textareaborda2" style="margin-top: 10px;">
-                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder=" 1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
+                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder="1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
                                                         <input type="hidden" name="resp_id[]" class="resp_id">
                                                     </div>
                                                     <!--
