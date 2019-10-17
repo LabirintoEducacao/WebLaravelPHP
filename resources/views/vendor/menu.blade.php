@@ -641,7 +641,7 @@
                  }
 
 
-
+                if(contagem > 5){
                 for(i=1; i<=5; i++){
 
                  if(i==1){
@@ -658,9 +658,35 @@
                 }
 
                 }
+
                 $('.pagination').append(
                 '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
                     );
+
+            } if(contagem <=5 ){
+
+                for(i=1; i<=contagem; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
+
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+                }
+
+                }
+                
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
+                    );
+
+            }
                   
 
              });
