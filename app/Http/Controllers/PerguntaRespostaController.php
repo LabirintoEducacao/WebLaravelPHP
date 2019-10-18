@@ -238,6 +238,7 @@ class PerguntaRespostaController extends Controller
         
         $perguntas = Pergunta::where('sala_id', $id)->whereNotNull('ordem')
         ->orderBy('ordem')->paginate(5);
+
         $path_perg = DB::table('path_perg')
                 ->join('perguntas','perguntas.id','=','path_perg.perg_id')
                 ->where('perguntas.sala_id', '=', $id)
@@ -253,10 +254,60 @@ class PerguntaRespostaController extends Controller
             ->where('sala_id','=',$id )->whereNotNull('ordem')
             ->orderBy('ordem')
             ->get();
+
+
+
         $perg_refs = DB::table('perg_ref')
-                ->join('perguntas','perguntas.id','=','perg_ref.perg_id')
-                ->where('perguntas.sala_id', '=', $id)
-                ->get();
+                        ->join('perguntas','perguntas.id','=','perg_ref.perg_id')
+                        ->where('perguntas.sala_id', '=', $id)
+                        ->get();
+
+
+ $id_pergunta =  DB::table('perguntas')
+             ->where('perguntas.sala_id', '=', $id)
+             ->select('id')
+             ->get();
+
+        $qtdresps = DB::table('perguntas')
+        ->join('perg_ref','perguntas.id','=','perg_ref.ref_id')
+        ->join('perg_resp','perguntas.id','=','perg_resp.perg_id')
+        ->join('respostas','respostas.id','=','perg_resp.resp_id')
+        ->select('resposta')
+        ->where('perguntas.sala_id', '=', $id)
+        ->where('perguntas.id','=', 2)
+        ->get();
+
+
+
+  //`POr poergunta dinamico
+   //       $id_pergunta =  DB::table('perguntas')
+   //           ->join('perg_ref', 'perguntas.id','=', 'perg_ref.perg_id' )
+   //           ->where('perguntas.sala_id', '=', $id)
+   //           ->select('perguntas.id')
+   //           ->get();
+
+   // $qtdresps = DB::table('perguntas')
+   //          ->join('perg_ref','perguntas.id','=','perg_ref.ref_id')
+   //          ->join('perg_resp','perguntas.id','=','perg_resp.perg_id')
+   //          ->join('respostas','respostas.id','=','perg_resp.resp_id')
+   //          ->select('resposta')
+   //          ->where('perguntas.sala_id', '=', $id)
+   //          ->where('perguntas.id','=', 1)
+   //          ->get();
+       
+
+
+
+
+
+        
+
+        
+
+
+                
+        $teste50 =  count($qtdresps);
+        //$teste50 = $id_pergunta[1]->id ;
 
 
         if(count($pergs)>0){
@@ -264,8 +315,7 @@ class PerguntaRespostaController extends Controller
         }else{
             $count_pergs=0;
         }
-        
-        
+   
         if(count($ref)>0){
             $count_ref=count($ref);
         }else{
@@ -276,7 +326,7 @@ class PerguntaRespostaController extends Controller
             ->get();
         $perg_resp =  DB::table('perg_resp')
             ->get();   
-        return view ( 'edit_sala', ['id' => $id, 'sala'=>$sala[0] ] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'c_ref'=>$count_ref, 'refs' =>$ref,'perg_refs'=>$perg_refs]);
+        return view ( 'edit_sala', ['id' => $id, 'sala'=>$sala[0] ] )->with(['data' => $perguntas, 'respostas' => $respostas, 'perg_resp' => $perg_resp, 'path_perg' => $path_perg, 'paths' => $paths,'pergs'=>$pergs,'c_perg'=>$count_pergs,'totalperg'=>$teste50,'c_ref'=>$count_ref, 'refs' =>$ref,'perg_refs'=>$perg_refs]);
     }
     
     public function alterar(Request $request){

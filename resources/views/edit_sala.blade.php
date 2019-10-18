@@ -9,7 +9,6 @@
 @endif
 <input type="hidden" value="52" id="num_y">
 
-
 <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog larguramodal" role="document">
         <div class="modal-content">
@@ -421,8 +420,14 @@
                             <div style="font-weight:bold">{{$item->pergunta}}</div>
                             @endif
                         </div>
+
                         <div class="col-2 col-sm-auto">
+
                         <label>Total: {{$c_perg}}</label>
+                  
+                        <label>Total de resposta das perguntas: {{$totalperg}}</label>
+
+
                         </div>
                         <div class="col-2 col-sm-1">
                             <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
