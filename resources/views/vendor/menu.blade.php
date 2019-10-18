@@ -461,8 +461,10 @@
 
 
         function qrcodebtn(id) {
-
-            $('#'+id).attr('disabled',true);
+                
+            
+            $(".qrcode").attr('disabled',true);
+            
             $.get("/admin/virtual/" + id).done(function(data) {
 
                 var parse = JSON.parse(data);
@@ -470,7 +472,7 @@
                 if (data == "null") {
 
                     $('#noinfomodal').modal('show');
-                    $('#'+id).attr('disabled',false);
+                   $(".qrcode").attr('disabled',false);
 
                 } else {
                     console.log(data)
@@ -505,7 +507,7 @@
                     $('.carousel').carousel({
                         interval: 1000
                     });
-                     $('#'+id).attr('disabled',false);
+                     $(".qrcode").attr('disabled',false);
 
 
                 }
@@ -845,6 +847,105 @@
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
+            
+            
+            
+                  $('#editarSalaModal1').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget); // Button that triggered the modal
+          var recipientnome = button.data('whatevernome');
+          var recipientid = button.data('whateverid');
+          var recipienttempo = button.data('whatevertempo');
+          console.log(recipienttempo);
+          var recipienttema = button.data('whatevertema');
+          var recipientcorrect = button.data('whateverpublic');
+          var recipientenable = button.data('whateverenable');
+          var tempo = button.data('tempoo');
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this);
+          modal.find('#nome').val(recipientnome);
+          modal.find('#time3').val(recipienttempo);
+          modal.find('#time4').val(tempo);
+          modal.find('#sala_id').val(recipientid);
+          modal.find('#theme').val(recipienttema);
+          console.log(recipientcorrect);
+          console.log(recipientenable);
+
+          if (recipientcorrect == 1){
+              $('#public1').prop("checked", true);
+              $('#public1').prop("value", 1);
+          }else{
+              $('#public1').prop("checked", false);
+              $('#public1').prop("value", 0);
+          }
+
+          if (recipientenable == 1){
+              $('#enable1').prop("checked", true);
+              $('#enable1').prop("value", 1);
+          }else{
+              $('#enable1').prop("checked", false);
+              $('#enable1').prop("value", 0);
+          }
+      });
+            
+            
+            
+      $('#editarSalaModal2').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget); // Button that triggered the modal
+          var recipientnome = button.data('whatevernome');
+          var recipientid = button.data('whateverid');
+          var recipienttempo = button.data('whatevertempo');
+          var recipienttema = button.data('whatevertema');
+          var recipientcorrect = button.data('whateverpublic');
+          var recipientenable = button.data('whateverenable');
+          var tempo = button.data('tempoo');
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this);
+          modal.find('#nome').val(recipientnome);
+          modal.find('#time3').val(recipienttempo);
+          console.log(tempo)
+          modal.find('#time4').val(tempo);
+          modal.find('#sala_id').val(recipientid);
+          modal.find('#theme').val(recipienttema);
+
+
+          if (recipientcorrect == 1){
+              $('#public1').prop("checked", true);
+              $('#public1').prop("value", 1);
+          }else{
+              $('#public1').prop("checked", false);
+              $('#public1').prop("value", 0);
+          }
+
+          if (recipientenable == 1){
+              $('#enable1').prop("checked", true);
+              $('#enable1').prop("value", 1);
+          }else{
+              $('#enable1').prop("checked", false);
+              $('#enable1').prop("value", 0);
+          }
+      });
+            
+            
+            
+        $('#public1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('public1').value = 1;
+              }else {
+                  document.getElementById('public1').value = 0;
+              }
+
+          });
+
+     $('#enable1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('enable1').value = 1;
+              }else {
+                  document.getElementById('enable1').value = 0;
+              }
+
+          });
 
     </script>
 
