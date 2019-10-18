@@ -632,7 +632,7 @@
                         '<td scope="row">'+parse[i].user_id +'</td>'+
                         '<td>'+ parse[i].name + '</td>' +
                          '<td>'+ parse[i].email +'</td>' +
-                         '<td>'+ '<a class="btn btn-primary btn-sm " href="#">Adicionar</a>' +'</td>' +
+                         '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addaluno('+ parse[i].user_id +')" >Adicionar</a>' +'</td>' +
                              '</tr>'
                               
                              );
@@ -663,7 +663,7 @@
                 '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
                     );
 
-            } if(contagem <=5 ){
+            } if(contagem <=5 ) {
 
                 for(i=1; i<=contagem; i++){
 
@@ -756,7 +756,10 @@
                 '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'+
                 '<li class="page-item "><a class="page-link active" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'
                 
-                ); }   
+                ); }  
+
+
+               
 
 
 
@@ -770,6 +773,52 @@
 
              // }
          }
+
+
+
+          function addaluno(id){
+
+                    console.log('addaluno');
+                // $.post( "/admin/aluno", { 'id': id } );
+
+                var _token = $('meta[name="_token"]').attr('content');
+
+                        $.ajaxSetup({
+
+                            headers: {
+
+                                'X-CSRF-TOKEN': _token
+
+                            }
+
+                        });
+
+
+                     $.ajax({
+                     url: 'http://127.0.0.1:8000/admin/novoteste',
+                     type: 'POST',
+                        data: {
+                            user:'oi'
+                        },
+                        dataType: 'JSON',
+
+                        success: function(data){
+                            console.log("Comunicacao ok", data);
+                        },
+
+                        error: function(){
+                                console.log("erro");
+
+                        }
+                        });
+                       
+
+
+                
+                // form action="{{ url('admin/aluno') }}" method="POST"
+
+
+                } 
 
    // perfect-scrollbar-on nav-open
 

@@ -219,6 +219,12 @@ Route::get('/settings/password', function () {
     return view('password'); 
 });
 
+Route::get('/novoteste', function($user){
+
+
+    return "ok";
+});
+
  
 });
 

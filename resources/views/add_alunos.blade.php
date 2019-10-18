@@ -69,6 +69,8 @@
                 </div>
                 
                     <div class="modal-body">
+
+                      
                         <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
                          <div class="form-group" style="margin-top:3.5%">
                             <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
