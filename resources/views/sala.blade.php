@@ -510,7 +510,7 @@
                         <input type="hidden" name="sala_id" id="sala_id" value="0">
                         <div class="form-group">
                             <label for="nome" display="inline">Nome da Sala:</label>
-                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
+                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required>
 
                             @if ($errors->has('nome'))
                             <div class="help-block">

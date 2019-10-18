@@ -947,6 +947,11 @@ $(function () {
 
           });
 
+            
+            
+            $('.selectpicker').selectpicker('refresh');
+            
+            
     </script>
 
     

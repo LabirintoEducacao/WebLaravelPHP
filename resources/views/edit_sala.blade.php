@@ -75,14 +75,22 @@
                                                 <input type="hidden" value="0" name="perg_id" id="perg_id">
                                                 <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
                                             </div>
-                                            <div class="col-12 col-md-auto">
-                                                <label for="question_type">Tipo da pergunta:</label>
-                                                <select class="selectborda" name="question_type" id="question_type">
-                                                    <option selected value="1">Texto</option>
-                                                    <option value="2">Imagem</option>
-                                                    <option value="3">Vídeo</option>
-                                                    <option value="4">Áudio</option>
-                                                </select>
+                                            <div class="col-12 col-md-auto" style="display:inline-block">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="question_type" style="margin-right: 3.5px; padding-top:10%;">Tipo da pergunta:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
+                                                            <option selected value="1">Texto</option>
+                                                            <option value="2">Imagem</option>
+                                                            <option value="3">Vídeo</option>
+                                                            <option value="4">Áudio</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                            
                                             </div>
 
 <!--                                            <div class="col col-lg-6" style="display:none;">-->
@@ -90,19 +98,26 @@
 
 
                                             <div class="col col-lg-4">
-                                                <label for="room_type" style=" margin-right: 3.5px;">Interação:</label>
-                                                <select class="selectborda room_type" name="room_type">
-                                                    <option selected value="right_key">Chave</option>
-                                                    <option value="hope_door">Porta da esperança</option>
-                                                    <option value="true_or_false">Verdadeiro ou Falso</option>
-                                                    <option value="multiple_forms">Multiplas Formas</option>
-                                                </select>
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select name="room_type" class="form-control selectpicker room_type" data-style="btn btn-primary" style="float:left;">
+                                                            <option selected value="right_key">Chave</option>
+                                                            <option value="hope_door">Porta da esperança</option>
+                                                            <option value="true_or_false">Verdadeiro ou Falso</option>
+                                                            <option value="multiple_forms">Multiplas Formas</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
                                     </div>
 
-                                    <div class="container">
+                                    <div class="container" style="padding-top:2%">
+<!--                                        <br>-->
                                         <div class="textareaborda2" style="display:block;">
                                             <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
                                         </div>
@@ -126,27 +141,47 @@
                                         <div class="row" style="line-height: 40px; margin-bottom: 10px;">
                                             <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <label for="answer_boolean">Caminho do jogo:</label>
-                                                <select class="selectborda" name="answer_boolean" id="answer_boolean">
-                                                    <option selected value="1">Corredor</option>
-                                                    <option value="2">Labirinto</option>
-                                                </select>
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="answer_boolean" style="margin-right: 3.5px; padding-top:10%;">Caminho do jogo:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select name="answer_boolean" id="answer_boolean" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
+                                                            <option selected value="1">Corredor</option>
+                                                            <option value="2">Labirinto</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-12 col-sm-4">
-                                                <label for="tamanho">Tamanho do labirinto:</label>
-                                                <select class="selectborda" name="tamanho" id="tamanho">
-                                                    <option selected value="1">Pequeno</option>
+                                                <input type="hidden" name="path_id" id="path_id">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select name="tamanho" id="tamanho" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
+                                                            <option selected value="1">Pequeno</option>
                                                     <option value="2">Medio</option>
                                                     <option value="3">Grande</option>
-                                                </select>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-12 col-sm-4">
-                                                <label for="largura">Largura do labirinto:</label>
-                                                <select class="selectborda" name="largura" id="largura">
-                                                    <option selected value="1">Pequeno</option>
-                                                    <option value="2">Medio</option>
-                                                    <option value="3">Grande</option>
-                                                </select>
+                                                <input type="hidden" name="path_id" id="path_id">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="largura" style="margin-right: 3.5px; padding-top:10%;">Largura do Labirinto:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select name="largura" id="largura" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
+                                                            <option selected value="1">Pequeno</option>
+                                                            <option value="2">Medio</option>
+                                                            <option value="3">Grande</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -162,14 +197,22 @@
                                                 <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
                                                 <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
                                             </div>
-                                            <div class="col">
-                                                <label for="question_type">Tipo da Resposta:</label>
-                                                <select class="selectborda" name="tipo_resp" id="tipo_opcao" class="tipo_resp">
-                                                    <option selected value="1">Texto</option>
-                                                    <option value="2">Imagem</option>
-                                                    <option value="3">Vídeo</option>
-                                                    <option value="4">Áudio</option>
-                                                </select>
+
+                                            <div class="col-12 col-sm-3">
+                                                <input type="hidden" name="path_id" id="path_id">
+                                                <div class="row" style="height:70px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="tipo_opcao" style="margin-right: 3.5px; padding-top:15%;">Tipo da Resposta:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select name="tipo_resp" id="tipo_opcao" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
+                                                            <option selected value="1">Texto</option>
+                                                            <option value="2">Imagem</option>
+                                                            <option value="3">Vídeo</option>
+                                                            <option value="4">Áudio</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 

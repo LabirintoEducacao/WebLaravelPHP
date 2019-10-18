@@ -180,7 +180,7 @@
                         
                         <div class="form-group">
                             <label for="type">Tipo:&emsp;</label>
-                                <select id="type" name="type" style="width:140px">
+                                <select class="form-control selectpicker" data-style="btn btn-primary" id="type" name="type" style="width:160px">
                                     <option value="1">&emsp;ADMINISTRADOR&emsp;</option>
                                     <option value="2">&emsp;PROFESSOR&emsp;</option>
                                     <option value="3">&emsp;USUÁRIO&emsp;</option>

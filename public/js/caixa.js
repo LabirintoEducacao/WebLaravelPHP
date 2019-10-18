@@ -153,14 +153,21 @@
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                      '  <div class="col-12 col-sm-4">' +
-                      '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
-                      '  <label for="answer_boolean_perg">Caminho do jogo:</label>' +
-                      '   <select class="selectborda" name="answer_boolean_perg" id="answer_boolean_perg">' +
-                      ' <option selected value="1">Corredor</option>' +
-                      ' <option value="2">Labirinto</option>' +
-                      '</select>' +
-                      ' </div>' +
+                  '<div class="col-12 col-sm-4">' +
+'<input type="hidden" name="path_errado_id" id="path_errado_id">' +
+'<div class="row" style="height:50px;">' +
+'<div class="col-5" style="height:100%;">' +
+'<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
+'</div>' +
+'<div class="col-7">' +
+'<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary btn-round" style="float:left;">' +
+'<option selected value="1">Corredor</option>' +
+'<option value="2">Labirinto</option>' +
+'</select>' +
+'</div>' +
+'</div>' +
+'</div>' +
+                      
                       '  <div class="col-12 col-sm-4">' +
                       '<label for="tamanho_perg">Tamanho do labirinto:</label>' +
                       ' <select class="selectborda" name="tamanho_perg" id="tamanho_perg">' +
