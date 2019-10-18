@@ -39,8 +39,8 @@
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="">
-    <div class="wrapper " >
+<body >
+    <div class="wrapper" >
         <div class="sidebar"  data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
 
@@ -154,14 +154,14 @@
 
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-    <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
+   <!--  <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script> -->
    <!--  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> -->
     <!-- Plugin for the momentJs  -->
     <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
     <!--  Plugin for Sweet Alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert2.j')}}s"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2.js')}}"></script>
     <!-- Forms Validations Plugin -->
-    <script src="{{asset('assets/js/plugins/jquery.validate.min.j')}}s"></script>
+    <script src="{{asset('assets/js/plugins/jquery.validate.min.js')}}"></script>
     <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="{{asset('assets/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
     <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -184,8 +184,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Library for adding dinamically elements -->
     <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chartist JS -->
     <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
     <!--  Notifications Plugin    -->
@@ -463,8 +461,10 @@
 
 
         function qrcodebtn(id) {
-
-            $('#'+id).attr('disabled',true);
+                
+            
+            $(".qrcode").attr('disabled',true);
+            
             $.get("/admin/virtual/" + id).done(function(data) {
 
                 var parse = JSON.parse(data);
@@ -472,7 +472,7 @@
                 if (data == "null") {
 
                     $('#noinfomodal').modal('show');
-                    $('#'+id).attr('disabled',false);
+                   $(".qrcode").attr('disabled',false);
 
                 } else {
                     console.log(data)
@@ -507,7 +507,7 @@
                     $('.carousel').carousel({
                         interval: 1000
                     });
-                     $('#'+id).attr('disabled',false);
+                     $(".qrcode").attr('disabled',false);
 
 
                 }
@@ -703,6 +703,31 @@
              $('#table'+data).css('display','block');
 
              $('.pagination').empty();
+             
+             if(total <=5 ){
+
+                for(var i=1; i<=total; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+total+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
+
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+total+')">'+ i +'</a></li>'
+                    );
+                }
+
+                }
+                
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+total+')">Ultima</a></li>'
+                    );
+
+            }else{
 
              if(data==1){
 
@@ -756,6 +781,7 @@
                 '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'+
                 '<li class="page-item "><a class="page-link active" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'
                 
+
                 ); }  
 
 
@@ -764,14 +790,6 @@
 
 
              
-
-             // for(var i=0; i <5; i++){ 
-
-             //    $('.pagination').append(
-             //    '<li class="page-item "><a class="page-link" onclick="paginar('+data+','+total+')">'+data+'</a></li>'
-             //        );
-
-             // }
          }
 
 
@@ -867,6 +885,114 @@
                t = 0;
          }
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+            
+            
+            
+                  $('#editarSalaModal1').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget); // Button that triggered the modal
+          var recipientnome = button.data('whatevernome');
+          var recipientid = button.data('whateverid');
+          var recipienttempo = button.data('whatevertempo');
+          console.log(recipienttempo);
+          var recipienttema = button.data('whatevertema');
+          var recipientcorrect = button.data('whateverpublic');
+          var recipientenable = button.data('whateverenable');
+          var tempo = button.data('tempoo');
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this);
+          modal.find('#nome').val(recipientnome);
+          modal.find('#time3').val(recipienttempo);
+          modal.find('#time4').val(tempo);
+          modal.find('#sala_id').val(recipientid);
+          modal.find('#theme').val(recipienttema);
+          console.log(recipientcorrect);
+          console.log(recipientenable);
+
+          if (recipientcorrect == 1){
+              $('#public1').prop("checked", true);
+              $('#public1').prop("value", 1);
+          }else{
+              $('#public1').prop("checked", false);
+              $('#public1').prop("value", 0);
+          }
+
+          if (recipientenable == 1){
+              $('#enable1').prop("checked", true);
+              $('#enable1').prop("value", 1);
+          }else{
+              $('#enable1').prop("checked", false);
+              $('#enable1').prop("value", 0);
+          }
+      });
+            
+            
+            
+      $('#editarSalaModal2').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget); // Button that triggered the modal
+          var recipientnome = button.data('whatevernome');
+          var recipientid = button.data('whateverid');
+          var recipienttempo = button.data('whatevertempo');
+          var recipienttema = button.data('whatevertema');
+          var recipientcorrect = button.data('whateverpublic');
+          var recipientenable = button.data('whateverenable');
+          var tempo = button.data('tempoo');
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this);
+          modal.find('#nome').val(recipientnome);
+          modal.find('#time3').val(recipienttempo);
+          console.log(tempo)
+          modal.find('#time4').val(tempo);
+          modal.find('#sala_id').val(recipientid);
+          modal.find('#theme').val(recipienttema);
+
+
+          if (recipientcorrect == 1){
+              $('#public1').prop("checked", true);
+              $('#public1').prop("value", 1);
+          }else{
+              $('#public1').prop("checked", false);
+              $('#public1').prop("value", 0);
+          }
+
+          if (recipientenable == 1){
+              $('#enable1').prop("checked", true);
+              $('#enable1').prop("value", 1);
+          }else{
+              $('#enable1').prop("checked", false);
+              $('#enable1').prop("value", 0);
+          }
+      });
+            
+            
+            
+        $('#public1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('public1').value = 1;
+              }else {
+                  document.getElementById('public1').value = 0;
+              }
+
+          });
+
+     $('#enable1').on('click', function () {
+              if (this.checked) {
+                  document.getElementById('enable1').value = 1;
+              }else {
+                  document.getElementById('enable1').value = 0;
+              }
+
+          });
+
+            
+            
+            $('.selectpicker').selectpicker('refresh');
+            
+            
     </script>
 
     

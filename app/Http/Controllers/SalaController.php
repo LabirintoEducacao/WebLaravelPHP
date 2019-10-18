@@ -833,5 +833,28 @@ public function teste()
         }
         
     }
+    
+    
+    
+        public function buscarS(Request $request){
+        $id = $request->id;
+        $sala = DB::table('salas')->where('id',$id)->get();
+        
+        $salas = array(
+            'id' => $id,
+            'name' => $sala[0]->name,
+            'duracao' => $sala[0]->duracao,
+            'tematica' => $sala[0]->tematica,
+            'public' => $sala[0]->public,
+            'enable' =>  $sala[0]->enable
+        );
+        
+        return json_encode($salas);
+        
+
+}
+    
+    
+    
 
 }

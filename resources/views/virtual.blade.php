@@ -127,7 +127,7 @@ $flag =0;
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
 
-                                         <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
+                                         <button type="button" class="btn btn-info btn-sm  fa fa-qrcode qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
                                         @endif
                                     </td>
@@ -166,7 +166,7 @@ $flag =0;
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
 
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
 
                                         @endif
@@ -226,7 +226,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
 
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
                                     </td>
                                 </tr>
@@ -259,7 +259,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
 
-                                       <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
+                                       <button type="button" class="btn btn-info btn-sm  fa fa-qrcode qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
 
                                     </td>
                                 </tr>
@@ -407,7 +407,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm"> Estatisticas</a>
                                         @if($item->enable==1)
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
                                         @endif
                                     </td>
                                 </tr>
@@ -440,9 +440,9 @@ $flag =0;
                                 @if($user == $sala->user_id)
                                 @if($item->public == 0)
                                 @if($item->enable == 0)
-                                <tr scope="row" id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
+                                <tr scope="row" id="sala" style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);" class="qrcode">
                                 @else
-                                <tr id="sala" style="cursor: pointer;">
+                                <tr id="sala" style="cursor: pointer;" class="qrcode">
                                 @endif
                                     <td>{{$item->name}}</td>
                                     <td>
@@ -461,7 +461,7 @@ $flag =0;
                                     <td>
                                         <a href="" class="btn btn-primary btn-sm">Estatisticas</a>
                                         @if($item->enable==1)
-                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
+                                        <button type="button" class="btn btn-info btn-sm  fa fa-qrcode qrcode" id="{{$item->id}}" value="{{$item->id}}"  onclick="qrcodebtn({{$item->id}});"> Qr Code</button>
                                         @endif
                                     </td>
                                 </tr>

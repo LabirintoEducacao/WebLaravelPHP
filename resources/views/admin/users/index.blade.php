@@ -2,22 +2,22 @@
 @section('content')
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row align-items-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-tabs card-header-primary">
-                    <h4>
+                    <h3 class="card-title" style="margin-top: 10px;">
                         Controle de Usuários
                         @if(Auth::user()->hasAnyRole('admin'))
                         <a data-toggle="modal" data-target="#addUserModal" class="btn btn-info" style="float:right">
                         Adicionar novo usuário
                         </a>
                         @elseif(Auth::user()->hasAnyRole('professor'))
-                        <a data-toggle="modal" data-target="#addEmailModal" class="btn btn-info" style="float:right">
+                        <a data-toggle="modal" data-target="#addEmailModal" class="btn btn-info" style="float:right; ">
                             Adicionar novo usuário
                         </a>
                         @endif
-                    </h4>
+                    </h3>
                 </div>
                 <div class="card-body">
                     <div class="tab-content">
@@ -48,17 +48,14 @@
                                         </td>
                                         <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
                                         <td>
-
                                             <a class="nav-link" id="user{{$user->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="material-icons">more_vert</i>
-
+                                                <i id="teste" class="material-icons" >more_vert</i>
                                             </a>
+
                                             <div class="dropdown-menu" aria-labelledby="user{{$user->id}}">
                                                 <a class="dropdown-item" data-toggle="modal" data-target="#modal{{$user->id}}" data-whateverid="{{$user->id}}">Editar</a>
-
                                                 <a class="dropdown-item" href="{{ url('admin/deletar/'.$user->id) }}">Deletar</a>
-
-                                                
+ 
                                             </div>
                                         </td>
                                     </tr>
@@ -183,7 +180,7 @@
                         
                         <div class="form-group">
                             <label for="type">Tipo:&emsp;</label>
-                                <select id="type" name="type" style="width:140px">
+                                <select class="form-control selectpicker" data-style="btn btn-primary" id="type" name="type" style="width:160px">
                                     <option value="1">&emsp;ADMINISTRADOR&emsp;</option>
                                     <option value="2">&emsp;PROFESSOR&emsp;</option>
                                     <option value="3">&emsp;USUÁRIO&emsp;</option>

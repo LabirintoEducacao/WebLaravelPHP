@@ -121,16 +121,13 @@
                                             @endif
                                         </td>
                                         <td>
-
-                                            <div class="dropdown">
                                             <a class="nav-link" id="sala{{$sala->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                                <i class="material-icons">more_vert</i>
-
+                                                <i id="teste" class="material-icons">more_vert</i>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }} ">Visualizar</a>
 
-                                                <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{ $x }}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-tempoo="{{$sala->duracao}}" data-whateverenable="{{$sala->enable}}" style="width:93%; cursor: pointer;" style="cursor: pointer;">Editar</button>
+                                                <a class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{ $x }}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-tempoo="{{$sala->duracao}}" data-whateverenable="{{$sala->enable}}">Editar</a>
 
                                                 @if($sala->enable==1)
                                                 <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
@@ -141,7 +138,6 @@
                                                 <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
                                                 @endif
                                              </div>
-                                            </div>
                                         </td>
                                         
                                     </tr>
@@ -514,7 +510,7 @@
                         <input type="hidden" name="sala_id" id="sala_id" value="0">
                         <div class="form-group">
                             <label for="nome" display="inline">Nome da Sala:</label>
-                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
+                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required>
 
                             @if ($errors->has('nome'))
                             <div class="help-block">

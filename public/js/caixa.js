@@ -153,15 +153,22 @@
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                      '  <div class="col-4">' +
-                      '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
-                      '  <label for="answer_boolean_perg">Caminho do jogo:</label>' +
-                      '   <select class="selectborda" name="answer_boolean_perg" id="answer_boolean_perg">' +
-                      ' <option selected value="1">Corredor</option>' +
-                      ' <option value="2">Labirinto</option>' +
-                      '</select>' +
-                      ' </div>' +
-                      '  <div class="col-4">' +
+                  '<div class="col-12 col-sm-4">' +
+'<input type="hidden" name="path_errado_id" id="path_errado_id">' +
+'<div class="row" style="height:50px;">' +
+'<div class="col-5" style="height:100%;">' +
+'<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
+'</div>' +
+'<div class="col-7">' +
+'<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary btn-round" style="float:left;">' +
+'<option selected value="1">Corredor</option>' +
+'<option value="2">Labirinto</option>' +
+'</select>' +
+'</div>' +
+'</div>' +
+'</div>' +
+                      
+                      '  <div class="col-12 col-sm-4">' +
                       '<label for="tamanho_perg">Tamanho do labirinto:</label>' +
                       ' <select class="selectborda" name="tamanho_perg" id="tamanho_perg">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -169,7 +176,7 @@
                       '  <option value="3">Grande</option>' +
                       '</select>' +
                       ' </div>' +
-                      ' <div class="col">' +
+                      ' <div class="col-12 col-sm-4">' +
                       '<label for="largura_perg">Largura do labirinto:</label>' +
                       '   <select class="selectborda" name="largura_perg" id="largura_perg">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -215,7 +222,7 @@
                       '<input type="hidden" value="0" name="perg_reforco_id" id="perg-reforco-id">' +
                       '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
                       '</div>' +
-                      '<div class="col col-md-auto">' +
+                      '<div class="col-12 col-md-auto">' +
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
                       ' <select class="selectborda" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
@@ -244,7 +251,7 @@
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (REFORÇO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                      '  <div class="col-4">' +
+                      '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
                       '   <select class="selectborda" name="answer_boolean_ref" id="answer_boolean_ref">' +
@@ -252,7 +259,7 @@
                       ' <option value="2">Labirinto</option>' +
                       '</select>' +
                       ' </div>' +
-                      '  <div class="col-4">' +
+                      '  <div class="col-12 col-sm-4">' +
                       '<label for="tamanho_ref">Tamanho do labirinto:</label>' +
                       ' <select class="selectborda" name="tamanho_ref" id="tamanho_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -260,7 +267,7 @@
                       '  <option value="3">Grande</option>' +
                       '</select>' +
                       ' </div>' +
-                      ' <div class="col">' +
+                      ' <div class="col-12 col-sm-4">' +
                       '<label for="largura_ref">Largura do labirinto:</label>' +
                       '   <select class="selectborda" name="largura_ref" id="largura_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
@@ -512,6 +519,7 @@
 
 
 
+
           $('#addPerg').on('show.bs.modal', function (event) {
               var modal = $(this);
               var button = $(event.relatedTarget);
@@ -523,7 +531,6 @@
 
               var corretos = document.getElementsByName('corret[]');
               var corretos_ref = document.getElementsByName('corret_ref[]');
-            
 
 
               if (button.data('whatever')) {
@@ -663,8 +670,8 @@
                                           b++;
                                       }
                                       console.log(ref.answer)
-                                      modal.find("#tipo_opcao_ref").val(ref.tipo_resp);
-                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).val(ref.answer_id);
+                                      modal.find("#tipo_opcao_ref").attr("value", ref.tipo_resp);
+                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",ref.answer_id);
                                       if (ref.correct === true){
                                           modal.find(corretos_ref[v]).attr("value", "1");
                                           modal.find(corretos_ref[v]).attr("checked", "true");
@@ -1054,100 +1061,10 @@
       });
 
 
-      $('#editarSalaModal1').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget); // Button that triggered the modal
-          var recipientnome = button.data('whatevernome');
-          var recipientid = button.data('whateverid');
-          var recipienttempo = button.data('whatevertempo');
-          console.log(recipienttempo);
-          var recipienttema = button.data('whatevertema');
-          var recipientcorrect = button.data('whateverpublic');
-          var recipientenable = button.data('whateverenable');
-          var tempo = button.data('tempoo');
-          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-          var modal = $(this);
-          modal.find('#nome').val(recipientnome);
-          modal.find('#time3').val(recipienttempo);
-          modal.find('#time4').val(tempo);
-          modal.find('#sala_id').val(recipientid);
-          modal.find('#theme').val(recipienttema);
-          console.log(recipientcorrect);
-          console.log(recipientenable);
-
-          if (recipientcorrect == 1){
-              $('#public1').prop("checked", true);
-              $('#public1').prop("value", 1);
-          }else{
-              $('#public1').prop("checked", false);
-              $('#public1').prop("value", 0);
-          }
-
-          if (recipientenable == 1){
-              $('#enable1').prop("checked", true);
-              $('#enable1').prop("value", 1);
-          }else{
-              $('#enable1').prop("checked", false);
-              $('#enable1').prop("value", 0);
-          }
-      });
-
-      $('#editarSalaModal2').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget); // Button that triggered the modal
-          var recipientnome = button.data('whatevernome');
-          var recipientid = button.data('whateverid');
-          var recipienttempo = button.data('whatevertempo');
-          var recipienttema = button.data('whatevertema');
-          var recipientcorrect = button.data('whateverpublic');
-          var recipientenable = button.data('whateverenable');
-          var tempo = button.data('tempoo');
-          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-          var modal = $(this);
-          modal.find('#nome').val(recipientnome);
-          modal.find('#time3').val(recipienttempo);
-          console.log(tempo)
-          modal.find('#time4').val(tempo);
-          modal.find('#sala_id').val(recipientid);
-          modal.find('#theme').val(recipienttema);
-
-
-          if (recipientcorrect == 1){
-              $('#public1').prop("checked", true);
-              $('#public1').prop("value", 1);
-          }else{
-              $('#public1').prop("checked", false);
-              $('#public1').prop("value", 0);
-          }
-
-          if (recipientenable == 1){
-              $('#enable1').prop("checked", true);
-              $('#enable1').prop("value", 1);
-          }else{
-              $('#enable1').prop("checked", false);
-              $('#enable1').prop("value", 0);
-          }
-      });
 
 
 
 
 
 
-        $('#public1').on('click', function () {
-              if (this.checked) {
-                  document.getElementById('public1').value = 1;
-              }else {
-                  document.getElementById('public1').value = 0;
-              }
 
-          });
-
-     $('#enable1').on('click', function () {
-              if (this.checked) {
-                  document.getElementById('enable1').value = 1;
-              }else {
-                  document.getElementById('enable1').value = 0;
-              }
-
-          });
