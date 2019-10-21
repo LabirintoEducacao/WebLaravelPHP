@@ -154,36 +154,48 @@
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
                   '<div class="col-12 col-sm-4">' +
-'<input type="hidden" name="path_errado_id" id="path_errado_id">' +
-'<div class="row" style="height:50px;">' +
-'<div class="col-5" style="height:100%;">' +
-'<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
-'</div>' +
-'<div class="col-7">' +
-'<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary btn-round" style="float:left;">' +
-'<option selected value="1">Corredor</option>' +
-'<option value="2">Labirinto</option>' +
-'</select>' +
-'</div>' +
-'</div>' +
-'</div>' +
+                    '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
+                    '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
+                    '<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
+                    '</div>' +
+                    '<div class="col-7">' +
+                    '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                    '<option selected value="1">Corredor</option>' +
+                    '<option value="2">Labirinto</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
                       
-                      '  <div class="col-12 col-sm-4">' +
-                      '<label for="tamanho_perg">Tamanho do labirinto:</label>' +
-                      ' <select class="selectborda" name="tamanho_perg" id="tamanho_perg">' +
-                      '  <option selected value="1">Pequeno</option>' +
-                      ' <option value="2">Medio</option>' +
-                      '  <option value="3">Grande</option>' +
-                      '</select>' +
-                      ' </div>' +
-                      ' <div class="col-12 col-sm-4">' +
-                      '<label for="largura_perg">Largura do labirinto:</label>' +
-                      '   <select class="selectborda" name="largura_perg" id="largura_perg">' +
-                      '  <option selected value="1">Pequeno</option>' +
-                      '   <option value="2">Medio</option>' +
-                      '  <option value="3">Grande</option>' +
-                      '           </select>' +
-                      '   </div>' +
+                                        '<div class="col-12 col-sm-4">' +
+                    '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
+                    '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
+                    '</div>' +
+                    '<div class="col-7">' +
+                    '<select name="tamanho_perg" id="tamanho_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                    '<option selected value="1">Pequeno</option>' +
+                    '<option value="2">Médio</option>' +
+                      '<option value="3">Grande</option>'+
+                    '</select>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                                           '<div class="col-12 col-sm-4">' +
+                    '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
+                    '<label for="largura_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
+                    '</div>' +
+                    '<div class="col-7">' +
+                    '<select name="largura_perg" id="largura_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                    '<option selected value="1">Pequeno</option>' +
+                    '<option value="2">Médio</option>' +
+                      '<option value="3">Grande</option>'+
+                    '</select>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
                       '   </div>' +
                       '</div>' +
                       '</div>' +
@@ -223,23 +235,35 @@
                       '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
                       '</div>' +
                       '<div class="col-12 col-md-auto">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
-                      ' <select class="selectborda" name="question_type_ref" id="question_type_ref">' +
+                      '</div>' +
+                    '<div class="col-7">' +
+                      ' <select class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
                       ' <option value="2">Imagem</option>' +
                       '   <option value="3">Vídeo</option>' +
                       '<option value="4">Áudio</option>' +
                       '   </select>' +
-                      '   </div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
                       '  <div class="col col-lg-4">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '   <label for="room_type_ref" style=" margin-right: 3.5px;">Interação:</label>' +
-                      '<select  class="selectborda" name="room_type_ref" id="room_type_ref">' +
+                      '</div>' +
+                    '<div class="col-7">' +
+                      '<select class="form-control selectpicker " data-style="btn btn-primary" name="room_type_ref" id="room_type_ref">' +
                       '<option selected value="right_key">Chave</option>' +
                       '<option value="hope_door">Porta da esperança</option>' +
                       ' <option value="true_or_false">Verdadeiro ou Falso</option>' +
                       '<option value="multiple_forms">Multiplas Formas</option>' +
                       '  </select>' +
-                      '   </div>' +
+                     '</div>' +
+                    '</div>' +
+                    '</div>' +
                       '  </div>' +
                       '</div>' +
                       '<div class="container">' +
@@ -253,27 +277,45 @@
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
                       '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
-                      '   <select class="selectborda" name="answer_boolean_ref" id="answer_boolean_ref">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      '   <select class="form-control selectpicker " data-style="btn btn-primary" name="answer_boolean_ref" id="answer_boolean_ref">' +
                       ' <option selected value="1">Corredor</option>' +
                       ' <option value="2">Labirinto</option>' +
                       '</select>' +
                       ' </div>' +
+                      '</div>'+
+                      '</div>'+
                       '  <div class="col-12 col-sm-4">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="tamanho_ref">Tamanho do labirinto:</label>' +
-                      ' <select class="selectborda" name="tamanho_ref" id="tamanho_ref">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      ' <select class="form-control selectpicker " data-style="btn btn-primary" name="tamanho_ref" id="tamanho_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
                       ' <option value="2">Medio</option>' +
                       '  <option value="3">Grande</option>' +
                       '</select>' +
                       ' </div>' +
+                      '</div>'+
+                      '</div>'+
                       ' <div class="col-12 col-sm-4">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="largura_ref">Largura do labirinto:</label>' +
-                      '   <select class="selectborda" name="largura_ref" id="largura_ref">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      '   <select class="form-control selectpicker " data-style="btn btn-primary" name="largura_ref" id="largura_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
                       '   <option value="2">Medio</option>' +
                       '  <option value="3">Grande</option>' +
                       '           </select>' +
+                      '   </div>' +
+                      '   </div>' +
                       '   </div>' +
                       '   </div>' +
 
@@ -321,13 +363,19 @@
                       '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
                       '</div>' +
                       '<div class="col">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type">Tipo da Resposta:</label>' +
-                      '<select  class="selectborda" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      '<select class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
                       ' <option selected value="1">Texto</option>' +
                       '<option value="2">Imagem</option>' +
                       '<option value="3">Vídeo</option>' +
                       ' <option value="4">Áudio</option>' +
                       '</select>' +
+                      '</div>' +
+                      '</div>' +
                       '</div>' +
                       '</div>' +
 
@@ -406,6 +454,10 @@
                       //                      '</div>' +
                       //                      '</div>'
                   );
+                  
+                  $('.selectpicker').selectpicker('refresh');
+                  
+                  
                   document.getElementById('perg_reforco').value = 1;
               } else {
                   $('.hea', $parent).remove();
@@ -414,6 +466,10 @@
               }
 
           });
+          
+          
+
+
 
           //////////////////////////////////////////////////////////////
 
