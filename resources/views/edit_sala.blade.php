@@ -298,7 +298,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <a class="btn btn-secondary btnModalClose" data-dismiss="modal">Fechar</a>
                     <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
                 </div>
             </form>
@@ -681,7 +681,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <a class="btn btn-secondary btnModalClose" data-dismiss="modal">Fechar</a>
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
             </form>
@@ -706,7 +706,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <a class="btn btn-secondary btnModalClose" data-dismiss="modal">Fechar</a>
                     <button type="button" class="btn btn-success altera" id="altera" name="altera">Save changes</button>
                 </div>
             </form>
