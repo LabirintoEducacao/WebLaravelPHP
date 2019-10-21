@@ -313,6 +313,17 @@ class UserController extends Controller
         // }
         // return redirect('admin/alunos/'. $sala)->with('warning', 'Este aluno não pôde ser deletado!');
     }
+    
+    
+    
+    public function teste($id,$salaid){
+        DB::table('sala_user')->insert(
+            ['sala_id' => $salaid, 'user_id' => $id]
+        );
+        
+        return response()->json(['success' => 'Sucesso']);
+        
+    }
 
 
 

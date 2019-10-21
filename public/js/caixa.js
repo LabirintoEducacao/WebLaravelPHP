@@ -457,6 +457,30 @@
                   }
               });
           });
+          
+          
+          function addUser(id,salaid) {
+
+              $.ajax({
+                  url: 'http://127.0.0.1:8000/admin/aluno/'+id,
+                  method: "POST",
+                  data: {
+                      id: id,
+                      salaid: salaid
+                  },
+                  dataType: 'json',
+                  error: function (error) {
+                      console.log(error);
+                  },
+                  success: function (data) {
+//                      if (data.error) {
+//                          printErrorMsg(data.error);
+//                      } else {
+//                          window.location.reload();
+//                      }
+                  }
+              });
+          }
 
 
 
