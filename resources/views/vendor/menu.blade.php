@@ -39,7 +39,7 @@
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 </head>
 
-<body >
+<body onload="totalresposta()">
     <div class="wrapper" >
         <div class="sidebar"  data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
@@ -196,6 +196,16 @@
     <script>
         $(document).ready(function() {
             $().ready(function() {
+
+
+
+             
+
+
+
+
+
+
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -399,6 +409,8 @@
             $("#" + id).slideToggle("slow");
         }
 
+
+    
         function transforma(tempo, campo) {
             var x = 0;
             console.log(tempo);
@@ -950,6 +962,44 @@ $(function () {
             
             
             $('.selectpicker').selectpicker('refresh');
+
+
+
+
+            function totalresposta(id){
+
+               
+                var total = 0;
+
+                var cont =0;
+                var cont2 =0;
+
+                $('#pai').children('.panel').each(function(){
+                    
+
+                    var t = $(this).children().length;
+
+                    $('.textototal'+cont).append(
+                     '<p>' + t + '</p>'
+                        );
+
+                cont ++;
+                });
+
+
+                $('#pai').children('.panel2').each(function(){
+                    
+
+                    var t = $(this).children().length;
+
+                    $('.textototalref'+cont2).append(
+                     '<p>' + t + '</p>'
+                        );
+
+                cont2 ++;
+                });
+
+            }
             
             
     </script>
