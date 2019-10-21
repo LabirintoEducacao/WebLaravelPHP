@@ -24,7 +24,7 @@ class ProfileController extends Controller
                 'message' => 'Perfil atualizado com sucesso!',
                 'alert-type' => 'success'
             );
-            return redirect('admin/sala')->with($notification);
+            return redirect('/admin/settings')->with($notification);
         }else
             $notification = array(
                 'message' => 'Perfil não pode ser atualizado!',
@@ -73,7 +73,7 @@ class ProfileController extends Controller
                         'alert-type' => 'warning'
                     );
         }
-        return view('home')->with($notification);
+        return redirect('/admin/settings')->with($notification);
         
     }
     
