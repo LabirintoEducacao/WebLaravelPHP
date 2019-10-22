@@ -89,12 +89,14 @@
                             Perfil
                         </a>
                     </li>
+<!--
                     <li class="nav-item ">
                         <a class="nav-link" href="{{url('/admin/settings/password')}}">
                             <i class="material-icons">lock</i>
                             Senha
                         </a>
                     </li>
+-->
                     <li class="nav-item ">
                         <a class="nav-link" href="{{url('/manual')}}">
                             <i class="material-icons">library_books</i>
@@ -463,7 +465,7 @@
 
         function qrcodebtn(id) {
 
-            $('#'+id).attr('disabled',true);
+            $(".qrcode").attr('disabled',true);
             $.get("/admin/virtual/" + id).done(function(data) {
 
                 var parse = JSON.parse(data);
@@ -471,7 +473,7 @@
                 if (data == "null") {
 
                     $('#noinfomodal').modal('show');
-                    $('#'+id).attr('disabled',false);
+                   $(".qrcode").attr('disabled',false);
 
                 } else {
                     console.log(data)
@@ -506,7 +508,7 @@
                     $('.carousel').carousel({
                         interval: 1000
                     });
-                     $('#'+id).attr('disabled',false);
+                    $(".qrcode").attr('disabled',false);
 
 
                 }
