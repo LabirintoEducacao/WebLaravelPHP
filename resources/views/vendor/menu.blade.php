@@ -199,12 +199,8 @@
         $(document).ready(function() {
             $().ready(function() {
 
-
-
              
-
-
-
+               $('.selectpicker').selectpicker('refresh');
 
 
 
@@ -834,14 +830,13 @@ $(function () {
 
             
             
-            $('.selectpicker').selectpicker('refresh');
+            
 
 
 
 
             function totalresposta(id){
 
-               
                 var total = 0;
 
                 var cont =0;

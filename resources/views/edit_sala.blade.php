@@ -406,7 +406,7 @@
 
                     <div class="col-12 col-md-auto">
 
-                        <button type="button" class="col-12 btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
+                        <button type="button" class="col-12 btn btn-warning btn-sm  fa fa-qrcode qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
 
                     </div>
                 </div>

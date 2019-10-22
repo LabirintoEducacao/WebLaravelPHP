@@ -144,29 +144,30 @@
           $('#check-reforco').on('click', function () {
               var $parent = $(this).parents('.hovereffect');
               if (this.checked) {
+
                   $('.abcd', $parent).append(
 
 
-                      '<div class="hea">' +
+                      '<div id="pai" class="hea">' +
                       '<div class=" container">' +
                       '<div class="card houvercard">' +
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                  '<div class="col-12 col-sm-4">' +
-'<input type="hidden" name="path_errado_id" id="path_errado_id">' +
-'<div class="row" style="height:50px;">' +
-'<div class="col-5" style="height:100%;">' +
-'<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
-'</div>' +
-'<div class="col-7">' +
-'<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary btn-round" style="float:left;">' +
-'<option selected value="1">Corredor</option>' +
-'<option value="2">Labirinto</option>' +
-'</select>' +
-'</div>' +
-'</div>' +
-'</div>' +
+                      '<div class="col-12 col-sm-4">' +
+                      '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
+                      '<div class="row" style="height:50px;">' +
+                      '<div class="col-5" style="height:100%;">' +
+                      '<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
+                      '</div>' +
+                      '<div class="col-7">' +
+                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary btn-round" style="float:left;">' +
+                      '<option selected value="1">Corredor</option>' +
+                      '<option value="2">Labirinto</option>' +
+                      '</select>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
                       
                       '  <div class="col-12 col-sm-4">' +
                       '<label for="tamanho_perg">Tamanho do labirinto:</label>' +
@@ -224,7 +225,7 @@
                       '</div>' +
                       '<div class="col-12 col-md-auto">' +
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
-                      ' <select class="selectborda" name="question_type_ref" id="question_type_ref">' +
+                      ' <select class="form-control selectpicker" name="question_type_ref" id="question_type_ref" data-style="btn btn-primary">' +
                       ' <option selected value="1">Texto</option>' +
                       ' <option value="2">Imagem</option>' +
                       '   <option value="3">Vídeo</option>' +
@@ -407,6 +408,70 @@
                       //                      '</div>'
                   );
                   document.getElementById('perg_reforco').value = 1;
+
+
+                   //var interacao = document.getElementsByName('room_type_ref');
+
+                    
+
+
+                     
+
+                    
+                      
+            $('#room_type_ref').on('change', function(){
+
+              if($('#room_type_ref').val() == 'true_or_false'){
+
+               $('#pai').css('display', 'none');
+
+                $('.abcd').append(
+
+                      '<div id="pai2" class=" container hea">' +
+                      '<div class="card houvercard">' +
+                      '<div class=" container">' +
+                      '<div class="row" style="margin-top: 10px;">' +
+                      '<div class="col">' +
+                      '<input type="hidden" value="0" name="perg_reforco_id" id="perg-reforco-id">' +
+                      '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
+                      '</div>' +
+                      '<div class="col-12 col-md-auto">' +
+                      '<label for="question_type_ref">Tipo da pergunta:</label>' +
+                      ' <select class="form-control selectpicker" name="question_type_ref" id="question_type_ref" data-style="btn btn-primary">' +
+                      ' <option selected value="1">Texto</option>' +
+                      ' <option value="2">Imagem</option>' +
+                      '   <option value="3">Vídeo</option>' +
+                      '<option value="4">Áudio</option>' +
+                      '   </select>' +
+                      '   </div>' +
+                      '  <div class="col col-lg-4">' +
+                      '   <label for="room_type_ref" style=" margin-right: 3.5px;">Interação:</label>' +
+                      '<select  class="selectborda" name="room_type_ref2" id="room_type_ref">' +
+                      '<option selected value="right_key">Chave</option>' +
+                      '<option value="hope_door">Porta da esperança</option>' +
+                      ' <option value="true_or_false">Verdadeiro ou Falso</option>' +
+                      '<option value="multiple_forms">Multiplas Formas</option>' +
+                      '  </select>' +
+                      '   </div>' +
+                      '  </div>' +
+                      '</div>' +
+                
+                      '</div>'
+                  );
+
+              }else if($('#room_type_ref2').val() == 'multiple_forms'){
+
+                $('#pai2').remove();
+                $('#pai').css('display', 'block');
+                 console.log('saiu');
+            
+              }
+
+            });
+
+
+
+
               } else {
                   $('.hea', $parent).remove();
                   document.getElementById('perg_reforco').value = 0;
@@ -481,8 +546,6 @@
                   }
               });
           }
-
-
 
 
         $('#question_type').on('change', function(){
