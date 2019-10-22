@@ -194,8 +194,18 @@
     <script src="{{asset('assets/demo/demo.js')}}"></script>
     <script src="{{ asset('js/caixa.js')}}" defer></script>
     <script>
+
+
+
+
         $(document).ready(function() {
+
+
             $().ready(function() {
+
+
+            	teste();
+
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -537,7 +547,7 @@
             
             
             
-            
+         
             
             $('#addPerg').on('hide.bs.modal', function(e) {
 
@@ -548,16 +558,13 @@
 
 
 
-
-
-
-
          $('#addAlunoModal').on('show.bs.modal', function (e) { 
 
             mostrarmaisalunos();
 
             
          });
+
 
           $('#addAlunoModal').on('hide.bs.modal', function (e) {
 
@@ -780,16 +787,9 @@
                 '<li class="page-item "><a class="page-link" onclick="paginar('+(data-1)+','+total+')">'+(data-1)+'</a></li>'+
                 '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'+
                 '<li class="page-item "><a class="page-link active" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'
-                
-
+            
                 ); }  
-
-
-               
-
-
-
-             
+                          
          }
 
 
@@ -890,7 +890,6 @@ $(function () {
 });
             
             
-            
                   $('#editarSalaModal1').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget); // Button that triggered the modal
           var recipientnome = button.data('whatevernome');
@@ -989,8 +988,12 @@ $(function () {
           });
 
             
+ 	
+ 		function teste(){
+ 		console.log("Funcionou");
+
+ 	}
             
-            $('.selectpicker').selectpicker('refresh');
             
             
     </script>
