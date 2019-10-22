@@ -187,7 +187,7 @@ Route::get('/virtualdelete/{id}','Json@filedelete');
 Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar')->middleware(['auth', 'auth.admin']);
 Route::delete('/settings/delete/{id}', 'Admin\UserController@destroy');
 Route::get('/alunos/{id}', 'Admin\UserController@add_user')->middleware(['auth', 'auth.admin']);
-Route::post('/aluno/{id}', 'Admin\UserController@teste')->middleware(['auth', 'auth.admin']);
+Route::post('/addaluno/', 'Admin\UserController@teste')->middleware(['auth', 'auth.admin']);
 Route::post('/aluno', 'Admin\UserController@store');
 Route::get('/showaluno','Admin\UserController@showalunos');
 Route::post('/new/user', 'Admin\UserController@user');
@@ -219,6 +219,12 @@ Route::get('/settings/create', function () {
 // Rotas Password
 Route::get('/settings/password', function () {
     return view('password'); 
+});
+
+Route::post('/novoteste', function(){
+
+    $data = "Eu sou um teste";
+    return json_encode($data);
 });
 
  

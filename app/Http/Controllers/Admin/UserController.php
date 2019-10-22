@@ -316,7 +316,11 @@ class UserController extends Controller
     
     
     
-    public function teste($id,$salaid){
+    public function teste(){
+
+        $id = $_REQUEST['id'];
+        $salaid = $_REQUEST['salaid'];
+        
         DB::table('sala_user')->insert(
             ['sala_id' => $salaid, 'user_id' => $id]
         );

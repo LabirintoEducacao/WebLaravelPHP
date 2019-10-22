@@ -46,7 +46,37 @@
           
           $('#add').click(function () {
               if (a < 2) {
+                  if($('#room_type').val() == 'true_or_false'){
                   $('#dynamic_field').append('' +
+                      '<div id="row' + i + '" class="dynamic-added">' +
+                      '<div class="card houvercard">' +
+                      '<div class="container">' +
+                      '<div class="textareaborda2" style="margin-top: 10px;">' +
+                      '<textarea type="text" name="resposta[]" placeholder="' + (a + 3) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                      '<input type="hidden" name="resp_id[]" class="resp_id">' +
+                      '</div>' +
+                      '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                      '<div class="col col-sm-11">' +
+                      '<div class="form-check form-check-radio">' +
+                      'Essa resposta esta correta?&emsp;' +
+                      '<label class="form-check-label">' +
+                      '<input class="form-check-input correct verdadeiro" type="radio" name="corret[]" onclick="muda(this);" value="0">' +
+                      'Sim' +
+                      '<span class="circle">' +
+                      '<span class="check"></span>' +
+                      '</span>' +
+                      '</label>' +
+                      '</div>' +
+                      '</div>' +
+                      '<div class="col col-sm-1">' +
+                      '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>');
+                }else{
+                     $('#dynamic_field').append('' +
                       '<div id="row' + i + '" class="dynamic-added">' +
                       '<div class="card houvercard">' +
                       '<div class="container">' +
@@ -74,13 +104,30 @@
                       '</div>' +
                       '</div>' +
                       '</div>');
+                }
                   a++;
-              } else {
-
-
-              }
-
+                }
           });
+
+
+
+            // $('#room_type').on('change', function(){
+
+            //   if($('#room_type').val() == 'true_or_false'){
+
+            //     console.log('entrei');
+
+
+            //    $('.verdadeiro').attr('type', 'checkbox');
+              
+            //   }else{
+
+            //     $('.verdadeiro').attr('type', 'radio');
+            
+            //   }
+
+            // });
+
 
           // Acao para botao deletar remove fields
 
@@ -96,6 +143,7 @@
           //////////////////////////////////////////////////////////////////////////
           $(document).on('click', '.teste', function () {
               if (b < 2) {
+                if($('#room_type_ref').val() == 'true_or_false'){
                   $('#dynamic_field2').append('' +
                       '<div id="row2' + i2 + '" class="dynamic-added2">' +
                       '<div class="card houvercard">' +
@@ -109,7 +157,7 @@
                       '<div class="form-check form-check-radio">' +
                       'Essa resposta esta correta?&emsp;' +
                       '<label class="form-check-label">' +
-                      '<input class="form-check-input correct" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
+                      '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda2(this);">' +
                       'Sim' +
                       '<span class="circle">' +
                       '<span class="check"></span>' +
@@ -125,11 +173,42 @@
                       '</div>' +
                       '</div>'
                   );
+                }else{
+
+                 $('#dynamic_field2').append('' +
+                      '<div id="row2' + i2 + '" class="dynamic-added2">' +
+                      '<div class="card houvercard">' +
+                      '<div class="container">' +
+                      '<div class="textareaborda2" style="margin-top: 10px;">' +
+                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
+                      '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
+                      '</div>' +
+                      '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                      '<div class="col col-sm-11">' +
+                      '<div class="form-check form-check-radio">' +
+                      'Essa resposta esta correta?&emsp;' +
+                      '<label class="form-check-label">' +
+                      '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
+                      'Sim' +
+                      '<span class="circle">' +
+                      '<span class="check"></span>' +
+                      '</span>' +
+                      '</label>' +
+                      '</div>' +
+                      '</div>' +
+                      '<div class="col col-sm-1">' +
+                      '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>'
+                  );
+
+                }
                   b++;
-              } else {
-
-
-              }
+                }
+             
           });
           // Acao para botao deletar remove fields
           $(document).on('click', '.btn_remove2', function () {
@@ -168,23 +247,34 @@
                       '</div>' +
                       '</div>' +
                       '</div>' +
-                      
-                      '  <div class="col-12 col-sm-4">' +
-                      '<label for="tamanho_perg">Tamanho do labirinto:</label>' +
-                      ' <select class="selectborda" name="tamanho_perg" id="tamanho_perg">' +
-                      '  <option selected value="1">Pequeno</option>' +
-                      ' <option value="2">Medio</option>' +
-                      '  <option value="3">Grande</option>' +
-                      '</select>' +
-                      ' </div>' +
-                      ' <div class="col-12 col-sm-4">' +
-                      '<label for="largura_perg">Largura do labirinto:</label>' +
-                      '   <select class="selectborda" name="largura_perg" id="largura_perg">' +
-                      '  <option selected value="1">Pequeno</option>' +
-                      '   <option value="2">Medio</option>' +
-                      '  <option value="3">Grande</option>' +
-                      '           </select>' +
-                      '   </div>' +
+                    '<div class="col-12 col-sm-4">' +
+                    '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
+                    '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
+                    '</div>' +
+                    '<div class="col-7">' +
+                    '<select name="tamanho_perg" id="tamanho_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                    '<option selected value="1">Pequeno</option>' +
+                    '<option value="2">Médio</option>' +
+                      '<option value="3">Grande</option>'+
+                    '</select>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                                           '<div class="col-12 col-sm-4">' +
+                    '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
+                    '<label for="largura_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
+                    '</div>' +
+                    '<div class="col-7">' +
+                    '<select name="largura_perg" id="largura_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                    '<option selected value="1">Pequeno</option>' +
+                    '<option value="2">Médio</option>' +
+                      '<option value="3">Grande</option>'+
+                    '</select>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
                       '   </div>' +
                       '</div>' +
                       '</div>' +
@@ -224,23 +314,35 @@
                       '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
                       '</div>' +
                       '<div class="col-12 col-md-auto">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
-                      ' <select class="form-control selectpicker" name="question_type_ref" id="question_type_ref" data-style="btn btn-primary">' +
+                      '</div>' +
+                    '<div class="col-7">' +
+                      ' <select class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
                       ' <option value="2">Imagem</option>' +
                       '   <option value="3">Vídeo</option>' +
                       '<option value="4">Áudio</option>' +
                       '   </select>' +
-                      '   </div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
                       '  <div class="col col-lg-4">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '   <label for="room_type_ref" style=" margin-right: 3.5px;">Interação:</label>' +
-                      '<select  class="selectborda" name="room_type_ref" id="room_type_ref">' +
+                      '</div>' +
+                    '<div class="col-7">' +
+                      '<select class="form-control selectpicker " data-style="btn btn-primary" name="room_type_ref" id="room_type_ref">' +
                       '<option selected value="right_key">Chave</option>' +
                       '<option value="hope_door">Porta da esperança</option>' +
                       ' <option value="true_or_false">Verdadeiro ou Falso</option>' +
                       '<option value="multiple_forms">Multiplas Formas</option>' +
                       '  </select>' +
-                      '   </div>' +
+                     '</div>' +
+                    '</div>' +
+                    '</div>' +
                       '  </div>' +
                       '</div>' +
                       '<div class="container">' +
@@ -254,27 +356,45 @@
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
                       '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
-                      '   <select class="selectborda" name="answer_boolean_ref" id="answer_boolean_ref">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      '   <select class="form-control selectpicker " data-style="btn btn-primary" name="answer_boolean_ref" id="answer_boolean_ref">' +
                       ' <option selected value="1">Corredor</option>' +
                       ' <option value="2">Labirinto</option>' +
                       '</select>' +
                       ' </div>' +
+                      '</div>'+
+                      '</div>'+
                       '  <div class="col-12 col-sm-4">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="tamanho_ref">Tamanho do labirinto:</label>' +
-                      ' <select class="selectborda" name="tamanho_ref" id="tamanho_ref">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      ' <select class="form-control selectpicker " data-style="btn btn-primary" name="tamanho_ref" id="tamanho_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
                       ' <option value="2">Medio</option>' +
                       '  <option value="3">Grande</option>' +
                       '</select>' +
                       ' </div>' +
+                      '</div>'+
+                      '</div>'+
                       ' <div class="col-12 col-sm-4">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="largura_ref">Largura do labirinto:</label>' +
-                      '   <select class="selectborda" name="largura_ref" id="largura_ref">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      '   <select class="form-control selectpicker " data-style="btn btn-primary" name="largura_ref" id="largura_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
                       '   <option value="2">Medio</option>' +
                       '  <option value="3">Grande</option>' +
                       '           </select>' +
+                      '   </div>' +
+                      '   </div>' +
                       '   </div>' +
                       '   </div>' +
 
@@ -322,13 +442,19 @@
                       '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
                       '</div>' +
                       '<div class="col">' +
+                      '<div class="row" style="height:50px;">' +
+                    '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type">Tipo da Resposta:</label>' +
-                      '<select  class="selectborda" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
+                      '</div>'+
+                      '<div class="col-7">'+
+                      '<select class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
                       ' <option selected value="1">Texto</option>' +
                       '<option value="2">Imagem</option>' +
                       '<option value="3">Vídeo</option>' +
                       ' <option value="4">Áudio</option>' +
                       '</select>' +
+                      '</div>' +
+                      '</div>' +
                       '</div>' +
                       '</div>' +
 
@@ -343,7 +469,7 @@
                       '<div class="form-check form-check-radio">' +
                       'Essa resposta esta correta?&emsp;' +
                       '<label class="form-check-label">' +
-                      '<input class="form-check-input correct" type="radio" name="corret_ref[]" value="1" onclick="muda2(this);" checked>' +
+                      '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
                       'Sim' +
                       '<span class="circle">' +
                       '<span class="check"></span>' +
@@ -361,7 +487,7 @@
                       '<div class="form-check form-check-radio">' +
                       'Essa resposta esta correta?&emsp;' +
                       '<label class="form-check-label">' +
-                      '<input class="form-check-input correct" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
+                      '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda2(this);">' +
                       'Sim' +
                       '<span class="circle">' +
                       '<span class="check"></span>' +
@@ -407,70 +533,14 @@
                       //                      '</div>' +
                       //                      '</div>'
                   );
+                  
+                  $('.selectpicker').selectpicker('refresh');
+                  
+                  
                   document.getElementById('perg_reforco').value = 1;
 
 
                    //var interacao = document.getElementsByName('room_type_ref');
-
-                    
-
-
-                     
-
-                    
-                      
-            $('#room_type_ref').on('change', function(){
-
-              if($('#room_type_ref').val() == 'true_or_false'){
-
-               $('#pai').css('display', 'none');
-
-                $('.abcd').append(
-
-                      '<div id="pai2" class=" container hea">' +
-                      '<div class="card houvercard">' +
-                      '<div class=" container">' +
-                      '<div class="row" style="margin-top: 10px;">' +
-                      '<div class="col">' +
-                      '<input type="hidden" value="0" name="perg_reforco_id" id="perg-reforco-id">' +
-                      '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
-                      '</div>' +
-                      '<div class="col-12 col-md-auto">' +
-                      '<label for="question_type_ref">Tipo da pergunta:</label>' +
-                      ' <select class="form-control selectpicker" name="question_type_ref" id="question_type_ref" data-style="btn btn-primary">' +
-                      ' <option selected value="1">Texto</option>' +
-                      ' <option value="2">Imagem</option>' +
-                      '   <option value="3">Vídeo</option>' +
-                      '<option value="4">Áudio</option>' +
-                      '   </select>' +
-                      '   </div>' +
-                      '  <div class="col col-lg-4">' +
-                      '   <label for="room_type_ref" style=" margin-right: 3.5px;">Interação:</label>' +
-                      '<select  class="selectborda" name="room_type_ref2" id="room_type_ref">' +
-                      '<option selected value="right_key">Chave</option>' +
-                      '<option value="hope_door">Porta da esperança</option>' +
-                      ' <option value="true_or_false">Verdadeiro ou Falso</option>' +
-                      '<option value="multiple_forms">Multiplas Formas</option>' +
-                      '  </select>' +
-                      '   </div>' +
-                      '  </div>' +
-                      '</div>' +
-                
-                      '</div>'
-                  );
-
-              }else if($('#room_type_ref2').val() == 'multiple_forms'){
-
-                $('#pai2').remove();
-                $('#pai').css('display', 'block');
-                 console.log('saiu');
-            
-              }
-
-            });
-
-
-
 
               } else {
                   $('.hea', $parent).remove();
@@ -478,7 +548,27 @@
                   b = 0;
               }
 
+              
+               $('#room_type_ref').on('change', function(){
+
+              if($('#room_type_ref').val() == 'true_or_false'){
+
+
+               $('.verdadeiro').attr('type', 'checkbox');
+              
+              }else{
+
+                $('.verdadeiro').attr('type', 'radio');
+            
+              }
+
+            });
+
           });
+          
+          
+
+
 
           //////////////////////////////////////////////////////////////
 
@@ -843,7 +933,7 @@
 
 
 
-              if ((z == 1 && !ref.checked) || (z == 2 && ref.checked)) {
+              if ((z == 1 && !ref.checked) || (z >= 2 && ref.checked)) {
                   $.ajax({
 
                       url: postURL + x,
@@ -1100,10 +1190,7 @@
 
 
 
-      $('.carousel').carousel({
-          interval: 1000
-      });
-
+  
       $('body').scrollspy({
           target: '#list-example'
       });
@@ -1147,6 +1234,8 @@
 
       });
 
+
+     
 
 
 

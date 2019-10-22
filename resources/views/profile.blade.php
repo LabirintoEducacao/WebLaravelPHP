@@ -15,58 +15,41 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                       <form action="{{ url('profile/edit') }}" method="POST" style="margin-left: 1%;margin-right:1%">
-<!--                        @method('POST')-->
+            
+                
+                <form action="{{ url('profile/edit') }}" method="POST" style="margin-left: 1%;margin-right:1%">
+                    
                         {{ csrf_field() }}
-                        @if (\Request::is('admin/settings')) 
-                        <!--input type="hidden" name="_method" value="PATCH">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"-->
-                        {{ Form::label('name', 'Nome:') }}
-                        {{ Form::text('name',Auth::user()->name,['class'=>'form-control', 'autofocus', 'placeholder'=>'Nome']) }}<br>
-                        {{ Form::label('email', 'Email:') }}
-                        {{ Form::email('email',Auth::user()->email,['class'=>'form-control', 'placeholder'=>'E-mail']) }}
-<!--
-                                               <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                        <input type="password" name="password_atual" class="form-control" placeholder="Senha atual">
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                        @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                        @endif
--->
-<!--                    </div>-->
+                    
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Nome" value="{{Auth::user()->name}}">
                     <br>
-                           <div class="rox">
+                    <label for="email">Email:</label>
+                    <input type="email" id="name" name="email" class="form-control" placeholder="E-mail" value="{{Auth::user()->email}}">
+                    <br>
+                    
+                    
+                    <div class="row">
                            <a class="btn btn-primary col-12" style="color:white"  data-toggle="modal" data-target="#alterSenha" onclick="document.getElementById('password_atual').removeAttribute('readonly')">ALTERAR SENHA</a>
                                </div>
-                           <br>
-<!--
-                        {{ Form::label('password', 'Senha:') }}
-                        {{ Form::password('password',['class'=>'form-control', 'placeholder'=>'Senha','minlength'=>'8', 'required']) }}<br>
--->
-                        <div class="row align-self-center">
+                    
+                    <br>
+                    
+                    <div class="row align-self-center">
                                                   
                             <a class="btn btn-danger col" href="{{ url('/home') }}">
                                         {{ __('Cancelar') }}
                             </a>
                             
-                            {{ Form::submit('Salvar alterações', ['class'=>'btn btn-success col']) }}   
-                        </div>
-                        @elseif (\Request::is('admin/deletar'))
-                        {{ Form::label('name', 'Nome:') }}
-                        {{ Form::text('name',Auth::user()->name,['class'=>'form-control', 'placeholder'=>'Nome', 'disabled']) }}<br>
-                        {{ Form::label('email', 'Email:') }}
-                        {{ Form::email('email',Auth::user()->email,['class'=>'form-control', 'placeholder'=>'E-mail', 'disabled']) }}<br>
-                    </form>
-                    <form action="{{ url('admin/delete/'.Auth::user()->id) }}" method="POST" style="margin-left: 25%">
-                        @csrf
-                        {{ method_field('DELETE') }}
-                        {{ Form::submit('DELETAR PERFIL', ['class'=>'btn btn-outline-danger btn-lg btn-block']) }}
-                    </form>
-<!--                    {{ Form::close() }}-->
+                        <button type="submit" class="btn btn-success col">Salvar alterações</button>
 
-                 @endif
+                        </div>
+
+<!--                    </div>-->
+                </form>
+                    <br>
+                           
+                          
 
             </div>
         </div>
@@ -105,7 +88,7 @@
                         @endif
                     </div>
                     <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                        <input type="password" name="password" class="form-control" placeholder="Nova senha">
+                        <input type="password" name="passwordn" class="form-control" placeholder="Nova senha">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                         @if ($errors->has('password'))
                         <span class="help-block">
@@ -151,3 +134,4 @@
     </div>
 </div>
 @endsection
+
