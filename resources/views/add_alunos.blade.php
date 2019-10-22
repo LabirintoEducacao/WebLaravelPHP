@@ -174,3 +174,159 @@
 -->
 
 @endsection
+
+
+
+
+@section('myscript')
+
+<script>
+
+    
+    
+    
+    
+    
+     $('#addAlunoModal').on('show.bs.modal', function (e) { 
+ console.log("aqui")
+            mostrarmaisalunos();
+        console.log("aqui")
+
+            
+         });
+    
+    
+    
+    
+    
+    
+function mostrarmaisalunos(){
+
+            console.log('Entrou');
+
+        
+             $.get("/admin/showaluno").done( function(data){
+
+                var contagem = 1;
+                var contagem1 = 0;
+                var max =7;
+                var i =0;
+                parse = JSON.parse(data);
+                var paginacao = Math.ceil(parse.length/max);
+                console.log("pag :" , paginacao);
+
+                $('#divtabela').append(
+                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:block;">'+
+                                '<thead >'+
+                                    '<tr>'+
+                                        '<th scope="col"> Id: </th>'+
+                                        '<th scope="col"> Nome: </th>'+
+                                        '<th scope="col"> Email: </th>'+
+                                        '<th scope="col"></th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="body'+ contagem +'" >'+
+                                '</tbody>'+
+                            '</table>' );
+
+
+
+               
+
+
+                for( i =0; i < parse.length ; i++){
+
+                   
+
+                 if(contagem1 > max){
+                    contagem ++;
+
+                    $('#divtabela').append(
+                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:none;">'+
+                                '<thead >'+
+                                    '<tr>'+
+                                        '<th scope="col"> Id: </th>'+
+                                        '<th scope="col"> Nome: </th>'+
+                                        '<th scope="col"> Email: </th>'+
+                                        '<th scope="col"></th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="body'+ contagem +'" >'+
+                                '</tbody>'+
+                            '</table>' );
+
+
+                    contagem1 =0;
+
+                 }
+
+                 
+                 $('#body'+contagem).append(
+                         '<tr>'+
+                        '<td scope="row">'+parse[i].user_id +'</td>'+
+                        '<td>'+ parse[i].name + '</td>' +
+                         '<td>'+ parse[i].email +'</td>' +
+                         '<td>'+ '<a class="btn btn-primary btn-sm" onclick="addUser('+parse[i].user_id +',{{$id}})">Adicionar</a>' +'</td>' +
+                             '</tr>'
+                              
+                             );
+
+                 contagem1++;
+                 }
+
+
+                if(contagem > 5){
+                for(i=1; i<=5; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
+
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+                }
+
+                }
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
+                    );
+
+            } if(contagem <=5 ){
+
+                for(i=1; i<=contagem; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
+
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+                }
+
+                }
+                
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
+                    );
+
+            }
+                  
+
+             });
+         }
+
+
+
+</script>
+@endsection

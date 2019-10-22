@@ -9,7 +9,6 @@
 @endif
 <input type="hidden" value="52" id="num_y">
 
-
 <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog larguramodal" role="document">
         <div class="modal-content">
@@ -299,7 +298,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <a class="btn btn-secondary btnModalClose" data-dismiss="modal">Fechar</a>
                     <button name="submit" id="submit" class="btn btn-success" value="submit">Salvar</button>
                 </div>
             </form>
@@ -435,6 +434,12 @@
                 </table>
                 <!------- Estrutura de repetição (CARD)------------------->
 
+                <div id="pai">
+                    <?php 
+                    $cont = 0;
+                    $cont2 = 0;
+                    ?>
+
                 @foreach($data as $item)
 
 
@@ -461,11 +466,12 @@
                             @if($total1 > 108)
                             <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$item->pergunta}}">{{$item->pergunta}}</div>
                             @else
-                            <div style="font-weight:bold">{{$item->pergunta}}</div>
+                            <div>{{$item->pergunta}}</div>
                             @endif
                         </div>
-                        <div class="col-2 col-sm-auto">
-                        <label>Total: {{$c_perg}}</label>
+
+                        <div class="col-2 col-sm-auto textototal{{$cont}}">
+
                         </div>
                         <div class="col-2 col-sm-1">
                             <a class="nav-link" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
@@ -482,6 +488,7 @@
                     </div>
                 </div>
 
+                <?php $cont ++; ?>
                 @endif
                 @endif
                 @endforeach
@@ -490,6 +497,7 @@
 
 
                 <?php $y=0; ?>
+               
                 <div class="panel" id="panel{{$item->id}}">
                     @foreach($respostas as $resposta)
                     @foreach($perg_resp as $pergresp)
@@ -498,7 +506,7 @@
 
                     <div class="row">
                         <h5><?php echo $letras[$y];?></h5>
-                        <div class="col" style=" margin-top: -5px;">
+                        <div class="col totalresposta" style=" margin-top: -5px;">
                         <p style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
                         </div>
                     </div>
@@ -509,6 +517,7 @@
                     @endforeach
                     @endforeach
                 </div>
+                
                 <?php $y=0; ?>
 
                 @foreach($perg_refs as $perg_ref)
@@ -534,12 +543,14 @@
                             @if($total > 108)
                             <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$ref->pergunta}}">{{$ref->pergunta}}</div>
                             @else
-                            <div style="font-weight:bold">{{$ref->pergunta}}</div>
+                            <div>{{$ref->pergunta}}</div>
                             @endif
                         </div>
 
-                        <div class="col-2 col-sm-auto">
-                        <label>Total: {{$c_perg}}</label>
+                         <div class="col-2 col-sm-auto textototalref{{$cont2}}">
+
+
+
                         </div>
 
                         <div class="col-2 col-sm-1">
@@ -556,6 +567,7 @@
                         </div>
                     </div>
                 </div>
+                <?php $cont2 ++; ?>
                 @endif
                 @endforeach
                 @endif
@@ -585,6 +597,7 @@
                 <hr style="border: 0.8px solid #afafaf;">
 
                 @endforeach
+            </div>
                 <div class="container">
                     {{$data->links()}}
                 </div>
@@ -668,7 +681,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <a class="btn btn-secondary btnModalClose" data-dismiss="modal">Fechar</a>
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
             </form>
@@ -693,7 +706,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default btnModalClose" data-dismiss="modal">Fechar</a>
+                    <a class="btn btn-secondary btnModalClose" data-dismiss="modal">Fechar</a>
                     <button type="button" class="btn btn-success altera" id="altera" name="altera">Save changes</button>
                 </div>
             </form>
@@ -761,3 +774,5 @@
 
 
 @endsection
+
+

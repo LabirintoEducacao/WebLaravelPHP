@@ -133,6 +133,7 @@ Route::get('/visualizar/deletar-pergunta/{id}', 'PerguntaRespostaController@dest
 Route::get('/visualizar//deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
 Route::post('/alterar-ordem','PerguntaRespostaController@alterar');
 Route::post('/busca-perg', 'PerguntaRespostaController@buscar');
+Route::post('/busca-sala', 'SalaController@buscarS');
     
 Route::get('/teste/{id}', 'PerguntaRespostaController@teste');
     
@@ -186,6 +187,7 @@ Route::get('/virtualdelete/{id}','Json@filedelete');
 Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar')->middleware(['auth', 'auth.admin']);
 Route::delete('/settings/delete/{id}', 'Admin\UserController@destroy');
 Route::get('/alunos/{id}', 'Admin\UserController@add_user')->middleware(['auth', 'auth.admin']);
+Route::post('/aluno/{id}', 'Admin\UserController@teste')->middleware(['auth', 'auth.admin']);
 Route::post('/aluno', 'Admin\UserController@store');
 Route::get('/showaluno','Admin\UserController@showalunos');
 Route::post('/new/user', 'Admin\UserController@user');

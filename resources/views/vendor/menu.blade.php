@@ -39,7 +39,7 @@
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 </head>
 
-<body >
+<body onload="totalresposta()">
     <div class="wrapper" >
         <div class="sidebar"  data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
@@ -89,12 +89,14 @@
                             Perfil
                         </a>
                     </li>
+<!--
                     <li class="nav-item ">
                         <a class="nav-link" href="{{url('/admin/settings/password')}}">
                             <i class="material-icons">lock</i>
                             Senha
                         </a>
                     </li>
+-->
                     <li class="nav-item ">
                         <a class="nav-link" href="{{url('/manual')}}">
                             <i class="material-icons">library_books</i>
@@ -204,7 +206,17 @@
             $().ready(function() {
 
 
+<<<<<<< HEAD
             	teste();
+=======
+
+             
+
+
+
+
+
+>>>>>>> 45f9b98a99d0665c3bdb028bfc4020defca6143e
 
                 $sidebar = $('.sidebar');
 
@@ -409,6 +421,8 @@
             $("#" + id).slideToggle("slow");
         }
 
+
+    
         function transforma(tempo, campo) {
             var x = 0;
             console.log(tempo);
@@ -558,12 +572,20 @@
 
 
 
+<<<<<<< HEAD
          $('#addAlunoModal').on('show.bs.modal', function (e) { 
 
             mostrarmaisalunos();
 
             
          });
+=======
+
+
+
+
+         
+>>>>>>> 45f9b98a99d0665c3bdb028bfc4020defca6143e
 
 
           $('#addAlunoModal').on('hide.bs.modal', function (e) {
@@ -573,6 +595,7 @@
 
            }); 
 
+<<<<<<< HEAD
          function mostrarmaisalunos(){
 
             console.log('Entrou');
@@ -698,6 +721,9 @@
 
              });
          }
+=======
+         
+>>>>>>> 45f9b98a99d0665c3bdb028bfc4020defca6143e
 
          function paginar(data,total){
             console.log('data: ' ,data,'total',total);
@@ -994,6 +1020,47 @@ $(function () {
 
  	}
             
+
+            $('.selectpicker').selectpicker('refresh');
+
+
+
+
+            function totalresposta(id){
+
+               
+                var total = 0;
+
+                var cont =0;
+                var cont2 =0;
+
+                $('#pai').children('.panel').each(function(){
+                    
+
+                    var t = $(this).children().length;
+
+                    $('.textototal'+cont).append(
+                     '<p>' + t + '</p>'
+                        );
+
+                cont ++;
+                });
+
+
+                $('#pai').children('.panel2').each(function(){
+                    
+
+                    var t = $(this).children().length;
+
+                    $('.textototalref'+cont2).append(
+                     '<p>' + t + '</p>'
+                        );
+
+                cont2 ++;
+                });
+
+            }
+
             
             
     </script>
