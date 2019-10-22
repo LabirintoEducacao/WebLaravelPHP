@@ -39,8 +39,8 @@
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 </head>
 
-<body onload="totalresposta()">
-    <div class="wrapper" >
+<body class="">
+    <div class="wrapper " >
         <div class="sidebar"  data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
 
@@ -89,14 +89,12 @@
                             Perfil
                         </a>
                     </li>
-<!--
                     <li class="nav-item ">
                         <a class="nav-link" href="{{url('/admin/settings/password')}}">
                             <i class="material-icons">lock</i>
                             Senha
                         </a>
                     </li>
--->
                     <li class="nav-item ">
                         <a class="nav-link" href="{{url('/manual')}}">
                             <i class="material-icons">library_books</i>
@@ -156,14 +154,14 @@
 
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-   <!--  <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script> -->
+    <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
    <!--  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> -->
     <!-- Plugin for the momentJs  -->
     <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
     <!--  Plugin for Sweet Alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert2.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2.j')}}s"></script>
     <!-- Forms Validations Plugin -->
-    <script src="{{asset('assets/js/plugins/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery.validate.min.j')}}s"></script>
     <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="{{asset('assets/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
     <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -186,6 +184,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Library for adding dinamically elements -->
     <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
+    <!--  Google Maps Plugin    -->
+    
     <!-- Chartist JS -->
     <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
     <!--  Notifications Plugin    -->
@@ -194,30 +194,9 @@
     <script src="{{asset('assets/js/material-dashboard.js?v=2.1.1')}}" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('assets/demo/demo.js')}}"></script>
-    <script src="{{ asset('js/caixa.js')}}" defer></script>
     <script>
-
-
-
-
         $(document).ready(function() {
-
-
             $().ready(function() {
-
-
-<<<<<<< HEAD
-            	teste();
-=======
-
-             
-
-
-
-
-
->>>>>>> 45f9b98a99d0665c3bdb028bfc4020defca6143e
-
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');
@@ -388,12 +367,12 @@
 
     </script>
     <script>
-        $(document).ready(function() {
-            // Javascript method's body can be found in assets/js/demos.js
-            md.initDashboardPageCharts();
+        // $(document).ready(function() {
+        //     // Javascript method's body can be found in assets/js/demos.js
+        //     md.initDashboardPageCharts();
 
 
-        });
+        // });
 
 
 
@@ -421,8 +400,6 @@
             $("#" + id).slideToggle("slow");
         }
 
-
-    
         function transforma(tempo, campo) {
             var x = 0;
             console.log(tempo);
@@ -485,10 +462,8 @@
 
 
         function qrcodebtn(id) {
-                
-            
-            $(".qrcode").attr('disabled',true);
-            
+
+            $('#'+id).attr('disabled',true);
             $.get("/admin/virtual/" + id).done(function(data) {
 
                 var parse = JSON.parse(data);
@@ -496,7 +471,7 @@
                 if (data == "null") {
 
                     $('#noinfomodal').modal('show');
-                   $(".qrcode").attr('disabled',false);
+                    $('#'+id).attr('disabled',false);
 
                 } else {
                     console.log(data)
@@ -531,7 +506,7 @@
                     $('.carousel').carousel({
                         interval: 1000
                     });
-                     $(".qrcode").attr('disabled',false);
+                     $('#'+id).attr('disabled',false);
 
 
                 }
@@ -561,7 +536,7 @@
             
             
             
-         
+            
             
             $('#addPerg').on('hide.bs.modal', function(e) {
 
@@ -572,297 +547,11 @@
 
 
 
-<<<<<<< HEAD
-         $('#addAlunoModal').on('show.bs.modal', function (e) { 
 
-            mostrarmaisalunos();
 
-            
-         });
-=======
 
 
-
-
-         
->>>>>>> 45f9b98a99d0665c3bdb028bfc4020defca6143e
-
-
-          $('#addAlunoModal').on('hide.bs.modal', function (e) {
-
-             $('#divtabela').empty();
-             $('.pagination').empty();
-
-           }); 
-
-<<<<<<< HEAD
-         function mostrarmaisalunos(){
-
-            console.log('Entrou');
-
-        
-             $.get("/admin/showaluno").done( function(data){
-
-                var contagem = 1;
-                var contagem1 = 0;
-                var max =7;
-                var i =0;
-                parse = JSON.parse(data);
-                var paginacao = Math.ceil(parse.length/max);
-                console.log("pag :" , paginacao);
-
-                $('#divtabela').append(
-                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:block;">'+
-                                '<thead >'+
-                                    '<tr>'+
-                                        '<th scope="col"> Id: </th>'+
-                                        '<th scope="col"> Nome: </th>'+
-                                        '<th scope="col"> Email: </th>'+
-                                        '<th scope="col"></th>'+
-                                    '</tr>'+
-                                '</thead>'+
-                                '<tbody id="body'+ contagem +'" >'+
-                                '</tbody>'+
-                            '</table>' );
-
-
-
-               
-
-
-                for( i =0; i < parse.length ; i++){
-
-                   
-
-                 if(contagem1 > max){
-                    contagem ++;
-
-                    $('#divtabela').append(
-                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:none;">'+
-                                '<thead >'+
-                                    '<tr>'+
-                                        '<th scope="col"> Id: </th>'+
-                                        '<th scope="col"> Nome: </th>'+
-                                        '<th scope="col"> Email: </th>'+
-                                        '<th scope="col"></th>'+
-                                    '</tr>'+
-                                '</thead>'+
-                                '<tbody id="body'+ contagem +'" >'+
-                                '</tbody>'+
-                            '</table>' );
-
-
-                    contagem1 =0;
-
-                 }
-
-                 
-                 $('#body'+contagem).append(
-                         '<tr>'+
-                        '<td scope="row">'+parse[i].user_id +'</td>'+
-                        '<td>'+ parse[i].name + '</td>' +
-                         '<td>'+ parse[i].email +'</td>' +
-                         '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addaluno('+ parse[i].user_id +')" >Adicionar</a>' +'</td>' +
-                             '</tr>'
-                              
-                             );
-
-                 contagem1++;
-                 }
-
-
-                if(contagem > 5){
-                for(i=1; i<=5; i++){
-
-                 if(i==1){
-                    $('.pagination').append(
-                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-
-                 } else{  
-
-
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-                }
-
-                }
-
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
-                    );
-
-            } if(contagem <=5 ) {
-
-                for(i=1; i<=contagem; i++){
-
-                 if(i==1){
-                    $('.pagination').append(
-                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-
-                 } else{  
-
-
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-                }
-
-                }
-                
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
-                    );
-
-            }
-                  
-
-             });
-         }
-=======
-         
->>>>>>> 45f9b98a99d0665c3bdb028bfc4020defca6143e
-
-         function paginar(data,total){
-            console.log('data: ' ,data,'total',total);
-
-
-            $('#divtabela').children().each(function() {
-            $(this).css('display','none');
-});
-
-             $('#table'+data).css('display','block');
-
-             $('.pagination').empty();
-             
-             if(total <=5 ){
-
-                for(var i=1; i<=total; i++){
-
-                 if(i==1){
-                    $('.pagination').append(
-                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+total+')">'+ i +'</a></li>'
-                    );
-
-                 } else{  
-
-
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+total+')">'+ i +'</a></li>'
-                    );
-                }
-
-                }
-                
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+total+')">Ultima</a></li>'
-                    );
-
-            }else{
-
-             if(data==1){
-
-                $('.pagination').append( 
-                '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'+ 
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+2)+','+total+')">'+(data+2)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+3)+','+total+')">'+(data+3)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+4)+','+total+')">'+(data+4)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+total+','+total+')">Ultima</a></li>'
-                );
-            }
-
-
-             if(data>2 && data<=(total-2)){
-                $('.pagination').append( 
-                '<li class="page-item "><a class="page-link" onclick="paginar(1'+','+total+')">Primeira</a></li>'+  
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-2)+','+total+')">'+(data-2)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-1)+','+total+')">'+(data-1)+'</a></li>'+
-                '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'+ 
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+2)+','+total+')">'+(data+2)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+total+','+total+')">Ultima</a></li>'
-                );
-
-                }else if(data==2 && data<=(total-2)){
-                 $('.pagination').append(   
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-1)+','+total+')">'+(data-1)+'</a></li>'+
-                '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'+ 
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+2)+','+total+')">'+(data+2)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data+3)+','+total+')">'+(data+3)+'</a></li>'+
-                '<li class="page-item "><a class="page-link" onclick="paginar('+total+','+total+')">Ultima</a></li>'
-                ); }
-
-                 else if( data==total && (total-2)>1){
-                 $('.pagination').append(
-                 '<li class="page-item "><a class="page-link" onclick="paginar(1'+','+total+')">Primeira</a></li>'+
-                 '<li class="page-item "><a class="page-link" onclick="paginar('+(data-4)+','+total+')">'+(data-4)+'</a></li>'+       
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-3)+','+total+')">'+(data-3)+'</a></li>'+     
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-2)+','+total+')">'+(data-2)+'</a></li>'+   
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-1)+','+total+')">'+(data-1)+'</a></li>'+
-                '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'
-                
-                ); } else if(data == (total-1)){
-                 $('.pagination').append(
-                 '<li class="page-item "><a class="page-link" onclick="paginar(1'+','+total+')">Primeira</a></li>'+      
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-3)+','+total+')">'+(data-3)+'</a></li>'+     
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-2)+','+total+')">'+(data-2)+'</a></li>'+   
-                '<li class="page-item "><a class="page-link" onclick="paginar('+(data-1)+','+total+')">'+(data-1)+'</a></li>'+
-                '<li class="page-item active"><a class="page-link active" onclick="paginar('+data+','+total+')">'+data+'</a></li>'+
-                '<li class="page-item "><a class="page-link active" onclick="paginar('+(data+1)+','+total+')">'+(data+1)+'</a></li>'
-            
-                ); }  
-                          
-         }
-
-
-
-          function addaluno(id){
-
-                    console.log('addaluno');
-                // $.post( "/admin/aluno", { 'id': id } );
-
-                var _token = $('meta[name="_token"]').attr('content');
-
-                        $.ajaxSetup({
-
-                            headers: {
-
-                                'X-CSRF-TOKEN': _token
-
-                            }
-
-                        });
-
-
-                     $.ajax({
-                     url: 'http://127.0.0.1:8000/admin/novoteste',
-                     type: 'POST',
-                        data: {
-                            user:'oi'
-                        },
-                        dataType: 'JSON',
-
-                        success: function(data){
-                            console.log("Comunicacao ok", data);
-                        },
-
-                        error: function(){
-                                console.log("erro");
-
-                        }
-                        });
-                       
-
-
-                
-                // form action="{{ url('admin/aluno') }}" method="POST"
-
-
-                } 
+       
 
    // perfect-scrollbar-on nav-open
 
@@ -911,167 +600,27 @@
                t = 0;
          }
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-});
-            
-            
-                  $('#editarSalaModal1').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget); // Button that triggered the modal
-          var recipientnome = button.data('whatevernome');
-          var recipientid = button.data('whateverid');
-          var recipienttempo = button.data('whatevertempo');
-          console.log(recipienttempo);
-          var recipienttema = button.data('whatevertema');
-          var recipientcorrect = button.data('whateverpublic');
-          var recipientenable = button.data('whateverenable');
-          var tempo = button.data('tempoo');
-          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-          var modal = $(this);
-          modal.find('#nome').val(recipientnome);
-          modal.find('#time3').val(recipienttempo);
-          modal.find('#time4').val(tempo);
-          modal.find('#sala_id').val(recipientid);
-          modal.find('#theme').val(recipienttema);
-          console.log(recipientcorrect);
-          console.log(recipientenable);
-
-          if (recipientcorrect == 1){
-              $('#public1').prop("checked", true);
-              $('#public1').prop("value", 1);
-          }else{
-              $('#public1').prop("checked", false);
-              $('#public1').prop("value", 0);
-          }
-
-          if (recipientenable == 1){
-              $('#enable1').prop("checked", true);
-              $('#enable1').prop("value", 1);
-          }else{
-              $('#enable1').prop("checked", false);
-              $('#enable1').prop("value", 0);
-          }
-      });
-            
-            
-            
-      $('#editarSalaModal2').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget); // Button that triggered the modal
-          var recipientnome = button.data('whatevernome');
-          var recipientid = button.data('whateverid');
-          var recipienttempo = button.data('whatevertempo');
-          var recipienttema = button.data('whatevertema');
-          var recipientcorrect = button.data('whateverpublic');
-          var recipientenable = button.data('whateverenable');
-          var tempo = button.data('tempoo');
-          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-          var modal = $(this);
-          modal.find('#nome').val(recipientnome);
-          modal.find('#time3').val(recipienttempo);
-          console.log(tempo)
-          modal.find('#time4').val(tempo);
-          modal.find('#sala_id').val(recipientid);
-          modal.find('#theme').val(recipienttema);
-
-
-          if (recipientcorrect == 1){
-              $('#public1').prop("checked", true);
-              $('#public1').prop("value", 1);
-          }else{
-              $('#public1').prop("checked", false);
-              $('#public1').prop("value", 0);
-          }
-
-          if (recipientenable == 1){
-              $('#enable1').prop("checked", true);
-              $('#enable1').prop("value", 1);
-          }else{
-              $('#enable1').prop("checked", false);
-              $('#enable1').prop("value", 0);
-          }
-      });
-            
-            
-            
-        $('#public1').on('click', function () {
-              if (this.checked) {
-                  document.getElementById('public1').value = 1;
-              }else {
-                  document.getElementById('public1').value = 0;
-              }
-
-          });
-
-     $('#enable1').on('click', function () {
-              if (this.checked) {
-                  document.getElementById('enable1').value = 1;
-              }else {
-                  document.getElementById('enable1').value = 0;
-              }
-
-          });
-
-            
- 	
- 		function teste(){
- 		console.log("Funcionou");
-
- 	}
-            
-
-            $('.selectpicker').selectpicker('refresh');
-
-
-
-
-            function totalresposta(id){
-
-               
-                var total = 0;
-
-                var cont =0;
-                var cont2 =0;
-
-                $('#pai').children('.panel').each(function(){
-                    
-
-                    var t = $(this).children().length;
-
-                    $('.textototal'+cont).append(
-                     '<p>' + t + '</p>'
-                        );
-
-                cont ++;
-                });
-
-
-                $('#pai').children('.panel2').each(function(){
-                    
-
-                    var t = $(this).children().length;
-
-                    $('.textototalref'+cont2).append(
-                     '<p>' + t + '</p>'
-                        );
-
-                cont2 ++;
-                });
-
-            }
-
-            
-            
     </script>
 
     
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
-    <script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script>
+    <!--script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
-
+      <script src="{{ asset('js/Alunos.js')}}" ></script>
+      <script src="{{ asset('js/caixa.js')}}" ></script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+  
+
+

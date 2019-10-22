@@ -2,6 +2,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+      <input type="hidden" value="{{$id}}" id="id_sala">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
@@ -9,9 +10,7 @@
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addAlunoModal">
                         Adicionar aluno 
                     </button>
-                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
-                        Adicionar aluno não cadastrado
-                    </button>
+          
                       </h4>
                   <p class="card-category"></p>
                 </div>
@@ -69,28 +68,34 @@
                 </div>
                 
                     <div class="modal-body">
-
-                      
-                        <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
+                       <div class="row">
+                          <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
                          <div class="form-group" style="margin-top:3.5%">
                             <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
+                                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
+                        Enviar Convite
+                                  </button>
+                       </div>
+                        </div>
+                       
+                       <div class="row">
 
+                        <h5> Pesqusiar: </h5>
                          <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
+                       </div>
 
                         <div class="tab-content" id="divtabela">
 
                          
                           </div>
                         </div>
-                      </div>
+                      
 
 
                       <div class="row justify-content-center">
                           <nav aria-label="...">
                             <ul class="pagination justify-content-center">  
-                              
-    
-                              
+                               
                             </ul>
                           </nav>
                         </div>
