@@ -443,7 +443,7 @@
 
 
         function muda(radio) {
-            
+
             if(radio.checked){
 
                 $(radio).attr("value", "1");
@@ -454,27 +454,6 @@
 
             }
         }
-
-        function muda2(radio) {
-           
-            if(radio.checked){
-
-                $(radio).attr("value", "1");
-
-            }else{
-
-               $(radio).attr("value", "0");
-
-            }
-
-            
-        }
-
-
-
-
-
-
 
         function qrcodebtn(id) {
 
