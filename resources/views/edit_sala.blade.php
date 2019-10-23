@@ -370,14 +370,14 @@
                                     {{$x}}
                                 </td>
                                 <td>
-                                    @if($sala->tematica==1)
-                                    Deserto
-                                    @elseif($sala->tematica==2)
-                                    Cidade Abandonada
-                                    @elseif($sala->tematica==3)
-                                    Casa
+                                    @if($sala->tematica=="urban")
+                                    Urbano
+                                    @elseif($sala->tematica=="mansion")
+                                    Casa/Mansão
+                                    @elseif($sala->tematica=="icy_maze")
+                                    Gelo
                                     @else
-                                    Floresta
+                                    Selva
                                     @endif
                                 </td>
                                 <td>
