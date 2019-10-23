@@ -6,7 +6,6 @@
           var postURL = 'editar-sala/';
           var i = 0;
           var i2 = 0;
-
           // botao para add resposta fields
           var a = 0;
           var b = 0;
@@ -110,28 +109,16 @@
           });
 
 
-
-          // Acao para botao deletar remove fields
-
-          $(document).on('click', '.btn_remove', function () {
-
-              var button_id = $(this).attr("id");
-              $('#row' + button_id + '').remove();
-              a--;
-              console.log(a);
-          });
-
-
           //////////////////////////////////////////////////////////////////////////
           $(document).on('click', '.teste', function () {
-              if (b < 2) {
+              if (b < 3) {
                 if($('#room_type_ref').val() == 'true_or_false'){
                   $('#dynamic_field2').append('' +
                       '<div id="row2' + i2 + '" class="dynamic-added2">' +
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
+                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 2) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
@@ -162,7 +149,7 @@
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
+                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 2) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
@@ -193,11 +180,11 @@
              
           });
           // Acao para botao deletar remove fields
-          $(document).on('click', '.btn_remove2', function () {
+          $(document).on('click', '.btn_remove', function () {
 
               var button_id2 = $(this).attr("id");
-              $('#row2' + button_id2 + '').remove();
-              b--;
+              $('#row' + button_id2 + '').remove();
+              a--;
           });
 
 
@@ -425,7 +412,7 @@
                       '</div>' +
                       '<div class="col">' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
+                      '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type">Tipo da Resposta:</label>' +
                       '</div>'+
                       '<div class="col-7">'+
@@ -439,15 +426,16 @@
                       '</div>' +
                       '</div>' +
                       '</div>' +
-
                       '<div class="dynamic-added2" id="dynamic_field2" border="0">' +
+                      '<div id="row2' + i2 + '" class="dynamic-added2">' +
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 1º Resposta reforço" rows="2"  class="form-control name_list resposta_ref" maxlength="500" required></textarea>' +
+                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder="' + (b + 1) + 'º Resposta refoço" rows="2"  class="form-control name_list resposta_ref" maxlength="500" required></textarea>' +
                       '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                       '</div>' +
-
+                      '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                      '<div class="col col-sm-11">' +
                       '<div class="form-check form-check-radio">' +
                       'Essa resposta esta correta?&emsp;' +
                       '<label class="form-check-label">' +
@@ -459,22 +447,10 @@
                       '</label>' +
                       '</div>' +
                       '</div>' +
+                      '<div class="col col-sm-1">' +
+                      '<button type="button" name="remove" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
                       '</div>' +
-                      '<div class="card houvercard">' +
-                      '<div class="container">' +
-                      '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" id="resposta" placeholder=" 2º Resposta reforço" rows="2"  class="form-control name_list resposta_ref" maxlength="500" required></textarea>' +
-                      '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                       '</div>' +
-                      '<div class="form-check form-check-radio">' +
-                      'Essa resposta esta correta?&emsp;' +
-                      '<label class="form-check-label">' +
-                      '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
-                      'Sim' +
-                      '<span class="circle">' +
-                      '<span class="check"></span>' +
-                      '</span>' +
-                      '</label>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +
@@ -515,6 +491,14 @@
                       //                      '</div>' +
                       //                      '</div>'
                   );
+
+
+                  $(".teste").trigger('click');
+                  $(".teste").trigger('click');
+                  $(".teste").trigger('click');
+
+
+
                   
                   $('.selectpicker').selectpicker('refresh');
                   
@@ -546,6 +530,14 @@
 
             });
 
+          });
+
+          // Acao para botao deletar remove fields
+          $(document).on('click', '.btn_remove2', function () {
+
+              var button_id2 = $(this).attr("id");
+              $('#row2' + button_id2 + '').remove();
+              b--;
           });
 
 
