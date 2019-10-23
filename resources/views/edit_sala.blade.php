@@ -102,7 +102,7 @@
                                                         <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select name="room_type" class="form-control selectpicker room_type" data-style="btn btn-primary" style="float:left;">
+                                                        <select id="room_type" name="room_type" class="form-control selectpicker room_type" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="right_key">Chave</option>
                                                             <option value="hope_door">Porta da esperança</option>
                                                             <option value="true_or_false">Verdadeiro ou Falso</option>
@@ -111,6 +111,12 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
+
+
+
+
 
                                         </div>
                                     </div>
@@ -237,7 +243,7 @@
                                                     <div class="form-check form-check-radio">
                                                         Essa resposta esta correta?&emsp;
                                                         <label class="form-check-label">
-                                                            <input class="form-check-input correct" type="radio" name="corret[]" onclick="muda(this);" value="1" required checked>
+                                                            <input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" onclick="muda(this);" value="0" required >
                                                             Sim
                                                             <span class="circle">
                                                                 <span class="check"></span>
