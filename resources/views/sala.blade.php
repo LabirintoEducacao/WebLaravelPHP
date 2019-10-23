@@ -530,10 +530,10 @@
                                 <label for="theme">Tema:&emsp;</label>
 <!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
                                 <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
-                                    <option value="1">Gelo</option>
-                                    <option value="2">Urbano</option>
-                                    <option value="3">Selva</option>
-                                    <option value="4">Casa/Mansão</option>
+                                    <option value="mansion">Gelo</option>
+                                    <option value="urban">Urbano</option>
+                                    <option value="forest">Selva</option>
+                                    <option value="icy_maze">Casa/Mansão</option>
                                 </select>
 
                             </div>
@@ -614,10 +614,10 @@
                                 <label for="theme">Tema:&emsp;</label>
 <!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
                                 <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
-                                    <option value="1">Gelo</option>
-                                    <option value="2">Urbano</option>
-                                    <option value="3">Selva</option>
-                                    <option value="4">Casa/Mansão</option>
+                                    <option value="icy_maze">Gelo</option>
+                                    <option value="urban">Urbano</option>
+                                    <option value="forest">Selva</option>
+                                    <option value="mansion">Casa/Mansão</option>
                                 </select>
 
                             </div>
