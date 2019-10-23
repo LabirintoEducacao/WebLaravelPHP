@@ -44,9 +44,9 @@ class ProfileController extends Controller
         if (Hash::check($data['password_atual'], $hashedPassword[0]->password)) {
         
         
-        if($data['passwordn'] != null){
-            if($data['passwordn'] == $data['password_confirmation']){
-                $data['passwordn'] = bcrypt($data['passwordn']);
+        if($data['password'] != null){
+            if($data['password'] == $data['password_confirmation']){
+                $data['password'] = bcrypt($data['password']);
                 $update = auth()->user()->update($data);
                 if($update)
                     $notification = array(
@@ -54,14 +54,14 @@ class ProfileController extends Controller
                         'alert-type' => 'success'
                     );
             }else{
-            unset($data['passwordn']);
+            unset($data['password']);
             $notification = array(
                         'message' => 'Senha não pôde ser atualizada!',
                         'alert-type' => 'warning'
                     );
             }
         }else{
-            unset($data['passwordn']);
+            unset($data['password']);
             $notification = array(
                         'message' => 'Senha não pôde ser atualizada!',
                         'alert-type' => 'warning'

@@ -222,7 +222,7 @@
                       '<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
                       '</div>' +
                       '<div class="col-7">' +
-                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary btn-round" style="float:left;">' +
                       '<option selected value="1">Corredor</option>' +
                       '<option value="2">Labirinto</option>' +
                       '</select>' +
@@ -885,7 +885,7 @@
                                               '</div>');
                                         }else{
 
-                                           $('#dynamic_field2').append('' +
+                                          $('#dynamic_field2').append('' +
                                               '<div id="row2' + i2 + '" class="dynamic-added2">' +
                                               '<div class="card houvercard">' +
                                               '<div class="container">' +
@@ -913,8 +913,6 @@
                                               '</div>' +
                                               '</div>' +
                                               '</div>');
-
-
                                         }
                                           b++;
                                         

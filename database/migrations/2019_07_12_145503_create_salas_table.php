@@ -18,7 +18,7 @@ class CreateSalasTable extends Migration
             $table->integer('prof_id')->unsigned();
             $table->string('name');
             $table->integer('duracao');
-            $table->integer('tematica');
+            $table->string('tematica');
             $table->boolean('public');
             $table->boolean('enable');
             $table->timestamps();

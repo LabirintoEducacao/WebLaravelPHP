@@ -412,7 +412,7 @@
 
                     <div class="col-12 col-md-auto">
 
-                        <button type="button" class="col-12 btn btn-warning btn-sm  fa fa-qrcode qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
+                        <button type="button" class="col-12 btn btn-warning btn-sm  fa fa-qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
 
                     </div>
                 </div>
@@ -654,10 +654,10 @@
                             <label for="theme">Tema:&emsp;</label>
                             <!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
                             <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
-                                <option value="1">Deserto</option>
-                                <option value="2">Cidade Abandonada</option>
-                                <option value="3">Casa</option>
-                                <option value="4">Floresta</option>
+                                <option value="icy_maze">Gelo</option>
+                                <option value="urban">Urbano</option>
+                                <option value="forest">Selva</option>
+                                <option value="mansion">Casa/Mansão</option>
                             </select>
 
                         </div>
