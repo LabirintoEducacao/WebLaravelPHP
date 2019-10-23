@@ -91,14 +91,14 @@
                                     @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica==1)
-                                            Deserto
-                                            @elseif($sala->tematica==2)
-                                            Cidade Abandonada
-                                            @elseif($sala->tematica==3)
-                                            Casa
+                                            @if($sala->tematica=="urban")
+                                            Urbano
+                                            @elseif($sala->tematica=="mansion")
+                                            Casa/Mansão
+                                            @elseif($sala->tematica=="icy_maze")
+                                            Gelo
                                             @else
-                                            Floresta
+                                            Selva
                                             @endif
                                         </td>
                                         <?php
@@ -183,14 +183,14 @@
                                     @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica==1)
-                                            Deserto
-                                            @elseif($sala->tematica==2)
-                                            Cidade Abandonada
-                                            @elseif($sala->tematica==3)
-                                            Casa
+                                            @if($sala->tematica=="urban")
+                                            Urbano
+                                            @elseif($sala->tematica=="mansion")
+                                            Casa/Mansão
+                                            @elseif($sala->tematica=="icy_maze")
+                                            Gelo
                                             @else
-                                            Floresta
+                                            Selva
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -269,14 +269,14 @@
                                     @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica==1)
-                                            Deserto
-                                            @elseif($sala->tematica==2)
-                                            Cidade Abandonada
-                                            @elseif($sala->tematica==3)
-                                            Casa
+                                           @if($sala->tematica=="urban")
+                                            Urbano
+                                            @elseif($sala->tematica=="mansion")
+                                            Casa/Mansão
+                                            @elseif($sala->tematica=="icy_maze")
+                                            Gelo
                                             @else
-                                            Floresta
+                                            Selva
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -352,14 +352,14 @@
                                     <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica==1)
-                                            Deserto
-                                            @elseif($sala->tematica==2)
-                                            Cidade Abandonada
-                                            @elseif($sala->tematica==3)
-                                            Casa
+                                            @if($sala->tematica=="urban")
+                                            Urbano
+                                            @elseif($sala->tematica=="mansion")
+                                            Casa/Mansão
+                                            @elseif($sala->tematica=="icy_maze")
+                                            Gelo
                                             @else
-                                            Floresta
+                                            Selva
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -436,14 +436,14 @@
                                     <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica==1)
-                                            Deserto
-                                            @elseif($sala->tematica==2)
-                                            Cidade Abandonada
-                                            @elseif($sala->tematica==3)
-                                            Casa
+                                           @if($sala->tematica=="urban")
+                                            Urbano
+                                            @elseif($sala->tematica=="mansion")
+                                            Casa/Mansão
+                                            @elseif($sala->tematica=="icy_maze")
+                                            Gelo
                                             @else
-                                            Floresta
+                                            Selva
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -530,10 +530,10 @@
                                 <label for="theme">Tema:&emsp;</label>
 <!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
                                 <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
-                                    <option value="mansion">Gelo</option>
+                                    <option value="icy_maze">Gelo</option>
                                     <option value="urban">Urbano</option>
                                     <option value="forest">Selva</option>
-                                    <option value="icy_maze">Casa/Mansão</option>
+                                    <option value="mansion">Casa/Mansão</option>
                                 </select>
 
                             </div>

@@ -105,14 +105,14 @@ $flag =0;
                                 @endif
                                     <td>{{$item->name}}</td>
                                     <td>
-                                        @if($item->tematica==1)
-                                        Deserto
-                                        @elseif($item->tematica==2)
-                                        Cidade Abandonada
-                                        @elseif($item->tematica==3)
-                                        Casa
+                                        @if($item->tematica=="urban")
+                                        Urbano
+                                        @elseif($item->tematica=="mansion")
+                                        Casa/Mansão
+                                        @elseif($item->tematica=="icy_maze")
+                                        Gelo
                                         @else
-                                        Floresta
+                                        Selva
                                         @endif
                                     </td>
                                     <td>{{ $x }}</td>
@@ -144,14 +144,14 @@ $flag =0;
                                 @endif
                                     <td>{{$item->name}}</td>
                                     <td>
-                                        @if($item->tematica==1)
-                                        Deserto
-                                        @elseif($item->tematica==2)
-                                        Cidade Abandonada
-                                        @elseif($item->tematica==3)
-                                        Casa
+                                        @if($item->tematica=="urban")
+                                        Urbano
+                                        @elseif($item->tematica=="mansion")
+                                        Casa/Mansão
+                                        @elseif($item->tematica=="icy_maze")
+                                        Gelo
                                         @else
-                                        Floresta
+                                        Selva
                                         @endif
                                     </td>
                                     <td>{{ $x }}</td>
@@ -205,14 +205,14 @@ $flag =0;
                          
                                     <td>{{$item->name}}</td>
                                     <td>
-                                        @if($item->tematica==1)
-                                        Deserto
-                                        @elseif($item->tematica==2)
-                                        Cidade Abandonada
-                                        @elseif($item->tematica==3)
-                                        Casa
+                                        @if($item->tematica=="urban")
+                                        Urbano
+                                        @elseif($item->tematica=="mansion")
+                                        Casa/Mansão
+                                        @elseif($item->tematica=="icy_maze")
+                                        Gelo
                                         @else
-                                        Floresta
+                                        Selva
                                         @endif
                                     </td>
                                     <td>{{ $x }}</td>
@@ -238,14 +238,14 @@ $flag =0;
                                 <tr id="sala" style="cursor: pointer;">
                                     <td>{{$item->name}}</td>
                                     <td>
-                                        @if($item->tematica==1)
-                                        Deserto
-                                        @elseif($item->tematica==2)
-                                        Cidade Abandonada
-                                        @elseif($item->tematica==3)
-                                        Casa
+                                        @if($item->tematica=="urban")
+                                        Urbano
+                                        @elseif($item->tematica=="mansion")
+                                        Casa/Mansão
+                                        @elseif($item->tematica=="icy_maze")
+                                        Gelo
                                         @else
-                                        Floresta
+                                        Selva
                                         @endif
                                     </td>
                                     <td>{{ $x }}</td>
@@ -298,14 +298,14 @@ $flag =0;
                          
                                     <td>{{$item->name}}</td>
                                     <td>
-                                        @if($item->tematica==1)
-                                        Deserto
-                                        @elseif($item->tematica==2)
-                                        Cidade Abandonada
-                                        @elseif($item->tematica==3)
-                                        Casa
+                                       @if($item->tematica=="urban")
+                                        Urbano
+                                        @elseif($item->tematica=="mansion")
+                                        Casa/Mansão
+                                        @elseif($item->tematica=="icy_maze")
+                                        Gelo
                                         @else
-                                        Floresta
+                                        Selva
                                         @endif
                                     </td>
                                     <td>{{ $x }}</td>
