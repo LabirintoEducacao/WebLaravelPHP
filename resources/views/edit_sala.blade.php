@@ -220,60 +220,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                        <div class="dynamic-added" id="dynamic_field" border="0">
-                                            <div class="card houvercard">
-                                                <div class="container">
-                                                    <div class="textareaborda2" style="margin-top: 10px;">
-                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder="1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
-                                                        <input type="hidden" name="resp_id[]" class="resp_id">
-                                                    </div>
-                                                    <!--
-                                                        <div class="row">
-                                                            <div class="col-6" style="margin-bottom: 10px;">
-                                                                <select class="selectborda" name="corret[]" class="form-control corret">
-                                                                    <option value="1">Certa</option>
-                                                                    <option selected value="0">Errada</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
--->
-
-                                                    <div class="form-check form-check-radio">
-                                                        Essa resposta esta correta?&emsp;
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" onclick="muda(this);" value="0" required >
-                                                            Sim
-                                                            <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card houvercard">
-                                                <div class="container">
-                                                    <div class="textareaborda2" style="margin-top: 10px;">
-                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
-                                                        <input type="hidden" name="resp_id[]" class="resp_id">
-                                                    </div>
-                                                    <div class="form-check form-check-radio">
-                                                        Essa resposta esta correta?&emsp;
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input correct" type="radio" name="corret[]" value="0" onclick="muda(this);" required>
-                                                            Sim
-                                                            <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
+                                        <div class="dynamic-added montarteste" id="dynamic_field" border="0">
+                                          
                                         </div>
                                     </div>
                                 </div>
