@@ -83,7 +83,8 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
                         '<td scope="row" id="cod'+parse[i].user_id +'"></td>'+
                         '<td>'+ parse[i].name + '</td>' +
                          '<td>'+ parse[i].email +'</td>' +
-                         '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addaluno('+ parse[i].user_id +')" style="color:white">Adicionar</a>' +'</td>' +
+                         '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].user_id +'" onclick="addaluno('+parse[i].user_id +')">Adicionar</a>' 
+                        + '<a id="done'+parse[i].user_id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
                              '</tr>'
                               
                              );
@@ -246,6 +247,9 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
                     dataType: 'JSON',
 
                         success: function(){
+                            $('#add'+id).css('display','none');
+                            $('#done'+id).css('display','block');
+                            
                             console.log("Comunicacao ok");
                         },
 

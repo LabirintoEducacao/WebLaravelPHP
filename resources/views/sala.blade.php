@@ -59,7 +59,7 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane active table-responsive" id="todos">
-                            <table class="table">
+                            <table class="table table-hover">
                                 <thead class=" text-primary">
                                     <th>
                                         Nome
