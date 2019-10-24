@@ -18,11 +18,12 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
            }); 
 
          function mostrarmaisalunos(){
-
+             var sala = document.getElementById('id_sala').value;
          
 
         
              $.get("/admin/showaluno").done( function(data){
+                 
 
                 var contagem = 1;
                 var contagem1 = 0;
@@ -77,19 +78,37 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
                  }
 
-                 
-                 $('#body'+contagem).append(
-                         '<tr>'+
-                        '<td scope="row" id="cod'+parse[i].user_id +'"></td>'+
-                        '<td>'+ parse[i].name + '</td>' +
-                         '<td>'+ parse[i].email +'</td>' +
-                         '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].user_id +'" onclick="addaluno('+parse[i].user_id +')">Adicionar</a>' 
-                        + '<a id="done'+parse[i].user_id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
-                             '</tr>'
-                              
-                             );
+                 if(parse[i].sala_id != sala){
+                     if(i>0){
+                     if(parse[i].id != parse[(i-1)].id){
+                         $('#body'+contagem).append(
+                                 '<tr>'+
+                                '<td scope="row" id="cod'+parse[i].id +'"></td>'+
+                                '<td>'+ parse[i].name + '</td>' +
+                                 '<td>'+ parse[i].email +'</td>' +
+                                 '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].id +'" onclick="addaluno('+parse[i].id +')">Adicionar</a>' 
+                                + '<a id="done'+parse[i].id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
+                                     '</tr>'
 
-                 contagem1++;
+                                     );
+
+                         contagem1++;
+                    }
+                }else{
+                    $('#body'+contagem).append(
+                                 '<tr>'+
+                                '<td scope="row" id="cod'+parse[i].id +'"></td>'+
+                                '<td>'+ parse[i].name + '</td>' +
+                                 '<td>'+ parse[i].email +'</td>' +
+                                 '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].id +'" onclick="addaluno('+parse[i].id +')">Adicionar</a>' 
+                                + '<a id="done'+parse[i].id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
+                                     '</tr>'
+
+                                     );
+
+                         contagem1++;
+                }
+                 }
                  }
 
 
