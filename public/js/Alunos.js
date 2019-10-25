@@ -5,6 +5,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
             mostrarmaisalunos();
             pesquisa();
+            mostrargrupos();
 
             
          });
@@ -18,12 +19,13 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
            }); 
 
          function mostrarmaisalunos(){
-
-         
+             var sala = document.getElementById('id_sala').value;
+            console.log('sala:',sala);
 
         
              $.get("/admin/showaluno").done( function(data){
-
+                 
+                var contagem1 = 0;
                 var contagem = 1;
                 var total = 0;
                 var max =7;
@@ -51,20 +53,45 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
 
                 for( i =0; i < parse.length ; i++){
+ 
 
-                 
-                 $('#bodyaluno').append(
-                         '<tr class="td'+ i +'">'+
-                        '<th scope="row" id="cod'+parse[i].user_id +'"></th>'+
-                        '<td>'+ parse[i].name + '</td>' +
-                         '<td>'+ parse[i].email +'</td>' +
-                         '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addaluno('+ parse[i].user_id +')" style="color:white">Adicionar</a>' +'</td>' +
-                             '</tr>'
-                              
-                             );
 
-                 
+                 if(parse[i].sala_id != sala){
+                     if(i>0){
+                     if(parse[i].id != parse[(i-1)].id){
+                         $('#body'+contagem).append(
+                                 '<tr>'+
+                                '<td scope="row" id="cod'+parse[i].id +'"></td>'+
+                                '<td>'+ parse[i].name + '</td>' +
+                                 '<td>'+ parse[i].email +'</td>' +
+                                 '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].id +'" onclick="addaluno('+parse[i].id +')">Adicionar</a>' 
+                                + '<a id="done'+parse[i].id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
+                                     '</tr>'
+
+                                     );
+
+                         contagem1++;
+                    }
+                }else{
+                    $('#body'+contagem).append(
+                                 '<tr>'+
+                                '<td scope="row" id="cod'+parse[i].id +'"></td>'+
+                                '<td>'+ parse[i].name + '</td>' +
+                                 '<td>'+ parse[i].email +'</td>' +
+                                 '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].id +'" onclick="addaluno('+parse[i].id +')">Adicionar</a>' 
+                                + '<a id="done'+parse[i].id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
+                                     '</tr>'
+
+                                     );
+
+                         contagem1++;
+                }
                  }
+
+
+
+                 }
+
 
 
 
@@ -194,6 +221,9 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
                     dataType: 'JSON',
 
                         success: function(){
+                            $('#add'+id).css('display','none');
+                            $('#done'+id).css('display','block');
+                            
                             console.log("Comunicacao ok");
                         },
 
@@ -250,12 +280,55 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
 function mostrargrupos() {
 
+          $('#divtabelagrupo').append(
+
+                    '<table style="align:center" id="" class="  justify-content-center idtable table container " >'+
+                                '<thead class=" justify-content-center">'+
+                                    '<tr>'+
+                                        '<th scope="col-1"></th>'+
+                                        '<th scope="col"> Nome: </th>'+
+                                        '<th scope="col" ></th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="bodygrupos">'+
+                                '</tbody>'+
+                            '</table>' 
+             );
+
         var id = $('#user_id').val();
         console.log(id);
-      $.get("/admin/grupo/"+id).done( function(data){
-        console.log(data);
 
+      $.get("/admin/grupo/"+id).done( function(data){
+
+    
+
+
+        var parse = JSON.parse(data);
+      
+        for(var i = 0; i < parse.length; i++){
+
+             $('#bodygrupos').append(
+                         '<tr class="gp'+ i +'">'+
+                         '<th scope="row" id="cod'+parse[i].id +'"></th>'+
+                         '<td>'+ parse[i].turma+ '</td>' +
+                         '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addgrupo('+ parse[i].id +')" style="color:white">Adicionar</a>' +'</td>' +
+                         '</tr>'
+                              
+                             );
+
+        }       
+   
       });
 
+
+}
+
+
+function addgrupo(id){
+
+
+  $.get("/admin/addgrupo/"+id).done( function(data){
+
+});  
 
 }

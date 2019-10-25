@@ -70,7 +70,7 @@
                       <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#alunos" role="tab" aria-controls="pills-home" aria-selected="true">Alunos </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#grupos" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="mostrargrupos()">Grupos</a>
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#grupos" role="tab" aria-controls="pills-profile" aria-selected="false" >Grupos</a>
                     </li>
                   </ul>
 
@@ -114,7 +114,7 @@
 
 
 
-                            <div class="tab-pane fade show active" id="grupos" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div class="tab-pane fade " id="grupos" role="tabpanel" aria-labelledby="pills-home-tab">
 
                               <div class=" table-responsive " id="divtabelagrupo">
                          

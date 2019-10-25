@@ -245,8 +245,29 @@ class UserController extends Controller
 
     public function showalunos(Request $request){
 
-        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
-            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
+//        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
+//            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
+//        $aluno = DB::table('users')
+//            ->crossJoin('sala_user')
+//            ->select( 'users.id','users.name', 'users.email','sala_user.sala_id')
+//            ->distinct()
+//            ->get();
+        
+        $sql = 'SELECT DISTINCT u.id,u.name,u.email,s.sala_id FROM users u
+                JOIN role_user r ON u.id = r.user_id 
+                LEFT OUTER JOIN sala_user s ON u.id = s.user_id
+                WHERE r.role_id=3 ORDER BY u.id';
+        $aluno = DB::select($sql);
+        
+//        $alunos = DB::table('users')
+//            ->select( 'id','name', 'email')
+//            ->get();
+//        
+//        $aluno = DB::table('sala_user')
+//            ->unionAll($alunos)
+//            ->get();
+
+
 
        return json_encode($aluno);    
 
@@ -256,7 +277,7 @@ class UserController extends Controller
 
         $data = DB::table('turmas')->where('id_prof',$id)->get();
 
-        return $data;
+        return json_encode($data);
 
     }
 
@@ -335,6 +356,14 @@ class UserController extends Controller
         
         return response()->json(['success' => 'Sucesso']);
         
+    }
+
+    public function addgrupo($id){
+
+       $alunos = DB::table('alunos_turma')->where('turmas_id',$id);
+       
+       return json_encode($alunos);  
+
     }
 
 

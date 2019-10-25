@@ -42,14 +42,14 @@
           // });
           
           $('#add').click(function () {
-              if (a < 2) {
-                  if($('#room_type').val() == 'true_or_false'){
+              if (a < 3) {
+                  if($('.room_type').val() == 'true_or_false'){
                   $('#dynamic_field').append('' +
                       '<div id="row' + i + '" class="dynamic-added">' +
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta[]" placeholder="' + (a + 3) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                      '<textarea type="text" name="resposta[]" placeholder="' + (a + 2) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_id[]" class="resp_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
@@ -79,7 +79,7 @@
                       '<div class="card houvercard">' +
                       '<div class="container">' +
                       '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta[]" placeholder="' + (a + 3) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                      '<textarea type="text" name="resposta[]" placeholder="' + (a + 2) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
                       '<input type="hidden" name="resp_id[]" class="resp_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
@@ -179,17 +179,9 @@
                 }
              
           });
-          // Acao para botao deletar remove fields
-          $(document).on('click', '.btn_remove', function () {
-
-              var button_id2 = $(this).attr("id");
-              $('#row' + button_id2 + '').remove();
-              a--;
-          });
-
-
+        
           ///////////////////////////////////////////////////////////////////
-          $('#check-reforco').on('click', function () {
+          $('#check-reforco').on('change', function () {
               var $parent = $(this).parents('.hovereffect');
               if (this.checked) {
 
@@ -209,22 +201,22 @@
                       '<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
                       '</div>' +
                       '<div class="col-7">' +
-                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary btn-round" style="float:left;">' +
+                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
                       '<option selected value="1">Corredor</option>' +
                       '<option value="2">Labirinto</option>' +
                       '</select>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +
-                    '<div class="col-12 col-sm-4">' +
-                    '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                    '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
-                    '</div>' +
-                    '<div class="col-7">' +
-                    '<select name="tamanho_perg" id="tamanho_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                      '<div class="col-12 col-sm-4">' +
+                      '<div class="row" style="height:50px;">' +
+                      '<div class="col-5" style="height:100%;">' +
+                      '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
+                      '</div>' +
+                      '<div class="col-7">' +
+                      '<select name="tamanho_perg" id="tamanho_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
                     '<option selected value="1">Pequeno</option>' +
-                    '<option value="2">Médio</option>' +
+                     '<option value="2">Médio</option>' +
                       '<option value="3">Grande</option>'+
                     '</select>' +
                     '</div>' +
@@ -492,14 +484,6 @@
                       //                      '</div>'
                   );
 
-
-                  $(".teste").trigger('click');
-                  $(".teste").trigger('click');
-                  $(".teste").trigger('click');
-
-
-
-                  
                   $('.selectpicker').selectpicker('refresh');
                   
                   
@@ -532,12 +516,21 @@
 
           });
 
+          var refresposta = document.getElementsByName('corret_ref[]');
           // Acao para botao deletar remove fields
           $(document).on('click', '.btn_remove2', function () {
 
+             if(refresposta.length > 2){
+
               var button_id2 = $(this).attr("id");
-              $('#row2' + button_id2 + '').remove();
-              b--;
+                $('#row2' + button_id2 + '').remove();
+                b--;
+             }else if(refresposta.length <= 2){
+
+                alert('Essa resposta reforço não pode ser removida pois a pergunta refoço deve conter pelo menos 2 reposta!');
+
+             }
+
           });
 
 
@@ -675,13 +668,61 @@
                   x = 0,
                   y = 0,
                   z = 0;
+                  i = 0;
                   var teste3 = [];
 
               var corretos = document.getElementsByName('corret[]');
               var corretos_ref = document.getElementsByName('corret_ref[]');
 
+                $('.montarteste').append(
+                '<div id="row' + i + '" class="dynamic-added">' +
+                '<div class="card houvercard">'+
+                '<div class="container">'+
+                '<div class="textareaborda2" style="margin-top: 10px;">'+
+                '<textarea type="text" name="resposta[]" id="resposta" placeholder="' + (a + 1) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>'+
+                '<input type="hidden" name="resp_id[]" class="resp_id">'+
+                '</div>'+
+                '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                '<div class="col col-sm-11">' +
+                '<div class="form-check form-check-radio">'+
+                'Essa resposta esta correta?&emsp;'+
+                '<label class="form-check-label">'+
+                '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);" required>'+
+                'Sim'+
+                '<span class="circle">'+
+                '<span class="check"></span>'+
+                '</span>'+
+                '</label>'+
+                '</div>'+
+                '</div>'+
+                '<div class="col col-sm-1">' +
+                '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
+                '</div>' +
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>'
+                  );
 
-              $('#room_type').on('change', function(){
+              // Acao para botao deletar remove fields
+              $(document).on('click', '.btn_remove', function () {
+
+               if(corretos.length > 2){
+
+                  var button_id2 = $(this).attr("id");
+                    $('#row' + button_id2 + '').remove();
+                    a--;
+                 }else if(corretos.length <= 2){
+
+                    alert('Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta!');
+
+                 }
+
+              });
+
+              
+
+              $('.room_type').on('change', function(){
 
                 var roomtype = document.getElementById('room_type');
    
@@ -701,6 +742,7 @@
 
                
              });
+
          
               if (button.data('whatever')) {
                   var recipient = button.data('whatever');
@@ -751,73 +793,13 @@
                                   v = 0;
                                   $.each(val.answer, function (j, resp) {
                                       console.log(resp.correct);
-                                      if (v > 1) {
-                                        if($('#room_type').val() == 'true_or_false'){
+                                      if (v > 0) {
 
-                                          $('#dynamic_field').append('' +
-                                              '<div id="row' + i + '" class="dynamic-added">' +
-                                              '<div class="card houvercard">' +
-                                              '<div class="container">' +
-                                              '<div class="textareaborda2" style="margin-top: 10px;">' +
-                                              '<textarea type="text" name="resposta[]" placeholder="' + (a + 3) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_id[]" class="resp_id">' +
-                                              '</div>' +
-                                              '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                                              '<div class="col col-sm-11">' +
-                                              '<div class="form-check form-check-radio">' +
-                                              'Essa resposta esta correta?&emsp;' +
-                                              '<label class="form-check-label">' +
-                                              '<input class="form-check-input correct verdadeiro2" type="checkbox" name="corret[]" value="0" onclick="muda(this);">' +
-                                              'Sim' +
-                                              '<span class="circle">' +
-                                              '<span class="check"></span>' +
-                                              '</span>' +
-                                              '</label>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '<div class="col col-sm-1">' +
-                                              '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>');
-                                        }else{
+                                           $("#add").trigger('click');
 
-                                           $('#dynamic_field').append('' +
-                                              '<div id="row' + i + '" class="dynamic-added">' +
-                                              '<div class="card houvercard">' +
-                                              '<div class="container">' +
-                                              '<div class="textareaborda2" style="margin-top: 10px;">' +
-                                              '<textarea type="text" name="resposta[]" placeholder="' + (a + 3) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_id[]" class="resp_id">' +
-                                              '</div>' +
-                                              '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                                              '<div class="col col-sm-11">' +
-                                              '<div class="form-check form-check-radio">' +
-                                              'Essa resposta esta correta?&emsp;' +
-                                              '<label class="form-check-label">' +
-                                              '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);">' +
-                                              'Sim' +
-                                              '<span class="circle">' +
-                                              '<span class="check"></span>' +
-                                              '</span>' +
-                                              '</label>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '<div class="col col-sm-1">' +
-                                              '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>');
-
-
-                                        }
-                                          a++;
                                         
                                       }
+                                      
                                       modal.find("#tipo_opcao").val(resp.tipo_resp);
                                       modal.find(document.getElementsByClassName("resp_id")[v]).val(resp.answer_id);
                                       if (resp.correct === true) {
@@ -845,68 +827,9 @@
                                   modal.find('#tamanho_ref').val(val.path.heigh);
                                   console.log(val.answer)
                                   $.each(val.answer, function (j, ref) {
-                                      if (v > 1) {
-                                        if($('#room_type_ref').val() == 'true_or_false'){
-                                          $('#dynamic_field2').append('' +
-                                              '<div id="row2' + i2 + '" class="dynamic-added2">' +
-                                              '<div class="card houvercard">' +
-                                              '<div class="container">' +
-                                              '<div class="textareaborda2" style="margin-top: 10px;">' +
-                                              '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
-                                              '</div>' +
-                                              '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                                              '<div class="col col-sm-11">' +
-                                              '<div class="form-check form-check-radio">' +
-                                              'Essa resposta esta correta?&emsp;' +
-                                              '<label class="form-check-label">' +
-                                              '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda(this);">' +
-                                              'Sim' +
-                                              '<span class="circle">' +
-                                              '<span class="check"></span>' +
-                                              '</span>' +
-                                              '</label>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '<div class="col col-sm-1">' +
-                                              '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>');
-                                        }else{
-
-                                          $('#dynamic_field2').append('' +
-                                              '<div id="row2' + i2 + '" class="dynamic-added2">' +
-                                              '<div class="card houvercard">' +
-                                              '<div class="container">' +
-                                              '<div class="textareaborda2" style="margin-top: 10px;">' +
-                                              '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 3) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
-                                              '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
-                                              '</div>' +
-                                              '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                                              '<div class="col col-sm-11">' +
-                                              '<div class="form-check form-check-radio">' +
-                                              'Essa resposta esta correta?&emsp;' +
-                                              '<label class="form-check-label">' +
-                                              '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
-                                              'Sim' +
-                                              '<span class="circle">' +
-                                              '<span class="check"></span>' +
-                                              '</span>' +
-                                              '</label>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '<div class="col col-sm-1">' +
-                                              '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>' +
-                                              '</div>');
-                                        }
-                                          b++;
+                                      if (v > 0) {
+                                          
+                                           $(".teste").trigger('click');
                                         
                                       }
                                       console.log(ref.answer)
@@ -945,10 +868,21 @@
               } else {
                   modal.find('#pergunta').val('');
                   modal.find('#perg_id').val(0);
-                  modal.find('#room_type').val('key');
+                  modal.find('.room_type').val('key');
                   modal.find('#question_type').val(1);
                   modal.find('#perg-reforco-id').val(0);
-                  $('#check-reforco').prop("checked", false);
+                  $('#check-reforco').prop("checked", true);
+                  $('#check-reforco').trigger("change");
+
+                $("#add").trigger('click');
+                $("#add").trigger('click');
+                $("#add").trigger('click');
+
+                $(".teste").trigger('click');
+                $(".teste").trigger('click');
+                $(".teste").trigger('click');
+
+
 
               }
 
@@ -1036,7 +970,7 @@
 
                   });
               } else {
-                  alert("Uma das respostas deve estar correta!")
+                  alert("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!\nCaso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!")
                   e.preventDefault();
               }
 

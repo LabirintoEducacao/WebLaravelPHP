@@ -102,7 +102,7 @@
                                                         <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select id="room_type" name="room_type" class="form-control selectpicker room_type" data-style="btn btn-primary" style="float:left;">
+                                                        <select name="room_type" class="form-control selectpicker room_type" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="right_key">Chave</option>
                                                             <option value="hope_door">Porta da esperança</option>
                                                             <option value="true_or_false">Verdadeiro ou Falso</option>
@@ -220,60 +220,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                        <div class="dynamic-added" id="dynamic_field" border="0">
-                                            <div class="card houvercard">
-                                                <div class="container">
-                                                    <div class="textareaborda2" style="margin-top: 10px;">
-                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder="1º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
-                                                        <input type="hidden" name="resp_id[]" class="resp_id">
-                                                    </div>
-                                                    <!--
-                                                        <div class="row">
-                                                            <div class="col-6" style="margin-bottom: 10px;">
-                                                                <select class="selectborda" name="corret[]" class="form-control corret">
-                                                                    <option value="1">Certa</option>
-                                                                    <option selected value="0">Errada</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
--->
-
-                                                    <div class="form-check form-check-radio">
-                                                        Essa resposta esta correta?&emsp;
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" onclick="muda(this);" value="0" required >
-                                                            Sim
-                                                            <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card houvercard">
-                                                <div class="container">
-                                                    <div class="textareaborda2" style="margin-top: 10px;">
-                                                        <textarea type="text" name="resposta[]" id="resposta" placeholder=" 2º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>
-                                                        <input type="hidden" name="resp_id[]" class="resp_id">
-                                                    </div>
-                                                    <div class="form-check form-check-radio">
-                                                        Essa resposta esta correta?&emsp;
-                                                        <label class="form-check-label">
-                                                            <input class="form-check-input correct" type="radio" name="corret[]" value="0" onclick="muda(this);" required>
-                                                            Sim
-                                                            <span class="circle">
-                                                                <span class="check"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
+                                        <div class="dynamic-added montarteste" id="dynamic_field" border="0">
+                                          
                                         </div>
                                     </div>
                                 </div>
