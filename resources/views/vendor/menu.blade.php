@@ -37,9 +37,10 @@
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
+   
 </head>
 
-<body class="">
+<body  onload="totalresposta()">
     <div class="wrapper " >
         <div class="sidebar"  data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" >
 
@@ -186,9 +187,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Library for adding dinamically elements -->
     <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
-    <!--  Google Maps Plugin    -->
     
-    <!-- Chartist JS -->
     <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
     <!--  Notifications Plugin    -->
     <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
@@ -716,7 +715,39 @@ $(function () {
                 cont2 ++;
                 });
 
-            }            
+            }    
+
+
+            function totalresposta(id){
+                var total = 0;
+                var cont =0;
+                var cont2 =0;
+
+                $('#pai').children('.panel').each(function(){
+                    
+
+                    var t = $(this).children().length;
+
+                    $('.textototal'+cont).append(
+                     '<p>' + t + '</p>'
+                        );
+
+                cont ++;
+                });
+                $('#pai').children('.panel2').each(function(){
+                    
+
+                    var t = $(this).children().length;
+
+                    $('.textototalref'+cont2).append(
+                     '<p>' + t + '</p>'
+                        );
+
+                cont2 ++;
+                });
+
+            }
+        
     </script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <!--script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script-->

@@ -245,8 +245,32 @@ class UserController extends Controller
 
     public function showalunos(Request $request){
 
-        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
-            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
+//        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
+//            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
+//        $aluno = DB::table('users')
+//            ->crossJoin('sala_user')
+//            ->select( 'users.id','users.name', 'users.email','sala_user.sala_id')
+//            ->distinct()
+//            ->get();
+        
+        $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
+        JOIN role_user r ON u.id = r.user_id 
+        LEFT OUTER JOIN sala_user s ON u.id = s.user_id
+        WHERE r.role_id=3 AND u.id NOT IN (SELECT DISTINCT u.id FROM users u
+        JOIN role_user r ON u.id = r.user_id 
+        LEFT OUTER JOIN sala_user s ON u.id = s.user_id
+        WHERE r.role_id=3 AND s.sala_id=1 ORDER BY id, sala_id) ORDER BY u.name';
+        $aluno = DB::select($sql);
+        
+//        $alunos = DB::table('users')
+//            ->select( 'id','name', 'email')
+//            ->get();
+//        
+//        $aluno = DB::table('sala_user')
+//            ->unionAll($alunos)
+//            ->get();
+
+
 
        return json_encode($aluno);    
 
