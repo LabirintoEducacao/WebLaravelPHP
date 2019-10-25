@@ -43,7 +43,7 @@
           
           $('#add').click(function () {
               if (a < 3) {
-                  if($('#room_type').val() == 'true_or_false'){
+                  if($('.room_type').val() == 'true_or_false'){
                   $('#dynamic_field').append('' +
                       '<div id="row' + i + '" class="dynamic-added">' +
                       '<div class="card houvercard">' +
@@ -722,7 +722,7 @@
 
               
 
-              $('#room_type').on('change', function(){
+              $('.room_type').on('change', function(){
 
                 var roomtype = document.getElementById('room_type');
    
@@ -868,7 +868,7 @@
               } else {
                   modal.find('#pergunta').val('');
                   modal.find('#perg_id').val(0);
-                  modal.find('#room_type').val('key');
+                  modal.find('.room_type').val('key');
                   modal.find('#question_type').val(1);
                   modal.find('#perg-reforco-id').val(0);
                   $('#check-reforco').prop("checked", true);
