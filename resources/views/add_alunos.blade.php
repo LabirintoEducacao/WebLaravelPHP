@@ -2,6 +2,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
+      <input type="hidden" value="{{Auth::user()->id}}" id="user_id">
       <input type="hidden" value="{{$id}}" id="id_sala">
             <div class="col-md-12">
               <div class="card">
@@ -61,14 +63,24 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Adicionar aluno</h5>
+
+                      
+                  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#alunos" role="tab" aria-controls="pills-home" aria-selected="true">Alunos </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#grupos" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="mostrargrupos()">Grupos</a>
+                    </li>
+                  </ul>
+
                     <button type="button" class="close bg-primary" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 
-                    <div class="modal-body">
-                       <div class="row">
+                    <div class="modal-body ">
+                       <div class="row container">
                           <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
                          <div class="form-group" style="margin-top:3.5%">
                             <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
@@ -78,27 +90,43 @@
                        </div>
                         </div>
                        
-                       <div class="row">
+                       <div class="row container">
 
                         <h5> Pesqusiar: </h5>
-                         <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
+                         <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;margin-left: 10px;">
                        </div>
+                         <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="alunos" role="tabpanel" aria-labelledby="pills-home-tab">
 
-                        <div class="tab-content" id="divtabela">
-
+                              <div class=" table-responsive " id="divtabelaaluno">
                          
-                          </div>
-                        </div>
-                      
+                              </div>
 
-
-                      <div class="row justify-content-center">
+                              <div class="row justify-content-center">
                           <nav aria-label="...">
-                            <ul class="pagination justify-content-center">  
+                            <ul id ="teste" class="pagination justify-content-center">  
                                
                             </ul>
                           </nav>
                         </div>
+
+                          </div>
+
+
+
+                            <div class="tab-pane fade show active" id="grupos" role="tabpanel" aria-labelledby="pills-home-tab">
+
+                              <div class=" table-responsive " id="divtabelagrupo">
+                         
+                              </div>
+                              
+                          </div>
+
+                        </div>
+                      
+
+
+                      
 
                     <div class="modal-footer">
                         <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
@@ -144,7 +172,7 @@
 
 
 
-<!--
+
 <div class="modal fade" id="grupomodal" role="dialog" aria-labelledby="Modal grupo" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content " >
@@ -153,7 +181,7 @@
         
       </div>
 
-  <!--     <form method="POST" action="{{ url('/admin/grupo') }}">
+   <form method="POST" action="{{ url('/admin/grupo') }}">
          @csrf
 
       <div class="modal-body" >
@@ -172,166 +200,12 @@
           <a class="btn btn-outline-dark" data-dismiss="modal">Close</a>
           <button type="submit" class="btn btn-outline-success">Save changes</button>
         </div>
-     <!-- </form> 
+     </form>  
     </div>
   </div>
 </div>
--->
+
 
 @endsection
 
 
-
-
-@section('myscript')
-
-<script>
-
-    
-    
-    
-    
-    
-     $('#addAlunoModal').on('show.bs.modal', function (e) { 
- console.log("aqui")
-            mostrarmaisalunos();
-        console.log("aqui")
-
-            
-         });
-    
-    
-    
-    
-    
-    
-function mostrarmaisalunos(){
-
-            console.log('Entrou');
-
-        
-             $.get("/admin/showaluno").done( function(data){
-
-                var contagem = 1;
-                var contagem1 = 0;
-                var max =7;
-                var i =0;
-                parse = JSON.parse(data);
-                var paginacao = Math.ceil(parse.length/max);
-                console.log("pag :" , paginacao);
-
-                $('#divtabela').append(
-                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:block;">'+
-                                '<thead >'+
-                                    '<tr>'+
-                                        '<th scope="col"> Id: </th>'+
-                                        '<th scope="col"> Nome: </th>'+
-                                        '<th scope="col"> Email: </th>'+
-                                        '<th scope="col"></th>'+
-                                    '</tr>'+
-                                '</thead>'+
-                                '<tbody id="body'+ contagem +'" >'+
-                                '</tbody>'+
-                            '</table>' );
-
-
-
-               
-
-
-                for( i =0; i < parse.length ; i++){
-
-                   
-
-                 if(contagem1 > max){
-                    contagem ++;
-
-                    $('#divtabela').append(
-                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:none;">'+
-                                '<thead >'+
-                                    '<tr>'+
-                                        '<th scope="col"> Id: </th>'+
-                                        '<th scope="col"> Nome: </th>'+
-                                        '<th scope="col"> Email: </th>'+
-                                        '<th scope="col"></th>'+
-                                    '</tr>'+
-                                '</thead>'+
-                                '<tbody id="body'+ contagem +'" >'+
-                                '</tbody>'+
-                            '</table>' );
-
-
-                    contagem1 =0;
-
-                 }
-
-                 
-                 $('#body'+contagem).append(
-                         '<tr>'+
-                        '<td scope="row">'+parse[i].user_id +'</td>'+
-                        '<td>'+ parse[i].name + '</td>' +
-                         '<td>'+ parse[i].email +'</td>' +
-                         '<td>'+ '<a class="btn btn-primary btn-sm" onclick="addUser('+parse[i].user_id +',{{$id}})">Adicionar</a>' +'</td>' +
-                             '</tr>'
-                              
-                             );
-
-                 contagem1++;
-                 }
-
-
-                if(contagem > 5){
-                for(i=1; i<=5; i++){
-
-                 if(i==1){
-                    $('.pagination').append(
-                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-
-                 } else{  
-
-
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-                }
-
-                }
-
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
-                    );
-
-            } if(contagem <=5 ){
-
-                for(i=1; i<=contagem; i++){
-
-                 if(i==1){
-                    $('.pagination').append(
-                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-
-                 } else{  
-
-
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
-                    );
-                }
-
-                }
-                
-                $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
-                    );
-
-            }
-                  
-
-             });
-         }
-
-
-
-</script>
-@endsection

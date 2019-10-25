@@ -114,6 +114,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 // ADMIN
 
 Route::prefix('/admin')->group(function(){
+
+
     
 Route::get('/deletar/{id}','Admin\UserController@deleteUser');
 
@@ -191,10 +193,11 @@ Route::post('/addaluno/', 'Admin\UserController@teste')->middleware(['auth', 'au
 Route::post('/aluno', 'Admin\UserController@store');
 Route::get('/showaluno','Admin\UserController@showalunos');
 Route::post('/new/user', 'Admin\UserController@user');
-
 Route::get('/newuser', function () {
     return view('admin.users.newuser');
 })->middleware(['auth', 'auth.admin']);
+
+Route::get('/grupo/{id}','Admin\UserController@showgrupos');
 
 
 /*  Rotas do Email */

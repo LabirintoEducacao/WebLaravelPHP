@@ -252,6 +252,14 @@ class UserController extends Controller
 
     }
 
+    public function showgrupos($id){
+
+        $data = DB::table('turmas')->where('id_prof',$id)->get();
+
+        return $data;
+
+    }
+
 
     public function store(Request $request)
     {
