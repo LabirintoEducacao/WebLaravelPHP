@@ -260,8 +260,13 @@
     <div class="col-md-12">
         <div class="card">
             <div id="teste2" class="card-header card-header-primary">
+                @if($sala->enable==1)
                 <h3 class="card-title" style="text-align:center">{{$sala->name}}
                 </h3>
+                @else
+                <h3 class="card-title" style="text-align:center;"><i>{{$sala->name}}<span style="float:right;font-size:20px">Desativada</span></i>
+                </h3>
+                @endif
                 <p class="card-category"></p>
             </div>
             <div class="card-body">

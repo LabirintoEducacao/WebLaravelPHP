@@ -983,19 +983,29 @@
 
                   //  $('#mensagem').modal('show');
 
-               $(notify(
-                "I'm to the right of this box", 
-                { position:"right" }
-                );
 
             var type = "danger";
             $.notify({
-                message: "teste"
+                message: "Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!"
 
             },
             { position:"right" },
              {
                 type: type,
+                timer: 4000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+                  
+        $.notify({
+                message: "Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!"
+
+            },
+            { position:"right" },
+             {
+                type: "info",
                 timer: 4000,
                 placement: {
                     from: 'top',
