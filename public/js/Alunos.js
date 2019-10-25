@@ -5,7 +5,6 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
             mostrarmaisalunos();
             pesquisa();
-            mostrargrupos();
 
             
          });
@@ -20,41 +19,64 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
          function mostrarmaisalunos(){
              var sala = document.getElementById('id_sala').value;
-            console.log('sala:',sala);
+         
 
         
              $.get("/admin/showaluno").done( function(data){
                  console.log(data);
-                var contagem1 = 0;
+
                 var contagem = 1;
-                var total = 0;
+                var contagem1 = 0;
                 var max =7;
                 var i =0;
-                var parse = JSON.parse(data);
+                parse = JSON.parse(data);
                 var paginacao = Math.ceil(parse.length/max);
-                console.log(parse);
             
 
-                $('#divtabelaaluno').append(
-                    '<table style="align:center" id="table'+ contagem +'" class="  justify-content-center idtable table container " >'+
-                                '<thead class=" justify-content-center">'+
+                $('#divtabela').append(
+                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:block;">'+
+                                '<thead >'+
                                     '<tr>'+
-                                        '<th scope="col-1"></th>'+
+                                        '<th scope="col">  </th>'+
                                         '<th scope="col"> Nome: </th>'+
                                         '<th scope="col"> Email: </th>'+
-                                        '<th scope="col" ></th>'+
+                                        '<th scope="col"></th>'+
                                     '</tr>'+
                                 '</thead>'+
-                                '<tbody  id="bodyaluno">'+
+                                '<tbody id="body'+ contagem +'" >'+
                                 '</tbody>'+
-                            '</table>' 
-                            );
+                            '</table>' );
 
+
+
+               
 
 
                 for( i =0; i < parse.length ; i++){
- 
 
+                   
+
+                 if(contagem1 > max){
+                    contagem ++;
+
+                    $('#divtabela').append(
+                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:none;">'+
+                                '<thead >'+
+                                    '<tr>'+
+                                        '<th scope="col"> </th>'+
+                                        '<th scope="col"> Nome: </th>'+
+                                        '<th scope="col"> Email: </th>'+
+                                        '<th scope="col"></th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="body'+ contagem +'" >'+
+                                '</tbody>'+
+                            '</table>' );
+
+
+                    contagem1 =0;
+
+                 }
 
                  //if(parse[i].sala_id != sala){
                      if(i>0){
@@ -90,16 +112,52 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
                  }
 
 
+                if(contagem > 5){
+                for(i=1; i<=5; i++){
 
-                 }
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
 
 
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+                }
+
+                }
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
+                    );
+
+            } if(contagem <=5 ) {
+
+                for(i=1; i<=contagem; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
 
 
-                 paginar(1 , paginacao);
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+                }
 
+                }
+                
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
+                    );
 
-        
+            }
                   
 
              });
@@ -107,27 +165,13 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
          function paginar(data,total){
             
-            console.log(data,total);
-
-            var td = data*7;
-            var ultimo = total*7;
-            var i =0;
 
 
-             for(i = 0; i <td-7; i++){
-            $('.td'+i).addClass("tablehide");
-        }
+            $('#divtabela').children().each(function() {
+            $(this).css('display','none');
+});
 
-            for( i = td; i <= ultimo; i++){
-            $('.td'+i).addClass("tablehide");
-            
-
-        }
-
-             for( i = td-7; i <= td; i++){
-            $('.td'+i).removeClass("tablehide");
-        }
-
+             $('#table'+data).css('display','block');
 
              $('.pagination').empty();
 
@@ -237,7 +281,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
 
                 
-                
+                // form action="{{ url('admin/aluno') }}" method="POST"
 
 
                 } 
@@ -246,90 +290,14 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
           
     function pesquisa(){
-
-
     
     $('#search').keyup(function() {
     var nomeFiltro = $(this).val().toLowerCase();
-    console.log(nomeFiltro);
-     
 
-    if(nomeFiltro.length > 0){
-    $('#teste').addClass("tablehide");   
-     }
-
-     if(nomeFiltro.length == 0){
-        $('#teste').removeClass("tablehide");
-        $('#divtabelaaluno').empty();
-        $('.pagination').empty();
-            mostrarmaisalunos();
-        
-    }
-
-        $('.idtable').find('tr').each(function() {
+        $('table tbody').find('tr').each(function() {
         var conteudoCelula = $(this).find('td').text();
         var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
-        if(corresponde == true){
-            $(this).removeClass("tablehide");
-        }else{
-             $(this).addClass("tablehide");
-        }
-
+        $(this).css('display', corresponde ? '' : 'none');
     });
 });
-}
-
-function mostrargrupos() {
-
-          $('#divtabelagrupo').append(
-
-                    '<table style="align:center" id="" class="  justify-content-center idtable table container " >'+
-                                '<thead class=" justify-content-center">'+
-                                    '<tr>'+
-                                        '<th scope="col-1"></th>'+
-                                        '<th scope="col"> Nome: </th>'+
-                                        '<th scope="col" ></th>'+
-                                    '</tr>'+
-                                '</thead>'+
-                                '<tbody id="bodygrupos">'+
-                                '</tbody>'+
-                            '</table>' 
-             );
-
-        var id = $('#user_id').val();
-        console.log(id);
-
-      $.get("/admin/grupo/"+id).done( function(data){
-
-    
-
-
-        var parse = JSON.parse(data);
-      
-        for(var i = 0; i < parse.length; i++){
-
-             $('#bodygrupos').append(
-                         '<tr class="gp'+ i +'">'+
-                         '<th scope="row" id="cod'+parse[i].id +'"></th>'+
-                         '<td>'+ parse[i].turma+ '</td>' +
-                         '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addgrupo('+ parse[i].id +')" style="color:white">Adicionar</a>' +'</td>' +
-                         '</tr>'
-                              
-                             );
-
-        }       
-   
-      });
-
-
-}
-
-
-function addgrupo(id){
-
-
-  $.get("/admin/addgrupo/"+id).done( function(data){
-
-});  
-
 }

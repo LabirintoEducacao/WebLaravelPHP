@@ -276,14 +276,6 @@ class UserController extends Controller
 
     }
 
-    public function showgrupos($id){
-
-        $data = DB::table('turmas')->where('id_prof',$id)->get();
-
-        return json_encode($data);
-
-    }
-
 
     public function store(Request $request)
     {
@@ -359,14 +351,6 @@ class UserController extends Controller
         
         return response()->json(['success' => 'Sucesso']);
         
-    }
-
-    public function addgrupo($id){
-
-       $alunos = DB::table('alunos_turma')->where('turmas_id',$id);
-       
-       return json_encode($alunos);  
-
     }
 
 
