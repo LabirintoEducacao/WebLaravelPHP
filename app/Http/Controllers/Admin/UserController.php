@@ -243,18 +243,8 @@ class UserController extends Controller
         
     }
 
-   public function showalunos(Request $request){
-
-//        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
-//            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
-//        $aluno = DB::table('users')
-//            ->crossJoin('sala_user')
-//            ->select( 'users.id','users.name', 'users.email','sala_user.sala_id')
-//            ->distinct()
-//            ->get();
-       
-    
-       
+   public function showalunos(){
+  
       
         $salaid = $_GET['sala'];
            $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
