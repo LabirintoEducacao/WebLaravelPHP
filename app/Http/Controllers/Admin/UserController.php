@@ -16,7 +16,7 @@ use App\Mail\LinkSala;
 
 class UserController extends Controller
 {
-	/**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -158,8 +158,8 @@ class UserController extends Controller
     
     /*UM ADMINISTRADOR PODE CADASTRAR UM NOVO USUARIO*/
     public function user(Request $request){
-    	$data = $request->all();
-    	$id = User::create([
+        $data = $request->all();
+        $id = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -243,7 +243,7 @@ class UserController extends Controller
         
     }
 
-    public function showalunos(Request $request){
+   public function showalunos(){
 
 //        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
 //            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
@@ -252,12 +252,26 @@ class UserController extends Controller
 //            ->select( 'users.id','users.name', 'users.email','sala_user.sala_id')
 //            ->distinct()
 //            ->get();
+       
+       if(isset($_GET['sala'])){
+        $salaid = $_GET['sala'];
+       }
         
+
         $sql = 'SELECT DISTINCT u.id,u.name,u.email,s.sala_id FROM users u
                 JOIN role_user r ON u.id = r.user_id 
                 LEFT OUTER JOIN sala_user s ON u.id = s.user_id
                 WHERE r.role_id=3 ORDER BY u.id';
                 
+
+        $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
+        JOIN role_user r ON u.id = r.user_id 
+        LEFT OUTER JOIN sala_user s ON u.id = s.user_id
+        WHERE r.role_id=3 AND u.id NOT IN (SELECT DISTINCT u.id FROM users u
+        JOIN role_user r ON u.id = r.user_id 
+        LEFT OUTER JOIN sala_user s ON u.id = s.user_id
+        WHERE r.role_id=3 AND s.sala_id=1 ORDER BY id, sala_id) ORDER BY u.name';
+
         $aluno = DB::select($sql);
         
 //        $alunos = DB::table('users')
@@ -271,14 +285,6 @@ class UserController extends Controller
 
 
        return json_encode($aluno);    
-
-    }
-
-    public function showgrupos($id){
-
-        $data = DB::table('turmas')->where('id_prof',$id)->get();
-
-        return json_encode($data);
 
     }
 
@@ -358,6 +364,7 @@ class UserController extends Controller
         return response()->json(['success' => 'Sucesso']);
         
     }
+
 
     public function addgrupo($id){
 

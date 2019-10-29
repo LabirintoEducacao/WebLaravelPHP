@@ -112,12 +112,6 @@
                                                 </div>
                                             </div>
 
-
-
-
-
-
-
                                         </div>
                                     </div>
 
@@ -266,8 +260,13 @@
     <div class="col-md-12">
         <div class="card">
             <div id="teste2" class="card-header card-header-primary">
+                @if($sala->enable==1)
                 <h3 class="card-title" style="text-align:center">{{$sala->name}}
                 </h3>
+                @else
+                <h3 class="card-title" style="text-align:center;"><i>{{$sala->name}}<span style="float:right;font-size:20px">Desativada</span></i>
+                </h3>
+                @endif
                 <p class="card-category"></p>
             </div>
             <div class="card-body">
@@ -726,7 +725,13 @@
     </div>
 </div>
 
-
+<div id="mensagem" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div id="mensagemcontent" class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
 @endsection
 
 

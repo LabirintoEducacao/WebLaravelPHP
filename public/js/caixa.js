@@ -187,7 +187,6 @@
 
                   $('.abcd', $parent).append(
 
-
                       '<div id="pai" class="hea">' +
                       '<div class=" container">' +
                       '<div class="card houvercard">' +
@@ -528,6 +527,7 @@
              }else if(refresposta.length <= 2){
 
                 alert('Essa resposta reforço não pode ser removida pois a pergunta refoço deve conter pelo menos 2 reposta!');
+
 
              }
 
@@ -970,11 +970,50 @@
 
                   });
               } else {
-                  alert("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!\nCaso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!")
-                  e.preventDefault();
-              }
+                  // alert("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!\nCaso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!")
+                 
+                  //  $('#mensagemcontent').append(
+
+                  //    '<div class="container">'+
+                  //    '<p>Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!'+
+                  //    '</p>'+
+                  //    '<p>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta! '+
+                  //    '</div>'
+                  //   );
+
+                  //  $('#mensagem').modal('show');
 
 
+            var type = "danger";
+            $.notify({
+                message: "Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!"
+
+            },
+            { position:"right" },
+             {
+                type: type,
+                timer: 4000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+                  
+        $.notify({
+                message: "Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!"
+
+            },
+            { position:"right" },
+             {
+                type: "info",
+                timer: 4000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+
+             }
               if(ref.checked){
 
                  for ( i = 0; i < reforco.length; i++){

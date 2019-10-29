@@ -5,7 +5,6 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
             mostrarmaisalunos();
             pesquisa();
-            mostrargrupos();
 
             
          });
@@ -20,46 +19,69 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
          function mostrarmaisalunos(){
              var sala = document.getElementById('id_sala').value;
-            console.log('sala:',sala);
+         
 
         
              $.get("/admin/showaluno").done( function(data){
-                 
-                var contagem1 = 0;
+                 console.log(data);
+
                 var contagem = 1;
-                var total = 0;
+                var contagem1 = 0;
                 var max =7;
                 var i =0;
-                var parse = JSON.parse(data);
+                parse = JSON.parse(data);
                 var paginacao = Math.ceil(parse.length/max);
-                console.log(parse);
             
 
-                $('#divtabelaaluno').append(
-                    '<table style="align:center" id="table'+ contagem +'" class="  justify-content-center idtable table container " >'+
-                                '<thead class=" justify-content-center">'+
+                $('#divtabela').append(
+                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:block;">'+
+                                '<thead >'+
                                     '<tr>'+
-                                        '<th scope="col-1"></th>'+
+                                        '<th scope="col">  </th>'+
                                         '<th scope="col"> Nome: </th>'+
                                         '<th scope="col"> Email: </th>'+
-                                        '<th scope="col" ></th>'+
+                                        '<th scope="col"></th>'+
                                     '</tr>'+
                                 '</thead>'+
-                                '<tbody  id="bodyaluno">'+
+                                '<tbody id="body'+ contagem +'" >'+
                                 '</tbody>'+
-                            '</table>' 
-                            );
+                            '</table>' );
 
+
+
+               
 
 
                 for( i =0; i < parse.length ; i++){
- 
+
+                   
+
+                 if(contagem1 > max){
+                    contagem ++;
+
+                    $('#divtabela').append(
+                    '<table id="table'+ contagem +'" class="table container-fluid" style="display:none;">'+
+                                '<thead >'+
+                                    '<tr>'+
+                                        '<th scope="col"> </th>'+
+                                        '<th scope="col"> Nome: </th>'+
+                                        '<th scope="col"> Email: </th>'+
+                                        '<th scope="col"></th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="body'+ contagem +'" >'+
+                                '</tbody>'+
+                            '</table>' );
 
 
-                 if(parse[i].sala_id != sala){
+                    contagem1 =0;
+
+                 }
+
+                 //if(parse[i].sala_id != sala){
                      if(i>0){
-                     if(parse[i].id != parse[(i-1)].id){
-                         $('#body'+contagem).append(
+                        if(parse[i].id != parse[(i-1)].id){
+                            $('#body'+contagem).append(
                                  '<tr>'+
                                 '<td scope="row" id="cod'+parse[i].id +'"></td>'+
                                 '<td>'+ parse[i].name + '</td>' +
@@ -70,35 +92,72 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
                                      );
 
-                         contagem1++;
+                            contagem1++;
+                        }
+                    }else{
+                        $('#body'+contagem).append(
+                                     '<tr>'+
+                                    '<td scope="row" id="cod'+parse[i].id +'"></td>'+
+                                    '<td>'+ parse[i].name + '</td>' +
+                                     '<td>'+ parse[i].email +'</td>' +
+                                     '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].id +'" onclick="addaluno('+parse[i].id +')">Adicionar</a>' 
+                                    + '<a id="done'+parse[i].id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
+                                         '</tr>'
+
+                                         );
+
+                             contagem1++;
                     }
-                }else{
-                    $('#body'+contagem).append(
-                                 '<tr>'+
-                                '<td scope="row" id="cod'+parse[i].id +'"></td>'+
-                                '<td>'+ parse[i].name + '</td>' +
-                                 '<td>'+ parse[i].email +'</td>' +
-                                 '<td>'+ '<a class="btn btn-primary btn-sm" id="add'+parse[i].id +'" onclick="addaluno('+parse[i].id +')">Adicionar</a>' 
-                                + '<a id="done'+parse[i].id +'" style="display:none;float:right"><i class="material-icons">done</i></a>'  +'</td>' +
-                                     '</tr>'
+                 
+                 }
 
-                                     );
 
-                         contagem1++;
+                if(contagem > 5){
+                for(i=1; i<=5; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
+
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
                 }
-                 }
+
+                }
+
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
+                    );
+
+            } if(contagem <=5 ) {
+
+                for(i=1; i<=contagem; i++){
+
+                 if(i==1){
+                    $('.pagination').append(
+                '<li class="page-item active"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+
+                 } else{  
 
 
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+i+','+contagem+')">'+ i +'</a></li>'
+                    );
+                }
 
-                 }
+                }
+                
+                $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar('+contagem+','+contagem+')">Ultima</a></li>'
+                    );
 
-
-
-
-                 paginar(1 , paginacao);
-
-
-        
+            }
                   
 
              });
@@ -106,27 +165,13 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
          function paginar(data,total){
             
-            console.log(data,total);
-
-            var td = data*7;
-            var ultimo = total*7;
-            var i =0;
 
 
-             for(i = 0; i <td-7; i++){
-            $('.td'+i).addClass("tablehide");
-        }
+            $('#divtabela').children().each(function() {
+            $(this).css('display','none');
+});
 
-            for( i = td; i <= ultimo; i++){
-            $('.td'+i).addClass("tablehide");
-            
-
-        }
-
-             for( i = td-7; i <= td; i++){
-            $('.td'+i).removeClass("tablehide");
-        }
-
+             $('#table'+data).css('display','block');
 
              $('.pagination').empty();
 
@@ -237,7 +282,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
 
                 
-                
+                // form action="{{ url('admin/aluno') }}" method="POST"
 
 
                 } 
@@ -249,32 +294,14 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
     
     $('#search').keyup(function() {
     var nomeFiltro = $(this).val().toLowerCase();
-    console.log(nomeFiltro);
-     
 
-    if(nomeFiltro.length > 0){
-    $('#teste').addClass("tablehide");   
-     }
-
-     if(nomeFiltro.length == 0){
-        $('#teste').removeClass("tablehide");
-        $('#divtabelaaluno').empty();
-        $('.pagination').empty();
-            mostrarmaisalunos();
-        
-    }
-
-        $('.idtable').find('tr').each(function() {
+        $('table tbody').find('tr').each(function() {
         var conteudoCelula = $(this).find('td').text();
         var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
-        if(corresponde == true){
-            $(this).removeClass("tablehide");
-        }else{
-             $(this).addClass("tablehide");
-        }
-
+        $(this).css('display', corresponde ? '' : 'none');
     });
 });
+
 }
 
 function mostrargrupos() {
@@ -330,5 +357,6 @@ function addgrupo(id){
     console.log(data);
 
 });
+
 
 }
