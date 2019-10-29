@@ -257,6 +257,7 @@ class UserController extends Controller
                 JOIN role_user r ON u.id = r.user_id 
                 LEFT OUTER JOIN sala_user s ON u.id = s.user_id
                 WHERE r.role_id=3 ORDER BY u.id';
+                
         $aluno = DB::select($sql);
         
 //        $alunos = DB::table('users')
@@ -360,9 +361,15 @@ class UserController extends Controller
 
     public function addgrupo($id){
 
-       $alunos = DB::table('alunos_turma')->where('turmas_id',$id);
+       $alunos = DB::table('alunos_turma')->where('turmas_id',$id)->get();
+
+       foreach ($alunos as $key => $value) {
+
+        
+         
+       }
        
-       return json_encode($alunos);  
+       return json_encode($alunos);
 
     }
 

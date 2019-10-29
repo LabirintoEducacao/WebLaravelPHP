@@ -198,7 +198,7 @@ Route::get('/newuser', function () {
 })->middleware(['auth', 'auth.admin']);
 
 Route::get('/grupo/{id}','Admin\UserController@showgrupos');
-Route::get('/addgrupo/{id}','Admin\UserController@showgrupos');
+Route::get('/addgrupo/{id}','Admin\UserController@addgrupo');
 
 
 /*  Rotas do Email */

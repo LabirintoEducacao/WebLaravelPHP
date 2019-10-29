@@ -218,6 +218,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
                             id: id,
                             salaid: idsala1
                         },
+
                     dataType: 'JSON',
 
                         success: function(){
@@ -245,8 +246,6 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
           
     function pesquisa(){
-
-
     
     $('#search').keyup(function() {
     var nomeFiltro = $(this).val().toLowerCase();
@@ -326,9 +325,10 @@ function mostrargrupos() {
 
 function addgrupo(id){
 
-
+    console.log(id);
   $.get("/admin/addgrupo/"+id).done( function(data){
+    console.log(data);
 
-});  
+});
 
 }
