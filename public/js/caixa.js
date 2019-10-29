@@ -970,39 +970,28 @@
 
                   });
               } else {
-                  // alert("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!\nCaso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!")
-                 
-                  //  $('#mensagemcontent').append(
 
-                  //    '<div class="container">'+
-                  //    '<p>Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!'+
-                  //    '</p>'+
-                  //    '<p>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta! '+
-                  //    '</div>'
-                  //   );
+                  function alert2(msg, type){
+                   var html =  '<div class="alertContainer3 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-11">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-1">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer3').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  });
+                  }
 
-                  //  $('#mensagem').modal('show');
-
-               $(notify(
-                "I'm to the right of this box", 
-                { position:"right" }
-                );
-
-            var type = "danger";
-            $.notify({
-                message: "teste"
-
-            },
-            { position:"right" },
-             {
-                type: type,
-                timer: 4000,
-                placement: {
-                    from: 'top',
-                    align: 'right'
-                }
-            });
-
+                  alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error")
+          
              }
               if(ref.checked){
 
@@ -1018,7 +1007,28 @@
 
                   if( m > 0 || pergref[0].value === "" ){
 
-                  alert("A campos a preencher na aba Refoço verifique!\nCaso não necessite de reforço desmarque a caixa pergunta refoço.");
+                  function alert(msg, type){
+                  var html =  '<div class="alertContainer '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-11">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-1">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer').remove()}, 500);
+                  });
+                  }
+
+
+                  alert("A campos a preencher na aba Refoço verifique!<br>Caso não necessite de reforço desmarque a caixa pergunta refoço.","error");
+
 
                   }
 
@@ -1035,7 +1045,26 @@
 
                   if( h > 0 || pergunta[0].value === "" ){
 
-                  alert("A campos a preencher na aba Pergunta verifique!");
+                  function alert3(msg, type){
+                  var html =  '<div class="alertContainer2 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-11">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-1">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer2').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer2').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer2').remove()}, 500);
+                  });
+                  }
+
+                  alert3("A campos a preencher na aba Pergunta verifique!","error");
 
                   }
 

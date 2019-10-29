@@ -231,11 +231,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
 
          }
 
-
-
           function addaluno(id){
-
-
                     
                     var idsala1 = document.getElementById('id_sala').value;
 

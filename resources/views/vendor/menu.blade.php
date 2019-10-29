@@ -747,7 +747,6 @@ $(function () {
                 });
 
             }
-        
     </script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <!--script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script-->
