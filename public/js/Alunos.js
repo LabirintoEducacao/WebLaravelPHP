@@ -22,7 +22,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
          
 
         
-             $.get("/admin/showaluno").done( function(data){
+             $.get("/admin/showaluno",{sala:sala}).done( function(data){
                  console.log(data);
 
                 var contagem = 1;
@@ -259,6 +259,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
                             id: id,
                             salaid: idsala1
                         },
+
                     dataType: 'JSON',
 
                         success: function(){
@@ -296,4 +297,62 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
         $(this).css('display', corresponde ? '' : 'none');
     });
 });
+
+}
+
+function mostrargrupos() {
+
+          $('#divtabelagrupo').append(
+
+                    '<table style="align:center" id="" class="  justify-content-center idtable table container " >'+
+                                '<thead class=" justify-content-center">'+
+                                    '<tr>'+
+                                        '<th scope="col-1"></th>'+
+                                        '<th scope="col"> Nome: </th>'+
+                                        '<th scope="col" ></th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="bodygrupos">'+
+                                '</tbody>'+
+                            '</table>' 
+             );
+
+        var id = $('#user_id').val();
+        console.log(id);
+
+      $.get("/admin/grupo/"+id).done( function(data){
+
+    
+
+
+        var parse = JSON.parse(data);
+      
+        for(var i = 0; i < parse.length; i++){
+
+             $('#bodygrupos').append(
+                         '<tr class="gp'+ i +'">'+
+                         '<th scope="row" id="cod'+parse[i].id +'"></th>'+
+                         '<td>'+ parse[i].turma+ '</td>' +
+                         '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addgrupo('+ parse[i].id +')" style="color:white">Adicionar</a>' +'</td>' +
+                         '</tr>'
+                              
+                             );
+
+        }       
+   
+      });
+
+
+}
+
+
+function addgrupo(id){
+
+    console.log(id);
+  $.get("/admin/addgrupo/"+id).done( function(data){
+    console.log(data);
+
+});
+
+
 }

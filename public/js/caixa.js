@@ -43,7 +43,7 @@
           
           $('#add').click(function () {
               if (a < 3) {
-                  if($('.room_type').val() == 'true_or_false'){
+                  if($('#room_type').val() == 'true_or_false'){
                   $('#dynamic_field').append('' +
                       '<div id="row' + i + '" class="dynamic-added">' +
                       '<div class="card houvercard">' +
@@ -722,7 +722,7 @@
 
               
 
-              $('.room_type').on('change', function(){
+              $('#room_type').on('change', function(){
 
                 var roomtype = document.getElementById('room_type');
    
@@ -769,8 +769,8 @@
                                   // );
                                   modal.find('#perg_id').val(val.question_id);
                                   console.log(val.question_id);
-                                  modal.find('.room_type').val(val.room_type);
-                                  $(".room_type").trigger('change');
+                                  modal.find('#room_type').val(val.room_type);
+                                  $("#room_type").trigger('change');
                                   modal.find('#question_type').val(val.question_type);
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {
@@ -868,7 +868,7 @@
               } else {
                   modal.find('#pergunta').val('');
                   modal.find('#perg_id').val(0);
-                  modal.find('.room_type').val('key');
+                  modal.find('#room_type').val('key');
                   modal.find('#question_type').val(1);
                   modal.find('#perg-reforco-id').val(0);
                   $('#check-reforco').prop("checked", true);
