@@ -22,7 +22,7 @@ $('#addAlunoModal').on('show.bs.modal', function (e) {
          
 
         
-             $.get("/admin/showaluno").done( function(data){
+             $.get("/admin/showaluno",{sala:sala}).done( function(data){
                  console.log(data);
 
                 var contagem = 1;

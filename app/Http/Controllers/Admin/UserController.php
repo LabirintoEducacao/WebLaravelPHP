@@ -243,7 +243,7 @@ class UserController extends Controller
         
     }
 
-   public function showalunos(){
+   public function showalunos(Request $request){
 
 //        $aluno  = DB::table('users')->select( 'user_id','name', 'email')
 //            ->join('role_user', 'users.id', '=', 'role_user.user_id') ->where('role_user.role_id', '=', 3) ->get();
@@ -253,34 +253,25 @@ class UserController extends Controller
 //            ->distinct()
 //            ->get();
        
-       if(isset($_GET['sala'])){
+    
+       
+      
         $salaid = $_GET['sala'];
-       }
-        
-
-        $sql = 'SELECT DISTINCT u.id,u.name,u.email,s.sala_id FROM users u
-                JOIN role_user r ON u.id = r.user_id 
-                LEFT OUTER JOIN sala_user s ON u.id = s.user_id
-                WHERE r.role_id=3 ORDER BY u.id';
-                
-
-        $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
+           $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
         JOIN role_user r ON u.id = r.user_id 
         LEFT OUTER JOIN sala_user s ON u.id = s.user_id
         WHERE r.role_id=3 AND u.id NOT IN (SELECT DISTINCT u.id FROM users u
         JOIN role_user r ON u.id = r.user_id 
         LEFT OUTER JOIN sala_user s ON u.id = s.user_id
-        WHERE r.role_id=3 AND s.sala_id=1 ORDER BY id, sala_id) ORDER BY u.name';
+        WHERE r.role_id=3 AND s.sala_id='.$salaid.' ORDER BY id, sala_id) ORDER BY u.name';
+      
+       
+        
+
+    
+        
 
         $aluno = DB::select($sql);
-        
-//        $alunos = DB::table('users')
-//            ->select( 'id','name', 'email')
-//            ->get();
-//        
-//        $aluno = DB::table('sala_user')
-//            ->unionAll($alunos)
-//            ->get();
 
 
 
