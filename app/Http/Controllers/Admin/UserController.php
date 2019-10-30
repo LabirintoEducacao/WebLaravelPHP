@@ -347,19 +347,8 @@ class UserController extends Controller
     }
 
 
-    public function addgrupo($id){
+    
 
-       $alunos = DB::table('alunos_turma')->where('turmas_id',$id)->get();
-
-       foreach ($alunos as $key => $value) {
-
-        
-         
-       }
-       
-       return json_encode($alunos);
-
-    }
 
 
 
