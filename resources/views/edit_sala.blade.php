@@ -81,21 +81,15 @@
                                                     </div>
                                                     <div class="col-7">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                            <option selected value="1">Texto</option>
-                                                            <option value="2">Imagem</option>
-                                                            <option value="3">Vídeo</option>
-                                                            <option value="4">Áudio</option>
+                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 1'></i>&emsp;Texto"></option>
+                                                            <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
+                                                            <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
+                                                            <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
                                                         </select>
+                                                          <div id="tooltip_container"></div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
-
-                                            <!--                                            <div class="col col-lg-6" style="display:none;">-->
-
-
-
                                             <div class="col col-lg-4">
                                                 <div class="row" style="height:50px;">
                                                     <div class="col-5" style="height:100%;">

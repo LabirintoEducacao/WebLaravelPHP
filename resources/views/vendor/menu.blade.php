@@ -196,7 +196,13 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('assets/demo/demo.js')}}"></script>
     <script>
+
         $(document).ready(function() {
+
+
+            $('#question_type').tooltip(options);
+            
+
             $().ready(function() {
 
                $('.selectpicker').selectpicker('refresh');
@@ -593,11 +599,10 @@
                t = 0;
          }
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-});
-            
-            
+                $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+                });
+  
             
                   $('#editarSalaModal1').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget); // Button that triggered the modal
@@ -753,7 +758,6 @@ $(function () {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
       <script src="{{ asset('js/Alunos.js')}}" defer></script>
       <script src="{{ asset('js/caixa.js')}}" defer></script>
-
 </body>
 
 </html>
