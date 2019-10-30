@@ -26,8 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $salas = DB::table('salas')
-                ->where('prof_id','=',Auth::user()->id)
-            ->get();
+        ->where('prof_id','=',Auth::user()->id)
+        ->get();
         return view('home')->with(['salas' => $salas]);
     }
 }

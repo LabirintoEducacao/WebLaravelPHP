@@ -197,8 +197,8 @@ Route::get('/newuser', function () {
 })->middleware(['auth', 'auth.admin']);
 
 
-Route::get('/grupo/{id}','Admin\UserController@showgrupos');
-Route::get('/addgrupo/{id}','Admin\UserController@addgrupo');
+Route::get('/grupo/{id}','SalaController@showgrupos');
+Route::get('/addgrupo/{id}/{salaid}','SalaController@addgrupo');
 
 
 

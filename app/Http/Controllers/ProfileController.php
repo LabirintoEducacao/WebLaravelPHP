@@ -26,10 +26,10 @@ class ProfileController extends Controller
             );
             return redirect('/admin/settings')->with($notification);
         }else
-            $notification = array(
-                'message' => 'Perfil não pode ser atualizado!',
-                'alert-type' => 'warning'
-            );
+        $notification = array(
+            'message' => 'Perfil não pode ser atualizado!',
+            'alert-type' => 'warning'
+        );
         return view('home')->with($notification);
         
     }
@@ -37,41 +37,41 @@ class ProfileController extends Controller
     public function reset_password(Request $request){
         $data = $request->all();
         $hashedPassword = DB::table("users")
-                          ->where('id','=',Auth::user()->id)
-                          ->get();
+        ->where('id','=',Auth::user()->id)
+        ->get();
         
 //        var_dump($hashedPassword);
         if (Hash::check($data['password_atual'], $hashedPassword[0]->password)) {
-        
-        
-        if($data['passwordn'] != null){
-            if($data['passwordn'] == $data['password_confirmation']){
-                $data['passwordn'] = bcrypt($data['passwordn']);
-                $update = auth()->user()->update($data);
-                if($update)
+            
+            
+            if($data['passwordn'] != null){
+                if($data['passwordn'] == $data['password_confirmation']){
+                    $data['passwordn'] = bcrypt($data['passwordn']);
+                    $update = auth()->user()->update($data);
+                    if($update)
+                        $notification = array(
+                            'message' => 'Senha atualizada com sucesso!',
+                            'alert-type' => 'success'
+                        );
+                }else{
+                    unset($data['passwordn']);
                     $notification = array(
-                        'message' => 'Senha atualizada com sucesso!',
-                        'alert-type' => 'success'
-                    );
-            }else{
-            unset($data['passwordn']);
-            $notification = array(
                         'message' => 'Senha não pôde ser atualizada!',
                         'alert-type' => 'warning'
                     );
+                }
+            }else{
+                unset($data['passwordn']);
+                $notification = array(
+                    'message' => 'Senha não pôde ser atualizada!',
+                    'alert-type' => 'warning'
+                );
             }
         }else{
-            unset($data['passwordn']);
             $notification = array(
-                        'message' => 'Senha não pôde ser atualizada!',
-                        'alert-type' => 'warning'
-                    );
-        }
-        }else{
-            $notification = array(
-                        'message' => 'Senha não pôde ser atualizada!',
-                        'alert-type' => 'warning'
-                    );
+                'message' => 'Senha não pôde ser atualizada!',
+                'alert-type' => 'warning'
+            );
         }
         return redirect('/admin/settings')->with($notification);
         
@@ -81,26 +81,26 @@ class ProfileController extends Controller
         
         $user = User::find($id);
 
-       if($user){
-           $user->roles()->detach();
-           $user->delete();
-           $notification = array(
-                        'message' => 'Usuário deletado com sucesso!',
-                        'alert-type' => 'danger'
-                    );
-           return redirect('usuario/login')->with($notification);
-       }
-        $notification = array(
-                        'message' => 'Usuário não pôde ser deletado!',
-                        'alert-type' => 'warning'
-                    );
-        return redirect('usuario/login')->with($notification);
-        
-    }
-    
-        public function create(Request $request){
+        if($user){
+         $user->roles()->detach();
+         $user->delete();
+         $notification = array(
+            'message' => 'Usuário deletado com sucesso!',
+            'alert-type' => 'danger'
+        );
+         return redirect('usuario/login')->with($notification);
+     }
+     $notification = array(
+        'message' => 'Usuário não pôde ser deletado!',
+        'alert-type' => 'warning'
+    );
+     return redirect('usuario/login')->with($notification);
+     
+ }
+ 
+ public function create(Request $request){
 
-        var_dump($request);
+    var_dump($request);
 //        $create = User::create($request->all());
 //        if($create)
 //            \Session::flash('mensagem_sucesso','Usuário criado com sucesso!');
@@ -108,8 +108,8 @@ class ProfileController extends Controller
 //            \Session::flash('mensagem_erro','Usuário não pode ser criado!');
 //        }
 //        return view('admin.users.index');
-        
-    }
+    
+}
 
 
 }

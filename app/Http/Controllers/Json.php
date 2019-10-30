@@ -26,8 +26,8 @@ class Json extends Controller
     public function index($id)
     {
 
-        $salaid = $id;
-        return view('qrcode',['data' => $salaid] );
+      $salaid = $id;
+      return view('qrcode',['data' => $salaid] );
     }
 
     /**
@@ -67,47 +67,47 @@ class Json extends Controller
 
       $strCaminho = public_path() . '/sala/' . $id;
 
-            if(file_exists($strCaminho)) { 
+      if(file_exists($strCaminho)) { 
 
-            File::deleteDirectory($strCaminho);
-            
-        }
+        File::deleteDirectory($strCaminho);
+        
+      }
 
     }
 
 
 
 
-     public function show($id) {   
-        
-          
-$idd = $id;
+    public function show($id) {   
+      
+      
+      $idd = $id;
 
-           
+      
 
 
 // --------------------- Consultando Dados da Tabela ------------------//
 
 
-          $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-          $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-          $sala = Sala::find($id);
+      $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+      $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+      $sala = Sala::find($id);
 
-$sala_name = $sala->name; 
-$salaid = $sala->id;  
-$ijson = 0;
-$conta =0;
-$limite = 100;
-$n=1;
-
-
-if(count($pergunta) == 0){
+      $sala_name = $sala->name; 
+      $salaid = $sala->id;  
+      $ijson = 0;
+      $conta =0;
+      $limite = 100;
+      $n=1;
 
 
-    return "null";
+      if(count($pergunta) == 0){
 
 
-} else {
+        return "null";
+
+
+      } else {
 
 
 
@@ -115,7 +115,7 @@ if(count($pergunta) == 0){
  $strCaminho = public_path() . '/sala/' . $id; // 'public\projetos_arquivos\codigo_projeto'
 
     if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
-        $objProjetoDiretorio = File::makeDirectory($strCaminho);
+      $objProjetoDiretorio = File::makeDirectory($strCaminho);
     }
 
 
@@ -123,193 +123,193 @@ if(count($pergunta) == 0){
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
-   foreach($prox_pergunta as $proxima){
-    
-    $prox = $proxima->id;
+    foreach($prox_pergunta as $proxima){
+      
+      $prox = $proxima->id;
 
-    $proxpergid [] = $prox;
+      $proxpergid [] = $prox;
     //$contagem++; //Contagem 
+      
+    }
     
-   }
-       
 
-$i=0;
+    $i=0;
 
 
 
 // --------------------- Começo do Foreach das Perguntas------------------//
-   foreach  ($pergunta as $perg) {
-    $i++;   
+    foreach  ($pergunta as $perg) {
+      $i++;   
 
 
-    $pergid = $perg->id;
-    unset($resposta);
-    unset($arresp);
-    unset($paths);
-    unset($reforco);
-    unset($respref);
-    unset($respost);
+      $pergid = $perg->id;
+      unset($resposta);
+      unset($arresp);
+      unset($paths);
+      unset($reforco);
+      unset($respref);
+      unset($respost);
 
      //- Puxando o id das resposta da tabela de Relação Perg_resp
-    $reforcoid = DB::table('perg_ref')->where('perg_id',$pergid)->get();
+      $reforcoid = DB::table('perg_ref')->where('perg_id',$pergid)->get();
 
     //- Puxando o id das resposta da tabela de Relação Perg_resp
-    $respostaid = DB::table('perg_resp') ->where('perg_id',$pergid)->get();
+      $respostaid = DB::table('perg_resp') ->where('perg_id',$pergid)->get();
 
     // - Puxando o id dos Paths
-    $pathid = DB::table('path_perg') ->where('perg_id',$pergid)->get();
+      $pathid = DB::table('path_perg') ->where('perg_id',$pergid)->get();
 
 
 // ------------------ Perunta Reforço ------------------------- 
 
-if(count($reforcoid) == 0){
+      if(count($reforcoid) == 0){
 
-    $idref =0;
-}
+        $idref =0;
+      }
 
 
-if(count($reforcoid) > 0){
+      if(count($reforcoid) > 0){
 
         $idref = $reforcoid[0]->ref_id;
         $idperg = $reforcoid[0]->perg_id;
 
 
 
- $reforco =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('id', $idref)->get();
+        $reforco =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('id', $idref)->get();
 
 
- $ref_resp = DB::table('perg_resp')->select('resp_id') ->where('perg_id',$idref)->get();
-    
- $pathreforco = DB::table('path_perg') ->where('perg_id',$idref)->get();
+        $ref_resp = DB::table('perg_resp')->select('resp_id') ->where('perg_id',$idref)->get();
+        
+        $pathreforco = DB::table('path_perg') ->where('perg_id',$idref)->get();
 
- $pathrefs = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$pathreforco[0]->path_id)->get();
+        $pathrefs = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$pathreforco[0]->path_id)->get();
 
 
 // --------------------------- Path Pergunta Reforço-------------------//
 
- if($pathrefs[0]->disp == 0){
+        if($pathrefs[0]->disp == 0){
 
-                    $dispref = false;
-                }
-
-
-                if($pathrefs[0]->disp == 1){
-
-                    $dispref = true;
-                }
+          $dispref = false;
+        }
 
 
-                $pathref = array(
-                'availability' => $dispref,
-                'widht' => $pathrefs[0]->largura,
-                'height' => $pathrefs[0]->tamanho,
-                'type' => $pathrefs[0]->ambiente_perg,
-                'connected_question' => $idperg 
-            );
+        if($pathrefs[0]->disp == 1){
 
-      
-                $path_ref[]=$pathref;
+          $dispref = true;
+        }
+
+
+        $pathref = array(
+          'availability' => $dispref,
+          'widht' => $pathrefs[0]->largura,
+          'height' => $pathrefs[0]->tamanho,
+          'type' => $pathrefs[0]->ambiente_perg,
+          'connected_question' => $idperg 
+        );
+
+        
+        $path_ref[]=$pathref;
  // ------------------ Perunta Reforço -------------------------    
 
-foreach ($ref_resp as  $value) {
+        foreach ($ref_resp as  $value) {
 
- $idresp = $value->resp_id;
+         $idresp = $value->resp_id;
 
- $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();     
+         $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();     
 
-                if($respostaref[0]->corret == 0) {
+         if($respostaref[0]->corret == 0) {
 
-                    $answ = false;
-                }
+          $answ = false;
+        }
 
-                if($respostaref[0]->corret == 1) {
+        if($respostaref[0]->corret == 1) {
 
-                    $answ = true;
-                }
-
-
-
-                $resp_ref = array(
-                'answer_id' => $respostaref[0]->id,
-                'answer' => $respostaref[0]->resposta,
-                'correct'=> $answ
-            );
-                $respref[] = $resp_ref;
-                $tipo_ref = $respostaref[0]->tipo_resp;
-                    
-
- }
-
-
-               $ref = array(
-                'question_id' => $reforco[0]->id,
-                'answer_type' => $tipo_ref,
-                'question_type' => $reforco[0]->tipo_perg,
-                'question' => $reforco[0]->pergunta,
-                'room_type' => $reforco[0]->room_type,
-                'paths' => $path_ref,
-                'answers' => $respref
-
-);
+          $answ = true;
+        }
 
 
 
- }
+        $resp_ref = array(
+          'answer_id' => $respostaref[0]->id,
+          'answer' => $respostaref[0]->resposta,
+          'correct'=> $answ
+        );
+        $respref[] = $resp_ref;
+        $tipo_ref = $respostaref[0]->tipo_resp;
+        
+
+      }
+
+
+      $ref = array(
+        'question_id' => $reforco[0]->id,
+        'answer_type' => $tipo_ref,
+        'question_type' => $reforco[0]->tipo_perg,
+        'question' => $reforco[0]->pergunta,
+        'room_type' => $reforco[0]->room_type,
+        'paths' => $path_ref,
+        'answers' => $respref
+
+      );
+
+
+
+    }
 
     // Puxando as respostas com o id da tabela de relação !!!!!
     foreach ($respostaid as   $value) {
 
-       $id = $value->resp_id;
-      $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();  
+     $id = $value->resp_id;
+     $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();  
 
     // Preenchendo os campos do json com as respostas !!!!!!!
-           
-       if($resposta[0]->corret == 0) {
+     
+     if($resposta[0]->corret == 0) {
 
-                    $answ = false;
-                }
-
-                if($resposta[0]->corret == 1) {
-
-                    $answ = true;
-                }
-
-
-      $arresp = array(
-                'answer_id' => $resposta[0]->id,
-                'answer' => $resposta[0]->resposta,
-                'correct'=> $answ
-);
-            $respost[] = $arresp;
-
-
-     $tipo = $resposta[0]->tipo_resp;
-
+      $answ = false;
     }
 
-   
+    if($resposta[0]->corret == 1) {
+
+      $answ = true;
+    }
+
+
+    $arresp = array(
+      'answer_id' => $resposta[0]->id,
+      'answer' => $resposta[0]->resposta,
+      'correct'=> $answ
+    );
+    $respost[] = $arresp;
+
+
+    $tipo = $resposta[0]->tipo_resp;
+
+  }
+
+  
 
      //Puxando os path com id da tabela relação path_perg
-    foreach ($pathid as $value) {
+  foreach ($pathid as $value) {
 
-$path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
+    $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
 
-        
+    
 
-        if($path[0]->disp == 1){
+    if($path[0]->disp == 1){
 
-            $disponivel = "right";
-             if($i < count($proxpergid)){
-            $conect = $proxpergid[$i];
-            }
-        }
+      $disponivel = "right";
+      if($i < count($proxpergid)){
+        $conect = $proxpergid[$i];
+      }
+    }
 
-        if($path[0]->disp == 0){
+    if($path[0]->disp == 0){
 
-            $disponivel = "wrong";
-            $conect = $idref;
+      $disponivel = "wrong";
+      $conect = $idref;
 
-        }
+    }
 
 
 
@@ -317,13 +317,13 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
         if($i < count($proxpergid)){ // Repetição das proximas perguntas
 
     // Definindo os campos do Jason com o path
-      $pat= array(
-                'availability' => $disponivel,
-                'widht' => $path[0]->largura,
-                'height' => $path[0]->tamanho,
-                'type' => $path[0]->ambiente_perg,
-                'connected_question' => $conect
-            );
+          $pat= array(
+            'availability' => $disponivel,
+            'widht' => $path[0]->largura,
+            'height' => $path[0]->tamanho,
+            'type' => $path[0]->ambiente_perg,
+            'connected_question' => $conect
+          );
 
         }
 
@@ -332,35 +332,35 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
          $end = 1;
              // Definindo os campos do Jason com o path
 
-            if($path[0]->disp == 1){
+         if($path[0]->disp == 1){
 
-                $conttrue = 58;
+          $conttrue = 58;
 
-                
+          
 
-                $pat= array(
-                    'availability' => $disponivel,
-                    'widht' => $path[0]->largura,
-                    'height' => $path[0]->tamanho,
-                    'type' => $path[0]->ambiente_perg,
-                    'end_game'=> true
-                );
-            }
-                if($path[0]->disp == 0){
+          $pat= array(
+            'availability' => $disponivel,
+            'widht' => $path[0]->largura,
+            'height' => $path[0]->tamanho,
+            'type' => $path[0]->ambiente_perg,
+            'end_game'=> true
+          );
+        }
+        if($path[0]->disp == 0){
 
-    
+          
 
-                    $pat= array(
-                        'availability' => $disponivel,
-                        'widht' => $path[0]->largura,
-                        'height' => $path[0]->tamanho,
-                        'type' => $path[0]->ambiente_perg,
-                        'connected_question'=> $conect
-                    );
-                }       
-           }
+          $pat= array(
+            'availability' => $disponivel,
+            'widht' => $path[0]->largura,
+            'height' => $path[0]->tamanho,
+            'type' => $path[0]->ambiente_perg,
+            'connected_question'=> $conect
+          );
+        }       
+      }
 
-                 $paths [] = $pat;
+      $paths [] = $pat;
 
     }
 
@@ -368,24 +368,24 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
     //Preenchendo os campos do json com as perguntas !!!!!!
     foreach ($perg as $key => $value) {
 
-                
-  
-               $perguntas = array(
-                'question_id' => $perg->id,
-                'answer_type' => $tipo,
-                'question_type' => $perg->tipo_perg,
-                'question' => $perg->pergunta,
-                'room_type' => $perg->room_type,
+      
+      
+     $perguntas = array(
+      'question_id' => $perg->id,
+      'answer_type' => $tipo,
+      'question_type' => $perg->tipo_perg,
+      'question' => $perg->pergunta,
+      'room_type' => $perg->room_type,
 
-                'paths' => $paths,
-                'answers' =>  $respost
+      'paths' => $paths,
+      'answers' =>  $respost
 
 
 
- );
+    );
 
-               
-    }
+     
+   }
 
 
 
@@ -394,86 +394,86 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
  //----------------- Array das perguntas -------------//
 
 
-         if(count($reforcoid) > 0){
-             $arperg [] = $perguntas;
-            $arperg [] = $ref; 
+   if(count($reforcoid) > 0){
+     $arperg [] = $perguntas;
+     $arperg [] = $ref; 
 
- 
-}
+     
+   }
 
 
-  if(count($reforcoid) == 0){
+   if(count($reforcoid) == 0){
 
      $arperg [] = $perguntas;
 
- 
+     
 
-  }
+   }
 
- 
-$jsn = [
-       "maze_id" => $sala->id,
-       "maze_name"=>$sala_name,
-       "starting_question_id"=> $proxpergid [0],
-       "time_limit" => $sala->duracao,
-        "theme" => $sala->tematica,
-        "questions" => $arperg
-        
- ]; 
+   
+   $jsn = [
+     "maze_id" => $sala->id,
+     "maze_name"=>$sala_name,
+     "starting_question_id"=> $proxpergid [0],
+     "time_limit" => $sala->duracao,
+     "theme" => $sala->tematica,
+     "questions" => $arperg
+     
+   ]; 
 
  }
 
-$img=array(
-      0=>$sala->name
+ $img=array(
+  0=>$sala->name
 );
 
 
 
 
 
-$gzdata = gzencode(json_encode($jsn) , 9);
-$fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip', "w");
-fwrite($fp, $gzdata);
-fclose($fp);
+ $gzdata = gzencode(json_encode($jsn) , 9);
+ $fp = fopen('sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip', "w");
+ fwrite($fp, $gzdata);
+ fclose($fp);
 
 
-$myfile = file_get_contents( 
-'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip'); 
+ $myfile = file_get_contents( 
+  'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip'); 
 
 
-$base = base64_encode($myfile);
-
-
-
-
-$total = strlen($base);
-
-
-
-$cast = $total / $limite;
-
-$ntotal = intval($cast);
-
-$cast = number_format($cast, 2, '.', ',');
-
-$cast = substr($cast, -2);
+ $base = base64_encode($myfile);
 
 
 
 
-if($cast > 0){
-$ntotal = $ntotal + 1;
+ $total = strlen($base);
+
+
+
+ $cast = $total / $limite;
+
+ $ntotal = intval($cast);
+
+ $cast = number_format($cast, 2, '.', ',');
+
+ $cast = substr($cast, -2);
+
+
+
+
+ if($cast > 0){
+  $ntotal = $ntotal + 1;
 }
 
 
 if ($total <= $limite){
 
-$append  = "append|" . $n . "|" . $ntotal ."|";
-$qr = $append.$base;
+  $append  = "append|" . $n . "|" . $ntotal ."|";
+  $qr = $append.$base;
 // $qr = $base;
-QrCode::format('png')->size(500)->generate($qr,'../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png');
+  QrCode::format('png')->size(500)->generate($qr,'../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png');
 
-$img[] = DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
+  $img[] = DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
 
 
 }
@@ -481,34 +481,34 @@ $img[] = DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARA
 
 if($total > $limite){
 
-while($conta < $total){
+  while($conta < $total){
 
 
-$rest = substr($base, $conta, $limite);
-$conta = $conta + strlen($rest);
- 
+    $rest = substr($base, $conta, $limite);
+    $conta = $conta + strlen($rest);
+    
 
-$append  = "append|" . $n . "|" . $ntotal ."|";
-$qr = $append.$rest;
+    $append  = "append|" . $n . "|" . $ntotal ."|";
+    $qr = $append.$rest;
 
-QrCode::format('png')->size(500)->generate( $qr , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.".png");
+    QrCode::format('png')->size(500)->generate( $qr , '../public/sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.".png");
 
-$img[] = DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
+    $img[] = DIRECTORY_SEPARATOR.'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.$n.'.png';
 
-$n ++;
+    $n ++;
 
 
-}
+  }
 
 
 }}
 
- 
-    return json_encode($img);
-         
+
+return json_encode($img);
+
 
 }
- 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -519,218 +519,218 @@ $n ++;
     public function api(REQUEST $request) {
 
 
-        $id = $_REQUEST['id'];
-        
+      $id = $_REQUEST['id'];
+      
 
- 
+      
 
 
 // --------------------- Consultando Dados da Tabela ------------------//
 
 
-          $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-          $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
-          $sala = Sala::find($id);
+      $pergunta =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+      $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
+      $sala = Sala::find($id);
 
-$sala_name = $sala->name; 
-$salaid = $sala->id;  
-$ijson = 0;
-$conta =0;
-$limite = 2000;
-$n=1;
+      $sala_name = $sala->name; 
+      $salaid = $sala->id;  
+      $ijson = 0;
+      $conta =0;
+      $limite = 2000;
+      $n=1;
 
 
 
 
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
-   foreach($prox_pergunta as $proxima){
-    
-    $prox = $proxima->id;
+      foreach($prox_pergunta as $proxima){
+        
+        $prox = $proxima->id;
 
-    $proxpergid [] = $prox;
+        $proxpergid [] = $prox;
     //$contagem++; //Contagem 
-    
-   }
-       
+        
+      }
+      
 
-$i=0;
+      $i=0;
 
 
 
 // --------------------- Começo do Foreach das Perguntas------------------//
-   foreach  ($pergunta as $perg) {
-    $i++;   
+      foreach  ($pergunta as $perg) {
+        $i++;   
 
 
-    $pergid = $perg->id;
-    unset($resposta);
-    unset($arresp);
-    unset($paths);
-    unset($reforco);
-    unset($respref);
-    unset($respost);
+        $pergid = $perg->id;
+        unset($resposta);
+        unset($arresp);
+        unset($paths);
+        unset($reforco);
+        unset($respref);
+        unset($respost);
 
      //- Puxando o id das resposta da tabela de Relação Perg_resp
-    $reforcoid = DB::table('perg_ref')->where('perg_id',$pergid)->get();
+        $reforcoid = DB::table('perg_ref')->where('perg_id',$pergid)->get();
 
     //- Puxando o id das resposta da tabela de Relação Perg_resp
-    $respostaid = DB::table('perg_resp') ->where('perg_id',$pergid)->get();
+        $respostaid = DB::table('perg_resp') ->where('perg_id',$pergid)->get();
 
     // - Puxando o id dos Paths
-    $pathid = DB::table('path_perg') ->where('perg_id',$pergid)->get();
+        $pathid = DB::table('path_perg') ->where('perg_id',$pergid)->get();
 
 
 // ------------------ Perunta Reforço ------------------------- 
 
-if(count($reforcoid) == 0){
+        if(count($reforcoid) == 0){
 
-    $idref =0;
-}
-
-
-if(count($reforcoid) > 0){
-
-        $idref = $reforcoid[0]->ref_id;
-        $idperg = $reforcoid[0]->perg_id;
+          $idref =0;
+        }
 
 
+        if(count($reforcoid) > 0){
 
- $reforco =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('id', $idref)->get();
+          $idref = $reforcoid[0]->ref_id;
+          $idperg = $reforcoid[0]->perg_id;
 
 
- $ref_resp = DB::table('perg_resp')->select('resp_id') ->where('perg_id',$idref)->get();
-    
- $pathreforco = DB::table('path_perg') ->where('perg_id',$idref)->get();
 
- $pathrefs = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$pathreforco[0]->path_id)->get();
+          $reforco =  Pergunta::select('id','tipo_perg','pergunta','room_type')->where('id', $idref)->get();
+
+
+          $ref_resp = DB::table('perg_resp')->select('resp_id') ->where('perg_id',$idref)->get();
+          
+          $pathreforco = DB::table('path_perg') ->where('perg_id',$idref)->get();
+
+          $pathrefs = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$pathreforco[0]->path_id)->get();
 
 
 // --------------------------- Path Pergunta Reforço-------------------//
 
- if($pathrefs[0]->disp == 0){
+          if($pathrefs[0]->disp == 0){
 
-                    $dispref = false;
-                }
-
-
-                if($pathrefs[0]->disp == 1){
-
-                    $dispref = true;
-                }
+            $dispref = false;
+          }
 
 
-                $pathref = array(
-                'availability' => $dispref,
-                'widht' => $pathrefs[0]->largura,
-                'height' => $pathrefs[0]->tamanho,
-                'type' => $pathrefs[0]->ambiente_perg,
-                'connected_question' => $idperg 
-            );
+          if($pathrefs[0]->disp == 1){
 
-      
-                $path_ref[]=$pathref;
+            $dispref = true;
+          }
+
+
+          $pathref = array(
+            'availability' => $dispref,
+            'widht' => $pathrefs[0]->largura,
+            'height' => $pathrefs[0]->tamanho,
+            'type' => $pathrefs[0]->ambiente_perg,
+            'connected_question' => $idperg 
+          );
+
+          
+          $path_ref[]=$pathref;
  // ------------------ Perunta Reforço -------------------------    
 
-foreach ($ref_resp as  $value) {
+          foreach ($ref_resp as  $value) {
 
- $idresp = $value->resp_id;
+           $idresp = $value->resp_id;
 
- $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();     
+           $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();     
 
-                if($respostaref[0]->corret == 0) {
+           if($respostaref[0]->corret == 0) {
 
-                    $answ = false;
-                }
+            $answ = false;
+          }
 
-                if($respostaref[0]->corret == 1) {
+          if($respostaref[0]->corret == 1) {
 
-                    $answ = true;
-                }
-
-
-
-                $resp_ref = array(
-                'answer_id' => $respostaref[0]->id,
-                'answer' => $respostaref[0]->resposta,
-                'correct'=> $answ
-            );
-                $respref[] = $resp_ref;
-                $tipo_ref = $respostaref[0]->tipo_resp;
-                    
-
- }
-
-
-               $ref = array(
-                'question_id' => $reforco[0]->id,
-                'answer_type' => $tipo_ref,
-                'question_type' => $reforco[0]->tipo_perg,
-                'question' => $reforco[0]->pergunta,
-                'room_type' => $reforco[0]->room_type,
-                'paths' => $path_ref,
-                'answers' => $respref
-
-);
+            $answ = true;
+          }
 
 
 
- }
+          $resp_ref = array(
+            'answer_id' => $respostaref[0]->id,
+            'answer' => $respostaref[0]->resposta,
+            'correct'=> $answ
+          );
+          $respref[] = $resp_ref;
+          $tipo_ref = $respostaref[0]->tipo_resp;
+          
+
+        }
+
+
+        $ref = array(
+          'question_id' => $reforco[0]->id,
+          'answer_type' => $tipo_ref,
+          'question_type' => $reforco[0]->tipo_perg,
+          'question' => $reforco[0]->pergunta,
+          'room_type' => $reforco[0]->room_type,
+          'paths' => $path_ref,
+          'answers' => $respref
+
+        );
+
+
+
+      }
 
     // Puxando as respostas com o id da tabela de relação !!!!!
-    foreach ($respostaid as   $value) {
+      foreach ($respostaid as   $value) {
 
        $id = $value->resp_id;
-      $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();  
+       $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();  
 
     // Preenchendo os campos do json com as respostas !!!!!!!
-           
+       
        if($resposta[0]->corret == 0) {
 
-                    $answ = false;
-                }
+        $answ = false;
+      }
 
-                if($resposta[0]->corret == 1) {
+      if($resposta[0]->corret == 1) {
 
-                    $answ = true;
-                }
+        $answ = true;
+      }
 
 
       $arresp = array(
-                'answer_id' => $resposta[0]->id,
-                'answer' => $resposta[0]->resposta,
-                'correct'=> $answ
-);
-            $respost[] = $arresp;
+        'answer_id' => $resposta[0]->id,
+        'answer' => $resposta[0]->resposta,
+        'correct'=> $answ
+      );
+      $respost[] = $arresp;
 
 
-     $tipo = $resposta[0]->tipo_resp;
+      $tipo = $resposta[0]->tipo_resp;
 
     }
 
-   
+    
 
      //Puxando os path com id da tabela relação path_perg
     foreach ($pathid as $value) {
 
-$path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
+      $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
 
-        
+      
 
-        if($path[0]->disp == 1){
+      if($path[0]->disp == 1){
 
-            $disponivel = "right";
-             if($i < count($proxpergid)){
-            $conect = $proxpergid[$i];
-            }
+        $disponivel = "right";
+        if($i < count($proxpergid)){
+          $conect = $proxpergid[$i];
         }
+      }
 
-        if($path[0]->disp == 0){
+      if($path[0]->disp == 0){
 
-            $disponivel = "wrong";
-            $conect = $idref;
+        $disponivel = "wrong";
+        $conect = $idref;
 
-        }
+      }
 
 
 
@@ -738,13 +738,13 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
         if($i < count($proxpergid)){ // Repetição das proximas perguntas
 
     // Definindo os campos do Jason com o path
-      $pat= array(
-                'availability' => $disponivel,
-                'widht' => $path[0]->largura,
-                'height' => $path[0]->tamanho,
-                'type' => $path[0]->ambiente_perg,
-                'connected_question' => $conect
-            );
+          $pat= array(
+            'availability' => $disponivel,
+            'widht' => $path[0]->largura,
+            'height' => $path[0]->tamanho,
+            'type' => $path[0]->ambiente_perg,
+            'connected_question' => $conect
+          );
 
         }
 
@@ -753,35 +753,35 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
          $end = 1;
              // Definindo os campos do Jason com o path
 
-            if($path[0]->disp == 1){
+         if($path[0]->disp == 1){
 
-                $conttrue = 58;
+          $conttrue = 58;
 
-                
+          
 
-                $pat= array(
-                    'availability' => $disponivel,
-                    'widht' => $path[0]->largura,
-                    'height' => $path[0]->tamanho,
-                    'type' => $path[0]->ambiente_perg,
-                    'end_game'=> true
-                );
-            }
-                if($path[0]->disp == 0){
+          $pat= array(
+            'availability' => $disponivel,
+            'widht' => $path[0]->largura,
+            'height' => $path[0]->tamanho,
+            'type' => $path[0]->ambiente_perg,
+            'end_game'=> true
+          );
+        }
+        if($path[0]->disp == 0){
 
-    
+          
 
-                    $pat= array(
-                        'availability' => $disponivel,
-                        'widht' => $path[0]->largura,
-                        'height' => $path[0]->tamanho,
-                        'type' => $path[0]->ambiente_perg,
-                        'connected_question'=> $conect
-                    );
-                }       
-           }
+          $pat= array(
+            'availability' => $disponivel,
+            'widht' => $path[0]->largura,
+            'height' => $path[0]->tamanho,
+            'type' => $path[0]->ambiente_perg,
+            'connected_question'=> $conect
+          );
+        }       
+      }
 
-                 $paths [] = $pat;
+      $paths [] = $pat;
 
     }
 
@@ -789,24 +789,24 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
     //Preenchendo os campos do json com as perguntas !!!!!!
     foreach ($perg as $key => $value) {
 
-                
-  
-               $perguntas = array(
-                'question_id' => $perg->id,
-                'answer_type' => $tipo,
-                'question_type' => $perg->tipo_perg,
-                'question' => $perg->pergunta,
-                'room_type' => $perg->room_type,
+      
+      
+     $perguntas = array(
+      'question_id' => $perg->id,
+      'answer_type' => $tipo,
+      'question_type' => $perg->tipo_perg,
+      'question' => $perg->pergunta,
+      'room_type' => $perg->room_type,
 
-                'paths' => $paths,
-                'answers' =>  $respost
+      'paths' => $paths,
+      'answers' =>  $respost
 
 
 
- );
+    );
 
-               
-    }
+     
+   }
 
 
 
@@ -815,38 +815,38 @@ $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$va
  //----------------- Array das perguntas -------------//
 
 
-         if(count($reforcoid) > 0){
-             $arperg [] = $perguntas;
-            $arperg [] = $ref; 
+   if(count($reforcoid) > 0){
+     $arperg [] = $perguntas;
+     $arperg [] = $ref; 
 
- 
-}
+     
+   }
 
 
-  if(count($reforcoid) == 0){
+   if(count($reforcoid) == 0){
 
      $arperg [] = $perguntas;
 
- 
+     
 
-  }
+   }
 
- 
-$jsn = [
-       "maze_id" => $sala->id,
-       "maze_name"=>$sala_name,
-       "starting_question_id"=> $proxpergid [0],
-       "time_limit" => $sala->duracao,
-        "theme" => $sala->tematica,
-        "questions" => $arperg
-        
- ]; 
+   
+   $jsn = [
+     "maze_id" => $sala->id,
+     "maze_name"=>$sala_name,
+     "starting_question_id"=> $proxpergid [0],
+     "time_limit" => $sala->duracao,
+     "theme" => $sala->tematica,
+     "questions" => $arperg
+     
+   ]; 
 
  }
-   
-return json_encode($jsn);
+ 
+ return json_encode($jsn);
 
-    }
+}
 
     /**
      * Update the specified resource in storage.
@@ -870,4 +870,4 @@ return json_encode($jsn);
     {
         //
     }
-}
+  }

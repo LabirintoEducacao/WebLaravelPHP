@@ -24,62 +24,62 @@ class SalaController extends Controller
 //        $salas = DB::table('salas')
 //                ->where('prof_id','=',Auth::user()->id)
 //                ->paginate(6);
-        $salas = DB::table('salas')
-                ->where('prof_id','=',Auth::user()->id)
-                ->orderBy('enable', 'desc')
-                ->get();
-           
-                return view('sala')->with(["salas" => $salas]);
-         
+      $salas = DB::table('salas')
+      ->where('prof_id','=',Auth::user()->id)
+      ->orderBy('enable', 'desc')
+      ->get();
+      
+      return view('sala')->with(["salas" => $salas]);
+      
     }
     
     
     public function getSala($id){
-        $sala = DB::table('salas')
-                ->where('id','=',$id)
-                ->get();
-        if(count($sala)>0){
-            $perguntas = DB::table('perguntas')
-                        ->where('sala_id','=',$id)
-                        ->get();
+      $sala = DB::table('salas')
+      ->where('id','=',$id)
+      ->get();
+      if(count($sala)>0){
+        $perguntas = DB::table('perguntas')
+        ->where('sala_id','=',$id)
+        ->get();
 //            $respostas = DB::table('respostas')
 //                        ->join('perg_resp','perg_resp.resp_id'.'respostas.id')
-           return view('visu')->with(['sala'=>$sala[0],'perguntas'=>$perguntas]);
-                        
-        }
+        return view('visu')->with(['sala'=>$sala[0],'perguntas'=>$perguntas]);
+        
+      }
     }
     
     public function desativar($id){
-        $sala = Sala::find($id);
+      $sala = Sala::find($id);
 
-        $sala->enable = 0;
-        $sala->save();
-        
-        $notification = array(
-            'message' => 'Sala desativada com sucesso!',
-            'alert-type' => 'success'
-        );
+      $sala->enable = 0;
+      $sala->save();
+      
+      $notification = array(
+        'message' => 'Sala desativada com sucesso!',
+        'alert-type' => 'success'
+      );
 
-        return redirect('admin/sala')->with($notification);
+      return redirect('admin/sala')->with($notification);
     }
     
     public function ativar($id){
-        $sala = Sala::find($id);
+      $sala = Sala::find($id);
 
-        $sala->enable = 1;
-        $sala->save();
-        
-        $notification = array(
-            'message' => 'Sala desativada com sucesso!',
-            'alert-type' => 'success'
-        );
+      $sala->enable = 1;
+      $sala->save();
+      
+      $notification = array(
+        'message' => 'Sala desativada com sucesso!',
+        'alert-type' => 'success'
+      );
 
-        return redirect('admin/sala')->with($notification);
+      return redirect('admin/sala')->with($notification);
     }
 
     public function index()
     {
-        return view('add_sala');
+      return view('add_sala');
     }
 
     /**
@@ -100,100 +100,100 @@ class SalaController extends Controller
      */
     public function store(Request $request)
     {
-        
-           $request->validate([
+      
+     $request->validate([
 
-                  'nome' => 'required|max:20'
+      'nome' => 'required|max:20'
 
-           ]);
+    ]);
 
-            
+     
 
-           
-        if($request->sala_id==0){
-            $time = $request->input('time5');
-            $sala = new Sala();
-            $sala->prof_id = $request->input('id_prof');
-            $sala->name = $request->input('nome');
-            $sala->duracao = $time;
-            $sala->tematica = $request->input('theme');
-            if($request->public==null){
-                $sala->public=0;
-            }
-            else{
-                $sala->public=1;
-            }
-           
+     
+     if($request->sala_id==0){
+      $time = $request->input('time5');
+      $sala = new Sala();
+      $sala->prof_id = $request->input('id_prof');
+      $sala->name = $request->input('nome');
+      $sala->duracao = $time;
+      $sala->tematica = $request->input('theme');
+      if($request->public==null){
+        $sala->public=0;
+      }
+      else{
+        $sala->public=1;
+      }
+      
 
-           if($request->enable == null){
+      if($request->enable == null){
 
-            $sala->enable = 0;
-           }
-           else{
+        $sala->enable = 0;
+      }
+      else{
 
-            $sala->enable =1;
-           }
-                
-            
-            
-            $sala->save();
-            
-            $notification = array(
-                'message' => 'Sala criada com sucesso!',
-                'alert-type' => 'success'
-            );
+        $sala->enable =1;
+      }
+      
+      
+      
+      $sala->save();
+      
+      $notification = array(
+        'message' => 'Sala criada com sucesso!',
+        'alert-type' => 'success'
+      );
 
 
-               $idsala = Sala::all()->last()->id;
+      $idsala = Sala::all()->last()->id;
 
 
     // public function salvar($objArquivo, $objProjeto, $objDataAtualizacao) {
     $strCaminho = public_path() . '/sala/' . $idsala; // 'public\projetos_arquivos\codigo_projeto'
 
     if(!file_exists($strCaminho)) { // Cria pasta para o projeto, caso não já exista uma
-        $objProjetoDiretorio = File::makeDirectory($strCaminho);
+      $objProjetoDiretorio = File::makeDirectory($strCaminho);
     }
-        }else{
-            var_dump($request->input('enable1'));
-            var_dump($request->input('public1'));
-            $time = $request->input('time4');
-            $sala = Sala::find($request->sala_id);
-            $sala->name = $request->input('nome');
-            $sala->duracao = $time;
-            $sala->tematica = $request->input('theme');
-            if($request->input('public1')==null || $request->input('public1')==0){
-                $sala->public=0;
-            }
-            else{
-                $sala->public=1;
-            }
-             if($request->input('enable1') == null || $request->input('enable1') == 0){
-
-            $sala->enable = 0;
-           }
-           else{
-
-            $sala->enable =1;
-           }
-
-            $sala->save();
-            $notification = array(
-                'message' => 'Sala alterada com sucesso!',
-                'alert-type' => 'success'
-            );
-            if($request->page==0)
-                return redirect('admin/sala')->with($notification);
-            else
-                return redirect('admin/visualizar/'.$request->sala_id)->with($notification);
-
-        }
-
-
-
-            return redirect('admin/sala')->with($notification);
+  }else{
+    var_dump($request->input('enable1'));
+    var_dump($request->input('public1'));
+    $time = $request->input('time4');
+    $sala = Sala::find($request->sala_id);
+    $sala->name = $request->input('nome');
+    $sala->duracao = $time;
+    $sala->tematica = $request->input('theme');
+    if($request->input('public1')==null || $request->input('public1')==0){
+      $sala->public=0;
     }
-    
-    
+    else{
+      $sala->public=1;
+    }
+    if($request->input('enable1') == null || $request->input('enable1') == 0){
+
+      $sala->enable = 0;
+    }
+    else{
+
+      $sala->enable =1;
+    }
+
+    $sala->save();
+    $notification = array(
+      'message' => 'Sala alterada com sucesso!',
+      'alert-type' => 'success'
+    );
+    if($request->page==0)
+      return redirect('admin/sala')->with($notification);
+    else
+      return redirect('admin/visualizar/'.$request->sala_id)->with($notification);
+
+  }
+
+
+
+  return redirect('admin/sala')->with($notification);
+}
+
+
 
 //    public function edit_sala(Request $request)
 //    {
@@ -256,7 +256,7 @@ class SalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+    
 
     /**
      * Update the specified resource in storage.
@@ -279,212 +279,212 @@ class SalaController extends Controller
     public function destroy($id)
     {
 
-        $perguntas = DB::table('perguntas')
-                ->where('sala_id', '=', $id)
-                ->get();
+      $perguntas = DB::table('perguntas')
+      ->where('sala_id', '=', $id)
+      ->get();
 
-        foreach($perguntas as $pergunta){
-            $path = DB::table('path_perg')
-                ->select('path_id')
-                ->where('perg_id', '=', $pergunta->id)
-                ->get();
-                if(count($path)> 0){
-                    foreach ($path as $path_id) {
-                        DB::table('paths')->where('id', '=', $path_id->path_id)->delete();
-                    }
-
-                }
-        }
-
-
-        $sala = Sala::find($id);
-
-        if(isset($sala)){
-           $sala->delete();         
-       }
-        $notification = array(
-                'message' => 'Sala deletada com sucesso!',
-                'alert-type' => 'danger'
-            );
-
-        $strCaminho = public_path() . '/sala/' . $id;
-
-
-            File::deleteDirectory($strCaminho);
-
-
-
-      return redirect('admin/sala')->with($notification);
-    }
-
-    public function add_user(Request $request){
-        $data = $request->all();
-        DB::table('sala_user')->insert(
-                array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
-            );
-        $salas = Sala::where('public','=',1)->get();
-            $notification = array(
-                'message' => 'Usuário adicionado com sucesso!!!',
-                'alert-type' => 'success'
-            );
-
-
-
-        return redirect('admin/alunos'. $request->get('sala_id'))->with($notification);
-
-    }
-
-    public function entrar(){
-
-
-
-        $salas = DB::table('salas')
-//            ->where('enable',1)             //só busca as salas ativas
-            ->orderBy('enable', 'desc')
-            ->get();;
-        
-        $sala_user = DB::table('sala_user')
+      foreach($perguntas as $pergunta){
+        $path = DB::table('path_perg')
+        ->select('path_id')
+        ->where('perg_id', '=', $pergunta->id)
         ->get();
-     
-        $salapu = DB::table('salas')
-            ->where('public','=',1)
-            ->where('enable',1)
-            ->get();
-        
-        $salapu2 = count($salapu);
-        
-        $salapr = DB::table('salas')
-            ->join('sala_user','sala_user.sala_id','=','salas.id')
-            ->where('sala_user.user_id','=',Auth::user()->id)
-            ->where('public','=',0)
-            ->where('enable','=',1)
-            ->get();
-
-        $salapr2 = count($salapr);
-        
-        return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user,'salapu'=>$salapu2,'salapr'=>$salapr2]);
-    }
-
-    
-    public function entrar_guest(){
-        $salas = Sala::where('public','=',1)->get();
-
-        $professores = DB::table('users')
-            ->join('role_user', 'users.id', '=', 'role_user.user_id')
-            ->orderBy('name')
-            ->where('role_user.role_id','=',2)
-            ->get();
-
-        return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
-    }
-
-    public function buscar(Request $request){
-        $salas = DB::table('salas')
-            ->orderBy('name')
-            ->where('public','=',1)
-            ->where('name',$request->buscar)
-            ->get();
-            $professores = DB::table('users')
-                ->join('role_user', 'users.id', '=', 'role_user.user_id')
-                ->orderBy('name')
-                ->where('role_user.role_id','=',2)
-                ->get();
-        if(count($salas)<=0){
-            $salas = Sala::where('public','=',1)->get();
-            $notification = array(
-                'message' => 'Você não tem permissão para editar!',
-                'alert-type' => 'warning'
-            );
-            return redirect('virtual')->with($notification);
-        }
-        else
-            return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
-    }
-
-
-
-   
-
-     public function login(Request $request)
-      {
-   
-
-                 $email = $request->all('email');
-                 $senha = $request->all('password');
-                 
-                 $senha2 = $senha['password'];
-
-                
-               $user = DB::table('users')->where('email', $email)->get();
-
-
-                  if (count($user) > 0 && (Hash::check($senha2, $user[0]->password))){
-
-
-                        $user2 = array(
-
-                            'id' => $user[0]->id,
-                            'name' => $user[0]->name
-                        );
-
- 
-                    }else{
-
-                        $user2 = array(
-
-                            'id' => -1
-
-                        );
-                    }
-
-
-                    return $user2;
+        if(count($path)> 0){
+          foreach ($path as $path_id) {
+            DB::table('paths')->where('id', '=', $path_id->path_id)->delete();
+          }
 
         }
+      }
+
+
+      $sala = Sala::find($id);
+
+      if(isset($sala)){
+       $sala->delete();         
+     }
+     $notification = array(
+      'message' => 'Sala deletada com sucesso!',
+      'alert-type' => 'danger'
+    );
+
+     $strCaminho = public_path() . '/sala/' . $id;
+
+
+     File::deleteDirectory($strCaminho);
+
+
+
+     return redirect('admin/sala')->with($notification);
+   }
+
+   public function add_user(Request $request){
+    $data = $request->all();
+    DB::table('sala_user')->insert(
+      array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
+    );
+    $salas = Sala::where('public','=',1)->get();
+    $notification = array(
+      'message' => 'Usuário adicionado com sucesso!!!',
+      'alert-type' => 'success'
+    );
+
+
+
+    return redirect('admin/alunos'. $request->get('sala_id'))->with($notification);
+
+  }
+
+  public function entrar(){
+
+
+
+    $salas = DB::table('salas')
+//            ->where('enable',1)             //só busca as salas ativas
+    ->orderBy('enable', 'desc')
+    ->get();;
+    
+    $sala_user = DB::table('sala_user')
+    ->get();
+    
+    $salapu = DB::table('salas')
+    ->where('public','=',1)
+    ->where('enable',1)
+    ->get();
+    
+    $salapu2 = count($salapu);
+    
+    $salapr = DB::table('salas')
+    ->join('sala_user','sala_user.sala_id','=','salas.id')
+    ->where('sala_user.user_id','=',Auth::user()->id)
+    ->where('public','=',0)
+    ->where('enable','=',1)
+    ->get();
+
+    $salapr2 = count($salapr);
+    
+    return view('virtual')->with(['data' => $salas, 'sala_user' => $sala_user,'salapu'=>$salapu2,'salapr'=>$salapr2]);
+  }
+
+  
+  public function entrar_guest(){
+    $salas = Sala::where('public','=',1)->get();
+
+    $professores = DB::table('users')
+    ->join('role_user', 'users.id', '=', 'role_user.user_id')
+    ->orderBy('name')
+    ->where('role_user.role_id','=',2)
+    ->get();
+
+    return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
+  }
+
+  public function buscar(Request $request){
+    $salas = DB::table('salas')
+    ->orderBy('name')
+    ->where('public','=',1)
+    ->where('name',$request->buscar)
+    ->get();
+    $professores = DB::table('users')
+    ->join('role_user', 'users.id', '=', 'role_user.user_id')
+    ->orderBy('name')
+    ->where('role_user.role_id','=',2)
+    ->get();
+    if(count($salas)<=0){
+      $salas = Sala::where('public','=',1)->get();
+      $notification = array(
+        'message' => 'Você não tem permissão para editar!',
+        'alert-type' => 'warning'
+      );
+      return redirect('virtual')->with($notification);
+    }
+    else
+      return view('virtual_guest')->with(['data' => $salas,'professores' => $professores]);
+  }
+
+
+
+  
+
+  public function login(Request $request)
+  {
+   
+
+   $email = $request->all('email');
+   $senha = $request->all('password');
+   
+   $senha2 = $senha['password'];
+
+   
+   $user = DB::table('users')->where('email', $email)->get();
+
+
+   if (count($user) > 0 && (Hash::check($senha2, $user[0]->password))){
+
+
+    $user2 = array(
+
+      'id' => $user[0]->id,
+      'name' => $user[0]->name
+    );
 
     
+  }else{
+
+    $user2 = array(
+
+      'id' => -1
+
+    );
+  }
+
+
+  return $user2;
+
+}
+
+
 
 public function teste()
-    {
-   
+{
+ 
 
 
-       
-                if(isset($_REQUEST['type']) && $_REQUEST['type']!=null){
+ 
+  if(isset($_REQUEST['type']) && $_REQUEST['type']!=null){
 
-                $tipo =(int) $_REQUEST['type'];
+    $tipo =(int) $_REQUEST['type'];
 
-                }
-                else{
+  }
+  else{
 
-                $tipo = 1;
-                }
-
-
+    $tipo = 1;
+  }
 
 
 
-                     
-                 if($tipo == 0){
-            
 
 
-                $salas_publicas = DB::table('salas')
-                ->where('public','=',1)->select('id','name')->get();
+  
+  if($tipo == 0){
+    
 
-                
+
+    $salas_publicas = DB::table('salas')
+    ->where('public','=',1)->select('id','name')->get();
+
+    
 
 
-                if(count($salas_publicas) > 0){
-   
+    if(count($salas_publicas) > 0){
+     
 
-                foreach($salas_publicas as $salas){
+      foreach($salas_publicas as $salas){
 
 
 
 
 //------------------------------------Porcentagem---------------------------//
-                    
+        
         $maze = $salas->id;
         $id =   $_REQUEST['id'];          
 
@@ -501,147 +501,147 @@ public function teste()
           $jogada = $value->start;
         }
 
-    
+        
         $save =  Data::select('event','question_id','created_at')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
 
 
-       
+        
         if(count($save)>0){
 
-        foreach ($save as $stop) {
+          foreach ($save as $stop) {
 
-        if($stop->event == "question_end"){
+            if($stop->event == "question_end"){
 
-            $progress = $stop->question_id;
+              $progress = $stop->question_id;
 
             }
-         }
-
-         $total = count($tperg);
-
-         foreach($tperg as $value){
-
-          if($value->id == $progress ) {
-
-            $progress = $indexperg;
           }
+
+          $total = count($tperg);
+
+          foreach($tperg as $value){
+
+            if($value->id == $progress ) {
+
+              $progress = $indexperg;
+            }
 
             $indexperg ++;
 
-         }
+          }
 
-         $progress = ($progress*100)/$total;
+          $progress = ($progress*100)/$total;
 
         }else {
 
-            $progress = 0;
+          $progress = 0;
         }
 
-   
+        
 
 //---------------------------Termino Porcentagem--------------------------------//   
 
 
 
 
-                 $perguntasref = DB::table('perguntas')
-                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
-                 ->where('sala_id','=', $salas->id)->get();
+        $perguntasref = DB::table('perguntas')
+        ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
+        ->where('sala_id','=', $salas->id)->get();
 
-                 $perguntas = DB::table('perguntas')
-                 ->where('sala_id','=', $salas->id)->get();
+        $perguntas = DB::table('perguntas')
+        ->where('sala_id','=', $salas->id)->get();
 
-                 
-                 
-                   if(count($perguntas) > 0 ){
+        
+        
+        if(count($perguntas) > 0 ){
 
-                        $i2 = 0 ;
-                        $i = 0;
-
-
-
-                    foreach($perguntasref as $perguntasref){
-
-                                $i++;
-                             }
-
-                    foreach($perguntas as $perguntas){
-
-                                    $i2++;
-                                 }
-
-                   
+          $i2 = 0 ;
+          $i = 0;
 
 
-                    $total = $i2 - $i;
+
+          foreach($perguntasref as $perguntasref){
+
+            $i++;
+          }
+
+          foreach($perguntas as $perguntas){
+
+            $i2++;
+          }
+
+          
 
 
-                        
-
-                          $jsn[] = array(
-
-                                    'id' => $salas->id,
-                                    'name' => $salas->name,
-                                    'Pergunta' => $total,
-                                    'Reforco' => $i,
-                                    'Progress'=>$progress
-                            ); 
-                      
-                           }
-                    }
-                    
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => 1
-
-                    );
-
-                    
-                    return $resultado;
+          $total = $i2 - $i;
 
 
-                }else{
+          
+
+          $jsn[] = array(
+
+            'id' => $salas->id,
+            'name' => $salas->name,
+            'Pergunta' => $total,
+            'Reforco' => $i,
+            'Progress'=>$progress
+          ); 
+          
+        }
+      }
+      
+      $resultado = array(
+       
+        "salas" => $jsn,
+        "success" => 1
+
+      );
+
+      
+      return $resultado;
 
 
-                    $jsn = array(); 
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => 1
-
-                    );
-
-                    return $resultado;
-                }
+    }else{
 
 
-                }elseif($tipo == 1 && isset($_REQUEST['id'])){
+      $jsn = array(); 
+
+      $resultado = array(
+       
+        "salas" => $jsn,
+        "success" => 1
+
+      );
+
+      return $resultado;
+    }
 
 
- 
+  }elseif($tipo == 1 && isset($_REQUEST['id'])){
 
 
-                    
-                $json = $_REQUEST['id'];
+   
 
-                $user = DB::table('users')->where('id','=',$json)->get();
 
-            
-                if(count($user)>0){
-                      
-                 $salas_user = DB::table('sala_user')->where('user_id','=',$json)->get();
-                  
-                if(count($salas_user) > 0){
+    
+    $json = $_REQUEST['id'];
 
-                 foreach($salas_user as $sala_user){
+    $user = DB::table('users')->where('id','=',$json)->get();
+
+    
+    if(count($user)>0){
+      
+     $salas_user = DB::table('sala_user')->where('user_id','=',$json)->get();
+     
+     if(count($salas_user) > 0){
+
+       foreach($salas_user as $sala_user){
 
 
 
 
 //------------------------------------Contagem ---------------------------//
-                    
+        
         $maze = $sala_user->id;
         $id =   $_REQUEST['id'];          
 
@@ -660,201 +660,245 @@ public function teste()
           $jogada = $value->start;
         }
 
-    
+        
         $save =  Data::select('event','question_id')->where('user_id',$id)->where('maze_id',$maze)->where('start',$jogada)->get();
 
 
-       
+        
         if(count($save)>0){
 
-        foreach ($save as $stop) {
+          foreach ($save as $stop) {
 
-        if($stop->event == "question_end"){
+            if($stop->event == "question_end"){
 
-            $progress = $stop->question_id;
+              $progress = $stop->question_id;
 
             }
-         }
-
-         $total = count($tperg);
-
-         foreach($tperg as $value){
-
-          if($value->id == $progress ) {
-
-            $progress = $indexperg;
           }
+
+          $total = count($tperg);
+
+          foreach($tperg as $value){
+
+            if($value->id == $progress ) {
+
+              $progress = $indexperg;
+            }
 
             $indexperg ++;
 
-         }
+          }
 
-         $progress = ($progress*100)/$total;
+          $progress = ($progress*100)/$total;
 
         }else {
 
-            $progress = 0;
+          $progress = 0;
         }
 
-      
+        
 
 //---------------------------Termino Contagem --------------------------------// 
 
 
 
 
-                 $perguntasref = DB::table('perguntas')
-                 ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
-                 ->where('sala_id','=', $sala_user->sala_id)->get();
+        $perguntasref = DB::table('perguntas')
+        ->join('perg_ref', 'perguntas.id', '=', 'perg_ref.perg_id')
+        ->where('sala_id','=', $sala_user->sala_id)->get();
 
-                 $perguntas = DB::table('perguntas')
-                 ->where('sala_id','=', $sala_user->sala_id)->get();
-
-                    if(count($perguntas) > 0  ){
-
-                        $i2 = 0;
-                        $i = 0;
-
-
-
-                    foreach($perguntasref as $perguntasref){
-
-                                $i++;
-                             }
-
-                    foreach($perguntas as $perguntas){
-
-                                    $i2++;
-                                 }
-
-                    
-
-                    $total = $i2 - $i;
-
-
-                        $sala = DB::table('salas')
-                                ->where('id','=',$sala_user->sala_id)
-                                ->where('public','=',0)
-                                ->select('id','name')->get();
-                                if(count($sala)>0)
-
-                       $jsn[] = array(
-
-                                    'id' => $sala[0]->id,
-                                    'name' => $sala[0]->name,
-                                    'Pergunta' => $total,
-                                    'Reforco' => $i,
-                                    'Progress'=>$progress
-                            ); 
-
-                    }}
-
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => 1
-
-                    );
-                   
-
-                      return $resultado;
-
-                   }else{
-
-                     $jsn = array(); 
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => 1
-
-                    );
-
-
-                    return $resultado;
-
-                   }
-
-
-                   }else{
-                     
-                   $jsn = array(); 
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => -1
-
-                    );
-
-
-                    return $resultado;
-
-                   }
-                  
-                }else{
-
-                  $jsn = array(); 
-
-                    $resultado = array(
-                         
-                          "salas" => $jsn,
-                          "success" => -1
-
-                    );
-
-
-                    return $resultado;                    
-   
-                }
-    }
-    
-    
-    
-    
-    public function estatistica($id){
-        $salas = DB::table('salas')
-            ->where('id','=',$id)
-            ->get();
-        $users = DB::table('users')
-            ->join('sala_user','sala_user.user_id','=','users.id')
-            ->where('sala_user.sala_id',$id)
-            ->get();
         $perguntas = DB::table('perguntas')
-            ->where('sala_id','=',$id)
-            ->get();
+        ->where('sala_id','=', $sala_user->sala_id)->get();
+
+        if(count($perguntas) > 0  ){
+
+          $i2 = 0;
+          $i = 0;
+
+
+
+          foreach($perguntasref as $perguntasref){
+
+            $i++;
+          }
+
+          foreach($perguntas as $perguntas){
+
+            $i2++;
+          }
+
+          
+
+          $total = $i2 - $i;
+
+
+          $sala = DB::table('salas')
+          ->where('id','=',$sala_user->sala_id)
+          ->where('public','=',0)
+          ->select('id','name')->get();
+          if(count($sala)>0)
+
+           $jsn[] = array(
+
+            'id' => $sala[0]->id,
+            'name' => $sala[0]->name,
+            'Pergunta' => $total,
+            'Reforco' => $i,
+            'Progress'=>$progress
+          ); 
+
+       }}
+
+
+       $resultado = array(
+         
+        "salas" => $jsn,
+        "success" => 1
+
+      );
+       
+
+       return $resultado;
+
+     }else{
+
+       $jsn = array(); 
+
+       $resultado = array(
+         
+        "salas" => $jsn,
+        "success" => 1
+
+      );
+
+
+       return $resultado;
+
+     }
+
+
+   }else{
+     
+     $jsn = array(); 
+
+     $resultado = array(
+       
+      "salas" => $jsn,
+      "success" => -1
+
+    );
+
+
+     return $resultado;
+
+   }
+   
+ }else{
+
+  $jsn = array(); 
+
+  $resultado = array(
+   
+    "salas" => $jsn,
+    "success" => -1
+
+  );
+
+
+  return $resultado;                    
+  
+}
+}
+
+
+
+
+public function estatistica($id){
+  $salas = DB::table('salas')
+  ->where('id','=',$id)
+  ->get();
+  $users = DB::table('users')
+  ->join('sala_user','sala_user.user_id','=','users.id')
+  ->where('sala_user.sala_id',$id)
+  ->get();
+  $perguntas = DB::table('perguntas')
+  ->where('sala_id','=',$id)
+  ->get();
         //acertos
         //erros
-        
-        if(count($salas)>0){
+  
+  if(count($salas)>0){
 //            return view('grafico');
-            return view('grafico')->with(['salas' => $salas, 'users' => $users, 'perguntas' =>$perguntas]);
-        }
-        
-    }
-    
-    
-    
-        public function buscarS(Request $request){
-        $id = $request->id;
-        $sala = DB::table('salas')->where('id',$id)->get();
-        
-        $salas = array(
-            'id' => $id,
-            'name' => $sala[0]->name,
-            'duracao' => $sala[0]->duracao,
-            'tematica' => $sala[0]->tematica,
-            'public' => $sala[0]->public,
-            'enable' =>  $sala[0]->enable
-        );
-        
-        return json_encode($salas);
-        
+    return view('grafico')->with(['salas' => $salas, 'users' => $users, 'perguntas' =>$perguntas]);
+  }
+  
+}
+
+
+
+public function buscarS(Request $request){
+  $id = $request->id;
+  $sala = DB::table('salas')->where('id',$id)->get();
+  
+  $salas = array(
+    'id' => $id,
+    'name' => $sala[0]->name,
+    'duracao' => $sala[0]->duracao,
+    'tematica' => $sala[0]->tematica,
+    'public' => $sala[0]->public,
+    'enable' =>  $sala[0]->enable
+  );
+  
+  return json_encode($salas);
+  
 
 }
-    
-    
-    
+
+
+public function addgrupo($id,$salaid){
+
+ $alunos = DB::table('alunos_turma')->where('turmas_id',$id)->get();
+ $alunos_sala = DB::table('sala_user')->select('user_id')->where('sala_id',"=", $salaid)->get();
+
+ 
+
+ foreach ($alunos as $value) {
+
+   $existe = 0 ;
+
+   foreach($alunos_sala as $id){
+     
+     if($id->user_id == $value->aluno_id){
+      
+       $existe  = 1;
+       
+     }
+     
+   }        
+
+   if($existe  == 0){
+
+    DB::table('sala_user')->insert(['sala_id' => $salaid, 'user_id' => $value->aluno_id]);  
+
+  }
+
+  
+}
+
+
+return;
+}
+
+
+public function showgrupos($id){
+
+  $data = DB::table('turmas')->where('id_prof',$id)->get();
+
+  return json_encode($data);
+
+}
+
+
+
 
 }

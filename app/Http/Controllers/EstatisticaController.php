@@ -23,23 +23,23 @@ class EstatisticaController extends Controller
     public function index()
     {
 
-    	   $data = DB::table('data')->select('maze_id')->get();
+      $data = DB::table('data')->select('maze_id')->get();
 
-    	   if(count($data) > 0){
+      if(count($data) > 0){
 
-          $sala_user = DB::table('sala_user')->where('sala_id', '=', '$data')->select('user_id','sala_id')->get();
+        $sala_user = DB::table('sala_user')->where('sala_id', '=', '$data')->select('user_id','sala_id')->get();
 
-              foreach($sala_user as $salasuser){
-             
-                   
-                     $resultado = $salasuser->user_id;
-    	     }
+        foreach($sala_user as $salasuser){
+         
+         
+         $resultado = $salasuser->user_id;
+       }
 
-    	 }
+     }
 
-    	  return view ('home')->with(['data' => $resultado]);
+     return view ('home')->with(['data' => $resultado]);
 
-    }
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -57,235 +57,235 @@ class EstatisticaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
 
-    $jogadas = 1;
-   
-    $resposta = $request->all(['event_name', 'user_id', 'maze_id', 'question_id', 'answer_id', 'wrong_count', 'correct_count', 'correct', 'elapsed_time', 'answers_read_count','async_timestamp']);
+      $jogadas = 1;
+      
+      $resposta = $request->all(['event_name', 'user_id', 'maze_id', 'question_id', 'answer_id', 'wrong_count', 'correct_count', 'correct', 'elapsed_time', 'answers_read_count','async_timestamp']);
 
-           if($resposta['async_timestamp'] == 0){
-                   
-             $date = NULL;
-
-           }else{
-              $async_timestamp = $resposta['async_timestamp'];
-              $formDate = new DateTime('', new DateTimeZone('America/Sao_Paulo'));
-              $formDate->setTimeStamp($async_timestamp);
-              $date = $formDate->format('Y/m/d H:i:s');
-           }
-         
-     
-             $event = $resposta['event_name'];
-
-
-             $start = DB::table('data')->where('maze_id', $resposta['maze_id'])->where('user_id',$resposta['user_id'])->select('event', 'start')->get();
-
-
+      if($resposta['async_timestamp'] == 0){
        
+       $date = NULL;
+
+     }else{
+      $async_timestamp = $resposta['async_timestamp'];
+      $formDate = new DateTime('', new DateTimeZone('America/Sao_Paulo'));
+      $formDate->setTimeStamp($async_timestamp);
+      $date = $formDate->format('Y/m/d H:i:s');
+    }
+    
+    
+    $event = $resposta['event_name'];
+
+
+    $start = DB::table('data')->where('maze_id', $resposta['maze_id'])->where('user_id',$resposta['user_id'])->select('event', 'start')->get();
+
+
+    
+    
+
+    foreach ($start as $value) {
+
       
 
-             foreach ($start as $value) {
+      if($value->event == 'maze_end'){
 
-                  
-
-                  if($value->event == 'maze_end'){
-
-                  
-                    $jogadas = (int)$value->start;
-                    $jogadas ++;
-
-
-                  }
-
-             }
-
-              $eventos_gerais = array(
-
-                'maze_start' => array ('event_name' => 'maze_start',
-                                  'user_id'   =>  $resposta['user_id'],
-                                  'maze_id' => $resposta['maze_id'], 
-                                  'question_id' => $resposta['question_id'],
-                                  'elapsed_time' =>  $resposta['elapsed_time']
-                                ),
-              'question_start' => array ('event_name' => 'question_start',
-                              'user_id'   =>  $resposta['user_id'],
-                              'maze_id' => $resposta['maze_id'], 
-                              'question_id' => $resposta['question_id'],
-                              'elapsed_time' =>  $resposta['elapsed_time'],
-                              'wrong_count'  => $resposta['wrong_count'],
-                              'correct_count' => $resposta['correct_count']
-                            ),
-              'question_read' => array ('event_name' => 'question_read',
-                                'user_id'   =>  $resposta['user_id'],
-                                'maze_id' => $resposta['maze_id'], 
-                                'question_id' => $resposta['question_id'],
-                                'elapsed_time' =>  $resposta['elapsed_time']
-                              ),
-              'answer_read' => array ('event_name' => 'answer_read',
-                              'user_id'   =>  $resposta['user_id'],
-                              'maze_id' => $resposta['maze_id'], 
-                              'question_id' => $resposta['question_id'],
-                              'elapsed_time' =>  $resposta['elapsed_time'],
-                              'answer_id'    =>  $resposta['answer_id']
-                            ),
-              'answer_interaction' => array ('event_name' => 'answer_interaction',
-                                              'user_id'   =>  $resposta['user_id'],
-                                              'maze_id' => $resposta['maze_id'], 
-                                              'question_id' => $resposta['question_id'],
-                                              'elapsed_time' =>  $resposta['elapsed_time'],
-                                              'answer_id'    =>  $resposta['answer_id'],
-                                              'correct'      => $resposta['correct'],
-                                              ),
-             'question_end' => array ('event_name' => 'question_end',
-                                      'user_id'   =>  $resposta['user_id'],
-                                      'maze_id' => $resposta['maze_id'], 
-                                      'question_id' => $resposta['question_id'],
-                                      'elapsed_time' =>  $resposta['elapsed_time'],
-                                      'correct'      => $resposta['correct'],
-                                      'wrong_count'  => $resposta['wrong_count'],
-                                      'correct_count' => $resposta['correct_count']
-                                      ),
-             'maze_end' => array ('event_name' => 'maze_end',
-                                  'user_id'   =>  $resposta['user_id'],
-                                  'maze_id' => $resposta['maze_id'], 
-                                  'elapsed_time' =>  $resposta['elapsed_time'],
-                                  'wrong_count'  => $resposta['wrong_count'],
-                                  'correct_count' =>$resposta['correct_count']
-                                  )
-
-              );   
-
-               $x=0;
         
-        if(isset($_REQUEST['user_id']) && isset($resposta['maze_id'])){
-        
-            $user = DB::table('users')
-                    ->where('id', '=', $resposta['user_id'])
-                    ->get();
-                    if(count($user)>0 || $_REQUEST['user_id'] == '0'){
-                        $x++;
-                        $sala = DB::table('salas')
-                        ->where('id', '=', $resposta['maze_id'])
-                        ->get();
-                        if(count($sala)>0){
-                            $x++;
-                            if( $resposta['question_id'] !=null && $event != 'maze_end'){
-                                $perg = DB::table('perguntas')
-                                ->where('id', '=', $resposta['question_id'])
-                                ->get();
-                                if(count($perg)>0){
-                                    $x++;
-                                }else{
-
-                                    $invalido = array(
-                                    
-                                    'error' => array(
-
-                                      'question_id' => 'invalido'
-                                   ),
-
-                                       'success' => -1
-                                   );
+        $jogadas = (int)$value->start;
+        $jogadas ++;
 
 
-                                    return $invalido;
+      }
 
-                                        }
-                            }
-                        }else{
+    }
 
-                          $invalido = array(
+    $eventos_gerais = array(
 
-                            'error' => array(
+      'maze_start' => array ('event_name' => 'maze_start',
+        'user_id'   =>  $resposta['user_id'],
+        'maze_id' => $resposta['maze_id'], 
+        'question_id' => $resposta['question_id'],
+        'elapsed_time' =>  $resposta['elapsed_time']
+      ),
+      'question_start' => array ('event_name' => 'question_start',
+        'user_id'   =>  $resposta['user_id'],
+        'maze_id' => $resposta['maze_id'], 
+        'question_id' => $resposta['question_id'],
+        'elapsed_time' =>  $resposta['elapsed_time'],
+        'wrong_count'  => $resposta['wrong_count'],
+        'correct_count' => $resposta['correct_count']
+      ),
+      'question_read' => array ('event_name' => 'question_read',
+        'user_id'   =>  $resposta['user_id'],
+        'maze_id' => $resposta['maze_id'], 
+        'question_id' => $resposta['question_id'],
+        'elapsed_time' =>  $resposta['elapsed_time']
+      ),
+      'answer_read' => array ('event_name' => 'answer_read',
+        'user_id'   =>  $resposta['user_id'],
+        'maze_id' => $resposta['maze_id'], 
+        'question_id' => $resposta['question_id'],
+        'elapsed_time' =>  $resposta['elapsed_time'],
+        'answer_id'    =>  $resposta['answer_id']
+      ),
+      'answer_interaction' => array ('event_name' => 'answer_interaction',
+        'user_id'   =>  $resposta['user_id'],
+        'maze_id' => $resposta['maze_id'], 
+        'question_id' => $resposta['question_id'],
+        'elapsed_time' =>  $resposta['elapsed_time'],
+        'answer_id'    =>  $resposta['answer_id'],
+        'correct'      => $resposta['correct'],
+      ),
+      'question_end' => array ('event_name' => 'question_end',
+        'user_id'   =>  $resposta['user_id'],
+        'maze_id' => $resposta['maze_id'], 
+        'question_id' => $resposta['question_id'],
+        'elapsed_time' =>  $resposta['elapsed_time'],
+        'correct'      => $resposta['correct'],
+        'wrong_count'  => $resposta['wrong_count'],
+        'correct_count' => $resposta['correct_count']
+      ),
+      'maze_end' => array ('event_name' => 'maze_end',
+        'user_id'   =>  $resposta['user_id'],
+        'maze_id' => $resposta['maze_id'], 
+        'elapsed_time' =>  $resposta['elapsed_time'],
+        'wrong_count'  => $resposta['wrong_count'],
+        'correct_count' =>$resposta['correct_count']
+      )
 
-                              'maze' => 'invalido'
-                           ),
+    );   
 
-                               'success' => -1
-                           );
-
-                          return $invalido;
-
-                        }
-              }else{
-
-             
-                  $invalido = array(
-
-                      'error' => array(
-
-                        'user' => 'invalido'
-                     ),
-
-                         'success' => -1
-                     );
-
-                    return $invalido;
-
-              }
-            }
-
-        foreach ($eventos_gerais  as $key => $value){
-            
-
-                   if($value['event_name'] == $event){
-
-                       $valor[] = $value;
-                   }
-
-            }  
-
-             if(isset($valor)){
-
-
-            foreach ($valor[0] as $key => $value) {
-
-
-                  if($value === NULL){
-                     
-
-                     $erro[] = $key; 
-                    
-                  }
-                  
-               }
-
-                if(isset($erro)){
-
-               $total = array(
-                      'error' => array(
-                      'campos vazios' => $erro
-                       ),
-                      'success' => -1
-                      );
-                  
-                  return $total;
-
-                  }
-
-            if($_REQUEST['user_id'] == '0'){
-
-               DB::table('data_guest')->insertGetId(array(
-            'maze_id' => isset($_REQUEST['maze_id']) ? $_REQUEST['maze_id'] : NULL,
-            'event'  =>   $event,
-            'question_id' => isset($_REQUEST['question_id']) ? $_REQUEST['question_id'] : NULL,
-            'answer_id'   =>  isset($_REQUEST['answer_id']) ? $_REQUEST['answer_id'] : NULL,
-            'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
-            'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
-            'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
-            'start' => $jogadas, 
-            'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
-            'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
-            'async_timestamp' => $date
-
-                      ));
-
-
+    $x=0;
+    
+    if(isset($_REQUEST['user_id']) && isset($resposta['maze_id'])){
+      
+      $user = DB::table('users')
+      ->where('id', '=', $resposta['user_id'])
+      ->get();
+      if(count($user)>0 || $_REQUEST['user_id'] == '0'){
+        $x++;
+        $sala = DB::table('salas')
+        ->where('id', '=', $resposta['maze_id'])
+        ->get();
+        if(count($sala)>0){
+          $x++;
+          if( $resposta['question_id'] !=null && $event != 'maze_end'){
+            $perg = DB::table('perguntas')
+            ->where('id', '=', $resposta['question_id'])
+            ->get();
+            if(count($perg)>0){
+              $x++;
             }else{
 
+              $invalido = array(
+                
+                'error' => array(
+
+                  'question_id' => 'invalido'
+                ),
+
+                'success' => -1
+              );
+
+
+              return $invalido;
+
+            }
+          }
+        }else{
+
+          $invalido = array(
+
+            'error' => array(
+
+              'maze' => 'invalido'
+            ),
+
+            'success' => -1
+          );
+
+          return $invalido;
+
+        }
+      }else{
+
+       
+        $invalido = array(
+
+          'error' => array(
+
+            'user' => 'invalido'
+          ),
+
+          'success' => -1
+        );
+
+        return $invalido;
+
+      }
+    }
+
+    foreach ($eventos_gerais  as $key => $value){
+      
+
+     if($value['event_name'] == $event){
+
+       $valor[] = $value;
+     }
+
+   }  
+
+   if(isset($valor)){
+
+
+    foreach ($valor[0] as $key => $value) {
+
+
+      if($value === NULL){
+       
+
+       $erro[] = $key; 
+       
+     }
+     
+   }
+
+   if(isset($erro)){
+
+     $total = array(
+      'error' => array(
+        'campos vazios' => $erro
+      ),
+      'success' => -1
+    );
+     
+     return $total;
+
+   }
+
+   if($_REQUEST['user_id'] == '0'){
+
+     DB::table('data_guest')->insertGetId(array(
+      'maze_id' => isset($_REQUEST['maze_id']) ? $_REQUEST['maze_id'] : NULL,
+      'event'  =>   $event,
+      'question_id' => isset($_REQUEST['question_id']) ? $_REQUEST['question_id'] : NULL,
+      'answer_id'   =>  isset($_REQUEST['answer_id']) ? $_REQUEST['answer_id'] : NULL,
+      'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
+      'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
+      'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
+      'start' => $jogadas, 
+      'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
+      'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
+      'async_timestamp' => $date
+
+    ));
+
+
+   }else{
+
                //////Tabela Data ////////////////////////
-                DB::table('data')->insertGetId(array(
+    DB::table('data')->insertGetId(array(
 
       'user_id' => isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : NULL ,
       'maze_id' => isset($_REQUEST['maze_id']) ? $_REQUEST['maze_id'] : NULL,
@@ -295,41 +295,41 @@ class EstatisticaController extends Controller
       'wrong_count'  =>  isset($_REQUEST['wrong_count']) ? $_REQUEST['wrong_count'] : NULL,
       'correct_count' => isset($_REQUEST['correct_count']) ? $_REQUEST['correct_count'] : NULL,
       'correct'       => isset($_REQUEST['correct']) ? $_REQUEST['correct'] : NULL,
-     'start' => $jogadas,
+      'start' => $jogadas,
       'elapsed_time' =>  isset($_REQUEST['elapsed_time']) ? $_REQUEST['elapsed_time'] : NULL, 
       'answers_read_count' => isset($_REQUEST['answers_read_count']) ? $_REQUEST['answers_read_count'] : NULL,
       'async_timestamp' => $date
 
-                ));
+    ));
 
-            }
+  }
 
-          
+  
 
-                 $resultado = array(
-                     
-                      "event_name" =>  $event,
-                      "success" => 1
+  $resultado = array(
+   
+    "event_name" =>  $event,
+    "success" => 1
 
-                 );
+  );
 
-                 return $resultado;
-              
+  return $resultado;
+  
 
-             }else{
+}else{
 
-              $resultado = array(
-                          'error' => array(
-                          'event_name' => 'Event invalido'
-                           ),
-                          'success' => -1
-                    );
-                
-                return $resultado;
+  $resultado = array(
+    'error' => array(
+      'event_name' => 'Event invalido'
+    ),
+    'success' => -1
+  );
+  
+  return $resultado;
 
-             }
+}
 
-    }
+}
 
     /**
      * Display the specified resource.
@@ -484,7 +484,7 @@ class EstatisticaController extends Controller
           "next_question"=> $startnextquestion, 
           "correct_count"=>$correct_count,
           "wrong_count"=>$wrong_count
-              
+          
         );
 
         return $load;
@@ -497,10 +497,10 @@ class EstatisticaController extends Controller
 
 
 
-    public function show($id)
-    {
+  public function show($id)
+  {
         //
-    }
+  }
 
     /**
      * Show the form for editing the specified resource.
@@ -535,4 +535,4 @@ class EstatisticaController extends Controller
     {
         //
     }
-}
+  }
