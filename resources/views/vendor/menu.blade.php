@@ -153,57 +153,9 @@
     </div>
 
 
-
-
-    <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
-    <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-<!--     <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script> -->
-   <!--  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> -->
-    <!-- Plugin for the momentJs  -->
-    <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
-    <!--  Plugin for Sweet Alert -->
-    <script src="{{asset('assets/js/plugins/sweetalert2.j')}}s"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="{{asset('assets/js/plugins/jquery.validate.min.j')}}s"></script>
-    <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-    <script src="{{asset('assets/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
-    <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-    <script src="{{asset('assets/js/plugins/bootstrap-selectpicker.js')}}" defer></script>
-    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-    <script src="{{asset('assets/js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
-    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-    <script src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
-    <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-    <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js')}}"></script>
-    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="{{asset('assets/js/plugins/jasny-bootstrap.min.js')}}"></script>
-    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-    <script src="{{asset('assets/js/plugins/fullcalendar.min.js')}}"></script>
-    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-    <script src="{{asset('assets/js/plugins/jquery-jvectormap.js')}}"></script>
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="{{asset('assets/js/plugins/nouislider.min.js')}}"></script>
-    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-    <!-- Library for adding dinamically elements -->
-    <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
-    
-    <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
-    <!--  Notifications Plugin    -->
-    <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{asset('assets/js/material-dashboard.js?v=2.1.1')}}" type="text/javascript"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="{{asset('assets/demo/demo.js')}}"></script>
     <script>
 
         $(document).ready(function() {
-
-
-            $('#question_type').tooltip(options);
-            
-
-            $().ready(function() {
 
                $('.selectpicker').selectpicker('refresh');
 
@@ -373,8 +325,6 @@
 
                 });
             });
-        });
-
     </script>
     <script>
         // $(document).ready(function() {
@@ -756,8 +706,48 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <!--script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
-      <script src="{{ asset('js/Alunos.js')}}" defer></script>
-      <script src="{{ asset('js/caixa.js')}}" defer></script>
+    <script src="{{ asset('js/Alunos.js')}}" defer></script>
+    <script src="{{ asset('js/caixa.js')}}" defer></script>
+    <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
+<!--     <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script> -->
+   <!--  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script> -->
+    <!-- Plugin for the momentJs  -->
+    <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="{{asset('assets/js/plugins/sweetalert2.j')}}s"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="{{asset('assets/js/plugins/jquery.validate.min.j')}}s"></script>
+    <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+    <script src="{{asset('assets/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
+    <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="{{asset('assets/js/plugins/bootstrap-selectpicker.js')}}" defer></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="{{asset('assets/js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    <script src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js')}}"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="{{asset('assets/js/plugins/jasny-bootstrap.min.js')}}"></script>
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    <script src="{{asset('assets/js/plugins/fullcalendar.min.js')}}"></script>
+    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+    <script src="{{asset('assets/js/plugins/jquery-jvectormap.js')}}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{asset('assets/js/plugins/nouislider.min.js')}}"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <!-- Library for adding dinamically elements -->
+    <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
+    
+    <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{asset('assets/js/material-dashboard.js?v=2.1.1')}}" type="text/javascript"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{{asset('assets/demo/demo.js')}}"></script>
 </body>
 
 </html>

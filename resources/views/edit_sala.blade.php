@@ -80,15 +80,16 @@
                                                         <label for="question_type" style="margin-right: 3.5px; padding-top:10%;">Tipo da pergunta:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 1'></i>&emsp;Texto"></option>
+                                                        <select class="selectpicker form-control room_type" data-style="btn btn-primary" name="question" id="question_type" style="float:left;">
+                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='meu title'></i>&emsp;Texto"></option>
                                                             <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
                                                             <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
                                                             <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
                                                         </select>
-                                                          <div id="tooltip_container"></div>
+                                                        <p id="tooltipBox" class="col-sm-6" style="z-index:9999;"></p>
                                                     </div>
                                                 </div>
+
                                             </div>
                                             <div class="col col-lg-4">
                                                 <div class="row" style="height:50px;">
@@ -97,7 +98,7 @@
                                                     </div>
                                                     <div class="col-7">
                                                         <select class="form-control selectpicker" data-style="btn btn-primary" name="room_type" id="room_type">
-                                                            <option selected value="right_key">Chave</option>
+                                                            <option selected  value="right_key">Chave</option>
                                                             <option value="hope_door">Porta da esperança</option>
                                                             <option value="true_or_false">Verdadeiro ou Falso</option>
                                                             <option value="multiple_forms">Multiplas Formas</option>
