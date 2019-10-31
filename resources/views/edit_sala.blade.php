@@ -8,7 +8,6 @@
 </div>
 @endif
 <input type="hidden" value="52" id="num_y">
-
 <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog larguramodal" role="document">
         <div class="modal-content">
