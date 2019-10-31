@@ -21211,7 +21211,7 @@ screen and (-ms-high-contrast:active) {
         height: 100%;
         width: 100%;
         position: absolute;
-        background-color: #282828;
+        background-color: #ffffff;
         display: block;
         content: "";
         z-index: 1
