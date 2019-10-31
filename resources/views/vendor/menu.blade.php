@@ -152,7 +152,6 @@
         </div>
     </div>
 
-
     <script>
 
         $(document).ready(function() {
@@ -703,6 +702,7 @@
 
             }
     </script>
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <!--script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
@@ -748,6 +748,8 @@
     <script src="{{asset('assets/js/material-dashboard.js?v=2.1.1')}}" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('assets/demo/demo.js')}}"></script>
+      <script src="{{ asset('js/Alunos.js')}}" defer></script>
+      <script src="{{ asset('js/caixa.js')}}" defer></script>
 </body>
 
 </html>

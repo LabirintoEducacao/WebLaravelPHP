@@ -57,6 +57,8 @@
 
 
 
+
+
   <div class="modal fade bd-example-modal-lg" id="addAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -74,7 +76,7 @@
 
           
 
-          <button type="button" class="close bg-primary" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close " data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -89,6 +91,7 @@
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
                 Enviar Convite
               </button>
+                
             </div>
           </div>
         </div>
@@ -111,23 +114,25 @@
             </div>
           </div>
           <div class="tab-pane fade " id="grupos" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="tab-content" id="divtabelagrupo">
+            
+           <div class="tab-content" id="divtabelagrupo">
+
+           
 
 
+           
 
-            </div>
-          </div>
-        </div>
-      </div>
+           </div>
+         </div>
       
-      <div class="modal-footer">
-        <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
-        <button type="submit" class="btn btn-success" data-dismiss="modal">salvar</button>
+     <div class="modal-footer">
+      <a class="btn btn-secondary" data-dismiss="modal">Fechar</a>
+      <button type="submit" class="btn btn-success" data-dismiss="modal">salvar</button>
 
 
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 
