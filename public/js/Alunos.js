@@ -333,7 +333,7 @@ function paginar(data,total){
                        '<tr class="gp'+ i +'">'+
                        '<th scope="row" id="cod'+parse[i].id +'"></th>'+
                        '<td>'+ parse[i].turma+ '</td>' +
-                       '<td>'+ '<a class="btn btn-primary btn-sm " onclick="addgrupo('+ parse[i].id +','+salaid + ')" style="color:white">Adicionar</a>' +'</td>' +
+                       '<td>'+ '<a  class="btn btn-primary btn-sm "  onclick="addgrupo('+ parse[i].id +','+salaid + ')" style="color:white" >Adicionar</a>' +'</td>' +
                        '</tr>'
                        
                        );
@@ -348,11 +348,36 @@ function paginar(data,total){
 
           function addgrupo(id, salaid){
 
-            console.log(id);
+            
             $.get("/admin/addgrupo/"+id+"/"+salaid).done( function(data){
-                console.log(data);
+
+
+              $('#grupos').append(
+                '<div class="alertainf container" >' +   
+                '<button type="button bg-primary" onclick="fechar()" class="close " onclick=""  aria-label="Close">'+
+                '<span aria-hidden="true">&times;</span>'+
+                '</button> '+
+                '<p>Grupo adicionado!!</p>'+
+                '</div> '
+            );
+     
 
             });
 
 
         }
+
+
+
+        function fechar(){
+
+          $('.alertainf').hide();
+        }
+
+
+
+        function bigteste(){
+
+         console.log('Teste');
+        }
+
