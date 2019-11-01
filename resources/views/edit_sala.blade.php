@@ -96,7 +96,7 @@
                                                         <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select class="form-control selectpicker" data-style="btn btn-primary" name="room_type" id="room_type">
+                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
                                                             <option selected value="right_key">Chave</option>
                                                             <option value="hope_door">Porta da esperança</option>
                                                             <option value="true_or_false">Verdadeiro ou Falso</option>
