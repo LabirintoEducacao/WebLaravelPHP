@@ -348,6 +348,53 @@ class UserController extends Controller
 
 
     
+//////////////////////////Thiago Grupos método
+    public function pegaGrupo($id)
+    {
+        $turmas=DB::table('turmas')->where('id_prof',$id)->select('id','turma')->get();
+        return view('grupos', ['turmas'=>$turmas]);
+        
+    }
+    public function addGrupo(Request $request)
+    {
+        $alunos=$request['alunos'];
+        $grupo=$request['grupo'];
+
+        $id=Auth::user()->id;
+        $ides=DB::table('turmas')->insertGetId(
+            ['id_prof' => $id, 'turma' => $grupo]
+        );
+
+        if(sizeof($alunos)>0)
+        {
+            $tamanho=sizeof($alunos);
+
+            for ($cont = 0; $cont < $tamanho; $cont++) {    
+                DB::table('alunos_turma')
+                ->insert(
+                    ['aluno_id' => intval($alunos[$cont]), 'turmas_id' => $ides]
+                );
+            }
+        }
+        return response()->json(['success' => 'Sucesso']);
+    }
+    public function removeGrupo($id)
+    {
+
+        DB::table('turmas')->where('id', '=', $id)->delete();
+        echo "teste";
+        return redirect('grupos/'.Auth::user()->id);
+    }
+    public function showalunos_grupos()
+    {
+        $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
+        JOIN role_user r ON u.id = r.user_id 
+        WHERE r.role_id=3  ORDER BY u.name';
+        $aluno = DB::select($sql);
+
+        return json_encode($aluno);    
+    }
+    //////////////////////////Thiago Grupos método
 
 
 
