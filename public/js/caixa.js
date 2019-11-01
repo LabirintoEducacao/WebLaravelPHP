@@ -526,9 +526,27 @@
                 b--;
              }else if(refresposta.length <= 2){
 
-                alert('Essa resposta reforço não pode ser removida pois a pergunta refoço deve conter pelo menos 2 reposta!');
+                  function alert5(msg, type){
+                   var html =  '<div class="alertContainer3 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-11">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-1">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer3').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  });
+                  }
 
-
+                  alert5("Essa resposta reforço não pode ser removida pois a pergunta refoço deve conter pelo menos 2 reposta !","error")
+          
              }
 
           });
@@ -714,9 +732,32 @@
                     a--;
                  }else if(corretos.length <= 2){
 
-                    alert('Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta!');
+                    // alert('Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta!');
 
-                 }
+
+                  function alert4(msg, type){
+                   var html =  '<div class="alertContainer3 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-11">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-1">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer3').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  });
+                  }
+
+                  alert4("Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta","error")
+          
+                  }
+                
 
               });
 
@@ -929,8 +970,9 @@
               }
 
 
-
-              if ((z == 1 && !ref.checked) || (z >= 2 && ref.checked)) {
+              if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false' )  || 
+                (!ref.checked && $('#room_type').val() == 'true_or_false' )) || 
+                (z >= 2 && ref.checked)){
                   $.ajax({
 
                       url: postURL + x,
@@ -967,8 +1009,9 @@
                           b = 0;
 
                       }
-
                   });
+
+                window.location.reload();
               } else {
 
                   function alert2(msg, type){
@@ -991,7 +1034,7 @@
                   }
 
                   alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error")
-          
+                  e.preventDefault();
              }
               if(ref.checked){
 
@@ -1007,7 +1050,7 @@
 
                   if( m > 0 || pergref[0].value === "" ){
 
-                  function alert(msg, type){
+                  function alert1(msg, type){
                   var html =  '<div class="alertContainer '+type+'">\n';
                   html += '<div class="row align-items-center">';
                   html += '<div class="col-sm-11">';
@@ -1027,8 +1070,8 @@
                   }
 
 
-                  alert("A campos a preencher na aba Refoço verifique!<br>Caso não necessite de reforço desmarque a caixa pergunta refoço.","error");
-
+                  alert1("A campos a preencher na aba Refoço verifique!<br>Caso não necessite de reforço desmarque a caixa pergunta refoço.","error");
+                  e.preventDefault();
 
                   }
 
@@ -1065,7 +1108,7 @@
                   }
 
                   alert3("A campos a preencher na aba Pergunta verifique!","error");
-
+                  e.preventDefault();
                   }
 
                   // i = 1;
