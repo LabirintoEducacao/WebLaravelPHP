@@ -316,17 +316,17 @@ class UserController extends Controller
         return redirect('admin/alunos/'. $request->get('sala_id'))->with($notification);
     }
 
-    public function deletar($id,$sala)
+  public function deletar($id,$sala)
     {
 
-        DB::table('sala_user')->where('id','=',$id)->delete();
-        $notification = array(
-                'message' => 'Aluno deletado com sucesso!',
-                'alert-type' => 'danger'
-                );
+        DB::table('sala_user')
+            ->where('user_id','=',$id)
+            ->where('sala_id','=',$sala)
+            ->delete();
+        
 
         // if(count($data) == 0){
-        return redirect('admin/alunos/'. $sala)->with($notification);
+        return redirect('admin/alunos/'. $sala);
         // }
         // return redirect('admin/alunos/'. $sala)->with('warning', 'Este aluno não pôde ser deletado!');
     }

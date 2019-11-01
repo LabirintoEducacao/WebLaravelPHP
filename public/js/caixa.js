@@ -1224,6 +1224,58 @@
 
       }
 
+
+
+
+
+
+$('#removerAlunoModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+    
+      var id = button.data('id'); 
+    
+      var nome = button.data('nome');
+    
+      var sala = button.data('sala'); 
+    
+      var modal = $(this);
+    
+//        modal.find("#tituloModal").html("Você realmente deseja deletar o usuário \'"+nome+"\' desta sala?");
+      modal.find('#confirmarRemoverAluno').attr('onclick', "removeAluno(" + id + "," + nome + "," + sala + ");");
+
+      });
+
+
+function removeAluno(id,nome,sala) {
+    console.log("XXX");
+    $.get("admin/deletar-aluno/" + id + "/" + sala).done(
+        function () {
+            $('#fecharModal').trigger('click');
+            var type = "danger";
+            $.notify({
+                message: "Aluno " + nome + " removido com sucesso!"
+            }, {
+                type: type,
+                timer: 4000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+        }
+    );
+    setTimeout(function () {
+        window.location.reload()
+    }, 450);
+}
+
+
+
+
+
+
+
+
       $(document).ready(function () {
 
           ///// Tempo do aleta reforco    
