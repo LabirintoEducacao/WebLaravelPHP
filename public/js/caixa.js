@@ -1288,6 +1288,19 @@
 
 
       });
+      ///////////////////////////////Thiago
+      $('#confirmalert').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var recipient_id = button.data('id'); // Extract info from data-* attributes
+      var recipient_turma = button.data('turma'); // Extract info from data-* attributes
+      var recipient_prof = button.data('prof'); // Extract info from data-* attributes
+
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      modal.find('#confirmar').attr('onclick', "removeGrupo(" + recipient_id + "," + recipient_prof + "," + recipient_turma + ")");
+
+      });
 
 
      
