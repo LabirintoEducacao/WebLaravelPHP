@@ -8,7 +8,7 @@
         <div class="card-header card-header-primary">
           <h4 class="card-title ">Controle de Jogadores
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addAlunoModal">
-              Adicionar aluno 
+              Adicionar aluno
             </button>
 
           </h4>
@@ -62,6 +62,8 @@
   <div class="modal fade " id="addAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
+
+
         <div class="card card-nav-tabs card-plain">
           <div class="card-header card-header-primary">
             
@@ -75,6 +77,7 @@
                       <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#alunos" role="tab" aria-controls="pills-home" aria-selected="true">Alunos</a>
                     </li>
                     <li class="nav-item">
+
 
                       <a class="nav-link " id="pills-profile-tab" data-toggle="pill" href="#grupos" role="tab" aria-controls="pills-profile" aria-selected="false">Grupos</a>
 
@@ -93,58 +96,59 @@
        </div>
        
 
-       <div class="modal-body">
-         <div class="row">
-          <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
-          <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
-          <div class="form-group" style="margin-top:3.5%">
-            <div class="container">
-              <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
-                Enviar Convite
-              </button>
-              
+
+        <div class="modal-body">
+          <div class="row">
+            <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
+            <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
+            <div class="form-group" style="margin-top:3.5%">
+              <div class="container">
+                <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
+                  Enviar Convite
+                </button>
+
+              </div>
+
             </div>
           </div>
-        </div>
 
-        <div class="row container">
-          <h5> Pesqusiar: </h5>
-          <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
-        </div>
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="alunos" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="tab-content" id="divtabela">
-
-            </div>
-            <div class="row justify-content-center">
-              <nav aria-label="Paginação">
-                <ul class="pagination justify-content-center">  
-
-                </ul>
-              </nav>
-            </div>
+          <div class="row container">
+            <h5> Pesqusiar: </h5>
+            <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
           </div>
-          <div class="tab-pane fade " id="grupos" role="tabpanel" aria-labelledby="nav-home-tab">
-            
-           <div class="tab-content" id="divtabelagrupo">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="alunos" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="tab-content" id="divtabela">
 
-             
+              </div>
+              <div class="row justify-content-center">
+                <nav aria-label="Paginação">
+                  <ul class="pagination justify-content-center">
 
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          
+            <div class="tab-pane fade " id="grupos" role="tabpanel" aria-labelledby="nav-home-tab">
 
-             
+              <div class="tab-content" id="divtabelagrupo">
+               
 
            </div>
+         </div>
          </div>
          
          <div class="modal-footer">
           <button type="submit" class="btn btn-success" data-dismiss="modal">Sair</button>
-
-
-        </div>
       </div>
+
     </div>
   </div>
+</div>
+</div>
+
 
 
   <div class="modal fade bd-example-modal-lg " id="addNovoAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -173,8 +177,12 @@
       </div>
     </div>
   </div>
-</div>
 
 
 
-@endsection
+
+  
+
+
+
+    @endsection
