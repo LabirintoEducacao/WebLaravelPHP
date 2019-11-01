@@ -716,6 +716,30 @@
 
                     alert('Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta!');
 
+
+                   function alert4(msg, type){
+                   var html =  '<div class="alertContainer3 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-11">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-1">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer3').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  });
+                  }
+
+                  alert4("Falta marca a resposta certa da aba pergunta ou aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error");
+                 
+                 }
+
                  }
 
               });
@@ -930,7 +954,7 @@
 
 
 
-              if ((z == 1 && !ref.checked) || (z >= 2 && ref.checked)) {
+              if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false' )  || (!ref.checked && $('#room_type').val() == 'true_or_false' )) || (z >= 2 && ref.checked)) {
                   $.ajax({
 
                       url: postURL + x,
@@ -971,7 +995,7 @@
                   });
               } else {
 
-                  function alert2(msg, type){
+                   function alert2(msg, type){
                    var html =  '<div class="alertContainer3 '+type+'">\n';
                   html += '<div class="row align-items-center">';
                   html += '<div class="col-sm-11">';
@@ -990,8 +1014,9 @@
                   });
                   }
 
-                  alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error")
+                  alert2("Falta marca a resposta certa da aba pergunta ou aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error")
           
+                 
              }
               if(ref.checked){
 

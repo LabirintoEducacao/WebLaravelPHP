@@ -81,7 +81,7 @@
                                                     </div>
                                                     <div class="col-7">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 1'></i>&emsp;Texto"></option>
+                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
                                                             <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
                                                             <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
                                                             <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
@@ -405,7 +405,7 @@
 
                     <div id="flip">
                         <div class="row align-items-center" style="cursor: pointer;">
-                            <div class="col-sm-10 container" onclick="abrir('panel'+{{$item->id}});">
+                            <div class="col-sm-10 container" onclick="abrir('panel'+{{$item->id}});" style="padding-left: 25px;">
                                 <?php
                                 $str2 = $item->pergunta;
                                 $total1 = strlen($str2); 
@@ -417,7 +417,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-2 col-sm-auto textototal{{$cont}}">
+                            <div class="col-2 col-sm-1  textototal{{$cont}}" style="padding-left: 8px;">
 
                             </div>
                             <div class="col-2 col-sm-1">
@@ -479,10 +479,13 @@
                     @if($path->id==$pp->path_id)
                     <!--                    <input value="{{$path->id}}"><br><br>-->
 
-                    <div id="flip2" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}">
+                    <div id="flip2">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
-                        <div class="row align-items-center" style="cursor: pointer;">
-                            <div class="col-sm-10 container" onclick="abrir('panel'+{{$ref->id}});">
+                        <div class="row align-items-center"  style="cursor: pointer;">
+                       
+                          <i class="material-icons" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">help</i>
+                          
+                            <div class="col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
                                 <?php
                         $str = $ref->pergunta;
                         $total = strlen($str); 
@@ -494,9 +497,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-2 col-sm-auto textototalref{{$cont2}}">
-
-
+                            <div class="col-2 col-sm-1 textototalref{{$cont2}}">
 
                             </div>
 
@@ -509,7 +510,7 @@
                                     <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>
                                 </div>
                             </div>
-                            <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
+                    <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
                                 <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
                             </div>
                         </div>
