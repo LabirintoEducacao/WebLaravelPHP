@@ -74,6 +74,12 @@
                             Editar Salas
                         </a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{url('/grupos/'.Auth::user()->id)}}">
+                            <i class="material-icons">group</i>
+                            Grupos
+                        </a>
+                    </li>
                     @endhasrole
                     @hasrole('user')
                     <li class="nav-item ">
