@@ -282,3 +282,4 @@ Route::get('/grupos/{id}', 'Admin\UserController@pegaGrupo');
 Route::get('/grupos/deletar-grupo/{id}', 'Admin\UserController@removeGrupo');
 Route::get('/admin/showalunos','Admin\UserController@showalunos_grupos');
 Route::post('/grupos/addaluno/','Admin\UserController@addGrupo');
+Route::get('/grupos/alunosgrupo/{id}','Admin\UserController@carregaAlunos');

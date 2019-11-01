@@ -351,6 +351,16 @@ class UserController extends Controller
 //////////////////////////Thiago Grupos método
     public function pegaGrupo($id)
     {
+        $turmas=DB::table('turmas')
+        ->select('id','turma')
+        ->where('id_prof',$id)
+        ->get();
+
+        return view('grupos')->with(['turmas'=>$turmas]);
+        
+    }
+    public function pegaAluno($id)
+    {
         $turmas=DB::table('turmas')->where('id_prof',$id)->select('id','turma')->get();
         return view('grupos', ['turmas'=>$turmas]);
         
@@ -393,6 +403,17 @@ class UserController extends Controller
         $aluno = DB::select($sql);
 
         return json_encode($aluno);    
+    }
+    public function carregaAlunos($id)
+    {
+        $query= 'SELECT u.name from users u
+        join alunos_turma alt on alt.aluno_id=u.id
+        join turmas t on alt.turmas_id=t.id
+        where t.id='.$id.';';
+
+        $alunos = DB::select($query); 
+
+        return $alunos;
     }
     //////////////////////////Thiago Grupos método
 

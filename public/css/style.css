@@ -339,6 +339,8 @@ a:hover #teste {
     display: inline-block;
     font-family:'Lato', sans-serif;
 }
+
+
 .alertContainer3{
     text-align: justify;
     color:#fff;
@@ -384,16 +386,9 @@ a:hover #teste {
     font-family:'Lato', sans-serif;
 }
 
-.alertainf{
 
-  width: 200px;
-  border:1px;
-  background-color:#ffc107;
-  border-radius: 5px;
-  float: right;
-  position:relative;
-  z-index: 999999999999999999;
-}
+
+
 
 
 
@@ -501,3 +496,13 @@ display: block;
  animation-duration: 5s;
 }*/
 /*///////////////////////////////////*/
+
+/*-------------thiago-------------*/
+#alunosModal
+{      
+    
+}
+
+
+
+/*-------------thiago-------------*/
