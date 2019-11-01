@@ -97,8 +97,8 @@
                                                     </div>
                                                     <div class="col-7">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
-                                                            <option selected value="right_key">Chave</option>
-                                                            <option value="hope_door">Porta da esperança</option>
+                                                            <option value="right_key">Chave</option>
+                                                            <option selected value="hope_door">Porta da esperança</option>
                                                             <option value="true_or_false">Verdadeiro ou Falso</option>
                                                             <option value="multiple_forms">Multiplas Formas</option>
                                                         </select>
