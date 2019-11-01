@@ -510,7 +510,18 @@ function salvarGrupo(id_prof) {
                 'X-CSRF-TOKEN': _token
             }
         });
-
+        $('#teste').trigger('click');
+        var type = "success";
+        $.notify({
+            message: "Grupo " + nome + " adicionado com sucesso"
+        }, {
+            type: type,
+            timer: 4000,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
         $.ajax({
             url: '/grupos/addaluno/',
             type: 'POST',
@@ -521,28 +532,32 @@ function salvarGrupo(id_prof) {
             dataType: 'JSON',
 
             success: function () {
-                $('#teste').trigger('click');
-                var type = "success";
-                $.notify({
-                    message: "Grupo " + nome + " adicionado com sucesso"
-                }, {
-                    type: type,
-                    timer: 4000,
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    }
-                });
-                setTimeout(function () {
-                    window.location.reload()
-                }, 450);
             },
             error: function (error) {
                 console.log(error);
             }
         });
+        setTimeout(function () {
+            window.location.reload()
+        }, 450);
 
     } else {
+        //$('#fecharGrupo').trigger('click');
+        var type = "warning";
+        $.notify(
+        {
+            message: "Você precisa dar um nome para o grupo!"
+        }, 
+        {
+            type: type,
+            timer: 4000,
+            placement: {
+                from: 'top',
+                align: 'right'
+            },
+            z_index: 9999
+        });
+        $('#nome').focus();        
         console.log("Nome vazio");
     }
 }
@@ -566,5 +581,39 @@ function addaluno2(id) {
         console.log(alunos);
     }
     // form action="{{ url('admin/aluno') }}" method="POST"
+}
+function linhaTabela(id)
+{
+    //console.log(id);
+
+    $("#linha"+id).attr("data-toggle","modal");
+    $("#linha"+id).attr("data-target","#alunosModal");
+
+    $.get("/grupos/alunosgrupo/"+id).done(
+    function (data)
+    {
+        console.log(data);
+    });
+    // $('#linha').trigger('click');
+
+    // $.get("/grupos/deletar-grupo/" + id).done(
+    //     function () {
+    //         $('#fecharGrupo').trigger('click');
+    //         var type = "danger";
+    //         $.notify({
+    //             message: "Grupo " + turma + " removido com sucesso"
+    //         }, {
+    //             type: type,
+    //             timer: 4000,
+    //             placement: {
+    //                 from: 'top',
+    //                 align: 'right'
+    //             }
+    //         });
+    //     }
+    // );
+    // setTimeout(function () {
+    //     window.location.reload()
+    // }, 450);
 }
 ////////////////////////////////////////////////////////Thiago
