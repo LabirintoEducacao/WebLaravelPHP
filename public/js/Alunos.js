@@ -88,7 +88,7 @@ function mostrarmaisalunos() {
                         '<td scope="row" id="cod' + parse[i].id + '"></td>' +
                         '<td>' + parse[i].name + '</td>' +
                         '<td>' + parse[i].email + '</td>' +
-                        '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ')">Adicionar</a>' +
+                        '<td>' + '<a class="btn btn-primary btn-sm  " id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ') " style="color:white">Adicionar</a>' +
                         '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                         '</tr>'
 
@@ -102,7 +102,7 @@ function mostrarmaisalunos() {
                     '<td scope="row" id="cod' + parse[i].id + '"></td>' +
                     '<td>' + parse[i].name + '</td>' +
                     '<td>' + parse[i].email + '</td>' +
-                    '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ')">Adicionar</a>' +
+                    '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ')" style="color:white">Adicionar</a>' +
                     '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                     '</tr>'
 
@@ -319,7 +319,8 @@ function mostrargrupos() {
                 '<tr class="gp' + i + '">' +
                 '<th scope="row" id="cod' + parse[i].id + '"></th>' +
                 '<td>' + parse[i].turma + '</td>' +
-                '<td>' + '<a  class="btn btn-primary btn-sm "  onclick="addgrupo(' + parse[i].id + ',' + salaid + ')" style="color:white" >Adicionar</a>' + '</td>' +
+                 '<td>' + '<a class="btn btn-primary btn-sm" id="addg' + parse[i].id + '" onclick="addgrupo(' + parse[i].id + ',' + salaid + ')" style="color:white">Adicionar</a>' +
+                 '<a id="doneg' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                 '</tr>'
             );
         }
@@ -328,24 +329,36 @@ function mostrargrupos() {
 
 function addgrupo(id, salaid) {
     $.get("/admin/addgrupo/" + id + "/" + salaid).done(function (data) {
-        $('#grupos').append(
-            '<div class="alertainf container" >' +
-            '<button type="button bg-primary" onclick="fechar()" class="close " onclick=""  aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
-            '</button> ' +
-            '<p>Grupo adicionado!!</p>' +
-            '</div> '
-        );
+
+         $('#addg' + id).css('display', 'none');
+            $('#doneg' + id).css('display', 'block');
+
+        function alert_grupo(msg, type){
+                   var html =  '<div class="alertContainer3 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-8">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-4">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer3').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  });
+                  }
+
+    alert_grupo("Grupo Adicionado com Sucesso !!","error");
+      
     });
 }
 
 function fechar() {
     $('.alertainf').hide();
-}
-
-function bigteste() {
-
-    console.log('Teste');
 }
 
 
@@ -568,3 +581,5 @@ function addaluno2(id) {
     // form action="{{ url('admin/aluno') }}" method="POST"
 }
 ////////////////////////////////////////////////////////Thiago
+
+
