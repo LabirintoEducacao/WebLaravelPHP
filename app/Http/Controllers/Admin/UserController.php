@@ -351,8 +351,12 @@ class UserController extends Controller
 //////////////////////////Thiago Grupos método
     public function pegaGrupo($id)
     {
-        $turmas=DB::table('turmas')->where('id_prof',$id)->select('id','turma')->get();
-        return view('grupos', ['turmas'=>$turmas]);
+        $turmas=DB::table('turmas')
+        ->select('id','turma')
+        ->where('id_prof',$id)
+        ->get();
+
+        return view('grupos')->with(['turmas'=>$turmas]);
         
     }
     public function pegaAluno($id)

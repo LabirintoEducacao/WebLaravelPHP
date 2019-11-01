@@ -38,7 +38,7 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    @endforeach               
                 </tbody>
             </table>
         </div>
@@ -163,7 +163,7 @@
                             <td data-toggle="modal" data-target="#alunosModal" width='90%'>teste
                             </td>
                             <td style="text-align: center">
-                                <a class="nav-link" id="{{$turma->id}}">X</a>
+                                <a >X</a>
                             </td>
                         </tr>
                         <!--  -->
