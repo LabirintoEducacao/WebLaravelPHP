@@ -38,13 +38,15 @@
 
                   </td>
                   <td>
+<!--
                     <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) \'{{$aluno->name}}\'? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
                       
 
                     </a>
+-->
                       
                       
-                      <a data-toggle="modal" data-target="#removerAlunoModal" data-id="{{$aluno->id}}" data-nome="{{$aluno->name}}" data-sala="'{{$id}}'" class="dropdown-item" id="{{'aluno'.$aluno->id}}"><i class="material-icons">clear</i></a>
+                      <a data-toggle="modal" data-target="#removerAlunoModal" data-id="{{$aluno->id}}" data-nome="{{$aluno->name}}" data-sala="{{$id}}" class="dropdown-item" id="{{'aluno'.$aluno->id}}"><i class="material-icons">clear</i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -211,3 +213,4 @@
 
 
     @endsection
+    

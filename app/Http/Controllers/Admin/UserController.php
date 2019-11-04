@@ -215,6 +215,7 @@ class UserController extends Controller
         $sala = Sala::find($id);
         if($sala->public==0){
             $data = DB::table('users')
+                ->select('users.id', 'users.name', 'users.email')
                 ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
                 ->orderBy('name')
                 ->where('sala_user.sala_id','=',$id)
@@ -324,9 +325,14 @@ class UserController extends Controller
             ->where('sala_id','=',$sala)
             ->delete();
         
-
+        $notification = array(
+                'message' => 'Aluno removido com sucesso!',
+                'alert-type' => 'success'
+            );
+      
+      
         // if(count($data) == 0){
-        return redirect('admin/alunos/'. $sala);
+        return redirect('admin/alunos/'. $sala)->with($notification);
         // }
         // return redirect('admin/alunos/'. $sala)->with('warning', 'Este aluno não pôde ser deletado!');
     }
