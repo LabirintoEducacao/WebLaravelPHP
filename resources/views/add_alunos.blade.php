@@ -38,10 +38,15 @@
 
                   </td>
                   <td>
+<!--
                     <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) \'{{$aluno->name}}\'? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
-                      <i class="material-icons">clear</i>
+                      
 
                     </a>
+-->
+                      
+                      
+                      <a data-toggle="modal" data-target="#removerAlunoModal" data-id="{{$aluno->id}}" data-nome="{{$aluno->name}}" data-sala="{{$id}}" class="dropdown-item" id="{{'aluno'.$aluno->id}}"><i class="material-icons">clear</i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -179,6 +184,28 @@
   </div>
 
 
+    
+    
+    <!--    CONFIRMAÇÃO DELETAR ALUNO-->
+    <div class="modal fade bd-example-modal-sm" id="removerAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloModal">Você realmente deseja remover o usuário desta sala?</h5>
+                <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row align-self-center">
+                    <button type="button" id="fecharModal" data-dismiss="modal" class="btn btn-secundary col">Cancelar</button>
+                    <a class="btn col btn-primary" id="confirmarRemoverAluno">Confirmar</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
   
@@ -186,3 +213,4 @@
 
 
     @endsection
+    

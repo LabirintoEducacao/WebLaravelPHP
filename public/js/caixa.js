@@ -1224,6 +1224,43 @@
 
       }
 
+
+
+
+
+
+
+
+//function removeAluno(id,nome,sala) {
+//    console.log("XXX");
+//    $.get("admin/deletar-aluno/" + id + "/" + sala).done(
+//        function () {
+//            $('#fecharModal').trigger('click');
+//            var type = "danger";
+//            $.notify({
+//                message: "Aluno " + nome + " removido com sucesso!"
+//            }, {
+//                type: type,
+//                timer: 4000,
+//                placement: {
+//                    from: 'top',
+//                    align: 'right'
+//                }
+//            });
+//        }
+//    );
+//    setTimeout(function () {
+//        window.location.reload()
+//    }, 450);
+//}
+
+
+
+
+
+
+
+
       $(document).ready(function () {
 
           ///// Tempo do aleta reforco    
