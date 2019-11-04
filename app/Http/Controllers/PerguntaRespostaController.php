@@ -230,7 +230,12 @@ class PerguntaRespostaController extends Controller
     {  
 
         $ref =0; 
+        
+        /*$sql = 'SELECT COUNT(id) FROM perguntas';
+        $sql += 'WHERE sala_id = ' . $id;
+        $sql += 'AND ordem IS NOT NULL';
 
+        $count = DB::select($sql); */
 
         $sala = DB::table('salas')
         ->where('id','=',$id)
