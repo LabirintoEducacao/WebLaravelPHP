@@ -67,12 +67,12 @@
         <div class="card card-nav-tabs card-plain">
           <div class="card-header card-header-primary">
             
-            <div class="nav-tabs-navigation">
+            <div class="nav-tabs-navigation container">
               <div class="row justify-content-between">
 
                 <div class="nav-tabs-wrapper">
                   
-                  <ul class="nav nav-tabs mb-3 col" id="pills-tab" role="tablist">
+                  <ul class="nav nav-tabs mb-3 col " id="pills-tab" role="tablist">
                     <li class="nav-item">
                       <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#alunos" role="tab" aria-controls="pills-home" aria-selected="true">Alunos</a>
                     </li>
@@ -114,8 +114,8 @@
           </div>
 
           <div class="row container">
-            <h5> Pesqusiar: </h5>
-            <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
+            <h5> Pesquisar: </h5>
+            <input id="search" name="search" type="text" class="search" >
           </div>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="alunos" role="tabpanel" aria-labelledby="nav-home-tab">
