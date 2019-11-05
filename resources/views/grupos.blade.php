@@ -6,7 +6,7 @@
             <h3 class="card-title" style="margin-top: 10px;">
                 Controle de grupos
                 @if(Auth::user()->hasAnyRole('professor'))
-                <a onlick="mostrarmaisalunos2()" data-toggle="modal" data-target="#addGrupoModal" class="btn btn-info" style="float:right; ">
+                <a onclick="mostrarmaisalunos2(0)" data-toggle="modal" data-target="#addGrupoModal" class="btn btn-info" style="float:right; ">
                     Adicionar novo grupo
                 </a>
                 <!-- <a class="btn btn-success" onclick="teste()" >Salvar</a> -->
@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     @foreach($turmas as $turma)
-                    <tr >
+                    <tr>
                         <td id="{{'linha'.$turma->id}}" onclick="linhaTabela({{$turma->id}})" width='90%'>{{$turma->turma}}
                         </td>
                         <td style="text-align: center">
@@ -34,11 +34,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="{{$turma->id}}">
                                 <a data-toggle="modal" data-target="#confirmalert" data-id="{{$turma->id}}" data-prof="{{Auth::user()->id}}" data-turma="'{{$turma->turma}}'" class="dropdown-item" id="{{'grupo'.$turma->turma}}">Excluir</a>
-                                <a class="dropdown-item">Editar</a>
+                                <a onclick="editTabela({{$turma->id}})" class="dropdown-item">Editar</a>
                             </div>
                         </td>
                     </tr>
-                    @endforeach               
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -134,17 +134,26 @@
 
 <!-- Modal alunos do grupos -->
 <div class="modal fade" tabindex="-1" id="alunosModal" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog larguramodal">
+    <div class="modal-dialog larguramodal" style="z_index:999999;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">COLOCAR NOME GRUPO</h5>
-                <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                
+                    <div class="col">
+                        <h5 class="modal-title nomegrupo" id="exampleModalLabel">COLOCAR NOME GRUPO</h5>
+                    </div>
+                    <div class="col-sm-8">
+                        <a onclick="mostrarmaisalunos2(1)" class="btn btn-sm btn-primary" style="color: white; float:right;margin-top:-1px;">Adicionar aluno</a>
+                    </div>
+                    <div class="col-sm-1" style="float:right;" >
+                        <button style="color:black;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                
             </div>
             @csrf
 
-            <div class="modal-body" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+            <div id="divdatabela"class="modal-body" style="margin-left: 5%;margin-right:1%;margin-top:3%">
                 <div class="form-group">
                     @if ($errors->has('nome'))
                     <div class="help-block">
@@ -157,29 +166,20 @@
                         <th>Nome do aluno</th>
                         <th>Ações</th>
                     </thead>
-                    <tbody>
-                        <!--  -->
-                        <tr>
-                            <td data-toggle="modal" data-target="#alunosModal" width='90%'>teste
-                            </td>
-                            <td style="text-align: center">
-                                <a >X</a>
-                            </td>
-                        </tr>
-                        <!--  -->
+                    <tbody id="tabelaalunosgrupos">
+
                     </tbody>
                 </table>
-                <div id="divtabela">
-                </div>
-                <div class="row justify-content-center">
-                    <nav aria-label="...">
-                        <ul class="pagination justify-content-center">
-                        </ul>
-                    </nav>
-                </div>
+            </div>
+            <div id="divtabela2">
+            </div>
+            <div class="row justify-content-center">
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center">
+                    </ul>
+                </nav>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-secondary" id="teste" data-dismiss="modal">Fechar</a>
                 <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
             </div>
         </div>
