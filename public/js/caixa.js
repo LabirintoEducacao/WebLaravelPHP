@@ -267,7 +267,7 @@
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
                       '</div>' +
                     '<div class="col-7">' +
-                      ' <select class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
+                      ' <select disabled class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
                       ' <option value="2">Imagem</option>' +
                       '   <option value="3">Vídeo</option>' +
@@ -276,12 +276,15 @@
                     '</div>' +
                     '</div>' +
                     '</div>' +
-                      '  <div class="col col-lg-4">' +
-                      '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
+                      '  <div class="col">' +
+                      '<div class="row">' +
+                    '<div class="col-2 col-sm-2" style=" margin-top: 12px;">' +
                       '   <label for="room_type_ref" style=" margin-right: 3.5px;">Interação:</label>' +
                       '</div>' +
-                    '<div class="col-7">' +
+                      '<div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">'+
+                      '<i class="material-icons info" data-toggle="modal" data-target=".bd-example-modal-sm" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>'+
+                      '</div>'+
+                    '<div class="col-8 col-sm-8">' +
                       '<select class="form-control selectpicker " data-style="btn btn-primary" name="room_type_ref" id="room_type_ref">' +
                       '<option selected value="right_key">Chave</option>' +
                       '<option value="hope_door">Porta da esperança</option>' +
@@ -384,7 +387,7 @@
                       '<label for="question_type">Tipo da Resposta:</label>' +
                       '</div>'+
                       '<div class="col-7">'+
-                      '<select class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
+                      '<select disabled  class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
                       ' <option selected value="1">Texto</option>' +
                       '<option value="2">Imagem</option>' +
                       '<option value="3">Vídeo</option>' +
@@ -1351,6 +1354,13 @@ function alertaPerg(){
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this);
       modal.find('#confirmar').attr('onclick', "removeGrupo(" + recipient_id + "," + recipient_prof + "," + recipient_turma + ")");
+
+      });
+
+
+      $('#modalinfo').on('hidden.bs.modal', function (event){
+
+        $('body').addClass('modal-open');
 
       });
 
