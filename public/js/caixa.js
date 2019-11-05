@@ -192,7 +192,7 @@
                       '<div class="card houvercard">' +
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
-                      ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
+                      ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '<div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
                       '<div class="row" style="height:50px;">' +
@@ -299,7 +299,7 @@
 
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (REFORÇO):</label>' +
                       ' <div class=" container">' +
-                      ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
+                      ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '<div class="row" style="height:50px;">' +

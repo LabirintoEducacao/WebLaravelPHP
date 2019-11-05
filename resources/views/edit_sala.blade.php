@@ -131,7 +131,7 @@
                                     <!--   Ambinete  -->
                                     <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
                                     <div class=" container">
-                                        <div class="row" style="line-height: 40px; margin-bottom: 10px;">
+                                        <div class="row justify-content-between " style="line-height: 40px; margin-bottom: 10px;">
                                             <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
                                                 <div class="row" style="height:50px;">
@@ -148,7 +148,7 @@
                                             </div>
                                             <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row" style="height:50px;">
+                                                <div class="row " style="height:50px;">
                                                     <div class="col-5" style="height:100%;">
                                                         <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>
                                                     </div>
@@ -162,7 +162,7 @@
                                                 </div>
                                             </div>
                                            
-                                           
+
                                         </div>
                                     </div>
                                 </div>
