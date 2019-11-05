@@ -510,7 +510,9 @@
                         <input type="hidden" name="sala_id" id="sala_id" value="0">
                         <div class="form-group">
                             <label for="nome" display="inline">Nome da Sala:</label>
-                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required>
+                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required aria-describeby="nomeHelp">
+                                <small id="nameHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
+
 
                             @if ($errors->has('nome'))
                             <div class="help-block">
@@ -522,6 +524,8 @@
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
                             <input type="time" name="time2" id="time2" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,0);" value="00:00:00">
+                            <small id="namelHelp" style="color:red;font-size:10px">CASO DEIXE COMO 0, O ALUNO TERÁ TEMPO ILIMITADO PARA RESPONDER AS PERGUNTAS </small>
+
                             <input type="hidden" name="time5" id="time5" class="form-control" value="0">
                         </div>
 
