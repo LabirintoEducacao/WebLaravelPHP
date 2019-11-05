@@ -105,7 +105,6 @@
                      
                 }
                   a++;
-                  i++;
                 }
           });
 
@@ -177,7 +176,6 @@
 
                 }
                   b++;
-                  i2++;
                 }
              
           });
@@ -295,8 +293,7 @@
                       '</div>' +
                       '<div class="container">' +
                       ' <div class="textareaborda2">' +
-                      '<textarea id="pergunta-reforco" type="text" name="reforco" rows="2" cols="50" class= "form-control col" placeholder="Faça sua pergunta reforço" maxlength="500" required aria-describeby="perguntaRHelp"></textarea>' +
-                      '<small id="perguntaRHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>' +
+                      '<textarea id="pergunta-reforco" type="text" name="reforco" rows="2" cols="50" class= "form-control col" placeholder="Faça sua pergunta reforço" maxlength="500" required></textarea>' +
                       '</div>' +
                       '</div>' +
 
@@ -376,7 +373,6 @@
                       '<div class="col-9">' +
                       '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>' +
                       '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
-                      '<small id="respostaRHelp" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>'+
                       '</div>' +
                       '<div class="col">' +
                       '<div class="row" style="height:50px;">' +
