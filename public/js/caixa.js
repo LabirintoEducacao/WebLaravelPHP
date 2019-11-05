@@ -581,7 +581,7 @@
               console.log(lista2);
 
               $.ajax({
-                  url: 'http://127.0.0.1:8000/admin/alterar-ordem',
+                  url: '/admin/alterar-ordem',
                   method: "POST",
                   data: {
                       lista: lista
@@ -604,7 +604,7 @@
           function addUser(id,salaid) {
 
               $.ajax({
-                  url: 'http://127.0.0.1:8000/admin/aluno/'+id,
+                  url: '/admin/aluno/'+id,
                   method: "POST",
                   data: {
                       id: id,
@@ -793,7 +793,7 @@
                   var recipient = button.data('whatever');
                   console.log(recipient);
                   $.ajax({
-                      url: 'http://127.0.0.1:8000/admin/busca-perg',
+                      url: '/admin/busca-perg',
                       method: "POST",
                       data: {
                           id: recipient
