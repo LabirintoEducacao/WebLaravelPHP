@@ -373,7 +373,7 @@ function fechar() {
 var alunos = new Array();
 
 $('#addGrupoModal').on('show.bs.modal', function (e) {
-    mostrarmaisalunos2();
+    //mostrarmaisalunos2(0);
     pesquisa();
 });
 
@@ -381,109 +381,225 @@ $('#addGrupoModal').on('hide.bs.modal', function (e) {
     $('#divtabela').empty();
     $('.pagination').empty();
 });
-function mostrarmaisalunos2() {
-    $.get("/admin/showalunos").done(function (data) {
-        console.log(data);
-        var contagem = 1;
-        var contagem1 = 0;
-        var max = 7;
-        var i = 0;
-        parse = JSON.parse(data);
-        var paginacao = Math.ceil(parse.length / max);
-        $('#divtabela').append(
-            '<table id="table' + contagem + '" class="table container-fluid" style="display:block;">' +
-            '<thead >' +
-            '<tr>' +
-            '<th scope="col">  </th>' +
-            '<th scope="col"> Nome: </th>' +
-            '<th scope="col"> Email: </th>' +
-            '<th scope="col"></th>' +
-            '</tr>' +
-            '</thead>' +
-            '<tbody id="body' + contagem + '" >' +
-            '</tbody>' +
-            '</table>');
-        for (i = 0; i < parse.length; i++) {
-            if (contagem1 > max) {
-                contagem++;
+$('#alunosModal').on('hide.bs.modal', function (e) {
 
-                $('#divtabela').append(
-                    '<table id="table' + contagem + '" class="table container-fluid" style="display:none;">' +
-                    '<thead >' +
-                    '<tr>' +
-                    '<th scope="col"> </th>' +
-                    '<th scope="col"> Nome: </th>' +
-                    '<th scope="col"> Email: </th>' +
-                    '<th scope="col"></th>' +
-                    '</tr>' +
-                    '</thead>' +
-                    '<tbody id="body' + contagem + '" >' +
-                    '</tbody>' +
-                    '</table>');
-                contagem1 = 0;
-            }
-            if (i > 0) {
-                if (parse[i].id != parse[(i - 1)].id) {
+    $('#divtabela2').empty();
+    $('.pagination').empty();
+});
+
+function mostrarmaisalunos2(option) {
+    $('.pagination').empty();
+    if (option == 0) {
+        $.get("/admin/showalunos").done(function (data) {
+            console.log(option);
+            let contagem = 1;
+            let contagem1 = 0;
+            let max = 7;
+            let i = 0;
+            parse = JSON.parse(data);
+            let paginacao = Math.ceil(parse.length / max);
+            $('#divtabela').append(
+                '<table id="table' + contagem + '" class="table container-fluid" style="display:block;">' +
+                '<thead >' +
+                '<tr>' +
+                '<th scope="col">  </th>' +
+                '<th scope="col"> Nome: </th>' +
+                '<th scope="col"> Email: </th>' +
+                '<th scope="col"></th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody id="body' + contagem + '" >' +
+                '</tbody>' +
+                '</table>');
+            for (i = 0; i < parse.length; i++) {
+                if (contagem1 > max) {
+                    contagem++;
+
+                    $('#divtabela').append(
+                        '<table id="table' + contagem + '" class="table container-fluid" style="display:none;">' +
+                        '<thead >' +
+                        '<tr>' +
+                        '<th scope="col"> </th>' +
+                        '<th scope="col"> Nome: </th>' +
+                        '<th scope="col"> Email: </th>' +
+                        '<th scope="col"></th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody id="body' + contagem + '" >' +
+                        '</tbody>' +
+                        '</table>');
+                    contagem1 = 0;
+                }
+                if (i > 0) {
+                    if (parse[i].id != parse[(i - 1)].id) {
+                        $('#body' + contagem).append(
+                            '<tr>' +
+                            '<td scope="row" id="cod' + parse[i].id + '"></td>' +
+                            '<td>' + parse[i].name + '</td>' +
+                            '<td>' + parse[i].email + '</td>' +
+                            '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(0,' + parse[i].id + ')">Adicionar</a>' +
+                            '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                            '</tr>'
+
+                        );
+                        contagem1++;
+                    }
+                } else {
                     $('#body' + contagem).append(
                         '<tr>' +
                         '<td scope="row" id="cod' + parse[i].id + '"></td>' +
                         '<td>' + parse[i].name + '</td>' +
                         '<td>' + parse[i].email + '</td>' +
-                        '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(' + parse[i].id + ')">Adicionar</a>' +
+                        '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(0,' + parse[i].id + ')">Adicionar</a>' +
                         '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                         '</tr>'
-
                     );
                     contagem1++;
                 }
-            } else {
-                $('#body' + contagem).append(
-                    '<tr>' +
-                    '<td scope="row" id="cod' + parse[i].id + '"></td>' +
-                    '<td>' + parse[i].name + '</td>' +
-                    '<td>' + parse[i].email + '</td>' +
-                    '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(' + parse[i].id + ')">Adicionar</a>' +
-                    '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
-                    '</tr>'
-                );
-                contagem1++;
             }
-        }
-        if (contagem > 5) {
-            for (i = 1; i <= 5; i++) {
-                if (i == 1) {
-                    $('.pagination').append(
-                        '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
+            if (contagem > 5) {
+                for (i = 1; i <= 5; i++) {
+                    if (i == 1) {
+                        $('.pagination').append(
+                            '<li class="page-item active"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
 
+                    } else {
+                        $('.pagination').append(
+                            '<li class="page-item"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
+                    }
+                }
+                $('.pagination').append(
+                    '<li class="page-item"><a class="page-link" onclick="paginar(0,' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                );
+            }
+            if (contagem <= 5) {
+                for (i = 1; i <= contagem; i++) {
+                    if (i == 1) {
+                        $('.pagination').append(
+                            '<li class="page-item active"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
+                    } else {
+                        $('.pagination').append(
+                            '<li class="page-item"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
+                    }
+                }
+                $('.pagination').append(
+                    '<li class="page-item"><a class="page-link" onclick="paginar(0,' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                );
+            }
+        });
+    } else {
+        $.get("/admin/showalunos").done(function (data) {
+            console.log(option);
+            let contagem = 1;
+            let contagem1 = 0;
+            let max = 7;
+            let i = 0;
+            parse = JSON.parse(data);
+            let paginacao = Math.ceil(parse.length / max);
+            $('#divtabela2').append(
+                '<table id="table' + contagem + '" class="table" style="display:block;">' +
+                '<thead >' +
+                '<tr>' +
+                '<th >  </th>' +
+                '<th > Nome: </th>' +
+                '<th > Email: </th>' +
+                '<th ></th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody id="body' + contagem + '" >' +
+                '</tbody>' +
+                '</table>');
+            for (i = 0; i < parse.length; i++) {
+                if (contagem1 > max) {
+                    contagem++;
+
+                    $('#divtabela2').append(
+                        '<table id="table' + contagem + '" class="table" style="display:none;">' +
+                        '<thead >' +
+                        '<tr>' +
+                        '<th > </th>' +
+                        '<th > Nome: </th>' +
+                        '<th > Email: </th>' +
+                        '<th ></th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody id="body' + contagem + '" >' +
+                        '</tbody>' +
+                        '</table>');
+                    contagem1 = 0;
+                }
+                if (i > 0) {
+                    if (parse[i].id != parse[(i - 1)].id) {
+                        $('#body' + contagem).append(
+                            '<tr>' +
+                            '<td style="width:100%;"; id="cod' + parse[i].id + '"></td>' +
+                            '<td style="width:100%;">' + parse[i].name + '</td>' +
+                            '<td style="width:100%;">' + parse[i].email + '</td>' +
+                            '<td style="width:100%;">' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
+                            '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                            '</tr>'
+
+                        );
+                        contagem1++;
+                    }
                 } else {
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
+                    $('#body' + contagem).append(
+                        '<tr>' +
+                        '<td style="width:100%;" id="cod' + parse[i].id + '"></td>' +
+                        '<td style="width:100%;">' + parse[i].name + '</td>' +
+                        '<td style="width:100%;">' + parse[i].email + '</td>' +
+                        '<td style="width:100%;">' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
+                        '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                        '</tr>'
                     );
+                    contagem1++;
                 }
             }
-            $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
-            );
-        }
-        if (contagem <= 5) {
-            for (i = 1; i <= contagem; i++) {
-                if (i == 1) {
-                    $('.pagination').append(
-                        '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
-                } else {
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
+            if (contagem > 5) {
+                for (i = 1; i <= 5; i++) {
+                    if (i == 1) {
+                        $('.pagination').append(
+                            '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
+
+                    } else {
+                        $('.pagination').append(
+                            '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
+                    }
                 }
+                $('.pagination').append(
+                    '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                );
             }
-            $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
-            );
-        }
-    });
+            if (contagem <= 5) {
+                for (i = 1; i <= contagem; i++) {
+                    if (i == 1) {
+                        $('.pagination').append(
+                            '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
+                    } else {
+                        $('.pagination').append(
+                            '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                        );
+                    }
+                }
+                $('.pagination').append(
+                    '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                );
+            }
+        });
+
+
+        console.log(option);
+        console.log("Testando");
+    }
 }
+
 function removeGrupo(id, prof_id, turma) {
     console.log(prof_id);
     $.get("/grupos/deletar-grupo/" + id).done(
@@ -506,6 +622,7 @@ function removeGrupo(id, prof_id, turma) {
         window.location.reload()
     }, 450);
 }
+
 function salvarGrupo(id_prof) {
     var nome = $("#nome").val();
     if (nome != "") {
@@ -565,30 +682,41 @@ function salvarGrupo(id_prof) {
         console.log("Nome vazio");
     }
 }
-function addaluno2(id) {
-    if ($('#add' + id + ':visible').length == 0) {
-        $('#done' + id).css('display', 'none');
-        $('#add' + id).css('display', 'block');
-        for (var i = 0; i < alunos.length; i++) {
-            if (alunos[i] === id) {
-                alunos.splice(i, 1);
+
+function addaluno2(option, id) {
+
+    if (option == 0) {
+        console.log(option);
+        if ($('#add' + id + ':visible').length == 0) {
+            $('#done' + id).css('display', 'none');
+            $('#add' + id).css('display', 'block');
+            for (var i = 0; i < alunos.length; i++) {
+                if (alunos[i] === id) {
+                    alunos.splice(i, 1);
+                }
             }
+        } else {
+            $('#add' + id).css('display', 'none');
+            $('#done' + id).css('display', 'block');
+            $('#done' + id).attr("onclick", "addaluno2(0," + id + ")");
+            alunos.push(id);
         }
     } else {
-        $('#add' + id).css('display', 'none');
-        $('#done' + id).css('display', 'block');
-        $('#done' + id).attr("onclick", "addaluno2(" + id + ")");
-        alunos.push(id);
+        console.log(option);
     }
+
 }
-function editTabela(id)
-{
-    $('#linha'+id).trigger('click');
+
+function editTabela(id) {
+    $('#linha' + id).trigger('click');
 }
+
 function linhaTabela(id) {
     $("#linha" + id).attr("data-toggle", "modal");
     $("#linha" + id).attr("data-target", "#alunosModal");
 
+    // let tabela="<table class='table table-hover'><head class='text-primary'><th>Nome do aluno</th><th>Ações</th></thead><tbody id='tabelaalunosgrupos'></tbody></table>"
+    // $("#divdatabela").append(tabela);
     $.get("/grupos/nomegrupo/" + id).done(
         function (nome) {
             $('.nomegrupo').text(nome[0].turma);
@@ -598,11 +726,12 @@ function linhaTabela(id) {
         function (data) {
             $('#tabelaalunosgrupos').empty();
             for (let i = 0; i < data.length; i++) {
-                var linha = $("<tr id='aluno" + data[i].id + "'><td data-toggle='modal' data-target='#alunosModal' width='90%'>" + data[i].name + "</td><td style='text-align: center'><a onclick='removeAluno(" + data[i].id + ',' + data[i].turma + ")'>X</a></td></tr>");
+                var linha = $("<tr id='aluno" + data[i].id + "'><td data-toggle='modal' data-target='#alunosModal' width='90%'>" + data[i].name + "</td><td style='text-align: center'><a style='color:red;' onclick='removeAluno(" + data[i].id + ',' + data[i].turma + ")'>X</a></td></tr>");
                 $("#tabelaalunosgrupos").append(linha);
             }
         });
 }
+
 function removeAluno(id, turma) {
 
     console.log(id);
