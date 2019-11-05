@@ -346,10 +346,17 @@
                     <div class="col-12 col-md-auto">
                         <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
                     </div>
+                    @if(3 > $c_perg)
                     <div class="col-12 col-md-auto">
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
                             </i>&emsp;Pergunta</button>
                     </div>
+                    @else
+                    <div class="col-12 col-md-auto">
+                        <button class="btn btn-success-disabled btn-sm" style="width:100%;" onclick="alertaPerg();"><i class="material-icons">add
+                            </i>&emsp;Pergunta</button>
+                    </div>
+                @endif
 
                     <div class="col-12 col-md-auto">
 

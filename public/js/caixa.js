@@ -1335,6 +1335,33 @@
 
 
       });
+
+
+
+
+
+
+function alertaPerg(){
+    
+    $.notify({
+            message: "São permitidas apenas 3 perguntas por sala"
+        }, {
+            type: 'warning',
+            timer: 800,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
+}
+
+
+
+
+
+
+
+
       ///////////////////////////////Thiago
       $('#confirmalert').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal
