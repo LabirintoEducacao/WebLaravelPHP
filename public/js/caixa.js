@@ -1,16 +1,45 @@
       $(document).ready(function () {
 
+          //$('#pergunta').summernote();
 
 
           var postURL = 'editar-sala/';
-          
-          
           var i = 0;
           var i2 = 0;
-
+          // botao para add resposta fields
           var a = 0;
           var b = 0;
-  
+          //           launch_toast();
+
+          // $('#add').click(function () {
+          //     if (a < 3) {
+          //         $('#dynamic_field').append('' +
+          //             '<tr id="row' + i + '" class="dynamic-added">' +
+          //             '<td>' +
+          //             '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control tipo_resp">' +
+          //             '<option selected value="1">Texto</option>' +
+          //             '<option value="2">Imagem</option>' +
+          //             '<option value="3">Vídeo</option>' +
+          //             '<option value="4">Áudio</option>' +
+          //             '</select>' +
+          //             '</td>' +
+          //             '<td>' +
+          //             '<select name ="corret[]" class="form-control corret">' +
+          //             '<option value="1">Certa</option>' +
+          //             '<option selected value="0">Errada</option>' +
+          //             '</select>' +
+          //             '</td>' +
+          //             '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required/>'+
+          //              '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
+          //             '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
+          //             '</tr>');
+          //         a++;
+          //     } else {
+
+
+          //     }
+
+          // });
           
           $('#add').click(function () {
               if (a < 3) {
@@ -76,7 +105,6 @@
                      
                 }
                   a++;
-                  i++;
                 }
           });
 
@@ -148,7 +176,6 @@
 
                 }
                   b++;
-                  i2++;
                 }
              
           });
@@ -334,6 +361,38 @@
                       '</div>' +
                       '</div>' +
 
+
+
+                      // '<table class="table table-bordered table-hover hea" id="dynamic_field2" border="0">' +
+                      // '<thead>' +
+                      // '<tr>' +
+                      // '<td>Tipo da Resposta</td>' +
+                      // '<td>Definição da Resposta</td>' +
+                      // '<td>Resposta</td>' +
+                      // '</tr>' +
+                      // '</thead>' +
+                      // '<tbody>' +
+                      // '<tr>' +
+                      // '<td>' +
+                      // '<select name ="tipo_resp_ref[]" class="form-control tipo_resp_ref">' +
+                      // '<option selected value="1">Texto</option>' +
+                      // '<option value="2">Imagem</option>' +
+                      // '<option value="3">Vídeo</option>' +
+                      // '<option value="4">Áudio</option>' +
+                      // '</select>' +
+                      // '</td>' +
+                      // '<td>' +
+                      // '<select name ="corret_ref[]" class="form-control corret_ref">' +
+                      // '<option selected value="1">Certa</option>' +
+                      // '<option value="0">Errada</option>' +
+                      // '</select>' +
+                      // '</td>' +
+                      // '<td><input type="text" name="resposta_ref[]" placeholder="Resposta" class="form-control name_list resposta_ref" maxlength="500" required>' +
+                      // '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id"></td>' +
+                      // '<td><input type="button" class="teste" value="Add" /></td>' +
+                      // '</tbody>' +
+                      // '</table>' +
+
                       '<div class="card houvercard">' +
                       '<!--   Resposta -->' +
                       '<div class=" container" style=" margin-top: 10px;">' +
@@ -391,6 +450,37 @@
                       '</div>' +
                       '</div>'
 
+
+                      //reforco path
+                      //                      '<div class="hea">' +
+                      //                      '<br>' +
+                      //                      '<span style="color: black;">Selecionar o ambiente para pergunta reforço:</span><br>' +
+                      //                      '<br>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
+                      //                      '<label for="answer_boolean_ref" class="col">Tipo:</label>' +
+                      //                      '<select name="answer_boolean_ref" id="answer_boolean_ref" class="col">' +
+                      //                      '<option selected value="1">Corredor</option>' +
+                      //                      '<option value="2">Labirinto</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<label for="tamanho_ref" class="col">Tamanho:</label>' +
+                      //                      '<select name="tamanho_ref" id="tamanho_ref" class="col">' +
+                      //                      '<option selected value="1">Pequeno</option>' +
+                      //                      '<option value="2">Medio</option>' +
+                      //                      '<option value="3">Grande</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '<div class="form-group row">' +
+                      //                      '<label for="largura_ref" class="col">Largura:</label>' +
+                      //                      '<select name="largura_ref" id="largura_ref" class="col">' +
+                      //                      '<option selected value="1">Pequeno</option>' +
+                      //                      '<option value="2">Medio</option>' +
+                      //                      '<option value="3">Grande</option>' +
+                      //                      '</select>' +
+                      //                      '</div>' +
+                      //                      '</div>'
                   );
 
                   $(".teste").trigger('click');
@@ -635,7 +725,6 @@
                 '</div>'+
                 '</div>'
                   );
-              i++;
 
               // Acao para botao deletar remove fields
               $(document).on('click', '.btn_remove', function () {
@@ -1223,43 +1312,6 @@
           console.log(aluno);
 
       }
-
-
-
-
-
-
-
-
-//function removeAluno(id,nome,sala) {
-//    console.log("XXX");
-//    $.get("admin/deletar-aluno/" + id + "/" + sala).done(
-//        function () {
-//            $('#fecharModal').trigger('click');
-//            var type = "danger";
-//            $.notify({
-//                message: "Aluno " + nome + " removido com sucesso!"
-//            }, {
-//                type: type,
-//                timer: 4000,
-//                placement: {
-//                    from: 'top',
-//                    align: 'right'
-//                }
-//            });
-//        }
-//    );
-//    setTimeout(function () {
-//        window.location.reload()
-//    }, 450);
-//}
-
-
-
-
-
-
-
 
       $(document).ready(function () {
 

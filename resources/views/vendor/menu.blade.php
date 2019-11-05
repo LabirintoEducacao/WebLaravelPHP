@@ -160,6 +160,7 @@
 
 
 
+
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <!--     <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script> -->
@@ -202,44 +203,6 @@
     <script src="{{asset('assets/demo/demo.js')}}"></script>
     <script>
 
-        
-        
-        
-                    
-            
-            $('#removerAlunoModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget);
-    
-      var id = button.data('id'); 
-    
-    var nome = button.data('nome');
-    
-      var sala = button.data('sala'); 
-    
-      var modal = $(this);
-                
-                var url = 'http://127.0.0.1:8000/admin/deletar-aluno/'+id+'/'+sala;
-                
-                //var url2 = '{{url("http://127.0.0.1:8000/admin/deletar-aluno/".'+id+'."/".'+sala+')}}'
-                
-
-                console.log(url)
-                console.log(url2)
-    
-        modal.find("#tituloModal").html("Você realmente deseja deletar o usuário \'"+nome+"\' desta sala?");
-      modal.find('#confirmarRemoverAluno').on('click',function(){
-          window.location.href = url;
-      })
-      //attr('onclick', 'window.location.href = {{url("http://127.0.0.1:8000/admin/deletar-aluno/".'+id+'."/".'+sala')}});
-    
-    
-
-      });
-            
-        
-        
-        
-        
         $(document).ready(function() {
 
 
@@ -795,14 +758,6 @@
                 });
 
             }
-            
-            
-            
-            
-            
-
-            
-            
     </script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <!--script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script-->

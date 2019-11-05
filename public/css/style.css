@@ -388,7 +388,20 @@ a:hover #teste {
 
 
 
+.search{
 
+  width:60%;
+  height: 40px ; 
+  border-radius: 5px;
+  -webkit-transition: all 300ms ease-in-out;
+
+}
+
+.search:focus{
+
+width:80%;
+
+}
 
 
 
@@ -498,10 +511,11 @@ display: block;
 /*///////////////////////////////////*/
 
 /*-------------thiago-------------*/
-#alunosModal
-{      
+#alunosModal a
+{       
     
 }
+
 
 
 
