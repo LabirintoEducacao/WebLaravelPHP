@@ -115,7 +115,9 @@
                                     <div class="container" style="padding-top:2%">
                                         <!--                                        <br>-->
                                         <div class="textareaborda2" style="display:block;">
-                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
+                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required aria-describeby="perguntaHelp"></textarea>
+
+                                            <small id="perguntaHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
                                         </div>
 
                                         <!--
@@ -134,7 +136,7 @@
                                     <!--   Ambinete  -->
                                     <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
                                     <div class=" container">
-                                        <div class="row" style="line-height: 40px; margin-bottom: 10px;">
+                                        <div class="row justify-content-between " style="line-height: 40px; margin-bottom: 10px;">
                                             <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
                                                 <div class="row" style="height:50px;">
@@ -151,7 +153,7 @@
                                             </div>
                                             <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row" style="height:50px;">
+                                                <div class="row " style="height:50px;">
                                                     <div class="col-5" style="height:100%;">
                                                         <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>
                                                     </div>
@@ -164,21 +166,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-4">
-                                                <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
-                                                        <label for="largura" style="margin-right: 3.5px; padding-top:10%;">Largura do Labirinto:</label>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <select name="largura" id="largura" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
-                                                            <option selected value="1">Pequeno</option>
-                                                            <option value="2">Medio</option>
-                                                            <option value="3">Grande</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -192,6 +181,7 @@
                                             <div class="col-9">
                                                 <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
                                                 <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
+                                                <small id="Help" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>
                                             </div>
 
                                             <div class="col-12 col-sm-3">
@@ -349,10 +339,17 @@
                     <div class="col-12 col-md-auto">
                         <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
                     </div>
+                    @if(3 > $c_perg)
                     <div class="col-12 col-md-auto">
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
                             </i>&emsp;Pergunta</button>
                     </div>
+                    @else
+                    <div class="col-12 col-md-auto">
+                        <button class="btn btn-success-disabled btn-sm" style="width:100%;" onclick="alertaPerg();"><i class="material-icons">add
+                            </i>&emsp;Pergunta</button>
+                    </div>
+                @endif
 
                     <div class="col-12 col-md-auto">
 
@@ -505,7 +502,9 @@
                             </div>
 
                             <div class="col-2 col-sm-1">
-                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right; margin-right: -10px;">
+
+                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;margin-right:-10px">
+
                                     <i id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">

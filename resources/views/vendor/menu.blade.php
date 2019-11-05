@@ -202,6 +202,37 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('assets/demo/demo.js')}}"></script>
     <script>
+        
+        
+        
+        $('#removerAlunoModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+    
+      var id = button.data('id'); 
+    
+    var nome = button.data('nome');
+    
+      var sala = button.data('sala'); 
+    
+      var modal = $(this);
+                
+                var url = '{{ env("APP_URL") }}/admin/deletar-aluno/'+id+'/'+sala;
+                
+               
+                
+
+                console.log(url)
+    
+        modal.find("#tituloModal").html("Você realmente deseja deletar o usuário \'"+nome+"\' desta sala?");
+      modal.find('#confirmarRemoverAluno').on('click',function(){
+          window.location.href = url;
+      })
+
+    
+    
+
+      });
+
 
         $(document).ready(function() {
 

@@ -105,6 +105,7 @@
                      
                 }
                   a++;
+                  i++;
                 }
           });
 
@@ -176,6 +177,7 @@
 
                 }
                   b++;
+                  i2++;
                 }
              
           });
@@ -192,7 +194,7 @@
                       '<div class="card houvercard">' +
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
-                      ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
+                      ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '<div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
                       '<div class="row" style="height:50px;">' +
@@ -221,21 +223,7 @@
                     '</div>' +
                     '</div>' +
                     '</div>' +
-                                           '<div class="col-12 col-sm-4">' +
-                    '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                    '<label for="largura_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
-                    '</div>' +
-                    '<div class="col-7">' +
-                    '<select name="largura_perg" id="largura_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
-                    '<option selected value="1">Pequeno</option>' +
-                    '<option value="2">Médio</option>' +
-                      '<option value="3">Grande</option>'+
-                    '</select>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                      '   </div>' +
+                      '</div>' +
                       '</div>' +
                       '</div>' +
                       //                      '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
@@ -310,13 +298,14 @@
                       '</div>' +
                       '<div class="container">' +
                       ' <div class="textareaborda2">' +
-                      '<textarea id="pergunta-reforco" type="text" name="reforco" rows="2" cols="50" class= "form-control col" placeholder="Faça sua pergunta reforço" maxlength="500" required></textarea>' +
+                      '<textarea id="pergunta-reforco" type="text" name="reforco" rows="2" cols="50" class= "form-control col" placeholder="Faça sua pergunta reforço" maxlength="500" required aria-describeby="perguntaRHelp"></textarea>' +
+                      '<small id="perguntaRHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>' +
                       '</div>' +
                       '</div>' +
 
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (REFORÇO):</label>' +
                       ' <div class=" container">' +
-                      ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
+                      ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '<div class="row" style="height:50px;">' +
@@ -345,20 +334,7 @@
                       ' </div>' +
                       '</div>'+
                       '</div>'+
-                      ' <div class="col-12 col-sm-4">' +
-                      '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                      '<label for="largura_ref">Largura do labirinto:</label>' +
-                      '</div>'+
-                      '<div class="col-7">'+
-                      '   <select class="form-control selectpicker " data-style="btn btn-primary" name="largura_ref" id="largura_ref">' +
-                      '  <option selected value="1">Pequeno</option>' +
-                      '   <option value="2">Medio</option>' +
-                      '  <option value="3">Grande</option>' +
-                      '           </select>' +
-                      '   </div>' +
-                      '   </div>' +
-                      '   </div>' +
+          
                       '   </div>' +
 
                       '</div>' +
@@ -403,6 +379,7 @@
                       '<div class="col-9">' +
                       '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>' +
                       '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
+                      '<small id="respostaRHelp" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>'+
                       '</div>' +
                       '<div class="col">' +
                       '<div class="row" style="height:50px;">' +
@@ -584,7 +561,7 @@
               console.log(lista2);
 
               $.ajax({
-                  url: 'http://127.0.0.1:8000/admin/alterar-ordem',
+                  url: '/admin/alterar-ordem',
                   method: "POST",
                   data: {
                       lista: lista
@@ -607,7 +584,7 @@
           function addUser(id,salaid) {
 
               $.ajax({
-                  url: 'http://127.0.0.1:8000/admin/aluno/'+id,
+                  url: '/admin/aluno/'+id,
                   method: "POST",
                   data: {
                       id: id,
@@ -796,7 +773,7 @@
                   var recipient = button.data('whatever');
                   console.log(recipient);
                   $.ajax({
-                      url: 'http://127.0.0.1:8000/admin/busca-perg',
+                      url: '/admin/busca-perg',
                       method: "POST",
                       data: {
                           id: recipient
@@ -963,6 +940,7 @@
               }
 
               var t = $('#add_name').serialize() + "&correto=" + teste3;
+        
 
               if (ref.checked) {
                   for (i = 0; i < p.length; i++) {
@@ -1338,6 +1316,33 @@
 
 
       });
+
+
+
+
+
+
+function alertaPerg(){
+    
+    $.notify({
+            message: "São permitidas apenas 3 perguntas por sala"
+        }, {
+            type: 'warning',
+            timer: 800,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
+}
+
+
+
+
+
+
+
+
       ///////////////////////////////Thiago
       $('#confirmalert').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget); // Button that triggered the modal

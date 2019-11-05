@@ -82,7 +82,9 @@
             <div class="modal-body" style="margin-left: 5%;margin-right:1%;margin-top:3%">
                 <div class="form-group">
                     <label for="nome" display="inline">Nome do Grupo:</label>
-                    <input required type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required>
+                    <input required type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required aria-describeby="grupoHelp">
+
+                    <small id="grupoHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
 
                     @if ($errors->has('nome'))
                     <div class="help-block">

@@ -79,7 +79,9 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"-->
                                 <div class="modal-body">
                     <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                        <input type="password" name="password_atual" id="password_atual" class="form-control" placeholder="Senha atual" autocomplete="false" readonly>
+                        <input type="password" name="password_atual" id="password_atual" class="form-control" placeholder="Senha atual" autocomplete="false" readonly aria-describeby="passwordHelp">
+                            <small id="passwordHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
+
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                         @if ($errors->has('password'))
                         <span class="help-block">
@@ -88,7 +90,9 @@
                         @endif
                     </div>
                     <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                        <input type="password" name="passwordn" class="form-control" placeholder="Nova senha">
+                        <input type="password" name="passwordn" class="form-control" placeholder="Nova senha" aria-describeby="passwordNHelp">
+                            <small id="passwordNHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
+
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                         @if ($errors->has('password'))
                         <span class="help-block">
@@ -97,7 +101,9 @@
                         @endif
                     </div>
                     <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-                        <input type="password" name="password_confirmation" class="form-control" placeholder="Confirme sua nova senha">
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="Confirme sua nova senha" aria-describeby="passwordCHelp">
+                            <small id="passwordCHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
+
                         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                         @if ($errors->has('password_confirmation'))
                         <span class="help-block">
