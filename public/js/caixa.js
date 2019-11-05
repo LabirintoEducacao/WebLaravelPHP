@@ -192,7 +192,7 @@
                       '<div class="card houvercard">' +
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
-                      ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
+                      ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '<div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
                       '<div class="row" style="height:50px;">' +
@@ -221,21 +221,7 @@
                     '</div>' +
                     '</div>' +
                     '</div>' +
-                                           '<div class="col-12 col-sm-4">' +
-                    '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                    '<label for="largura_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
-                    '</div>' +
-                    '<div class="col-7">' +
-                    '<select name="largura_perg" id="largura_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
-                    '<option selected value="1">Pequeno</option>' +
-                    '<option value="2">Médio</option>' +
-                      '<option value="3">Grande</option>'+
-                    '</select>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                      '   </div>' +
+                      '</div>' +
                       '</div>' +
                       '</div>' +
                       //                      '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
@@ -313,7 +299,7 @@
 
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (REFORÇO):</label>' +
                       ' <div class=" container">' +
-                      ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
+                      ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '  <div class="col-12 col-sm-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '<div class="row" style="height:50px;">' +
@@ -342,20 +328,7 @@
                       ' </div>' +
                       '</div>'+
                       '</div>'+
-                      ' <div class="col-12 col-sm-4">' +
-                      '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                      '<label for="largura_ref">Largura do labirinto:</label>' +
-                      '</div>'+
-                      '<div class="col-7">'+
-                      '   <select class="form-control selectpicker " data-style="btn btn-primary" name="largura_ref" id="largura_ref">' +
-                      '  <option selected value="1">Pequeno</option>' +
-                      '   <option value="2">Medio</option>' +
-                      '  <option value="3">Grande</option>' +
-                      '           </select>' +
-                      '   </div>' +
-                      '   </div>' +
-                      '   </div>' +
+          
                       '   </div>' +
 
                       '</div>' +
@@ -581,7 +554,7 @@
               console.log(lista2);
 
               $.ajax({
-                  url: 'http://127.0.0.1:8000/admin/alterar-ordem',
+                  url: '/admin/alterar-ordem',
                   method: "POST",
                   data: {
                       lista: lista
@@ -960,6 +933,7 @@
               }
 
               var t = $('#add_name').serialize() + "&correto=" + teste3;
+        
 
               if (ref.checked) {
                   for (i = 0; i < p.length; i++) {
