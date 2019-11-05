@@ -46,7 +46,7 @@
 -->
                       
                       
-                      <a data-toggle="modal" style="cursor: pointer" data-target="#removerAlunoModal" data-id="{{$aluno->id}}" data-nome="{{$aluno->name}}" data-sala="{{$id}}" class="dropdown-item" id="{{'aluno'.$aluno->id}}"><i class="material-icons">clear</i></a>
+                      <a data-toggle="modal" data-target="#removerAlunoModal" data-id="{{$aluno->id}}" data-nome="{{$aluno->name}}" data-sala="{{$id}}" class="dropdown-item" id="{{'aluno'.$aluno->id}}"><i class="material-icons">clear</i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -69,10 +69,10 @@
       <div class="modal-content">
 
 
-        <div class="card card-nav-tabs card-plain ">
+        <div class="card card-nav-tabs card-plain">
           <div class="card-header card-header-primary">
             
-            <div class="nav-tabs-navigation container">
+            <div class="nav-tabs-navigation">
               <div class="row justify-content-between">
 
                 <div class="nav-tabs-wrapper">
@@ -120,7 +120,7 @@
 
           <div class="row container">
             <h5> Pesqusiar: </h5>
-            <input id="search" name="search" type="text" class="search" >
+            <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
           </div>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="alunos" role="tabpanel" aria-labelledby="nav-home-tab">

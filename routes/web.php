@@ -130,7 +130,7 @@ Route::post('/editar-resp', 'PerguntaRespostaController@edit_resp');
 Route::post('/editar-perg', 'PerguntaRespostaController@edit_perg');
 Route::post('/editar-ambi', 'PerguntaRespostaController@edit_ambi')->middleware(['auth', 'auth.admin']);
 Route::get('/visualizar/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy')->middleware(['auth', 'auth.admin']);
-Route::get('/visualizar//deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
+Route::get('/visualizar/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
 Route::post('/alterar-ordem','PerguntaRespostaController@alterar');
 Route::post('/busca-perg', 'PerguntaRespostaController@buscar');
 Route::post('/busca-sala', 'SalaController@buscarS');
