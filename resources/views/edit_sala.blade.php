@@ -69,44 +69,44 @@
                             <div class=" container" style="margin-top: -40px">
                                 <div class="card houvercard">
                                     <div class=" container">
-                                        <div class="row" style="margin-top: 10px;">
-                                            <div class="col">
-                                                <input type="hidden" value="0" name="perg_id" id="perg_id">
-                                                <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
-                                            </div>
-                                            <div class="col-12 col-md-auto" style="display:inline-block">
-                                                <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
-                                                        <label for="question_type" style="margin-right: 3.5px; padding-top:10%;">Tipo da pergunta:</label>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
-                                                            <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
-                                                            <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
-                                                            <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
-                                                        </select>
-                                                          <div id="tooltip_container"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col col-lg-4">
-                                                <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
-                                                        <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
-                                                            <option value="right_key">Chave</option>
-                                                            <option selected value="hope_door">Porta da esperança</option>
-                                                            <option value="true_or_false">Verdadeiro ou Falso</option>
-                                                            <option value="multiple_forms">Multiplas Formas</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="row align-items-center" >
+                                    <div class="col col-sm-3">
+                                    <input type="hidden" value="0" name="perg_id" id="perg_id">
+                                    <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
+                                    </div>
 
-                                        </div>
+                                    <div class="col-4 col-sm-2">
+                                    <label for="question_type">Tipo da pergunta:</label>
+                                    </div>
+
+                                    <div class="col-2 col-sm-1">
+                                    <i class="material-icons" data-toggle="tooltip" data-placement="left" title="" style="margin-top:25px;">info</i>
+                                    </div>
+
+                                    <div class="col-7 col-sm-2">
+                                    <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
+                                    <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
+                                    <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
+                                    <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
+                                    <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
+                                    </select>
+                                    <div id="tooltip_container"></div>
+                                    </div>
+
+                                    <div class="col-2 col-sm-1" style="height:100%;">
+                                    <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
+                                    </div>
+
+                                    <div class="col-2 col-sm-3">
+                                    <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
+                                    <option value="right_key">Chave</option>
+                                    <option selected value="hope_door">Porta da esperança</option>
+                                    <option value="true_or_false">Verdadeiro ou Falso</option>
+                                    <option value="multiple_forms">Multiplas Formas</option>
+                                    </select>
+                                    </div>
+
+                                    </div>
                                     </div>
 
                                     <div class="container" style="padding-top:2%">
