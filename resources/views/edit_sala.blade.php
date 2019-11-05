@@ -112,7 +112,9 @@
                                     <div class="container" style="padding-top:2%">
                                         <!--                                        <br>-->
                                         <div class="textareaborda2" style="display:block;">
-                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
+                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required aria-describeby="perguntaHelp"></textarea>
+
+                                            <small id="perguntaHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
                                         </div>
 
                                         <!--
@@ -176,6 +178,7 @@
                                             <div class="col-9">
                                                 <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
                                                 <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
+                                                <small id="Help" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>
                                             </div>
 
                                             <div class="col-12 col-sm-3">
