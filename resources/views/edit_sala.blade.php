@@ -96,7 +96,7 @@
                                                         <label for="room_type">Interação:</label>
                                                     </div>
                                                     <div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">
-                                                         <i class="material-icons info" data-toggle="modal" data-target=".bd-example-modal-sm" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
+                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
                                                     </div>
                                                     <div class="col-8 col-sm-8">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
