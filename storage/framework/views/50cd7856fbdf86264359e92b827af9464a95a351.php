@@ -1,16 +1,15 @@
-@extends('vendor.menu')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="card">
     <div class="card-header card-header-tabs card-header-primary">
         <div>
             <h3 class="card-title" style="margin-top: 10px;">
                 Controle de grupos
-                @if(Auth::user()->hasAnyRole('professor'))
+                <?php if(Auth::user()->hasAnyRole('professor')): ?>
                 <a onclick="mostrarmaisalunos2(0)" data-toggle="modal" data-target="#addGrupoModal" class="btn btn-info" style="float:right; ">
                     Adicionar novo grupo
                 </a>
                 <!-- <a class="btn btn-success" onclick="teste()" >Salvar</a> -->
-                @endif
+                <?php endif; ?>
             </h3>
         </div>
     </div>
@@ -23,22 +22,23 @@
                     <th>Ações</th>
                 </thead>
                 <tbody>
-                    @foreach($turmas as $turma)
+                    <?php $__currentLoopData = $turmas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $turma): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td id="{{'linha'.$turma->id}}" onclick="linhaTabela({{$turma->id}})" width='90%'>{{$turma->turma}}
+                        <td id="<?php echo e('linha'.$turma->id); ?>" onclick="linhaTabela(<?php echo e($turma->id); ?>)" width='90%'><?php echo e($turma->turma); ?>
+
                         </td>
                         <td style="text-align: center">
-                            <a class="nav-link" id="{{$turma->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" id="<?php echo e($turma->id); ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i id="teste" class="material-icons">more_vert
                                 </i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="{{$turma->id}}">
-                                <a data-toggle="modal" data-target="#confirmalert" data-id="{{$turma->id}}" data-prof="{{Auth::user()->id}}" data-turma="'{{$turma->turma}}'" class="dropdown-item" id="{{'grupo'.$turma->turma}}">Excluir</a>
-                                <a onclick="editTabela({{$turma->id}})" class="dropdown-item">Editar</a>
+                            <div class="dropdown-menu" aria-labelledby="<?php echo e($turma->id); ?>">
+                                <a data-toggle="modal" data-target="#confirmalert" data-id="<?php echo e($turma->id); ?>" data-prof="<?php echo e(Auth::user()->id); ?>" data-turma="'<?php echo e($turma->turma); ?>'" class="dropdown-item" id="<?php echo e('grupo'.$turma->turma); ?>">Excluir</a>
+                                <a onclick="editTabela(<?php echo e($turma->id); ?>)" class="dropdown-item">Editar</a>
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
         </div>
@@ -77,20 +77,19 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @csrf
+            <?php echo csrf_field(); ?>
 
             <div class="modal-body" style="margin-left: 5%;margin-right:1%;margin-top:3%">
                 <div class="form-group">
                     <label for="nome" display="inline">Nome do Grupo:</label>
-                    <input required type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required aria-describeby="grupoHelp">
+                    <input required type="text" name="nome" id="nome" class="form-control has-feedback <?php echo e($errors->has('nome') ? 'has-error bg-primary' : ''); ?>" required>
 
-                    <small id="grupoHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
-
-                    @if ($errors->has('nome'))
+                    <?php if($errors->has('nome')): ?>
                     <div class="help-block">
-                        {{ $errors->first('nome') }}
+                        <?php echo e($errors->first('nome')); ?>
+
                     </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
                 <div id="divtabela">
                 </div>
@@ -103,7 +102,7 @@
             </div>
             <div class="modal-footer">
                 <a class="btn btn-secondary" id="teste" data-dismiss="modal">Fechar</a>
-                <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
+                <button onclick="salvarGrupo(<?php echo e(Auth::user()->id); ?>)" class="btn btn-success" style="float:right; ">Salvar</button>
             </div>
 
         </div>
@@ -183,14 +182,15 @@
                 </div>
             </div>
 
-            @csrf
+            <?php echo csrf_field(); ?>
             <div id="divdatabela" class="modal-body" style="margin-left: 5%;margin-right:1%;">
                 <div class="form-group">
-                    @if ($errors->has('nome'))
+                    <?php if($errors->has('nome')): ?>
                     <div class="help-block">
-                        {{ $errors->first('nome') }}
+                        <?php echo e($errors->first('nome')); ?>
+
                     </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
                 <table class="table table-hover">
                     <thead class=" text-primary">
@@ -203,7 +203,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
+                <button onclick="salvarGrupo(<?php echo e(Auth::user()->id); ?>)" class="btn btn-success" style="float:right; ">Salvar</button>
             </div>
         </div>
     </div>
@@ -211,4 +211,5 @@
 
 <!-- Modal alunos do grupos -->
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('vendor.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/thiago/Desktop/lab/resources/views/grupos.blade.php ENDPATH**/ ?>

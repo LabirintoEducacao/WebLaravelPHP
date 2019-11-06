@@ -1,12 +1,11 @@
-@extends('vendor.menu')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-@if (session('status'))
+<?php if(session('status')): ?>
 <div class="alert alert-success" role="alert">
-    {{ session('status') }}
+    <?php echo e(session('status')); ?>
+
 </div>
-@endif
+<?php endif; ?>
 <input type="hidden" value="52" id="num_y">
 
 <div class="modal fade" id="addPerg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,10 +55,11 @@
 
 
 
-                    @csrf
-                    {{ csrf_field() }}
+                    <?php echo csrf_field(); ?>
+                    <?php echo e(csrf_field()); ?>
 
-                    <input type="hidden" value="{{$id}}" name="sala_id">
+
+                    <input type="hidden" value="<?php echo e($id); ?>" name="sala_id">
                     <input type="hidden" value="0" name="perg_reforco" id="perg_reforco">
 
 
@@ -69,36 +69,33 @@
                             <div class=" container" style="margin-top: -40px">
                                 <div class="card houvercard">
                                     <div class=" container">
-                                        <div class="row align-items-center" style="margin-top: 10px;">
-                                            <div class="col col-sm-4">
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
                                                 <input type="hidden" value="0" name="perg_id" id="perg_id">
                                                 <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
                                             </div>
-                                            <div class="col-12 col-sm-auto" style="display:inline-block">
+                                            <div class="col-12 col-md-auto" style="display:inline-block">
                                                 <div class="row" style="height:50px;">
-                                                    <div class="col-4 col-sm-4" style="height:100%;">
+                                                    <div class="col-5" style="height:100%;">
                                                         <label for="question_type" style="margin-right: 3.5px; padding-top:10%;">Tipo da pergunta:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select disabled class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                            <option selected value="1">Texto</option>
-                                                            <option value="2" >Imagem</option>
-                                                            <option value="3">Video</option>
-                                                            <option value="4">Audio</option>
+                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
+                                                            <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
+                                                            <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
+                                                            <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
+                                                            <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
                                                         </select>
                                                         <div id="tooltip_container"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col">
-                                                <div class="row">
-                                                    <div class="col-2 col-sm-2" style=" margin-top: 12px;">
-                                                        <label for="room_type">Interação:</label>
+                                            <div class="col col-lg-4">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
                                                     </div>
-                                                    <div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">
-                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
-                                                    </div>
-                                                    <div class="col-8 col-sm-8">
+                                                    <div class="col-7">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
                                                             <option value="right_key">Chave</option>
                                                             <option selected value="hope_door">Porta da esperança</option>
@@ -115,9 +112,11 @@
                                     <div class="container" style="padding-top:2%">
                                         <!--                                        <br>-->
                                         <div class="textareaborda2" style="display:block;">
-                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required aria-describeby="perguntaHelp"></textarea>
-
-                                            <small id="perguntaHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
+                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control <?php if ($errors->has('pergunta')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('pergunta'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
                                         </div>
 
                                         <!--
@@ -136,17 +135,14 @@
                                     <!--   Ambinete  -->
                                     <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
                                     <div class=" container">
-                                        <div class="row justify-content-between " style="line-height: 40px; margin-bottom: 10px;">
-                                            <div class="col-12 col-sm-6">
+                                        <div class="row" style="line-height: 40px; margin-bottom: 10px;">
+                                            <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row">
-                                                    <div class="col-4" style=" margin-top: 3px;">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
                                                         <label for="answer_boolean" style="margin-right: 3.5px; padding-top:10%;">Caminho do jogo:</label>
                                                     </div>
-                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
-                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
-                                                    </div>
-                                                    <div class="col-6">
+                                                    <div class="col-7">
                                                         <select name="answer_boolean" id="answer_boolean" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Corredor</option>
                                                             <option value="2">Labirinto</option>
@@ -154,18 +150,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                            
-                                            <div class="col-12 col-sm-6 tamanho" style="display:none">
+                                            <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row " style="height:50px;">
+                                                <div class="row" style="height:50px;">
                                                     <div class="col-5" style="height:100%;">
                                                         <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>
                                                     </div>
-                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
-                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
-                                                    </div>
-                                                    <div class="col-5">
+                                                    <div class="col-7">
                                                         <select name="tamanho" id="tamanho" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Pequeno</option>
                                                             <option value="2">Medio</option>
@@ -174,8 +165,21 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                           
-
+                                            <div class="col-12 col-sm-4">
+                                                <input type="hidden" name="path_id" id="path_id">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="largura" style="margin-right: 3.5px; padding-top:10%;">Largura do Labirinto:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select name="largura" id="largura" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
+                                                            <option selected value="1">Pequeno</option>
+                                                            <option value="2">Medio</option>
+                                                            <option value="3">Grande</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +193,6 @@
                                             <div class="col-9">
                                                 <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
                                                 <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
-                                                <small id="Help" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>
                                             </div>
 
                                             <div class="col-12 col-sm-3">
@@ -199,7 +202,7 @@
                                                         <label for="tipo_opcao" style="margin-right: 3.5px; padding-top:15%;">Tipo da Resposta:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select disabled name="tipo_resp" id="tipo_opcao" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
+                                                        <select name="tipo_resp" id="tipo_opcao" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Texto</option>
                                                             <option value="2">Imagem</option>
                                                             <option value="3">Vídeo</option>
@@ -255,13 +258,14 @@
     <div class="col-md-12">
         <div class="card">
             <div id="teste2" class="card-header card-header-primary">
-                @if($sala->enable==1)
-                <h3 class="card-title" style="text-align:center">{{$sala->name}}
+                <?php if($sala->enable==1): ?>
+                <h3 class="card-title" style="text-align:center"><?php echo e($sala->name); ?>
+
                 </h3>
-                @else
-                <h3 class="card-title" style="text-align:center;"><i>{{$sala->name}}<span style="float:right;font-size:20px">Desativada</span></i>
+                <?php else: ?>
+                <h3 class="card-title" style="text-align:center;"><i><?php echo e($sala->name); ?><span style="float:right;font-size:20px">Desativada</span></i>
                 </h3>
-                @endif
+                <?php endif; ?>
                 <p class="card-category"></p>
             </div>
             <div class="card-body">
@@ -276,15 +280,15 @@
                             <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
                         </div>
 
-                        @if($sala->public==0)
+                        <?php if($sala->public==0): ?>
                         <div class="col-12 col-md-auto">
-                            <a class="btn btn-success btn-sm" href="{{url('admin/alunos/'.$sala->id)}}" style="width:100%;"><i class="material-icons">add
+                            <a class="btn btn-success btn-sm" href="<?php echo e(url('admin/alunos/'.$sala->id)); ?>" style="width:100%;"><i class="material-icons">add
                                 </i>&emsp;Aluno</a>
                         </div>
-                        @endif
+                        <?php endif; ?>
 
                         <div class="col-12 col-md-auto">
-                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-whatevertempo="{{$x}}" data-tempoo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="float:right; width:100%;"><i class="material-icons">create</i>&emsp;Editar</button>
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarSalaModal2" data-whateverid="<?php echo e($sala->id); ?>" data-whatevernome="<?php echo e($sala->name); ?>" data-whatevertempo="<?php echo e($x); ?>" data-tempoo="<?php echo e($sala->duracao); ?>" data-whatevertema="<?php echo e($sala->tematica); ?>" data-whateverpublic="<?php echo e($sala->public); ?>" data-whateverenable="<?php echo e($sala->enable); ?>" style="float:right; width:100%;"><i class="material-icons">create</i>&emsp;Editar</button>
                         </div>
 
                     </div>
@@ -309,32 +313,33 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    {{$x}}
+                                    <?php echo e($x); ?>
+
                                 </td>
                                 <td>
-                                    @if($sala->tematica=="urban")
+                                    <?php if($sala->tematica=="urban"): ?>
                                     Urbano
-                                    @elseif($sala->tematica=="mansion")
+                                    <?php elseif($sala->tematica=="mansion"): ?>
                                     Casa/Mansão
-                                    @elseif($sala->tematica=="icy_maze")
+                                    <?php elseif($sala->tematica=="icy_maze"): ?>
                                     Gelo
-                                    @else
+                                    <?php else: ?>
                                     Selva
-                                    @endif
+                                    <?php endif; ?>
                                 </td>
                                 <td>
-                                    @if($sala->public==0)
+                                    <?php if($sala->public==0): ?>
                                     Privada
-                                    @else
+                                    <?php else: ?>
                                     Pública
-                                    @endif
+                                    <?php endif; ?>
                                 </td>
                                 <td>
-                                    @if($sala->enable==0)
+                                    <?php if($sala->enable==0): ?>
                                     Não
-                                    @else
+                                    <?php else: ?>
                                     Sim
-                                    @endif
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         </tbody>
@@ -347,21 +352,14 @@
                     <div class="col-12 col-md-auto">
                         <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
                     </div>
-                    @if(3 > $c_perg)
                     <div class="col-12 col-md-auto">
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
                             </i>&emsp;Pergunta</button>
                     </div>
-                    @else
-                    <div class="col-12 col-md-auto">
-                        <button class="btn btn-success-disabled btn-sm" style="width:100%;" onclick="alertaPerg();"><i class="material-icons">add
-                            </i>&emsp;Pergunta</button>
-                    </div>
-                @endif
 
                     <div class="col-12 col-md-auto">
 
-                        <button type="button" class="col-12 btn btn-warning btn-sm  fa fa-qrcode qrcode" id="{{$sala->id}}" value="{{$sala->id}}" onclick="qrcodebtn({{$sala->id}});">&emsp;Qr Code</button>
+                        <button type="button" class="col-12 btn btn-warning btn-sm  fa fa-qrcode qrcode" id="<?php echo e($sala->id); ?>" value="<?php echo e($sala->id); ?>" onclick="qrcodebtn(<?php echo e($sala->id); ?>);">&emsp;Qr Code</button>
 
                     </div>
                 </div>
@@ -397,37 +395,37 @@
                     $cont2 = 0;
                     ?>
 
-                    @foreach($data as $item)
+                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
                     <?php $errado = 0; ?>
-                    @foreach($path_perg as $pp)
-                    @if($pp->perg_id==$item->id)
+                    <?php $__currentLoopData = $path_perg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($pp->perg_id==$item->id): ?>
 
-                    @foreach($paths as $path)
-                    @if($path->id==$pp->path_id)
+                    <?php $__currentLoopData = $paths; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $path): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($path->id==$pp->path_id): ?>
 
-                    @if($path->disp == 1)
+                    <?php if($path->disp == 1): ?>
                     <!-- 
-                                                 <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}"title="Editar pergunta"></button>&emsp;&emsp;
-                                                  <a href="{{ url('admin/deletar-pergunta/'.$item->id) }}" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
+                                                 <button type="button" class="btn btn-outline-info fa fa-pencil tamanhobutton" data-toggle="modal" data-target="#addPerg" data-whatever="<?php echo e($item->id); ?>"title="Editar pergunta"></button>&emsp;&emsp;
+                                                  <a href="<?php echo e(url('admin/deletar-pergunta/'.$item->id)); ?>" class="btn btn-outline-danger fa fa-trash tamanhobutton"></a>
                      -->
 
                     <div id="flip">
                         <div class="row align-items-center" style="cursor: pointer;">
-                            <div class="col-sm-10 container" onclick="abrir('panel'+{{$item->id}});" style="padding-left: 25px;">
+                            <div class="col-sm-10 container" onclick="abrir('panel'+<?php echo e($item->id); ?>);" style="padding-left: 25px;">
                                 <?php
                                 $str2 = $item->pergunta;
                                 $total1 = strlen($str2);
                                 ?>
-                                @if($total1 > 108)
-                                <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$item->pergunta}}">{{$item->pergunta}}</div>
-                                @else
-                                <div>{{$item->pergunta}}</div>
-                                @endif
+                                <?php if($total1 > 108): ?>
+                                <div id="div2" data-toggle="tooltip" data-placement="top" title="<?php echo e($item->pergunta); ?>"><?php echo e($item->pergunta); ?></div>
+                                <?php else: ?>
+                                <div><?php echo e($item->pergunta); ?></div>
+                                <?php endif; ?>
                             </div>
 
-                            <div class="col-2 col-sm-1  textototal{{$cont}}" style="padding-left: 8px;">
+                            <div class="col-2 col-sm-1  textototal<?php echo e($cont); ?>" style="padding-left: 8px;">
 
                             </div>
                             <div class="col-2 col-sm-1">
@@ -435,131 +433,130 @@
                                     <i id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
-                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="<?php echo e($item->id); ?>">Editar</a>
+                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'<?php echo e($item->pergunta); ?>\'? ')) ? window.location.href =  '<?php echo e(url('admin/visualizar/deletar-pergunta/'.$item->id)); ?>' : window.location.reload(forcedReload);">Excluir</a>
                                 </div>
                             </div>
-                            <div class="container col-1 " onclick="abrir('panel'+{{$item->id}});" style="margin-top: -10px;">
-                                <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
+                            <div class="container col-1 " onclick="abrir('panel'+<?php echo e($item->id); ?>);" style="margin-top: -10px;">
+                                <a><img src="<?php echo e(asset('img/expand-button.png')); ?>" width="8px"></a>
                             </div>
                         </div>
                     </div>
 
                     <?php $cont++; ?>
-                    @endif
-                    @endif
-                    @endforeach
-                    @endif
-                    @endforeach
+                    <?php endif; ?>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                     <?php $y = 0; ?>
 
-                    <div class="panel" id="panel{{$item->id}}">
-                        @foreach($respostas as $resposta)
-                        @foreach($perg_resp as $pergresp)
-                        @if($pergresp->perg_id==$item->id)
-                        @if($pergresp->resp_id==$resposta->id)
+                    <div class="panel" id="panel<?php echo e($item->id); ?>">
+                        <?php $__currentLoopData = $respostas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resposta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $perg_resp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pergresp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($pergresp->perg_id==$item->id): ?>
+                        <?php if($pergresp->resp_id==$resposta->id): ?>
 
                         <div class="row">
                             <h5><?php echo $letras[$y]; ?></h5>
                             <div class="col totalresposta" style=" margin-top: -5px;">
-                                <p style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
+                                <p style="font-size: 120%; line-height: 30px;"><?php echo e($resposta->resposta); ?></p>
                             </div>
                         </div>
                         <?php $y++; ?>
 
-                        @endif
-                        @endif
-                        @endforeach
-                        @endforeach
+                        <?php endif; ?>
+                        <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
 
                     <?php $y = 0; ?>
 
-                    @foreach($perg_refs as $perg_ref)
-                    @if($perg_ref->perg_id==$item->id)
-                    @foreach($refs as $ref)
-                    @if($ref->id==$perg_ref->ref_id)
+                    <?php $__currentLoopData = $perg_refs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $perg_ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($perg_ref->perg_id==$item->id): ?>
+                    <?php $__currentLoopData = $refs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($ref->id==$perg_ref->ref_id): ?>
 
-                    @foreach($path_perg as $pp)
-                    @if($pp->perg_id==$ref->id)
-                    <!--                    <input value="{{$pp->perg_id}}"><br><br>-->
-                    @foreach($paths as $path)
-                    @if($path->id==$pp->path_id)
-                    <!--                    <input value="{{$path->id}}"><br><br>-->
+                    <?php $__currentLoopData = $path_perg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($pp->perg_id==$ref->id): ?>
+                    <!--                    <input value="<?php echo e($pp->perg_id); ?>"><br><br>-->
+                    <?php $__currentLoopData = $paths; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $path): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($path->id==$pp->path_id): ?>
+                    <!--                    <input value="<?php echo e($path->id); ?>"><br><br>-->
 
                     <div id="flip2">
-                        <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
-                        <div class="row align-items-center"  style="cursor: pointer;">
-                       
-                          <i class="material-icons info" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">info</i>
-                          
-                            <div class="col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
+                        <!-- <div id="texto" style="color: black">Reforço da pergunta <?php echo e($item->pergunta); ?></div> -->
+                        <div class="row align-items-center" style="cursor: pointer;">
+
+                            <i class="material-icons" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta <?php echo e($item->pergunta); ?>" style="margin-left: 10px;">help</i>
+
+                            <div class="col-sm-9 container" onclick="abrir('panel'+<?php echo e($ref->id); ?>);" style="margin-left: -3px;">
                                 <?php
                                 $str = $ref->pergunta;
                                 $total = strlen($str);
                                 ?>
-                                @if($total > 108)
-                                <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$ref->pergunta}}">{{$ref->pergunta}}</div>
-                                @else
-                                <div>{{$ref->pergunta}}</div>
-                                @endif
+                                <?php if($total > 108): ?>
+                                <div id="div2" data-toggle="tooltip" data-placement="top" title="<?php echo e($ref->pergunta); ?>"><?php echo e($ref->pergunta); ?></div>
+                                <?php else: ?>
+                                <div><?php echo e($ref->pergunta); ?></div>
+                                <?php endif; ?>
                             </div>
 
-                            <div class="col-2 col-sm-1 textototalref{{$cont2}}">
+                            <div class="col-2 col-sm-1 textototalref<?php echo e($cont2); ?>">
 
                             </div>
 
                             <div class="col-2 col-sm-1">
-
-                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;margin-right:-10px">
-
+                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
                                     <i id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
 
-                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>
+                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'<?php echo e($ref->pergunta); ?>\'? ')) ? window.location.href =  '<?php echo e(url('admin/visualizar/deletar-pergunta/'.$ref->id)); ?>' : window.location.reload(forcedReload)">Excluir</a>
                                 </div>
                             </div>
-                            <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
-                                <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
+                            <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+<?php echo e($ref->id); ?>);">
+                                <a><img src="<?php echo e(asset('img/expand-button.png')); ?>" width="8px"></a>
                             </div>
                         </div>
                     </div>
                     <?php $cont2++; ?>
-                    @endif
-                    @endforeach
-                    @endif
-                    @endforeach
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                    <div class="panel2" id="panel{{$ref->id}}">
-                        @foreach($respostas as $resposta)
-                        @foreach($perg_resp as $pergresp)
-                        @if($pergresp->perg_id==$ref->id)
-                        @if($pergresp->resp_id==$resposta->id)
+                    <div class="panel2" id="panel<?php echo e($ref->id); ?>">
+                        <?php $__currentLoopData = $respostas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resposta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $perg_resp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pergresp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($pergresp->perg_id==$ref->id): ?>
+                        <?php if($pergresp->resp_id==$resposta->id): ?>
                         <div class="row">
                             <h5><?php echo $letras[$y]; ?></h5>
                             <div class="col" style=" margin-top: -5px;">
-                                <p style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
+                                <p style="font-size: 120%; line-height: 30px;"><?php echo e($resposta->resposta); ?></p>
                             </div>
                         </div>
                         <?php $y++; ?>
-                        @endif
-                        @endif
-                        @endforeach
-                        @endforeach
+                        <?php endif; ?>
+                        <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
-                    @endif
-                    @endforeach
-                    @endif
-                    @endforeach
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <hr style="border: 0.8px solid #afafaf;">
 
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
                 <div class="container">
-                    {{$data->links()}}
+                    <?php echo e($data->links()); ?>
+
                 </div>
             </div>
         </div>
@@ -579,21 +576,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('admin/sala') }}" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
-                @csrf
+            <form action="<?php echo e(url('admin/sala')); ?>" method="POST" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+                <?php echo csrf_field(); ?>
                 <div class="modal-body">
-                    <input type="hidden" name="id_prof" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="id_prof" value="<?php echo e(Auth::user()->id); ?>">
                     <input type="hidden" name="sala_id" id="sala_id" value="0">
                     <input type="hidden" value="1" id="page" name="page">
                     <div class="form-group">
                         <label for="nome" display="inline">Nome da Sala:</label>
-                        <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}">
+                        <input type="text" name="nome" id="nome" class="form-control has-feedback <?php echo e($errors->has('nome') ? 'has-error bg-primary' : ''); ?>">
 
-                        @if ($errors->has('nome'))
+                        <?php if($errors->has('nome')): ?>
                         <div class="help-block">
-                            {{ $errors->first('nome') }}
+                            <?php echo e($errors->first('nome')); ?>
+
                         </div>
-                        @endif
+                        <?php endif; ?>
 
                     </div>
                     <div class="form-group" style="margin-top:3.5%">
@@ -656,13 +654,14 @@
                 <h4 class="modal-title" id="exampleModalLabel"></h4>
             </div>
             <form>
-                {{ csrf_field() }}
-                <input type="hidden" value="{{$id}}" name="sala_id" id="sala_id">
+                <?php echo e(csrf_field()); ?>
+
+                <input type="hidden" value="<?php echo e($id); ?>" name="sala_id" id="sala_id">
                 <div class="modal-body">
                     <ul id="sortable" class="sortable" style="list-style-type: none;">
-                        @foreach($data as $item)
-                        <li class="ui-state-default" value="{{$item->id}}">{{$item->pergunta}}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li class="ui-state-default" value="<?php echo e($item->id); ?>"><?php echo e($item->pergunta); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
                 <div class="modal-footer">
@@ -732,62 +731,13 @@
     </div>
 </div>
 
-
-<div id="modalinfo" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-   <div class="modal-content">
-    <div class="modal-header" style="background-color:#9124a3">
-         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<div id="mensagem" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div id="mensagemcontent" class="modal-content">
+            ...
+        </div>
     </div>
-    <div class="modal-body">
-         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Chave</b></h5>
-        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Posta da Esperaça</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Verdadeiro ou Falso</b></h5>
-           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-            <h5 class="modal-title" style="color: black; font-size: 13px"><b>Multiplas Formas</b></h5>
-            <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-    </div>
-    </div>
-  </div>
 </div>
 
-<div id="modalinfoCorredor" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-   <div class="modal-content">
-    <div class="modal-header" style="background-color:#9124a3">
-         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
-    <div class="modal-body">
-         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Corredor</b></h5>
-        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Labirinto</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-    </div>
-    </div>
-  </div>
-</div>
-
-<div id="modalinfoTamanho" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-   <div class="modal-content">
-    <div class="modal-header" style="background-color:#9124a3">
-         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
-    <div class="modal-body">
-         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Pequeno</b></h5>
-        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Médio</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Grande</b></h5>
-           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-    </div>
-    </div>
-  </div>
-</div>
-
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('vendor.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/thiago/Desktop/lab/resources/views/edit_sala.blade.php ENDPATH**/ ?>
