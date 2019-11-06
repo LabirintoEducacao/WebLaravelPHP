@@ -76,7 +76,7 @@ class PerguntaRespostaController extends Controller
             $pathref = array(
                 'availability' => $dispref,
                 'widht' => $pathrefs[0]->largura,
-                'heigh' => $pathrefs[0]->tamanho,
+                'height' => $pathrefs[0]->tamanho,
                 'type' => $pathrefs[0]->ambiente_perg,
                 'conect_question' => $idperg,
                 'path_id' => $pathrefs[0]->id
@@ -159,7 +159,7 @@ class PerguntaRespostaController extends Controller
                 $pat= array(
                     'availability' => $disponivel,
                     'widht' => $path[0]->largura,
-                    'heigh' => $path[0]->tamanho,
+                    'height' => $path[0]->tamanho,
                     'type' => $path[0]->ambiente_perg,
                     'path_id' => $path[0]->id,
                     'end_game'=> true
@@ -171,7 +171,7 @@ class PerguntaRespostaController extends Controller
                 $pat= array(
                     'availability' => $disponivel,
                     'widht' => $path[0]->largura,
-                    'heigh' => $path[0]->tamanho,
+                    'height' => $path[0]->tamanho,
                     'type' => $path[0]->ambiente_perg,
                     'path_id' => $path[0]->id,
                     'conect_question'=> $conect
@@ -513,26 +513,29 @@ if($request->perg_id == 0){
  $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
  $disponivel = true;
+    
     if($ambiente_perg==1){
-        $tamanho = 3;
-        $largura = 2;
+        
+        $tamanho_perg = 3;
+        $largura_perg = 2;
+        
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho = 1 ;
-            $largura = 3;
+            $tamanho_perg = 1 ;
+            $largura_perg = 3;
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho = 4 ;
-            $largura = 6;
+            $tamanho_perg = 4 ;
+            $largura_perg = 6;
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho = 7 ;
-            $largura = 10;
+            $tamanho_perg = 7 ;
+            $largura_perg = 10;
 
          }
     }
@@ -554,8 +557,8 @@ if($request->perg_id == 0){
  $pathid = DB::table('paths')->insertGetId(array(
 
     'ambiente_perg' => $ambiente_perg,
-    'tamanho' => $tamanho,
-    'largura' => $largura,
+    'tamanho' => $tamanho_perg,
+    'largura' => $largura_perg,
     'disp' => $disponivel
 
 
@@ -598,25 +601,25 @@ if($request->perg_reforco==1){
  $tamanho1 = $request->tamanho;
  $disponivel = true;
     if($ambiente_perg==1){
-        $tamanho = 3;
-        $largura = 2;
+        $tamanho_perg = 3;
+        $largura_perg = 2;
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho = 1 ;
-            $largura = 3;
+            $tamanho_perg = 1 ;
+            $largura_perg = 3;
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho = 4 ;
-            $largura = 6;
+            $tamanho_perg = 4 ;
+            $largura_perg = 6;
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho = 7 ;
-            $largura = 10;
+            $tamanho_perg = 7 ;
+            $largura_perg = 10;
 
          }
     }
@@ -787,9 +790,35 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
 
     }
+    
+    $ambiente_perg = $request->answer_boolean;
+ $tamanho1 = $request->tamanho;
+    if($ambiente_perg==1){
+        $tamanho_perg = 3;
+        $largura_perg = 2;
+    }else{
+
+         if($tamanho1 == 1 ){
+            $tamanho_perg = 1 ;
+            $largura_perg = 3;
+
+         }
+
+         if($tamanho1 == 2 ){
+            $tamanho_perg = 4 ;
+            $largura_perg = 6;
+
+         }
+
+          if($tamanho1 == 3 ){
+            $tamanho_perg = 7 ;
+            $largura_perg = 10;
+
+         }
+    }
     DB::table('paths')
     ->where('id','=', $request->path_id)
-    ->update(['ambiente_perg' => $request->answer_boolean,'tamanho' => $request->tamanho,'largura' => $request->largura]);
+    ->update(['ambiente_perg' => $ambiente_perg,'tamanho' => $tamanho_perg,'largura' => $largura_perg]);
     
     if($request->perg_reforco_id>0 && $request->perg_reforco==1){
       
@@ -805,14 +834,67 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
       $resposta_ref = $request->resposta_ref;
       $corret_ref = explode(',', $request->correto_ref);
       $resp_ref_id = $request->resp_ref_id;
+        
+        $ambiente_ref = $request->answer_boolean_ref;
+ $tamanho_ref1 = $request->tamanho_ref;
+    if($ambiente_ref==1){
+        $tamanho_ref = 3;
+        $largura_ref = 2;
+    }else{
+
+         if($tamanho_ref1 == 1 ){
+            $tamanho_ref = 1 ;
+            $largura_ref = 3;
+
+         }
+
+         if($tamanho1 == 2 ){
+            $tamanho_ref = 4 ;
+            $largura_ref = 6;
+
+         }
+
+          if($tamanho1 == 3 ){
+            $tamanho_ref = 7 ;
+            $largura_ref = 10;
+
+         }
+    }
       
       DB::table('paths')
       ->where('id','=', $request->path_reforco_id)
-      ->update(['ambiente_perg' => $request->answer_boolean_ref,'tamanho' => $request->tamanho_ref,'largura' => $request->largura_ref]);
+      ->update(['ambiente_perg' => $ambiente_ref,'tamanho' => $tamanho_ref,'largura' => $largura_ref]);
+        
+        $ambienteB_perg = $request->answer_boolean_perg;
+ $tamanho1 = $request->tamanho_perg;
+ $disponivel = true;
+    if($ambienteB_perg==1){
+        $tamanho = 3;
+        $largura = 2;
+    }else{
+
+         if($tamanho1 == 1 ){
+            $tamanho = 1 ;
+            $largura = 3;
+
+         }
+
+         if($tamanho1 == 2 ){
+            $tamanho = 4 ;
+            $largura = 6;
+
+         }
+
+          if($tamanho1 == 3 ){
+            $tamanho = 7 ;
+            $largura = 10;
+
+         }
+    }
       
       DB::table('paths')
       ->where('id','=', $request->path_errado_id)
-      ->update(['ambiente_perg' => $request->answer_boolean_perg,'tamanho' => $request->tamanho_perg,'largura' => $request->largura_perg]);
+      ->update(['ambiente_perg' => $ambienteB_perg,'tamanho' => $tamanho,'largura' => $largura]);
       
       foreach($respostas_ref as $resp_ref){
         $v=0;
@@ -907,25 +989,25 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
  $disponivel = true;
       $largura = 0;
     if($ambiente_perg==1){
-        $tamanho = 3;
-        $largura = 2;
+        $tamanho_perg = 3;
+        $largura_perg = 2;
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho = 1 ;
-            $largura = 3;
+            $tamanho_perg = 1 ;
+            $largura_perg = 3;
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho = 4 ;
-            $largura = 6;
+            $tamanho_perg = 4 ;
+            $largura_perg = 6;
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho = 7 ;
-            $largura = 10;
+            $tamanho_perg = 7 ;
+            $largura_perg = 10;
 
          }
     }
@@ -978,7 +1060,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
                      ////////////Tabela Path ambiente errado//////////////////
  $pathidperg = DB::table('paths')->insertGetId(array(
-     'ambiente_perg' =>  $ambiente,
+     'ambiente_perg' =>  $ambiente_perg,
      'tamanho' =>   $tamanho_perg,
      'largura' => $largura_perg,
      'disp' => $disponivel_perg

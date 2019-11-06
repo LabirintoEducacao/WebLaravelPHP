@@ -115,7 +115,7 @@
                                         <div class="textareaborda2" style="display:block;">
                                             <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required aria-describeby="perguntaHelp"></textarea>
 
-                                            <small id="perguntaHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
+                                            <small id="perguntaHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGATÓRIO </small>
                                         </div>
 
                                         <!--
@@ -164,9 +164,9 @@
                                                          <i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
                                                     </div>
                                                     <div class="col-5">
-                                                        <select name="tamanho" id="tamanho" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
+                                                        <select name="tamanho" id="tamanho" class="form-control selectpicker tamanho" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Pequeno</option>
-                                                            <option value="2">Medio</option>
+                                                            <option value="2">Médio</option>
                                                             <option value="3">Grande</option>
                                                         </select>
                                                     </div>
@@ -187,7 +187,7 @@
                                             <div class="col-9">
                                                 <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
                                                 <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
-                                                <small id="Help" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>
+                                                <small id="Help" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGATÓRIAS </small>
                                             </div>
 
                                             <div class="col-12 col-sm-3">
