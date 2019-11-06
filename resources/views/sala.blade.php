@@ -510,7 +510,9 @@
                         <input type="hidden" name="sala_id" id="sala_id" value="0">
                         <div class="form-group">
                             <label for="nome" display="inline">Nome da Sala:</label>
-                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required>
+                            <input type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required aria-describeby="nomeHelp">
+                                <small id="nameHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
+
 
                             @if ($errors->has('nome'))
                             <div class="help-block">
@@ -522,19 +524,23 @@
                         <div class="form-group" style="margin-top:3.5%">
                             <label for="time" display="inline">Tempo de Duração de cada sala (em minutos):</label>
                             <input type="time" name="time2" id="time2" step='1' class="form-control" min="00:00:00" max="01:00:00" onblur="transforma(this.value,0);" value="00:00:00">
+                            <small id="namelHelp" style="color:red;font-size:10px">CASO DEIXE COMO 0, O ALUNO TERÁ TEMPO ILIMITADO PARA RESPONDER AS PERGUNTAS </small>
+
                             <input type="hidden" name="time5" id="time5" class="form-control" value="0">
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col">
+                            <div class="form-group col" style="height:100%;">
+                                <i class="material-icons info align-middle" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
                                 <label for="theme">Tema:&emsp;</label>
-<!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
-                                <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
+                                <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
                                     <option value="urban">Urbano</option>
                                     <option value="forest">Selva</option>
                                     <option value="mansion">Casa/Mansão</option>
                                 </select>
+                                
+                            
 
                             </div>
                             <div class="form-group col">
@@ -610,10 +616,10 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col">
+                            <div class="form-group col" style="height:100%;">
+                                <i class="material-icons info align-middle" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
                                 <label for="theme">Tema:&emsp;</label>
-<!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
-                                <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
+                                <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
                                     <option value="urban">Urbano</option>
                                     <option value="forest">Selva</option>
@@ -654,6 +660,29 @@
             </div>
         </div>
     </div>
+
+
+
+<div id="modalinfo" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Gelo</b></h5>
+        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Urbano</b></h5>
+          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Selva</b></h5>
+           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+            <h5 class="modal-title" style="color: black; font-size: 13px"><b>Casa/Mansão</b></h5>
+            <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+    </div>
+    </div>
+  </div>
+</div>
 
 
 @section('js')

@@ -230,7 +230,12 @@ class PerguntaRespostaController extends Controller
     {  
 
         $ref =0; 
+        
+        /*$sql = 'SELECT COUNT(id) FROM perguntas';
+        $sql += 'WHERE sala_id = ' . $id;
+        $sql += 'AND ordem IS NOT NULL';
 
+        $count = DB::select($sql); */
 
         $sala = DB::table('salas')
         ->where('id','=',$id)
@@ -506,9 +511,31 @@ if($request->perg_id == 0){
 
                      ///////////Path////////////
  $ambiente_perg = $request->answer_boolean;
- $tamanho = $request->tamanho;
- $largura = $request->largura;
+ $tamanho1 = $request->tamanho;
  $disponivel = true;
+    if($ambiente_perg==1){
+        $tamanho = 3;
+        $largura = 2;
+    }else{
+
+         if($tamanho1 == 1 ){
+            $tamanho = 1 ;
+            $largura = 3;
+
+         }
+
+         if($tamanho1 == 2 ){
+            $tamanho = 4 ;
+            $largura = 6;
+
+         }
+
+          if($tamanho1 == 3 ){
+            $tamanho = 7 ;
+            $largura = 10;
+
+         }
+    }
  
                     ////////Tabela Pergunta ////////////////////////
  $pergid = DB::table('perguntas')->insertGetId(array(
@@ -567,9 +594,32 @@ if($request->perg_reforco==1){
 
 
                      //  ////////////////Patch errado da Pergunta/////////
- $ambiente = $request->answer_boolean_perg;
- $tamanho_perg = $request->tamanho_perg;
- $largura_perg = $request->largura_perg;
+ $ambiente_perg = $request->answer_boolean;
+ $tamanho1 = $request->tamanho;
+ $disponivel = true;
+    if($ambiente_perg==1){
+        $tamanho = 3;
+        $largura = 2;
+    }else{
+
+         if($tamanho1 == 1 ){
+            $tamanho = 1 ;
+            $largura = 3;
+
+         }
+
+         if($tamanho1 == 2 ){
+            $tamanho = 4 ;
+            $largura = 6;
+
+         }
+
+          if($tamanho1 == 3 ){
+            $tamanho = 7 ;
+            $largura = 10;
+
+         }
+    }
  $disponivel_perg = false;
  
                      ////////Perguntas///////////
@@ -588,8 +638,33 @@ if($request->perg_reforco==1){
 
                      ////////////////PatchReforco/////////
  $ambiente_ref = $request->answer_boolean_ref;
- $tamanho_ref = $request->tamanho_ref;
- $largura_ref = $request->largura_ref;
+ $tamanho_ref1 = $request->tamanho_ref;
+ $largura_ref = 0;
+    
+    
+    if($ambiente_ref==1){
+        $tamanho_ref = 3;
+        $largura_ref = 2;
+    }else{
+         if($tamanho_ref1 == 1 ){
+            $tamanho_ref = 1 ;
+            $largura_ref = 3;
+
+         }
+
+         if($tamanho_ref1 == 2 ){
+            $tamanho_ref = 4 ;
+            $largura_ref = 6;
+
+         }
+
+          if($tamanho_ref1 == 3 ){
+            $tamanho_ref = 7 ;
+            $largura_ref = 10;
+
+         }
+    }
+
  $disponivel_ref = true;
 
 
@@ -827,9 +902,33 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 }else{
   
               //  ////////////////Patch errado da Pergunta/////////
- $ambiente = $request->answer_boolean_perg;
- $tamanho_perg = $request->tamanho_perg;
- $largura_perg = $request->largura_perg;
+ $ambiente_perg = $request->answer_boolean;
+ $tamanho1 = $request->tamanho;
+ $disponivel = true;
+      $largura = 0;
+    if($ambiente_perg==1){
+        $tamanho = 3;
+        $largura = 2;
+    }else{
+
+         if($tamanho1 == 1 ){
+            $tamanho = 1 ;
+            $largura = 3;
+
+         }
+
+         if($tamanho1 == 2 ){
+            $tamanho = 4 ;
+            $largura = 6;
+
+         }
+
+          if($tamanho1 == 3 ){
+            $tamanho = 7 ;
+            $largura = 10;
+
+         }
+    }
  $disponivel_perg = false;
  
                      ////////Perguntas///////////
@@ -847,9 +946,33 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
 
                      ////////////////PatchReforco/////////
- $ambiente_ref = $request->answer_boolean_ref;
- $tamanho_ref = $request->tamanho_ref;
- $largura_ref = $request->largura_ref;
+  $ambiente_ref = $request->answer_boolean_ref;
+ $tamanho_ref1 = $request->tamanho_ref;
+ $largura_ref = 0;
+    
+    
+    if($ambiente_ref==1){
+        $tamanho_ref = 3;
+        $largura_ref = 2;
+    }else{
+         if($tamanho_ref1 == 1 ){
+            $tamanho_ref = 1 ;
+            $largura_ref = 3;
+
+         }
+
+         if($tamanho_ref1 == 2 ){
+            $tamanho_ref = 4 ;
+            $largura_ref = 6;
+
+         }
+
+          if($tamanho_ref1 == 3 ){
+            $tamanho_ref = 7 ;
+            $largura_ref = 10;
+
+         }
+    }
  $disponivel_ref = true;
 
 

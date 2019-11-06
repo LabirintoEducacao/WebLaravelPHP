@@ -106,8 +106,15 @@ a:hover #teste {
  .selectborda{
 
    border-radius: 4px 4px 4px 4px;
+ }
+
+.info:hover{
+
+   border-radius: 50%;
+   box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.2), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 
  }
+
  .selectborda:hover{
 
    border-radius: 4px 4px 4px 4px;

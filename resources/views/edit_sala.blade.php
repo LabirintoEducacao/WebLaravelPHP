@@ -69,33 +69,36 @@
                             <div class=" container" style="margin-top: -40px">
                                 <div class="card houvercard">
                                     <div class=" container">
-                                        <div class="row" style="margin-top: 10px;">
-                                            <div class="col">
+                                        <div class="row align-items-center" style="margin-top: 10px;">
+                                            <div class="col col-sm-4">
                                                 <input type="hidden" value="0" name="perg_id" id="perg_id">
                                                 <label for="pergunta" style=" font-size:  130%; color: black;">Pergunta:</label>
                                             </div>
-                                            <div class="col-12 col-md-auto" style="display:inline-block">
+                                            <div class="col-12 col-sm-auto" style="display:inline-block">
                                                 <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
+                                                    <div class="col-4 col-sm-4" style="height:100%;">
                                                         <label for="question_type" style="margin-right: 3.5px; padding-top:10%;">Tipo da pergunta:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                            <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
-                                                            <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
-                                                            <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
-                                                            <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
+                                                        <select disabled class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
+                                                            <option selected value="1">Texto</option>
+                                                            <option value="2" >Imagem</option>
+                                                            <option value="3">Video</option>
+                                                            <option value="4">Audio</option>
                                                         </select>
                                                         <div id="tooltip_container"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col col-lg-4">
-                                                <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
-                                                        <label for="room_type" style="margin-right: 3.5px; padding-top:10%;">Interação:</label>
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col-2 col-sm-2" style=" margin-top: 12px;">
+                                                        <label for="room_type">Interação:</label>
                                                     </div>
-                                                    <div class="col-7">
+                                                    <div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">
+                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
+                                                    </div>
+                                                    <div class="col-8 col-sm-8">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
                                                             <option value="right_key">Chave</option>
                                                             <option selected value="hope_door">Porta da esperança</option>
@@ -112,7 +115,9 @@
                                     <div class="container" style="padding-top:2%">
                                         <!--                                        <br>-->
                                         <div class="textareaborda2" style="display:block;">
-                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required></textarea>
+                                            <textarea id="pergunta" type="text" name="pergunta" rows="2" cols="50" class=" form-control @error('pergunta') is-invalid @enderror col" placeholder="Faça sua pergunta" maxlength="500" required aria-describeby="perguntaHelp"></textarea>
+
+                                            <small id="perguntaHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
                                         </div>
 
                                         <!--
@@ -131,14 +136,17 @@
                                     <!--   Ambinete  -->
                                     <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
                                     <div class=" container">
-                                        <div class="row" style="line-height: 40px; margin-bottom: 10px;">
-                                            <div class="col-12 col-sm-4">
+                                        <div class="row justify-content-between " style="line-height: 40px; margin-bottom: 10px;">
+                                            <div class="col-12 col-sm-6">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
+                                                <div class="row">
+                                                    <div class="col-4" style=" margin-top: 3px;">
                                                         <label for="answer_boolean" style="margin-right: 3.5px; padding-top:10%;">Caminho do jogo:</label>
                                                     </div>
-                                                    <div class="col-7">
+                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
+                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
+                                                    </div>
+                                                    <div class="col-6">
                                                         <select name="answer_boolean" id="answer_boolean" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Corredor</option>
                                                             <option value="2">Labirinto</option>
@@ -146,13 +154,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-4">
+                                            
+                                            
+                                            <div class="col-12 col-sm-6 tamanho" style="display:none">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row" style="height:50px;">
+                                                <div class="row " style="height:50px;">
                                                     <div class="col-5" style="height:100%;">
                                                         <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>
                                                     </div>
-                                                    <div class="col-7">
+                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
+                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
+                                                    </div>
+                                                    <div class="col-5">
                                                         <select name="tamanho" id="tamanho" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Pequeno</option>
                                                             <option value="2">Medio</option>
@@ -161,21 +174,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-4">
-                                                <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
-                                                        <label for="largura" style="margin-right: 3.5px; padding-top:10%;">Largura do Labirinto:</label>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <select name="largura" id="largura" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
-                                                            <option selected value="1">Pequeno</option>
-                                                            <option value="2">Medio</option>
-                                                            <option value="3">Grande</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -189,6 +189,7 @@
                                             <div class="col-9">
                                                 <label style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>
                                                 <button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="material-icons">add</i></button>
+                                                <small id="Help" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>
                                             </div>
 
                                             <div class="col-12 col-sm-3">
@@ -198,7 +199,7 @@
                                                         <label for="tipo_opcao" style="margin-right: 3.5px; padding-top:15%;">Tipo da Resposta:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select name="tipo_resp" id="tipo_opcao" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
+                                                        <select disabled name="tipo_resp" id="tipo_opcao" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Texto</option>
                                                             <option value="2">Imagem</option>
                                                             <option value="3">Vídeo</option>
@@ -346,10 +347,17 @@
                     <div class="col-12 col-md-auto">
                         <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
                     </div>
+                    @if(3 > $c_perg)
                     <div class="col-12 col-md-auto">
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
                             </i>&emsp;Pergunta</button>
                     </div>
+                    @else
+                    <div class="col-12 col-md-auto">
+                        <button class="btn btn-success-disabled btn-sm" style="width:100%;" onclick="alertaPerg();"><i class="material-icons">add
+                            </i>&emsp;Pergunta</button>
+                    </div>
+                @endif
 
                     <div class="col-12 col-md-auto">
 
@@ -483,10 +491,10 @@
 
                     <div id="flip2">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
-                        <div class="row align-items-center" style="cursor: pointer;">
-
-                            <i class="material-icons" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">help</i>
-
+                        <div class="row align-items-center"  style="cursor: pointer;">
+                       
+                          <i class="material-icons info" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">info</i>
+                          
                             <div class="col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
                                 <?php
                                 $str = $ref->pergunta;
@@ -504,7 +512,9 @@
                             </div>
 
                             <div class="col-2 col-sm-1">
-                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;">
+
+                                <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;margin-right:-10px">
+
                                     <i id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
@@ -722,12 +732,62 @@
     </div>
 </div>
 
-<div id="mensagem" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div id="mensagemcontent" class="modal-content">
-            ...
-        </div>
+
+<div id="modalinfo" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
+    <div class="modal-body">
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Chave</b></h5>
+        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Posta da Esperaça</b></h5>
+          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Verdadeiro ou Falso</b></h5>
+           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+            <h5 class="modal-title" style="color: black; font-size: 13px"><b>Multiplas Formas</b></h5>
+            <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalinfoCorredor" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Corredor</b></h5>
+        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Labirinto</b></h5>
+          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalinfoTamanho" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Pequeno</b></h5>
+        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Médio</b></h5>
+          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Grande</b></h5>
+           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+    </div>
+    </div>
+  </div>
 </div>
 
 @endsection

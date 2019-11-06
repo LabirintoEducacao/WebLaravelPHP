@@ -313,7 +313,7 @@ function addaluno(id) {
     });
 
     $.ajax({
-        url: 'http://127.0.0.1:8000/admin/addaluno/',
+        url: '/admin/addaluno/',
         type: 'POST',
         data: {
             id: id,
