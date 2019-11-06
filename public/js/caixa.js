@@ -42,7 +42,7 @@
           // });
           
           $('#add').click(function () {
-              if (a < 3) {
+              if (a < 2) {
                   if($('.room_type').val() == 'true_or_false'){
                   $('#dynamic_field').append('' +
                       '<div id="row' + i + '" class="dynamic-added">' +
@@ -106,13 +106,78 @@
                 }
                   a++;
                   i++;
-                }
-          });
 
+                }
+
+                 if(a == 2){
+
+                  function alerttotalresposta(msg, type){
+                   var html =  '<div class="alertContainer3 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-10">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-2">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer3').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  });
+                  }
+
+
+                  $('#add').click(function(){
+                  alerttotalresposta("Limite Máximo de resposta para cada labirinto são 3 !","warning");
+
+                  });
+                    
+                  }
+
+
+
+          });
 
           //////////////////////////////////////////////////////////////////////////
           $(document).on('click', '.teste', function () {
-              if (b < 3) {
+
+
+                if(b == 2){
+
+                  function alerttotalresposta(msg, type){
+                   var html =  '<div class="alertContainer3 '+type+'">\n';
+                  html += '<div class="row align-items-center">';
+                  html += '<div class="col-sm-10">';
+                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
+                  html +=     '</div>';
+                  html += '<div class="col-sm-2">';
+                  html +=     '<div class="cerrarAlert">x</div>\n';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  html +=     '</div>';
+                  jQuery('body').append(html);
+                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
+                  jQuery('.cerrarAlert').click(function(){
+                  jQuery('.alertContainer3').removeClass('active');
+                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  });
+                  }
+
+
+                  $('.teste').click(function(){
+                  alerttotalresposta("Limite Máximo de resposta para cada labirinto são 3 !","warning");
+
+                  });
+                    
+                  }
+
+
+              if (b < 2) {
+                console.log("passou "+b);
                 if($('#room_type_ref').val() == 'true_or_false'){
                   $('#dynamic_field2').append('' +
                       '<div id="row2' + i2 + '" class="dynamic-added2">' +
@@ -179,6 +244,7 @@
                   b++;
                   i2++;
                 }
+
              
           });
         
@@ -191,8 +257,8 @@
 
                       '<div id="pai" class="hea">' +
                       '<div class=" container">' +
-                      '<div class="card houvercard">' +
-                      '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
+                      '<div class="card houvercardacima">' +
+                      '<label class="col-12" style="font-size: 130%; color: black; padding-top: 10px;">Definições do labirinto (ERRADO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '<div class="col-12 col-sm-4">' +
@@ -267,11 +333,11 @@
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
                       '</div>' +
                     '<div class="col-7">' +
-                      ' <select disabled class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
+                      ' <select class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
-                      ' <option value="2">Imagem</option>' +
-                      '   <option value="3">Vídeo</option>' +
-                      '<option value="4">Áudio</option>' +
+                      ' <option disabled value="2">Imagem</option>' +
+                      '   <option disabled value="3">Vídeo</option>' +
+                      '<option disabled value="4">Áudio</option>' +
                       '   </select>' +
                     '</div>' +
                     '</div>' +
@@ -387,11 +453,11 @@
                       '<label for="question_type">Tipo da Resposta:</label>' +
                       '</div>'+
                       '<div class="col-7">'+
-                      '<select disabled  class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
-                      ' <option selected value="1">Texto</option>' +
-                      '<option value="2">Imagem</option>' +
-                      '<option value="3">Vídeo</option>' +
-                      ' <option value="4">Áudio</option>' +
+                      '<select class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
+                      ' <option  selected value="1">Texto</option>' +
+                      '<option disabled value="2">Imagem</option>' +
+                      '<option disabled value="3">Vídeo</option>' +
+                      ' <option disabled value="4">Áudio</option>' +
                       '</select>' +
                       '</div>' +
                       '</div>' +
@@ -463,9 +529,9 @@
                       //                      '</div>'
                   );
 
-                  $(".teste").trigger('click');
-                  $(".teste").trigger('click');
-                $(".teste").trigger('click');
+                  // $(".teste").trigger('click');
+                  // $(".teste").trigger('click');
+             
                   
                   $('.selectpicker').selectpicker('refresh');
                   
@@ -763,8 +829,28 @@
                 $('.verdadeiro2').attr('type', 'radio');
             
               }
-               
 
+
+               if(roomtype.value == 'hope_door'){
+
+                  $('#check-reforco').trigger("change");
+                  $('#desabilitar').css('display','block');
+                  $('#check-reforco').prop("checked", true);
+                  if($("#path_errado_id").val()==0){
+                    $(".teste").trigger("click");
+                    $(".teste").trigger("click");
+                  }
+
+
+              
+              }else{
+
+                 $('#check-reforco').trigger("change");
+                $('#check-reforco').prop("checked", false);
+                $('#desabilitar').css('display','none');
+            
+              }
+               
                
              });
 
@@ -795,7 +881,7 @@
                                   modal.find('#perg_id').val(val.question_id);
                                   console.log(val.question_id);
                                   modal.find('.room_type').val(val.room_type);
-                                  $(".room_type").trigger('change');
+                                  //$(".room_type").trigger('change');
                                   modal.find('#question_type').val(val.question_type);
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {
@@ -807,7 +893,7 @@
                                       } else {
 
                                           //$('#check-reforco').prop("checked", false);
-                                          $("#check-reforco").trigger('click');
+                                          //$("#check-reforco").trigger('click');
                                           modal.find('#answer_boolean_perg').val(path.type);
                                           modal.find('#largura_perg').val(path.widht);
                                           modal.find('#tamanho_perg').val(path.heigh);
@@ -820,7 +906,7 @@
                                       console.log(resp.correct);
                                       if (v > 0) {
 
-                                           $("#add").trigger('click');
+                                          $("#add").trigger('click');
 
                                         
                                       }
@@ -841,10 +927,14 @@
                                   x++;
                               } else {
                                   v = 0;
+                                 
+                                   //$("#room_type_ref").trigger('change');
+                                   $('#desabilitar').css('display','block');
+                                   $('#check-reforco').prop("checked", true);
+                                   $('#check-reforco').trigger("change");
                                   modal.find('#pergunta-reforco').val(val.question);
                                   modal.find('#perg-reforco-id').val(val.question_id);
                                   modal.find('#room_type_ref').val(val.room_type);
-                                  $("#room_type_ref").trigger('change');
                                   modal.find('#question_type_ref').val(val.question_type);
                                   modal.find('#path_reforco_id').val(val.path.path_id);
                                   modal.find('#answer_boolean_ref').val(val.path.type);
@@ -852,7 +942,7 @@
                                   modal.find('#tamanho_ref').val(val.path.heigh);
                                   console.log(val.answer)
                                   $.each(val.answer, function (j, ref) {
-                                      if (v > 0) {
+                                      if (v > 0 ) {
                                           
                                            $(".teste").trigger('click');
                                         
@@ -896,19 +986,11 @@
                   modal.find('.room_type').val('right_key');
                   modal.find('#question_type').val(1);
                   modal.find('#perg-reforco-id').val(0);
-                  $('#check-reforco').prop("checked", true);
-                  $('#check-reforco').trigger("change");
 
                 $("#add").trigger('click');
                 $("#add").trigger('click');
-                $("#add").trigger('click');
-                  
-                  
-
-                
-
-
-
+     
+              
               }
 
           });
@@ -994,9 +1076,12 @@
                           b = 0;
 
                       }
+
                   });
 
-                window.location.reload();
+
+                  e.preventDefault();
+                //window.location.reload();
               } else {
 
                   function alert2(msg, type){

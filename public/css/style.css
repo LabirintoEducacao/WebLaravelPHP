@@ -128,6 +128,20 @@ a:hover #teste {
 
  }
 
+
+.houvercardacima:hover{
+    
+     box-shadow: 0 4px 20px 4px rgba(0, 0, 0, 0.1), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
+
+ }
+
+.houvercardacima{
+   
+    margin-top: -50px;
+    z-index: 999999999999;
+
+}
+
 .navcolor {
 
     position: relative;
