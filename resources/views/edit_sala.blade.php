@@ -137,13 +137,16 @@
                                     <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
                                     <div class=" container">
                                         <div class="row justify-content-between " style="line-height: 40px; margin-bottom: 10px;">
-                                            <div class="col-12 col-sm-4">
+                                            <div class="col-12 col-sm-6">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row" style="height:50px;">
-                                                    <div class="col-5" style="height:100%;">
+                                                <div class="row">
+                                                    <div class="col-4" style=" margin-top: 3px;">
                                                         <label for="answer_boolean" style="margin-right: 3.5px; padding-top:10%;">Caminho do jogo:</label>
                                                     </div>
-                                                    <div class="col-7">
+                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
+                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
+                                                    </div>
+                                                    <div class="col-6">
                                                         <select name="answer_boolean" id="answer_boolean" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Corredor</option>
                                                             <option value="2">Labirinto</option>
@@ -151,13 +154,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-4 tamanho" style="display:none;">
+                                            
+                                            
+                                            <div class="col-12 col-sm-6 tamanho" style="display:none">
                                                 <input type="hidden" name="path_id" id="path_id">
                                                 <div class="row " style="height:50px;">
                                                     <div class="col-5" style="height:100%;">
                                                         <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>
                                                     </div>
-                                                    <div class="col-7">
+                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
+                                                         <i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
+                                                    </div>
+                                                    <div class="col-5">
                                                         <select name="tamanho" id="tamanho" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Pequeno</option>
                                                             <option value="2">Medio</option>
@@ -739,6 +747,42 @@
            <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
             <h5 class="modal-title" style="color: black; font-size: 13px"><b>Multiplas Formas</b></h5>
             <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalinfoCorredor" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Corredor</b></h5>
+        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Labirinto</b></h5>
+          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalinfoTamanho" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Pequeno</b></h5>
+        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Médio</b></h5>
+          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Grande</b></h5>
+           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
     </div>
     </div>
   </div>
