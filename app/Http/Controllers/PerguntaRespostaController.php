@@ -76,7 +76,7 @@ class PerguntaRespostaController extends Controller
             $pathref = array(
                 'availability' => $dispref,
                 'widht' => $pathrefs[0]->largura,
-                'heigh' => $pathrefs[0]->tamanho,
+                'height' => $pathrefs[0]->tamanho,
                 'type' => $pathrefs[0]->ambiente_perg,
                 'conect_question' => $idperg,
                 'path_id' => $pathrefs[0]->id
@@ -159,7 +159,7 @@ class PerguntaRespostaController extends Controller
                 $pat= array(
                     'availability' => $disponivel,
                     'widht' => $path[0]->largura,
-                    'heigh' => $path[0]->tamanho,
+                    'height' => $path[0]->tamanho,
                     'type' => $path[0]->ambiente_perg,
                     'path_id' => $path[0]->id,
                     'end_game'=> true
@@ -171,7 +171,7 @@ class PerguntaRespostaController extends Controller
                 $pat= array(
                     'availability' => $disponivel,
                     'widht' => $path[0]->largura,
-                    'heigh' => $path[0]->tamanho,
+                    'height' => $path[0]->tamanho,
                     'type' => $path[0]->ambiente_perg,
                     'path_id' => $path[0]->id,
                     'conect_question'=> $conect

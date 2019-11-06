@@ -394,7 +394,7 @@
                       '<div class="container">' +
                       ' <div class="textareaborda2">' +
                       '<textarea id="pergunta-reforco" type="text" name="reforco" rows="2" cols="50" class= "form-control col" placeholder="Faça sua pergunta reforço" maxlength="500" required aria-describeby="perguntaRHelp"></textarea>' +
-                      '<small id="perguntaRHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>' +
+                      '<small id="perguntaRHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGATÓRIO </small>' +
                       '</div>' +
                       '</div>' +
 
@@ -480,7 +480,7 @@
                       '<div class="col-9">' +
                       '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>' +
                       '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
-                      '<small id="respostaRHelp" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGAÓRIAS </small>'+
+                      '<small id="respostaRHelp" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGATÓRIAS </small>'+
                       '</div>' +
                       '<div class="col">' +
                       '<div class="row" style="height:50px;">' +
@@ -912,6 +912,7 @@
          
               if (button.data('whatever')) {
                   var recipient = button.data('whatever');
+                  var tamanho = 0;
                   console.log(recipient);
                   $.ajax({
                       url: '/admin/busca-perg',
@@ -941,8 +942,19 @@
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {
                                           modal.find('#answer_boolean').val(path.type);
-                                          modal.find('#largura').val(path.widht);
-                                          modal.find('#tamanho').val(path.heigh);
+                                          if(path.type==2){
+                                              $('#answer_boolean').trigger("change");
+                                              if(path.height==1)
+                                                tamanho = 1;
+                                              else if(path.height==4)
+                                                tamanho=2;
+                                              else
+                                                tamanho=3;
+                                              console.log("tamanho"+tamanho)
+                                         
+                                              modal.find('#tamanho').val(tamanho);
+                                          }
+                                          
                                           modal.find('#path_id').val(path.path_id);
                                           w++;
                                       } else {
@@ -950,8 +962,15 @@
                                           //$('#check-reforco').prop("checked", false);
                                           //$("#check-reforco").trigger('click');
                                           modal.find('#answer_boolean_perg').val(path.type);
-                                          modal.find('#largura_perg').val(path.widht);
-                                          modal.find('#tamanho_perg').val(path.heigh);
+                                          if(path.type==2){
+                                              $('#answer_boolean_perg').trigger("change");
+                                              if(path.height==1)
+                                                modal.find('#tamanho_perg').val(1);
+                                              else if(path.height==4)
+                                                modal.find('#tamanho_perg').val(2);
+                                            else
+                                                modal.find('#tamanho_perg').val(3);
+                                          }
                                           modal.find('#path_errado_id').val(path.path_id);
                                       }
                                   });
@@ -993,8 +1012,14 @@
                                   modal.find('#question_type_ref').val(val.question_type);
                                   modal.find('#path_reforco_id').val(val.path.path_id);
                                   modal.find('#answer_boolean_ref').val(val.path.type);
-                                  modal.find('#largura_ref').val(val.path.widht);
-                                  modal.find('#tamanho_ref').val(val.path.heigh);
+                                  if(val.path.type==2){
+                                    if(val.path.height==1)
+                                        modal.find('#tamanho_ref').val(1);
+                                    else if(val.path.height==4)
+                                        modal.find('#tamanho_ref').val(2);
+                                    else
+                                        modal.find('#tamanho_ref').val(3);
+                                    }
                                   console.log(val.answer)
                                   $.each(val.answer, function (j, ref) {
                                       if (v > 0 ) {
