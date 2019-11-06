@@ -23,7 +23,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" href="#perg" data-toggle="tab">Pergunta</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li id="desabilitar" class="nav-item" style="display:none">
                                             <a class="nav-link" href="#pergReforco" data-toggle="tab">Reforço</a>
                                         </li>
                                     </ul>
@@ -54,8 +54,6 @@
             <form name="add_name" id="add_name">
                 <div class="modal-body">
 
-
-
                     @csrf
                     {{ csrf_field() }}
 
@@ -80,11 +78,11 @@
                                                         <label for="question_type" style="margin-right: 3.5px; padding-top:10%;">Tipo da pergunta:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select disabled class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
+                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
                                                             <option selected value="1">Texto</option>
-                                                            <option value="2" >Imagem</option>
-                                                            <option value="3">Video</option>
-                                                            <option value="4">Audio</option>
+                                                            <option disabled value="2" >Imagem</option>
+                                                            <option disabled value="3">Video</option>
+                                                            <option disabled value="4">Audio</option>
                                                         </select>
                                                         <div id="tooltip_container"></div>
                                                     </div>
@@ -99,9 +97,9 @@
                                                          <i class="material-icons info" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>
                                                     </div>
                                                     <div class="col-8 col-sm-8">
-                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
-                                                            <option value="right_key">Chave</option>
-                                                            <option selected value="hope_door">Porta da esperança</option>
+                                                        <select id="room_type" class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
+                                                            <option selected  value="right_key">Chave</option>
+                                                            <option value="hope_door">Porta da esperança</option>
                                                             <option value="true_or_false">Verdadeiro ou Falso</option>
                                                             <option value="multiple_forms">Multiplas Formas</option>
                                                         </select>
@@ -199,11 +197,11 @@
                                                         <label for="tipo_opcao" style="margin-right: 3.5px; padding-top:15%;">Tipo da Resposta:</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select disabled name="tipo_resp" id="tipo_opcao" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
+                                                        <select name="tipo_resp" id="tipo_opcao" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Texto</option>
-                                                            <option value="2">Imagem</option>
-                                                            <option value="3">Vídeo</option>
-                                                            <option value="4">Áudio</option>
+                                                            <option disabled  value="2">Imagem</option>
+                                                            <option disabled  value="3">Vídeo</option>
+                                                            <option disabled  value="4">Áudio</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -222,10 +220,10 @@
                         <div class="tab-pane" id="pergReforco">
                             <div class="hovereffect">
                                 <div class="overlay">
-                                    <div class="form-check" style="margin-left:5%; margin-bottom:2%">
-                                        <label class="form-check-label">
+                                    <div class="form-check" style="margin-left:5%; margin-bottom:2%;">
+                                        <label class="form-check-label"  style="color: #ffff;">
 
-                                            <input class="form-check-input" type="checkbox" id="check-reforco">
+                                            <input class="form-check-input" type="checkbox" id="check-reforco" disabled>
                                             Pergunta Reforço
                                             <span class="form-check-sign">
                                                 <span class="check"></span>
@@ -347,17 +345,12 @@
                     <div class="col-12 col-md-auto">
                         <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Sequência</button>
                     </div>
-                    @if(3 > $c_perg)
+                 
                     <div class="col-12 col-md-auto">
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPerg" style="width:100%;"><i class="material-icons">add
                             </i>&emsp;Pergunta</button>
                     </div>
-                    @else
-                    <div class="col-12 col-md-auto">
-                        <button class="btn btn-success-disabled btn-sm" style="width:100%;" onclick="alertaPerg();"><i class="material-icons">add
-                            </i>&emsp;Pergunta</button>
-                    </div>
-                @endif
+                 
 
                     <div class="col-12 col-md-auto">
 
