@@ -818,4 +818,20 @@ function removeAluno(id, turma) {
         }
     });
 }
+
+function thlin(option) {
+    $("#divtabela2").empty();
+
+    if (option == 0) {
+        mostrarmaisalunos2(1);
+        $("#divdatabela").hide();
+        $('#adicionaralunos').show();
+        //console.log("teste");
+    } else {
+        $("#divdatabela").show();
+        $('#adicionaralunos').hide();
+        //console.log("teste");
+    }
+
+}
 ////////////////////////////////////////////////////////Thiago

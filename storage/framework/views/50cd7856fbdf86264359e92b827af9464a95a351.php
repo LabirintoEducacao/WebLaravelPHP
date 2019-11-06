@@ -138,23 +138,52 @@
     <div class="modal-dialog larguramodal" style="z_index:999999;">
         <div class="modal-content">
             <div class="modal-header">
-                
-                    <div class="col">
-                        <h5 class="modal-title nomegrupo" id="exampleModalLabel">COLOCAR NOME GRUPO</h5>
-                    </div>
-                    <div class="col-sm-8">
-                        <a onclick="mostrarmaisalunos2(1)" class="btn btn-sm btn-primary" style="color: white; float:right;margin-top:-1px;">Adicionar aluno</a>
-                    </div>
-                    <div class="col-sm-1" style="float:right;" >
-                        <button style="color:black;" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                
-            </div>
-            <?php echo csrf_field(); ?>
+                <div class="card card-nav-tabs card-plain">
+                    <div class="card-header card-header-primary">
+                        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                        <div class="container row align-items-center">
+                            <div class="col-11">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link active nomegrupo" onclick="thlin(1)" style="widht:50%;" href="" data-toggle="tab">                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" style="widht:50%;" onclick="thlin(0)" data-toggle="tab">
+                                                   Adcionar Alunos
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <button type="submit" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
 
-            <div id="divdatabela"class="modal-body" style="margin-left: 5%;margin-right:1%;margin-top:3%">
+                    </div>
+                </div>
+                <!-- <div class="col-sm-8">
+                    <a onclick="mostrarmaisalunos2(1)" class="btn btn-sm btn-primary" style="color: white; float:right;margin-top:-1px;">Adicionar aluno</a>
+                </div> -->
+            </div>
+            <div id="adicionaralunos" style="display:none;">
+                <div id="divtabela2">
+                </div>
+                <div class="row justify-content-center">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-center">
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <?php echo csrf_field(); ?>
+            <div id="divdatabela" class="modal-body" style="margin-left: 5%;margin-right:1%;">
                 <div class="form-group">
                     <?php if($errors->has('nome')): ?>
                     <div class="help-block">
@@ -172,14 +201,6 @@
 
                     </tbody>
                 </table>
-            </div>
-            <div id="divtabela2">
-            </div>
-            <div class="row justify-content-center">
-                <nav aria-label="...">
-                    <ul class="pagination justify-content-center">
-                    </ul>
-                </nav>
             </div>
             <div class="modal-footer">
                 <button onclick="salvarGrupo(<?php echo e(Auth::user()->id); ?>)" class="btn btn-success" style="float:right; ">Salvar</button>

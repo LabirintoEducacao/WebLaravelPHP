@@ -81,12 +81,12 @@
                                                     </div>
                                                     <div class="col-7">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
+                                                            <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
                                                             <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
                                                             <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
                                                             <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
                                                         </select>
-                                                          <div id="tooltip_container"></div>
+                                                        <div id="tooltip_container"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,9 +272,9 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                 <div>
                     <div class="row" style="margin-bottom: -35px;">
                         <?php
-                                            $x = gmdate("H:i:s", $sala->duracao);
-                                            
-                                        ?>
+                        $x = gmdate("H:i:s", $sala->duracao);
+
+                        ?>
 
                         <div class="col-12 col-md-auto">
                             <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
@@ -366,7 +366,9 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
 
                 <hr style="border: 0.5px solid: grey;">
 
-                <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
+                <?php $x = 1;
+                $y = 0;
+                $letras = array("a)", "b)", "c)", "d)"); ?>
 
                 <table class="table">
                     <thead class=" text-primary">
@@ -388,7 +390,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                 <!------- Estrutura de repetição (CARD)------------------->
 
                 <div id="pai">
-                    <?php 
+                    <?php
                     $cont = 0;
                     $cont2 = 0;
                     ?>
@@ -396,7 +398,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                     <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
-                    <?php $errado=0; ?>
+                    <?php $errado = 0; ?>
                     <?php $__currentLoopData = $path_perg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php if($pp->perg_id==$item->id): ?>
 
@@ -414,7 +416,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                             <div class="col-sm-10 container" onclick="abrir('panel'+<?php echo e($item->id); ?>);" style="padding-left: 25px;">
                                 <?php
                                 $str2 = $item->pergunta;
-                                $total1 = strlen($str2); 
+                                $total1 = strlen($str2);
                                 ?>
                                 <?php if($total1 > 108): ?>
                                 <div id="div2" data-toggle="tooltip" data-placement="top" title="<?php echo e($item->pergunta); ?>"><?php echo e($item->pergunta); ?></div>
@@ -441,7 +443,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                         </div>
                     </div>
 
-                    <?php $cont ++; ?>
+                    <?php $cont++; ?>
                     <?php endif; ?>
                     <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -449,7 +451,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
-                    <?php $y=0; ?>
+                    <?php $y = 0; ?>
 
                     <div class="panel" id="panel<?php echo e($item->id); ?>">
                         <?php $__currentLoopData = $respostas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resposta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -458,7 +460,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                         <?php if($pergresp->resp_id==$resposta->id): ?>
 
                         <div class="row">
-                            <h5><?php echo $letras[$y];?></h5>
+                            <h5><?php echo $letras[$y]; ?></h5>
                             <div class="col totalresposta" style=" margin-top: -5px;">
                                 <p style="font-size: 120%; line-height: 30px;"><?php echo e($resposta->resposta); ?></p>
                             </div>
@@ -471,7 +473,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
 
-                    <?php $y=0; ?>
+                    <?php $y = 0; ?>
 
                     <?php $__currentLoopData = $perg_refs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $perg_ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php if($perg_ref->perg_id==$item->id): ?>
@@ -487,15 +489,15 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
 
                     <div id="flip2">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta <?php echo e($item->pergunta); ?></div> -->
-                        <div class="row align-items-center"  style="cursor: pointer;">
-                       
-                          <i class="material-icons" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta <?php echo e($item->pergunta); ?>" style="margin-left: 10px;">help</i>
-                          
+                        <div class="row align-items-center" style="cursor: pointer;">
+
+                            <i class="material-icons" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta <?php echo e($item->pergunta); ?>" style="margin-left: 10px;">help</i>
+
                             <div class="col-sm-9 container" onclick="abrir('panel'+<?php echo e($ref->id); ?>);" style="margin-left: -3px;">
                                 <?php
-                        $str = $ref->pergunta;
-                        $total = strlen($str); 
-                        ?>
+                                $str = $ref->pergunta;
+                                $total = strlen($str);
+                                ?>
                                 <?php if($total > 108): ?>
                                 <div id="div2" data-toggle="tooltip" data-placement="top" title="<?php echo e($ref->pergunta); ?>"><?php echo e($ref->pergunta); ?></div>
                                 <?php else: ?>
@@ -516,12 +518,12 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                                     <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'<?php echo e($ref->pergunta); ?>\'? ')) ? window.location.href =  '<?php echo e(url('admin/visualizar/deletar-pergunta/'.$ref->id)); ?>' : window.location.reload(forcedReload)">Excluir</a>
                                 </div>
                             </div>
-                    <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+<?php echo e($ref->id); ?>);">
+                            <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+<?php echo e($ref->id); ?>);">
                                 <a><img src="<?php echo e(asset('img/expand-button.png')); ?>" width="8px"></a>
                             </div>
                         </div>
                     </div>
-                    <?php $cont2 ++; ?>
+                    <?php $cont2++; ?>
                     <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php endif; ?>
@@ -533,7 +535,7 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
                         <?php if($pergresp->perg_id==$ref->id): ?>
                         <?php if($pergresp->resp_id==$resposta->id): ?>
                         <div class="row">
-                            <h5><?php echo $letras[$y];?></h5>
+                            <h5><?php echo $letras[$y]; ?></h5>
                             <div class="col" style=" margin-top: -5px;">
                                 <p style="font-size: 120%; line-height: 30px;"><?php echo e($resposta->resposta); ?></p>
                             </div>
@@ -738,5 +740,4 @@ endif; ?> col" placeholder="Faça sua pergunta" maxlength="500" required></texta
 </div>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('vendor.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/thiago/Desktop/lab/resources/views/edit_sala.blade.php ENDPATH**/ ?>

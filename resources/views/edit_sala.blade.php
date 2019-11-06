@@ -81,12 +81,12 @@
                                                     </div>
                                                     <div class="col-7">
                                                         <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
-                                                              <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
+                                                            <option selected value="1" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss fg fgfd gfdgfdfgfggf rfgfd retg ret wert er tewr terer tt '></i>&emsp;Texto"></option>
                                                             <option value="2" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 2'></i>&emsp;Imagem"></option>
                                                             <option value="3" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 3'></i>&emsp;Video"></option>
                                                             <option value="4" data-content="<i class='fa fa-question-circle' style='margin-left: -20px;' data-toggle='tooltip' title='tesssss 4'></i>&emsp;Áudio"></option>
                                                         </select>
-                                                          <div id="tooltip_container"></div>
+                                                        <div id="tooltip_container"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -267,9 +267,9 @@
                 <div>
                     <div class="row" style="margin-bottom: -35px;">
                         <?php
-                                            $x = gmdate("H:i:s", $sala->duracao);
-                                            
-                                        ?>
+                        $x = gmdate("H:i:s", $sala->duracao);
+
+                        ?>
 
                         <div class="col-12 col-md-auto">
                             <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
@@ -360,7 +360,9 @@
 
                 <hr style="border: 0.5px solid: grey;">
 
-                <?php $x=1;$y=0;$letras = array("a)", "b)", "c)", "d)"); ?>
+                <?php $x = 1;
+                $y = 0;
+                $letras = array("a)", "b)", "c)", "d)"); ?>
 
                 <table class="table">
                     <thead class=" text-primary">
@@ -382,7 +384,7 @@
                 <!------- Estrutura de repetição (CARD)------------------->
 
                 <div id="pai">
-                    <?php 
+                    <?php
                     $cont = 0;
                     $cont2 = 0;
                     ?>
@@ -390,7 +392,7 @@
                     @foreach($data as $item)
 
 
-                    <?php $errado=0; ?>
+                    <?php $errado = 0; ?>
                     @foreach($path_perg as $pp)
                     @if($pp->perg_id==$item->id)
 
@@ -408,7 +410,7 @@
                             <div class="col-sm-10 container" onclick="abrir('panel'+{{$item->id}});" style="padding-left: 25px;">
                                 <?php
                                 $str2 = $item->pergunta;
-                                $total1 = strlen($str2); 
+                                $total1 = strlen($str2);
                                 ?>
                                 @if($total1 > 108)
                                 <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$item->pergunta}}">{{$item->pergunta}}</div>
@@ -435,7 +437,7 @@
                         </div>
                     </div>
 
-                    <?php $cont ++; ?>
+                    <?php $cont++; ?>
                     @endif
                     @endif
                     @endforeach
@@ -443,7 +445,7 @@
                     @endforeach
 
 
-                    <?php $y=0; ?>
+                    <?php $y = 0; ?>
 
                     <div class="panel" id="panel{{$item->id}}">
                         @foreach($respostas as $resposta)
@@ -452,7 +454,7 @@
                         @if($pergresp->resp_id==$resposta->id)
 
                         <div class="row">
-                            <h5><?php echo $letras[$y];?></h5>
+                            <h5><?php echo $letras[$y]; ?></h5>
                             <div class="col totalresposta" style=" margin-top: -5px;">
                                 <p style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
                             </div>
@@ -465,7 +467,7 @@
                         @endforeach
                     </div>
 
-                    <?php $y=0; ?>
+                    <?php $y = 0; ?>
 
                     @foreach($perg_refs as $perg_ref)
                     @if($perg_ref->perg_id==$item->id)
@@ -481,15 +483,15 @@
 
                     <div id="flip2">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
-                        <div class="row align-items-center"  style="cursor: pointer;">
-                       
-                          <i class="material-icons" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">help</i>
-                          
+                        <div class="row align-items-center" style="cursor: pointer;">
+
+                            <i class="material-icons" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">help</i>
+
                             <div class="col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
                                 <?php
-                        $str = $ref->pergunta;
-                        $total = strlen($str); 
-                        ?>
+                                $str = $ref->pergunta;
+                                $total = strlen($str);
+                                ?>
                                 @if($total > 108)
                                 <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$ref->pergunta}}">{{$ref->pergunta}}</div>
                                 @else
@@ -510,12 +512,12 @@
                                     <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>
                                 </div>
                             </div>
-                    <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
+                            <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
                                 <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
                             </div>
                         </div>
                     </div>
-                    <?php $cont2 ++; ?>
+                    <?php $cont2++; ?>
                     @endif
                     @endforeach
                     @endif
@@ -527,7 +529,7 @@
                         @if($pergresp->perg_id==$ref->id)
                         @if($pergresp->resp_id==$resposta->id)
                         <div class="row">
-                            <h5><?php echo $letras[$y];?></h5>
+                            <h5><?php echo $letras[$y]; ?></h5>
                             <div class="col" style=" margin-top: -5px;">
                                 <p style="font-size: 120%; line-height: 30px;">{{$resposta->resposta}}</p>
                             </div>
