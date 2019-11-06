@@ -151,7 +151,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-sm-4">
+                                            <div class="col-12 col-sm-4 tamanho" style="display:none;">
                                                 <input type="hidden" name="path_id" id="path_id">
                                                 <div class="row " style="height:50px;">
                                                     <div class="col-5" style="height:100%;">

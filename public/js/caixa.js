@@ -181,6 +181,26 @@
                 }
              
           });
+          
+          
+          
+          
+          
+          $('#answer_boolean').on('change', function(){
+            if($('#answer_boolean').val()=='1'){
+                $('.tamanho').css('display','none');
+            }else{
+                $('.tamanho').css('display','block');
+            }
+        });
+          
+           
+
+
+          
+          
+          
+          
         
           ///////////////////////////////////////////////////////////////////
           $('#check-reforco').on('change', function () {
@@ -209,7 +229,7 @@
                       '</div>' +
                       '</div>' +
                       '</div>' +
-                      '<div class="col-12 col-sm-4">' +
+                      '<div class="col-12 col-sm-4 tamanho_error" style="display:none">' +
                       '<div class="row" style="height:50px;">' +
                       '<div class="col-5" style="height:100%;">' +
                       '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
@@ -313,14 +333,14 @@
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
                       '</div>'+
                       '<div class="col-7">'+
-                      '   <select class="form-control selectpicker " data-style="btn btn-primary" name="answer_boolean_ref" id="answer_boolean_ref">' +
+                      '   <select class="form-control selectpicker" data-style="btn btn-primary" name="answer_boolean_ref" id="answer_boolean_ref">' +
                       ' <option selected value="1">Corredor</option>' +
                       ' <option value="2">Labirinto</option>' +
                       '</select>' +
                       ' </div>' +
                       '</div>'+
                       '</div>'+
-                      '  <div class="col-12 col-sm-4">' +
+                      '  <div class="col-12 col-sm-4 tamanho_ref" style="display:none;">' +
                       '<div class="row" style="height:50px;">' +
                     '<div class="col-5" style="height:100%;">' +
                       '<label for="tamanho_ref">Tamanho do labirinto:</label>' +
@@ -496,6 +516,26 @@
               }
 
             });
+              
+              
+              $('#answer_boolean_perg').on('change', function(){
+               
+            if($('#answer_boolean_perg').val()=='1'){
+                $('.tamanho_error').css('display','none');
+            }else{
+                $('.tamanho_error').css('display','block');
+            }
+        });
+
+          
+           $('#answer_boolean_ref').on('change', function(){
+               
+            if($('#answer_boolean_ref').val()=='1'){
+                $('.tamanho_ref').css('display','none');
+            }else{
+                $('.tamanho_ref').css('display','block');
+            }
+        });
 
           });
 
@@ -1271,6 +1311,9 @@
               document.getElementById(qrN).style.display = 'none';
       }
 
+
+        
+        
 
 
   
