@@ -1158,8 +1158,8 @@
 
                   });
 
-               e.preventDefault();
-              //window.location.reload();
+            
+              window.location.reload();
 
               } else {
 
