@@ -936,7 +936,7 @@
                                   modal.find('#perg_id').val(val.question_id);
                                   console.log(val.question_id);
                                   modal.find('.room_type').val(val.room_type);
-                                  //$(".room_type").trigger('change');
+                                  $(".room_type").trigger('change');
                                   modal.find('#question_type').val(val.question_type);
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {
@@ -1011,6 +1011,7 @@
                                   modal.find('#question_type_ref').val(val.question_type);
                                   modal.find('#path_reforco_id').val(val.path.path_id);
                                   modal.find('#answer_boolean_ref').val(val.path.type);
+                                  
                                   if(val.path.type==2){
                                     if(val.path.height==1)
                                         modal.find('#tamanho_ref').val(1);
@@ -1159,7 +1160,7 @@
                   });
 
             
-              window.location.reload();
+              //window.location.reload();
 
               } else {
 
@@ -1182,7 +1183,7 @@
                   });
                   }
 
-                  alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error")
+                  alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error");
                   e.preventDefault();
              }
               if(ref.checked){
@@ -1219,7 +1220,9 @@
                   }
 
 
-                  alert1("A campos a preencher na aba Refoço verifique!<br>Caso não necessite de reforço desmarque a caixa pergunta refoço.","error");
+                  alert1("A campos a preencher na aba Refoço verifique!","error");
+
+                  $('#pergunta-reforco').focus();
                   e.preventDefault();
 
                   }
@@ -1257,6 +1260,8 @@
                   }
 
                   alert3("A campos a preencher na aba Pergunta verifique!","error");
+                  
+                  $('#pergunta').focus();
                   e.preventDefault();
                   }
 
