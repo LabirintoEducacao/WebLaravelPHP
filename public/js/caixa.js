@@ -1159,9 +1159,9 @@
 
                   });
 
+               e.preventDefault();
+              //window.location.reload();
 
-                  e.preventDefault();
-                //window.location.reload();
               } else {
 
                   function alert2(msg, type){

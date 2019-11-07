@@ -673,7 +673,7 @@ if($request->perg_reforco==1){
 
                      ////////////Tabela Path ambiente errado//////////////////
  $pathidperg = DB::table('paths')->insertGetId(array(
-     'ambiente_perg' =>  $ambiente,
+     'ambiente_perg' =>  $ambiente_perg,
      'tamanho' =>   $tamanho_perg,
      'largura' => $largura_perg,
      'disp' => $disponivel_perg
