@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Pergunta;
 use App\Sala;
 use App\Data;
+use App\TurmaSala;
 use File;
 
 class SalaController extends Controller
@@ -100,7 +101,7 @@ class SalaController extends Controller
      */
     public function store(Request $request)
     {
-      
+
      $request->validate([
 
       'nome' => 'required|max:20'
@@ -144,6 +145,7 @@ class SalaController extends Controller
       );
 
 
+
       $idsala = Sala::all()->last()->id;
 
 
@@ -182,15 +184,14 @@ class SalaController extends Controller
       'alert-type' => 'success'
     );
     if($request->page==0)
-      return redirect('admin/sala')->with($notification);
-    else
-      return redirect('admin/visualizar/'.$request->sala_id)->with($notification);
-
-  }
-
+     return redirect('admin/sala')->with($notification);
+   else
+    return redirect('admin/visualizar/'.$request->sala_id)->with($notification);
+}
 
 
-  return redirect('admin/sala')->with($notification);
+
+return redirect('admin/sala')->with($notification);
 }
 
 
@@ -407,7 +408,7 @@ class SalaController extends Controller
 
   public function login(Request $request)
   {
-   
+
 
    $email = $request->all('email');
    $senha = $request->all('password');
@@ -446,10 +447,10 @@ class SalaController extends Controller
 
 public function teste()
 {
- 
 
 
- 
+
+
   if(isset($_REQUEST['type']) && $_REQUEST['type']!=null){
 
     $tipo =(int) $_REQUEST['type'];
@@ -466,7 +467,7 @@ public function teste()
 
   
   if($tipo == 0){
-    
+
 
 
     $salas_publicas = DB::table('salas')
@@ -476,7 +477,7 @@ public function teste()
 
 
     if(count($salas_publicas) > 0){
-     
+
 
       foreach($salas_publicas as $salas){
 
@@ -484,7 +485,7 @@ public function teste()
 
 
 //------------------------------------Porcentagem---------------------------//
-        
+
         $maze = $salas->id;
         $id =   $_REQUEST['id'];          
 
@@ -591,7 +592,7 @@ public function teste()
       }
       
       $resultado = array(
-       
+
         "salas" => $jsn,
         "success" => 1
 
@@ -607,7 +608,7 @@ public function teste()
       $jsn = array(); 
 
       $resultado = array(
-       
+
         "salas" => $jsn,
         "success" => 1
 
@@ -620,17 +621,17 @@ public function teste()
   }elseif($tipo == 1 && isset($_REQUEST['id'])){
 
 
-   
 
 
-    
+
+
     $json = $_REQUEST['id'];
 
     $user = DB::table('users')->where('id','=',$json)->get();
 
     
     if(count($user)>0){
-      
+
      $salas_user = DB::table('sala_user')->where('user_id','=',$json)->get();
      
      if(count($salas_user) > 0){
@@ -641,7 +642,7 @@ public function teste()
 
 
 //------------------------------------Contagem ---------------------------//
-        
+
         $maze = $sala_user->id;
         $id =   $_REQUEST['id'];          
 
@@ -751,7 +752,7 @@ public function teste()
 
 
        $resultado = array(
-         
+
         "salas" => $jsn,
         "success" => 1
 
@@ -765,7 +766,7 @@ public function teste()
        $jsn = array(); 
 
        $resultado = array(
-         
+
         "salas" => $jsn,
         "success" => 1
 
@@ -778,11 +779,11 @@ public function teste()
 
 
    }else{
-     
+
      $jsn = array(); 
 
      $resultado = array(
-       
+
       "salas" => $jsn,
       "success" => -1
 
@@ -798,7 +799,7 @@ public function teste()
   $jsn = array(); 
 
   $resultado = array(
-   
+
     "salas" => $jsn,
     "success" => -1
 
@@ -859,17 +860,26 @@ public function addgrupo($id,$salaid){
 
  $alunos = DB::table('alunos_turma')->where('turmas_id',$id)->get();
  $alunos_sala = DB::table('sala_user')->select('user_id')->where('sala_id',"=", $salaid)->get();
+ $salas = TurmaSala::where('id_t',$id)->where('id_s',$salaid)->get();
 
+ if(count($salas) == 0){
+
+   $salas_t = new TurmaSala;
+   $salas_t->id_t = $id;
+   $salas_t->id_s = $salaid;
+   $salas_t->save();
+
+ }
  
-
+ 
  foreach ($alunos as $value) {
 
    $existe = 0 ;
 
    foreach($alunos_sala as $id){
-     
+
      if($id->user_id == $value->aluno_id){
-      
+
        $existe  = 1;
        
      }
@@ -878,15 +888,15 @@ public function addgrupo($id,$salaid){
 
    if($existe  == 0){
 
-    DB::table('sala_user')->insert(['sala_id' => $salaid, 'user_id' => $value->aluno_id]);  
+     DB::table('sala_user')->insert(['sala_id' => $salaid, 'user_id' => $value->aluno_id]);  
 
-  }
-
-  
-}
+   }
 
 
-return;
+ }
+
+
+ return;
 }
 
 

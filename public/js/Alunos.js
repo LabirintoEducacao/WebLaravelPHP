@@ -393,7 +393,7 @@ function mostrargrupos() {
 
 function addgrupo(id, salaid) {
     $.get("/admin/addgrupo/" + id + "/" + salaid).done(function (data) {
-
+        console.log(data);
         $('#addg' + id).css('display', 'none');
         $('#doneg' + id).css('display', 'block');
 
