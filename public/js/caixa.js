@@ -106,6 +106,10 @@
                 }
                   a++;
                   i++;
+                  
+                  if(a==2){
+                      $("#add").attr('disabled',true)
+                  }
 
                 }
 
@@ -244,7 +248,9 @@
                   b++;
                   i2++;
                 }
-
+              if(b==2){
+                      $(".teste").attr('disabled',true)
+                  }
              
           });
           
@@ -571,7 +577,7 @@
                   
                   
                   document.getElementById('perg_reforco').value = 1;
-
+                  i2++;
 
                    //var interacao = document.getElementsByName('room_type_ref');
 
@@ -628,6 +634,9 @@
               var button_id2 = $(this).attr("id");
                 $('#row2' + button_id2 + '').remove();
                 b--;
+             
+                      $(".teste").attr('disabled',false)
+                  
              }else if(refresposta.length <= 2){
 
                   function alert5(msg, type){
@@ -834,6 +843,9 @@
                   var button_id2 = $(this).attr("id");
                     $('#row' + button_id2 + '').remove();
                     a--;
+                 
+                      $("#add").attr('disabled',false)
+                  
                  }else if(corretos.length <= 2){
 
                     // alert('Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta!');
@@ -936,7 +948,10 @@
                                   modal.find('#perg_id').val(val.question_id);
                                   console.log(val.question_id);
                                   modal.find('.room_type').val(val.room_type);
-                                  $(".room_type").trigger('change');
+                                   modal.find('#question_type').val(val.question_type);
+                                  if(val.room_type != "hope_door"){
+                                    $(".room_type").trigger('change');
+                                  }
                                   modal.find('#question_type').val(val.question_type);
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {
@@ -1067,7 +1082,7 @@
                   modal.find('.room_type').val('right_key');
                   modal.find('#question_type').val(1);
                   modal.find('#perg-reforco-id').val(0);
-
+                  i++;
                 $("#add").trigger('click');
                 $("#add").trigger('click');
      
