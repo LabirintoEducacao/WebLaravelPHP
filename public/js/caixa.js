@@ -1001,13 +1001,14 @@
                               } else {
                                   v = 0;
                                  
-                                   //$("#room_type_ref").trigger('change');
+                                   
                                    $('#desabilitar').css('display','block');
                                    $('#check-reforco').prop("checked", true);
                                    $('#check-reforco').trigger("change");
                                   modal.find('#pergunta-reforco').val(val.question);
                                   modal.find('#perg-reforco-id').val(val.question_id);
                                   modal.find('#room_type_ref').val(val.room_type);
+                                  $("#room_type_ref").trigger('change');
                                   modal.find('#question_type_ref').val(val.question_type);
                                   modal.find('#path_reforco_id').val(val.path.path_id);
                                   modal.find('#answer_boolean_ref').val(val.path.type);
