@@ -382,7 +382,6 @@
                     '<div class="col-8 col-sm-8">' +
                       '<select class="form-control selectpicker " data-style="btn btn-primary" name="room_type_ref" id="room_type_ref">' +
                       '<option selected value="right_key">Chave</option>' +
-                      '<option value="hope_door">Porta da esperança</option>' +
                       ' <option value="true_or_false">Verdadeiro ou Falso</option>' +
                       '<option value="multiple_forms">Multiplas Formas</option>' +
                       '  </select>' +
@@ -1119,7 +1118,7 @@
 
               if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false' )  || 
                 (!ref.checked && $('#room_type').val() == 'true_or_false' )) || 
-                (z >= 2 && ref.checked)){
+                ((z >= 2 && ref.checked) || ( ((ref.checked) && ($('#room_type_ref').val() == 'true_or_false')) && ($('#room_type').val() == 'hope_door')))){
                   $.ajax({
 
                       url: postURL + x,
