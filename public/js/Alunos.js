@@ -568,10 +568,10 @@ function mostrarmaisalunos2(option) {
                 '<table id="table' + contagem + '" class="table" style="display:block;">' +
                 '<thead >' +
                 '<tr>' +
-                '<th >  </th>' +
-                '<th > Nome: </th>' +
-                '<th > Email: </th>' +
-                '<th ></th>' +
+                '<th scope="col" >  </th>' +
+                '<th scope="col" > Nome: </th>' +
+                '<th scope="col" > Email: </th>' +
+                '<th scope="col" ></th>' +
                 '</tr>' +
                 '</thead>' +
                 '<tbody id="body' + contagem + '" >' +
@@ -585,10 +585,10 @@ function mostrarmaisalunos2(option) {
                         '<table id="table' + contagem + '" class="table" style="display:none;">' +
                         '<thead >' +
                         '<tr>' +
-                        '<th > </th>' +
-                        '<th > Nome: </th>' +
-                        '<th > Email: </th>' +
-                        '<th ></th>' +
+                        '<th scope="col" > </th>' +
+                        '<th scope="col"> Nome: </th>' +
+                        '<th scope="col" > Email: </th>' +
+                        '<th scope="col" ></th>' +
                         '</tr>' +
                         '</thead>' +
                         '<tbody id="body' + contagem + '" >' +
@@ -600,11 +600,11 @@ function mostrarmaisalunos2(option) {
                     if (parse[i].id != parse[(i - 1)].id) {
                         $('#body' + contagem).append(
                             '<tr>' +
-                            '<td style="width:100%;"; id="cod' + parse[i].id + '"></td>' +
-                            '<td style="width:100%;">' + parse[i].name + '</td>' +
-                            '<td style="width:100%;">' + parse[i].email + '</td>' +
-                            '<td style="width:100%;">' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
-                            '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                            '<td  id="cod' + parse[i].id + '"></td>' +
+                            '<td >' + parse[i].name + '</td>' +
+                            '<td >' + parse[i].email + '</td>' +
+                            '<td >' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
+                            '<a style="color:white;" id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                             '</tr>'
 
                         );
@@ -613,11 +613,11 @@ function mostrarmaisalunos2(option) {
                 } else {
                     $('#body' + contagem).append(
                         '<tr>' +
-                        '<td style="width:100%;" id="cod' + parse[i].id + '"></td>' +
-                        '<td style="width:100%;">' + parse[i].name + '</td>' +
-                        '<td style="width:100%;">' + parse[i].email + '</td>' +
-                        '<td style="width:100%;">' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
-                        '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                        '<td  id="cod' + parse[i].id + '"></td>' +
+                        '<td >' + parse[i].name + '</td>' +
+                        '<td >' + parse[i].email + '</td>' +
+                        '<td >' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
+                        '<a style="color:white;" id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                         '</tr>'
                     );
                     contagem1++;
