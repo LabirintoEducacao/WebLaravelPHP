@@ -82,7 +82,9 @@
             <div class="modal-body" style="margin-left: 5%;margin-right:1%;margin-top:3%">
                 <div class="form-group">
                     <label for="nome" display="inline">Nome do Grupo:</label>
-                    <input required type="text" name="nome" id="nome" class="form-control has-feedback <?php echo e($errors->has('nome') ? 'has-error bg-primary' : ''); ?>" required>
+                    <input required type="text" name="nome" id="nome" class="form-control has-feedback <?php echo e($errors->has('nome') ? 'has-error bg-primary' : ''); ?>" required aria-describeby="grupoHelp">
+
+                    <small id="grupoHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGAÓRIO </small>
 
                     <?php if($errors->has('nome')): ?>
                     <div class="help-block">
@@ -147,12 +149,15 @@
                                     <div class="nav-tabs-wrapper">
                                         <ul class="nav nav-tabs" data-tabs="tabs">
                                             <li class="nav-item">
-                                                <a class="nav-link active nomegrupo" onclick="thlin(1)" style="widht:50%;" href="" data-toggle="tab">                                                </a>
+                                                <a class="nav-link active nomegrupo" onclick="thlin(1)" style="widht:50%; cursor:pointer;" href="" data-toggle="tab"> </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" style="widht:50%;" onclick="thlin(0)" data-toggle="tab">
-                                                   Adcionar Alunos
+                                                <a class="nav-link" style="widht:50%;cursor:pointer;" onclick="thlin(0)" data-toggle="tab">
+                                                    Adcionar Alunos
                                                 </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " onclick="thlin(2)" style="widht:50%; cursor:pointer;" data-toggle="tab"> Salas Vinculadas</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -171,6 +176,8 @@
                     <a onclick="mostrarmaisalunos2(1)" class="btn btn-sm btn-primary" style="color: white; float:right;margin-top:-1px;">Adicionar aluno</a>
                 </div> -->
             </div>
+
+
             <div id="adicionaralunos" style="display:none;">
                 <div id="divtabela2">
                 </div>
@@ -202,12 +209,48 @@
                     </tbody>
                 </table>
             </div>
+
+
+            <div id="salas_v" style="display:none;">
+                <table class="table">
+                    <thead>
+                    <th>Nome das Salas</th>
+                    </thead>
+                    <tbody class="container" id="t_salas_v">
+                            
+                        <tr>
+                            
+                            <th scope="row"> </th>
+                            <td>Mark</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row"> </th>
+                            <td>Jacob</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
+
+                        </tr>
+                        <tr>
+                            <th scope="row"> </th>
+                            <td>Larry</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
             <div class="modal-footer">
                 <button onclick="salvarGrupo(<?php echo e(Auth::user()->id); ?>)" class="btn btn-success" style="float:right; ">Salvar</button>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <!-- Modal alunos do grupos -->
 

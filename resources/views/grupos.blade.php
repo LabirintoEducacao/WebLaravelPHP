@@ -148,29 +148,29 @@
                                     <div class="nav-tabs-wrapper">
                                         <ul class="nav nav-tabs" data-tabs="tabs">
                                             <li class="nav-item">
-                                                <a class="nav-link active nomegrupo" onclick="thlin(1)" style="widht:50%; cursor:pointer;" href="" data-toggle="tab">                                                </a>
+                                                <a class="nav-link active nomegrupo" onclick="thlin(1)" style="widht:50%; cursor:pointer;" href="" data-toggle="tab"> </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" style="widht:50%;cursor:pointer;" onclick="thlin(0)" data-toggle="tab">
-                                                 Adcionar Alunos
-                                             </a>
-                                         </li>
-                                         <li class="nav-item">
-                                            <a class="nav-link " onclick="thlin(2)" style="widht:50%; cursor:pointer;"  data-toggle="tab"> Salas Vinculadas</a>
-                                        </li>
-                                    </ul>
+                                                    Adcionar Alunos
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " onclick="thlin(2)" style="widht:50%; cursor:pointer;" data-toggle="tab"> Salas Vinculadas</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-1">
+                                <button type="submit" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-1">
-                            <button type="submit" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
                 <!-- <div class="col-sm-8">
                     <a onclick="mostrarmaisalunos2(1)" class="btn btn-sm btn-primary" style="color: white; float:right;margin-top:-1px;">Adicionar aluno</a>
                 </div> -->
@@ -210,46 +210,42 @@
 
 
             <div id="salas_v" style="display:none;">
-             <table class="table">
-              <thead>
-                <tr class=" text-primary" >
-                  <th scope="col">  Grupo </th>
-                  <th scope="col" >Nome das Salas</th>
-                  <th scope="col" ></th>
-              </tr>
+                <table class="table">
+                    <thead>
+                    <th>Nome das Salas</th>
+                    </thead>
+                    <tbody class="container" id="t_salas_v">
+                            
+                        <tr>
+                            
+                            <th scope="row"> </th>
+                            <td>Mark</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a></td>
 
-          </thead>
-          <tbody class="container" id="t_salas_v">
+                        </tr>
+                        <tr>
+                            <th scope="row"> </th>
+                            <td>Jacob</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
 
-            <tr>
-              <th scope="row"> </th>
-              <td>Mark</td>
-              <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a></td>
-           
-          </tr>
-          <tr>
-              <th scope="row"> </th>
-              <td>Jacob</td>
-               <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
-            
-          </tr>
-          <tr>
-              <th scope="row"> </th>
-              <td>Larry</td>
-               <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
-              
-          </tr>
-      </tbody>
-  </table>
-</div>
+                        </tr>
+                        <tr>
+                            <th scope="row"> </th>
+                            <td>Larry</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
 
 
-<div class="modal-footer">
-    <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
-</div>
-</div>
-</div>
+            <div class="modal-footer">
+                <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
