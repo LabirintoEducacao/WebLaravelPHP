@@ -782,7 +782,20 @@
   </div>
 </div>
 
-
+<div id="modalinfoErrado" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o caminho pelo qual o jogador deverá passar para chegar a pergunta reforço.</b></h5>
+        
+    </div>
+    </div>
+  </div>
+</div>
 
 
 

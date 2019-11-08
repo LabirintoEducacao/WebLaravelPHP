@@ -261,7 +261,12 @@
                       '<div id="pai" class="hea">' +
                       '<div class=" container">' +
                       '<div class="card houvercardacima">' +
-                      '<label class="col-12" style="font-size: 130%; color: black; padding-top: 10px;">Definições do labirinto (ERRADO):</label>' +
+                      '<div class="row">' +
+                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px; margin-right:-50px">' +
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoErrado" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>' +
+                      '</div>' +
+                      '<label class="col-8" style="font-size: 130%; color: black; padding-top: 10px;">Definições do labirinto (ERRADO):</label>' +
+                      '</div>' +
                       ' <div class=" container">' +
                       ' <div class="row justify-content-between" style="line-height: 40px; margin-bottom: 10px;">' +
                       '<div class="col-12 col-sm-6">' +
@@ -1518,24 +1523,30 @@
 
 
 
-      $('#modalinfoSala').on('hidden.bs.modal', function (event){
+      $('#modalinfoSala').on('hidden.bs.modal', function (event) {
 
-        $('body').addClass('modal-open');
-
-      });    
-
-        $('#modalinfoCorredor').on('hidden.bs.modal', function (event){
-
-        $('body').addClass('modal-open');
-
-      });    
-
-        $('#modalinfoTamanho').on('hidden.bs.modal', function (event){
-
-        $('body').addClass('modal-open');
+          $('body').addClass('modal-open');
 
       });
 
+      $('#modalinfoCorredor').on('hidden.bs.modal', function (event) {
+
+          $('body').addClass('modal-open');
+
+      });
+
+      $('#modalinfoTamanho').on('hidden.bs.modal', function (event) {
+
+          $('body').addClass('modal-open');
+
+      });
+
+
+      $('#modalinfoErrado').on('hidden.bs.modal', function (event) {
+
+          $('body').addClass('modal-open');
+
+      });
 
 
 
