@@ -597,8 +597,8 @@ if($request->perg_reforco==1){
 
 
                      //  ////////////////Patch errado da Pergunta/////////
- $ambiente_perg = $request->answer_boolean;
- $tamanho1 = $request->tamanho;
+ $ambiente_perg = $request->answer_boolean_perg;
+ $tamanho1 = $request->tamanho_perg;
  $disponivel = true;
     if($ambiente_perg==1){
         $tamanho_perg = 3;
