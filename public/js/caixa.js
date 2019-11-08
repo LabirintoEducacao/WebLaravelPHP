@@ -1487,6 +1487,29 @@ function alertaPerg(){
 
 
 
+      $('#modalinfo').on('hidden.bs.modal', function (event){
+
+        $('body').addClass('modal-open');
+
+      });    
+
+        $('#modalinfoCorredor').on('hidden.bs.modal', function (event){
+
+        $('body').addClass('modal-open');
+
+      });    
+
+        $('#modalinfoTamanho').on('hidden.bs.modal', function (event){
+
+        $('body').addClass('modal-open');
+
+      });
+
+
+
+
+
+
 
 
       ///////////////////////////////Thiago

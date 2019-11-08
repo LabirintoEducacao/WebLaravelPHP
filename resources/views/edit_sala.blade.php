@@ -429,7 +429,8 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
-                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>
+<!--                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>-->
+                                    <a data-toggle="modal" data-target="#removerPerguntaModal" data-id="{{$item->id}}" data-pergunta="{{$item->pergunta}}" class="dropdown-item" id="{{'perg'.$item->id}}">Excluir</a>
                                 </div>
                             </div>
                             <div class="container col-1 " onclick="abrir('panel'+{{$item->id}});" style="margin-top: -10px;">
@@ -512,7 +513,8 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
 
-                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>
+<!--                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>-->
+                                    <a data-toggle="modal" data-target="#removerPerguntaModal" data-id="{{$ref->id}}" data-pergunta="{{$ref->pergunta}}" class="dropdown-item" id="{{'perg'.$ref->id}}">Excluir</a>
                                 </div>
                             </div>
                             <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
@@ -782,5 +784,37 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+    <!--    CONFIRMAÇÃO DELETAR ALUNO-->
+<div class="modal fade bd-example-modal-sm" id="removerPerguntaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloPergModal">Você realmente deseja remover a pergunta desta sala?</h5>
+                <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row align-self-center">
+                    <button type="button" id="fecharModal" data-dismiss="modal" class="btn btn-secundary col">Cancelar</button>
+                    <a class="btn col btn-primary larcom" id="confirmarRemoverPergunta">Confirmar</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 
 @endsection
