@@ -201,7 +201,7 @@ class Json extends Controller
 
         $pathref = array(
           'availability' => $dispref,
-          'widht' => $pathrefs[0]->largura,
+          'width' => $pathrefs[0]->largura,
           'height' => $pathrefs[0]->tamanho,
           'type' => $pathrefs[0]->ambiente_perg,
           'connected_question' => $idperg 
@@ -319,7 +319,7 @@ class Json extends Controller
     // Definindo os campos do Jason com o path
           $pat= array(
             'availability' => $disponivel,
-            'widht' => $path[0]->largura,
+            'width' => $path[0]->largura,
             'height' => $path[0]->tamanho,
             'type' => $path[0]->ambiente_perg,
             'connected_question' => $conect
@@ -340,7 +340,7 @@ class Json extends Controller
 
           $pat= array(
             'availability' => $disponivel,
-            'widht' => $path[0]->largura,
+            'width' => $path[0]->largura,
             'height' => $path[0]->tamanho,
             'type' => $path[0]->ambiente_perg,
             'end_game'=> true
@@ -352,7 +352,7 @@ class Json extends Controller
 
           $pat= array(
             'availability' => $disponivel,
-            'widht' => $path[0]->largura,
+            'width' => $path[0]->largura,
             'height' => $path[0]->tamanho,
             'type' => $path[0]->ambiente_perg,
             'connected_question'=> $conect
@@ -622,7 +622,7 @@ return json_encode($img);
 
           $pathref = array(
             'availability' => $dispref,
-            'widht' => $pathrefs[0]->largura,
+            'width' => $pathrefs[0]->largura,
             'height' => $pathrefs[0]->tamanho,
             'type' => $pathrefs[0]->ambiente_perg,
             'connected_question' => $idperg 
@@ -740,7 +740,7 @@ return json_encode($img);
     // Definindo os campos do Jason com o path
           $pat= array(
             'availability' => $disponivel,
-            'widht' => $path[0]->largura,
+            'width' => $path[0]->largura,
             'height' => $path[0]->tamanho,
             'type' => $path[0]->ambiente_perg,
             'connected_question' => $conect
@@ -761,7 +761,7 @@ return json_encode($img);
 
           $pat= array(
             'availability' => $disponivel,
-            'widht' => $path[0]->largura,
+            'width' => $path[0]->largura,
             'height' => $path[0]->tamanho,
             'type' => $path[0]->ambiente_perg,
             'end_game'=> true
@@ -773,7 +773,7 @@ return json_encode($img);
 
           $pat= array(
             'availability' => $disponivel,
-            'widht' => $path[0]->largura,
+            'width' => $path[0]->largura,
             'height' => $path[0]->tamanho,
             'type' => $path[0]->ambiente_perg,
             'connected_question'=> $conect

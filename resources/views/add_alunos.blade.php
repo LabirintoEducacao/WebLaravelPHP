@@ -72,7 +72,7 @@
         <div class="card card-nav-tabs card-plain">
           <div class="card-header card-header-primary">
             
-            <div class="nav-tabs-navigation">
+            <div class="nav-tabs-navigation container">
               <div class="row justify-content-between">
 
                 <div class="nav-tabs-wrapper">

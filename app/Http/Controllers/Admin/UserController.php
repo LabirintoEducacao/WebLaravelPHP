@@ -400,6 +400,7 @@ public function deletar($id,$sala)
         }
         return response()->json(['success' => 'Sucesso']);
     }
+
     public function removeGrupo($id)
     {
 

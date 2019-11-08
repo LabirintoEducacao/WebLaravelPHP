@@ -82,89 +82,89 @@ function mostrarmaisalunos() {
             }
 
             //if(parse[i].sala_id != sala){
-            if (i > 0) {
-                if (parse[i].id != parse[(i - 1)].id) {
+                if (i > 0) {
+                    if (parse[i].id != parse[(i - 1)].id) {
+                        $('#body' + contagem).append(
+                            '<tr>' +
+                            '<td scope="row" id="cod' + parse[i].id + '"></td>' +
+                            '<td>' + parse[i].name + '</td>' +
+                            '<td>' + parse[i].email + '</td>' +
+                            '<td>' + '<a class="btn btn-primary btn-sm  " id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ') " style="color:white">Adicionar</a>' +
+                            '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                            '</tr>'
+
+                            );
+
+                        contagem1++;
+                    }
+                } else {
                     $('#body' + contagem).append(
                         '<tr>' +
                         '<td scope="row" id="cod' + parse[i].id + '"></td>' +
                         '<td>' + parse[i].name + '</td>' +
                         '<td>' + parse[i].email + '</td>' +
-                        '<td>' + '<a class="btn btn-primary btn-sm  " id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ') " style="color:white">Adicionar</a>' +
+                        '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ')" style="color:white">Adicionar</a>' +
                         '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                         '</tr>'
 
-                    );
+                        );
 
                     contagem1++;
                 }
-            } else {
-                $('#body' + contagem).append(
-                    '<tr>' +
-                    '<td scope="row" id="cod' + parse[i].id + '"></td>' +
-                    '<td>' + parse[i].name + '</td>' +
-                    '<td>' + parse[i].email + '</td>' +
-                    '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ')" style="color:white">Adicionar</a>' +
-                    '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
-                    '</tr>'
 
-                );
-
-                contagem1++;
             }
 
-        }
+
+            if (contagem > 5) {
+                for (i = 1; i <= 5; i++) {
+
+                    if (i == 1) {
+                        $('.pagination').append(
+                            '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
+                            );
+
+                    } else {
 
 
-        if (contagem > 5) {
-            for (i = 1; i <= 5; i++) {
+                        $('.pagination').append(
+                            '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
+                            );
+                    }
 
-                if (i == 1) {
-                    $('.pagination').append(
-                        '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
-
-                } else {
-
-
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
                 }
 
+                $('.pagination').append(
+                    '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                    );
+
             }
+            if (contagem <= 5) {
 
-            $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
-            );
+                for (i = 1; i <= contagem; i++) {
 
-        }
-        if (contagem <= 5) {
+                    if (i == 1) {
+                        $('.pagination').append(
+                            '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
+                            );
 
-            for (i = 1; i <= contagem; i++) {
-
-                if (i == 1) {
-                    $('.pagination').append(
-                        '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
-
-                } else {
+                    } else {
 
 
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
+                        $('.pagination').append(
+                            '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
+                            );
+                    }
+
                 }
 
+                $('.pagination').append(
+                    '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                    );
+
             }
 
-            $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
-            );
 
-        }
-
-
-    });
+        });
 }
 
 function paginar(opcao, data, total) {
@@ -186,7 +186,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 4) + ',' + total + ')">' + (data + 4) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
-            );
+                );
         }
 
 
@@ -199,7 +199,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
-            );
+                );
 
         } else if (data == 2 && data <= (total - 2)) {
             $('.pagination').append(
@@ -209,7 +209,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
-            );
+                );
         } else if (data == total && (total - 2) > 1) {
             $('.pagination').append(
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
@@ -219,7 +219,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
                 '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>'
 
-            );
+                );
         } else if (data == (total - 1)) {
             $('.pagination').append(
                 '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
@@ -229,7 +229,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>' +
                 '<li class="page-item "><a class="page-link active" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>'
 
-            );
+                );
         }
     } else {
         $('#divtabela2').children().each(function () {
@@ -249,7 +249,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 4) + ',' + total + ')">' + (data + 4) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
-            );
+                );
         }
 
 
@@ -262,7 +262,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
-            );
+                );
 
         } else if (data == 2 && data <= (total - 2)) {
             $('.pagination').append(
@@ -272,7 +272,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
-            );
+                );
         } else if (data == total && (total - 2) > 1) {
             $('.pagination').append(
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
@@ -282,7 +282,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
                 '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>'
 
-            );
+                );
         } else if (data == (total - 1)) {
             $('.pagination').append(
                 '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
@@ -292,7 +292,7 @@ function paginar(opcao, data, total) {
                 '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
                 '<li class="page-item "><a class="page-link active" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>'
 
-            );
+                );
         }
     }
 }
@@ -366,7 +366,7 @@ function mostrargrupos() {
         '<tbody id="bodygrupos">' +
         '</tbody>' +
         '</table>'
-    );
+        );
 
     var id = $('#user_id').val();
     var salaid = $('#sala_id').val();
@@ -386,14 +386,14 @@ function mostrargrupos() {
                 '<td>' + '<a class="btn btn-primary btn-sm" id="addg' + parse[i].id + '" onclick="addgrupo(' + parse[i].id + ',' + salaid + ')" style="color:white">Adicionar</a>' +
                 '<a id="doneg' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                 '</tr>'
-            );
+                );
         }
     });
 }
 
 function addgrupo(id, salaid) {
     $.get("/admin/addgrupo/" + id + "/" + salaid).done(function (data) {
-
+        console.log(data);
         $('#addg' + id).css('display', 'none');
         $('#doneg' + id).css('display', 'block');
 
@@ -505,7 +505,7 @@ function mostrarmaisalunos2(option) {
                             '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                             '</tr>'
 
-                        );
+                            );
                         contagem1++;
                     }
                 } else {
@@ -517,7 +517,7 @@ function mostrarmaisalunos2(option) {
                         '<td>' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(0,' + parse[i].id + ')">Adicionar</a>' +
                         '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                         '</tr>'
-                    );
+                        );
                     contagem1++;
                 }
             }
@@ -526,91 +526,78 @@ function mostrarmaisalunos2(option) {
                     if (i == 1) {
                         $('.pagination').append(
                             '<li class="page-item active"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                        );
+                            );
 
                     } else {
                         $('.pagination').append(
                             '<li class="page-item"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                        );
+                            );
                     }
                 }
                 $('.pagination').append(
                     '<li class="page-item"><a class="page-link" onclick="paginar(0,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                );
+                    );
             }
             if (contagem <= 5) {
                 for (i = 1; i <= contagem; i++) {
                     if (i == 1) {
                         $('.pagination').append(
                             '<li class="page-item active"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                        );
+                            );
                     } else {
                         $('.pagination').append(
                             '<li class="page-item"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                        );
+                            );
                     }
                 }
                 $('.pagination').append(
                     '<li class="page-item"><a class="page-link" onclick="paginar(0,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                );
+                    );
             }
         });
-    } else {
-        $.get("/admin/showalunos").done(function (data) {
-            console.log(option);
-            let contagem = 1;
-            let contagem1 = 0;
-            let max = 7;
-            let i = 0;
-            parse = JSON.parse(data);
-            let paginacao = Math.ceil(parse.length / max);
-            $('#divtabela2').append(
-                '<table id="table' + contagem + '" class="table" style="display:block;">' +
-                '<thead >' +
-                '<tr>' +
-                '<th scope="col" >  </th>' +
-                '<th scope="col" > Nome: </th>' +
-                '<th scope="col" > Email: </th>' +
-                '<th scope="col" ></th>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody id="body' + contagem + '" >' +
-                '</tbody>' +
-                '</table>');
-            for (i = 0; i < parse.length; i++) {
-                if (contagem1 > max) {
-                    contagem++;
+} else {
+    $.get("/admin/showalunos").done(function (data) {
+        console.log(option);
+        let contagem = 1;
+        let contagem1 = 0;
+        let max = 7;
+        let i = 0;
+        parse = JSON.parse(data);
+        let paginacao = Math.ceil(parse.length / max);
+        $('#divtabela2').append(
+            '<table id="table' + contagem + '" class="table" style="display:block;">' +
+            '<thead >' +
+            '<tr>' +
+            '<th scope="col" >  </th>' +
+            '<th scope="col" > Nome: </th>' +
+            '<th scope="col" > Email: </th>' +
+            '<th scope="col" ></th>' +
+            '</tr>' +
+            '</thead>' +
+            '<tbody id="body' + contagem + '" >' +
+            '</tbody>' +
+            '</table>');
+        for (i = 0; i < parse.length; i++) {
+            if (contagem1 > max) {
+                contagem++;
 
-                    $('#divtabela2').append(
-                        '<table id="table' + contagem + '" class="table" style="display:none;">' +
-                        '<thead >' +
-                        '<tr>' +
-                        '<th scope="col" > </th>' +
-                        '<th scope="col"> Nome: </th>' +
-                        '<th scope="col" > Email: </th>' +
-                        '<th scope="col" ></th>' +
-                        '</tr>' +
-                        '</thead>' +
-                        '<tbody id="body' + contagem + '" >' +
-                        '</tbody>' +
-                        '</table>');
-                    contagem1 = 0;
-                }
-                if (i > 0) {
-                    if (parse[i].id != parse[(i - 1)].id) {
-                        $('#body' + contagem).append(
-                            '<tr>' +
-                            '<td  id="cod' + parse[i].id + '"></td>' +
-                            '<td >' + parse[i].name + '</td>' +
-                            '<td >' + parse[i].email + '</td>' +
-                            '<td >' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
-                            '<a style="color:white;" id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
-                            '</tr>'
-
-                        );
-                        contagem1++;
-                    }
-                } else {
+                $('#divtabela2').append(
+                    '<table id="table' + contagem + '" class="table" style="display:none;">' +
+                    '<thead >' +
+                    '<tr>' +
+                    '<th scope="col" > </th>' +
+                    '<th scope="col"> Nome: </th>' +
+                    '<th scope="col" > Email: </th>' +
+                    '<th scope="col" ></th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody id="body' + contagem + '" >' +
+                    '</tbody>' +
+                    '</table>');
+                contagem1 = 0;
+            }
+            if (i > 0) {
+                if (parse[i].id != parse[(i - 1)].id) {
                     $('#body' + contagem).append(
                         '<tr>' +
                         '<td  id="cod' + parse[i].id + '"></td>' +
@@ -619,49 +606,62 @@ function mostrarmaisalunos2(option) {
                         '<td >' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
                         '<a style="color:white;" id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
                         '</tr>'
-                    );
+
+                        );
                     contagem1++;
                 }
+            } else {
+                $('#body' + contagem).append(
+                    '<tr>' +
+                    '<td  id="cod' + parse[i].id + '"></td>' +
+                    '<td >' + parse[i].name + '</td>' +
+                    '<td >' + parse[i].email + '</td>' +
+                    '<td >' + '<a class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
+                    '<a style="color:white;" id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                    '</tr>'
+                    );
+                contagem1++;
             }
-            if (contagem > 5) {
-                for (i = 1; i <= 5; i++) {
-                    if (i == 1) {
-                        $('.pagination').append(
-                            '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+        }
+        if (contagem > 5) {
+            for (i = 1; i <= 5; i++) {
+                if (i == 1) {
+                    $('.pagination').append(
+                        '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
                         );
 
-                    } else {
-                        $('.pagination').append(
-                            '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                } else {
+                    $('.pagination').append(
+                        '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
                         );
-                    }
                 }
-                $('.pagination').append(
-                    '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                );
             }
-            if (contagem <= 5) {
-                for (i = 1; i <= contagem; i++) {
-                    if (i == 1) {
-                        $('.pagination').append(
-                            '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+            $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                );
+        }
+        if (contagem <= 5) {
+            for (i = 1; i <= contagem; i++) {
+                if (i == 1) {
+                    $('.pagination').append(
+                        '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
                         );
-                    } else {
-                        $('.pagination').append(
-                            '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
+                } else {
+                    $('.pagination').append(
+                        '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
                         );
-                    }
                 }
-                $('.pagination').append(
-                    '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                );
             }
-        });
+            $('.pagination').append(
+                '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
+                );
+        }
+    });
 
 
-        console.log(option);
-        console.log("Testando");
-    }
+console.log(option);
+console.log("Testando");
+}
 }
 
 function removeGrupo(id, prof_id, turma) {
@@ -681,7 +681,7 @@ function removeGrupo(id, prof_id, turma) {
                 }
             });
         }
-    );
+        );
     setTimeout(function () {
         window.location.reload()
     }, 450);
@@ -785,7 +785,7 @@ function linhaTabela(id) {
         function (nome) {
             $('.nomegrupo').text(nome[0].turma);
         }
-    );
+        );
     $.get("/grupos/alunosgrupo/" + id).done(
         function (data) {
             $('#tabelaalunosgrupos').empty();
@@ -824,14 +824,37 @@ function thlin(option) {
 
     if (option == 0) {
         mostrarmaisalunos2(1);
+        $("#salas_v").hide();
         $("#divdatabela").hide();
         $('#adicionaralunos').show();
         //console.log("teste");
-    } else {
+    } else if(option == 1){
         $("#divdatabela").show();
         $('#adicionaralunos').hide();
+        $("#salas_v").hide();
+        //console.log("teste");
+    }else if(option == 2){
+        $("#salas_v").show();
+        $("#divdatabela").hide();
+        $('#adicionaralunos').hide();
+
+        
         //console.log("teste");
     }
 
 }
+
 ////////////////////////////////////////////////////////Thiago
+
+
+function gruposVinculados(id){
+
+
+    $.get("/vinculogrupo/"+id).done(function(data){
+
+        console.log(data);
+
+
+    });
+
+}
