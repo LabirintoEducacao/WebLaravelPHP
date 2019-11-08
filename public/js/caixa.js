@@ -12,104 +12,108 @@
 
           $('#add').click(function () {
               if (a < 2) {
-                  if($('.room_type').val() == 'true_or_false'){
-                  $('#dynamic_field').append('' +
-                      '<div id="row' + i + '" class="dynamic-added">' +
-                      '<div class="card houvercard">' +
-                      '<div class="container">' +
-                      '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta[]" placeholder="' + (a + 2) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
-                      '<input type="hidden" name="resp_id[]" class="resp_id">' +
-                      '</div>' +
-                      '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                      '<div class="col col-sm-11">' +
-                      '<div class="form-check form-check-radio">' +
-                      'Essa resposta esta correta?&emsp;' +
-                      '<label class="form-check-label">' +
-                      '<input class="form-check-input correct verdadeiro2" type="checkbox" name="corret[]" value="0" onclick="muda(this);">' +
-                      'Sim' +
-                      '<span class="circle">' +
-                      '<span class="check"></span>' +
-                      '</span>' +
-                      '</label>' +
-                      '</div>' +
-                      '</div>' +
-                      '<div class="col col-sm-1">' +
-                      '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>');
-                }else{
+                  if ($('.room_type').val() == 'true_or_false') {
+                      $('#dynamic_field').append('' +
+                          '<div id="row' + i + '" class="dynamic-added">' +
+                          '<div class="card houvercard">' +
+                          '<div class="container">' +
+                          '<div class="textareaborda2" style="margin-top: 10px;">' +
+                          '<textarea type="text" name="resposta[]" placeholder="' + (a + 2) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                          '<input type="hidden" name="resp_id[]" class="resp_id">' +
+                          '</div>' +
+                          '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                          '<div class="col col-sm-11">' +
+                          '<div class="form-check form-check-radio">' +
+                          'Essa resposta esta correta?&emsp;' +
+                          '<label class="form-check-label">' +
+                          '<input class="form-check-input correct verdadeiro2" type="checkbox" name="corret[]" value="0" onclick="muda(this);">' +
+                          'Sim' +
+                          '<span class="circle">' +
+                          '<span class="check"></span>' +
+                          '</span>' +
+                          '</label>' +
+                          '</div>' +
+                          '</div>' +
+                          '<div class="col col-sm-1">' +
+                          '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>');
+                  } else {
 
-                  $('#dynamic_field').append('' +
-                      '<div id="row' + i + '" class="dynamic-added">' +
-                      '<div class="card houvercard">' +
-                      '<div class="container">' +
-                      '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta[]" placeholder="' + (a + 2) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
-                      '<input type="hidden" name="resp_id[]" class="resp_id">' +
-                      '</div>' +
-                      '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                      '<div class="col col-sm-11">' +
-                      '<div class="form-check form-check-radio">' +
-                      'Essa resposta esta correta?&emsp;' +
-                      '<label class="form-check-label">' +
-                      '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);">' +
-                      'Sim' +
-                      '<span class="circle">' +
-                      '<span class="check"></span>' +
-                      '</span>' +
-                      '</label>' +
-                      '</div>' +
-                      '</div>' +
-                      '<div class="col col-sm-1">' +
-                      '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>');
-                     
-                }
+                      $('#dynamic_field').append('' +
+                          '<div id="row' + i + '" class="dynamic-added">' +
+                          '<div class="card houvercard">' +
+                          '<div class="container">' +
+                          '<div class="textareaborda2" style="margin-top: 10px;">' +
+                          '<textarea type="text" name="resposta[]" placeholder="' + (a + 2) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required/>' +
+                          '<input type="hidden" name="resp_id[]" class="resp_id">' +
+                          '</div>' +
+                          '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                          '<div class="col col-sm-11">' +
+                          '<div class="form-check form-check-radio">' +
+                          'Essa resposta esta correta?&emsp;' +
+                          '<label class="form-check-label">' +
+                          '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);">' +
+                          'Sim' +
+                          '<span class="circle">' +
+                          '<span class="check"></span>' +
+                          '</span>' +
+                          '</label>' +
+                          '</div>' +
+                          '</div>' +
+                          '<div class="col col-sm-1">' +
+                          '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>');
+
+                  }
                   a++;
                   i++;
-                  
-                  if(a==2){
-                      $("#add").attr('disabled',true)
+
+                  if (a == 2) {
+                      $("#add").attr('disabled', true)
                   }
 
-                }
+              }
 
-                 if(a == 2){
+              if (a == 2) {
 
-                  function alerttotalresposta(msg, type){
-                   var html =  '<div class="alertContainer3 '+type+'">\n';
-                  html += '<div class="row align-items-center">';
-                  html += '<div class="col-sm-10">';
-                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
-                  html +=     '</div>';
-                  html += '<div class="col-sm-2">';
-                  html +=     '<div class="cerrarAlert">x</div>\n';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  jQuery('body').append(html);
-                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
-                  jQuery('.cerrarAlert').click(function(){
-                  jQuery('.alertContainer3').removeClass('active');
-                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
+                  function alerttotalresposta(msg, type) {
+                      var html = '<div class="alertContainer3 ' + type + '">\n';
+                      html += '<div class="row align-items-center">';
+                      html += '<div class="col-sm-10">';
+                      html += '<div class="mensajeAlert">' + msg + '</div>\n';
+                      html += '</div>';
+                      html += '<div class="col-sm-2">';
+                      html += '<div class="cerrarAlert">x</div>\n';
+                      html += '</div>';
+                      html += '</div>';
+                      html += '</div>';
+                      jQuery('body').append(html);
+                      window.setTimeout(function () {
+                          jQuery('.alertContainer3').addClass('active')
+                      }, 500);
+                      jQuery('.cerrarAlert').click(function () {
+                          jQuery('.alertContainer3').removeClass('active');
+                          window.setTimeout(function () {
+                              jQuery('.alertContainer3').remove()
+                          }, 500);
+                      });
+                  }
+
+
+                  $('#add').click(function () {
+                      alerttotalresposta("Limite Máximo de resposta para cada labirinto são 3 !", "warning");
+
                   });
-                  }
 
-
-                  $('#add').click(function(){
-                  alerttotalresposta("Limite Máximo de resposta para cada labirinto são 3 !","warning");
-
-                  });
-                    
-                  }
+              }
 
 
 
@@ -119,130 +123,134 @@
           $(document).on('click', '.teste', function () {
 
 
-                if(b == 2){
+              if (b == 2) {
 
-                  function alerttotalresposta(msg, type){
-                   var html =  '<div class="alertContainer3 '+type+'">\n';
-                  html += '<div class="row align-items-center">';
-                  html += '<div class="col-sm-10">';
-                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
-                  html +=     '</div>';
-                  html += '<div class="col-sm-2">';
-                  html +=     '<div class="cerrarAlert">x</div>\n';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  jQuery('body').append(html);
-                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
-                  jQuery('.cerrarAlert').click(function(){
-                  jQuery('.alertContainer3').removeClass('active');
-                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
-                  });
+                  function alerttotalresposta(msg, type) {
+                      var html = '<div class="alertContainer3 ' + type + '">\n';
+                      html += '<div class="row align-items-center">';
+                      html += '<div class="col-sm-10">';
+                      html += '<div class="mensajeAlert">' + msg + '</div>\n';
+                      html += '</div>';
+                      html += '<div class="col-sm-2">';
+                      html += '<div class="cerrarAlert">x</div>\n';
+                      html += '</div>';
+                      html += '</div>';
+                      html += '</div>';
+                      jQuery('body').append(html);
+                      window.setTimeout(function () {
+                          jQuery('.alertContainer3').addClass('active')
+                      }, 500);
+                      jQuery('.cerrarAlert').click(function () {
+                          jQuery('.alertContainer3').removeClass('active');
+                          window.setTimeout(function () {
+                              jQuery('.alertContainer3').remove()
+                          }, 500);
+                      });
                   }
 
 
-                  $('.teste').click(function(){
-                  alerttotalresposta("Limite Máximo de resposta para cada labirinto são 3 !","warning");
+                  $('.teste').click(function () {
+                      alerttotalresposta("Limite Máximo de resposta para cada labirinto são 3 !", "warning");
 
                   });
-                    
-                  }
+
+              }
 
 
               if (b < 2) {
-                console.log("passou "+b);
-                if($('#room_type_ref').val() == 'true_or_false'){
-                  $('#dynamic_field2').append('' +
-                      '<div id="row2' + i2 + '" class="dynamic-added2">' +
-                      '<div class="card houvercard">' +
-                      '<div class="container">' +
-                      '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 2) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
-                      '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
-                      '</div>' +
-                      '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                      '<div class="col col-sm-11">' +
-                      '<div class="form-check form-check-radio">' +
-                      'Essa resposta esta correta?&emsp;' +
-                      '<label class="form-check-label">' +
-                      '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda(this);">' +
-                      'Sim' +
-                      '<span class="circle">' +
-                      '<span class="check"></span>' +
-                      '</span>' +
-                      '</label>' +
-                      '</div>' +
-                      '</div>' +
-                      '<div class="col col-sm-1">' +
-                      '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>'
-                  );
-                }else{
+                  console.log("passou " + b);
+                  if ($('#room_type_ref').val() == 'true_or_false') {
+                      $('#dynamic_field2').append('' +
+                          '<div id="row2' + i2 + '" class="dynamic-added2">' +
+                          '<div class="card houvercard">' +
+                          '<div class="container">' +
+                          '<div class="textareaborda2" style="margin-top: 10px;">' +
+                          '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 2) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
+                          '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
+                          '</div>' +
+                          '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                          '<div class="col col-sm-11">' +
+                          '<div class="form-check form-check-radio">' +
+                          'Essa resposta esta correta?&emsp;' +
+                          '<label class="form-check-label">' +
+                          '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda(this);">' +
+                          'Sim' +
+                          '<span class="circle">' +
+                          '<span class="check"></span>' +
+                          '</span>' +
+                          '</label>' +
+                          '</div>' +
+                          '</div>' +
+                          '<div class="col col-sm-1">' +
+                          '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>'
+                      );
+                  } else {
 
-                   $('#dynamic_field2').append('' +
-                      '<div id="row2' + i2 + '" class="dynamic-added2">' +
-                      '<div class="card houvercard">' +
-                      '<div class="container">' +
-                      '<div class="textareaborda2" style="margin-top: 10px;">' +
-                      '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 2) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
-                      '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
-                      '</div>' +
-                      '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                      '<div class="col col-sm-11">' +
-                      '<div class="form-check form-check-radio">' +
-                      'Essa resposta esta correta?&emsp;' +
-                      '<label class="form-check-label">' +
-                      '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
-                      'Sim' +
-                      '<span class="circle">' +
-                      '<span class="check"></span>' +
-                      '</span>' +
-                      '</label>' +
-                      '</div>' +
-                      '</div>' +
-                      '<div class="col col-sm-1">' +
-                      '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>'
-                  );
+                      $('#dynamic_field2').append('' +
+                          '<div id="row2' + i2 + '" class="dynamic-added2">' +
+                          '<div class="card houvercard">' +
+                          '<div class="container">' +
+                          '<div class="textareaborda2" style="margin-top: 10px;">' +
+                          '<textarea type="text" name="resposta_ref[]" placeholder="' + (b + 2) + 'º Resposta refoço" rows="2" class="form-control name_list resposta_ref" maxlength="500" required/>' +
+                          '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
+                          '</div>' +
+                          '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                          '<div class="col col-sm-11">' +
+                          '<div class="form-check form-check-radio">' +
+                          'Essa resposta esta correta?&emsp;' +
+                          '<label class="form-check-label">' +
+                          '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
+                          'Sim' +
+                          '<span class="circle">' +
+                          '<span class="check"></span>' +
+                          '</span>' +
+                          '</label>' +
+                          '</div>' +
+                          '</div>' +
+                          '<div class="col col-sm-1">' +
+                          '<button type="button" name="remove2" id="' + i2 + '" class="btn btn-danger btn-sm btn_remove2">X</button>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>' +
+                          '</div>'
+                      );
 
-                }
+                  }
                   b++;
                   i2++;
-                }
-              if(b==2){
-                      $(".teste").attr('disabled',true)
-                  }
-             
+              }
+              if (b == 2) {
+                  $(".teste").attr('disabled', true)
+              }
+
           });
-          
-          
-          
-          
-          
-          $('#answer_boolean').on('change', function(){
-            if($('#answer_boolean').val()=='1'){
-                $('.tamanho').css('display','none');
-            }else{
-                $('.tamanho').css('display','block');
-            }
-        });
-          
-           
 
 
-          
-          
-          
-          
-        
+
+
+
+          $('#answer_boolean').on('change', function () {
+              if ($('#answer_boolean').val() == '1') {
+                  $('.tamanho').css('display', 'none');
+              } else {
+                  $('.tamanho').css('display', 'block');
+              }
+          });
+
+
+
+
+
+
+
+
+
           ///////////////////////////////////////////////////////////////////
           $('#check-reforco').on('change', function () {
               var $parent = $(this).parents('.hovereffect');
@@ -262,11 +270,11 @@
                       '<div class="col-4" style="height:100%;">' +
                       '<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
                       '</div>' +
-                      
 
-                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">'+
-                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>'+
-                      '</div>'+
+
+                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">' +
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>' +
+                      '</div>' +
 
                       '<div class="col-6">' +
                       '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker answer_boolean_perg" data-style="btn btn-primary" style="float:left;">' +
@@ -281,18 +289,18 @@
                       '<div class="col-5" style="height:100%;">' +
                       '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
                       '</div>' +
-                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">'+
-                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>'+
-                      '</div>'+
+                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">' +
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>' +
+                      '</div>' +
                       '<div class="col-5">' +
                       '<select name="tamanho_perg" id="tamanho_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
-                    '<option selected value="1">Pequeno</option>' +
-                     '<option value="2">Médio</option>' +
-                      '<option value="3">Grande</option>'+
-                    '</select>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
+                      '<option selected value="1">Pequeno</option>' +
+                      '<option value="2">Médio</option>' +
+                      '<option value="3">Grande</option>' +
+                      '</select>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +
@@ -310,36 +318,36 @@
                       '</div>' +
                       '<div class="col-12 col-md-auto">' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
+                      '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
                       '</div>' +
-                    '<div class="col-7">' +
+                      '<div class="col-7">' +
                       ' <select class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
                       ' <option disabled value="2">Imagem</option>' +
                       '   <option disabled value="3">Vídeo</option>' +
                       '<option disabled value="4">Áudio</option>' +
                       '   </select>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
                       '  <div class="col">' +
                       '<div class="row">' +
-                    '<div class="col-2 col-sm-2" style=" margin-top: 12px;">' +
+                      '<div class="col-2 col-sm-2" style=" margin-top: 12px;">' +
                       '   <label for="room_type_ref" style=" margin-right: 3.5px;">Interação:</label>' +
                       '</div>' +
-                      '<div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">'+
-                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>'+
-                      '</div>'+
-                    '<div class="col-8 col-sm-8">' +
+                      '<div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">' +
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>' +
+                      '</div>' +
+                      '<div class="col-8 col-sm-8">' +
                       '<select class="form-control selectpicker " data-style="btn btn-primary" name="room_type_ref" id="room_type_ref">' +
                       '<option selected value="right_key">Chave</option>' +
                       ' <option value="true_or_false">Verdadeiro ou Falso</option>' +
                       '<option value="multiple_forms">Multiplas Formas</option>' +
                       '  </select>' +
-                     '</div>' +
-                    '</div>' +
-                    '</div>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>' +
                       '  </div>' +
                       '</div>' +
                       '<div class="container">' +
@@ -355,38 +363,38 @@
                       '  <div class="col-12 col-sm-6">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-4" style="height:100%;">' +
+                      '<div class="col-4" style="height:100%;">' +
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
-                      '</div>'+
-                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">'+
-                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>'+
-                      '</div>'+
-                      '<div class="col-6">'+
+                      '</div>' +
+                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">' +
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>' +
+                      '</div>' +
+                      '<div class="col-6">' +
                       '   <select class="form-control selectpicker" data-style="btn btn-primary" name="answer_boolean_ref" id="answer_boolean_ref">' +
                       ' <option selected value="1">Corredor</option>' +
                       ' <option value="2">Labirinto</option>' +
                       '</select>' +
                       ' </div>' +
-                      '</div>'+
-                      '</div>'+
+                      '</div>' +
+                      '</div>' +
                       '  <div class="col-12 col-sm-6 tamanho_ref" style="display:none;">' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
+                      '<div class="col-5" style="height:100%;">' +
                       '<label for="tamanho_ref">Tamanho do labirinto:</label>' +
-                      '</div>'+
-                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">'+
-                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>'+
-                      '</div>'+
-                      '<div class="col-5">'+
+                      '</div>' +
+                      '<div class="col-1" style="margin-left: 12px; margin-top: 12px;">' +
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação" >info</i>' +
+                      '</div>' +
+                      '<div class="col-5">' +
                       ' <select class="form-control selectpicker " data-style="btn btn-primary" name="tamanho_ref" id="tamanho_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
                       ' <option value="2">Medio</option>' +
                       '  <option value="3">Grande</option>' +
                       '</select>' +
                       ' </div>' +
-                      '</div>'+
-                      '</div>'+
-          
+                      '</div>' +
+                      '</div>' +
+
                       '   </div>' +
 
                       '</div>' +
@@ -431,14 +439,14 @@
                       '<div class="col-9">' +
                       '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>' +
                       '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
-                      '<small id="respostaRHelp" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGATÓRIAS </small>'+
+                      '<small id="respostaRHelp" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGATÓRIAS </small>' +
                       '</div>' +
                       '<div class="col">' +
                       '<div class="row" style="height:50px;">' +
                       '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type">Tipo da Resposta:</label>' +
-                      '</div>'+
-                      '<div class="col-7">'+
+                      '</div>' +
+                      '<div class="col-7">' +
                       '<select class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
                       ' <option  selected value="1">Texto</option>' +
                       '<option disabled value="2">Imagem</option>' +
@@ -517,15 +525,15 @@
 
                   // $(".teste").trigger('click');
                   // $(".teste").trigger('click');
-             
-                  
+
+
                   $('.selectpicker').selectpicker('refresh');
-                  
-                  
+
+
                   document.getElementById('perg_reforco').value = 1;
                   i2++;
 
-                   //var interacao = document.getElementsByName('room_type_ref');
+                  //var interacao = document.getElementsByName('room_type_ref');
 
               } else {
                   $('.hea', $parent).remove();
@@ -533,41 +541,41 @@
                   b = 0;
               }
 
-              
-               $('#room_type_ref').on('change', function(){
 
-              if($('#room_type_ref').val() == 'true_or_false'){
+              $('#room_type_ref').on('change', function () {
+
+                  if ($('#room_type_ref').val() == 'true_or_false') {
 
 
-               $('.verdadeiro').attr('type', 'checkbox');
-              
-              }else{
+                      $('.verdadeiro').attr('type', 'checkbox');
 
-                $('.verdadeiro').attr('type', 'radio');
-            
-              }
+                  } else {
 
-            });
-              
-              
-              $('#answer_boolean_perg').on('change', function(){
-               
-            if($('#answer_boolean_perg').val()=='1'){
-                $('.tamanho_error').css('display','none');
-            }else{
-                $('.tamanho_error').css('display','block');
-            }
-        });
+                      $('.verdadeiro').attr('type', 'radio');
 
-          
-           $('#answer_boolean_ref').on('change', function(){
-               
-            if($('#answer_boolean_ref').val()=='1'){
-                $('.tamanho_ref').css('display','none');
-            }else{
-                $('.tamanho_ref').css('display','block');
-            }
-        });
+                  }
+
+              });
+
+
+              $('#answer_boolean_perg').on('change', function () {
+
+                  if ($('#answer_boolean_perg').val() == '1') {
+                      $('.tamanho_error').css('display', 'none');
+                  } else {
+                      $('.tamanho_error').css('display', 'block');
+                  }
+              });
+
+
+              $('#answer_boolean_ref').on('change', function () {
+
+                  if ($('#answer_boolean_ref').val() == '1') {
+                      $('.tamanho_ref').css('display', 'none');
+                  } else {
+                      $('.tamanho_ref').css('display', 'block');
+                  }
+              });
 
           });
 
@@ -575,38 +583,42 @@
           // Acao para botao deletar remove fields
           $(document).on('click', '.btn_remove2', function () {
 
-             if(refresposta.length > 2){
+              if (refresposta.length > 2) {
 
-              var button_id2 = $(this).attr("id");
-                $('#row2' + button_id2 + '').remove();
-                b--;
-             
-                      $(".teste").attr('disabled',false)
-                  
-             }else if(refresposta.length <= 2){
+                  var button_id2 = $(this).attr("id");
+                  $('#row2' + button_id2 + '').remove();
+                  b--;
 
-                  function alert5(msg, type){
-                   var html =  '<div class="alertContainer3 '+type+'">\n';
-                  html += '<div class="row align-items-center">';
-                  html += '<div class="col-sm-11">';
-                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
-                  html +=     '</div>';
-                  html += '<div class="col-sm-1">';
-                  html +=     '<div class="cerrarAlert">x</div>\n';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  jQuery('body').append(html);
-                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
-                  jQuery('.cerrarAlert').click(function(){
-                  jQuery('.alertContainer3').removeClass('active');
-                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
-                  });
+                  $(".teste").attr('disabled', false)
+
+              } else if (refresposta.length <= 2) {
+
+                  function alert5(msg, type) {
+                      var html = '<div class="alertContainer3 ' + type + '">\n';
+                      html += '<div class="row align-items-center">';
+                      html += '<div class="col-sm-11">';
+                      html += '<div class="mensajeAlert">' + msg + '</div>\n';
+                      html += '</div>';
+                      html += '<div class="col-sm-1">';
+                      html += '<div class="cerrarAlert">x</div>\n';
+                      html += '</div>';
+                      html += '</div>';
+                      html += '</div>';
+                      jQuery('body').append(html);
+                      window.setTimeout(function () {
+                          jQuery('.alertContainer3').addClass('active')
+                      }, 500);
+                      jQuery('.cerrarAlert').click(function () {
+                          jQuery('.alertContainer3').removeClass('active');
+                          window.setTimeout(function () {
+                              jQuery('.alertContainer3').remove()
+                          }, 500);
+                      });
                   }
 
-                  alert5("Essa resposta reforço não pode ser removida pois a pergunta refoço deve conter pelo menos 2 reposta !","error")
-          
-             }
+                  alert5("Essa resposta reforço não pode ser removida pois a pergunta refoço deve conter pelo menos 2 reposta !", "error")
+
+              }
 
           });
 
@@ -654,12 +666,12 @@
                   }
               });
           });
-          
-          
-          function addUser(id,salaid) {
+
+
+          function addUser(id, salaid) {
 
               $.ajax({
-                  url: '/admin/aluno/'+id,
+                  url: '/admin/aluno/' + id,
                   method: "POST",
                   data: {
                       id: id,
@@ -670,71 +682,75 @@
                       console.log(error);
                   },
                   success: function (data) {
-//                      if (data.error) {
-//                          printErrorMsg(data.error);
-//                      } else {
-//                          window.location.reload();
-//                      }
+                      //                      if (data.error) {
+                      //                          printErrorMsg(data.error);
+                      //                      } else {
+                      //                          window.location.reload();
+                      //                      }
                   }
               });
           }
 
 
-        $('#question_type').on('change', function(){
-            var x = $('#question_type').val();
-           if(x!=1){
-               $('#pergunta').attr({placeholder:"Insira a url"});
-               
-           }else{
-               $('#pergunta').attr({placeholder:"Faça sua pergunta"});
-           }
-               
-            console.log($('#question_type').val());
-        });
-          
-          
-//          $('#tipo_opcao_ref').on('change', function(){
-//            var x = $('#tipo_opcao_ref').val();
-//           if(x!=1){
-//               $('#pergunta-reforco').attr({placeholder:"Insira a url"});
-//               
-//           }else{
-//               $('#pergunta-reforco').attr({placeholder:"Faça sua pergunta reforço"});
-//           }
-//               
-//            console.log($('#tipo_opcao_ref').val());
-//        });
-//          
-//          
-//          $('#tipo_opcao').on('change', function(){
-//            var x = $('#tipo_opcao').val();
-//   
-//           if(x!=1){
-//     
-//               document.getElementsByName('resposta[]').attr({placeholder:"Insira a url"});
-// 
-//               
-//           }else{
-//     
-//               document.getElementsByName('resposta[]').attr({placeholder:"Resposta"});
-//
-//           }
-//               
-//            console.log($('#tipo_opcao').val());
-//        });
-//          
-//          
-//          $('#question_type').on('change', function(){
-//            var x = $('#question_type').val();
-//           if(x!=1){
-//               $('#pergunta').attr({placeholder:"Insira a url"});
-//               
-//           }else{
-//               $('#pergunta').attr({placeholder:"Faça sua pergunta"});
-//           }
-//               
-//            console.log($('#question_type').val());
-//        });
+          $('#question_type').on('change', function () {
+              var x = $('#question_type').val();
+              if (x != 1) {
+                  $('#pergunta').attr({
+                      placeholder: "Insira a url"
+                  });
+
+              } else {
+                  $('#pergunta').attr({
+                      placeholder: "Faça sua pergunta"
+                  });
+              }
+
+              console.log($('#question_type').val());
+          });
+
+
+          //          $('#tipo_opcao_ref').on('change', function(){
+          //            var x = $('#tipo_opcao_ref').val();
+          //           if(x!=1){
+          //               $('#pergunta-reforco').attr({placeholder:"Insira a url"});
+          //               
+          //           }else{
+          //               $('#pergunta-reforco').attr({placeholder:"Faça sua pergunta reforço"});
+          //           }
+          //               
+          //            console.log($('#tipo_opcao_ref').val());
+          //        });
+          //          
+          //          
+          //          $('#tipo_opcao').on('change', function(){
+          //            var x = $('#tipo_opcao').val();
+          //   
+          //           if(x!=1){
+          //     
+          //               document.getElementsByName('resposta[]').attr({placeholder:"Insira a url"});
+          // 
+          //               
+          //           }else{
+          //     
+          //               document.getElementsByName('resposta[]').attr({placeholder:"Resposta"});
+          //
+          //           }
+          //               
+          //            console.log($('#tipo_opcao').val());
+          //        });
+          //          
+          //          
+          //          $('#question_type').on('change', function(){
+          //            var x = $('#question_type').val();
+          //           if(x!=1){
+          //               $('#pergunta').attr({placeholder:"Insira a url"});
+          //               
+          //           }else{
+          //               $('#pergunta').attr({placeholder:"Faça sua pergunta"});
+          //           }
+          //               
+          //            console.log($('#question_type').val());
+          //        });
 
 
           $('#addPerg').on('show.bs.modal', function (event) {
@@ -745,128 +761,132 @@
                   x = 0,
                   y = 0,
                   z = 0;
-                  i = 0;
-                  var teste3 = [];
+              i = 0;
+              var teste3 = [];
 
               var corretos = document.getElementsByName('corret[]');
               var corretos_ref = document.getElementsByName('corret_ref[]');
 
-                $('.montarteste').append(
-                '<div id="row' + i + '" class="dynamic-added">' +
-                '<div class="card houvercard">'+
-                '<div class="container">'+
-                '<div class="textareaborda2" style="margin-top: 10px;">'+
-                '<textarea type="text" name="resposta[]" id="resposta" placeholder="' + (a + 1) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>'+
-                '<input type="hidden" name="resp_id[]" class="resp_id">'+
-                '</div>'+
-                '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                '<div class="col col-sm-11">' +
-                '<div class="form-check form-check-radio">'+
-                'Essa resposta esta correta?&emsp;'+
-                '<label class="form-check-label">'+
-                '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);" required>'+
-                'Sim'+
-                '<span class="circle">'+
-                '<span class="check"></span>'+
-                '</span>'+
-                '</label>'+
-                '</div>'+
-                '</div>'+
-                '<div class="col col-sm-1">' +
-                '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
-                '</div>' +
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</div>'
-                  );
+              $('.montarteste').append(
+                  '<div id="row' + i + '" class="dynamic-added">' +
+                  '<div class="card houvercard">' +
+                  '<div class="container">' +
+                  '<div class="textareaborda2" style="margin-top: 10px;">' +
+                  '<textarea type="text" name="resposta[]" id="resposta" placeholder="' + (a + 1) + 'º Resposta" rows="2" class="form-control name_list resposta" maxlength="500" required></textarea>' +
+                  '<input type="hidden" name="resp_id[]" class="resp_id">' +
+                  '</div>' +
+                  '<div class="row align-items-center" style="margin-bottom: 10px;">' +
+                  '<div class="col col-sm-11">' +
+                  '<div class="form-check form-check-radio">' +
+                  'Essa resposta esta correta?&emsp;' +
+                  '<label class="form-check-label">' +
+                  '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);" required>' +
+                  'Sim' +
+                  '<span class="circle">' +
+                  '<span class="check"></span>' +
+                  '</span>' +
+                  '</label>' +
+                  '</div>' +
+                  '</div>' +
+                  '<div class="col col-sm-1">' +
+                  '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
+                  '</div>' +
+                  '</div>' +
+                  '</div>' +
+                  '</div>' +
+                  '</div>'
+              );
 
               // Acao para botao deletar remove fields
               $(document).on('click', '.btn_remove', function () {
 
-               if(corretos.length > 2){
+                  if (corretos.length > 2) {
 
-                  var button_id2 = $(this).attr("id");
-                    $('#row' + button_id2 + '').remove();
-                    a--;
-                 
-                      $("#add").attr('disabled',false)
-                  
-                 }else if(corretos.length <= 2){
+                      var button_id2 = $(this).attr("id");
+                      $('#row' + button_id2 + '').remove();
+                      a--;
 
-                    // alert('Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta!');
+                      $("#add").attr('disabled', false)
+
+                  } else if (corretos.length <= 2) {
+
+                      // alert('Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta!');
 
 
-                  function alert4(msg, type){
-                   var html =  '<div class="alertContainer3 '+type+'">\n';
-                  html += '<div class="row align-items-center">';
-                  html += '<div class="col-sm-11">';
-                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
-                  html +=     '</div>';
-                  html += '<div class="col-sm-1">';
-                  html +=     '<div class="cerrarAlert">x</div>\n';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  jQuery('body').append(html);
-                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
-                  jQuery('.cerrarAlert').click(function(){
-                  jQuery('.alertContainer3').removeClass('active');
-                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
-                  });
+                      function alert4(msg, type) {
+                          var html = '<div class="alertContainer3 ' + type + '">\n';
+                          html += '<div class="row align-items-center">';
+                          html += '<div class="col-sm-11">';
+                          html += '<div class="mensajeAlert">' + msg + '</div>\n';
+                          html += '</div>';
+                          html += '<div class="col-sm-1">';
+                          html += '<div class="cerrarAlert">x</div>\n';
+                          html += '</div>';
+                          html += '</div>';
+                          html += '</div>';
+                          jQuery('body').append(html);
+                          window.setTimeout(function () {
+                              jQuery('.alertContainer3').addClass('active')
+                          }, 500);
+                          jQuery('.cerrarAlert').click(function () {
+                              jQuery('.alertContainer3').removeClass('active');
+                              window.setTimeout(function () {
+                                  jQuery('.alertContainer3').remove()
+                              }, 500);
+                          });
+                      }
+
+                      alert4("Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta", "error")
+
                   }
 
-                  alert4("Essa resposta não pode ser removida pois a pergunta deve conter pelo menos 2 reposta","error")
-          
-                  }
-                
 
               });
 
-              
-
-              $('.room_type').on('change', function(){
-
-                var roomtype = document.getElementById('room_type');
-   
-
-                 if(roomtype.value == 'true_or_false'){
-
-                    console.log('entrou');
-
-                $('.verdadeiro2').attr('type', 'checkbox');
-              
-              }else{
-
-                $('.verdadeiro2').attr('type', 'radio');
-            
-              }
 
 
-               if(roomtype.value == 'hope_door'){
+              $('.room_type').on('change', function () {
 
-                  $('#check-reforco').trigger("change");
-                  $('#desabilitar').css('display','block');
-                  $('#check-reforco').prop("checked", true);
-                  if($("#path_errado_id").val()==0){
-                    $(".teste").trigger("click");
-                    $(".teste").trigger("click");
+                  var roomtype = document.getElementById('room_type');
+
+
+                  if (roomtype.value == 'true_or_false') {
+
+                      console.log('entrou');
+
+                      $('.verdadeiro2').attr('type', 'checkbox');
+
+                  } else {
+
+                      $('.verdadeiro2').attr('type', 'radio');
+
                   }
 
 
-              
-              }else{
+                  if (roomtype.value == 'hope_door') {
 
-                 $('#check-reforco').trigger("change");
-                $('#check-reforco').prop("checked", false);
-                $('#desabilitar').css('display','none');
-            
-              }
-               
-               
-             });
+                      $('#check-reforco').trigger("change");
+                      $('#desabilitar').css('display', 'block');
+                      $('#check-reforco').prop("checked", true);
+                      if ($("#path_errado_id").val() == 0) {
+                          $(".teste").trigger("click");
+                          $(".teste").trigger("click");
+                      }
 
-         
+
+
+                  } else {
+
+                      $('#check-reforco').trigger("change");
+                      $('#check-reforco').prop("checked", false);
+                      $('#desabilitar').css('display', 'none');
+
+                  }
+
+
+              });
+
+
               if (button.data('whatever')) {
                   var recipient = button.data('whatever');
                   var tamanho = 0;
@@ -894,51 +914,51 @@
                                   modal.find('#perg_id').val(val.question_id);
                                   console.log(val.question_id);
                                   modal.find('.room_type').val(val.room_type);
-                                   modal.find('#question_type').val(val.question_type);
-                                  if(val.room_type == "true_or_false"){
-                                    $(".room_type").trigger('change');
+                                  modal.find('#question_type').val(val.question_type);
+                                  if (val.room_type == "true_or_false") {
+                                      $(".room_type").trigger('change');
                                   }
-                                    //$(".room_type").trigger('change');
+                                  //$(".room_type").trigger('change');
                                   modal.find('#question_type').val(val.question_type);
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {
                                           modal.find('#answer_boolean').val(path.type);
-                                          if(path.type==2){
+                                          if (path.type == 2) {
                                               $('#answer_boolean').trigger("change");
-                                              if(path.height==1)
-                                                tamanho = 1;
-                                              else if(path.height==4)
-                                                tamanho=2;
+                                              if (path.height >= 1 && path.height <= 3)
+                                                  tamanho = 1;
+                                              else if (path.height >= 4 && path.height <= 6)
+                                                  tamanho = 2;
                                               else
-                                                tamanho=3;
-                                              console.log("tamanho"+tamanho)
-                                         
+                                                  tamanho = 3;
+                                              console.log("tamanho" + tamanho)
+
                                               modal.find('#tamanho').val(tamanho);
                                           }
-                                          
+
                                           modal.find('#path_id').val(path.path_id);
                                           w++;
-                                      } else if(document.getElementById('room_type').value=='hope_door'){
+                                      } else if (document.getElementById('room_type').value == 'hope_door') {
 
-                                          $('#desabilitar').css('display','block');
-                                   $('#check-reforco').prop("checked", true);
-                                   $('#check-reforco').trigger("change");
+                                          $('#desabilitar').css('display', 'block');
+                                          $('#check-reforco').prop("checked", true);
+                                          $('#check-reforco').trigger("change");
                                           modal.find('#answer_boolean_perg').val(path.type);
-                                          console.log("Path type "+path.type)
-                                          
-//                                          console.log("Path perg errado "+ document.getElementById("answer_boolean_perg").value);
-                                          if(path.type!=1){
+                                          console.log("Path type " + path.type)
+
+                                          //                                          console.log("Path perg errado "+ document.getElementById("answer_boolean_perg").value);
+                                          if (path.type != 1) {
                                               $('#answer_boolean_perg').trigger("change");
-                                              console.log("altura"+path.height);
-                                              if(path.height==1)
-                                                tamanho=1;
-                                              else if(path.height==4)
-                                                tamanho=2;
-                                            else
-                                                tamanho=3;
-                                            modal.find('#tamanho_perg').val(tamanho);
+                                              console.log("altura" + path.height);
+                                              if (path.height >= 1 && path.height <= 3)
+                                                  tamanho = 1;
+                                              else if (path.height >= 4 && path.height <= 6)
+                                                  tamanho = 2;
+                                              else
+                                                  tamanho = 3;
+                                              modal.find('#tamanho_perg').val(tamanho);
                                               $('#tamanho_perg').trigger("change");
-                                              
+
                                           }
                                           modal.find('#path_errado_id').val(path.path_id);
                                       }
@@ -951,9 +971,9 @@
 
                                           $("#add").trigger('click');
 
-                                        
+
                                       }
-                                      
+
                                       modal.find("#tipo_opcao").val(resp.tipo_resp);
                                       modal.find(document.getElementsByClassName("resp_id")[v]).val(resp.answer_id);
                                       if (resp.correct === true) {
@@ -970,9 +990,9 @@
                                   x++;
                               } else {
                                   v = 0;
-                                 
-                                   
-                                   
+
+
+
                                   modal.find('#pergunta-reforco').val(val.question);
                                   modal.find('#perg-reforco-id').val(val.question_id);
                                   modal.find('#room_type_ref').val(val.room_type);
@@ -981,39 +1001,39 @@
                                   modal.find('#path_reforco_id').val(val.path.path_id);
                                   modal.find('#answer_boolean_ref').val(val.path.type);
                                   $('#answer_boolean_ref').trigger("change");
-                                  
-                                  if(val.path.type==2){
-                                    if(val.path.height==1)
-                                       tamanhoref = 1;
-                                    else if(val.path.height==4)
-                                        tamanhoref = 2;
-                                    else
-                                        tamanhoref = 3
-                                    } 
-                                    
-                                    modal.find('#tamanho_ref').val(tamanhoref);
-                                    $('#tamanho_ref').trigger("change");
-                                      
-                                      
+
+                                  if (val.path.type == 2) {
+                                      if (val.path.height >= 1 && val.path.height <= 3)
+                                          tamanhoref = 1;
+                                      else if (val.path.height >= 4 && val.path.height <= 6)
+                                          tamanhoref = 2;
+                                      else
+                                          tamanhoref = 3
+                                  }
+
+                                  modal.find('#tamanho_ref').val(tamanhoref);
+                                  $('#tamanho_ref').trigger("change");
+
+
                                   console.log(val.answer)
                                   $.each(val.answer, function (j, ref) {
-                                      if (v > 0 ) {
-                                          
-                                           $(".teste").trigger('click');
-                                        
+                                      if (v > 0) {
+
+                                          $(".teste").trigger('click');
+
                                       }
                                       console.log(ref.answer)
                                       modal.find("#tipo_opcao_ref").attr("value", ref.tipo_resp);
-                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value",ref.answer_id);
-                                      if (ref.correct === true){
+                                      modal.find(document.getElementsByClassName("resp_ref_id")[v]).attr("value", ref.answer_id);
+                                      if (ref.correct === true) {
                                           modal.find(corretos_ref[v]).attr("value", "1");
                                           modal.find(corretos_ref[v]).attr("checked", "true");
-                                      }else {
+                                      } else {
                                           modal.find(corretos_ref[v]).attr("value", "0");
                                       }
                                       modal.find(document.getElementsByClassName("resposta_ref")[v]).val(ref.answer);
                                       v++;
-                                      
+
 
                                   });
 
@@ -1042,10 +1062,10 @@
                   modal.find('#question_type').val(1);
                   modal.find('#perg-reforco-id').val(0);
                   i++;
-                $("#add").trigger('click');
-                $("#add").trigger('click');
-     
-              
+                  $("#add").trigger('click');
+                  $("#add").trigger('click');
+
+
               }
 
           });
@@ -1077,7 +1097,7 @@
               }
 
               var t = $('#add_name').serialize() + "&correto=" + teste3;
-        
+
 
               if (ref.checked) {
                   for (i = 0; i < p.length; i++) {
@@ -1092,9 +1112,9 @@
               }
 
 
-              if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false' )  || 
-                (!ref.checked && $('#room_type').val() == 'true_or_false' )) || 
-                ((z >= 2 && ref.checked) || ( ((ref.checked) && ($('#room_type_ref').val() == 'true_or_false')) && ($('#room_type').val() == 'hope_door')))){
+              if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false') ||
+                      (!ref.checked && $('#room_type').val() == 'true_or_false')) ||
+                  ((z >= 2 && ref.checked) || (((ref.checked) && ($('#room_type_ref').val() == 'true_or_false')) && ($('#room_type').val() == 'hope_door')))) {
                   $.ajax({
 
                       url: postURL + x,
@@ -1137,105 +1157,117 @@
 
               } else {
 
-                  function alert2(msg, type){
-                   var html =  '<div class="alertContainer3 '+type+'">\n';
-                  html += '<div class="row align-items-center">';
-                  html += '<div class="col-sm-11">';
-                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
-                  html +=     '</div>';
-                  html += '<div class="col-sm-1">';
-                  html +=     '<div class="cerrarAlert">x</div>\n';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  jQuery('body').append(html);
-                  window.setTimeout(function(){jQuery('.alertContainer3').addClass('active')}, 500);
-                  jQuery('.cerrarAlert').click(function(){
-                  jQuery('.alertContainer3').removeClass('active');
-                  window.setTimeout(function(){jQuery('.alertContainer3').remove()}, 500);
-                  });
+                  function alert2(msg, type) {
+                      var html = '<div class="alertContainer3 ' + type + '">\n';
+                      html += '<div class="row align-items-center">';
+                      html += '<div class="col-sm-11">';
+                      html += '<div class="mensajeAlert">' + msg + '</div>\n';
+                      html += '</div>';
+                      html += '<div class="col-sm-1">';
+                      html += '<div class="cerrarAlert">x</div>\n';
+                      html += '</div>';
+                      html += '</div>';
+                      html += '</div>';
+                      jQuery('body').append(html);
+                      window.setTimeout(function () {
+                          jQuery('.alertContainer3').addClass('active')
+                      }, 500);
+                      jQuery('.cerrarAlert').click(function () {
+                          jQuery('.alertContainer3').removeClass('active');
+                          window.setTimeout(function () {
+                              jQuery('.alertContainer3').remove()
+                          }, 500);
+                      });
                   }
 
-                  alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!","error");
+                  alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!", "error");
                   e.preventDefault();
-             }
-              if(ref.checked){
+              }
+              if (ref.checked) {
 
-                 for ( i = 0; i < reforco.length; i++){
-                     
-                       if (reforco[i].value == 0){
+                  for (i = 0; i < reforco.length; i++) {
 
-                         m++;
+                      if (reforco[i].value == 0) {
 
-                       }
-                        
-                  }
+                          m++;
 
-                  if( m > 0 || pergref[0].value === "" ){
-
-                  function alert1(msg, type){
-                  var html =  '<div class="alertContainer '+type+'">\n';
-                  html += '<div class="row align-items-center">';
-                  html += '<div class="col-sm-11">';
-                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
-                  html +=     '</div>';
-                  html += '<div class="col-sm-1">';
-                  html +=     '<div class="cerrarAlert">x</div>\n';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  jQuery('body').append(html);
-                  window.setTimeout(function(){jQuery('.alertContainer').addClass('active')}, 500);
-                  jQuery('.cerrarAlert').click(function(){
-                  jQuery('.alertContainer').removeClass('active');
-                  window.setTimeout(function(){jQuery('.alertContainer').remove()}, 500);
-                  });
-                  }
-
-
-                  alert1("A campos a preencher na aba Refoço verifique!","error");
-
-                  $('#pergunta-reforco').focus();
-                  e.preventDefault();
+                      }
 
                   }
 
-                   var h = 0;
-                  for ( i = 0; i < resposta.length; i++){
-                     
-                       if (resposta[i].value == 0){
+                  if (m > 0 || pergref[0].value === "") {
 
-                         h++;
+                      function alert1(msg, type) {
+                          var html = '<div class="alertContainer ' + type + '">\n';
+                          html += '<div class="row align-items-center">';
+                          html += '<div class="col-sm-11">';
+                          html += '<div class="mensajeAlert">' + msg + '</div>\n';
+                          html += '</div>';
+                          html += '<div class="col-sm-1">';
+                          html += '<div class="cerrarAlert">x</div>\n';
+                          html += '</div>';
+                          html += '</div>';
+                          html += '</div>';
+                          jQuery('body').append(html);
+                          window.setTimeout(function () {
+                              jQuery('.alertContainer').addClass('active')
+                          }, 500);
+                          jQuery('.cerrarAlert').click(function () {
+                              jQuery('.alertContainer').removeClass('active');
+                              window.setTimeout(function () {
+                                  jQuery('.alertContainer').remove()
+                              }, 500);
+                          });
+                      }
 
-                       }
-                        
+
+                      alert1("A campos a preencher na aba Refoço verifique!", "error");
+
+                      $('#pergunta-reforco').focus();
+                      e.preventDefault();
+
                   }
 
-                  if( h > 0 || pergunta[0].value === "" ){
+                  var h = 0;
+                  for (i = 0; i < resposta.length; i++) {
 
-                  function alert3(msg, type){
-                  var html =  '<div class="alertContainer2 '+type+'">\n';
-                  html += '<div class="row align-items-center">';
-                  html += '<div class="col-sm-11">';
-                  html +=     '<div class="mensajeAlert">'+msg+'</div>\n';
-                  html +=     '</div>';
-                  html += '<div class="col-sm-1">';
-                  html +=     '<div class="cerrarAlert">x</div>\n';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  html +=     '</div>';
-                  jQuery('body').append(html);
-                  window.setTimeout(function(){jQuery('.alertContainer2').addClass('active')}, 500);
-                  jQuery('.cerrarAlert').click(function(){
-                  jQuery('.alertContainer2').removeClass('active');
-                  window.setTimeout(function(){jQuery('.alertContainer2').remove()}, 500);
-                  });
+                      if (resposta[i].value == 0) {
+
+                          h++;
+
+                      }
+
                   }
 
-                  alert3("A campos a preencher na aba Pergunta verifique!","error");
-                  
-                  $('#pergunta').focus();
-                  e.preventDefault();
+                  if (h > 0 || pergunta[0].value === "") {
+
+                      function alert3(msg, type) {
+                          var html = '<div class="alertContainer2 ' + type + '">\n';
+                          html += '<div class="row align-items-center">';
+                          html += '<div class="col-sm-11">';
+                          html += '<div class="mensajeAlert">' + msg + '</div>\n';
+                          html += '</div>';
+                          html += '<div class="col-sm-1">';
+                          html += '<div class="cerrarAlert">x</div>\n';
+                          html += '</div>';
+                          html += '</div>';
+                          html += '</div>';
+                          jQuery('body').append(html);
+                          window.setTimeout(function () {
+                              jQuery('.alertContainer2').addClass('active')
+                          }, 500);
+                          jQuery('.cerrarAlert').click(function () {
+                              jQuery('.alertContainer2').removeClass('active');
+                              window.setTimeout(function () {
+                                  jQuery('.alertContainer2').remove()
+                              }, 500);
+                          });
+                      }
+
+                      alert3("A campos a preencher na aba Pergunta verifique!", "error");
+
+                      $('#pergunta').focus();
+                      e.preventDefault();
                   }
 
                   // i = 1;
@@ -1414,11 +1446,11 @@
       }
 
 
-        
-        
 
 
-  
+
+
+
       $('body').scrollspy({
           target: '#list-example'
       });
@@ -1467,19 +1499,19 @@
 
 
 
-function alertaPerg(){
-    
-    $.notify({
-            message: "São permitidas apenas 3 perguntas por sala"
-        }, {
-            type: 'warning',
-            timer: 800,
-            placement: {
-                from: 'top',
-                align: 'right'
-            }
-        });
-}
+      function alertaPerg() {
+
+          $.notify({
+              message: "São permitidas apenas 3 perguntas por sala"
+          }, {
+              type: 'warning',
+              timer: 800,
+              placement: {
+                  from: 'top',
+                  align: 'right'
+              }
+          });
+      }
 
 
 
@@ -1490,28 +1522,21 @@ function alertaPerg(){
 
       ///////////////////////////////Thiago
       $('#confirmalert').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget); // Button that triggered the modal
-      var recipient_id = button.data('id'); // Extract info from data-* attributes
-      var recipient_turma = button.data('turma'); // Extract info from data-* attributes
-      var recipient_prof = button.data('prof'); // Extract info from data-* attributes
+          var button = $(event.relatedTarget); // Button that triggered the modal
+          var recipient_id = button.data('id'); // Extract info from data-* attributes
+          var recipient_turma = button.data('turma'); // Extract info from data-* attributes
+          var recipient_prof = button.data('prof'); // Extract info from data-* attributes
 
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-      var modal = $(this);
-      modal.find('#confirmar').attr('onclick', "removeGrupo(" + recipient_id + "," + recipient_prof + "," + recipient_turma + ")");
-
-      });
-
-
-      $('#modalinfo').on('hidden.bs.modal', function (event){
-
-        $('body').addClass('modal-open');
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this);
+          modal.find('#confirmar').attr('onclick', "removeGrupo(" + recipient_id + "," + recipient_prof + "," + recipient_turma + ")");
 
       });
 
 
+      $('#modalinfo').on('hidden.bs.modal', function (event) {
 
+          $('body').addClass('modal-open');
 
-
-
-
+      });
