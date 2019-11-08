@@ -199,7 +199,7 @@
             <div class="modal-body">
                 <div class="row align-self-center">
                     <button type="button" id="fecharModal" data-dismiss="modal" class="btn btn-secundary col">Cancelar</button>
-                    <a class="btn col btn-primary" id="confirmarRemoverAluno">Confirmar</a>
+                    <a class="btn col btn-primary larcom" id="confirmarRemoverAluno">Confirmar</a>
                 </div>
             </div>
 
