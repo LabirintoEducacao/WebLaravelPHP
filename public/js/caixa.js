@@ -1518,7 +1518,7 @@
 
 
 
-      $('#modalinfo').on('hidden.bs.modal', function (event){
+      $('#modalinfoSala').on('hidden.bs.modal', function (event){
 
         $('body').addClass('modal-open');
 

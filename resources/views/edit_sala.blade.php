@@ -98,7 +98,7 @@
                                                     </div>
                                                     <div class="col-8 col-sm-8">
                                                         <select id="room_type" class="form-control selectpicker room_type" data-style="btn btn-primary" name="room_type">
-                                                            <option selected  value="right_key">Chave</option>
+                                                            <option selected  value="right_key">Chave Certa</option>
                                                             <option value="hope_door">Porta da esperança</option>
                                                             <option value="true_or_false">Verdadeiro ou Falso</option>
                                                             <option value="multiple_forms">Multiplas Formas</option>
@@ -598,17 +598,17 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col">
-                            <label for="theme">Tema:&emsp;</label>
-                            <!--                                <select class="form-control selectpicker" data-style="btn btn-link" name="theme" id="theme">-->
-                            <select id="theme" name="theme" class="form-control" data-style="btn btn-link">
-                                <option value="icy_maze">Gelo</option>
-                                <option value="urban">Urbano</option>
-                                <option value="forest">Selva</option>
-                                <option value="mansion">Casa/Mansão</option>
-                            </select>
+                        <div class="form-group col" style="height:100%;">
+                                <i class="material-icons info align-middle" data-toggle="modal" data-target="#modalinfoSala" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
+                                <label for="theme">Tema:&emsp;</label>
+                                <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
+                                    <option value="icy_maze">Gelo</option>
+                                    <option disabled value="urban">Urbano</option>
+                                    <option disabled value="forest">Selva</option>
+                                    <option disabled value="mansion">Casa/Mansão</option>
+                                </select>
 
-                        </div>
+                            </div>
                         <div class="form-group col">
                             <div class="form-check" style="margin-left:10%;margin-top:17%">
                                 <label class="form-check-label">
@@ -735,14 +735,16 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
-         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Chave</b></h5>
-        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+        <h5 class="modal-title" style="color: black; font-size: 13px"><b>A interação define como o problema é apresentado. Algumas mecânicas restringem outras opções como ter ou não sala de reforço.</b></h5>
+        <br>
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Chave Certa</b></h5>
+        <p style="font-size: 12px; text-align: justify;">Diversas Chave Certas, mas só uma abrirá a porta no final do corredor. Não é possível colocar sala de reforço nessa sala.</p>
           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Posta da Esperaça</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <p style="font-size: 12px; text-align: justify;">Há 3 portas de saída, 3 chaves. Mas só uma delas é a resposta certa, as outras levam a um reforço de conteúdo. Sala de reforço é obrigatória.</p>
            <h5 class="modal-title" style="color: black; font-size: 13px"><b>Verdadeiro ou Falso</b></h5>
-           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+           <p style="font-size: 12px; text-align: justify;">Uma sala com diversas alavancas e um botão, cada alavanca está associada a uma das alternativas à pergunta e o botão valida se a resposta está correta. Mais de uma alternativa pode estar correta ao mesmo tempo. Não é possível colocar sala de reforço nessa sala.</p>
             <h5 class="modal-title" style="color: black; font-size: 13px"><b>Multiplas Formas</b></h5>
-            <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+            <p style="font-size: 12px; text-align: justify;">Diversos objetos e um "altar" para verificar se a forma escolhida representa a alternativa correta. Não é possível colocar sala de reforço nessa sala.</p>
     </div>
     </div>
   </div>
@@ -757,9 +759,9 @@
     </div>
     <div class="modal-body">
          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Corredor</b></h5>
-        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+        <p style="font-size: 12px; text-align: justify;">Caminho reto ligado uma pergunta à outra, sem escolhas. Não é possível configurar o tamanho.</p>
           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Labirinto</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <p style="font-size: 12px; text-align: justify;">Caminho com bifurcações e caminhos sem saída ligando uma pergunta a outra.</p>
     </div>
     </div>
   </div>
@@ -773,12 +775,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
-         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Pequeno</b></h5>
-        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Médio</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
-           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Grande</b></h5>
-           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o quão longa ou cheia de bifurcações será a ligação entre uma sala e outra. Só é possível configurar o tamanho para caminhos do tipo Labirinto.</b></h5>
+        
     </div>
     </div>
   </div>
@@ -811,7 +809,30 @@
 
 
 
-
+<div id="modalinfoSala" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+   <div class="modal-content">
+    <div class="modal-header" style="background-color:#9124a3">
+         <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <h5 class="modal-title" style="color: black; font-size: 13px"><b>Este tema determina a estética utilizada para mostrar o problema aos jogadores, nenhuma mecânica é influenciada por essa escolha.</b></h5>
+   
+        <br>
+         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Gelo</b></h5>
+        <p style="font-size: 12px; text-align: justify;">O labirinto é formado por uma geleira, com quadro para os textos de pergunta e resposta e suporte para os itens todos lapidados em blocos de gelo.</p>
+          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Urbano</b></h5>
+          <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
+           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Selva</b></h5>
+           <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
+            <h5 class="modal-title" style="color: black; font-size: 13px"><b>Casa/Mansão</b></h5>
+            <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
+    </div>
+    </div>
+  </div>
+</div>
 
 
 
