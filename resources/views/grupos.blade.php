@@ -211,9 +211,13 @@
 
             <div id="salas_v" style="display:none;">
              <table class="table">
+                <div class="container row ">
+                  <h5 style="margin-left:10px;">Grupo:</h5>
+                  <h5 id ="nome_grupo"> teste</h5>
+              </div>
               <thead>
                 <tr class=" text-primary" >
-                  <th scope="col">  Grupo </th>
+                  <th scope="col"> </th>
                   <th scope="col" >Nome das Salas</th>
                   <th scope="col" ></th>
               </tr>
