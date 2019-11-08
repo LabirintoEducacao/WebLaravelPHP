@@ -516,26 +516,26 @@ if($request->perg_id == 0){
     
     if($ambiente_perg==1){
         
-        $tamanho_perg = 3;
-        $largura_perg = 2;
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
         
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho_perg = 1 ;
-            $largura_perg = 3;
+            $tamanho_perg = rand(1,3);
+            $largura_perg = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho_perg = 4 ;
-            $largura_perg = 6;
+            $tamanho_perg = rand(4,6);
+            $largura_perg = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho_perg = 7 ;
-            $largura_perg = 10;
+            $tamanho_perg = rand(7,10);
+            $largura_perg = rand(7,10);
 
          }
     }
@@ -601,25 +601,25 @@ if($request->perg_reforco==1){
  $tamanho1 = $request->tamanho_perg;
  $disponivel = true;
     if($ambiente_perg==1){
-        $tamanho_perg = 3;
-        $largura_perg = 2;
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho_perg = 1 ;
-            $largura_perg = 3;
+            $tamanho_perg = rand(1,3);
+            $largura_perg = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho_perg = 4 ;
-            $largura_perg = 6;
+            $tamanho_perg = rand(4,6);
+            $largura_perg = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho_perg = 7 ;
-            $largura_perg = 10;
+            $tamanho_perg = rand(7,10);
+            $largura_perg = rand(7,10);
 
          }
     }
@@ -646,24 +646,24 @@ if($request->perg_reforco==1){
     
     
     if($ambiente_ref==1){
-        $tamanho_ref = 3;
-        $largura_ref = 2;
+        $tamanho_ref = rand(1,3);
+        $largura_ref = rand(1,3);
     }else{
          if($tamanho_ref1 == 1 ){
-            $tamanho_ref = 1 ;
-            $largura_ref = 3;
+            $tamanho_ref = rand(1,3);
+            $largura_ref = rand(1,3);
 
          }
 
          if($tamanho_ref1 == 2 ){
-            $tamanho_ref = 4 ;
-            $largura_ref = 6;
+            $tamanho_ref = rand(4,6);
+            $largura_ref = rand(4,6);
 
          }
 
           if($tamanho_ref1 == 3 ){
-            $tamanho_ref = 7 ;
-            $largura_ref = 10;
+            $tamanho_ref = rand(7,10);
+            $largura_ref = rand(7,10);
 
          }
     }
@@ -794,25 +794,25 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
     if($ambiente_perg==1){
-        $tamanho_perg = 3;
-        $largura_perg = 2;
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho_perg = 1 ;
-            $largura_perg = 3;
+            $tamanho_perg = rand(1,3);
+            $largura_perg = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho_perg = 4 ;
-            $largura_perg = 6;
+            $tamanho_perg = rand(4,6);
+            $largura_perg = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho_perg = 7 ;
-            $largura_perg = 10;
+            $tamanho_perg = rand(7,10);
+            $largura_perg = rand(7,10);
 
          }
     }
@@ -838,25 +838,25 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
         $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
     if($ambiente_ref==1){
-        $tamanho_ref = 3;
-        $largura_ref = 2;
+        $tamanho_ref = rand(1,3);
+        $largura_ref = rand(1,3);
     }else{
 
          if($tamanho_ref1 == 1 ){
-            $tamanho_ref = 1 ;
-            $largura_ref = 3;
+            $tamanho_ref = rand(1,3);
+            $largura_ref = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho_ref = 4 ;
-            $largura_ref = 6;
+            $tamanho_ref = rand(4,6);
+            $largura_ref = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho_ref = 7 ;
-            $largura_ref = 10;
+            $tamanho_ref = rand(7,10);
+            $largura_ref = rand(7,10);
 
          }
     }
@@ -869,25 +869,25 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
  $tamanho1 = $request->tamanho_perg;
  $disponivel = true;
     if($ambienteB_perg==1){
-        $tamanho = 3;
-        $largura = 2;
+        $tamanho = rand(1,3);
+        $largura = rand(1,3);
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho = 1 ;
-            $largura = 3;
+            $tamanho = rand(1,3);
+            $largura = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho = 4 ;
-            $largura = 6;
+            $tamanho = rand(4,6);
+            $largura = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho = 7 ;
-            $largura = 10;
+            $tamanho = rand(7,10);
+            $largura = rand(7,10);
 
          }
     }
@@ -989,25 +989,25 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
  $disponivel = true;
       $largura = 0;
     if($ambiente_perg==1){
-        $tamanho_perg = 3;
-        $largura_perg = 2;
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho_perg = 1 ;
-            $largura_perg = 3;
+            $tamanho_perg = rand(1,3);
+            $largura_perg = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
-            $tamanho_perg = 4 ;
-            $largura_perg = 6;
+            $tamanho_perg = rand(4,6);
+            $largura_perg = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
-            $tamanho_perg = 7 ;
-            $largura_perg = 10;
+            $tamanho_perg = rand(7,10);
+            $largura_perg = rand(7,10);
 
          }
     }
@@ -1034,24 +1034,24 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     
     
     if($ambiente_ref==1){
-        $tamanho_ref = 3;
-        $largura_ref = 2;
+        $tamanho_ref = rand(1,3);
+        $largura_ref = rand(1,3);
     }else{
          if($tamanho_ref1 == 1 ){
-            $tamanho_ref = 1 ;
-            $largura_ref = 3;
+            $tamanho_ref = rand(1,3);
+            $largura_ref = rand(1,3);
 
          }
 
          if($tamanho_ref1 == 2 ){
-            $tamanho_ref = 4 ;
-            $largura_ref = 6;
+            $tamanho_ref = rand(4,6);
+            $largura_ref = rand(4,6);
 
          }
 
           if($tamanho_ref1 == 3 ){
-            $tamanho_ref = 7 ;
-            $largura_ref = 10;
+            $tamanho_ref = rand(7,10);
+            $largura_ref = rand(7,10);
 
          }
     }
