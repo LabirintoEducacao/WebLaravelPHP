@@ -408,12 +408,12 @@
 
                     <div id="flip">
                         <div class="row align-items-center" style="cursor: pointer;">
-                            <div class="col-sm-10 container" onclick="abrir('panel'+{{$item->id}});" style="padding-left: 25px;">
+                            <div class="col col-sm-10 container" onclick="abrir('panel'+{{$item->id}});" style="padding-left: 25px;">
                                 <?php
                                 $str2 = $item->pergunta;
                                 $total1 = strlen($str2);
                                 ?>
-                                @if($total1 > 108)
+                                @if($total1 > 80)
                                 <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$item->pergunta}}">{{$item->pergunta}}</div>
                                 @else
                                 <div>{{$item->pergunta}}</div>
@@ -432,8 +432,8 @@
                                     <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>
                                 </div>
                             </div>
-                            <div class="container col-1 " onclick="abrir('panel'+{{$item->id}});" style="margin-top: -10px;">
-                                <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
+                            <div class="container col-sm-1 " onclick="abrir('panel'+{{$item->id}});" style="margin-top: -10px;">
+                                <a style="margin-left: 50%;"><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
                             </div>
                         </div>
                     </div>
@@ -482,24 +482,23 @@
                     @if($path->id==$pp->path_id)
                     <!--                    <input value="{{$path->id}}"><br><br>-->
 
-                    <div id="flip2">
+                    <div id="flip2" >
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
                         <div class="row align-items-center"  style="cursor: pointer;">
                        
                           <i class="material-icons info" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">info</i>
                           
-                            <div class="col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
+                            <div class="col col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
                                 <?php
                                 $str = $ref->pergunta;
                                 $total = strlen($str);
                                 ?>
-                                @if($total > 108)
+                                @if($total > 50)
                                 <div id="div2" data-toggle="tooltip" data-placement="top" title="{{$ref->pergunta}}">{{$ref->pergunta}}</div>
                                 @else
                                 <div>{{$ref->pergunta}}</div>
                                 @endif
                             </div>
-
                             <div class="col-2 col-sm-1 textototalref{{$cont2}}">
 
                             </div>
@@ -515,8 +514,8 @@
                                     <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>
                                 </div>
                             </div>
-                            <div class="container col-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
-                                <a><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
+                            <div class="container col-sm-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
+                                <a style="margin-left: 50%;"><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
                             </div>
                         </div>
                     </div>
