@@ -581,14 +581,6 @@
 
         });
 
-
-
-
-
-
-
-       
-
    // perfect-scrollbar-on nav-open
 
          var t = 0;

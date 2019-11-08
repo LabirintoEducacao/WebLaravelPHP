@@ -952,6 +952,7 @@
                                   if(val.room_type != "hope_door"){
                                     $(".room_type").trigger('change');
                                   }
+                                    //$(".room_type").trigger('change');
                                   modal.find('#question_type').val(val.question_type);
                                   $.each(val.path, function (a, path) {
                                       if (w == 0) {
@@ -1175,8 +1176,6 @@
 
                   });
 
-            
-              //window.location.reload();
 
               } else {
 
@@ -1551,10 +1550,6 @@ function alertaPerg(){
         $('body').addClass('modal-open');
 
       });
-
-
-     
-
 
 
 
