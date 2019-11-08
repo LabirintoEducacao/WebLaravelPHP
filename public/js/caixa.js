@@ -9,38 +9,7 @@
           // botao para add resposta fields
           var a = 0;
           var b = 0;
-          //           launch_toast();
 
-          // $('#add').click(function () {
-          //     if (a < 3) {
-          //         $('#dynamic_field').append('' +
-          //             '<tr id="row' + i + '" class="dynamic-added">' +
-          //             '<td>' +
-          //             '<select name ="tipo_resp[]" id ="tipo_opcao" class="form-control tipo_resp">' +
-          //             '<option selected value="1">Texto</option>' +
-          //             '<option value="2">Imagem</option>' +
-          //             '<option value="3">Vídeo</option>' +
-          //             '<option value="4">Áudio</option>' +
-          //             '</select>' +
-          //             '</td>' +
-          //             '<td>' +
-          //             '<select name ="corret[]" class="form-control corret">' +
-          //             '<option value="1">Certa</option>' +
-          //             '<option selected value="0">Errada</option>' +
-          //             '</select>' +
-          //             '</td>' +
-          //             '<td><input type="text" name="resposta[]" placeholder="Resposta" class="form-control name_list resposta" maxlength="500" required/>'+
-          //              '<input type="hidden" name="resp_id[]" class="resp_id"></td>' +
-          //             '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td>' +
-          //             '</tr>');
-          //         a++;
-          //     } else {
-
-
-          //     }
-
-          // });
-          
           $('#add').click(function () {
               if (a < 2) {
                   if($('.room_type').val() == 'true_or_false'){
@@ -300,7 +269,7 @@
                       '</div>'+
 
                       '<div class="col-6">' +
-                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker answer_boolean_perg" data-style="btn btn-primary" style="float:left;">' +
                       '<option selected value="1">Corredor</option>' +
                       '<option value="2">Labirinto</option>' +
                       '</select>' +
@@ -327,30 +296,7 @@
                       '</div>' +
                       '</div>' +
                       '</div>' +
-                      //                      '<span style="color: red;">Selecionar o ambiente errado para a pergunta:</span><br><br>' +
-                      //                      '<div class="form-group row">' +
-                      //                      '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
-                      //                      '<label for="answer_boolean_perg" class="col">Tipo:</label>' +
-                      //                      '<select name="answer_boolean_perg" id="answer_boolean_perg" class="col">' +
-                      //                      '<option selected value="1">Corredor</option>' +
-                      //                      '<option value="2">Labirinto</option>' +
-                      //                      '</select>' +
-                      //                      '</div>' +
-                      //                      '<div class="form-group row">' +
-                      //                      '<label for="tamanho_perg" class="col">Tamanho:</label>' +
-                      //                      '<select name="tamanho_perg" id="tamanho_perg" class="col">' +
-                      //                      '<option selected value="1">Pequeno</option>' +
-                      //                      '<option value="2">Medio</option>' +
-                      //                      '<option value="3">Grande</option>' +
-                      //                      '</select>' +
-                      //                      '</div>' +
-                      //                      '<div class="form-group row">' +
-                      //                      '<label for="largura_perg" class="col">Largura:</label>' +
-                      //                      '<select name="largura_perg" id="largura_perg" class="col">' +
-                      //                      '<option selected value="1">Pequeno</option>' +
-                      //                      '<option value="2">Medio</option>' +
-                      //                      '<option value="3">Grande</option>' +
-                      //                      '</select>' +
+
                       '</div>' +
 
                       //                  PERGUNTAAAAAAA
@@ -949,7 +895,7 @@
                                   console.log(val.question_id);
                                   modal.find('.room_type').val(val.room_type);
                                    modal.find('#question_type').val(val.question_type);
-                                  if(val.room_type != "hope_door"){
+                                  if(val.room_type == "true_or_false"){
                                     $(".room_type").trigger('change');
                                   }
                                   modal.find('#question_type').val(val.question_type);
@@ -971,19 +917,27 @@
                                           
                                           modal.find('#path_id').val(path.path_id);
                                           w++;
-                                      } else {
+                                      } else if(document.getElementById('room_type').value=='hope_door'){
 
-                                          //$('#check-reforco').prop("checked", false);
-                                          //$("#check-reforco").trigger('click');
+                                          $('#desabilitar').css('display','block');
+                                   $('#check-reforco').prop("checked", true);
+                                   $('#check-reforco').trigger("change");
                                           modal.find('#answer_boolean_perg').val(path.type);
-                                          if(path.type==2){
+                                          console.log("Path type "+path.type)
+                                          
+//                                          console.log("Path perg errado "+ document.getElementById("answer_boolean_perg").value);
+                                          if(path.type!=1){
                                               $('#answer_boolean_perg').trigger("change");
+                                              console.log("altura"+path.height);
                                               if(path.height==1)
-                                                modal.find('#tamanho_perg').val(1);
+                                                tamanho=1;
                                               else if(path.height==4)
-                                                modal.find('#tamanho_perg').val(2);
+                                                tamanho=2;
                                             else
-                                                modal.find('#tamanho_perg').val(3);
+                                                tamanho=3;
+                                            modal.find('#tamanho_perg').val(tamanho);
+                                              $('#tamanho_perg').trigger("change");
+                                              
                                           }
                                           modal.find('#path_errado_id').val(path.path_id);
                                       }
@@ -1017,9 +971,7 @@
                                   v = 0;
                                  
                                    
-                                   $('#desabilitar').css('display','block');
-                                   $('#check-reforco').prop("checked", true);
-                                   $('#check-reforco').trigger("change");
+                                   
                                   modal.find('#pergunta-reforco').val(val.question);
                                   modal.find('#perg-reforco-id').val(val.question_id);
                                   modal.find('#room_type_ref').val(val.room_type);
@@ -1027,15 +979,21 @@
                                   modal.find('#question_type_ref').val(val.question_type);
                                   modal.find('#path_reforco_id').val(val.path.path_id);
                                   modal.find('#answer_boolean_ref').val(val.path.type);
+                                  $('#answer_boolean_ref').trigger("change");
                                   
                                   if(val.path.type==2){
                                     if(val.path.height==1)
-                                        modal.find('#tamanho_ref').val(1);
+                                       tamanhoref = 1;
                                     else if(val.path.height==4)
-                                        modal.find('#tamanho_ref').val(2);
+                                        tamanhoref = 2;
                                     else
-                                        modal.find('#tamanho_ref').val(3);
-                                    }
+                                        tamanhoref = 3
+                                    } 
+                                    
+                                    modal.find('#tamanho_ref').val(tamanhoref);
+                                    $('#tamanho_ref').trigger("change");
+                                      
+                                      
                                   console.log(val.answer)
                                   $.each(val.answer, function (j, ref) {
                                       if (v > 0 ) {
