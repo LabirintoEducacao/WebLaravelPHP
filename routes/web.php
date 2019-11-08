@@ -199,6 +199,7 @@ Route::get('/newuser', function () {
 
 Route::get('/grupo/{id}','SalaController@showgrupos');
 Route::get('/addgrupo/{id}/{salaid}','SalaController@addgrupo');
+Route::get('/vinculogrupo/{id}','SalaController@vinculogrupo');
 
 
 
