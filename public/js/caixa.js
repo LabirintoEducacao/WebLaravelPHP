@@ -233,15 +233,22 @@
 
 
 
-
+         
+          $().ready(function(){
 
           $('#answer_boolean').on('change', function () {
+
+            console.log('teste');
+     
               if ($('#answer_boolean').val() == '1') {
-                  $('.tamanho').css('display', 'none');
+
+                  $('.conteudo').prop( "disabled", true );
               } else {
-                  $('.tamanho').css('display', 'block');
+                  $('.conteudo').prop( "disabled", false );
               }
           });
+          
+        });
 
 
 
