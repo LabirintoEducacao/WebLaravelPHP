@@ -512,7 +512,7 @@ if($request->perg_id == 0){
                      ///////////Path////////////
  $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
- $largura1 = ;
+ $largura1 = $request->largura;
  $disponivel = true;
     
     if($ambiente_perg==1){
@@ -620,7 +620,7 @@ if($request->perg_reforco==1){
                      //  ////////////////Patch errado da Pergunta/////////
  $ambiente_perg = $request->answer_boolean_perg;
  $tamanho2 = $request->tamanho_perg;
- $largura2 = ;
+ $largura2 = $request->largura_perg;
  $disponivel = true;
     if($ambiente_perg==1){
         $tamanho_perg = 3;
@@ -685,7 +685,7 @@ if($request->perg_reforco==1){
                      ////////////////PatchReforco/////////
  $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
- $largura_ref1 = 0;
+ $largura_ref1 = $request->largura_ref;
     
     
     if($ambiente_ref==1){
@@ -854,7 +854,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     
     $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
- $largura1 = ;
+ $largura1 = $request->largura;
     if($ambiente_perg==1){
         $tamanho_perg = rand(1,3);
       
@@ -910,7 +910,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
         
 $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
-$largura_ref1 = ;
+$largura_ref1 = $request->largura_ref;
     
     
     if($ambiente_ref==1){
@@ -961,7 +961,7 @@ $largura_ref1 = ;
         
         $ambienteB_perg = $request->answer_boolean_perg;
  $tamanho1 = $request->tamanho_perg;
- $largura1 = ;
+ $largura1 = $request->largura_perg;
  $disponivel = true;
 
     if($ambienteB_perg==1){
@@ -1096,7 +1096,7 @@ $largura_ref1 = ;
               //  ////////////////Patch errado da Pergunta/////////
  $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
- $largura1 = ;
+ $largura1 = $request->largura;
  $disponivel = true;
  $largura = 0;
 
@@ -1155,7 +1155,7 @@ $largura_ref1 = ;
                      ////////////////PatchReforco/////////
   $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
-$largura_ref1 = ;
+$largura_ref1 = $request->largura_ref;
  $largura_ref = 0;
     
     
