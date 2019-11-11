@@ -732,6 +732,16 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     ->where('id','=', $request->perg_id)
     ->update(['tipo_perg' => $request->question_type,'pergunta' => $request->pergunta,'room_type' => $request->room_type]);
     
+    /*$tem_reforco = DB::table('perg_ref')
+    ->where('perg_id','=', $request->perg_id)
+    ->get();
+    if(count($tem_reforco)>0){
+        if($request->room_type!="hope_door"){
+            $deleteRef = Pergunta::find($tem_reforco[0]->id);
+            $deleteRef->delete();
+        }
+    }*/
+    
     $respostas = DB::table('respostas')
     ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
     ->where('perg_resp.perg_id','=', $request->perg_id)
