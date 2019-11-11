@@ -518,7 +518,7 @@ if($request->perg_id == 0){
     if($ambiente_perg==1){
         
         $tamanho_perg = 3;
-        $largura_perg = 1;
+        $largura_perg = 2;
         
     }else{
 
@@ -690,7 +690,7 @@ if($request->perg_reforco==1){
     
     if($ambiente_ref==1){
         $tamanho_ref = 3;
-        $largura_ref = 1;
+        $largura_ref = 2;
     }else{
          if($tamanho_ref1 == 1 ){
             $tamanho_ref = rand(1,3);
@@ -752,7 +752,7 @@ if($request->perg_reforco==1){
  $pergid2 = DB::table('perguntas')->insertGetId(array(
     'sala_id' => $sala_id_ref,
     'tipo_perg' => $tipo_perg_ref,
-    'pergunta' => $pergunta_ref,v
+    'pergunta' => $pergunta_ref,
     'room_type' => $room_type_ref
 ));  
  
@@ -856,7 +856,8 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
  $tamanho1 = $request->tamanho;
  $largura1 = $request->largura;
     if($ambiente_perg==1){
-        $tamanho_perg = rand(1,3);
+        $tamanho_perg = 3;
+        $largura_perg = 2;
       
     }else{
 
