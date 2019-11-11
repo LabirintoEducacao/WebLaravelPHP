@@ -131,20 +131,17 @@
                                     </div>
 
 
-                                    <!--   Ambinete  -->
+                                       <!--   Ambinete  -->
                                     <label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto:</label>
                                     <div class=" container">
-                                        <div class="row justify-content-between " style="line-height: 40px; margin-bottom: 10px;">
-                                            <div class="col-12 col-sm-6">
+                                        <div class="row" style="line-height: 40px; margin-bottom: 10px;">
+                                            <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row">
-                                                    <div class="col-4" style=" margin-top: 3px;">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
                                                         <label for="answer_boolean" style="margin-right: 3.5px; padding-top:10%;">Caminho do jogo:</label>
                                                     </div>
-                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
-                                                        <i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
-                                                    </div>
-                                                    <div class="col-6">
+                                                    <div class="col-7">
                                                         <select name="answer_boolean" id="answer_boolean" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Corredor</option>
                                                             <option value="2">Labirinto</option>
@@ -152,30 +149,41 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-                                            <div class="col-12 col-sm-6 tamanho" style="display:none">
+                                            <div class="col-12 col-sm-4">
                                                 <input type="hidden" name="path_id" id="path_id">
-                                                <div class="row " style="height:50px;">
+                                                <div class="row" style="height:50px;">
                                                     <div class="col-5" style="height:100%;">
                                                         <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>
                                                     </div>
-                                                    <div class="col-1" style="margin-left: 12px; margin-top: 12px;">
-                                                        <i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
-                                                    </div>
-                                                    <div class="col-5">
-                                                        <select name="tamanho" id="tamanho" class="form-control selectpicker tamanho" data-style="btn btn-primary" style="float:left;">
+                                                    <div class="col-7">
+                                                        <select name="tamanho" id="tamanho" class="form-control selectpicker conteudo" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Pequeno</option>
-                                                            <option value="2">Médio</option>
-                                                            <option value="3">Grande</option>
+                                                            <option disabled class="conteudo" value="2">Medio</option>
+                                                            <option disabled class="conteudo"  value="3">Grande</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
-
-
+                                            <div class="col-12 col-sm-4">
+                                                <input type="hidden" name="path_id" id="path_id">
+                                                <div class="row" style="height:50px;">
+                                                    <div class="col-5" style="height:100%;">
+                                                        <label for="largura" style="margin-right: 3.5px; padding-top:10%;">Largura do Labirinto:</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select name="largura" id="largura" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
+                                                            <option selected value="1">Pequeno</option>
+                                                            <option disabled class="conteudo"  value="2">Medio</option>
+                                                            <option disabled class="conteudo"  value="3">Grande</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
+
+
                                 </div>
                             </div>
 
