@@ -38,6 +38,8 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 
+    
+    
 </head>
 
 <body onload="totalresposta()">
@@ -159,6 +161,16 @@
     </div>
 
 
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+<!--    <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.js charset=utf-8></script>-->
+     {{-- ChartScript --}}
+    @if(isset($usersChart))
+    {!! $usersChart->script() !!}
+    @endif
 
 
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>

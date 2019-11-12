@@ -17,6 +17,13 @@
       'Zipper' => 'Chumper\\Zipper\\Zipper',
     ),
   ),
+  'consoletvs/charts' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
+    ),
+  ),
   'fideloper/proxy' => 
   array (
     'providers' => 

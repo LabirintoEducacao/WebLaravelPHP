@@ -1147,23 +1147,10 @@
                   }
                   t += "&correto_ref=" + teste4;
               }
-
-//
-//              if (((z == 1 && $('#room_type').val() != 'true_or_false') ||
-//                      ($('#room_type').val() == 'true_or_false')) ||
-//                  ((z >= 2 && ref.checked))) {
-                  
-                  
-//                      if ((($('#room_type').val() != 'true_or_false' && $('#room_type').val() != 'hope_door' && z==1) ||
-//                  ($('#room_type').val() == 'true_or_false' && $('#room_type').val() != 'hope_door')) && ((contaRef==1 && $('#room_type').val() == 'hope_door' && $('#room_type_ref').val() != 'true_or_false') ||
-//                  ($('#room_type').val() == 'hope_door' && $('#room_type_ref').val() == 'true_or_false'))) {
-//
-//                  
-//                          
-                    //if($('#room_type').val() != 'hope_door'){
-                if(($('#room_type').val() != 'true_or_false' && z==1)|| ($('#room_type').val() == 'true_or_false' && z>=0)){
+       
+            if(($('#room_type').val() != 'true_or_false' && z==1) || ($('#room_type').val() == 'true_or_false' && z>=0)){
                     entrar++;
-                }
+            }
               if($('#room_type').val() == 'hope_door'){
                   if(($('#room_type_ref').val() != 'true_or_false' && contaRef==1)|| ($('#room_type_ref').val() == 'true_or_false' && contaRef>=0)){
                     entrar++;
