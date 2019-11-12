@@ -22,7 +22,7 @@
                           '<input type="hidden" name="resp_id[]" class="resp_id">' +
                           '</div>' +
                           '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                          '<div class="col col-sm-11">' +
+                          '<div class="col-9 col-sm-10 col-md-10 col-lg-11">' +
                           '<div class="form-check form-check-radio">' +
                           'Essa resposta esta correta?&emsp;' +
                           '<label class="form-check-label">' +
@@ -34,7 +34,7 @@
                           '</label>' +
                           '</div>' +
                           '</div>' +
-                          '<div class="col col-sm-1">' +
+                          '<div class="col-1 col-sm-1">' +
                           '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
                           '</div>' +
                           '</div>' +
@@ -52,7 +52,7 @@
                           '<input type="hidden" name="resp_id[]" class="resp_id">' +
                           '</div>' +
                           '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                          '<div class="col col-sm-11">' +
+                          '<div class="col-9 col-sm-10 col-md-10 col-lg-11">' +
                           '<div class="form-check form-check-radio">' +
                           'Essa resposta esta correta?&emsp;' +
                           '<label class="form-check-label">' +
@@ -64,7 +64,7 @@
                           '</label>' +
                           '</div>' +
                           '</div>' +
-                          '<div class="col col-sm-1">' +
+                          '<div class="col-1 col-sm-1">' +
                           '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
                           '</div>' +
                           '</div>' +
@@ -169,7 +169,7 @@
                           '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
                           '</div>' +
                           '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                          '<div class="col col-sm-11">' +
+                          '<div class="col-9 col-sm-10 col-md-10 col-lg-11">' +
                           '<div class="form-check form-check-radio">' +
                           'Essa resposta esta correta?&emsp;' +
                           '<label class="form-check-label">' +
@@ -200,7 +200,7 @@
                           '<input type="hidden" name="resp_ref_id[]" class="resp_id">' +
                           '</div>' +
                           '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                          '<div class="col col-sm-11">' +
+                          '<div class="col-9 col-sm-10 col-md-10 col-lg-11">' +
                           '<div class="form-check form-check-radio">' +
                           'Essa resposta esta correta?&emsp;' +
                           '<label class="form-check-label">' +
@@ -241,20 +241,29 @@
               if (this.checked) {
 
                    $('.abcd', $parent).append(
-
                       '<div id="pai" class="hea">' +
                       '<div class=" container">' +
-                      '<div class="card houvercard">' +
-                      '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (ERRADO):</label>' +
+                      '<div class="card houvercardacima">' +
+                      '<div class="row" style="margin-top:10px;">' +
+                      '<div class="col-2 col-sm-2 col-md-2 col-lg-1" style="margin-left: 10px;">'+
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoErrado" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                      '</div>'+
+                      '<div class="col col-sm-6">'+
+                      '<label style="font-size: 130%; color: black; margin-left: -30px;">Definições do labirinto (ERRADO):</label>' +
+                      '</div>'+
+                      '</div>'+
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                      '<div class="col-12 col-sm-4">' +
+                      '<div class="col-12 col-sm-12 col-md-12 col-lg-4">' +
                       '<input type="hidden" name="path_errado_id" id="path_errado_id">' +
                       '<div class="row" style="height:50px;">' +
-                      '<div class="col-5" style="height:100%;">' +
-                      '<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do Labirinto:</label>' +
+                      '<div class="col-2 col-sm-2 col-lg-2" style="height:100%;">' +
+                      '<label for="answer_boolean_perg" style="margin-right: 3.5px; padding-top:10%;">Caminho do jogo:</label>' +
                       '</div>' +
-                      '<div class="col-7">' +
+                      '<div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">'+
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                      '</div>'+
+                      '<div class="col-7 col-sm-7">' +
                       '<select name="answer_boolean_perg" id="answer_boolean_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
                       '<option selected value="1">Corredor</option>' +
                       '<option value="2">Labirinto</option>' +
@@ -262,26 +271,32 @@
                       '</div>' +
                       '</div>' +
                       '</div>' +
-                      '<div class="col-12 col-sm-4">' +
+                      '<div class="col-12 col-sm-12 col-md-12 col-lg-4">' +
                       '<div class="row" style="height:50px;">' +
-                      '<div class="col-5" style="height:100%;">' +
-                      '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
+                      '<div class="col-4 col-sm-4 col-md-3 col-lg-5" style="height:100%;">' +
+                      '<label for="tamanho_perg" style="margin-right: 3.5px; padding-top:10%;">Altura do Labirinto:</label>' +
                       '</div>' +
-                      '<div class="col-7">' +
+                      '<div class="col-1 col-sm-1" style="margin-left: -30px; margin-top: 12px;">'+
+                      '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                      '</div>'+
+                      '<div class="col-7 col-sm-7">' +
                       '<select name="tamanho_perg" id="tamanho_perg" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">' +
-                    '<option selected value="1">Pequeno</option>' +
-                     '<option disabled class="conteudo3" value="2">Médio</option>' +
+                      '<option selected value="1">Pequeno</option>' +
+                      '<option disabled class="conteudo3" value="2">Médio</option>' +
                       '<option disabled class="conteudo3" value="3">Grande</option>'+
-                    '</select>' +
+                      '</select>' +
+                      '</div>' +
+                     '</div>' +
                     '</div>' +
-                    '</div>' +
-                    '</div>' +
-                                           '<div class="col-12 col-sm-4">' +
+                    '<div class="col-12 col-sm-12 col-md-12 col-lg-4">' +
                     '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                    '<label for="largura_perg" style="margin-right: 3.5px; padding-top:10%;">Tamanho do Labirinto:</label>' +
+                    '<div class="col-4 col-sm-4 col-md-3 col-lg-5" style="height:100%;">' +
+                    '<label for="largura_perg" style="margin-right: 3.5px; padding-top:10%;">Largura do Labirinto:</label>' +
                     '</div>' +
-                    '<div class="col-7">' +
+                    '<div class="col-1 col-sm-1" style="margin-left: -30px; margin-top: 12px;">'+
+                    '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoLargura" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                    '</div>'+
+                    '<div class="col-7 col-sm-7">' +
                     '<select name="largura_perg" id="largura_perg" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
                     '<option selected value="1">Pequeno</option>' +
                     '<option disabled class="conteudo3" value="2">Médio</option>' +
@@ -324,34 +339,36 @@
                       '<div class="card houvercard">' +
                       '<div class=" container">' +
                       '<div class="row" style="margin-top: 10px;">' +
-                      '<div class="col">' +
+                      '<div class="col col-sm-12 col-md-12 col-lg-4">' +
                       '<input type="hidden" value="0" name="perg_reforco_id" id="perg-reforco-id">' +
                       '<label for="pergunta" style=" font-size:  130%; color: black;">Pergunta refoço:</label>' +
                       '</div>' +
-                      '<div class="col-12 col-md-auto">' +
+                      '<div class="col-12 col-sm-12 col-md-12 col-lg-auto">' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
+                    '<div class="col-4 col-sm-4" style="height:100%;">' +
                       '<label for="question_type_ref">Tipo da pergunta:</label>' +
                       '</div>' +
-                    '<div class="col-7">' +
+                    '<div class="col-7 col-sm-6 col-md-6 col-lg-7">' +
                       ' <select class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
                       ' <option selected value="1">Texto</option>' +
-                      ' <option value="2">Imagem</option>' +
-                      '   <option value="3">Vídeo</option>' +
-                      '<option value="4">Áudio</option>' +
+                      ' <option disabled value="2">Imagem</option>' +
+                      '   <option disabled value="3">Vídeo</option>' +
+                      '<option disabled value="4">Áudio</option>' +
                       '   </select>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +
-                      '  <div class="col col-lg-4">' +
-                      '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                      '   <label for="room_type_ref" style=" margin-right: 3.5px;">Interação:</label>' +
+                      '  <div class="col">' +
+                      '<div class="row">' +
+                    '<div class="col-2 col-sm-2 col-md-3 col-lg-2" style=" margin-top: 12px;">' +
+                      '   <label for="room_type_ref">Interação:</label>' +
                       '</div>' +
-                    '<div class="col-7">' +
+                        '<div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">'+
+                    '<i class="material-icons info" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                    '</div>'+
+                    '<div class="col-8 col-sm-8 col-md-6 col-lg-8">' +
                       '<select class="form-control selectpicker " data-style="btn btn-primary" name="room_type_ref" id="room_type_ref">' +
-                      '<option selected value="right_key">Chave</option>' +
-                      '<option value="hope_door">Porta da esperança</option>' +
+                      '<option selected value="right_key">Chave Certa</option>' +
                       ' <option value="true_or_false">Verdadeiro ou Falso</option>' +
                       '<option value="multiple_forms">Multiplas Formas</option>' +
                       '  </select>' +
@@ -369,13 +386,16 @@
                       '<label class="col-12" style=" margin-top: 10px;  font-size: 130%; color: black;">Definições do labirinto (REFORÇO):</label>' +
                       ' <div class=" container">' +
                       ' <div class="row" style="line-height: 40px; margin-bottom: 10px;">' +
-                      '  <div class="col-12 col-sm-4">' +
+                      '  <div class="col-12 col-sm-12 col-md-12 col-lg-4">' +
                       '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
+                    '<div class="col-4 col-sm-4 col-lg-4" style="height:100%;">' +
                       '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
                       '</div>'+
-                      '<div class="col-7">'+
+                      '<div class="col-1 col-sm-1" style="margin-left: -30px; margin-top: 12px;">'+
+                    '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                    '</div>'+
+                      '<div class="col-7 col-sm-7">'+
                       '   <select class="form-control selectpicker conteudo2 " data-style="btn btn-primary" name="answer_boolean_ref" id="answer_boolean_ref">' +
                       ' <option selected value="1">Corredor</option>' +
                       ' <option value="2">Labirinto</option>' +
@@ -383,12 +403,15 @@
                       ' </div>' +
                       '</div>'+
                       '</div>'+
-                      '  <div class="col-12 col-sm-4">' +
+                      '  <div class="col-12 col-sm-12 col-md-12 col-lg-4">' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
-                      '<label for="tamanho_ref">Tamanho do labirinto:</label>' +
+                    '<div class="col-4 col-sm-4 col-md-3 col-lg-5" style="height:100%;">' +
+                      '<label for="tamanho_ref">Altura do labirinto:</label>' +
                       '</div>'+
-                      '<div class="col-7">'+
+                       '<div class="col-1 col-sm-1" style="margin-left: -30px; margin-top: 12px;">'+
+                    '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoTamanho" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                    '</div>'+
+                      '<div class="col-7 col-sm-7">'+
                       ' <select class="form-control selectpicker " data-style="btn btn-primary" name="tamanho_ref" id="tamanho_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
                       ' <option disabled class="conteudo2" value="2">Medio</option>' +
@@ -397,12 +420,15 @@
                       ' </div>' +
                       '</div>'+
                       '</div>'+
-                      ' <div class="col-12 col-sm-4">' +
+                      ' <div class="col-12 col-sm-12 col-md-12 col-lg-4">' +
                       '<div class="row" style="height:50px;">' +
-                    '<div class="col-5" style="height:100%;">' +
+                    '<div class="col-4 col-sm-4 col-md-3 col-lg-5" style="height:100%;">' +
                       '<label for="largura_ref">Largura do labirinto:</label>' +
                       '</div>'+
-                      '<div class="col-7">'+
+                      '<div class="col-1 col-sm-1" style="margin-left: -30px; margin-top: 12px;">'+
+                    '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoLargura" style="cursor: pointer;" title="Informações sobre a Interação">info</i>'+
+                    '</div>'+
+                      '<div class="col-7 col-sm-7">'+
                       '   <select class="form-control selectpicker " data-style="btn btn-primary" name="largura_ref" id="largura_ref">' +
                       '  <option selected value="1">Pequeno</option>' +
                       '   <option disabled class="conteudo2" value="2">Medio</option>' +
@@ -452,21 +478,22 @@
                       '<!--   Resposta -->' +
                       '<div class=" container" style=" margin-top: 10px;">' +
                       ' <div class= "row  align-items-center">' +
-                      '<div class="col-9">' +
+                      '<div class="col col-sm-12 col-md-12 col-lg-8">' +
                       '<label  style=" margin-top: 10px;  font-size: 130%; color: black;">Resposta:&emsp;</label>' +
-                      '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>' +
+                      '<button type="button" class=" teste btn btn-success btn-sm"><i class="material-icons">add</i></button>'+
+                      '<small id="Help" class="col" style="color:red;font-size:10px">&emsp;(*) PELO MENOS 2 RESPOSTAS SÃO OBRIGATÓRIAS </small>'+
                       '</div>' +
-                      '<div class="col">' +
+                      '<div class="col-12 col-sm-10 col-md-4">' +
                       '<div class="row" style="height:50px;">' +
                       '<div class="col-5" style="height:100%;">' +
                       '<label for="question_type">Tipo da Resposta:</label>' +
                       '</div>'+
-                      '<div class="col-7">'+
+                      '<div class="col-7 col-sm-7">'+
                       '<select class="form-control selectpicker " data-style="btn btn-primary" name="tipo_resp_ref" id="tipo_opcao_ref" class="tipo_resp_ref form-control">' +
                       ' <option selected value="1">Texto</option>' +
-                      '<option value="2">Imagem</option>' +
-                      '<option value="3">Vídeo</option>' +
-                      ' <option value="4">Áudio</option>' +
+                      '<option disabled value="2">Imagem</option>' +
+                      '<option disabled value="3">Vídeo</option>' +
+                      ' <option disabled value="4">Áudio</option>' +
                       '</select>' +
                       '</div>' +
                       '</div>' +
@@ -481,7 +508,7 @@
                       '<input type="hidden" name="resp_ref_id[]" class="resp_ref_id">' +
                       '</div>' +
                       '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                      '<div class="col col-sm-11">' +
+                      '<div class="col-9 col-sm-10 col-md-10 col-lg-11">' +
                       '<div class="form-check form-check-radio">' +
                       'Essa resposta esta correta?&emsp;' +
                       '<label class="form-check-label">' +
@@ -807,7 +834,7 @@
                   '<input type="hidden" name="resp_id[]" class="resp_id">' +
                   '</div>' +
                   '<div class="row align-items-center" style="margin-bottom: 10px;">' +
-                  '<div class="col col-sm-11">' +
+                  '<div class="col-9 col-sm-10 col-md-10 col-lg-11">' +
                   '<div class="form-check form-check-radio">' +
                   'Essa resposta esta correta?&emsp;' +
                   '<label class="form-check-label">' +
@@ -819,7 +846,7 @@
                   '</label>' +
                   '</div>' +
                   '</div>' +
-                  '<div class="col col-sm-1">' +
+                  '<div class="col-1 col-sm-1">' +
                   '<button type="button" name="remove" id="' + i + '" class="btn btn-danger btn-sm btn_remove">X</button>' +
                   '</div>' +
                   '</div>' +
@@ -1197,6 +1224,8 @@
                       }
 
                   });
+
+              $('#pai').append();
 
 
               } else {
@@ -1576,6 +1605,12 @@
       });
 
       $('#modalinfoTamanho').on('hidden.bs.modal', function (event) {
+
+          $('body').addClass('modal-open');
+
+      });
+
+       $('#modalinfoLargura').on('hidden.bs.modal', function (event) {
 
           $('body').addClass('modal-open');
 
