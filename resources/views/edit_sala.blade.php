@@ -794,7 +794,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o quão Altura do caminho que o jogador irá passar. Só é possível configurar o tamanho para caminhos do tipo Labirinto.</b></h5>
+                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina a altura do caminho pelo qual o jogador irá passar. Só é possível configurar a altura para caminhos do tipo Labirinto.</b></h5>
 
             </div>
         </div>
@@ -809,7 +809,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o quão longa ou cheia de bifurcações será a ligação entre uma sala e outra. Só é possível configurar o tamanho para caminhos do tipo Labirinto.</b></h5>
+                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o quão longa ou cheia de bifurcações será a ligação entre uma sala e outra. Só é possível configurar a largura para caminhos do tipo Labirinto.</b></h5>
 
             </div>
         </div>
