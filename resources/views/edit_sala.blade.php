@@ -446,7 +446,6 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
-                                    <!--                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>-->
                                     <a data-toggle="modal" data-target="#removerPerguntaModal" data-id="{{$item->id}}" data-pergunta="{{$item->pergunta}}" class="dropdown-item" id="{{'perg'.$item->id}}">Excluir</a>
                                 </div>
                             </div>
@@ -506,7 +505,7 @@
 
                             <i class="material-icons info" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">info</i>
 
-                            <div class="col col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
+                            <div class="col col-sm-10 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
                                 <?php
                                 $str = $ref->pergunta;
                                 $total = strlen($str);
@@ -517,10 +516,12 @@
                                 <div>{{$ref->pergunta}}</div>
                                 @endif
                             </div>
+                            
                             <div class="col-2 col-sm-1 textototalref{{$cont2}}">
 
                             </div>
 
+<!--
                             <div class="col-2 col-sm-1">
 
                                 <a class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;margin-right:-10px">
@@ -529,10 +530,11 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
 
-                                    <!--                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>-->
+                                
                                     <a data-toggle="modal" data-target="#removerPerguntaModal" data-id="{{$ref->id}}" data-pergunta="{{$ref->pergunta}}" class="dropdown-item" id="{{'perg'.$ref->id}}">Excluir</a>
                                 </div>
                             </div>
+-->
                             <div class="container col-sm-1 " style="margin-top: -10px;" onclick="abrir('panel'+{{$ref->id}});">
                                 <a style="margin-left: 50%;"><img src="{{asset('img/expand-button.png')}}" width="8px"></a>
                             </div>
