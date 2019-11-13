@@ -1278,7 +1278,8 @@
 
 
           $('.btnModalClose').click(function () {
-              $('#add_name')[0].reset();
+              //$('#add_name')[0].reset();
+              $('#alunosModal').empty();
               $('.dynamic-added').remove();
               a = 0;
               b = 0;

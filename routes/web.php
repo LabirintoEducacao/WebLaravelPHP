@@ -286,3 +286,6 @@ Route::post('/grupos/addaluno/','Admin\UserController@addGrupo');
 Route::get('/grupos/alunosgrupo/{id}','Admin\UserController@carregaAlunos');
 Route::post('/grupos/remover/aluno/','Admin\UserController@removeAluno');
 Route::get('/grupos/nomegrupo/{id}','Admin\UserController@nomeGrupo');
+Route::post('/grupos/addalunogrupo/','Admin\UserController@adicionaAluno');
+
+
