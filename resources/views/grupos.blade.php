@@ -6,7 +6,7 @@
             <h3 class="card-title" style="margin-top: 10px;">
                 Controle de grupos
                 @if(Auth::user()->hasAnyRole('professor'))
-                <a onclick="mostrarmaisalunos2(0)" data-toggle="modal" data-target="#addGrupoModal" class="btn btn-info" style="float:right; ">
+                <a onclick="mostrarmaisalunos2(0,1,5)" data-toggle="modal" data-target="#addGrupoModal" class="btn btn-info" style="float:right; ">
                     Adicionar novo grupo
                 </a>
                 <!-- <a class="btn btn-success" onclick="teste()" >Salvar</a> -->
@@ -116,7 +116,7 @@
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Você realmente deseja deletar este grupo?</h5>
+                <h5 class="modal-title texto-confirmar" id="exampleModalLabel">Você realmente deseja deletar este grupo?</h5>
                 <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -124,7 +124,7 @@
             <div class="modal-body">
                 <div class="row align-self-center">
                     <button type="button" id="fecharGrupo" data-dismiss="modal" class="btn btn-secundary col">Cancelar</button>
-                    <a class="btn col btn-primary" id="confirmar">Confirmar</a>
+                    <a class="btn col btn-primary" style="color:white;" id="confirmar">Confirmar</a>
                 </div>
             </div>
 
@@ -132,6 +132,7 @@
     </div>
 </div>
 <!-- Modal da confirmação -->
+
 
 
 <!-- Modal alunos do grupos -->
@@ -148,12 +149,15 @@
                                     <div class="nav-tabs-wrapper">
                                         <ul class="nav nav-tabs" data-tabs="tabs">
                                             <li class="nav-item">
-                                                <a class="nav-link active nomegrupo" onclick="thlin(1)" style="widht:50%;" href="" data-toggle="tab">                                                </a>
+                                                <a class="nav-link active nomegrupo" onclick="troca_tabs(1)" style="widht:50%; cursor:pointer;" href="" data-toggle="tab"> </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" style="widht:50%;" onclick="thlin(0)" data-toggle="tab">
-                                                   Adcionar Alunos
+                                                <a class="nav-link" style="widht:50%;cursor:pointer;" onclick="troca_tabs(0)" data-toggle="tab">
+                                                    Adcionar Alunos
                                                 </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " onclick="troca_tabs(2)" style="widht:50%; cursor:pointer;" data-toggle="tab"> Salas Vinculadas</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -172,6 +176,7 @@
                     <a onclick="mostrarmaisalunos2(1)" class="btn btn-sm btn-primary" style="color: white; float:right;margin-top:-1px;">Adicionar aluno</a>
                 </div> -->
             </div>
+
             <div id="adicionaralunos" style="display:none;">
                 <div id="divtabela2">
                 </div>
@@ -202,13 +207,52 @@
                     </tbody>
                 </table>
             </div>
+
+
+            <div id="salas_v" style="display:none;">
+                <table class="table">
+                    <div class="container row ">
+                        <h5 style="margin-left:10px;">Grupo:</h5>
+                        <h5 id="nome_grupo"> teste</h5>
+                    </div>
+                    <thead>
+                        <tr class=" text-primary">
+                            <th scope="col"> </th>
+                            <th scope="col">Nome das Salas</th>
+                            <th scope="col"></th>
+                        </tr>
+
+                    </thead>
+                    <tbody class="container" id="t_salas_v">
+
+                        <tr>
+                            <th scope="row"> </th>
+                            <td>Mark</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row"> </th>
+                            <td>Jacob</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
+
+                        </tr>
+                        <tr>
+                            <th scope="row"> </th>
+                            <td>Larry</td>
+                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="modal-footer">
-                <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
+                <button id="save-edit" class="btn btn-success" style="float:right; ">Salvar alterações</button>
+                <!-- <a data-toggle="modal" data-target="#confirmalert" data-id="39" data-prof="59" data-turma="'Google2'" class="dropdown-item" id="grupoGoogle2">Excluir</a> -->
             </div>
         </div>
     </div>
 </div>
-
 <!-- Modal alunos do grupos -->
 
 @endsection

@@ -201,6 +201,7 @@ Route::get('/newuser', function () {
 
 Route::get('/grupo/{id}','SalaController@showgrupos');
 Route::get('/addgrupo/{id}/{salaid}','SalaController@addgrupo');
+Route::get('/vinculogrupo/{id}','SalaController@vinculogrupo');
 
 
 
@@ -287,3 +288,6 @@ Route::post('/grupos/addaluno/','Admin\UserController@addGrupo');
 Route::get('/grupos/alunosgrupo/{id}','Admin\UserController@carregaAlunos');
 Route::post('/grupos/remover/aluno/','Admin\UserController@removeAluno');
 Route::get('/grupos/nomegrupo/{id}','Admin\UserController@nomeGrupo');
+Route::post('/grupos/addalunogrupo/','Admin\UserController@adicionaAluno');
+
+

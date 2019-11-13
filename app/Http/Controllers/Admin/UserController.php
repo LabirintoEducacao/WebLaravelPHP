@@ -21,35 +21,35 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function index()
+    public function index()
     {
-      // dessa forma mostra sem paginação uma lista de usuarios
-      //return view('admin.users.index')->with('users', User::all());
+        // dessa forma mostra sem paginação uma lista de usuarios
+        //return view('admin.users.index')->with('users', User::all());
 
-      //Com paginação
-      return view('admin.users.index')->with('users', User::paginate(5));
+        //Com paginação
+        return view('admin.users.index')->with('users', User::paginate(5));
     }
-    
+
     public function getUsers()
     {
-      // dessa forma mostra sem paginação uma lista de usuarios
-      //return view('admin.users.index')->with('users', User::all());
+        // dessa forma mostra sem paginação uma lista de usuarios
+        //return view('admin.users.index')->with('users', User::all());
 
-      //Com paginação
-      return view('admin.users.index')->with(['users'=> User::all(), 'roles' => Role::all()]);
+        //Com paginação
+        return view('admin.users.index')->with(['users' => User::all(), 'roles' => Role::all()]);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function edit($id)
     {
 
-        if(Auth::user()->id == $id){
+        if (Auth::user()->id == $id) {
             $notification = array(
                 'message' => 'Você não tem permissão para editar!',
                 'alert-type' => 'warning'
@@ -57,8 +57,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with($notification);
         }
 
-        return redirect('admin/users')->with(['user'=> User::find($id), 'roles' => Role::all()]);
-       
+        return redirect('admin/users')->with(['user' => User::find($id), 'roles' => Role::all()]);
     }
 
     /**
@@ -70,7 +69,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-         if(Auth::user()->id == $id){
+        if (Auth::user()->id == $id) {
             $notification = array(
                 'message' => 'Você não tem permissão para editar este usuáio!',
                 'alert-type' => 'warning'
@@ -82,9 +81,9 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
 
         $notification = array(
-                'message' => 'Usuário atualizado com sucesso!',
-                'alert-type' => 'success'
-            );
+            'message' => 'Usuário atualizado com sucesso!',
+            'alert-type' => 'success'
+        );
         return redirect('admin/users')->with($notification);
     }
 
@@ -96,117 +95,116 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-       if(Auth::user()->id == $id){
-        $notification = array(
+        if (Auth::user()->id == $id) {
+            $notification = array(
                 'message' => 'Você não tem permissão para deletar este usuário!',
                 'alert-type' => 'warning'
             );
-       return redirect('admin/users')->with($notification);
-       }
+            return redirect('admin/users')->with($notification);
+        }
 
-       $user = User::find($id);
+        $user = User::find($id);
 
-       if($user){
-           $user->roles()->detach();
-           $user->delete();
-           $notification = array(
+        if ($user) {
+            $user->roles()->detach();
+            $user->delete();
+            $notification = array(
                 'message' => 'Usuário deletado com sucesso!',
                 'alert-type' => 'danger'
             );
-           return redirect('admin/users')->with($notification);
-       }
-       $notification = array(
-                'message' => 'Este usuário não pode ser deletado!',
-                'alert-type' => 'warning'
-            );
-       return redirect('admin/users')->with($notification);
+            return redirect('admin/users')->with($notification);
+        }
+        $notification = array(
+            'message' => 'Este usuário não pode ser deletado!',
+            'alert-type' => 'warning'
+        );
+        return redirect('admin/users')->with($notification);
     }
-    
-    
-    
-    
+
+
+
+
     public function deleteUser($id)
     {
-       if(Auth::user()->id == $id){
-        $notification = array(
+        if (Auth::user()->id == $id) {
+            $notification = array(
                 'message' => 'Você não tem permissão para deletar este usuário!',
                 'alert-type' => 'warning'
             );
-       return redirect('admin/users')->with($notification);
-       }
+            return redirect('admin/users')->with($notification);
+        }
 
-       $user = User::find($id);
+        $user = User::find($id);
 
-       if($user){
-           $user->roles()->detach();
-           $user->delete();
-           $notification = array(
+        if ($user) {
+            $user->roles()->detach();
+            $user->delete();
+            $notification = array(
                 'message' => 'Usuário deletado com sucesso!',
                 'alert-type' => 'danger'
             );
-           return redirect('admin/users')->with($notification);
-       }
-       $notification = array(
-                'message' => 'Este usuário não pode ser deletado!',
-                'alert-type' => 'warning'
-            );
-       return redirect('admin/users')->with($notification);
+            return redirect('admin/users')->with($notification);
+        }
+        $notification = array(
+            'message' => 'Este usuário não pode ser deletado!',
+            'alert-type' => 'warning'
+        );
+        return redirect('admin/users')->with($notification);
     }
-    
-    
-    
-    
+
+
+
+
     /*UM ADMINISTRADOR PODE CADASTRAR UM NOVO USUARIO*/
-    public function user(Request $request){
+    public function user(Request $request)
+    {
         $data = $request->all();
         $id = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        
+
         $users = User::where('email', '=', $data['email'])->get();
 
-        foreach ($users as $user)
-        {
+        foreach ($users as $user) {
             $user->roles()->sync($data['type']);
         }
-        
+
         $notification = array(
-                'message' => 'Usuário cadastrado com sucesso!',
-                'alert-type' => 'success'
-            );
+            'message' => 'Usuário cadastrado com sucesso!',
+            'alert-type' => 'success'
+        );
 
         return redirect('admin/users')->with($notification);
-
     }
-    
-    
+
+
     /*ENVIAR E-MAIL*/
-    public function email(Request $request){
+    public function email(Request $request)
+    {
         $data = $request->all();
 
         $users = User::where('email', '=', $data['email'])->get();
-        
+
         $sala = Sala::find($request->sala_id);
 
-        foreach ($users as $user)
-        {
-            if($user){
-                \Mail::to($data['email'])->send(new LinkSala($sala->name,Auth::user()->name,Auth::user()->id));
+        foreach ($users as $user) {
+            if ($user) {
+                \Mail::to($data['email'])->send(new LinkSala($sala->name, Auth::user()->name, Auth::user()->id));
                 $notification = array(
-                'message' => 'E-mail enviado com sucesso!',
-                'alert-type' => 'success'
+                    'message' => 'E-mail enviado com sucesso!',
+                    'alert-type' => 'success'
                 );
                 return redirect('admin/users')->with($notification);
             }
         }
-        \Mail::to($data['email'])->send(new LinkCadastro($sala,Auth::user()->name,Auth::user()->id,$data['email']));
+        \Mail::to($data['email'])->send(new LinkCadastro($sala, Auth::user()->name, Auth::user()->id, $data['email']));
         $notification = array(
-                'message' => 'E-mail para cadastro enviado com sucesso!',
-                'alert-type' => 'success'
-                );
-      return redirect('admin/alunos/'. $data['sala_id'])->with($notification);
+            'message' => 'E-mail para cadastro enviado com sucesso!',
+            'alert-type' => 'success'
+        );
+        return redirect('admin/alunos/' . $data['sala_id'])->with($notification);
     }
 
 
@@ -214,198 +212,169 @@ class UserController extends Controller
     {
         $sala = Sala::find($id);
 
-        if($sala->public==0){
+        if ($sala->public == 0) {
             $data = DB::table('users')
                 ->select('users.id', 'users.name', 'users.email')
                 ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
                 ->orderBy('name')
-                ->where('sala_user.sala_id','=',$id)
+                ->where('sala_user.sala_id', '=', $id)
                 ->get();
-            
-          
-            
+
+
+
             $alunos = DB::table('users')
-                ->join('role_user','users.id','=','role_user.id')
+                ->join('role_user', 'users.id', '=', 'role_user.id')
                 ->orderBy('name')
-                ->where('role_user.role_id','=',3)
+                ->where('role_user.role_id', '=', 3)
                 ->get();
-            
-           
 
-           $alunos = \App\User::orderBy('name')->get();
 
-            return view ( 'add_alunos', ['id' => $id] )->with(['data' => $data, 'alunos' => $alunos]);
-        }else{
-             $notification = array(
+
+            $alunos = \App\User::orderBy('name')->get();
+
+            return view('add_alunos', ['id' => $id])->with(['data' => $data, 'alunos' => $alunos]);
+        } else {
+            $notification = array(
                 'message' => 'Esta sala é pública, não há como adicionar alunos!',
                 'alert-type' => 'warning'
-                );
-      return redirect('admin/sala')->with($notification);
-    
-            
+            );
+            return redirect('admin/sala')->with($notification);
         }
-        
     }
 
-   public function showalunos(){
-  
-      
+    public function showalunos()
+    {
         $salaid = $_GET['sala'];
-           $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
+        $sql = 'SELECT DISTINCT u.id,u.name,u.email FROM users u
         JOIN role_user r ON u.id = r.user_id 
         LEFT OUTER JOIN sala_user s ON u.id = s.user_id
         WHERE r.role_id=3 AND u.id NOT IN (SELECT DISTINCT u.id FROM users u
         JOIN role_user r ON u.id = r.user_id 
         LEFT OUTER JOIN sala_user s ON u.id = s.user_id
-        WHERE r.role_id=3 AND s.sala_id='.$salaid.' ORDER BY id, sala_id) ORDER BY u.name';
-      
-       
-        
-
-    
-        
+        WHERE r.role_id=3 AND s.sala_id=' . $salaid . ' ORDER BY id, sala_id) ORDER BY u.name';
 
         $aluno = DB::select($sql);
-
-
-
-       return json_encode($aluno);    
-
+        return json_encode($aluno);
     }
 
 
     public function store(Request $request)
     {
         $data = DB::table('sala_user')
-            ->where('sala_id','=',$request->sala_id)
-            ->where('user_id','=',$request->user_id)
+            ->where('sala_id', '=', $request->sala_id)
+            ->where('user_id', '=', $request->user_id)
             ->get();
 
 
-            $user = DB::table('users')
-                    ->where('id','=',$request->user_id)
-                    ->get();
+        $user = DB::table('users')
+            ->where('id', '=', $request->user_id)
+            ->get();
 
-            $sala = DB::table('salas')
-                    ->where('id','=',$request->sala_id)
-                    ->get();
-        
-          
+        $sala = DB::table('salas')
+            ->where('id', '=', $request->sala_id)
+            ->get();
 
-                $prof = DB::table('users')
-                    ->where('id','=',$request->user_id)
-                    ->get();
-//        var_dump($sala);
-       
+        $prof = DB::table('users')
+            ->where('id', '=', $request->user_id)
+            ->get();
+        //        var_dump($sala);
+        if (count($data) == 0) {
+            DB::table('sala_user')->insert(array('sala_id' => $request->sala_id, 'user_id' => $request->user_id));
 
-
-        if(count($data) == 0){
-             DB::table('sala_user')->insert(array('sala_id' => $request->sala_id, 'user_id' => $request->user_id));
-
-//            \Mail::to($user[0]->email)->send(new LinkSala($sala[0]->name,$prof[0]->name,$request->sala_id));
+            //            \Mail::to($user[0]->email)->send(new LinkSala($sala[0]->name,$prof[0]->name,$request->sala_id));
 
             $notification = array(
                 'message' => 'Aluno adicionado com sucesso!',
                 'alert-type' => 'success'
             );
-
-            
-
-        return redirect('admin/alunos/'. $request->get('sala_id'))->with($notification);
+            return redirect('admin/alunos/' . $request->get('sala_id'))->with($notification);
         }
         $notification = array(
-                'message' => 'Aluno já cadastrado nesta sala!',
-                'alert-type' => 'warning'
-            );
-        return redirect('admin/alunos/'. $request->get('sala_id'))->with($notification);
+            'message' => 'Aluno já cadastrado nesta sala!',
+            'alert-type' => 'warning'
+        );
+        return redirect('admin/alunos/' . $request->get('sala_id'))->with($notification);
     }
 
-public function deletar($id,$sala)
+    public function deletar($id, $sala)
     {
 
         DB::table('sala_user')
-            ->where('user_id','=',$id)
-            ->where('sala_id','=',$sala)
+            ->where('user_id', '=', $id)
+            ->where('sala_id', '=', $sala)
             ->delete();
-        
+
 
         $notification = array(
-                'message' => 'Aluno removido com sucesso!',
-                'alert-type' => 'success'
-            );
-      
-      
+            'message' => 'Aluno removido com sucesso!',
+            'alert-type' => 'success'
+        );
+
+
         // if(count($data) == 0){
-        return redirect('admin/alunos/'. $sala);
-        return redirect('admin/alunos/'. $sala)->with($notification);
+        return redirect('admin/alunos/' . $sala);
+        return redirect('admin/alunos/' . $sala)->with($notification);
         // }
         // return redirect('admin/alunos/'. $sala)->with('warning', 'Este aluno não pôde ser deletado!');
     }
 
-    
-    
-    
-    public function teste(){
+    public function teste()
+    {
 
         $id = $_REQUEST['id'];
         $salaid = $_REQUEST['salaid'];
-        
+
         DB::table('sala_user')->insert(
             ['sala_id' => $salaid, 'user_id' => $id]
         );
-        
+
         return response()->json(['success' => 'Sucesso']);
-        
     }
 
-
-    
-//////////////////////////Thiago Grupos método
+    //////////////////////////Thiago Grupos método
     public function pegaGrupo($id)
     {
-        $turmas=DB::table('turmas')
-        ->select('id','turma')
-        ->where('id_prof',$id)
-        ->get();
+        $turmas = DB::table('turmas')
+            ->select('id', 'turma')
+            ->where('id_prof', $id)
+            ->get();
 
-        return view('grupos')->with(['turmas'=>$turmas]);
-        
+        return view('grupos')->with(['turmas' => $turmas]);
     }
     public function pegaAluno($id)
     {
-        $turmas=DB::table('turmas')->where('id_prof',$id)->select('id','turma')->get();
-        return view('grupos', ['turmas'=>$turmas]);
-        
+        $turmas = DB::table('turmas')->where('id_prof', $id)->select('id', 'turma')->get();
+        return view('grupos', ['turmas' => $turmas]);
     }
     public function addGrupo(Request $request)
     {
-        $alunos=$request['alunos'];
-        $grupo=$request['grupo'];
+        $alunos = $request['alunos'];
+        $grupo = $request['grupo'];
 
-        $id=Auth::user()->id;
-        $ides=DB::table('turmas')->insertGetId(
+        $id = Auth::user()->id;
+        $ides = DB::table('turmas')->insertGetId(
             ['id_prof' => $id, 'turma' => $grupo]
         );
 
-        if(sizeof($alunos)>0)
-        {
-            $tamanho=sizeof($alunos);
+        if (sizeof($alunos) > 0) {
+            $tamanho = sizeof($alunos);
 
-            for ($cont = 0; $cont < $tamanho; $cont++) {    
+            for ($cont = 0; $cont < $tamanho; $cont++) {
                 DB::table('alunos_turma')
-                ->insert(
-                    ['aluno_id' => intval($alunos[$cont]), 'turmas_id' => $ides]
-                );
+                    ->insert(
+                        ['aluno_id' => intval($alunos[$cont]), 'turmas_id' => $ides]
+                    );
             }
         }
         return response()->json(['success' => 'Sucesso']);
     }
+
     public function removeGrupo($id)
     {
 
         DB::table('turmas')->where('id', '=', $id)->delete();
         echo "teste";
-        return redirect('grupos/'.Auth::user()->id);
+        return redirect('grupos/' . Auth::user()->id);
     }
     public function showalunos_grupos()
     {
@@ -414,39 +383,62 @@ public function deletar($id,$sala)
         WHERE r.role_id=3  ORDER BY u.name';
         $aluno = DB::select($sql);
 
-        return json_encode($aluno);    
+        return json_encode($aluno);
     }
     public function carregaAlunos($id)
     {
-        $query= 'SELECT u.name, u.id, t.id as turma from users u
+        $query = 'SELECT u.name, u.id, t.id as turma from users u
         join alunos_turma alt on alt.aluno_id=u.id
         join turmas t on alt.turmas_id=t.id
-        where t.id='.$id.';';
+        where t.id=' . $id . ';';
 
-        $alunos = DB::select($query); 
+        $alunos = DB::select($query);
 
         return $alunos;
     }
     public function removeAluno(Request $request)
     {
-        $id_aluno=$request['aluno'];
-        $id_grupo=$request['turma'];
+        $id_aluno = $request['aluno'];
+        $id_grupo = $request['turma'];
 
-        $query='DELETE from alunos_turma
-        where aluno_id='.$id_aluno.' and turmas_id='.$id_grupo.';';
-
-        $delete=DB::select($query);
-
-        return $delete;
-        
+        foreach ($id_aluno as $value) {
+            //$query='DELETE from alunos_turma
+            //where aluno_id='.intval($value).' and turmas_id='.$id_grupo.';';
+            DB::table('alunos_turma')
+                ->where('aluno_id', '=', $value)
+                ->where('turmas_id', '=', $id_grupo)
+                ->delete();
+            //$delete=DB::select($query);
+        }
+        // echo json_encode($id_aluno);
+        return response()->json(['success' => 'Sucesso']);
     }
+    public function adicionaAluno(Request $request)
+    {
+        $id_aluno = $request['aluno'];
+        $id_grupo = $request['turma'];
+
+        if (sizeof($id_aluno) > 0) {
+            $tamanho = sizeof($id_aluno);
+
+            for ($cont = 0; $cont < $tamanho; $cont++) {
+                DB::table('alunos_turma')
+                    ->insert(
+                        ['aluno_id' => intval($id_aluno[$cont]), 'turmas_id' => $id_grupo]
+                    );
+            }
+        }
+        return response()->json(['success' => 'Sucesso']);
+
+        // echo json_encode($id_aluno);
+    }
+
     public function nomeGrupo($id)
     {
-        $query='SELECT turma from turmas where id='.$id.';';
-        $nome=DB::select($query);
+        $query = 'SELECT turma from turmas where id=' . $id . ';';
+        $nome = DB::select($query);
 
         return $nome;
-        
     }
     //////////////////////////Thiago Grupos método
 

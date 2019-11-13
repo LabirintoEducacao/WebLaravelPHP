@@ -47,6 +47,7 @@ return array(
     'App\\Resposta' => $baseDir . '/app/Resposta.php',
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\Sala' => $baseDir . '/app/Sala.php',
+    'App\\TurmaSala' => $baseDir . '/app/TurmaSala.php',
     'App\\User' => $baseDir . '/app/User.php',
     'BaconQrCode\\Common\\AbstractEnum' => $vendorDir . '/bacon/bacon-qr-code/src/BaconQrCode/Common/AbstractEnum.php',
     'BaconQrCode\\Common\\BitArray' => $vendorDir . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitArray.php',

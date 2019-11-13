@@ -442,7 +442,6 @@
                 });
             });
         });
-
     </script>
     <script>
         // $(document).ready(function() {
@@ -610,6 +609,14 @@
             window.location.reload();
 
 
+
+
+
+        $('#addPerg').on('hide.bs.modal', function(e) {
+            //window.location.reload();
+        });
+        $('#alunosModal').on('hide.bs.modal', function(e) {
+            window.location.reload();
         });
 
 

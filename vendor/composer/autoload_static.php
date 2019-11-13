@@ -488,6 +488,7 @@ class ComposerStaticInitf01a134e82eca682338a81257d6e26a6
         'App\\Resposta' => __DIR__ . '/../..' . '/app/Resposta.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\Sala' => __DIR__ . '/../..' . '/app/Sala.php',
+        'App\\TurmaSala' => __DIR__ . '/../..' . '/app/TurmaSala.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'BaconQrCode\\Common\\AbstractEnum' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/AbstractEnum.php',
         'BaconQrCode\\Common\\BitArray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitArray.php',
