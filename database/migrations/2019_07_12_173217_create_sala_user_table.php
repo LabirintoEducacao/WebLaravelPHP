@@ -15,10 +15,16 @@ class CreateSalaUserTable extends Migration
     {
         Schema::create('sala_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('sala_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->timestamps();
+            $table->bigInteger('sala_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
+
+         Schema::table('sala_user', function($table) {
+           $table->foreign('sala_id')->references('id')->on('salas')->onDelete('cascade');
+        });
+
     }
 
     /**

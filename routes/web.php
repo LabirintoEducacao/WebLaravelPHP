@@ -11,72 +11,49 @@
 |
 */
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ROTA DO WELCOME
+
 Route::get('/', function () {
     return view('welcome');
 })->middleware('guest');
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ROTAS PADRÃO DO LARAVEL
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ROTA PROFILE
 
-/* rotas de quando altera ou deleta*/
+ Route::post('profile/edit', 'ProfileController@edit');
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-/* -----------------------------------------------*/
-
+// ROTAS DO EMAIL
 Route::get('/email', function () {
     return view('email.cadastro'); 
 });
 
-//Route::post('home', 'ProfileController@edit');
+Route::post('convite/novo/{email}','Admin\UserController@invite');
 
-Route::post('home', 'ProfileController@reset_password');
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- Route::post('profile/edit', 'ProfileController@edit');
+// ROTAS DO HOME
 
+Route::prefix('/home')->group(function(){
 
-
-Route::get('admin/settings', function () {
-    return view('profile'); 
-});
-
-Route::get('admin/deletar', function () {
-    return view('profile'); 
-});
-
-Route::delete('admin/settings/delete/{id}', 'Admin\UserController@destroy');
-
-Route::delete('admin/delete/{id}', 'ProfileController@delete');
-
-    
-Route::get('admin/settings/create', function () {
-    return view('admin.users.register'); 
-});
-
-
-Route::get('admin/settings/password', function () {
-    return view('password'); 
-});
-
-Route::get('admin/sala', function () {
-
-    $data = \App\Sala::all ();
-    return view ( 'sala' )->withData ( $data );
+Route::get('/', 'HomeController@index')->name('home');
+Route::post('/', 'ProfileController@reset_password');
 
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('admin/deletar-sala/{id}', 'SalaController@destroy' );
-
-
-
-Route::get('admin/pergunta', function () {
-    return view('questions');
-});
-
+// ROTAS DE LOGIN E REGISTER
 
 Route::get('login/user', function () {
     return view('user.login');
@@ -86,43 +63,35 @@ Route::get('register/user', function () {
     return view('user.register');
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// USUARIOS
 
-// Route::get('admin/editar-sala', function () {
-//     return view('edit_sala');
-// });
+Route::prefix('/usuario')->group(function(){
 
+/* Rotas de Usuario */
 
+Route::get('/login', 'User\UserRegisterController@login')->name('userLogin');
+Route::get('/register', 'User\UserRegisterController@showRegistrationForm')->name('userRegister');
+Route::post('/register', 'Auth\UserRegisterController@register')->name('userRegister');
+Route::post('/cadastro/{id}', 'Auth\UserRegisterController@createWithSala');
 
+/* Rotas de Login de Usuario */
 
-Route::post('convite/novo/{email}','Admin\UserController@invite');
+Route::post('/login', 'Auth\LoginController@login')->name('userLogin');
 
+/* Rotas de email de Usuario */
 
+Route::get('/cadastro/{email}/{id}', function ($email, $id) {
+    return view ( 'cad_sala' )->with(['email'=>$email,'id'=>$id]);
 
-Route::get('/admin/newuser', function () {
-    return view('admin.users.newuser');
+});
+ 
 });
 
-Route::post('/admin/new/user', 'Admin\UserController@user');
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-/*  Rotas do Email */
-
-Route::post('/admin/new/email', 'Admin\UserController@email');
-
-
-
-/* Rotas Do Usuario */
-
-Route::get('usuario/login', 'User\UserRegisterController@login')->name('userLogin');
-Route::post('usuario/login', 'Auth\LoginController@login')->name('userLogin');
-Route::get('usuario/register', 'User\UserRegisterController@showRegistrationForm')->name('userRegister');
-Route::post('usuario/register', 'Auth\UserRegisterController@register')->name('userRegister');
-
-
-/* Rotas do Admin */
+// ROTAS SOMENTE DO ADMINISTRADOR 
 
 Route::get('/admin', function(){
    
@@ -131,34 +100,194 @@ Route::get('/admin', function(){
 })->middleware(['auth', 'auth.admin']);
 
 
+
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
 
-	Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
+    Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
+
 
 });
 
-/* Rotas da sala */
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Route::get('admin/adicionar-sala', 'SalaController@index');
+// ADMIN
 
-//Route::post('admin/adicionar-sala/salvar', 'SalaController@store');
+Route::prefix('/admin')->group(function(){
+    
+Route::get('/deletar/{id}','Admin\UserController@deleteUser');
 
-/*Rotas da pergunta*/
-
-//Route::get('admin/editar-sala', 'PerguntaController@index');
-//Route::post('admin/editar-sala/salvar', 'PerguntaController@store');
-
-/*Rotas da resposta*/
-
-//Route::get('admin/editar-sala', 'RespostaController@index');
-//Route::post('admin/editar-sala/salvar', 'RespostaController@store');
-
-
-Route::get('admin/adicionar-sala', 'SalaController@index');
-Route::post('admin/sala', 'SalaController@store');
-
+Route::get('/teste1','SalaController@testeTabela');
+    
+Route::get('/desativar/{id}','SalaController@desativar');
+Route::get('/ativar/{id}','SalaController@ativar');
+    
 /*Rotas da pergunta e Resposta*/
+Route::get('/teste/{id}', 'PerguntaRespostaController@index2')->middleware(['auth', 'auth.admin']);
+    
+Route::get('/grafico', 'PerguntaRespostaController@grafico');
 
-Route::get('admin/editar-sala', 'PerguntaRespostaController@index');
-Route::post('admin/editar-sala', 'PerguntaRespostaController@store');
+Route::post('/visualizar/editar-sala/{id}', 'PerguntaRespostaController@store');
+Route::post('/editar-resp', 'PerguntaRespostaController@edit_resp');
+Route::post('/editar-perg', 'PerguntaRespostaController@edit_perg');
+Route::post('/editar-ambi', 'PerguntaRespostaController@edit_ambi')->middleware(['auth', 'auth.admin']);
+Route::get('/visualizar/deletar-pergunta/{id}', 'PerguntaRespostaController@destroy')->middleware(['auth', 'auth.admin']);
+Route::get('/visualizar/deletar-resposta/{id}', 'PerguntaRespostaController@destroyresp');
+Route::post('/alterar-ordem','PerguntaRespostaController@alterar');
+Route::post('/busca-perg', 'PerguntaRespostaController@buscar');
+Route::post('/busca-sala', 'SalaController@buscarS');
+    
+Route::get('/teste/{id}', 'PerguntaRespostaController@teste');
+    
+    
+Route::get('/users', 'Admin\UserController@getUsers');
+
+Route::get('/pergunta', function () {
+    return view('questions');
+})->middleware(['auth', 'auth.admin']);
+
+
+
+//Rotas da salas
+
+Route::get('/adicionar-sala', 'SalaController@index')->middleware(['auth', 'auth.admin']);
+Route::get('/estatistica/{id}', 'SalaController@estatistica');
+//Route::get('/estatistica/', function(){
+//    return view('grafico');
+//});   
+    
+//Route::post('/estatistica/{id}', 'SalaController@index');
+Route::post('/sala', 'SalaController@store');
+Route::get('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
+
+Route::get('/virtual', 'SalaController@entrar');
+
+Route::post('/editar-sala','SalaController@edit_sala');
+Route::get('/visualizar/{id}', 'SalaController@destroy' )->middleware(['auth', 'auth.admin']);
+
+Route::GET('/sala-disable', function(){
+
+ $data = \App\Sala::where('enable', 0)->get();
+
+return view ( 'sala-disable' )->withData ( $data );
+});
+
+
+
+Route::get('/sala', 'SalaController@getSalas');
+    
+Route::get('/visualizar/{id}', 'PerguntaRespostaController@index')->middleware(['auth', 'auth.admin']);
+
+
+// Rotas para gerar o json
+Route::get('/virtual/{id}','Json@show');
+
+Route::get('/virtualdelete/{id}','Json@filedelete');
+
+
+// Rotas para usuarios
+Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar')->middleware(['auth', 'auth.admin']);
+Route::delete('/settings/delete/{id}', 'Admin\UserController@destroy');
+Route::get('/alunos/{id}', 'Admin\UserController@add_user')->middleware(['auth', 'auth.admin']);
+Route::post('/addaluno/', 'Admin\UserController@teste')->middleware(['auth', 'auth.admin']);
+Route::post('/aluno', 'Admin\UserController@store');
+Route::get('/showaluno','Admin\UserController@showalunos');
+Route::post('/new/user', 'Admin\UserController@user');
+
+Route::get('/newuser', function () {
+    return view('admin.users.newuser');
+})->middleware(['auth', 'auth.admin']);
+
+
+Route::get('/grupo/{id}','SalaController@showgrupos');
+Route::get('/addgrupo/{id}/{salaid}','SalaController@addgrupo');
+Route::get('/vinculogrupo/{id}','SalaController@vinculogrupo');
+
+
+
+/*  Rotas do Email */
+
+Route::post('/new/email', 'Admin\UserController@email');
+
+// Rotas Profile
+
+Route::get('/settings', function () {
+    return view('profile'); 
+});
+Route::get('/deletar', function () {
+    return view('profile'); 
+});
+Route::delete('/delete/{id}', 'ProfileController@delete');
+
+//Rotas para registro de users
+Route::get('/settings/create', function () {
+    return view('admin.users.register'); 
+});
+
+// Rotas Password
+Route::get('/settings/password', function () {
+    return view('password'); 
+});
+
+Route::post('/novoteste', function(){
+
+    $data = "Eu sou um teste";
+    return json_encode($data);
+});
+
+ 
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// PUBLICO
+
+Route::prefix('/virtual')->group(function(){
+
+// Salas Publicas não precisa logar
+
+Route::get('/', 'SalaController@entrar');
+Route::get('/', 'SalaController@entrar_guest');
+
+
+
+});
+
+// Buscar Publico não precisa logar
+Route::prefix('/buscar')->group(function(){
+
+Route::get('/', 'SalaController@buscar');
+Route::post('/', 'SalaController@buscar');
+
+});
+
+
+Route::GET('manual', function(){
+
+return view('manual');
+});
+// Route::post( 'api/virtual', ['json' => 'PessoaController@teste'] );
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/teste', function(){
+
+
+    return view('qrcode');
+});
+
+
+
+
+///////////Thiago
+Route::get('/grupos/{id}', 'Admin\UserController@pegaGrupo');
+Route::get('/grupos/deletar-grupo/{id}', 'Admin\UserController@removeGrupo');
+Route::get('/admin/showalunos','Admin\UserController@showalunos_grupos');
+Route::post('/grupos/addaluno/','Admin\UserController@addGrupo');
+Route::get('/grupos/alunosgrupo/{id}','Admin\UserController@carregaAlunos');
+Route::post('/grupos/remover/aluno/','Admin\UserController@removeAluno');
+Route::get('/grupos/nomegrupo/{id}','Admin\UserController@nomeGrupo');
+Route::post('/grupos/addalunogrupo/','Admin\UserController@adicionaAluno');
+
+

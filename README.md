@@ -1,3 +1,6 @@
+Planning a cada duas semanas sexta 12h45: 18/10, 01/11, ...
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

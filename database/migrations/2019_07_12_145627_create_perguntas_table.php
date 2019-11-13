@@ -18,16 +18,14 @@ class CreatePerguntasTable extends Migration
             $table->bigInteger('sala_id')->unsigned()->nullable();
             $table->string('tipo_perg');
             $table->string('pergunta');
-            $table->string('ambiente_perg');
-            $table->integer('tamanho');
-            $table->integer('largura');
-            $table->integer('prox_perg');
-            $table->boolean('disp');
-            $table->timestamps();
+            $table->integer('ordem')->nullable();
+            $table->string('room_type');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
 
        Schema::table('perguntas', function($table) {
-       $table->foreign('sala_id')->references('id')->on('salas');
+       $table->foreign('sala_id')->references('id')->on('salas')->onDelete('cascade');
        });
     
     }
