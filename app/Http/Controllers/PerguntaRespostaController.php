@@ -47,9 +47,10 @@ class PerguntaRespostaController extends Controller
 
         $chart = new PerguntaChart;
         $chart->labels($data_perg);
-        foreach($data as $item){
-            $chart->dataset($item, 'line', $item);
-        }
+//        foreach($data as $item){
+//            $chart->dataset($item, 'line', $item);
+//        }
+        $chart->dataset('teste', 'line', $data);
         
         return view('grafico', [ 'usersChart' => $chart ] );
     }
