@@ -39,7 +39,37 @@
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 
     
-    
+    <script type="text/javascript">
+           function totalresposta(id) {
+            var total = 0;
+            var cont = 0;
+            var cont2 = 0;
+
+            $('#pai').children('.panel').each(function() {
+
+
+                var t = $(this).children().length;
+
+                $('.textototal' + cont).append(
+                    '<p>' + t + '</p>'
+                );
+
+                cont++;
+            });
+            $('#pai').children('.panel2').each(function() {
+
+
+                var t = $(this).children().length;
+
+                $('.textototalref' + cont2).append(
+                    '<p>' + t + '</p>'
+                );
+
+                cont2++;
+            });
+
+        }
+    </script>
 </head>
 
 <body onload="totalresposta()">
@@ -776,57 +806,6 @@
 
         });
 
-        function totalresposta(id) {
-
-            var total = 0;
-
-            var cont = 0;
-            var cont2 = 0;
-
-            $('#pai').children('.panel2').each(function() {
-
-
-                var t = $(this).children().length;
-
-                $('.textototalref' + cont2).append(
-                    '<p>' + t + '</p>'
-                );
-
-                cont2++;
-            });
-
-        }
-
-
-        function totalresposta(id) {
-            var total = 0;
-            var cont = 0;
-            var cont2 = 0;
-
-            $('#pai').children('.panel').each(function() {
-
-
-                var t = $(this).children().length;
-
-                $('.textototal' + cont).append(
-                    '<p>' + t + '</p>'
-                );
-
-                cont++;
-            });
-            $('#pai').children('.panel2').each(function() {
-
-
-                var t = $(this).children().length;
-
-                $('.textototalref' + cont2).append(
-                    '<p>' + t + '</p>'
-                );
-
-                cont2++;
-            });
-
-        }
 
     </script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
