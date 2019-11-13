@@ -531,13 +531,13 @@
 
                         <div class="form-row">
                             <div class="form-group col" style="height:100%;">
-                                <i class="material-icons info align-middle" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
+                                <i class="material-icons info align-middle" data-toggle="modal" data-target="#modalinfoSala" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
                                 <label for="theme">Tema:&emsp;</label>
                                 <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
-                                    <option value="urban">Urbano</option>
-                                    <option value="forest">Selva</option>
-                                    <option value="mansion">Casa/Mansão</option>
+                                    <option disabled value="urban">Urbano</option>
+                                    <option disabled value="forest">Selva</option>
+                                    <option disabled value="mansion">Casa/Mansão</option>
                                 </select>
                                 
                             
@@ -617,13 +617,13 @@
 
                         <div class="form-row">
                             <div class="form-group col" style="height:100%;">
-                                <i class="material-icons info align-middle" data-toggle="modal" data-target="#modalinfo" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
+                                <i class="material-icons info align-middle" data-toggle="modal" data-target="#modalinfoSala" style="cursor: pointer;" title="Informações sobre a Interação">info</i>
                                 <label for="theme">Tema:&emsp;</label>
                                 <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
-                                    <option value="urban">Urbano</option>
-                                    <option value="forest">Selva</option>
-                                    <option value="mansion">Casa/Mansão</option>
+                                    <option disabled value="urban">Urbano</option>
+                                    <option disabled value="forest">Selva</option>
+                                    <option disabled value="mansion">Casa/Mansão</option>
                                 </select>
 
                             </div>
@@ -663,22 +663,26 @@
 
 
 
-<div id="modalinfo" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div id="modalinfoSala" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
    <div class="modal-content">
     <div class="modal-header" style="background-color:#9124a3">
          <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
+        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
+        <h5 class="modal-title" style="color: black; font-size: 13px"><b>Este tema determina a estética utilizada para mostrar o problema aos jogadores, nenhuma mecânica é influenciada por essa escolha.</b></h5>
+   
+        <br>
          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Gelo</b></h5>
-        <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+        <p style="font-size: 12px; text-align: justify;">O labirinto é formado por uma geleira, com quadro para os textos de pergunta e resposta e suporte para os itens todos lapidados em blocos de gelo.</p>
           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Urbano</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+          <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
            <h5 class="modal-title" style="color: black; font-size: 13px"><b>Selva</b></h5>
-           <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+           <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
             <h5 class="modal-title" style="color: black; font-size: 13px"><b>Casa/Mansão</b></h5>
-            <p style="font-size: 12px; text-align: justify;">Essa opção você poderá marcar varias resposta corretas ou nenhuma resposta correta.</p>
+            <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
     </div>
     </div>
   </div>

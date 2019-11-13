@@ -38,6 +38,8 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 
+    
+    
 </head>
 
 <body onload="totalresposta()">
@@ -159,6 +161,16 @@
     </div>
 
 
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+<!--    <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.js charset=utf-8></script>-->
+     {{-- ChartScript --}}
+    @if(isset($usersChart))
+    {!! $usersChart->script() !!}
+    @endif
 
 
     <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
@@ -227,6 +239,28 @@
 
 
 
+
+        });
+
+
+
+        $('#removerPerguntaModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var perg = button.data('pergunta');
+
+
+
+            var url = '{{ env("APP_URL") }}/admin/visualizar/deletar-pergunta/' + id;
+
+
+            var modal = $(this);
+         
+            modal.find("#tituloPergModal").html("Você realmente deseja deletar a pergunta \'" + perg + "\' desta sala?");
+           
+            modal.find('#confirmarRemoverPergunta').on('click', function() {
+                window.location.href = url;
+            })
 
         });
 
@@ -571,6 +605,14 @@
 
 
         $('#addPerg').on('hide.bs.modal', function(e) {
+
+            window.location.reload();
+
+
+
+
+
+        $('#addPerg').on('hide.bs.modal', function(e) {
             //window.location.reload();
         });
         $('#alunosModal').on('hide.bs.modal', function(e) {
@@ -785,12 +827,14 @@
             });
 
         }
+
     </script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <!--script src="{{asset('js/jquery.ui.touch-punch.min.js')}}" defer></script-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
     <script src="{{ asset('js/Alunos.js')}}" defer></script>
     <script src="{{ asset('js/caixa.js')}}" defer></script>
+    <!--      <script src="{{ asset('js/Perguntas.js')}}" defer></script>-->
 </body>
 
 </html>
