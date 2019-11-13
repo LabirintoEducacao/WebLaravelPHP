@@ -29,15 +29,28 @@ class PerguntaRespostaController extends Controller
     
     public function grafico()
     {
-        $data = collect([]); // Could also be an array
-
+        $data =  array(); // Could also be an array
+        $salas = DB::table('perguntas')->select('sala_id')->get();
             // Could also be an array_push if using an array rather than a collection.
-            $data->push(Pergunta::where('sala_id',"=","1")->count());
+        foreach($salas as $sala){
+            array_push($data,$sala->sala_id);
+        }
+        $sql = 'select count(id) as total from perguntas group by sala_id';
+//        $sql = DB::table('perguntas')->groupBy('sala_id')->count();
+        $perguntas = DB::select($sql);
+        $data_perg = array();
+//        var_dump($perguntas);
+        foreach($perguntas as $pergunta){
+            array_push($data_perg,$pergunta->total);
+        }
 
 
         $chart = new PerguntaChart;
-        $chart->labels(['1','2','3','4','5']);
-        $chart->dataset('My dataset', 'line', $data);
+        $chart->labels($data_perg);
+        foreach($data as $item){
+            $chart->dataset($item, 'line', $item);
+        }
+        
         return view('grafico', [ 'usersChart' => $chart ] );
     }
     
