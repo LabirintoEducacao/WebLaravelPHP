@@ -103,7 +103,7 @@
             </div>
             <div class="modal-footer">
                 <a class="btn btn-secondary" id="teste" data-dismiss="modal">Fechar</a>
-                <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
+                <button UseSubmitBehaviour="false"onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button>
             </div>
 
         </div>
