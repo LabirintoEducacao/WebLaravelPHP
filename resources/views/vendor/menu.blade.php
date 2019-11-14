@@ -161,7 +161,7 @@
     </div>
 
 
-    
+      @yield('myscript')
     
     
     
@@ -214,6 +214,23 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('assets/demo/demo.js')}}"></script>
     <script>
+        
+        
+            $('#qntdeRespPerg').change(function(){
+                
+                if($('#qntdeRespPerg').is(":checked") == true){
+                    
+                    $('#qntdeRespPergDiv').css('display','block');
+                    
+                }else{
+                    
+                    $('#qntdeRespPergDiv').css('display','none');
+                    
+                }
+                
+            })
+        
+        
         $('#removerAlunoModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
 
