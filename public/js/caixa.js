@@ -922,26 +922,23 @@
 
 
                   if (roomtype.value == 'hope_door') {
-                      
-                      
+
                       $('#check-reforco').trigger("change");
-                       $('#check-reforco').prop("checked", true);
                       $('#desabilitar').css('display', 'block');
-            
+                      $('#check-reforco').prop("checked", true);
                       if ($("#path_errado_id").val() == 0) {
                           $(".teste").trigger("click");
                           $(".teste").trigger("click");
                       }
-     
-                      console.log("marcou")
+
+
 
                   } else {
-                     $('#check-reforco').prop("checked", false);
+
                       $('#check-reforco').trigger("change");
-                      
+                      $('#check-reforco').prop("checked", false);
                       $('#desabilitar').css('display', 'none');
 
-                    console.log("desmarcou")
                   }
 
 
@@ -1065,14 +1062,14 @@
 
                                   if (val.path.type == 2) {
                                       if (val.path.height >= 1 && val.path.height <= 3)
-                                          tamanho = 1;
+                                          tamanhoref = 1;
                                       else if (val.path.height >= 4 && val.path.height <= 6)
-                                          tamanho = 2;
+                                          tamanhoref = 2;
                                       else
-                                          tamanho = 3
+                                          tamanhoref = 3
                                   }
 
-                                  modal.find('#tamanho_ref').val(tamanho);
+                                  modal.find('#tamanho_ref').val(tamanhoref);
                                   $('#tamanho_ref').trigger("change");
 
 
@@ -1142,7 +1139,7 @@
               var pergunta = document.getElementsByName('pergunta');
               var pergref = document.getElementsByName('reforco');
               var m = 0;
-              var z = 0, contaRef = 0,entrar=0;
+              var z = 0;
               var teste3 = [];
               var teste4 = [];
               var ref = document.getElementById('check-reforco')
@@ -1166,26 +1163,29 @@
                       teste4[i] = p[i].value;
 
 
-                      if (p[i].value == 1){
-                          contaRef++;
-                          z++;
-                      }
-                          
+                      if (p[i].value == 1)
+                          z++
                   }
                   t += "&correto_ref=" + teste4;
               }
-       
-            if(($('#room_type').val() != 'true_or_false' && z==1) || ($('#room_type').val() == 'true_or_false' && z>=0)){
-                    entrar++;
-            }
-              if($('#room_type').val() == 'hope_door'){
-                  if(($('#room_type_ref').val() != 'true_or_false' && contaRef==1)|| ($('#room_type_ref').val() == 'true_or_false' && contaRef>=0)){
-                    entrar++;
-                }
-              }
-              if(($('#room_type').val() == 'hope_door' && entrar==2) || ($('#room_type').val() != 'hope_door' && entrar==1)){
-                          
-                          
+
+
+            // if(($('#room_type').val() != 'true_or_false' && z==1) || ($('#room_type').val() == 'true_or_false' && z>=0)){
+            //         entrar++;
+            // }
+            //   if($('#room_type').val() == 'hope_door'){
+            //       if(($('#room_type_ref').val() != 'true_or_false' && contaRef==1)|| ($('#room_type_ref').val() == 'true_or_false' && contaRef>=0)){
+            //         entrar++;
+            //     }
+            //   }
+            //   if(($('#room_type').val() == 'hope_door' && entrar==2) || ($('#room_type').val() != 'hope_door' && entrar==1)){
+
+
+
+              if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false') ||
+              (!ref.checked && $('#room_type').val() == 'true_or_false')) ||
+              ((z >= 2 && ref.checked) || (((ref.checked) && ($('#room_type_ref').val() == 'true_or_false')) && ($('#room_type').val() == 'hope_door')))) {
+
                   $.ajax({
 
                       url: postURL + x,
@@ -1350,7 +1350,6 @@
                   // $(".print-success-msg").css('display', 'block');
                   // $(".print-error-msg").css('display', 'none');
                   // $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
-                  
 
               }
 
@@ -1362,8 +1361,7 @@
 
 
           $('.btnModalClose').click(function () {
-              //$('#add_name')[0].reset();
-              $('#alunosModal').empty();
+              $('#add_name')[0].reset();
               $('.dynamic-added').remove();
               a = 0;
               b = 0;

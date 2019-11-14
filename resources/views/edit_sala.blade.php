@@ -138,7 +138,7 @@
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                                                 <input type="hidden" name="path_id" id="path_id">
                                                 <div class="row" style="height:50px;">
-                                                    <div class="col-3 col-sm-3 col-lg-3" style="height:100%;">
+                                                    <div class="col-2 col-sm-2 col-lg-2" style="height:100%;">
                                                         <label for="answer_boolean" style="margin-right: 3.5px; padding-top:10%;">Caminho do jogo:</label>
                                                     </div>
                                                 <div class="col-1 col-sm-1" style="margin-left: 12px; margin-top: 12px;">
@@ -446,6 +446,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
                                     <a class="dropdown-item" data-toggle="modal" data-target="#addPerg" data-whatever="{{$item->id}}">Editar</a>
+                                    <!--                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta: \'{{$item->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$item->id) }}' : window.location.reload(forcedReload);">Excluir</a>-->
                                     <a data-toggle="modal" data-target="#removerPerguntaModal" data-id="{{$item->id}}" data-pergunta="{{$item->pergunta}}" class="dropdown-item" id="{{'perg'.$item->id}}">Excluir</a>
                                 </div>
                             </div>
@@ -499,12 +500,12 @@
                     @if($path->id==$pp->path_id)
                     <!--                    <input value="{{$path->id}}"><br><br>-->
 
-                              <div id="flip2" >
+                    <div id="flip2">
                         <!-- <div id="texto" style="color: black">Reforço da pergunta {{$item->pergunta}}</div> -->
-                        <div class="row align-items-center"  style="cursor: pointer;">
-                       
-                          <i class="material-icons info" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">info</i>
-                          
+                        <div class="row align-items-center" style="cursor: pointer;">
+
+                            <i class="material-icons info" data-toggle="tooltip" data-placement="left" title="Reforço da pergunta {{$item->pergunta}}" style="margin-left: 10px;">info</i>
+
                             <div class="col col-sm-9 container" onclick="abrir('panel'+{{$ref->id}});" style="margin-left: -3px;">
                                 <?php
                                 $str = $ref->pergunta;
@@ -522,13 +523,13 @@
 
                             <div class="col-2 col-sm-1">
 
-                                <a  class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;margin-right:-10px; display:none;">
+                                <a  class="nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float: right;margin-right:-10px; display: none; ">
 
                                     <i  id="teste" class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="">
 
-<!--                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>-->
+                                    <!--                                    <a class="dropdown-item" onclick="(confirm('Você realmente deseja deletar a pergunta reforço: \'{{$ref->pergunta}}\'? ')) ? window.location.href =  '{{ url('admin/visualizar/deletar-pergunta/'.$ref->id) }}' : window.location.reload(forcedReload)">Excluir</a>-->
                                     <a data-toggle="modal" data-target="#removerPerguntaModal" data-id="{{$ref->id}}" data-pergunta="{{$ref->pergunta}}" class="dropdown-item" id="{{'perg'.$ref->id}}">Excluir</a>
                                 </div>
                             </div>
@@ -791,7 +792,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina a altura do caminho pelo qual o jogador irá passar. Só é possível configurar a altura para caminhos do tipo Labirinto.</b></h5>
+                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o quão Altura do caminho que o jogador irá passar. Só é possível configurar o tamanho para caminhos do tipo Labirinto.</b></h5>
 
             </div>
         </div>
@@ -806,7 +807,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o quão longa ou cheia de bifurcações será a ligação entre uma sala e outra. Só é possível configurar a largura para caminhos do tipo Labirinto.</b></h5>
+                <h5 class="modal-title" style="color: black; font-size: 13px"><b>Determina o quão longa ou cheia de bifurcações será a ligação entre uma sala e outra. Só é possível configurar o tamanho para caminhos do tipo Labirinto.</b></h5>
 
             </div>
         </div>
