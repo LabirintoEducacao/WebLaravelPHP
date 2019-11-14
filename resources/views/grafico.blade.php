@@ -1,7 +1,7 @@
 @extends('vendor.menu')
 
 @section('content')
-<h1>Sales Graphs</h1>
+<h4>Quantidade de respostas por pergunta</h4>
 
 <div style="width: 50%">
     {!! $usersChart->container() !!}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Pergunta;
 use App\Path;
 use App\Resposta;
@@ -29,30 +30,70 @@ class PerguntaRespostaController extends Controller
     
     public function grafico()
     {
+        
+        
         $data =  array(); // Could also be an array
-        $salas = DB::table('perguntas')->select('sala_id')->get();
+        
+        $id = (int) Auth::user()->id;
+        
+        $salas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
+        
+        $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' ORDER BY p.ordem';
+
+        
+        $salas = DB::select($sql);
             // Could also be an array_push if using an array rather than a collection.
         foreach($salas as $sala){
-            array_push($data,$sala->sala_id);
+            array_push($data,$sala->pergunta);
         }
-        $sql = 'select count(id) as total from perguntas group by sala_id';
-//        $sql = DB::table('perguntas')->groupBy('sala_id')->count();
+        
+ 
+    
+        
+       //$sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' + $id + ' GROUP BY pr.perg_id ORDER BY p.ordem'; 
+        
+        
+        $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' GROUP BY pr.perg_id ORDER BY p.ordem';
+
+        
         $perguntas = DB::select($sql);
         $data_perg = array();
-//        var_dump($perguntas);
+
         foreach($perguntas as $pergunta){
             array_push($data_perg,$pergunta->total);
         }
 
-
+        
         $chart = new PerguntaChart;
-        $chart->labels($data_perg);
+//        $i = 0;
+//        $chart->labels($data_perg);
 //        foreach($data as $item){
-//            $chart->dataset($item, 'line', $item);
+//                $chart->dataset($item, 'bar', [$data_perg[$i]]);
+//            var_dump($item);
+//                $i++;
+//
 //        }
-        $chart->dataset('teste', 'line', $data);
+        
+//        $i = 0;
+        
+         $chart->labels($data);
+        $chart->dataset('Quantidade de respostas por pergunta', 'bar', $data_perg)->options([
+            'backgroundColor' => 'rgba(0, 214, 189, 0.71)',
+        ]);
+        
+//        foreach($data as $item){
+//           
+//            $chart->dataset($item, 'bar', [$data_perg[$i]]);
+//            var_dump($item);
+//            $i++;
+//
+//        }
+//        $chart->dataset('teste', 'bar', $data_perg);
         
         return view('grafico', [ 'usersChart' => $chart ] );
+        
+        
+        
     }
     
     
