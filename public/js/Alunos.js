@@ -859,7 +859,7 @@ function salvarGrupo(id_prof) {
                 grupo: nome,
                 alunos: alunos
             },
-            dataType: 'JSON',
+            //dataType: 'JSON',
 
             success: function () {
                 alunos = [];
