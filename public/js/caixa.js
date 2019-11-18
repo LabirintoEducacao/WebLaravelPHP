@@ -1214,14 +1214,12 @@
                               $(".print-error-msg").css('display', 'none');
                               $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
 
-                              window.location.reload();
-
                           }
 
                           a = 0;
                           b = 0;
 
-                          window.location.reload();
+                          window.location.href = window.location.href;
 
                       }
 
@@ -1342,6 +1340,7 @@
                       alert3("A campos a preencher na aba Pergunta verifique!", "error");
 
                       $('#pergunta').focus();
+
                       e.preventDefault();
                   }
 
