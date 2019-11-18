@@ -251,7 +251,8 @@
 
 
 
-            var url = '{{ env("APP_URL") }}/admin/visualizar/deletar-pergunta/' + id;
+            // var url = '{{ env("APP_URL") }}/admin/visualizar/deletar-pergunta/' + id;
+            var url = '/admin/visualizar/deletar-pergunta/' + id;
 
 
             var modal = $(this);
