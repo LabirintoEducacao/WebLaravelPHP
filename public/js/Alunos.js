@@ -315,7 +315,7 @@ function addaluno(id) {
     });
 
     $.ajax({
-        url: '/admin/addaluno/',
+        url: '/admin/addaluno',
         type: 'POST',
         data: {
             id: id,
@@ -859,7 +859,7 @@ function salvarGrupo(id_prof) {
             z_index: 999999
         });
         $.ajax({
-            url: '/grupos/addaluno/',
+            url: '/grupos/addaluno',
             type: 'POST',
             data: {
                 grupo: nome,
