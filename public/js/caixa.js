@@ -564,8 +564,8 @@
                       //                      '</div>' +
                       //                      '</div>'
                   );
-                  // $(".teste").trigger('click');
-                  // $(".teste").trigger('click');
+                  //$(".teste").trigger('click');
+                  //$(".teste").trigger('click');
 
 
                   $('.selectpicker').selectpicker('refresh');
@@ -1029,7 +1029,6 @@
 
                                           $("#add").trigger('click');
 
-
                                       }
 
                                       modal.find("#tipo_opcao").val(resp.tipo_resp);
@@ -1098,6 +1097,8 @@
                               }
 
                           });
+      
+                         window.location.href = window.location.href;
                       }
                   });
 
@@ -1179,7 +1180,6 @@
             //     }
             //   }
             //   if(($('#room_type').val() == 'hope_door' && entrar==2) || ($('#room_type').val() != 'hope_door' && entrar==1)){
-
 
 
               if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false') ||
