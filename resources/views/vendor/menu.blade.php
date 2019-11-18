@@ -225,7 +225,7 @@
 
             var modal = $(this);
 
-            var url = '{{ env("APP_URL") }}/admin/deletar-aluno/' + id + '/' + sala;
+            var url = '/admin/deletar-aluno/' + id + '/' + sala;
 
 
 
@@ -249,9 +249,6 @@
             var id = button.data('id');
             var perg = button.data('pergunta');
 
-
-
-            // var url = '{{ env("APP_URL") }}/admin/visualizar/deletar-pergunta/' + id;
             var url = '/admin/visualizar/deletar-pergunta/' + id;
 
 
