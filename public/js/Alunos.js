@@ -876,7 +876,7 @@ function salvarGrupo(id_prof) {
         });
         setTimeout(function () {
             
-            //window.location.reload()
+            window.location.reload()
         }, 450);
 
     } else {
