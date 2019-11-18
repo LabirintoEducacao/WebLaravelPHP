@@ -366,8 +366,8 @@ class UserController extends Controller
                     );
             }
         }
-        //return response()->json(['success' => 'Sucesso']);
-        var_dump($ides);
+        return response()->json(['success' => $ides]);
+        //var_dump($ides);
     }
 
     public function removeGrupo($id)

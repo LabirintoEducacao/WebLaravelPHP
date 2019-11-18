@@ -436,8 +436,12 @@ function fechar() {
 
 
 ////////////////////////////////////////////////////////Thiago
+//declaração de duas listas, alunos(armazena os alunos selecionados em uma lista para adicionar somente depois de confirmar) && remover(armazena uma lista de alunos selecionados para remover somente depois de confirmar)
 var alunos = new Array();
+var remove = new Array();
 
+
+//Listenners para abrir e fechar o modal de adição de grupos
 $('#addGrupoModal').on('hide.bs.modal', function (e) {
     $('#divtabela').empty();
     $('.pagination').empty();
@@ -447,16 +451,16 @@ $('#alunosModal').on('hide.bs.modal', function (e) {
     $('.pagination').empty();
 });
 
+//função COMPLEXA responsável por: mostrar TODOS os alunos quando for criar grupo, mostrar somente alunos não inseridos no grupo quando for adicionar alunos e montar a paginação(pag1,2,3,4,....)
 function mostrarmaisalunos2(option, option2, jotason) {
     var todos;
     var parse;
-
     $('#addGrupoModal').on('show.bs.modal');
     $('.pagination').empty();
 
     if (option == 0) {
-        if (jotason == 5) {
-            console.log("Jotason se for 5---->" + jotason);
+        if (jotason == 5) {//Ocorre quando clica em adicionar grupos (mostra TODOS os alunos)
+            //console.log("Jotason se for 5---->" + jotason);
             parse = todos;
         }
 
@@ -468,7 +472,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
         $.get("/admin/showalunos").done(function (data) {
 
             if (option2 == 0) {
-                ebola(data);
+                remover_alunos_inseridos(data);//Manda o array de todos os alunos para a função que seleciona somente os não presentes no grupo
                 parse = JSON.parse(jotason);
                 $(".pagination").empty();
             }
@@ -480,7 +484,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
             let max = 7;
             let i = 0;
 
-            console.log("jotason--->" + jotason);
+            //console.log("jotason--->" + jotason);
             if (jotason == 5) {
                 $('#divtabela').empty();
                 $('.pagination').empty();
@@ -585,7 +589,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
     } else {
         $.get("/admin/showalunos").done(function (data) {
             if (option2 == 0) {
-                ebola(data);
+                remover_alunos_inseridos(data);
             }
             else {
                 parse = JSON.parse(jotason);
@@ -805,6 +809,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
     }
 }
 
+//função reponsável por remover um grupo
 function removeGrupo(id, prof_id, turma) {
     console.log(prof_id);
     $.get("/grupos/deletar-grupo/" + id).done(
@@ -828,6 +833,7 @@ function removeGrupo(id, prof_id, turma) {
     }, 450);
 }
 
+//função reponsável por criar um grupo
 function salvarGrupo(id_prof) {
     var nome = $("#nome").val();
     if (nome != "") {
@@ -859,7 +865,7 @@ function salvarGrupo(id_prof) {
                 grupo: nome,
                 alunos: alunos
             },
-            //dataType: 'JSON',
+            dataType: 'JSON',
 
             success: function () {
                 alunos = [];
@@ -869,7 +875,7 @@ function salvarGrupo(id_prof) {
             }
         });
         setTimeout(function () {
-            //window.location.reload()
+            window.location.reload()
         }, 450);
 
     } else {
@@ -889,9 +895,8 @@ function salvarGrupo(id_prof) {
         console.log("Nome vazio");
     }
 }
-var alunos = new Array();
-var remove = new Array();
 
+//Função responsável por adicionar ou remover o aluno selecionado do vetor alunos[]
 function addaluno2(option, id) {
     console.log(alunos);
     if (option == 0) {
@@ -932,24 +937,26 @@ function addaluno2(option, id) {
     }
 }
 
+//função atalho para a funçao linhatabela()
 function editTabela(id) {
     $('#linha' + id).trigger('click');
 }
 
+//Função responsável por abrir um modal e mostrar uma tabela com os alunos pertencentes a este grupo
 function linhaTabela(id) {
     $("#start_tab").attr("class","nav-link active nomegrupo");
     $("#second_tab").attr("class","nav-link");
     $("#linha" + id).attr("data-toggle", "modal");
     $("#linha" + id).attr("data-target", "#alunosModal");
     $("#save-edit").attr("onclick", "check(" + id + ')');
-
-    // let tabela="<table class='table table-hover'><head class='text-primary'><th>Nome do aluno</th><th>Ações</th></thead><tbody id='tabelaalunosgrupos'></tbody></table>"
-    // $("#divdatabela").append(tabela);
+    
+    //Altera o nome da primeira TAB para o nome do gurpo
     $.get("/grupos/nomegrupo/" + id).done(
         function (nome) {
             $('.nomegrupo').text(nome[0].turma);
         }
     );
+    //Preenche a tabela dos alunos do grupo que foi clicado
     $.get("/grupos/alunosgrupo/" + id).done(
         function (data) {
             $('#tabelaalunosgrupos').empty();
@@ -960,6 +967,7 @@ function linhaTabela(id) {
         });
 }
 
+//função que manipula o vetor remove[]-->vetor responsável por salvar uma lista de alunos que serão removidos ao confirmar a alteração
 function removeAluno(option, id, turma) {
     if (option == 0) {
         remove.push(id);
@@ -978,9 +986,10 @@ function removeAluno(option, id, turma) {
         $("#checkreturn" + id).css('display', 'none');
     }
 }
+
+//função responsável por trocar as tabs
 function troca_tabs(option) {
     $("#divtabela2").empty();
-
     if (option == 0) {
         mostrarmaisalunos2(1, 0);
         for (let i = 0; i <= remove.length; i++) {
@@ -1005,6 +1014,7 @@ function troca_tabs(option) {
 
 }
 
+//Função que abre o modal para a confirmação da ação
 function check(id) {
     $("#save-edit").attr("data-toggle", "modal");
     $("#save-edit").attr("data-target", "#confirmalert");
@@ -1016,24 +1026,23 @@ function check(id) {
         $(".texto-confirmar").html("Deseja mesmo salvar as alterações?");
     }, 300);
 
-
-
-    console.log("Lista de alunos a serem removidos:")
-    console.log(remove);
-    console.log("Lista de alunos a serem adicionados:")
-    console.log(alunos);
-    console.log("Id da sala ----->" + id);
-    if (alunos.length > 0) {
-        // console.log("Adicionar");
-    }
-    else if (remove.length > 0) {
-        // console.log("Remover");
-    }
+    // console.log("Lista de alunos a serem removidos:")
+    // console.log(remove);
+    // console.log("Lista de alunos a serem adicionados:")
+    // console.log(alunos);
+    // console.log("Id da sala ----->" + id);
+    // if (alunos.length > 0) {
+    //     // console.log("Adicionar");
+    // }
+    // else if (remove.length > 0) {
+    //     // console.log("Remover");
+    // }
 }
 $("#confirmalert").on('hidden.bs.modal', function (event) {
     $("body").addClass('modal-open');
 });
 
+//função que realiza a adição ou remoção dos alunos após clicar em confirmar no modal de confirmação de alteração
 function salvar_alteracoes(id, op) {
     if (op == 0) {
         if (remove.length > 0) {//Remover
@@ -1140,22 +1149,23 @@ function salvar_alteracoes(id, op) {
     }
 }
 
-function ebola(data1) {
+//Função responsável por mostrar, na aba adicionar alunos, somente alunos que ainda não foram inseridos no grupo selecionado
+function remover_alunos_inseridos(data1) {
     let teste = $("#save-edit").attr('onclick');
     let res = teste.split("(");
     let res2 = res[1];
     let res3 = res2.split(")");
     $.get("/grupos/alunosgrupo/" + res3[0]).done(
         function (data) {
-            var ebola2 = JSON.parse(data1);
-            for (let i = 0; i < ebola2.length; i++) {
+            var json_original = JSON.parse(data1);
+            for (let i = 0; i < json_original.length; i++) {
                 for (let y = 0; y < data.length; y++) {
-                    if (ebola2[i].id == data[y].id) {
-                        ebola2.splice(i, 1);
+                    if (json_original[i].id == data[y].id) {
+                        json_original.splice(i, 1);
                     }
                 }
             }
-            jsonNovo = JSON.stringify(ebola2);
+            jsonNovo = JSON.stringify(json_original);
             mostrarmaisalunos2(0, 1, jsonNovo);
         });
 }
