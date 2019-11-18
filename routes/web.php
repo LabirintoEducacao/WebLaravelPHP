@@ -189,7 +189,7 @@ Route::get('/virtualdelete/{id}','Json@filedelete');
 Route::get('/deletar-aluno/{id}/{sala}', 'Admin\UserController@deletar')->middleware(['auth', 'auth.admin']);
 Route::delete('/settings/delete/{id}', 'Admin\UserController@destroy');
 Route::get('/alunos/{id}', 'Admin\UserController@add_user')->middleware(['auth', 'auth.admin']);
-Route::post('/addaluno/', 'Admin\UserController@teste')->middleware(['auth', 'auth.admin']);
+Route::post('/addaluno', 'Admin\UserController@teste')->middleware(['auth', 'auth.admin']);
 Route::post('/aluno', 'Admin\UserController@store');
 Route::get('/showaluno','Admin\UserController@showalunos');
 Route::post('/new/user', 'Admin\UserController@user');
@@ -284,10 +284,10 @@ Route::get('/teste', function(){
 Route::get('/grupos/{id}', 'Admin\UserController@pegaGrupo');
 Route::get('/grupos/deletar-grupo/{id}', 'Admin\UserController@removeGrupo');
 Route::get('/admin/showalunos','Admin\UserController@showalunos_grupos');
-Route::post('/grupos/addaluno/','Admin\UserController@addGrupo');
+Route::post('/grupos/addaluno','Admin\UserController@addGrupo');
 Route::get('/grupos/alunosgrupo/{id}','Admin\UserController@carregaAlunos');
-Route::post('/grupos/remover/aluno/','Admin\UserController@removeAluno');
+Route::post('/grupos/remover/aluno','Admin\UserController@removeAluno');
 Route::get('/grupos/nomegrupo/{id}','Admin\UserController@nomeGrupo');
-Route::post('/grupos/addalunogrupo/','Admin\UserController@adicionaAluno');
+Route::post('/grupos/addalunogrupo','Admin\UserController@adicionaAluno');
 
 
