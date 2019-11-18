@@ -3,7 +3,7 @@ $("#btnCadastrar").on('click', function () {
         var p1=$('#password').val(), p2=$('#password2').val();
             if(p1==p2){
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/register",
+                    url: "/api/register",
                     type: "post",
                     data: dados,
                     error: function (request, status, error) {
