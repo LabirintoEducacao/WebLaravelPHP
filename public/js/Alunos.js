@@ -829,7 +829,7 @@ function removeGrupo(id, prof_id, turma) {
         }
     );
     setTimeout(function () {
-        window.location.reload()
+        location.reload()
     }, 450);
 }
 
@@ -876,7 +876,7 @@ function salvarGrupo(id_prof) {
         });
         setTimeout(function () {
             
-            window.location.reload()
+            location.reload()
         }, 450);
 
     } else {
