@@ -77,7 +77,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{url('/grupos/'.Auth::user()->id)}}">
+                        <a class="nav-link" href="{{url('/grupos')}}">
                             <i class="material-icons">group</i>
                             Grupos
                         </a>

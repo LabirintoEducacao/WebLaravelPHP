@@ -332,11 +332,11 @@ class UserController extends Controller
     }
 
     //////////////////////////Thiago Grupos método
-    public function pegaGrupo($id)
+    public function pegaGrupo()
     {
         $turmas = DB::table('turmas')
             ->select('id', 'turma')
-            ->where('id_prof', $id)
+            ->where('id_prof', Auth::user()->id)
             ->get();
 
         return view('grupos')->with(['turmas' => $turmas]);
