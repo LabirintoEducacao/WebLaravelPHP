@@ -366,7 +366,8 @@ class UserController extends Controller
                     );
             }
         }
-        return response()->json(['success' => $ides]);
+        return view('grupos/'.$id);
+        //return response()->json(['success' => $ides]);
         //var_dump($ides);
     }
 
