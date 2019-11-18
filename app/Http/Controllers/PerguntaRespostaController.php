@@ -1437,24 +1437,6 @@ return response()->json(['success' => 'Pergunta alterada com sucesso!']);
     return redirect('admin/visualizar/'. $perg->sala_id)->with($notification);
 }
 
-public function destroyresp($id)
-{
-    $resp = DB::table('respostas')
-    ->select('sala_id')
-    ->where('id', '=', $id)
-    ->get();
-         //$resposta = Respostas::find($id);
-    DB::table('perg_resp')->where('resp_id', '=', $id)->delete();
-    DB::table('respostas')->where('id', '=', $id)->delete();
-    $notification = array(
-        'message' => 'Resposta deletada com sucesso!',
-        'alert-type' => 'danger'
-    );
-    return redirect('admin/visualizar/'. $resp[0]->sala_id)->with($notification);
-}
-
-
-
 public function indexJson($id)
 {
    
