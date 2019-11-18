@@ -1204,9 +1204,7 @@
                               printErrorMsg(data.error);
 
                           } else {
-                              //window.location.reload();
-                              e.preventDefault();
-                              console.log(data);
+                            console.log(data);
 
                               i = 1;
                               $('.dynamic-added').remove();
@@ -1216,10 +1214,14 @@
                               $(".print-error-msg").css('display', 'none');
                               $(".print-success-msg").find("ul").append('<li>' + data.success + '</li>');
 
+                              window.location.reload();
+
                           }
 
                           a = 0;
                           b = 0;
+
+                          window.location.reload();
 
                       }
 
