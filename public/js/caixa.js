@@ -1204,9 +1204,7 @@
                               printErrorMsg(data.error);
 
                           } else {
-                              //window.location.reload();
-                              e.preventDefault();
-                              console.log(data);
+                            console.log(data);
 
                               i = 1;
                               $('.dynamic-added').remove();
@@ -1220,6 +1218,8 @@
 
                           a = 0;
                           b = 0;
+
+                          window.location.href = window.location.href;
 
                       }
 
@@ -1340,6 +1340,7 @@
                       alert3("A campos a preencher na aba Pergunta verifique!", "error");
 
                       $('#pergunta').focus();
+
                       e.preventDefault();
                   }
 
