@@ -549,7 +549,135 @@ function removeGrupo(id, prof_id, turma) {
         location.reload()
     }, 450);
 }
+function paginar(opcao, data, total) {
+    if (opcao == 0) {
+        $('#divtabela').children().each(function () {
+            $(this).css('display', 'none');
+        });
 
+        $('#table' + data).css('display', 'block');
+
+        $('.pagination').empty();
+
+        if (data == 1) {
+
+            $('.pagination').append(
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 4) + ',' + total + ')">' + (data + 4) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
+            );
+        }
+
+
+        if (data > 2 && data <= (total - 2)) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
+            );
+
+        } else if (data == 2 && data <= (total - 2)) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
+            );
+        } else if (data == total && (total - 2) > 1) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 4) + ',' + total + ')">' + (data - 4) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>'
+
+            );
+        } else if (data == (total - 1)) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link active" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>'
+
+            );
+        }
+    } else {
+        $('#divtabela2').children().each(function () {
+            $(this).css('display', 'none');
+        });
+
+        $('#table' + data).css('display', 'block');
+
+        $('.pagination').empty();
+
+        if (data == 1) {
+
+            $('.pagination').append(
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 4) + ',' + total + ')">' + (data + 4) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
+            );
+        }
+
+
+        if (data > 2 && data <= (total - 2)) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
+            );
+
+        } else if (data == 2 && data <= (total - 2)) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
+            );
+        } else if (data == total && (total - 2) > 1) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 4) + ',' + total + ')">' + (data - 4) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>'
+
+            );
+        } else if (data == (total - 1)) {
+            $('.pagination').append(
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
+                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
+                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
+                '<li class="page-item "><a class="page-link active" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>'
+
+            );
+        }
+    }
+}
 //função reponsável por criar um grupo
 function salvarGrupo(id_prof) {
     var nome = $("#nome").val();
@@ -693,8 +821,7 @@ function linhaTabela(id) {
 function removeAluno(option, id, turma) {
 
     if (option == 0) {
-        if(turma==1)
-        {
+        if (turma == 1) {
             $('.aluno_sala' + id).css('background-color', 'rgba(247,203,203,0.72)');
         }
         remove.push(id);
@@ -703,8 +830,7 @@ function removeAluno(option, id, turma) {
         $("#checkreturn" + id).css('display', 'block');
     }
     else if (option == 1) {
-        if(turma==1)
-        {
+        if (turma == 1) {
             $('.aluno_sala' + id).css('background-color', 'white');
         }
         for (let i = 0; i < remove.length; i++) {
@@ -962,7 +1088,7 @@ function alunos_sala(id) {
     json_alunos_sala = JSON.parse(json_alunos_sala);
     json_todos = JSON.parse(json_todos);
 
-    
+
     for (let i = 0; i < json_todos.length; i++) {
         for (let y = 0; y < json_alunos_sala.length; y++) {
             if (json_todos[i].id == json_alunos_sala[y].id) {
