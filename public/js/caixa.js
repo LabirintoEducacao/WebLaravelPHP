@@ -949,7 +949,8 @@ $(document).ready(function () {
             var recipient = button.data('whatever');
             var tamanho = 0;
             console.log(recipient);
-            $.ajax({
+            $.ajax(
+            {
                 url: '/admin/busca-perg',
                 method: "POST",
                 data: {
@@ -959,7 +960,8 @@ $(document).ready(function () {
                 error: function (error) {
                     console.log(error);
                 },
-                success: function (data) {
+                success: function (data) 
+                {
                     console.log(data);
                     a = 0;
                     b = 0;
@@ -991,7 +993,19 @@ $(document).ready(function () {
                                             tamanho = 3;
                                         console.log("tamanho" + tamanho)
 
+
                                         modal.find('#tamanho').val(tamanho);
+
+
+                                        if (path.widht >= 1 && path.widht <= 3)
+                                            tamanho = 1;
+                                        else if (path.widht >= 4 && path.widht <= 6)
+                                            tamanho = 2;
+                                        else
+                                            tamanho = 3;
+                                        modal.find('#largura').val(tamanho);
+                                        $('#largura').trigger("change");
+
                                     }
 
                                     modal.find('#path_id').val(path.path_id);
@@ -1002,6 +1016,7 @@ $(document).ready(function () {
                                     $('#check-reforco').prop("checked", true);
                                     $('#check-reforco').trigger("change");
                                     modal.find('#answer_boolean_perg').val(path.type);
+
                                     console.log("Path type " + path.type)
 
                                     //                                          console.log("Path perg errado "+ document.getElementById("answer_boolean_perg").value);
@@ -1014,10 +1029,22 @@ $(document).ready(function () {
                                             tamanho = 2;
                                         else
                                             tamanho = 3;
+
                                         modal.find('#tamanho_perg').val(tamanho);
                                         $('#tamanho_perg').trigger("change");
 
+                                        if (path.widht >= 1 && path.widht <= 3)
+                                            tamanho = 1;
+                                        else if (path.widht >= 4 && path.widht <= 6)
+                                            tamanho = 2;
+                                        else
+                                            tamanho = 3;
+                                        modal.find('#largura_perg').val(tamanho);
+                                        $('#largura_perg').trigger("change");
+
+
                                     }
+
                                     modal.find('#path_errado_id').val(path.path_id);
                                 }
                             });
@@ -1048,8 +1075,6 @@ $(document).ready(function () {
                         } else {
                             v = 0;
 
-
-
                             modal.find('#pergunta-reforco').val(val.question);
                             modal.find('#perg-reforco-id').val(val.question_id);
                             modal.find('#room_type_ref').val(val.room_type);
@@ -1061,15 +1086,26 @@ $(document).ready(function () {
 
                             if (val.path.type == 2) {
                                 if (val.path.height >= 1 && val.path.height <= 3)
-                                    tamanhoref = 1;
+                                    tamanho = 1;
                                 else if (val.path.height >= 4 && val.path.height <= 6)
-                                    tamanhoref = 2;
+                                    tamanho = 2;
                                 else
-                                    tamanhoref = 3
+                                    tamanho = 3
+
+                            modal.find('#tamanho_ref').val(tamanho);
+                            $('#tamanho_ref').trigger("change");
+
+                                 if (val.path.widht >= 1 && val.path.widht <= 3)
+                                            tamanho = 1;
+                                        else if (val.path.widht >= 4 && val.path.widht <= 6)
+                                            tamanho = 2;
+                                        else
+                                            tamanho = 3;
+                                        modal.find('#largura_ref').val(tamanho);
+                                        $('#largura_ref').trigger("change");
                             }
 
-                            modal.find('#tamanho_ref').val(tamanhoref);
-                            $('#tamanho_ref').trigger("change");
+                           
 
 
                             console.log(val.answer)
@@ -1098,7 +1134,7 @@ $(document).ready(function () {
 
                     });
 
-                    window.location.href = window.location.href;
+                    //window.location.href = window.location.href;
                 }
             });
 
