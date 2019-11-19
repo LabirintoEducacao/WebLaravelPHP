@@ -87,23 +87,45 @@ class EstatisticaController extends Controller
             //----------------ACERTOS POR PERGUNTA-------------------//
             
             
+            $salas = DB::table('salas')->where('prof_id',Auth::user()->id)->get();
+            
+            $i = 0;
+            
+            
+            if($salas>0){
+                
+                foreach($salas as $sala){
+                    
+                    $sql =  'select user_id, wrong_count, question_id from data';
+                    $sql += 'where wrong_count is not null';
+                    $sql += 'and question_id is not null';
+                    $sql += 'and event="question_id"';
+                    $sql += 'and maze_id = ' . $sala->id;
+                    $sql += 'order by id';
+                    
+                    $wrong_count = DB::select($sql);
+                    
+                }
+                
+            }
+            
+            
             /*       SQL??????????
             
             
-            
-        select user_id, wrong_count from data
-        where wrong_count is not null
-        and maze_id = 1
-        group by user_id, question_id
-        order by id;
-
+            select user_id, wrong_count, question_id from data
+            where wrong_count is not null
+            and question_id is not null
+            and event='question_end'
+            and maze_id = 1
+            order by id;
 
             
             */
             
         /*    
             
-        $data =  array(); 
+        $data_wrong_count =  array(); 
         
         $id = (int) Auth::user()->id;
         
