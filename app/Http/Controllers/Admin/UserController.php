@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\LinkCadastro;
 use App\Mail\LinkSala;
 
+use function GuzzleHttp\json_encode;
+
 class UserController extends Controller
 {
     /**
@@ -366,7 +368,7 @@ class UserController extends Controller
                     );
             }
         }
-        return view('grupos/'.$id);
+        return view('grupos/' . $id);
         //return response()->json(['success' => $ides]);
         //var_dump($ides);
     }
@@ -404,15 +406,11 @@ class UserController extends Controller
         $id_grupo = $request['turma'];
 
         foreach ($id_aluno as $value) {
-            //$query='DELETE from alunos_turma
-            //where aluno_id='.intval($value).' and turmas_id='.$id_grupo.';';
             DB::table('alunos_turma')
                 ->where('aluno_id', '=', $value)
                 ->where('turmas_id', '=', $id_grupo)
                 ->delete();
-            //$delete=DB::select($query);
         }
-        // echo json_encode($id_aluno);
         return response()->json(['success' => 'Sucesso']);
     }
     public function adicionaAluno(Request $request)
@@ -442,9 +440,42 @@ class UserController extends Controller
 
         return $nome;
     }
+
+    public function vinculados($id)
+    {
+        $sql = 'SELECT s.id , s.name from salas s join turma_salas ts on ts.id_t= ' . $id . ';';
+        $data = DB::select($sql);
+
+        return $data;
+    }
+
+    public function alunos_na_sala($id)
+    {
+        $data = DB::table('users')
+            ->select('users.id', 'users.name','users.email')
+            ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
+            ->orderBy('name')
+            ->where('sala_user.sala_id', '=', $id)
+            ->get();
+        return $data;
+    }
+
+    public function todos_alunos()
+    {
+        $data = DB::table('users')
+            ->select('users.id', 'users.name','users.email')
+            ->join('role_user', 'role_user.user_id', '=', 'users.id')
+            ->orderBy('name')
+            ->where('role_user.role_id', '=', 3)
+            ->get();
+        // $sql = 'SELECT u.id, u.name from users u
+        // join role_user ru on ru.user_id=u.id
+        // where ru.role_id=3 ORDER BY u.name;';
+
+        return $data;
+    }
+
     //////////////////////////Thiago Grupos método
-
-
 
 
 }

@@ -2,7 +2,10 @@
 
 $('#addAlunoModal').on('show.bs.modal', function (e) {
 
-    mostrarmaisalunos();
+    // mostrarmaisalunos2(0, 1, 5);
+    let idsala1 = $("#id_sala").val();
+    //console.log("id----->  "+idsala1);
+    alunos_sala(idsala1);
     pesquisa();
     mostrargrupos();
 
@@ -17,291 +20,8 @@ $('#addAlunoModal').on('hide.bs.modal', function (e) {
 
 });
 
-
-function mostrarmaisalunos() {
-    var sala = document.getElementById('id_sala').value;
-
-
-
-    $.get("/admin/showaluno", {
-        sala: sala
-    }).done(function (data) {
-
-
-        var contagem = 1;
-        var contagem1 = 0;
-        var max = 7;
-        var i = 0;
-        parse = JSON.parse(data);
-        var paginacao = Math.ceil(parse.length / max);
-
-
-        $('#divtabela').append(
-            '<table id="table' + contagem + '" class="table justify-content-center " style="display:block;">' +
-            '<thead >' +
-            '<tr>' +
-            '<th scope="col">  </th>' +
-            '<th scope="col"> Nome: </th>' +
-            '<th scope="col"> Email: </th>' +
-            '<th scope="col"></th>' +
-            '</tr>' +
-            '</thead>' +
-            '<tbody id="body' + contagem + '" >' +
-            '</tbody>' +
-            '</table>');
-
-
-
-
-
-
-        for (i = 0; i < parse.length; i++) {
-
-
-
-            if (contagem1 > max) {
-                contagem++;
-
-                $('#divtabela').append(
-                    '<table id="table' + contagem + '" class="table container-fluid  justify-content-center" style="display:none;">' +
-                    '<thead >' +
-                    '<tr>' +
-                    '<th scope="col"> </th>' +
-                    '<th scope="col"> Nome: </th>' +
-                    '<th scope="col"> Email: </th>' +
-                    '<th scope="col"></th>' +
-                    '</tr>' +
-                    '</thead>' +
-                    '<tbody id="body' + contagem + '" >' +
-                    '</tbody>' +
-                    '</table>');
-
-
-                contagem1 = 0;
-
-            }
-
-            //if(parse[i].sala_id != sala){
-            if (i > 0) {
-                if (parse[i].id != parse[(i - 1)].id) {
-                    $('#body' + contagem).append(
-                        '<tr>' +
-                        '<td scope="row" id="cod' + parse[i].id + '"></td>' +
-                        '<td>' + parse[i].name + '</td>' +
-                        '<td>' + parse[i].email + '</td>' +
-                        '<td>' + '<a style="color:white;"class="btn btn-primary btn-sm  " id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ') " style="color:white">Adicionar</a>' +
-                        '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
-                        '</tr>'
-
-                    );
-
-                    contagem1++;
-                }
-            } else {
-                $('#body' + contagem).append(
-                    '<tr>' +
-                    '<td scope="row" id="cod' + parse[i].id + '"></td>' +
-                    '<td>' + parse[i].name + '</td>' +
-                    '<td>' + parse[i].email + '</td>' +
-                    '<td>' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno(' + parse[i].id + ')" style="color:white">Adicionar</a>' +
-                    '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
-                    '</tr>'
-
-                );
-
-                contagem1++;
-            }
-
-        }
-
-
-        if (contagem > 5) {
-            for (i = 1; i <= 5; i++) {
-
-                if (i == 1) {
-                    $('.pagination').append(
-                        '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
-
-                } else {
-
-
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
-                }
-
-            }
-
-            $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
-            );
-
-        }
-        if (contagem <= 5) {
-
-            for (i = 1; i <= contagem; i++) {
-
-                if (i == 1) {
-                    $('.pagination').append(
-                        '<li class="page-item active"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
-
-                } else {
-
-
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(' + i + ',' + contagem + ')">' + i + '</a></li>'
-                    );
-                }
-
-            }
-
-            $('.pagination').append(
-                '<li class="page-item"><a class="page-link" onclick="paginar(' + contagem + ',' + contagem + ')">Ultima</a></li>'
-            );
-
-        }
-
-
-    });
-}
-
-function paginar(opcao, data, total) {
-    if (opcao == 0) {
-        $('#divtabela').children().each(function () {
-            $(this).css('display', 'none');
-        });
-
-        $('#table' + data).css('display', 'block');
-
-        $('.pagination').empty();
-
-        if (data == 1) {
-
-            $('.pagination').append(
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 4) + ',' + total + ')">' + (data + 4) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
-            );
-        }
-
-
-        if (data > 2 && data <= (total - 2)) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
-            );
-
-        } else if (data == 2 && data <= (total - 2)) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + total + ',' + total + ')">Ultima</a></li>'
-            );
-        } else if (data == total && (total - 2) > 1) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 4) + ',' + total + ')">' + (data - 4) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>'
-
-            );
-        } else if (data == (total - 1)) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,1' + ',' + total + ')">Primeira</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(0,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(0,' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link active" onclick="paginar(0,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>'
-
-            );
-        }
-    } else {
-        $('#divtabela2').children().each(function () {
-            $(this).css('display', 'none');
-        });
-        $('#divtabela').children().each(function () {
-            $(this).css('display', 'none');
-        });
-
-        $('#table' + data).css('display', 'block');
-
-        $('.pagination').empty();
-
-        if (data == 1) {
-
-            $('.pagination').append(
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 4) + ',' + total + ')">' + (data + 4) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
-            );
-        }
-
-
-        if (data > 2 && data <= (total - 2)) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
-            );
-
-        } else if (data == 2 && data <= (total - 2)) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 2) + ',' + total + ')">' + (data + 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data + 3) + ',' + total + ')">' + (data + 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + total + ',' + total + ')">Ultima</a></li>'
-            );
-        } else if (data == total && (total - 2) > 1) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 4) + ',' + total + ')">' + (data - 4) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>'
-
-            );
-        } else if (data == (total - 1)) {
-            $('.pagination').append(
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,1' + ',' + total + ')">Primeira</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 3) + ',' + total + ')">' + (data - 3) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 2) + ',' + total + ')">' + (data - 2) + '</a></li>' +
-                '<li class="page-item "><a class="page-link" onclick="paginar(1,' + (data - 1) + ',' + total + ')">' + (data - 1) + '</a></li>' +
-                '<li class="page-item active"><a class="page-link active" onclick="paginar(1,' + data + ',' + total + ')">' + data + '</a></li>' +
-                '<li class="page-item "><a class="page-link active" onclick="paginar(1,' + (data + 1) + ',' + total + ')">' + (data + 1) + '</a></li>'
-
-            );
-        }
-    }
-}
-
 function addaluno(id) {
-    var idsala1 = document.getElementById('id_sala').value;
+    let idsala1 = $("#id_sala").val();//document.getElementById('id_sala').value;
     // $.post( "/admin/aluno", { 'id': id } );
 
     var _token = $('meta[name="_token"]').attr('content');
@@ -337,9 +57,6 @@ function addaluno(id) {
     // form action="{{ url('admin/aluno') }}" method="POST"
 }
 
-
-
-
 function pesquisa() {
 
     $('#search').keyup(function () {
@@ -351,7 +68,6 @@ function pesquisa() {
             $(this).css('display', corresponde ? '' : 'none');
         });
     });
-
 }
 
 function mostrargrupos() {
@@ -431,10 +147,6 @@ function fechar() {
     $('.alertainf').hide();
 }
 
-
-
-
-
 ////////////////////////////////////////////////////////Thiago
 //declaração de duas listas, alunos(armazena os alunos selecionados em uma lista para adicionar somente depois de confirmar) && remover(armazena uma lista de alunos selecionados para remover somente depois de confirmar)
 var alunos = new Array();
@@ -450,6 +162,11 @@ $('#alunosModal').on('hide.bs.modal', function (e) {
     $('#divtabela2').empty();
     $('.pagination').empty();
 });
+// $('#alunosModal').on('show.bs.modal', function (e) {
+//     let button=$(e.relatedTarget);
+//     let id= button.data('id');
+//     console.log("-------------------------------------------------->  "+id);
+// });
 
 //função COMPLEXA responsável por: mostrar TODOS os alunos quando for criar grupo, mostrar somente alunos não inseridos no grupo quando for adicionar alunos e montar a paginação(pag1,2,3,4,....)
 function mostrarmaisalunos2(option, option2, jotason) {
@@ -472,7 +189,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
         $.get("/admin/showalunos").done(function (data) {
 
             if (option2 == 0) {
-                remover_alunos_inseridos(data);//Manda o array de todos os alunos para a função que seleciona somente os não presentes no grupo
+                remover_alunos_inseridos(data, 0);//Manda o array de todos os alunos para a função que seleciona somente os não presentes no grupo
                 parse = JSON.parse(jotason);
                 $(".pagination").empty();
             }
@@ -589,7 +306,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
     } else {
         $.get("/admin/showalunos").done(function (data) {
             if (option2 == 0) {
-                remover_alunos_inseridos(data);
+                remover_alunos_inseridos(data, 0);
             }
             else {
                 parse = JSON.parse(jotason);
@@ -875,7 +592,7 @@ function salvarGrupo(id_prof) {
             }
         });
         setTimeout(function () {
-            
+
             location.reload()
         }, 450);
 
@@ -945,12 +662,16 @@ function editTabela(id) {
 
 //Função responsável por abrir um modal e mostrar uma tabela com os alunos pertencentes a este grupo
 function linhaTabela(id) {
-    $("#start_tab").attr("class","nav-link active nomegrupo");
-    $("#second_tab").attr("class","nav-link");
+
+    $(".id_linha").attr('class', '');
+    $("#linha" + id).attr('class', 'id_linha');
+
+    $("#start_tab").attr("class", "nav-link active nomegrupo");
+    $("#second_tab").attr("class", "nav-link");
     $("#linha" + id).attr("data-toggle", "modal");
     $("#linha" + id).attr("data-target", "#alunosModal");
     $("#save-edit").attr("onclick", "check(" + id + ')');
-    
+
     //Altera o nome da primeira TAB para o nome do gurpo
     $.get("/grupos/nomegrupo/" + id).done(
         function (nome) {
@@ -970,13 +691,22 @@ function linhaTabela(id) {
 
 //função que manipula o vetor remove[]-->vetor responsável por salvar uma lista de alunos que serão removidos ao confirmar a alteração
 function removeAluno(option, id, turma) {
+
     if (option == 0) {
+        if(turma==1)
+        {
+            $('.aluno_sala' + id).css('background-color', 'rgba(247,203,203,0.72)');
+        }
         remove.push(id);
         $('#aluno' + id).css('background-color', 'rgba(247,203,203,0.72)');
         $("#checkremove" + id).css('display', 'none');
         $("#checkreturn" + id).css('display', 'block');
     }
     else if (option == 1) {
+        if(turma==1)
+        {
+            $('.aluno_sala' + id).css('background-color', 'white');
+        }
         for (let i = 0; i < remove.length; i++) {
             if (remove[i] === id) {
                 remove.splice(i, 1);
@@ -986,10 +716,15 @@ function removeAluno(option, id, turma) {
         $("#checkremove" + id).css('display', 'block');
         $("#checkreturn" + id).css('display', 'none');
     }
+    console.log(remove);
 }
 
 //função responsável por trocar as tabs
 function troca_tabs(option) {
+    let ident = $(".id_linha").attr("id");
+    let res = ident.split("a");
+
+
     $("#divtabela2").empty();
     if (option == 0) {
         mostrarmaisalunos2(1, 0);
@@ -1008,9 +743,12 @@ function troca_tabs(option) {
         $("#salas_v").hide();
         alunos = [];
     } else if (option == 2) {
+        // console.log("------------------> " + res[1]);
+        $("#t_salas_v").empty();
         $("#salas_v").show();
         $("#divdatabela").hide();
         $('#adicionaralunos').hide();
+        salas_vinculadas(res[1]);
     }
 
 }
@@ -1026,18 +764,6 @@ function check(id) {
         $("#fecharGrupo").attr("onclick", "salvar_alteracoes(" + id + ',1)');
         $(".texto-confirmar").html("Deseja mesmo salvar as alterações?");
     }, 300);
-
-    // console.log("Lista de alunos a serem removidos:")
-    // console.log(remove);
-    // console.log("Lista de alunos a serem adicionados:")
-    // console.log(alunos);
-    // console.log("Id da sala ----->" + id);
-    // if (alunos.length > 0) {
-    //     // console.log("Adicionar");
-    // }
-    // else if (remove.length > 0) {
-    //     // console.log("Remover");
-    // }
 }
 $("#confirmalert").on('hidden.bs.modal', function (event) {
     $("body").addClass('modal-open');
@@ -1096,7 +822,7 @@ function salvar_alteracoes(id, op) {
         else if (alunos.length > 0) {//Adicionar
             console.log("Adicionaraaaaaaaaaaaaaaaaa")
             for (let i = 0; i < alunos.length; i++) {
-                console.log("entrei--->"+i);
+                console.log("entrei--->" + i);
                 $("#addaluno" + alunos[i]).remove();
             }
             $.ajax({
@@ -1151,30 +877,106 @@ function salvar_alteracoes(id, op) {
 }
 
 //Função responsável por mostrar, na aba adicionar alunos, somente alunos que ainda não foram inseridos no grupo selecionado
-function remover_alunos_inseridos(data1) {
-    let teste = $("#save-edit").attr('onclick');
-    let res = teste.split("(");
-    let res2 = res[1];
-    let res3 = res2.split(")");
-    $.get("/grupos/alunosgrupo/" + res3[0]).done(
-        function (data) {
-            var json_original = JSON.parse(data1);
-            for (let i = 0; i < json_original.length; i++) {
-                for (let y = 0; y < data.length; y++) {
-                    if (json_original[i].id == data[y].id) {
-                        json_original.splice(i, 1);
+function remover_alunos_inseridos(data1, option) {
+
+    if (option == 0) {
+        let teste = $("#save-edit").attr('onclick');
+        let res = teste.split("(");
+        let res2 = res[1];
+        let res3 = res2.split(")");
+        $.get("/grupos/alunosgrupo/" + res3[0]).done(
+            function (data) {
+                var json_original = JSON.parse(data1);
+                for (let i = 0; i < json_original.length; i++) {
+                    for (let y = 0; y < data.length; y++) {
+                        if (json_original[i].id == data[y].id) {
+                            json_original.splice(i, 1);
+                        }
                     }
                 }
-            }
-            jsonNovo = JSON.stringify(json_original);
-            mostrarmaisalunos2(0, 1, jsonNovo);
-        });
+                jsonNovo = JSON.stringify(json_original);
+                mostrarmaisalunos2(0, 1, jsonNovo);
+            });
+    }
+    else {
+        $.get("/grupos/alunosgrupo/" + res3[0]).done(
+            function (data) {
+                var json_original = JSON.parse(data1);
+                for (let i = 0; i < json_original.length; i++) {
+                    for (let y = 0; y < data.length; y++) {
+                        if (json_original[i].id == data[y].id) {
+                            json_original.splice(i, 1);
+                        }
+                    }
+                }
+                jsonNovo = JSON.stringify(json_original);
+                mostrarmaisalunos2(0, 1, jsonNovo);
+            });
+    }
 }
-////////////////////////////////////////////////////////Thiago
 
-
-function gruposVinculados(id) {
-    $.get("/vinculogrupo/" + id).done(function (data) {
-        console.log(data);
+function salas_vinculadas(id) {
+    console.log("------------------> " + id);
+    $.get("/grupos/vinculado/" + id).done(function (data) {
+        for (let i = 0; i < data.length; i++) {
+            let linha_grupo = "<tr id='sala" + id + "' scope='row'><td>" + data[i].name + "</td><td><a class='btn btn-primary btn-sm' style='color:white'> Desvincular </a></td></tr>";
+            $("#t_salas_v").append(linha_grupo);
+            // console.log(data[i]);
+        }
     });
 }
+function alunos_sala(id) {
+    // console.log("------------------> " + id);
+    // let json_alunos_sala = $.get("/alunos-sala/" + id).done(function (data) {
+    //     json_alunos_sala = data;
+    //     json_alunos_sala = json_alunos_sala[0];
+    //     // return json_alunos_sala;
+    //     //console.log(json_alunos_sala);
+    // });
+    // let json_todos = $.get("/alunos-todos/").done(function (data1) {
+    //     json_todos = data1;
+    //     //return json_todos;
+    //     //console.log(json_todos);
+    // });
+    let json_alunos_sala = null;
+    let json_todos = null;
+
+    $.ajax({
+        url: "/alunos-todos/",
+        type: 'get',
+        dataType: 'html',
+        async: false,
+        success: function (data) {
+            json_todos = data;
+        }
+    });
+    $.ajax({
+        url: "/alunos-sala/" + id,
+        type: 'get',
+        dataType: 'html',
+        async: false,
+        success: function (data) {
+            json_alunos_sala = data;
+        }
+    });
+    json_alunos_sala = JSON.parse(json_alunos_sala);
+    json_todos = JSON.parse(json_todos);
+
+    
+    for (let i = 0; i < json_todos.length; i++) {
+        for (let y = 0; y < json_alunos_sala.length; y++) {
+            if (json_todos[i].id == json_alunos_sala[y].id) {
+                // console.log(json_todos[i]);
+                // console.log(json_todos[i].name);
+                json_todos.splice(i, 1);
+
+            }
+        }
+    }
+    //console.log(json_todos);
+    // console.log(json_alunos_sala);
+
+    var jsonNovo = JSON.stringify(json_todos);
+    mostrarmaisalunos2(0, 1, jsonNovo);
+}
+////////////////////////////////////////////////////////Thiago

@@ -1362,11 +1362,15 @@ $(document).ready(function () {
 
 
     $('.btnModalClose').click(function () {
-        $('#add_name')[0].reset();
+        // $('#add_name')[0].reset();
         $('.dynamic-added').remove();
         a = 0;
         b = 0;
-        window.location.reload();
+        // window.location.reload();
+        $(".nomegrupo").attr('class','nav-link active nomegrupo');
+        $(".adicionar").attr('class','nav-link adicionar');
+        $(".vincular").attr('class','nav-link vincular');
+        troca_tabs(1);
     })
 
     // Print error Message

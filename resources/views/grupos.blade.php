@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach($turmas as $turma)
                     <tr>
-                        <td id="{{'linha'.$turma->id}}" onclick="linhaTabela({{$turma->id}})" width='90%'>{{$turma->turma}}
+                        <td class="id_linha"id="{{'linha'.$turma->id}}" onclick="linhaTabela({{$turma->id}})" width='90%'>{{$turma->turma}}
                         </td>
                         <td style="text-align: center">
                             <a class="nav-link" id="{{$turma->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -152,12 +152,12 @@
                                                 <a class="nav-link active nomegrupo" onclick="troca_tabs(1)" style="widht:50%; cursor:pointer;" href="" data-toggle="tab"> </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" style="widht:50%;cursor:pointer;" onclick="troca_tabs(0)" data-toggle="tab">
+                                                <a class="nav-link adicionar" style="widht:50%;cursor:pointer;" onclick="troca_tabs(0)" data-toggle="tab">
                                                     Adcionar Alunos
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link " onclick="troca_tabs(2)" style="widht:50%; cursor:pointer;" data-toggle="tab"> Salas Vinculadas</a>
+                                                <a class="nav-link vincular" onclick="troca_tabs(2)" style="widht:50%; cursor:pointer;" data-toggle="tab"> Salas Vinculadas</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -225,24 +225,6 @@
                     </thead>
                     <tbody class="container" id="t_salas_v">
 
-                        <tr>
-                            <th scope="row"> </th>
-                            <td>Mark</td>
-                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a></td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row"> </th>
-                            <td>Jacob</td>
-                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
-
-                        </tr>
-                        <tr>
-                            <th scope="row"> </th>
-                            <td>Larry</td>
-                            <td><a class="btn btn-primary btn-sm" style="color:white"> Desvincular </a>
-
-                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -1,6 +1,6 @@
 @extends('vendor.menu')
 @section('content')
-<div class="container" >
+<div class="container">
   <div class="row justify-content-center">
     <input type="hidden" value="{{$id}}" id="id_sala">
     <div class="col-md-12">
@@ -31,22 +31,23 @@
               <tbody>
 
                 @foreach($data as $aluno)
-                <tr>
+                <tr class="{{'aluno_sala'.$aluno->id}}">
                   <td>{{$aluno->name}}</td>
                   <td>
                     {{$aluno->email}}
 
                   </td>
                   <td>
-<!--
+                    <!--
                     <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) \'{{$aluno->name}}\'? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
                       
 
                     </a>
--->
-                      
-                      
-                      <a data-toggle="modal" data-target="#removerAlunoModal" data-id="{{$aluno->id}}" data-nome="{{$aluno->name}}" data-sala="{{$id}}" class="dropdown-item" id="{{'aluno'.$aluno->id}}"><i class="material-icons">clear</i></a>
+-->                 
+<!-- id="{{'checkremove'.$aluno->id}}" -->
+                    <i onclick="removeAluno(1,{{$aluno->id}},1)" id="{{'checkreturn'.$aluno->id}}" style="display: none;" class="fa fa-undo rotationteste" aria-hidden="true"></i>
+                    <i class="material-icons rotationteste" id="{{'checkremove'.$aluno->id}}" style="color:red;" onclick="removeAluno(0,{{$aluno->id}},1)"></i>
+                    
                   </td>
                 </tr>
                 @endforeach
@@ -71,12 +72,12 @@
 
         <div class="card card-nav-tabs card-plain">
           <div class="card-header card-header-primary">
-            
+
             <div class="nav-tabs-navigation container">
               <div class="row justify-content-between">
 
                 <div class="nav-tabs-wrapper">
-                  
+
                   <ul class="nav nav-tabs mb-3 col" id="pills-tab" role="tablist">
                     <li class="nav-item">
                       <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#alunos" role="tab" aria-controls="pills-home" aria-selected="true">Alunos</a>
@@ -88,18 +89,18 @@
 
                     </li>
                   </ul>
-                  
+
                 </div>
 
-                
-                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close" >
-                 <span aria-hidden="true" >&times;</span>
-               </button>
-             </div>
-           </div>
-         </div>
-       </div>
-       
+
+                <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
         <div class="modal-body">
@@ -124,7 +125,7 @@
           </div>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="alunos" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="tab-content" id="divtabela">
+              <div class="tab-content" id="divtabela2">
 
               </div>
               <div class="row justify-content-center">
@@ -135,24 +136,24 @@
                 </nav>
               </div>
             </div>
-          
+
             <div class="tab-pane fade " id="grupos" role="tabpanel" aria-labelledby="nav-home-tab">
 
               <div class="tab-content" id="divtabelagrupo">
-               
 
-           </div>
-         </div>
-         </div>
-         
-         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-dismiss="modal">Sair</button>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-dismiss="modal">Sair</button>
+          </div>
+
+        </div>
       </div>
-
     </div>
   </div>
-</div>
-</div>
 
 
 
@@ -184,33 +185,32 @@
   </div>
 
 
-    
-    
-    <!--    CONFIRMAÇÃO DELETAR ALUNO-->
-    <div class="modal fade bd-example-modal-sm" id="removerAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+  <!--    CONFIRMAÇÃO DELETAR ALUNO-->
+  <div class="modal fade bd-example-modal-sm" id="removerAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tituloModal">Você realmente deseja remover o usuário desta sala?</h5>
-                <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row align-self-center">
-                    <button type="button" id="fecharModal" data-dismiss="modal" class="btn btn-secundary col">Cancelar</button>
-                    <a class="btn col btn-primary larcom" id="confirmarRemoverAluno">Confirmar</a>
-                </div>
-            </div>
-
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModal">Você realmente deseja remover o usuário desta sala?</h5>
+          <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <div class="row align-self-center">
+            <button type="button" id="fecharModal" data-dismiss="modal" class="btn btn-secundary col">Cancelar</button>
+            <a class="btn col btn-primary larcom" id="confirmarRemoverAluno">Confirmar</a>
+          </div>
+        </div>
+
+      </div>
     </div>
-</div>
-
-
-  
+  </div>
 
 
 
-    @endsection
-    
+
+
+
+  @endsection
