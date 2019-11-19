@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Charts\PerguntaChart;
 use App\User;
 use App\Sala;
 use App\Pergunta;
@@ -40,6 +42,111 @@ class EstatisticaController extends Controller
      return view ('home')->with(['data' => $resultado]);
 
    }
+    
+        public function grafico()
+    {
+        
+        
+            
+            
+            //----------------RESPOSTAS POR PERGUNTA-------------------//
+        $data =  array(); 
+        
+        $id = (int) Auth::user()->id;
+        
+        $salas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
+        
+        $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' ORDER BY p.ordem';
+
+        
+        $salas = DB::select($sql);
+
+        foreach($salas as $sala){
+            array_push($data,$sala->pergunta);
+        }
+        
+
+        $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' GROUP BY pr.perg_id ORDER BY p.ordem';
+
+        
+        $perguntas = DB::select($sql);$data_perg = array();
+        foreach($perguntas as $pergunta){
+            array_push($data_perg,$pergunta->total);
+        }
+
+        
+        $chart = new PerguntaChart;
+
+        
+         $chart->labels($data);
+        $chart->dataset('Quantidade de respostas por pergunta', 'bar', $data_perg)->options([
+            'backgroundColor' => 'rgba(0, 214, 189, 0.71)',
+        ]);
+
+            
+            //----------------ACERTOS POR PERGUNTA-------------------//
+            
+            
+            /*       SQL??????????
+            
+            
+            
+        select user_id, wrong_count from data
+        where wrong_count is not null
+        and maze_id = 1
+        group by user_id, question_id
+        order by id;
+
+
+            
+            */
+            
+        /*    
+            
+        $data =  array(); 
+        
+        $id = (int) Auth::user()->id;
+        
+        $salas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
+        
+        $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' ORDER BY p.ordem';
+
+        
+        $salas = DB::select($sql);
+
+        foreach($salas as $sala){
+            array_push($data,$sala->pergunta);
+        }
+        
+
+        $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' GROUP BY pr.perg_id ORDER BY p.ordem';
+
+        
+        $perguntas = DB::select($sql);$data_perg = array();
+        foreach($perguntas as $pergunta){
+            array_push($data_perg,$pergunta->total);
+        }
+
+        
+        $chart = new PerguntaChart;
+
+        
+         $chart->labels($data);
+        $chart->dataset('Quantidade de respostas por pergunta', 'bar', $data_perg)->options([
+            'backgroundColor' => 'rgba(0, 214, 189, 0.71)',
+        ]);
+
+            
+            
+        */    
+            
+        
+        
+        return view('grafico', [ 'usersChart' => $chart ] );
+        
+        
+        
+    }
 
     /**
      * Show the form for creating a new resource.
