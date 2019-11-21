@@ -285,4 +285,3 @@ Route::get('/alunos-todos', 'Admin\UserController@todos_alunos');
 
 
 
-

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Pergunta;
 use App\Path;
 use App\Resposta;
@@ -27,19 +28,7 @@ class PerguntaRespostaController extends Controller
     // }
     
     
-    public function grafico()
-    {
-        $data = collect([]); // Could also be an array
 
-            // Could also be an array_push if using an array rather than a collection.
-            $data->push(Pergunta::where('sala_id',"=","1")->count());
-
-
-        $chart = new PerguntaChart;
-        $chart->labels(['1','2','3','4','5']);
-        $chart->dataset('My dataset', 'line', $data);
-        return view('grafico', [ 'usersChart' => $chart ] );
-    }
     
     
     public function buscar(Request $request){

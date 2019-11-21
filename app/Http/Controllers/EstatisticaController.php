@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Charts\PerguntaChart;
 use App\User;
 use App\Sala;
 use App\Pergunta;
@@ -40,6 +42,121 @@ class EstatisticaController extends Controller
      return view ('home')->with(['data' => $resultado]);
 
    }
+    
+        public function grafico($sala_id)
+    {
+        
+        
+            
+            
+            //----------------RESPOSTAS POR PERGUNTA-------------------//
+        $data =  array(); 
+        
+        $id = (int) Auth::user()->id;
+        
+        $perguntas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
+        
+        $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' AND p.sala_id = '.$sala_id.' ORDER BY p.ordem';
+
+        
+        $salas = DB::select($sql);
+
+        foreach($perguntas as $pergunta){
+            array_push($data,$pergunta->pergunta);
+        }
+        
+
+        $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' AND s.id = '.$sala_id.' GROUP BY pr.perg_id ORDER BY p.ordem';
+
+        
+        $totais = DB::select($sql);$data_perg = array();
+        foreach($totais as $total){
+            array_push($data_perg,$total->total);
+        }
+
+        
+        $chart = new PerguntaChart;
+
+        
+         $chart->labels($data);
+        $chart->dataset('Quantidade de respostas por pergunta', 'bar', $data_perg)->options([
+            'backgroundColor' => 'rgba(0, 214, 189, 0.71)',
+        ]);
+
+            
+            //----------------ACERTOS POR PERGUNTA-------------------//
+            
+            
+            $sala = DB::table('salas')->where('id',$sala_id)->get();
+        
+            $y = 0;
+            $w = 0;
+            
+            $pergs = array();
+
+                    
+                    $perguntas = DB::table('perguntas')->where('sala_id','=',$sala[0]->id)->get();
+                    foreach($perguntas as $pergunta){
+                        
+                        for($i = 0; $i<3 ; $i++){
+                            $sql =  'select count(d.wrong_count) as total from data d';
+                            $sql .= ' JOIN perguntas p ON p.id = d.question_id';
+                            $sql .= ' WHERE d.event = "question_end" AND wrong_count = ' . $i . ' AND p.sala_id = '.$sala[0]->id.' AND question_id = ' . $pergunta->id;
+                            $sql .= ' GROUP BY d.question_id;';
+                            if($i==0){
+                                $qtd0 = DB::select($sql);
+                                if($qtd0 == NULL)
+                                    $qtd0 = 0;
+                                else
+                                    $qtd0 = $qtd0[0]->total;
+                            }elseif($i==1){
+                                $qtd1 = DB::select($sql);
+                                if($qtd1 == NULL)
+                                    $qtd1 = 0;
+                                else
+                                    $qtd1 = $qtd1[0]->total;
+                            }else{
+                                $qtd2 = DB::select($sql);
+                                if($qtd2 == NULL)
+                                    $qtd2 = 0; 
+                                else
+                                    $qtd2 = $qtd2[0]->total;
+                            }
+                        }
+                        
+                        $pergs[$y] = ['id' => $pergunta->id, 'pergunta' => $pergunta->pergunta, 'wrong_count' => array('qtd0' => $qtd0, 'qtd1' => $qtd1, 'qtd2' => $qtd2)];
+                        
+                        $y++;
+                    }
+                    
+                    
+                   $grafico[$w] = ['sala_id' => $sala[0]->id, 'sala_nome' => $sala[0]->name, 'sala_pergs' => $pergs];
+                    $w++;
+
+            
+            
+            $json = json_encode($grafico);
+           
+            
+            /*       SQL??????????
+            
+            
+            select user_id, wrong_count, question_id from data
+            where wrong_count is not null
+            and question_id is not null
+            and event='question_end'
+            and maze_id = 1
+            order by id;
+
+            
+            */
+            
+        
+        return view('grafico', [ 'usersChart' => $chart , "acertos" => $json] );
+        
+        
+        
+    }
 
     /**
      * Show the form for creating a new resource.

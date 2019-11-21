@@ -288,7 +288,7 @@
                         ?>
 
                         <div class="col-12 col-md-auto">
-                            <button type="button" align="right" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alteraModal" style="width:100%;">Estatistica</button>
+                            <a align="right" class="btn btn-primary btn-sm" style="width:100%;" href="{{url('admin/grafico/'.$id)}}">Estatistica</a>
                         </div>
 
                         @if($sala->public==0)
