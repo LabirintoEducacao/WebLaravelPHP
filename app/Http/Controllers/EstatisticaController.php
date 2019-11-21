@@ -43,7 +43,7 @@ class EstatisticaController extends Controller
 
    }
     
-        public function grafico()
+        public function grafico($sala_id)
     {
         
         
@@ -54,24 +54,24 @@ class EstatisticaController extends Controller
         
         $id = (int) Auth::user()->id;
         
-        $salas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
+        $perguntas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
         
-        $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' ORDER BY p.ordem';
+        $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' AND p.sala_id = '.$sala_id.' ORDER BY p.ordem';
 
         
         $salas = DB::select($sql);
 
-        foreach($salas as $sala){
-            array_push($data,$sala->pergunta);
+        foreach($perguntas as $pergunta){
+            array_push($data,$pergunta->pergunta);
         }
         
 
-        $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' GROUP BY pr.perg_id ORDER BY p.ordem';
+        $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' AND s.id = '.$sala_id.' GROUP BY pr.perg_id ORDER BY p.ordem';
 
         
-        $perguntas = DB::select($sql);$data_perg = array();
-        foreach($perguntas as $pergunta){
-            array_push($data_perg,$pergunta->total);
+        $totais = DB::select($sql);$data_perg = array();
+        foreach($totais as $total){
+            array_push($data_perg,$total->total);
         }
 
         
@@ -87,28 +87,56 @@ class EstatisticaController extends Controller
             //----------------ACERTOS POR PERGUNTA-------------------//
             
             
-            $salas = DB::table('salas')->where('prof_id',Auth::user()->id)->get();
+            $sala = DB::table('salas')->where('id',$sala_id)->get();
+        
+            $y = 0;
+            $w = 0;
             
-            $i = 0;
-            
-            
-            if($salas>0){
-                
-                foreach($salas as $sala){
+            $pergs = array();
+
                     
-                    $sql =  'select user_id, wrong_count, question_id from data';
-                    $sql += 'where wrong_count is not null';
-                    $sql += 'and question_id is not null';
-                    $sql += 'and event="question_id"';
-                    $sql += 'and maze_id = ' . $sala->id;
-                    $sql += 'order by id';
+                    $perguntas = DB::table('perguntas')->where('sala_id','=',$sala[0]->id)->get();
+                    foreach($perguntas as $pergunta){
+                        
+                        for($i = 0; $i<3 ; $i++){
+                            $sql =  'select count(d.wrong_count) as total from data d';
+                            $sql .= ' JOIN perguntas p ON p.id = d.question_id';
+                            $sql .= ' WHERE d.event = "question_end" AND wrong_count = ' . $i . ' AND p.sala_id = '.$sala[0]->id.' AND question_id = ' . $pergunta->id;
+                            $sql .= ' GROUP BY d.question_id;';
+                            if($i==0){
+                                $qtd0 = DB::select($sql);
+                                if($qtd0 == NULL)
+                                    $qtd0 = 0;
+                                else
+                                    $qtd0 = $qtd0[0]->total;
+                            }elseif($i==1){
+                                $qtd1 = DB::select($sql);
+                                if($qtd1 == NULL)
+                                    $qtd1 = 0;
+                                else
+                                    $qtd1 = $qtd1[0]->total;
+                            }else{
+                                $qtd2 = DB::select($sql);
+                                if($qtd2 == NULL)
+                                    $qtd2 = 0; 
+                                else
+                                    $qtd2 = $qtd2[0]->total;
+                            }
+                        }
+                        
+                        $pergs[$y] = ['id' => $pergunta->id, 'pergunta' => $pergunta->pergunta, 'wrong_count' => array('qtd0' => $qtd0, 'qtd1' => $qtd1, 'qtd2' => $qtd2)];
+                        
+                        $y++;
+                    }
                     
-                    $wrong_count = DB::select($sql);
                     
-                }
-                
-            }
+                   $grafico[$w] = ['sala_id' => $sala[0]->id, 'sala_nome' => $sala[0]->name, 'sala_pergs' => $pergs];
+                    $w++;
+
             
+            
+            $json = json_encode($grafico);
+           
             
             /*       SQL??????????
             
@@ -123,48 +151,8 @@ class EstatisticaController extends Controller
             
             */
             
-        /*    
-            
-        $data_wrong_count =  array(); 
         
-        $id = (int) Auth::user()->id;
-        
-        $salas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
-        
-        $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' ORDER BY p.ordem';
-
-        
-        $salas = DB::select($sql);
-
-        foreach($salas as $sala){
-            array_push($data,$sala->pergunta);
-        }
-        
-
-        $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' GROUP BY pr.perg_id ORDER BY p.ordem';
-
-        
-        $perguntas = DB::select($sql);$data_perg = array();
-        foreach($perguntas as $pergunta){
-            array_push($data_perg,$pergunta->total);
-        }
-
-        
-        $chart = new PerguntaChart;
-
-        
-         $chart->labels($data);
-        $chart->dataset('Quantidade de respostas por pergunta', 'bar', $data_perg)->options([
-            'backgroundColor' => 'rgba(0, 214, 189, 0.71)',
-        ]);
-
-            
-            
-        */    
-            
-        
-        
-        return view('grafico', [ 'usersChart' => $chart ] );
+        return view('grafico', [ 'usersChart' => $chart , "acertos" => $json] );
         
         
         

@@ -279,7 +279,7 @@
                         ?>
 
                         <div class="col-12 col-md-auto">
-                            <a align="right" class="btn btn-primary btn-sm" style="width:100%;" href="{{url('admin/grafico')}}">Estatistica</a>
+                            <a align="right" class="btn btn-primary btn-sm" style="width:100%;" href="{{url('admin/grafico/'.$id)}}">Estatistica</a>
                         </div>
 
                         @if($sala->public==0)

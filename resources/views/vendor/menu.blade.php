@@ -230,6 +230,20 @@
                 
             })
         
+        $('#qntdeTentativas').change(function(){
+                
+                if($('#qntdeTentativas').is(":checked") == true){
+                    
+                    $('#qntdeTentativasDiv').css('display','block');
+                    
+                }else{
+                    
+                    $('#qntdeTentativasDiv').css('display','none');
+                    
+                }
+                
+            })
+        
         
         $('#removerAlunoModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
