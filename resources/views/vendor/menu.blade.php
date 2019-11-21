@@ -12,7 +12,7 @@
 =========================================================
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-
+ 
 <!DOCTYPE html>
 <html lang="en" id="abrirmenu">
 
@@ -77,7 +77,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{url('/grupos/'.Auth::user()->id)}}">
+                        <a class="nav-link" href="{{url('/grupos')}}">
                             <i class="material-icons">group</i>
                             Grupos
                         </a>
@@ -256,7 +256,7 @@
 
             var modal = $(this);
 
-            var url = '{{ env("APP_URL") }}/admin/deletar-aluno/' + id + '/' + sala;
+            var url = '/admin/deletar-aluno/' + id + '/' + sala;
 
 
 
@@ -280,9 +280,7 @@
             var id = button.data('id');
             var perg = button.data('pergunta');
 
-
-
-            var url = '{{ env("APP_URL") }}/admin/visualizar/deletar-pergunta/' + id;
+            var url = '/admin/visualizar/deletar-pergunta/' + id;
 
 
             var modal = $(this);

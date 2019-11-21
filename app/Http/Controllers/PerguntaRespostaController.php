@@ -518,53 +518,32 @@ if($request->perg_id == 0){
                      ///////////Path////////////
  $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
- $largura1 = $request->largura;
  $disponivel = true;
     
     if($ambiente_perg==1){
         
-        $tamanho_perg = 3;
-        $largura_perg = 2;
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
         
     }else{
 
          if($tamanho1 == 1 ){
             $tamanho_perg = rand(1,3);
-            
+            $largura_perg = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
             $tamanho_perg = rand(4,6);
-           
+            $largura_perg = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
             $tamanho_perg = rand(7,10);
-            
+            $largura_perg = rand(7,10);
 
          }
-
-          if($largura1 == 1 ){
-
-                $largura_perg = rand(1,3);
-            }
-
-
-          if($largura1 == 2 ){
-
-                $largura_perg = rand(4,6);
-            }
-
-
-          if($largura1 == 3 ){
-
-                $largura_perg = rand(7,10);
-            }
-
-
-
     }
  
                     ////////Tabela Pergunta ////////////////////////
@@ -625,52 +604,30 @@ if($request->perg_reforco==1){
 
                      //  ////////////////Patch errado da Pergunta/////////
  $ambiente_perg = $request->answer_boolean_perg;
- $tamanho2 = $request->tamanho_perg;
- $largura2 = $request->largura_perg;
+ $tamanho1 = $request->tamanho_perg;
  $disponivel = true;
     if($ambiente_perg==1){
-        $tamanho_perg = 3;
-        $largura_perg = 2;
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
     }else{
 
-         if($tamanho2 == 1 ){
+         if($tamanho1 == 1 ){
             $tamanho_perg = rand(1,3);
-            
-
-         }
-
-         if($tamanho2 == 2 ){
-            $tamanho_perg = rand(4,6);
-            
-
-         }
-
-          if($tamanho2 == 3 ){
-            $tamanho_perg = rand(7,10);
-            
-
-         }
-
-         if($largura2 == 1 ){
-           
             $largura_perg = rand(1,3);
 
          }
 
-         if($largura2 == 2 ){
-            
+         if($tamanho1 == 2 ){
+            $tamanho_perg = rand(4,6);
             $largura_perg = rand(4,6);
 
          }
 
-         if($largura2 == 3 ){
+          if($tamanho1 == 3 ){
+            $tamanho_perg = rand(7,10);
             $largura_perg = rand(7,10);
 
          }
-
-
-
-
     }
  $disponivel_perg = false;
  
@@ -691,48 +648,30 @@ if($request->perg_reforco==1){
                      ////////////////PatchReforco/////////
  $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
- $largura_ref1 = $request->largura_ref;
+ $largura_ref = 0;
     
     
     if($ambiente_ref==1){
-        $tamanho_ref = 3;
-        $largura_ref = 2;
+        $tamanho_ref = rand(1,3);
+        $largura_ref = rand(1,3);
     }else{
          if($tamanho_ref1 == 1 ){
             $tamanho_ref = rand(1,3);
-        
+            $largura_ref = rand(1,3);
+
          }
 
          if($tamanho_ref1 == 2 ){
             $tamanho_ref = rand(4,6);
+            $largura_ref = rand(4,6);
 
          }
 
           if($tamanho_ref1 == 3 ){
             $tamanho_ref = rand(7,10);
-           
-
-         }
-
-         if($largura_ref1 == 1 ){
-           
-            $largura_ref = rand(1,3);
-
-         }
-
-         if($largura_ref1 == 2 ){
-           
-            $largura_ref = rand(4,6);
-
-         } 
-
-         if($largura_ref1 == 3 ){
-           
             $largura_ref = rand(7,10);
 
-         } 
-
-
+         }
     }
 
  $disponivel_ref = true;
@@ -799,16 +738,6 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     ->where('id','=', $request->perg_id)
     ->update(['tipo_perg' => $request->question_type,'pergunta' => $request->pergunta,'room_type' => $request->room_type]);
     
-    /*$tem_reforco = DB::table('perg_ref')
-    ->where('perg_id','=', $request->perg_id)
-    ->get();
-    if(count($tem_reforco)>0){
-        if($request->room_type!="hope_door"){
-            $deleteRef = Pergunta::find($tem_reforco[0]->id);
-            $deleteRef->delete();
-        }
-    }*/
-    
     $respostas = DB::table('respostas')
     ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
     ->where('perg_resp.perg_id','=', $request->perg_id)
@@ -870,41 +799,28 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     
     $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
- $largura1 = $request->largura;
     if($ambiente_perg==1){
-        $tamanho_perg = 3;
-        $largura_perg = 2;
-      
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
     }else{
 
          if($tamanho1 == 1 ){
             $tamanho_perg = rand(1,3);
-       
+            $largura_perg = rand(1,3);
 
          }
 
          if($tamanho1 == 2 ){
             $tamanho_perg = rand(4,6);
-           
+            $largura_perg = rand(4,6);
 
          }
 
           if($tamanho1 == 3 ){
             $tamanho_perg = rand(7,10);
-         
+            $largura_perg = rand(7,10);
 
          }
-
-         if($largura1 == 1 ){
-           $largura_perg = rand(1,3);
-       }
-       if($largura1 == 2 ){
-           $largura_perg = rand(4,6);
-       }
-       if($largura1 == 3 ){
-           $largura_perg = rand(7,10);
-       }
-
     }
     DB::table('paths')
     ->where('id','=', $request->path_id)
@@ -925,100 +841,63 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
       $corret_ref = explode(',', $request->correto_ref);
       $resp_ref_id = $request->resp_ref_id;
         
-$ambiente_ref = $request->answer_boolean_ref;
+        $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
-$largura_ref1 = $request->largura_ref;
-    
-    
     if($ambiente_ref==1){
-        $tamanho_ref = 3;
-        $largura_ref = 2;
+        $tamanho_ref = rand(1,3);
+        $largura_ref = rand(1,3);
     }else{
+
          if($tamanho_ref1 == 1 ){
             $tamanho_ref = rand(1,3);
-        
-         }
-
-         if($tamanho_ref1 == 2 ){
-            $tamanho_ref = rand(4,6);
-
-         }
-
-          if($tamanho_ref1 == 3 ){
-            $tamanho_ref = rand(7,10);
-           
-
-         }
-
-         if($largura_ref1 == 1 ){
-           
             $largura_ref = rand(1,3);
 
          }
 
-         if($largura_ref1 == 2 ){
-           
+         if($tamanho1 == 2 ){
+            $tamanho_ref = rand(4,6);
             $largura_ref = rand(4,6);
 
-         } 
+         }
 
-         if($largura_ref1 == 3 ){
-           
+          if($tamanho1 == 3 ){
+            $tamanho_ref = rand(7,10);
             $largura_ref = rand(7,10);
 
-         } 
-
-
+         }
     }
       
-
       DB::table('paths')
       ->where('id','=', $request->path_reforco_id)
       ->update(['ambiente_perg' => $ambiente_ref,'tamanho' => $tamanho_ref,'largura' => $largura_ref]);
         
         $ambienteB_perg = $request->answer_boolean_perg;
  $tamanho1 = $request->tamanho_perg;
- $largura1 = $request->largura_perg;
  $disponivel = true;
-
     if($ambienteB_perg==1){
-        $tamanho = 3;
-        $largura = 2;
+        $tamanho = rand(1,3);
+        $largura = rand(1,3);
     }else{
 
          if($tamanho1 == 1 ){
             $tamanho = rand(1,3);
-          
+            $largura = rand(1,3);
+
          }
 
          if($tamanho1 == 2 ){
             $tamanho = rand(4,6);
-            
+            $largura = rand(4,6);
+
          }
 
           if($tamanho1 == 3 ){
             $tamanho = rand(7,10);
-           
+            $largura = rand(7,10);
 
          }
-
-         if($largura1 == 1){
-             $largura = rand(1,3);
-        
     }
       
-      if($largura1 == 1){
-         $largura = rand(4,6);
-    }
-      
-      if($largura1 == 1){
-         $largura = rand(7,10);
-    }
-      
-
-    }
-
-
       DB::table('paths')
       ->where('id','=', $request->path_errado_id)
       ->update(['ambiente_perg' => $ambienteB_perg,'tamanho' => $tamanho,'largura' => $largura]);
@@ -1113,45 +992,30 @@ $largura_ref1 = $request->largura_ref;
               //  ////////////////Patch errado da Pergunta/////////
  $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
- $largura1 = $request->largura;
  $disponivel = true;
- $largura = 0;
-
+      $largura = 0;
     if($ambiente_perg==1){
-        $tamanho_perg = 3;
-        $largura_perg = 2;
+        $tamanho_perg = rand(1,3);
+        $largura_perg = rand(1,3);
     }else{
 
          if($tamanho1 == 1 ){
-            $tamanho = rand(1,3);
-          
+            $tamanho_perg = rand(1,3);
+            $largura_perg = rand(1,3);
+
          }
 
          if($tamanho1 == 2 ){
-            $tamanho = rand(4,6);
-            
+            $tamanho_perg = rand(4,6);
+            $largura_perg = rand(4,6);
+
          }
 
           if($tamanho1 == 3 ){
-            $tamanho = rand(7,10);
-           
+            $tamanho_perg = rand(7,10);
+            $largura_perg = rand(7,10);
 
          }
-
-         if($largura1 == 1){
-             $largura = rand(1,3);
-        
-    }
-      
-      if($largura1 == 1){
-         $largura = rand(4,6);
-    }
-      
-      if($largura1 == 1){
-         $largura = rand(7,10);
-    }
-      
-
     }
  $disponivel_perg = false;
  
@@ -1172,46 +1036,30 @@ $largura_ref1 = $request->largura_ref;
                      ////////////////PatchReforco/////////
   $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
-$largura_ref1 = $request->largura_ref;
  $largura_ref = 0;
     
     
     if($ambiente_ref==1){
-        $tamanho_ref = 3;
-        $largura_ref = 2;
+        $tamanho_ref = rand(1,3);
+        $largura_ref = rand(1,3);
     }else{
          if($tamanho_ref1 == 1 ){
             $tamanho_ref = rand(1,3);
             $largura_ref = rand(1,3);
+
          }
 
          if($tamanho_ref1 == 2 ){
             $tamanho_ref = rand(4,6);
-           
+            $largura_ref = rand(4,6);
 
          }
 
           if($tamanho_ref1 == 3 ){
             $tamanho_ref = rand(7,10);
-            
-         }
-
-         if($largura_ref1 == 1 ){
-            $largura_ref = rand(1,3);
+            $largura_ref = rand(7,10);
 
          }
-
-         if($largura_ref1 == 2 ){
-             $largura_ref = rand(4,6);
-            
-         }
-
-         if($largura_ref1 == 3 ){
-             $largura_ref = rand(7,10);
-            
-         }
-
-
     }
  $disponivel_ref = true;
 
@@ -1310,15 +1158,12 @@ else{
 }
 
 
-
-
-
-
 return response()->json(['success' => 'Pergunta alterada com sucesso!']);
 
 }
 }
 }
+
 
     /**
      * Display the specified resource.
@@ -1425,24 +1270,6 @@ return response()->json(['success' => 'Pergunta alterada com sucesso!']);
     );
     return redirect('admin/visualizar/'. $perg->sala_id)->with($notification);
 }
-
-public function destroyresp($id)
-{
-    $resp = DB::table('respostas')
-    ->select('sala_id')
-    ->where('id', '=', $id)
-    ->get();
-         //$resposta = Respostas::find($id);
-    DB::table('perg_resp')->where('resp_id', '=', $id)->delete();
-    DB::table('respostas')->where('id', '=', $id)->delete();
-    $notification = array(
-        'message' => 'Resposta deletada com sucesso!',
-        'alert-type' => 'danger'
-    );
-    return redirect('admin/visualizar/'. $resp[0]->sala_id)->with($notification);
-}
-
-
 
 public function indexJson($id)
 {
