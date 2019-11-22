@@ -119,7 +119,7 @@ Route::prefix('/admin')->group(function () {
     /*Rotas da pergunta e Resposta*/
     Route::get('/teste/{id}', 'PerguntaRespostaController@index2')->middleware(['auth', 'auth.admin']);
 
-    Route::get('/grafico/{id}', 'EstatisticaController@grafico');
+    Route::get('/grafico', 'PerguntaRespostaController@grafico');
 
     Route::post('/visualizar/editar-sala/{id}', 'PerguntaRespostaController@store');
     Route::post('/editar-resp', 'PerguntaRespostaController@edit_resp');
