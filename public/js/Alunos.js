@@ -333,9 +333,9 @@ function mostrarmaisalunos2(option, option2, jotason) {
                     '<thead >' +
                     '<tr>' +
                     '<th scope="col" >  </th>' +
-                    '<th scope="col" > Nome: </th>' +
-                    '<th scope="col" > Email: </th>' +
-                    '<th scope="col" ></th>' +
+                    '<th scope="col" > Nome </th>' +
+                    '<th scope="col" > Email </th>' +
+                    '<th scope="col" > Ações </th>' +
                     '</tr>' +
                     '</thead>' +
                     '<tbody id="body' + contagem + '" >' +
@@ -352,7 +352,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
                             '<th scope="col" > </th>' +
                             '<th scope="col"> Nome: </th>' +
                             '<th scope="col" > Email: </th>' +
-                            '<th scope="col" ></th>' +
+                            '<th scope="col" > Ações </th>' +
                             '</tr>' +
                             '</thead>' +
                             '<tbody id="body' + contagem + '" >' +
@@ -428,13 +428,13 @@ function mostrarmaisalunos2(option, option2, jotason) {
                 if (option2 != 0) {
                     let paginacao = Math.ceil(parse.length / max);
                     $('#divtabela2').append(
-                        '<table id="table' + contagem + '" class="table" style="display:block;">' +
-                        '<thead >' +
+                        '<table id="table' + contagem + '" class="table table-hover" style="display:block;">' +
+                        '<thead class="text-primary">' +
                         '<tr>' +
                         '<th scope="col" >  </th>' +
-                        '<th scope="col" > Nome: </th>' +
-                        '<th scope="col" > Email: </th>' +
-                        '<th scope="col" ></th>' +
+                        '<th scope="col" > Alunos </th>' +
+                        '<th scope="col" > Email </th>' +
+                        '<th scope="col" > Ações </th>' +
                         '</tr>' +
                         '</thead>' +
                         '<tbody id="body' + contagem + '" >' +
@@ -1053,7 +1053,7 @@ function salas_vinculadas(id) {
     console.log("------------------> " + id);
     $.get("/grupos/vinculado/" + id).done(function (data) {
         for (let i = 0; i < data.length; i++) {
-            let linha_grupo = "<tr id='sala" + id + "' scope='row'><td>" + data[i].name + "</td><td><a class='btn btn-primary btn-sm' style='color:white'> Desvincular </a></td></tr>";
+            let linha_grupo = "<tr id='sala" + id + "' scope='row'><td>" + data[i].name + "</td><td></td><td><a class='btn btn-primary btn-sm' style='color:white'> Desvincular </a></td></tr>";
             $("#t_salas_v").append(linha_grupo);
             // console.log(data[i]);
         }
