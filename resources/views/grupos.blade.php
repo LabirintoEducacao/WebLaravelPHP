@@ -69,18 +69,40 @@
 
 <!-- Modal ADD Grupo -->
 <div class="modal fade bd-example-modal-lg" id="addGrupoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Cadastro de Grupos</h5>
                 <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+            </div> -->
+
+              <div class="card card-nav-tabs card-plain">
+                <div class="card-header card-header-primary">
+                    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                    <div class="row align-items-center">
+                        <div class="col-11">
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                   <h5 class="modal-title" id="exampleModalLabel" style="font-size: 170%">Cadastro de Grupos</h5>
+                                
+                                </div>
+                            </div>
+                        </div>
+                     <div class="col-1">
+                            <button type="submit" class="close btnModalClose" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                </div>
+
+                </div>
             </div>
             @csrf
 
-            <div class="modal-body" style="margin-left: 5%;margin-right:1%;margin-top:3%">
-                <div class="form-group">
+            <div class="modal-body">
+                <div class="form-group" style="margin-top: -20px;">
                     <label for="nome" display="inline">Nome do Grupo:</label>
                     <input required type="text" name="nome" id="nome" class="form-control has-feedback {{ $errors->has('nome') ? 'has-error bg-primary' : '' }}" required aria-describeby="grupoHelp">
 
