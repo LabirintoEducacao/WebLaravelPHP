@@ -10,7 +10,6 @@
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addAlunoModal">
               Adicionar aluno
             </button>
-
           </h4>
           <p class="card-category"></p>
         </div>
@@ -24,7 +23,7 @@
                 <th>
                   E-mail
                 </th>
-                <th>
+                <th style="float:right;">
                   Remover
                 </th>
               </thead>
@@ -43,11 +42,11 @@
                       
 
                     </a>
--->                 
-<!-- id="{{'checkremove'.$aluno->id}}" -->
-                    <i onclick="removeAluno(1,{{$aluno->id}},1)" id="{{'checkreturn'.$aluno->id}}" style="display: none;" class="fa fa-undo rotationteste" aria-hidden="true"></i>
-                    <i class="material-icons rotationteste" id="{{'checkremove'.$aluno->id}}" style="color:red;" onclick="removeAluno(0,{{$aluno->id}},1)"></i>
-                    
+-->
+                    <!-- id="{{'checkremove'.$aluno->id}}" -->
+                    <i onclick="removeAluno(1,{{$aluno->id}},1)" id="{{'checkreturn'.$aluno->id}}" style="display: none;float:right;" class="fa fa-undo rotationteste" aria-hidden="true"></i>
+                    <i class="material-icons rotationteste" id="{{'checkremove'.$aluno->id}}" style="color:red;float:right;" onclick="removeAluno(0,{{$aluno->id}},1)"></i>
+
                   </td>
                 </tr>
                 @endforeach
@@ -131,23 +130,20 @@
               <div class="row justify-content-center">
                 <nav aria-label="Paginação">
                   <ul class="pagination justify-content-center">
-
                   </ul>
                 </nav>
               </div>
             </div>
-
             <div class="tab-pane fade " id="grupos" role="tabpanel" aria-labelledby="nav-home-tab">
-
               <div class="tab-content" id="divtabelagrupo">
-
-
               </div>
             </div>
           </div>
 
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success" data-dismiss="modal">Sair</button>
+            <button id="save-edit2" class="btn btn-success" style="float:right; " onclick="check(1)">Salvar alterações</button>
+            <!-- <button type="submit" class="btn btn-success" data-dismiss="modal">Sair</button> -->
+            <!-- <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button> -->
           </div>
 
         </div>
@@ -208,6 +204,26 @@
     </div>
   </div>
 
+
+  <div class="modal fade bd-example-modal-sm" id="confirmalert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title texto-confirmar" id="exampleModalLabel">Você realmente deseja deletar este grupo?</h5>
+          <button style="color:black" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row align-self-center">
+            <button type="button" id="fecharGrupo" data-dismiss="modal" class="btn btn-secundary col">Cancelar</button>
+            <a class="btn col btn-primary" style="color:white;" id="confirmar">Confirmar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 
 

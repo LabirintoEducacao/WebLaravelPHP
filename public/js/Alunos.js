@@ -790,7 +790,6 @@ function editTabela(id) {
 
 //Função responsável por abrir um modal e mostrar uma tabela com os alunos pertencentes a este grupo
 function linhaTabela(id) {
-
     $(".id_linha").attr('class', '');
     $("#linha" + id).attr('class', 'id_linha');
 
@@ -881,6 +880,15 @@ function troca_tabs(option) {
 
 //Função que abre o modal para a confirmação da ação
 function check(id) {
+    let idsala1 = $("#id_sala").val();
+    console.log("=-=-=-=->  "+idsala1);
+
+    $("#save-edit2").attr("data-toggle", "modal");
+    $("#save-edit2").attr("data-target", "#confirmalert");
+    $("#confirmalert").css("z-index", "9999");
+
+
+
     $("#save-edit").attr("data-toggle", "modal");
     $("#save-edit").attr("data-target", "#confirmalert");
     $("#confirmalert").css("z-index", "9999");
