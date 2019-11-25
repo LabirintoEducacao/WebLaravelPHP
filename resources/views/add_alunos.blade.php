@@ -23,7 +23,8 @@
                 <th>
                   E-mail
                 </th>
-                <th style="float:right;">
+                <th style="text-align:right">
+<!--                <th style="float:right;">-->
                   Remover
                 </th>
               </thead>
@@ -37,13 +38,7 @@
 
                   </td>
                   <td>
-                    <!--
-                    <a class="nav-link" onclick="(confirm('Você realmente deseja deletar o(a) aluno(a) \'{{$aluno->name}}\'? ')) ? window.location.href =  '{{ url('admin/deletar-aluno/'.$aluno->id.'/'.$id) }}' : window.location.reload(forcedReload);">
-                      
 
-                    </a>
--->
-                    <!-- id="{{'checkremove'.$aluno->id}}" -->
                     <i onclick="removeAluno(1,{{$aluno->id}},1)" id="{{'checkreturn'.$aluno->id}}" style="display: none;float:right;" class="fa fa-undo rotationteste" aria-hidden="true"></i>
                     <i class="material-icons rotationteste" id="{{'checkremove'.$aluno->id}}" style="color:red;float:right;" onclick="removeAluno(0,{{$aluno->id}},1)"></i>
 
@@ -106,7 +101,7 @@
           <div class="row">
             <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
             <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
-            <div class="form-group" style="margin-top:3.5%">
+            <div class="form-group" style="margin-top:-4%; margin-bottom:5%">
               <div class="container">
                 <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
@@ -118,8 +113,8 @@
             </div>
           </div>
 
-          <div class="row container">
-            <h5> Pesqusiar: </h5>
+          <div class="row container" style="margin-bottom:5%">
+            <h5>Pesquisar:&emsp;</h5>
             <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
           </div>
           <div class="tab-content" id="nav-tabContent">
