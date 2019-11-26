@@ -880,10 +880,24 @@ function check(id, option) {
     if (option == 4) {
 
         let idsala1 = $("#id_sala").val();
-        salvar_alteracoes(idsala1, 2)
+        // salvar_alteracoes(idsala1, 2)
         // console.log("=-=-=-=->  " + idsala1);
         // console.log("Option ---->" + option);
         // console.log(alunos);
+        $("#save-edit").attr("data-toggle", "modal");
+        $("#save-edit").attr("data-target", "#confirmalert");
+        $("#confirmalert").css("z-index", "9999");
+
+
+
+        $("#save-edit").attr("data-toggle", "modal");
+        $("#save-edit").attr("data-target", "#confirmalert");
+        $("#confirmalert").css("z-index", "9999");
+
+        setTimeout(function () {
+            $("#confirmar").attr("onclick", "salvar_alteracoes(" + idsala1 + ',2)');
+            $(".texto-confirmar").html("Deseja mesmo salvar as alterações?");
+        }, 300);
 
     } else {
 
@@ -1012,10 +1026,6 @@ function salvar_alteracoes(id, op) {
         remove = [];
         console.log("Cancelei a alteração")
     } else if (op == 2) {
-        // for (let i = 0; i < alunos.length; i++) {
-        //     console.log("entrei--->" + i);
-        //     $("#addaluno" + alunos[i]).remove();
-        // }
         $.ajax({
             url: '/admin/add-aluno',
             type: 'POST',
@@ -1028,7 +1038,6 @@ function salvar_alteracoes(id, op) {
             success: function (data) {
                 console.log(data);
                 for (let i = 0; i <= remove.length; i++) {
-                    console.log("Deu certoooooooooooooooooooooooooooooooooooo123");
                     // $.get("/add-aluno" + id).done(
                     //     function (data) {
                     //         console.log("Deu certoooooooooooooooooooooooooooooooooooo123")
@@ -1060,6 +1069,9 @@ function salvar_alteracoes(id, op) {
         console.log("Eu estou salvando alunos");
         console.log("Id da sala que vai salvar--->" + id);
         console.log(alunos);
+        setTimeout(function () {
+            location.reload()
+        }, 250);
     }
 
 }

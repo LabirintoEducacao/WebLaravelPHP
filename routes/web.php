@@ -152,7 +152,7 @@ Route::prefix('/admin')->group(function () {
 
     //Route::post('/estatistica/{id}', 'SalaController@index');
     Route::post('/sala', 'SalaController@store');
-    Route::get('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
+    Route::post('/add-aluno', 'SalaController@add_user')->middleware(['auth', 'auth.admin']);
 
     Route::get('/virtual', 'SalaController@entrar');
 
