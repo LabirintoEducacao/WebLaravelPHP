@@ -21,7 +21,7 @@ $('#addAlunoModal').on('hide.bs.modal', function (e) {
 });
 
 function addaluno(id) {
-    let idsala1 = $("#id_sala").val();//document.getElementById('id_sala').value;
+    let idsala1 = $("#id_sala").val(); //document.getElementById('id_sala').value;
     // $.post( "/admin/aluno", { 'id': id } );
 
     var _token = $('meta[name="_token"]').attr('content');
@@ -176,7 +176,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
     $('.pagination').empty();
 
     if (option == 0) {
-        if (jotason == 5) {//Ocorre quando clica em adicionar grupos (mostra TODOS os alunos)
+        if (jotason == 5) { //Ocorre quando clica em adicionar grupos (mostra TODOS os alunos)
             //console.log("Jotason se for 5---->" + jotason);
             parse = todos;
         }
@@ -189,11 +189,10 @@ function mostrarmaisalunos2(option, option2, jotason) {
         $.get("/admin/showalunos").done(function (data) {
 
             if (option2 == 0) {
-                remover_alunos_inseridos(data, 0);//Manda o array de todos os alunos para a função que seleciona somente os não presentes no grupo
+                remover_alunos_inseridos(data, 0); //Manda o array de todos os alunos para a função que seleciona somente os não presentes no grupo
                 parse = JSON.parse(jotason);
                 $(".pagination").empty();
-            }
-            else {
+            } else {
                 parse = JSON.parse(data);
             }
             let contagem = 1;
@@ -307,8 +306,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
         $.get("/admin/showalunos").done(function (data) {
             if (option2 == 0) {
                 remover_alunos_inseridos(data, 0);
-            }
-            else {
+            } else {
                 parse = JSON.parse(jotason);
             }
             let contagem = 1;
@@ -420,8 +418,7 @@ function mostrarmaisalunos2(option, option2, jotason) {
                         '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
                     );
                 }
-            }
-            else {
+            } else {
                 $("#divtabela2").empty();
                 $("#divtabela").empty();
                 $(".pagination").empty();
@@ -549,6 +546,7 @@ function removeGrupo(id, prof_id, turma) {
         location.reload()
     }, 450);
 }
+
 function paginar(opcao, data, total) {
     if (opcao == 0) {
         $('#divtabela').children().each(function () {
@@ -827,8 +825,7 @@ function removeAluno(option, id, turma) {
         $('#aluno' + id).css('background-color', 'rgba(247,203,203,0.72)');
         $("#checkremove" + id).css('display', 'none');
         $("#checkreturn" + id).css('display', 'block');
-    }
-    else if (option == 1) {
+    } else if (option == 1) {
         if (turma == 1) {
             $('.aluno_sala' + id).css('background-color', 'white');
         }
@@ -879,25 +876,33 @@ function troca_tabs(option) {
 }
 
 //Função que abre o modal para a confirmação da ação
-function check(id) {
-    let idsala1 = $("#id_sala").val();
-    console.log("=-=-=-=->  "+idsala1);
+function check(id, option) {
+    if (option == 4) {
 
-    $("#save-edit2").attr("data-toggle", "modal");
-    $("#save-edit2").attr("data-target", "#confirmalert");
-    $("#confirmalert").css("z-index", "9999");
+        let idsala1 = $("#id_sala").val();
+        salvar_alteracoes(idsala1, 2)
+        // console.log("=-=-=-=->  " + idsala1);
+        // console.log("Option ---->" + option);
+        // console.log(alunos);
+
+    } else {
+
+        $("#save-edit").attr("data-toggle", "modal");
+        $("#save-edit").attr("data-target", "#confirmalert");
+        $("#confirmalert").css("z-index", "9999");
 
 
 
-    $("#save-edit").attr("data-toggle", "modal");
-    $("#save-edit").attr("data-target", "#confirmalert");
-    $("#confirmalert").css("z-index", "9999");
+        $("#save-edit").attr("data-toggle", "modal");
+        $("#save-edit").attr("data-target", "#confirmalert");
+        $("#confirmalert").css("z-index", "9999");
 
-    setTimeout(function () {
-        $("#confirmar").attr("onclick", "salvar_alteracoes(" + id + ',0)');
-        $("#fecharGrupo").attr("onclick", "salvar_alteracoes(" + id + ',1)');
-        $(".texto-confirmar").html("Deseja mesmo salvar as alterações?");
-    }, 300);
+        setTimeout(function () {
+            $("#confirmar").attr("onclick", "salvar_alteracoes(" + id + ',0)');
+            $("#fecharGrupo").attr("onclick", "salvar_alteracoes(" + id + ',1)');
+            $(".texto-confirmar").html("Deseja mesmo salvar as alterações?");
+        }, 300);
+    }
 }
 $("#confirmalert").on('hidden.bs.modal', function (event) {
     $("body").addClass('modal-open');
@@ -906,7 +911,7 @@ $("#confirmalert").on('hidden.bs.modal', function (event) {
 //função que realiza a adição ou remoção dos alunos após clicar em confirmar no modal de confirmação de alteração
 function salvar_alteracoes(id, op) {
     if (op == 0) {
-        if (remove.length > 0) {//Remover
+        if (remove.length > 0) { //Remover
             $.ajax({
                 url: '/grupos/remover/aluno',
                 type: 'POST',
@@ -934,7 +939,9 @@ function salvar_alteracoes(id, op) {
                         html += '</div>';
                         html += '</div>';
                         jQuery('body').append(html);
-                        window.setTimeout(function () { jQuery('.alertContainer3').addClass('active') }, 1);
+                        window.setTimeout(function () {
+                            jQuery('.alertContainer3').addClass('active')
+                        }, 1);
                         // jQuery('.cerrarAlert').click(function () {
                         //     jQuery('.alertContainer3').removeClass('active');
                         //     window.setTimeout(function () { jQuery('.alertContainer3').remove() }, 1);
@@ -952,9 +959,7 @@ function salvar_alteracoes(id, op) {
                 }
             });
 
-        }
-        else if (alunos.length > 0) {//Adicionar
-            console.log("Adicionaraaaaaaaaaaaaaaaaa")
+        } else if (alunos.length > 0) { //Adicionar
             for (let i = 0; i < alunos.length; i++) {
                 console.log("entrei--->" + i);
                 $("#addaluno" + alunos[i]).remove();
@@ -1002,12 +1007,61 @@ function salvar_alteracoes(id, op) {
         console.log("Tamanho da lista alunos: " + alunos.length);
         console.log("Tamanho da lista remove: " + remove.length);
         console.log("Op --->" + op);
-    }
-    else if (op == 1) {
+    } else if (op == 1) {
         alunos = [];
         remove = [];
         console.log("Cancelei a alteração")
+    } else if (op == 2) {
+        // for (let i = 0; i < alunos.length; i++) {
+        //     console.log("entrei--->" + i);
+        //     $("#addaluno" + alunos[i]).remove();
+        // }
+        $.ajax({
+            url: '/admin/add-aluno',
+            type: 'POST',
+            data: {
+                aluno: alunos,
+                sala: id
+            },
+            dataType: 'JSON',
+
+            success: function (data) {
+                console.log(data);
+                for (let i = 0; i <= remove.length; i++) {
+                    console.log("Deu certoooooooooooooooooooooooooooooooooooo123");
+                    // $.get("/add-aluno" + id).done(
+                    //     function (data) {
+                    //         console.log("Deu certoooooooooooooooooooooooooooooooooooo123")
+                    //         // $('#tabelaalunosgrupos').empty();
+                    //         // for (let i = 0; i < data.length; i++) {
+                    //         //     var linha = $("<tr id='aluno" + data[i].id + "'><td data-toggle='modal' data-target='#alunosModal' width='90%'>" + data[i].name + "</td><td style='text-align: center'><i onclick='removeAluno(1," + data[i].id + ',' + data[i].turma + ")' id='checkreturn" + data[i].id + "'style='display:none'class='fa fa-undo rotationteste' aria-hidden='true'></i><i class='material-icons rotationteste' id='checkremove" + data[i].id + "'style='color:red;' onclick='removeAluno(0," + data[i].id + ',' + data[i].turma + ")'></i></td></tr>");
+                    //         //     $("#tabelaalunosgrupos").append(linha);
+                    //         // }
+                    //     });
+                }
+                var type = "success";
+                $.notify({
+                    message: "Alterações realizadas com sucesso"
+                }, {
+                    type: type,
+                    timer: 4000,
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    },
+                    z_index: 999999
+                });
+                $('#fecharGrupo').trigger('click');
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+        console.log("Eu estou salvando alunos");
+        console.log("Id da sala que vai salvar--->" + id);
+        console.log(alunos);
     }
+
 }
 
 //Função responsável por mostrar, na aba adicionar alunos, somente alunos que ainda não foram inseridos no grupo selecionado
@@ -1031,8 +1085,7 @@ function remover_alunos_inseridos(data1, option) {
                 jsonNovo = JSON.stringify(json_original);
                 mostrarmaisalunos2(0, 1, jsonNovo);
             });
-    }
-    else {
+    } else {
         $.get("/grupos/alunosgrupo/" + res3[0]).done(
             function (data) {
                 var json_original = JSON.parse(data1);
@@ -1059,6 +1112,7 @@ function salas_vinculadas(id) {
         }
     });
 }
+
 function alunos_sala(id) {
     // console.log("------------------> " + id);
     // let json_alunos_sala = $.get("/alunos-sala/" + id).done(function (data) {

@@ -323,14 +323,14 @@ class UserController extends Controller
     public function teste()
     {
 
-        $id = $_REQUEST['id'];
-        $salaid = $_REQUEST['salaid'];
+        // $id = $_REQUEST['id'];
+        // $salaid = $_REQUEST['salaid'];
 
-        DB::table('sala_user')->insert(
-            ['sala_id' => $salaid, 'user_id' => $id]
-        );
+        // DB::table('sala_user')->insert(
+        //     ['sala_id' => $salaid, 'user_id' => $id]
+        // );
 
-        return response()->json(['success' => 'Sucesso']);
+        // return response()->json(['success' => 'Sucesso']);
     }
 
     //////////////////////////Thiago Grupos método

@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach($turmas as $turma)
                     <tr>
-                        <td class="id_linha"id="{{'linha'.$turma->id}}" onclick="linhaTabela({{$turma->id}})" width='90%'>{{$turma->turma}}
+                        <td class="id_linha" id="{{'linha'.$turma->id}}" onclick="linhaTabela({{$turma->id}})" width='90%'>{{$turma->turma}}
                         </td>
                         <td style="text-align: center">
                             <a class="nav-link" id="{{$turma->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

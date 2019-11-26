@@ -319,20 +319,39 @@ return redirect('admin/sala')->with($notification);
    }
 
    public function add_user(Request $request){
-    $data = $request->all();
-    DB::table('sala_user')->insert(
-      array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
-    );
-    $salas = Sala::where('public','=',1)->get();
-    $notification = array(
-      'message' => 'Usuário adicionado com sucesso!!!',
-      'alert-type' => 'success'
-    );
+    // $data = $request->all();
+    // DB::table('sala_user')->insert(
+    //   array('sala_id' => $data->sala_id, 'user_id' => $data->user_id)
+    // );
+    // $salas = Sala::where('public','=',1)->get();
+    // $notification = array(
+    //   'message' => 'Usuário adicionado com sucesso!!!',
+    //   'alert-type' => 'success'
+    // );
 
 
 
-    return redirect('admin/alunos'. $request->get('sala_id'))->with($notification);
+    // return redirect('admin/alunos'. $request->get('sala_id'))->with($notification);
 
+
+
+
+    // //__________--
+    $id_aluno = $request['aluno'];
+    $id_sala = $request['sala'];
+
+    if (sizeof($id_aluno) > 0) {
+      $tamanho = sizeof($id_aluno);
+
+      for ($cont = 0; $cont < $tamanho; $cont++) {
+        DB::table('sala_user')
+          ->insert(
+            ['aluno_id' => intval($id_aluno[$cont]), 'sala_id' => $id_sala]
+          );
+      }
+    }
+    //return response()->json(['success' => 'Sucesso']);
+    echo json_encode($id_aluno);
   }
 
   public function entrar(){

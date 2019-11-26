@@ -141,7 +141,7 @@
           </div>
 
           <div class="modal-footer">
-            <button id="save-edit2" class="btn btn-success" style="float:right; " onclick="check(1)">Salvar alterações</button>
+            <button id="save-edit" class="btn btn-success" style="float:right; " onclick="check(0,4)">Salvar alterações</button>
             <!-- <button type="submit" class="btn btn-success" data-dismiss="modal">Sair</button> -->
             <!-- <button onclick="salvarGrupo({{Auth::user()->id}})" class="btn btn-success" style="float:right; ">Salvar</button> -->
           </div>
