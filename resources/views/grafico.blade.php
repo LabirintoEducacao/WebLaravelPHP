@@ -46,7 +46,7 @@
 <div class="row">
     <div style="display:block" id="qntdeRespPergDiv" class="col-5">
 
-        <h4>Quantidade de respostas por pergunta</h4>
+        <h4 style="text-align:center">Quantidade de respostas por pergunta</h4>
 
         <div style="width: 95%">
             {!! $usersChart->container() !!}
@@ -55,7 +55,7 @@
     </div>
     
      <div style="display:block" id="qntdeTentativasDiv" class="col-5 offset-1">
-        <h4>Tentativas para acerto das perguntas por alunos</h4>
+        <h4 style="text-align:center">Tentativas para acerto das perguntas por alunos</h4>
         <canvas id="graficoTentativa0" width="400" height="400"></canvas>   
     </div>
 

@@ -54,12 +54,13 @@ class EstatisticaController extends Controller
         
         $id = (int) Auth::user()->id;
         
-        $perguntas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->orderBy('id')->get();
+        $perguntas = DB::table('perguntas')->select('pergunta','id')->whereNotNull('ordem')->where('sala_id',$sala_id)->orderBy('id')->get();
         
         $sql = 'select p.pergunta from perguntas p JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' AND p.sala_id = '.$sala_id.' ORDER BY p.ordem';
 
         
         $salas = DB::select($sql);
+
 
         foreach($perguntas as $pergunta){
             array_push($data,$pergunta->pergunta);
@@ -69,10 +70,16 @@ class EstatisticaController extends Controller
         $sql = 'select pr.perg_id, count(pr.resp_id) as total from perg_resp pr JOIN perguntas p ON p.id = pr.perg_id JOIN salas s ON p.sala_id = s.id WHERE p.ordem is not NULL AND s.prof_id = ' . $id . ' AND s.id = '.$sala_id.' GROUP BY pr.perg_id ORDER BY p.ordem';
 
         
-        $totais = DB::select($sql);$data_perg = array();
+        $totais = DB::select($sql);
+           
+    
+
+        $data_perg = array();
+            
         foreach($totais as $total){
             array_push($data_perg,$total->total);
         }
+            
 
         
         $chart = new PerguntaChart;
@@ -80,7 +87,7 @@ class EstatisticaController extends Controller
         
          $chart->labels($data);
         $chart->dataset('Quantidade de respostas por pergunta', 'bar', $data_perg)->options([
-            'backgroundColor' => 'rgba(0, 214, 189, 0.71)',
+            'backgroundColor' => 'rgba(0, 214, 189, 0.71)'
         ]);
 
             

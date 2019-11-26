@@ -446,6 +446,14 @@ a:hover #teste {
 }
 
 
+
+
+.esconder2{
+
+    display: none;
+  }
+
+
 @media (min-width: 576px) {
 
   .larguramodal {
@@ -464,6 +472,16 @@ a:hover #teste {
      padding-left: 17px;
   }
 
+  .esconder{
+
+    display: none;
+  }
+
+  .esconder2{
+
+    display: block;
+  }
+
   html,
   body {
   }
@@ -478,7 +496,6 @@ a:hover #teste {
     overflow: hidden;
     text-overflow: ellipsis; 
 }
-
 
 }
 
