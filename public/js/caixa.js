@@ -819,7 +819,7 @@ $(document).ready(function () {
             x = 0,
             y = 0,
             z = 0;
-        i = 0;
+        var i = 0;
         var teste3 = [];
 
         var corretos = document.getElementsByName('corret[]');
@@ -1157,7 +1157,7 @@ $(document).ready(function () {
             modal.find('#question_type').val(1);
             modal.find('#perg-reforco-id').val(0);
             i++;
-            $("#add").trigger('click');
+            $("#add").trigger('click');$("#add").trigger('click');
             $("#add").trigger('click');
 
 
