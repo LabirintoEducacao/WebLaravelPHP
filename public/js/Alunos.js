@@ -615,6 +615,9 @@ function paginar(opcao, data, total) {
         $('#divtabela2').children().each(function () {
             $(this).css('display', 'none');
         });
+        $('#divtabela').children().each(function () {
+            $(this).css('display', 'none');
+        });
 
         $('#table' + data).css('display', 'block');
 
