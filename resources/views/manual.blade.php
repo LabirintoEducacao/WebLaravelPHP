@@ -4,13 +4,13 @@
 <div class="container">
     
     
-    <div class="bd-example" style="width: 100%; margin-top:2%;">
+    <div class="bd-example" style="width: 100%; margin-top:-5%;">
         <div class="row">
             <div class="col-3">
                 <div id="list-example" class="list-group">
                     @if(Auth::user()->hasAnyRole('professor'))
                     <a class="list-group-item list-group-item-action" href="manual#list-item-1">Sala
-                        <div id="list-example" class="list-group">
+                        <div id="list-example" class="list-group" style="margin-top:-12%;">
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-1">&emsp;Criar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-2">&emsp;Editar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-3">&emsp;Desativadas</a>
@@ -18,9 +18,8 @@
                             <a class="list-group-item list-group-item-action" href="manual#list-item-1-5">&emsp;Estatísticas</a>
                         </div>
                     </a>
-                    <a class="list-group-item list-group-item-action"></a>
                     <a class="list-group-item list-group-item-action" href="manual#list-item-2">Perguntas e Respostas
-                        <div id="list-example" class="list-group">
+                        <div id="list-example" class="list-group" style="margin-top:-12%;">
                             <a class="list-group-item list-group-item-action" href="manual#list-item-2-1">&emsp;Criar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-2-2">&emsp;Editar</a>
                             <a class="list-group-item list-group-item-action" href="manual#list-item-2-3">&emsp;Alterar Sequência</a>
@@ -37,7 +36,7 @@
                 </div>
             </div>
             <div class="col-9">
-                <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="overflow-y: scroll;height: 400px;">
+                <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="overflow-y: scroll;height: 700px;width:800px">
                     @if(Auth::user()->hasAnyRole('professor'))
                     <div>
                         <h4 id="list-item-1">
