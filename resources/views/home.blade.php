@@ -42,65 +42,95 @@
 
 @section('myscript')
 <script>
-    @if(isset($salas))
-	var salas = <?php echo $salas; ?>;
-    var salasNome = [];
-    var salasId = [];
-    var randomicoS = [];
-    
-    
-    function random() {
-        return Math.round(Math.random() * 100);
-    };
-    
-    for (var i = 0; i < salas.length; i++) {
-        salasNome[i] = salas[i].name;
-        salasId[i] = salas[i].id;
-        randomicoS[i] = random();
-        console.log(salasNome[i]);
-    }
 
     
+        var dados = <?php echo $dados; ?>;
+        console.log(dados);
+    
+        var salas = new Array();
 
+        var perguntas = new Array();
+        var acertos = new Array();
+        var erros = new Array();
+        
+        let grafico;
+        
+        for(let i = 0; i < dados.length; i++){
+            salas[i] = dados[i].sala_nome;
+            console.log("sala " + dados[i].sala_nome)
+            
+            acertos[i] = dados[i].acertos;
+            erros[i] = dados[i].erros;
 
-    var ctxp = document.getElementById('salas').getContext('2d');
-    var barChart = new Chart(ctxp, {
-        type: 'horizontalBar',
-        data: {
-            labels: salasNome,
-        datasets: [{
-            label: 'Erros',
-            backgroundColor: 'rgba(255, 0, 0, 0.5)',
-            borderColor: 'rgba(255, 0, 0, 0.8)',
-            highlightFill: 'rgba(255, 0, 0, 0.75)',
-            highlightStroke: 'rgb(255, 0, 0)',
-            data: randomicoS
-        }, {
-            label: 'Acertos',
-            backgroundColor: 'rgba(0, 255, 9, 0.5)',
-            borderColor: 'rgba(0, 255, 9, 0.8)',
-            highlightFill: 'rgba(0, 255, 9, 0.75)',
-            highlightStroke: 'rgba(0, 255, 9, 1)',
-            data: randomicoS
-        }]
+            console.log("acertos " + acertos[i] + "\n erros "+erros[i])
+            
+            grafico = 'graficoTentativa' + i;
+            
+            console.log("\n\n\n\n\n\n\n\n\n\nGrafico "+grafico+"\n\n\n\n\n\n\n\n")
+            
+            var barChartData = {
+			labels: salas,  //salas nomes
+			datasets: [{
+				label: 'Acertos',
+				backgroundColor: 'rgba(0, 131, 25, 0.79)',
+				data: acertos
+			},{
+				label: 'Erros',
+				backgroundColor: 'rgba(255, 0, 0, 0.67)',
+				data: erros
+			}]
 
-    },
-    options: {
-        tooltips: {
-            mode: 'index',
-            intersect: false
-        },
-        responsive: true,
-        scales: {
-            xAxes: [{
-                stacked: true,
-            }],
-            yAxes: [{
-                stacked: true
-            }]
+		};
+		window.onload = function() {
+			var ctx = document.getElementById('salas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'horizontalBar',
+				data: barChartData,
+				options: {
+					title: {
+						display: true,
+						//text: 'Tentativas para acerto das perguntas por alunos'
+						text: 'Acertos e erros na 1ª tentativa por sala '
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+		};
+            
+            
+            
+            
+            
         }
-    }
-    });
-    @endif
+//        salas.forEach(function(sala, index){
+//    
+//            var sala = sala.sala_nome;
+//            (sala.sala_pergs).forEach(function(perguntas, index){
+//    
+//                perguntas[i] = perguntas.pergunta;
+//                
+//                qtd0[i] = perguntas.wrong_count.qtd0;
+//                qtd1[i] = perguntas.wrong_count.qtd1;
+//                qtd2[i] = perguntas.wrong_count.qtd2;
+//
+//            });
+//
+//        });
+    
+   
+
+
 </script>
 @endsection
