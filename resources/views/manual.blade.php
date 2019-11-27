@@ -123,7 +123,11 @@
                                 Estatísticas da Sala
                             </h5>
                             <p>
-                                Para os dados estatísticos da sala (acertos e erros por pergunta, acertos e erros por usuário), basta clicar em:
+                                Para os dados estatísticos da sala (acertos e erros por pergunta, acertos e erros por usuário), é necessário clicar primeiro em <i class="material-icons">more_vert</i> e, depois, na opção 'Visualizar'
+                                <br>
+                                <img src="/img/estatistica2.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                                <br><br>
+                                E, depois, clicar na opção estatística:
                                 <br>
                                 <img src="/img/estatistica.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
