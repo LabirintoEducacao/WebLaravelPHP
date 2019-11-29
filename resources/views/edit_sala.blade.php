@@ -78,7 +78,7 @@
                                                         <label for="question_type" style="margin-right: 3.5px; padding-top:10%;">Tipo da pergunta:</label>
                                                     </div>
                                                     <div class="col-7 col-sm-6 col-md-6 col-lg-7">
-                                                        <select class="form-control selectpicker room_type" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
+                                                        <select class="form-control selectpicker" data-style="btn btn-primary" name="question_type" id="question_type" style="float:left;">
                                                             <option selected value="1">Texto</option>
                                                             <option disabled value="2">Imagem</option>
                                                             <option disabled value="3">Video</option>
@@ -118,16 +118,6 @@
                                             <small id="perguntaHelp" style="color:red;font-size:10px">(*) CAMPO OBRIGATÓRIO </small>
                                         </div>
 
-                                        <!--
-                                        <div class="form-group form-file-upload form-file-simple" style="display:none;" id="teste">
-
-                                            input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">
-                                            <input type="file" class="inputFileHidden"
-
-                                            <label for="exampleFormControlFile1">Escolha um arquivo...</label>
-                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                          </div>
--->
                                     </div>
 
 

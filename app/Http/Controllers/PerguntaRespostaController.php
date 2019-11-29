@@ -476,7 +476,7 @@ class PerguntaRespostaController extends Controller
 
      foreach ($ordem as $value){
        $teste = $value->ordem;
-   }
+     }
 
    
    if(isset($teste)){
@@ -518,6 +518,7 @@ if($request->perg_id == 0){
                      ///////////Path////////////
  $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
+$largura1 = $request->largura;
  $disponivel = true;
     
     if($ambiente_perg==1){
@@ -529,18 +530,22 @@ if($request->perg_id == 0){
 
          if($tamanho1 == 1 ){
             $tamanho_perg = rand(1,3);
+
+         }else if($tamanho1 == 2 ){
+            $tamanho_perg = rand(4,6);
+
+         }else if($tamanho1 == 3 ){
+            $tamanho_perg = rand(7,10);
+
+         }
+        
+        if($largura1 == 1 ){
             $largura_perg = rand(1,3);
 
-         }
-
-         if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
+         }else if($largura1 == 2 ){
             $largura_perg = rand(4,6);
 
-         }
-
-          if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
+         }else if($largura1 == 3 ){
             $largura_perg = rand(7,10);
 
          }
@@ -605,6 +610,7 @@ if($request->perg_reforco==1){
                      //  ////////////////Patch errado da Pergunta/////////
  $ambiente_perg = $request->answer_boolean_perg;
  $tamanho1 = $request->tamanho_perg;
+ $largura1 = $request->largura_perg;
  $disponivel = true;
     if($ambiente_perg==1){
         $tamanho_perg = rand(1,3);
@@ -613,18 +619,22 @@ if($request->perg_reforco==1){
 
          if($tamanho1 == 1 ){
             $tamanho_perg = rand(1,3);
+
+         }else if($tamanho1 == 2 ){
+            $tamanho_perg = rand(4,6);
+
+         }else if($tamanho1 == 3 ){
+            $tamanho_perg = rand(7,10);
+
+         }
+        
+        if($largura1 == 1 ){
             $largura_perg = rand(1,3);
 
-         }
-
-         if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
+         }else if($largura1 == 2 ){
             $largura_perg = rand(4,6);
 
-         }
-
-          if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
+         }else if($largura1 == 3 ){
             $largura_perg = rand(7,10);
 
          }
@@ -648,6 +658,7 @@ if($request->perg_reforco==1){
                      ////////////////PatchReforco/////////
  $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
+ $largura_ref1 = $request->largura_ref;
  $largura_ref = 0;
     
     
@@ -657,18 +668,22 @@ if($request->perg_reforco==1){
     }else{
          if($tamanho_ref1 == 1 ){
             $tamanho_ref = rand(1,3);
+
+         }else if($tamanho_ref1 == 2 ){
+            $tamanho_ref = rand(4,6);
+
+         }else if($tamanho_ref1 == 3 ){
+            $tamanho_ref = rand(7,10);
+
+         }
+        
+        if($largura_ref1 == 1 ){
             $largura_ref = rand(1,3);
 
-         }
-
-         if($tamanho_ref1 == 2 ){
-            $tamanho_ref = rand(4,6);
+         }else if($largura_ref1 == 2 ){
             $largura_ref = rand(4,6);
 
-         }
-
-          if($tamanho_ref1 == 3 ){
-            $tamanho_ref = rand(7,10);
+         }else if($largura_ref1 == 3 ){
             $largura_ref = rand(7,10);
 
          }
@@ -799,6 +814,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     
     $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
+ $largura1 = $request->largura;
     if($ambiente_perg==1){
         $tamanho_perg = rand(1,3);
         $largura_perg = rand(1,3);
@@ -806,18 +822,22 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
          if($tamanho1 == 1 ){
             $tamanho_perg = rand(1,3);
+
+         }else if($tamanho1 == 2 ){
+            $tamanho_perg = rand(4,6);
+
+         }else if($tamanho1 == 3 ){
+            $tamanho_perg = rand(7,10);
+
+         }
+        
+        if($largura1 == 1 ){
             $largura_perg = rand(1,3);
 
-         }
-
-         if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
+         }else if($largura1 == 2 ){
             $largura_perg = rand(4,6);
 
-         }
-
-          if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
+         }else if($largura1 == 3 ){
             $largura_perg = rand(7,10);
 
          }
@@ -825,6 +845,12 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     DB::table('paths')
     ->where('id','=', $request->path_id)
     ->update(['ambiente_perg' => $ambiente_perg,'tamanho' => $tamanho_perg,'largura' => $largura_perg]);
+    //$sql = "update labirinto2.paths set ambiente_perg = ".$ambiente_perg.", tamanho = ".$tamanho_perg.", largura = ".$lagura_perg." where id = ".$request->path_id.";";
+    
+    //$testeeeeeeeeee = DB::select($sql);
+    //return response()->json(['error' => $sql]);
+    
+    
     
     if($request->perg_reforco_id>0 && $request->perg_reforco==1){
       
@@ -843,6 +869,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
         
         $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
+ $largura_ref1 = $request->largura_ref;
     if($ambiente_ref==1){
         $tamanho_ref = rand(1,3);
         $largura_ref = rand(1,3);
@@ -850,18 +877,23 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
          if($tamanho_ref1 == 1 ){
             $tamanho_ref = rand(1,3);
+
+         }else if($tamanho1 == 2 ){
+            $tamanho_ref = rand(4,6);
+
+         }else if($tamanho1 == 3 ){
+            $tamanho_ref = rand(7,10);
+
+         }
+        
+        
+        if($largura_ref1 == 1 ){
             $largura_ref = rand(1,3);
 
-         }
-
-         if($tamanho1 == 2 ){
-            $tamanho_ref = rand(4,6);
+         }else if($largura1 == 2 ){
             $largura_ref = rand(4,6);
 
-         }
-
-          if($tamanho1 == 3 ){
-            $tamanho_ref = rand(7,10);
+         }else if($largura1 == 3 ){
             $largura_ref = rand(7,10);
 
          }
@@ -873,6 +905,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
         
         $ambienteB_perg = $request->answer_boolean_perg;
  $tamanho1 = $request->tamanho_perg;
+ $largura = $request->largura_perg;
  $disponivel = true;
     if($ambienteB_perg==1){
         $tamanho = rand(1,3);
@@ -881,18 +914,23 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
          if($tamanho1 == 1 ){
             $tamanho = rand(1,3);
+
+         }else if($tamanho1 == 2 ){
+            $tamanho = rand(4,6);
+
+         }else if($tamanho1 == 3 ){
+            $tamanho = rand(7,10);
+
+         }
+        
+        
+        if($largura1 == 1 ){
             $largura = rand(1,3);
 
-         }
-
-         if($tamanho1 == 2 ){
-            $tamanho = rand(4,6);
+         }else if($largura1 == 2 ){
             $largura = rand(4,6);
 
-         }
-
-          if($tamanho1 == 3 ){
-            $tamanho = rand(7,10);
+         }else if($largura1 == 3 ){
             $largura = rand(7,10);
 
          }
@@ -992,6 +1030,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
               //  ////////////////Patch errado da Pergunta/////////
  $ambiente_perg = $request->answer_boolean;
  $tamanho1 = $request->tamanho;
+ $largura1 = $request->largura;
  $disponivel = true;
       $largura = 0;
     if($ambiente_perg==1){
@@ -1001,18 +1040,24 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
          if($tamanho1 == 1 ){
             $tamanho_perg = rand(1,3);
+
+         }else if($tamanho1 == 2 ){
+            $tamanho_perg = rand(4,6);
+
+         }else if($tamanho1 == 3 ){
+            $tamanho_perg = rand(7,10);
+
+         }
+        
+        
+        
+        if($largura1 == 1 ){
             $largura_perg = rand(1,3);
 
-         }
-
-         if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
+         }else if($largura1 == 2 ){
             $largura_perg = rand(4,6);
 
-         }
-
-          if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
+         }else if($largura1 == 3 ){
             $largura_perg = rand(7,10);
 
          }
@@ -1036,6 +1081,7 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
                      ////////////////PatchReforco/////////
   $ambiente_ref = $request->answer_boolean_ref;
  $tamanho_ref1 = $request->tamanho_ref;
+ $largura_ref1 = $request->largura_ref;
  $largura_ref = 0;
     
     
@@ -1045,18 +1091,22 @@ return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
     }else{
          if($tamanho_ref1 == 1 ){
             $tamanho_ref = rand(1,3);
+
+         }else if($tamanho_ref1 == 2 ){
+            $tamanho_ref = rand(4,6);
+
+         }else if($tamanho_ref1 == 3 ){
+            $tamanho_ref = rand(7,10);
+
+         }
+        
+        if($largura_ref1 == 1 ){
             $largura_ref = rand(1,3);
 
-         }
-
-         if($tamanho_ref1 == 2 ){
-            $tamanho_ref = rand(4,6);
+         }else if($largura_ref1 == 2 ){
             $largura_ref = rand(4,6);
 
-         }
-
-          if($tamanho_ref1 == 3 ){
-            $tamanho_ref = rand(7,10);
+         }else if($largura_ref1 == 3 ){
             $largura_ref = rand(7,10);
 
          }

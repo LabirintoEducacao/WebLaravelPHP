@@ -544,7 +544,22 @@
         }
 
 
-        function muda(radio) {
+        function muda(radio,op) {
+            if(op == 0 && document.getElementById('room_type').value != 'true_or_false'){
+               let y = document.getElementsByName('corret[]');
+
+                for (let i = 0; i < y.length; i++) {
+                    y[i].value = 0;
+
+                }
+            }else if(op == 1 && document.getElementById('room_type_ref').value != 'true_or_false'){
+                let w = document.getElementsByName('corret_ref[]');
+
+                for (let x = 0; x < w.length; x++) {
+                    w[x].value = 0;
+
+                }
+            }
 
             if (radio.checked) {
 
