@@ -862,9 +862,9 @@ class PerguntaRespostaController extends Controller
 
                 }
                 
-                //return response()->json(["success"=>$request->path_id4]);
+                //return response()->json(["success"=>$request->path_id]);
                 DB::table('paths')
-                ->where('id','=', $request->path_id4)
+                ->where('id','=', $request->path_id)
                 ->update(['ambiente_perg' => $ambiente_perg,'tamanho' => $tamanho_perg,'largura' => $largura_perg]);
 
                 if($request->perg_reforco_id>0 && $request->perg_reforco==1){

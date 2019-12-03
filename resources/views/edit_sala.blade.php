@@ -143,7 +143,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-                                                <input type="hidden" name="path_id4" id="path_id4">
+                                
                                                 <div class="row" style="height:50px;">
                                                     <div class="col-4 col-sm-4 col-md-3 col-lg-5" style="height:100%;">
                                                         <label for="tamanho" style="margin-right: 3.5px; padding-top:10%;">Altura do Labirinto:</label>
@@ -161,7 +161,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-                                                <input type="hidden" name="path_id4" id="path_id4">
+                                           
                                                 <div class="row" style="height:50px;">
                                                     <div class="col-4 col-sm-4 col-md-3 col-lg-5" style="height:100%;">
                                                         <label for="largura" style="margin-right: 3.5px; padding-top:10%;">Largura do Labirinto:</label>
