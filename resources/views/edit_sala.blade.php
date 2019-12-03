@@ -198,7 +198,7 @@
                                             </div>
 
                                             <div class="col-12 col-sm-10 col-md-4">
-                                                <input type="hidden" name="path_id" id="path_id">
+                               
                                                 <div class="row" style="height:70px;">
                                                     <div class="col-5" style="height:100%;">
                                                         <label for="tipo_opcao" style="margin-right: 3.5px; padding-top:15%;">Tipo da Resposta:</label>
