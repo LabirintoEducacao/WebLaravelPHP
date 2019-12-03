@@ -26,7 +26,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro2" type="checkbox" name="corret[]" value="0" onclick="muda(this,0);">' +
+                    '<input class="form-check-input correct verdadeiro2" type="checkbox" name="corret[]" value="0" onclick="muda(this);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -56,7 +56,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this,0);">' +
+                    '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -173,7 +173,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda(this,1);">' +
+                    '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda(this);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -204,7 +204,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this,1);">' +
+                    '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -321,7 +321,7 @@ $(document).ready(function () {
                 //                      '<label for="tamanho_perg" class="col">Tamanho:</label>' +
                 //                      '<select name="tamanho_perg" id="tamanho_perg" class="col">' +
                 //                      '<option selected value="1">Pequeno</option>' +
-                //                      '<option value="2">Medio</option>' +
+                //                      '<option value="2">Médio</option>' +
                 //                      '<option value="3">Grande</option>' +
                 //                      '</select>' +
                 //                      '</div>' +
@@ -329,7 +329,7 @@ $(document).ready(function () {
                 //                      '<label for="largura_perg" class="col">Largura:</label>' +
                 //                      '<select name="largura_perg" id="largura_perg" class="col">' +
                 //                      '<option selected value="1">Pequeno</option>' +
-                //                      '<option value="2">Medio</option>' +
+                //                      '<option value="2">Médio</option>' +
                 //                      '<option value="3">Grande</option>' +
                 //                      '</select>' +
                 '</div>' +
@@ -349,7 +349,7 @@ $(document).ready(function () {
                 '<label for="question_type_ref">Tipo da pergunta:</label>' +
                 '</div>' +
                 '<div class="col-7 col-sm-6 col-md-6 col-lg-7">' +
-                ' <select class="form-control selectpicker" data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
+                ' <select class="form-control selectpicker " data-style="btn btn-primary" name="question_type_ref" id="question_type_ref">' +
                 ' <option selected value="1">Texto</option>' +
                 ' <option disabled value="2">Imagem</option>' +
                 '   <option disabled value="3">Vídeo</option>' +
@@ -414,7 +414,7 @@ $(document).ready(function () {
                 '<div class="col-7 col-sm-7">' +
                 ' <select class="form-control selectpicker " data-style="btn btn-primary" name="tamanho_ref" id="tamanho_ref">' +
                 '  <option selected value="1">Pequeno</option>' +
-                ' <option disabled class="conteudo2" value="2">Medio</option>' +
+                ' <option disabled class="conteudo2" value="2">Médio</option>' +
                 '  <option disabled class="conteudo2" value="3">Grande</option>' +
                 '</select>' +
                 ' </div>' +
@@ -431,7 +431,7 @@ $(document).ready(function () {
                 '<div class="col-7 col-sm-7">' +
                 '   <select class="form-control selectpicker " data-style="btn btn-primary" name="largura_ref" id="largura_ref">' +
                 '  <option selected value="1">Pequeno</option>' +
-                '   <option disabled class="conteudo2" value="2">Medio</option>' +
+                '   <option disabled class="conteudo2" value="2">Médio</option>' +
                 '  <option disabled class="conteudo2" value="3">Grande</option>' +
                 '           </select>' +
                 '   </div>' +
@@ -512,7 +512,7 @@ $(document).ready(function () {
                 '<div class="form-check form-check-radio">' +
                 'Essa resposta esta correta?&emsp;' +
                 '<label class="form-check-label">' +
-                '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this,1);">' +
+                '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
                 'Sim' +
                 '<span class="circle">' +
                 '<span class="check"></span>' +
@@ -550,7 +550,7 @@ $(document).ready(function () {
                 //                      '<label for="tamanho_ref" class="col">Tamanho:</label>' +
                 //                      '<select name="tamanho_ref" id="tamanho_ref" class="col">' +
                 //                      '<option selected value="1">Pequeno</option>' +
-                //                      '<option value="2">Medio</option>' +
+                //                      '<option value="2">Médio</option>' +
                 //                      '<option value="3">Grande</option>' +
                 //                      '</select>' +
                 //                      '</div>' +
@@ -558,7 +558,7 @@ $(document).ready(function () {
                 //                      '<label for="largura_ref" class="col">Largura:</label>' +
                 //                      '<select name="largura_ref" id="largura_ref" class="col">' +
                 //                      '<option selected value="1">Pequeno</option>' +
-                //                      '<option value="2">Medio</option>' +
+                //                      '<option value="2">Médio</option>' +
                 //                      '<option value="3">Grande</option>' +
                 //                      '</select>' +
                 //                      '</div>' +
@@ -819,7 +819,7 @@ $(document).ready(function () {
             x = 0,
             y = 0,
             z = 0;
-        var i = 0;
+        i = 0;
         var teste3 = [];
 
         var corretos = document.getElementsByName('corret[]');
@@ -838,7 +838,7 @@ $(document).ready(function () {
             '<div class="form-check form-check-radio">' +
             'Essa resposta esta correta?&emsp;' +
             '<label class="form-check-label">' +
-            '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this,0);" required>' +
+            '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);" required>' +
             'Sim' +
             '<span class="circle">' +
             '<span class="check"></span>' +
@@ -974,7 +974,6 @@ $(document).ready(function () {
                             modal.find('#perg_id').val(val.question_id);
                             console.log(val.question_id);
                             modal.find('.room_type').val(val.room_type);
-                            $('.room_type').trigger("change");
                             modal.find('#question_type').val(val.question_type);
                             if (val.room_type == "true_or_false") {
                                 $(".room_type").trigger('change');
@@ -996,9 +995,8 @@ $(document).ready(function () {
 
 
                                         modal.find('#tamanho').val(tamanho);
+
                                         $('#tamanho').trigger("change");
-
-
                                         if (path.widht >= 1 && path.widht <= 3)
                                             tamanho = 1;
                                         else if (path.widht >= 4 && path.widht <= 6)
@@ -1011,7 +1009,6 @@ $(document).ready(function () {
                                     }
 
                                     modal.find('#path_id4').val(path.path_id);
-                                    console.log("path  ++++++++++++    "+path.path_id);
                                     w++;
                                 } else if (document.getElementById('room_type').value == 'hope_door') {
 
@@ -1160,7 +1157,7 @@ $(document).ready(function () {
             modal.find('#question_type').val(1);
             modal.find('#perg-reforco-id').val(0);
             i++;
-            $("#add").trigger('click');$("#add").trigger('click');
+            $("#add").trigger('click');
             $("#add").trigger('click');
 
 
@@ -1184,19 +1181,16 @@ $(document).ready(function () {
         var teste4 = [];
         var ref = document.getElementById('check-reforco')
         var i;
-        var entrar = 0;
 
         for (i = 0; i < y.length; i++) {
 
             teste3[i] = y[i].value;
-            console.log("testeeeeeeee " + teste3[i]);
 
 
             if (y[i].value == 1)
                 z++
         }
 
-        console.log("zzzzzzzzz " + z);
         var t = $('#add_name').serialize() + "&correto=" + teste3;
 
 
@@ -1213,23 +1207,20 @@ $(document).ready(function () {
         }
 
 
-         if(($('#room_type').val() != 'true_or_false' && z==1) || ($('#room_type').val() == 'true_or_false' && z>=0)){
-                 entrar++;
-         }
-           if($('#room_type').val() == 'hope_door'){
-               if(($('#room_type_ref').val() != 'true_or_false' && contaRef==1)|| ($('#room_type_ref').val() == 'true_or_false' && contaRef>=0)){
-                 entrar++;
-             }
-           }
-           if(($('#room_type').val() == 'hope_door' && entrar==2) || ($('#room_type').val() != 'hope_door' && entrar==1)){
+        // if(($('#room_type').val() != 'true_or_false' && z==1) || ($('#room_type').val() == 'true_or_false' && z>=0)){
+        //         entrar++;
+        // }
+        //   if($('#room_type').val() == 'hope_door'){
+        //       if(($('#room_type_ref').val() != 'true_or_false' && contaRef==1)|| ($('#room_type_ref').val() == 'true_or_false' && contaRef>=0)){
+        //         entrar++;
+        //     }
+        //   }
+        //   if(($('#room_type').val() == 'hope_door' && entrar==2) || ($('#room_type').val() != 'hope_door' && entrar==1)){
 
 
-        /*if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false') ||
+        if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false') ||
             (!ref.checked && $('#room_type').val() == 'true_or_false')) ||
-            ((z >= 2 && ref.checked) || (((ref.checked) && ($('#room_type_ref').val() == 'true_or_false')) && ($('#room_type').val() == 'hope_door')))) {*/
-            
-            //console.log(t);
-            //e.preventDefault()
+            ((z >= 2 && ref.checked) || (((ref.checked) && ($('#room_type_ref').val() == 'true_or_false')) && ($('#room_type').val() == 'hope_door')))) {
 
             $.ajax({
 
@@ -1263,9 +1254,8 @@ $(document).ready(function () {
 
                     a = 0;
                     b = 0;
-                    e.preventDefault()
 
-//                    window.location.href = window.location.href;
+                    window.location.href = window.location.href;
 
                 }
 
@@ -1299,7 +1289,7 @@ $(document).ready(function () {
                 });
             }
 
-            alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter várias respostas certas ou nehuma!", "error");
+            alert2("Falta marca a resposta certa da aba pergunta ou da aba refoço, verifica se tem pelo menos uma certa!<br>Caso a interação esteja marcado em verdadeiro ou falso poderá ter varias resposta certas ou nehum resposta!", "error");
             e.preventDefault();
         }
         if (ref.checked) {
@@ -1340,7 +1330,7 @@ $(document).ready(function () {
                 }
 
 
-                alert1("A campos a preencher na aba Refoço, verifique!", "error");
+                alert1("A campos a preencher na aba Refoço verifique!", "error");
 
                 $('#pergunta-reforco').focus();
                 e.preventDefault();

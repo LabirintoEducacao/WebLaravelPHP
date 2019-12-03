@@ -154,7 +154,7 @@
                                                     <div class="col-7 col-sm-7">
                                                         <select name="tamanho" id="tamanho" class="form-control selectpicker conteudo" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Pequeno</option>
-                                                            <option disabled class="conteudo" value="2">Medio</option>
+                                                            <option disabled class="conteudo" value="2">Médio</option>
                                                             <option disabled class="conteudo"  value="3">Grande</option>
                                                         </select>
                                                     </div>
@@ -172,7 +172,7 @@
                                                     <div class="col-7 col-sm-7">
                                                         <select name="largura" id="largura" class="form-control selectpicker" data-style="btn btn-primary" style="float:left;">
                                                             <option selected value="1">Pequeno</option>
-                                                            <option disabled class="conteudo"  value="2">Medio</option>
+                                                            <option disabled class="conteudo"  value="2">Médio</option>
                                                             <option disabled class="conteudo"  value="3">Grande</option>
                                                         </select>
                                                     </div>
