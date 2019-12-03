@@ -471,749 +471,779 @@ class PerguntaRespostaController extends Controller
     public function store(Request $request)
     {
 
-     $salaid = $request->sala_id;
-     $ordem = Pergunta::select('ordem')->where('sala_id', $salaid)->orderBy('ordem')->get();
+        $salaid = $request->sala_id;
+        $ordem = Pergunta::select('ordem')->where('sala_id', $salaid)->orderBy('ordem')->get();
 
-     foreach ($ordem as $value){
-       $teste = $value->ordem;
-     }
-
-   
-   if(isset($teste)){
-
-       $teste ++;
-
-   }
-   if(!isset($teste)){
-
-    $teste = 0;
-}
+        foreach ($ordem as $value){
+            $teste = $value->ordem;
+        }
 
 
-if($request->ajax())
-{
+        if(isset($teste)){
 
-  $rules = array(
-    'resposta.*' => 'required',
-    'resposta_ref.*' => 'required'
+            $teste ++;
 
-);
-  
-  $error = Validator::make($request->all(), $rules);
+        }
+        if(!isset($teste)){
 
-  if($error->fails())
-  {
-    return response()->json(['error' => $error->errors()->all()]);
-
-}  
-
-if($request->perg_id == 0){
-  
-                        ////////Perguntas///////////
- $sala_id = $request->sala_id;
- $tipo_perg = $request->question_type;
- $pergunta = $request->pergunta;
- $room_type = $request->room_type;
-
-                     ///////////Path////////////
- $ambiente_perg = $request->answer_boolean;
- $tamanho1 = $request->tamanho;
-$largura1 = $request->largura;
- $disponivel = true;
-    
-    if($ambiente_perg==1){
-        
-        $tamanho_perg = rand(1,3);
-        $largura_perg = rand(1,3);
-        
-    }else{
-
-         if($tamanho1 == 1 ){
-            $tamanho_perg = rand(1,3);
-
-         }else if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
-
-         }else if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
-
-         }
-        
-        if($largura1 == 1 ){
-            $largura_perg = rand(1,3);
-
-         }else if($largura1 == 2 ){
-            $largura_perg = rand(4,6);
-
-         }else if($largura1 == 3 ){
-            $largura_perg = rand(7,10);
-
-         }
-    }
- 
-                    ////////Tabela Pergunta ////////////////////////
- $pergid = DB::table('perguntas')->insertGetId(array(
-
-    'sala_id' => $sala_id,
-    'tipo_perg' => $tipo_perg,
-    'pergunta' => $pergunta,
-    'ordem' =>   $teste,
-    'room_type' => $room_type
-
-));
+            $teste = 0;
+        }
 
 
+        if($request->ajax())
+        {
+
+            $rules = array(
+            'resposta.*' => 'required',
+            'resposta_ref.*' => 'required');
+
+            $error = Validator::make($request->all(), $rules);
+
+            if($error->fails())
+            {
+                return response()->json(['error' => $error->errors()->all()]);
+
+            }  
+
+            if($request->perg_id == 0){
+
+                ////////Perguntas///////////
+                $sala_id = $request->sala_id;
+                $tipo_perg = $request->question_type;
+                $pergunta = $request->pergunta;
+                $room_type = $request->room_type;
+
+                ///////////Path////////////
+                $ambiente_perg = $request->answer_boolean;
+                $tamanho1 = $request->tamanho;
+                $largura1 = $request->largura;
+                $disponivel = true;
+
+                if($ambiente_perg==1){
+
+                    $tamanho_perg = rand(1,3);
+                    $largura_perg = rand(1,3);
+
+                }else{
+
+                    if($tamanho1 == 1 ){
+                        $tamanho_perg = rand(1,3);
+
+
+                    }else if($tamanho1 == 2 ){
+                        $tamanho_perg = rand(4,6);
+
+
+                    }else if($tamanho1 == 3 ){
+                        $tamanho_perg = rand(7,10);
+                    }
+
+                    if($largura1 == 1 ){
+
+                        $largura_perg = rand(1,3);
+                    }else if($largura1 == 2 ){
+
+                        $largura_perg = rand(4,6);
+                    }else if($largura1 == 3 ){
+
+                        $largura_perg = rand(7,10);
+                    }
+
+
+                }
+
+                ////////Tabela Pergunta ////////////////////////
+                $pergid = DB::table('perguntas')->insertGetId(array(
+
+                'sala_id' => $sala_id,
+                'tipo_perg' => $tipo_perg,
+                'pergunta' => $pergunta,
+                'ordem' =>   $teste,
+                'room_type' => $room_type
+
+                ));
+
+
+
+                ////////////Tabela Path//////////////////
+                $pathid = DB::table('paths')->insertGetId(array(
+
+                'ambiente_perg' => $ambiente_perg,
+                'tamanho' => $tamanho_perg,
+                'largura' => $largura_perg,
+                'disp' => $disponivel
+
+
+                ));
+
+
+                DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' => $pathid));
+
+
+                /////Resposta1////////////
+                $tipo_resp = $request->tipo_resp;
+                $resposta = $request->resposta;
+                $corret = explode(',', $request->correto);
+                $sala_id = $request->sala_id;
+
+
+                for($count = 0; $count < count($resposta); $count++)
+                {
+
+                    $id = DB::table('respostas')->insertGetId(array(
+
+                    'sala_id'  =>  $sala_id,
+                    'tipo_resp' => $tipo_resp,
+                    'resposta' => $resposta[$count],
+                    'corret' => $corret[$count]
+
+
+                    ));
+
+                    DB::table('perg_resp')->insert(array('perg_id' => $pergid, 'resp_id' => $id));
+
+                }
+
+                if($request->perg_reforco==1){
+
+
+
+                    //  ////////////////Patch errado da Pergunta/////////
+                    $ambiente_perg = $request->answer_boolean_perg;
+                    $tamanho2 = $request->tamanho_perg;
+                    $largura2 = $request->largura_perg;
+                    $disponivel = true;
+                    if($ambiente_perg==1){
+                        $tamanho_perg = rand(1,3);
+                        $largura_perg = rand(1,3);
+                    }else{
+
+                        if($tamanho2 == 1 ){
+                            $tamanho_perg = rand(1,3);
+
+
+                        }else if($tamanho2 == 2 ){
+                            $tamanho_perg = rand(4,6);
+
+
+                        }else if($tamanho2 == 3 ){
+                            $tamanho_perg = rand(7,10);
+
+
+                        }
+
+                        if($largura2 == 1 ){
+
+                            $largura_perg = rand(1,3);
+
+                        }else if($largura2 == 2 ){
+
+                            $largura_perg = rand(4,6);
+
+                        }else if($largura2 == 3 ){
+                            $largura_perg = rand(7,10);
+
+                        }
+
+
+
+
+                    }
+                    $disponivel_perg = false;
+
+                    ////////Perguntas///////////
+
+                    $sala_id_ref = $request->sala_id;
+                    $tipo_perg_ref = $request->question_type_ref;
+                    $pergunta_ref = $request->reforco;
+                    $room_type_ref = $request->room_type_ref;
+
+
+                    /////Resposta2////////////
+                    $tipo_resp_ref = $request->tipo_resp_ref;
+                    $resposta_ref = $request->resposta_ref;
+                    $corret_ref = explode(',', $request->correto_ref);
+
+
+                    ////////////////PatchReforco/////////
+                    $ambiente_ref = $request->answer_boolean_ref;
+                    $tamanho_ref1 = $request->tamanho_ref;
+                    $largura_ref1 = $request->largura_ref;
+
+
+                    if($ambiente_ref==1){
+                        $tamanho_ref = rand(1,3);
+                        $largura_ref = rand(1,3);
+                    }else{
+                        if($tamanho_ref1 == 1 ){
+                            $tamanho_ref = rand(1,3);
+
+                        }else if($tamanho_ref1 == 2 ){
+                            $tamanho_ref = rand(4,6);
+
+                        }else if($tamanho_ref1 == 3 ){
+                            $tamanho_ref = rand(7,10);
+
+
+                        }
+
+                        if($largura_ref1 == 1 ){
+
+                            $largura_ref = rand(1,3);
+
+                        }else if($largura_ref1 == 2 ){
+
+                            $largura_ref = rand(4,6);
+
+                        }else if($largura_ref1 == 3 ){
+
+                            $largura_ref = rand(7,10);
+
+                        } 
+
+
+                    }
+
+                    $disponivel_ref = true;
+
+
+                    ////////////Tabela Path ambiente errado//////////////////
+                    $pathidperg = DB::table('paths')->insertGetId(array(
+                    'ambiente_perg' =>  $ambiente_perg,
+                    'tamanho' =>   $tamanho_perg,
+                    'largura' => $largura_perg,
+                    'disp' => $disponivel_perg
+                    ));
 
                     ////////////Tabela Path//////////////////
- $pathid = DB::table('paths')->insertGetId(array(
+                    $pathidref = DB::table('paths')->insertGetId(array(
+                    'ambiente_perg' =>  $ambiente_ref,
+                    'tamanho' =>   $tamanho_ref,
+                    'largura' => $largura_ref,
+                    'disp' => $disponivel_ref
+                    ));
 
-    'ambiente_perg' => $ambiente_perg,
-    'tamanho' => $tamanho_perg,
-    'largura' => $largura_perg,
-    'disp' => $disponivel
+                    ////////Tabela Pergunta ////////////////////////
+                    $pergid2 = DB::table('perguntas')->insertGetId(array(
+                    'sala_id' => $sala_id_ref,
+                    'tipo_perg' => $tipo_perg_ref,
+                    'pergunta' => $pergunta_ref,
+                    'room_type' => $room_type_ref
+                    ));  
 
+                    DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' =>  $pathidperg));
 
-));
+                    DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
 
- 
- DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' => $pathid));
- 
- 
-                      /////Resposta1////////////
- $tipo_resp = $request->tipo_resp;
- $resposta = $request->resposta;
- $corret = explode(',', $request->correto);
- $sala_id = $request->sala_id;
- 
-
- for($count = 0; $count < count($resposta); $count++)
- {
-  
-    $id = DB::table('respostas')->insertGetId(array(
-
-     'sala_id'  =>  $sala_id,
-     'tipo_resp' => $tipo_resp,
-     'resposta' => $resposta[$count],
-     'corret' => $corret[$count]
+                    DB::table('perg_ref')->insert(array('perg_id' => $pergid, 'ref_id' => $pergid2));
 
 
- ));
+                    ////////////////Tabela Resposta2//////////////////////
 
-    DB::table('perg_resp')->insert(array('perg_id' => $pergid, 'resp_id' => $id));
+                    for($i = 0; $i < count($resposta_ref); $i++)
+                    {
+                        $reforcoid = DB::table('respostas')->insertGetId(array(
 
-}
-
-if($request->perg_reforco==1){
-
-
-
-                     //  ////////////////Patch errado da Pergunta/////////
- $ambiente_perg = $request->answer_boolean_perg;
- $tamanho1 = $request->tamanho_perg;
- $largura1 = $request->largura_perg;
- $disponivel = true;
-    if($ambiente_perg==1){
-        $tamanho_perg = rand(1,3);
-        $largura_perg = rand(1,3);
-    }else{
-
-         if($tamanho1 == 1 ){
-            $tamanho_perg = rand(1,3);
-
-         }else if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
-
-         }else if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
-
-         }
-        
-        if($largura1 == 1 ){
-            $largura_perg = rand(1,3);
-
-         }else if($largura1 == 2 ){
-            $largura_perg = rand(4,6);
-
-         }else if($largura1 == 3 ){
-            $largura_perg = rand(7,10);
-
-         }
-    }
- $disponivel_perg = false;
- 
-                     ////////Perguntas///////////
-
- $sala_id_ref = $request->sala_id;
- $tipo_perg_ref = $request->question_type_ref;
- $pergunta_ref = $request->reforco;
- $room_type_ref = $request->room_type_ref;
+                        'sala_id'  =>  $sala_id,
+                        'tipo_resp' => $tipo_resp_ref,
+                        'resposta' => $resposta_ref[$i],
+                        'corret' => $corret_ref[$i]
 
 
-                     /////Resposta2////////////
- $tipo_resp_ref = $request->tipo_resp_ref;
- $resposta_ref = $request->resposta_ref;
- $corret_ref = explode(',', $request->correto_ref);
+                        ));
 
 
-                     ////////////////PatchReforco/////////
- $ambiente_ref = $request->answer_boolean_ref;
- $tamanho_ref1 = $request->tamanho_ref;
- $largura_ref1 = $request->largura_ref;
- $largura_ref = 0;
-    
-    
-    if($ambiente_ref==1){
-        $tamanho_ref = rand(1,3);
-        $largura_ref = rand(1,3);
-    }else{
-         if($tamanho_ref1 == 1 ){
-            $tamanho_ref = rand(1,3);
+                        DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
 
-         }else if($tamanho_ref1 == 2 ){
-            $tamanho_ref = rand(4,6);
+                    }
 
-         }else if($tamanho_ref1 == 3 ){
-            $tamanho_ref = rand(7,10);
-
-         }
-        
-        if($largura_ref1 == 1 ){
-            $largura_ref = rand(1,3);
-
-         }else if($largura_ref1 == 2 ){
-            $largura_ref = rand(4,6);
-
-         }else if($largura_ref1 == 3 ){
-            $largura_ref = rand(7,10);
-
-         }
-    }
-
- $disponivel_ref = true;
-
-
-                     ////////////Tabela Path ambiente errado//////////////////
- $pathidperg = DB::table('paths')->insertGetId(array(
-     'ambiente_perg' =>  $ambiente_perg,
-     'tamanho' =>   $tamanho_perg,
-     'largura' => $largura_perg,
-     'disp' => $disponivel_perg
- ));
- 
-                     ////////////Tabela Path//////////////////
- $pathidref = DB::table('paths')->insertGetId(array(
-     'ambiente_perg' =>  $ambiente_ref,
-     'tamanho' =>   $tamanho_ref,
-     'largura' => $largura_ref,
-     'disp' => $disponivel_ref
- ));
-
-                     ////////Tabela Pergunta ////////////////////////
- $pergid2 = DB::table('perguntas')->insertGetId(array(
-    'sala_id' => $sala_id_ref,
-    'tipo_perg' => $tipo_perg_ref,
-    'pergunta' => $pergunta_ref,
-    'room_type' => $room_type_ref
-));  
- 
- DB::table('path_perg')->insert(array('perg_id' => $pergid, 'path_id' =>  $pathidperg));
-
- DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
- 
- DB::table('perg_ref')->insert(array('perg_id' => $pergid, 'ref_id' => $pergid2));
-
- 
-                     ////////////////Tabela Resposta2//////////////////////
-
- for($i = 0; $i < count($resposta_ref); $i++)
- {
-     $reforcoid = DB::table('respostas')->insertGetId(array(
-         
-         'sala_id'  =>  $sala_id,
-         'tipo_resp' => $tipo_resp_ref,
-         'resposta' => $resposta_ref[$i],
-         'corret' => $corret_ref[$i]
-         
-         
-     ));
-     
-     
-     DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
-
- }
-
-}
-
-return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
-
-
-}else{
-
-    DB::table('perguntas')
-    ->where('id','=', $request->perg_id)
-    ->update(['tipo_perg' => $request->question_type,'pergunta' => $request->pergunta,'room_type' => $request->room_type]);
-    
-    $respostas = DB::table('respostas')
-    ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
-    ->where('perg_resp.perg_id','=', $request->perg_id)
-    ->get();
-    $tipo_resp = $request->tipo_resp;
-    $resposta = $request->resposta;
-    $resp_id = $request->resp_id;
-    $corret = explode(',', $request->correto);
-    $sala_id = $request->sala_id;
-    $count=0;
-    DB::table('respostas')
-    ->where('id','=', $resp_id[$count])
-    ->update(['tipo_resp' => $tipo_resp,'resposta' => $resposta[$count],'corret' => $corret[$count]]);
-    
-    foreach($respostas as $resp){
-        $v=0;
-        for($i=0;$i<count($resposta);$i++){
-            if($resp_id[$i]==$resp->id){
-                $v++;
-            }
-            if($i==(count($resposta)-1)){
-                if($v==0){
-                    $deleteResp = Resposta::find($resp->id);
-                    $deleteResp->delete();
                 }
-            }
-        }
-    }
-    
-    for($count = 0; $count < count($resposta); $count++)
-    {
-        
-        $att_resp_id = DB::table('respostas')
-        ->where('id','=',$resp_id[$count])
-        ->get();
-        if(count($att_resp_id)>0){
-            DB::table('respostas')
-            ->where('id','=', $resp_id[$count])
-            ->update(['tipo_resp' => $tipo_resp,'resposta' => $resposta[$count],'corret' => $corret[$count]]);
-            
-        }else{
-            
-            $resposta_id_s = DB::table('respostas')->insertGetId(array(
 
-             'sala_id'  => $request->sala_id,
-             'tipo_resp' => $tipo_resp,
-             'resposta' => $resposta[$count],
-             'corret' => $corret[$count]
+                return response()->json(['success' => 'Pergunta cadastrada com sucesso!']);
 
 
-         ));
+            }else{
 
-            DB::table('perg_resp')->insert(array('perg_id' => $request->perg_id, 'resp_id' => $resposta_id_s));
-            
-        }
+                DB::table('perguntas')
+                ->where('id','=', $request->perg_id)
+                ->update(['tipo_perg' => $request->question_type,'pergunta' => $request->pergunta,'room_type' => $request->room_type]);
 
+                $respostas = DB::table('respostas')
+                ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
+                ->where('perg_resp.perg_id','=', $request->perg_id)
+                ->get();
+                $tipo_resp = $request->tipo_resp;
+                $resposta = $request->resposta;
+                $resp_id = $request->resp_id;
+                $corret = explode(',', $request->correto);
+                $sala_id = $request->sala_id;
+                $count=0;
+                DB::table('respostas')
+                ->where('id','=', $resp_id[$count])
+                ->update(['tipo_resp' => $tipo_resp,'resposta' => $resposta[$count],'corret' => $corret[$count]]);
 
-    }
-    
-    $ambiente_perg = $request->answer_boolean;
- $tamanho1 = $request->tamanho;
- $largura1 = $request->largura;
-    if($ambiente_perg==1){
-        $tamanho_perg = rand(1,3);
-        $largura_perg = rand(1,3);
-    }else{
-
-         if($tamanho1 == 1 ){
-            $tamanho_perg = rand(1,3);
-
-         }else if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
-
-         }else if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
-
-         }
-        
-        if($largura1 == 1 ){
-            $largura_perg = rand(1,3);
-
-         }else if($largura1 == 2 ){
-            $largura_perg = rand(4,6);
-
-         }else if($largura1 == 3 ){
-            $largura_perg = rand(7,10);
-
-         }
-    }
-    DB::table('paths')
-    ->where('id','=', $request->path_id)
-    ->update(['ambiente_perg' => $ambiente_perg,'tamanho' => $tamanho_perg,'largura' => $largura_perg]);
-    //$sql = "update labirinto2.paths set ambiente_perg = ".$ambiente_perg.", tamanho = ".$tamanho_perg.", largura = ".$lagura_perg." where id = ".$request->path_id.";";
-    
-    //$testeeeeeeeeee = DB::select($sql);
-    //return response()->json(['error' => $sql]);
-    
-    
-    
-    if($request->perg_reforco_id>0 && $request->perg_reforco==1){
-      
-      DB::table('perguntas')
-      ->where('id','=', $request->perg_reforco_id)
-      ->update(['tipo_perg' => $request->question_type_ref,'pergunta' => $request->reforco,'room_type' => $request->room_type_ref]);
-      
-      $respostas_ref = DB::table('respostas')
-      ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
-      ->where('perg_resp.perg_id','=', $request->perg_reforco_id)
-      ->get();
-      $tipo_resp_ref = $request->tipo_resp_ref;
-      $resposta_ref = $request->resposta_ref;
-      $corret_ref = explode(',', $request->correto_ref);
-      $resp_ref_id = $request->resp_ref_id;
-        
-        $ambiente_ref = $request->answer_boolean_ref;
- $tamanho_ref1 = $request->tamanho_ref;
- $largura_ref1 = $request->largura_ref;
-    if($ambiente_ref==1){
-        $tamanho_ref = rand(1,3);
-        $largura_ref = rand(1,3);
-    }else{
-
-         if($tamanho_ref1 == 1 ){
-            $tamanho_ref = rand(1,3);
-
-         }else if($tamanho1 == 2 ){
-            $tamanho_ref = rand(4,6);
-
-         }else if($tamanho1 == 3 ){
-            $tamanho_ref = rand(7,10);
-
-         }
-        
-        
-        if($largura_ref1 == 1 ){
-            $largura_ref = rand(1,3);
-
-         }else if($largura1 == 2 ){
-            $largura_ref = rand(4,6);
-
-         }else if($largura1 == 3 ){
-            $largura_ref = rand(7,10);
-
-         }
-    }
-      
-      DB::table('paths')
-      ->where('id','=', $request->path_reforco_id)
-      ->update(['ambiente_perg' => $ambiente_ref,'tamanho' => $tamanho_ref,'largura' => $largura_ref]);
-        
-        $ambienteB_perg = $request->answer_boolean_perg;
- $tamanho1 = $request->tamanho_perg;
- $largura = $request->largura_perg;
- $disponivel = true;
-    if($ambienteB_perg==1){
-        $tamanho = rand(1,3);
-        $largura = rand(1,3);
-    }else{
-
-         if($tamanho1 == 1 ){
-            $tamanho = rand(1,3);
-
-         }else if($tamanho1 == 2 ){
-            $tamanho = rand(4,6);
-
-         }else if($tamanho1 == 3 ){
-            $tamanho = rand(7,10);
-
-         }
-        
-        
-        if($largura1 == 1 ){
-            $largura = rand(1,3);
-
-         }else if($largura1 == 2 ){
-            $largura = rand(4,6);
-
-         }else if($largura1 == 3 ){
-            $largura = rand(7,10);
-
-         }
-    }
-      
-      DB::table('paths')
-      ->where('id','=', $request->path_errado_id)
-      ->update(['ambiente_perg' => $ambienteB_perg,'tamanho' => $tamanho,'largura' => $largura]);
-      
-      foreach($respostas_ref as $resp_ref){
-        $v=0;
-        for($i=0;$i<count($resposta_ref);$i++){
-            if($resp_ref_id[$i]==$resp_ref->id){
-                $v++;
-            }
-            if($i==(count($resposta_ref)-1)){
-                if($v==0){
-                    $deleteRespRef = Resposta::find($resp_ref->id);
-                    $deleteRespRef->delete();
+                foreach($respostas as $resp){
+                    $v=0;
+                    for($i=0;$i<count($resposta);$i++){
+                        if($resp_id[$i]==$resp->id){
+                            $v++;
+                        }
+                        if($i==(count($resposta)-1)){
+                            if($v==0){
+                                $deleteResp = Resposta::find($resp->id);
+                                $deleteResp->delete();
+                            }
+                        }
+                    }
                 }
+
+                for($count = 0; $count < count($resposta); $count++)
+                {
+
+                    $att_resp_id = DB::table('respostas')
+                    ->where('id','=',$resp_id[$count])
+                    ->get();
+
+                    if(count($att_resp_id)>0){
+                        DB::table('respostas')
+                        ->where('id','=', $resp_id[$count])
+                        ->update(['tipo_resp' => $tipo_resp,'resposta' => $resposta[$count],'corret' => $corret[$count]]);
+
+                    }else{
+
+                        $resposta_id_s = DB::table('respostas')->insertGetId(array(
+
+                        'sala_id'  => $request->sala_id,
+                        'tipo_resp' => $tipo_resp,
+                        'resposta' => $resposta[$count],
+                        'corret' => $corret[$count]
+
+
+                        ));
+
+                        DB::table('perg_resp')->insert(array('perg_id' => $request->perg_id, 'resp_id' => $resposta_id_s));
+
+                    }
+
+
+                }
+
+                $ambiente_perg = $request->answer_boolean;
+                
+                $tamanho1 = $request->tamanho;
+                $largura1 = $request->largura;
+                if($ambiente_perg==1){
+                    $tamanho_perg = rand(1,3);
+                    $largura_perg = rand(1,3);
+
+                }else{
+
+                    
+                    if($tamanho1 == 1 ){
+                        $tamanho_perg = rand(1,3);
+
+                    }else if($tamanho1 == 2 ){
+                        $tamanho_perg = rand(4,6);
+                        
+
+                    }else if($tamanho1 == 3 ){
+                        $tamanho_perg = rand(7,10);
+
+
+                    }
+
+                    if($largura1 == 1 ){
+                        $largura_perg = rand(1,3);
+                    }else if($largura1 == 2 ){
+                        $largura_perg = rand(4,6);
+                    }else if($largura1 == 3 ){
+                        $largura_perg = rand(7,10);
+                    }
+
+                }
+                
+                //return response()->json(["success"=>$request->path_id4]);
+                DB::table('paths')
+                ->where('id','=', $request->path_id4)
+                ->update(['ambiente_perg' => $ambiente_perg,'tamanho' => $tamanho_perg,'largura' => $largura_perg]);
+
+                if($request->perg_reforco_id>0 && $request->perg_reforco==1){
+
+                    DB::table('perguntas')
+                    ->where('id','=', $request->perg_reforco_id)
+                    ->update(['tipo_perg' => $request->question_type_ref,'pergunta' => $request->reforco,'room_type' => $request->room_type_ref]);
+
+                    $respostas_ref = DB::table('respostas')
+                    ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
+                    ->where('perg_resp.perg_id','=', $request->perg_reforco_id)
+                    ->get();
+                    $tipo_resp_ref = $request->tipo_resp_ref;
+                    $resposta_ref = $request->resposta_ref;
+                    $corret_ref = explode(',', $request->correto_ref);
+                    $resp_ref_id = $request->resp_ref_id;
+
+                    $ambiente_ref = $request->answer_boolean_ref;
+                    $tamanho_ref1 = $request->tamanho_ref;
+                    $largura_ref1 = $request->largura_ref;
+
+
+                    if($ambiente_ref==1){
+                        $tamanho_ref = rand(1,3);
+                        $largura_ref = rand(1,3);
+                    }else{
+                        if($tamanho_ref1 == 1 ){
+                            $tamanho_ref = rand(1,3);
+
+                        }else if($tamanho_ref1 == 2 ){
+                            $tamanho_ref = rand(4,6);
+
+                        }else if($tamanho_ref1 == 3 ){
+                            $tamanho_ref = rand(7,10);
+
+
+                        }
+
+                        if($largura_ref1 == 1 ){
+
+                            $largura_ref = rand(1,3);
+
+                        }else if($largura_ref1 == 2 ){
+
+                            $largura_ref = rand(4,6);
+
+                        }else if($largura_ref1 == 3 ){
+
+                            $largura_ref = rand(7,10);
+
+                        } 
+
+
+                    }
+
+
+                    DB::table('paths')
+                    ->where('id','=', $request->path_reforco_id)
+                    ->update(['ambiente_perg' => $ambiente_ref,'tamanho' => $tamanho_ref,'largura' => $largura_ref]);
+
+                    $ambienteB_perg = $request->answer_boolean_perg;
+                    $tamanho1 = $request->tamanho_perg;
+                    $largura1 = $request->largura_perg;
+                    $disponivel = true;
+
+                    if($ambienteB_perg==1){
+                        $tamanho = rand(1,3);
+                        $largura = rand(1,3);
+                    }else{
+
+                        if($tamanho1 == 1 ){
+                            $tamanho = rand(1,3);
+
+                        }else if($tamanho1 == 2 ){
+                            $tamanho = rand(4,6);
+
+                        }else if($tamanho1 == 3 ){
+                            $tamanho = rand(7,10);
+
+
+                        }
+
+                        if($largura1 == 1){
+                            $largura = rand(1,3);
+
+                        }else if($largura1 == 1){
+                            $largura = rand(4,6);
+                        }else if($largura1 == 1){
+                            $largura = rand(7,10);
+                        }
+
+
+                    }
+
+
+                    DB::table('paths')
+                    ->where('id','=', $request->path_errado_id)
+                    ->update(['ambiente_perg' => $ambienteB_perg,'tamanho' => $tamanho,'largura' => $largura]);
+
+                    foreach($respostas_ref as $resp_ref){
+                        $v=0;
+                        for($i=0;$i<count($resposta_ref);$i++){
+                            if($resp_ref_id[$i]==$resp_ref->id){
+                                $v++;
+                            }
+                            if($i==(count($resposta_ref)-1)){
+                                if($v==0){
+                                    $deleteRespRef = Resposta::find($resp_ref->id);
+                                    $deleteRespRef->delete();
+                                }
+                            }
+                        }
+                    }
+
+                    for($count = 0; $count < count($resposta_ref); $count++)
+                    {
+
+                        $id_ref = DB::table('respostas')
+                        ->where('id','=',$resp_ref_id[$count])
+                        ->get();
+                        if(count($id_ref)>0){
+                            DB::table('respostas')
+                            ->where('id','=', $resp_ref_id[$count])
+                            ->update(['tipo_resp' => $tipo_resp_ref,'resposta' => $resposta_ref[$count],'corret' => $corret_ref[$count]]);
+                        }else{
+
+                            $resposta_id_ref = DB::table('respostas')->insertGetId(array(
+
+                            'sala_id'  => $request->sala_id,
+                            'tipo_resp' => $tipo_resp_ref,
+                            'resposta' => $resposta_ref[$count],
+                            'corret' => $corret_ref[$count]
+
+
+                            ));
+
+                            DB::table('perg_resp')->insert(array('perg_id' => $request->perg_reforco_id, 'resp_id' => $resposta_id_ref));
+
+                        }
+
+
+                    }
+
+                }elseif($request->perg_reforco_id==0 && $request->perg_reforco==1){
+
+
+                    $perg_ref = DB::table('perg_ref')
+                    ->where('perg_id','=',$request->perg_id)
+                    ->get();      
+
+                    if(count($perg_ref)>0){
+                        DB::table('perguntas')
+                        ->where('id','=', $perg_ref[0]->ref_id)
+                        ->update(['tipo_perg' => $request->question_type_ref,'pergunta' => $request->reforco,'room_type' => $request->room_type_ref]);
+
+                        $respostas_ref = DB::table('respostas')
+                        ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
+                        ->where('perg_resp.perg_id','=', $perg_ref[0]->ref_id)
+                        ->get();
+                        foreach($respostas_ref as $resp_ref){
+                            $deleteRespRef = Resposta::find($resp_ref->id);
+                            $deleteRespRef->delete();
+                        }
+
+                        $tipo_resp_ref = $request->tipo_resp_ref;
+                        $resposta_ref = $request->resposta_ref;
+                        $corret_ref = explode(',', $request->correto_ref);
+                        for($count = 0; $count < count($resposta_ref); $count++)
+                        {
+                            $resposta_id_ref = DB::table('respostas')->insertGetId(array(
+
+                            'sala_id'  => $request->sala_id,
+                            'tipo_resp' => $tipo_resp_ref,
+                            'resposta' => $resposta_ref[$count],
+                            'corret' => $corret_ref[$count]
+
+
+                            ));
+
+                            DB::table('perg_resp')->insert(array('perg_id' => $perg_ref[0]->ref_id, 'resp_id' => $resposta_id_ref));
+                        }
+
+
+
+                    }else{
+
+                        //  ////////////////Patch errado da Pergunta/////////
+                        $ambiente_perg = $request->answer_boolean;
+                        $tamanho1 = $request->tamanho;
+                        $largura1 = $request->largura;
+                        $disponivel = true;
+                        $largura = 0;
+
+                        if($ambiente_perg==1){
+                            $tamanho_perg = rand(1,3);
+                            $largura_perg = rand(1,3);
+                        }else{
+
+                            if($tamanho1 == 1 ){
+                                $tamanho = rand(1,3);
+
+                            }else if($tamanho1 == 2 ){
+                                $tamanho = rand(4,6);
+
+                            }else if($tamanho1 == 3 ){
+                                $tamanho = rand(7,10);
+
+
+                            }
+
+                            if($largura1 == 1){
+                                $largura = rand(1,3);
+
+                            }else if($largura1 == 2){
+                                $largura = rand(4,6);
+                            }else if($largura1 == 3){
+                                $largura = rand(7,10);
+                            }
+
+
+                        }
+                        $disponivel_perg = false;
+
+                        ////////Perguntas///////////
+
+                        $sala_id_ref = $request->sala_id;
+                        $tipo_perg_ref = $request->question_type_ref;
+                        $pergunta_ref = $request->reforco;
+                        $room_type_ref = $request->room_type_ref;
+
+
+                        /////Resposta2////////////
+                        $tipo_resp_ref = $request->tipo_resp_ref;
+                        $resposta_ref = $request->resposta_ref;
+                        $corret_ref = explode(',', $request->correto_ref);
+
+
+                        ////////////////PatchReforco/////////
+                        $ambiente_ref = $request->answer_boolean_ref;
+                        $tamanho_ref1 = $request->tamanho_ref;
+                        $largura_ref1 = $request->largura_ref;
+                        $largura_ref = 0;
+
+
+                        if($ambiente_ref==1){
+                            $tamanho_ref = 3;
+                            $largura_ref = 2;
+                        }else{
+                            if($tamanho_ref1 == 1 ){
+                                $tamanho_ref = rand(1,3);
+                            }else if($tamanho_ref1 == 2 ){
+                                $tamanho_ref = rand(4,6);
+
+
+                            }else if($tamanho_ref1 == 3 ){
+                                $tamanho_ref = rand(7,10);
+
+                            }
+
+                            if($largura_ref1 == 1 ){
+                                $largura_ref = rand(1,3);
+
+                            }else if($largura_ref1 == 2 ){
+                                $largura_ref = rand(4,6);
+
+                            }else if($largura_ref1 == 3 ){
+                                $largura_ref = rand(7,10);
+
+                            }
+
+
+                        }
+                        $disponivel_ref = true;
+
+
+                        ////////////Tabela Path ambiente errado//////////////////
+                        $pathidperg = DB::table('paths')->insertGetId(array(
+                        'ambiente_perg' =>  $ambiente_perg,
+                        'tamanho' =>   $tamanho_perg,
+                        'largura' => $largura_perg,
+                        'disp' => $disponivel_perg
+                        ));
+
+                        ////////////Tabela Path//////////////////
+                        $pathidref = DB::table('paths')->insertGetId(array(
+                        'ambiente_perg' =>  $ambiente_ref,
+                        'tamanho' =>   $tamanho_ref,
+                        'largura' => $largura_ref,
+                        'disp' => $disponivel_ref
+                        ));
+
+                        ////////Tabela Pergunta ////////////////////////
+                        $pergid2 = DB::table('perguntas')->insertGetId(array(
+                        'sala_id' => $sala_id,
+                        'tipo_perg' => $tipo_perg_ref,
+                        'pergunta' => $pergunta_ref,
+                        'room_type' => $room_type_ref
+                        ));  
+
+                        DB::table('path_perg')->insert(array('perg_id' => $request->perg_id, 'path_id' =>  $pathidperg));
+
+                        DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
+
+                        DB::table('perg_ref')->insert(array('perg_id' => $request->perg_id, 'ref_id' => $pergid2));
+
+
+                        ////////////////Tabela Resposta2//////////////////////
+
+                        for($i = 0; $i < count($resposta_ref); $i++)
+                        {
+                            $reforcoid = DB::table('respostas')->insertGetId(array(
+
+                            'sala_id'  =>  $sala_id,
+                            'tipo_resp' => $tipo_resp_ref,
+                            'resposta' => $resposta_ref[$i],
+                            'corret' => $corret_ref[$i]
+
+
+                            ));
+
+
+                            DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
+
+                        }
+                    }
+                }
+                else{
+
+                    $paths_perg = DB::table('path_perg')
+                    ->where('perg_id','=',$request->perg_id)
+                    ->get();
+
+                    if(count($paths_perg)>1){
+                        $perg_ref = DB::table('perg_ref')
+                        ->where('perg_id','=',$request->perg_id)
+                        ->get();      
+
+                        if(count($perg_ref)>0){
+                            $repostas_ref = DB::table('perg_resp')
+                            ->where('perg_id','=',$perg_ref[0]->ref_id)
+                            ->get();
+                            $paths_ref = DB::table('path_perg')
+                            ->where('perg_id','=',$perg_ref[0]->ref_id)
+                            ->get();
+                            DB::table('perguntas')
+                            ->where('id','=',$perg_ref[0]->ref_id)
+                            ->delete();
+
+                            foreach($repostas_ref as $resp_ref){
+                                $deleteRespRef = Resposta::find($resp_ref->resp_id);
+                                $deleteRespRef->delete();
+                            }
+
+                            $deletePathRef = Path::find($paths_ref[0]->path_id);
+                            $deletePathRef->delete();
+
+                        }
+
+
+                        $x=0;
+                        foreach($paths_perg as $path){
+                            if($x==1)
+                                DB::table('paths')->where('id', $path->path_id)->delete();
+                            $x++;
+                        }
+
+                    }
+                }
+
+
+
+
+
+
+                return response()->json(['success' => 'Pergunta alterada com sucesso!']);
+
             }
         }
-    }
-    
-    for($count = 0; $count < count($resposta_ref); $count++)
-    {
-        
-        $id_ref = DB::table('respostas')
-        ->where('id','=',$resp_ref_id[$count])
-        ->get();
-        if(count($id_ref)>0){
-            DB::table('respostas')
-            ->where('id','=', $resp_ref_id[$count])
-            ->update(['tipo_resp' => $tipo_resp_ref,'resposta' => $resposta_ref[$count],'corret' => $corret_ref[$count]]);
-        }else{
-            
-            $resposta_id_ref = DB::table('respostas')->insertGetId(array(
-
-             'sala_id'  => $request->sala_id,
-             'tipo_resp' => $tipo_resp_ref,
-             'resposta' => $resposta_ref[$count],
-             'corret' => $corret_ref[$count]
-
-
-         ));
-
-            DB::table('perg_resp')->insert(array('perg_id' => $request->perg_reforco_id, 'resp_id' => $resposta_id_ref));
-            
         }
-
-
-    }
-    
-}elseif($request->perg_reforco_id==0 && $request->perg_reforco==1){
-  
-  
-  $perg_ref = DB::table('perg_ref')
-  ->where('perg_id','=',$request->perg_id)
-  ->get();      
-  
-  if(count($perg_ref)>0){
-      DB::table('perguntas')
-      ->where('id','=', $perg_ref[0]->ref_id)
-      ->update(['tipo_perg' => $request->question_type_ref,'pergunta' => $request->reforco,'room_type' => $request->room_type_ref]);
-      
-      $respostas_ref = DB::table('respostas')
-      ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
-      ->where('perg_resp.perg_id','=', $perg_ref[0]->ref_id)
-      ->get();
-      foreach($respostas_ref as $resp_ref){
-        $deleteRespRef = Resposta::find($resp_ref->id);
-        $deleteRespRef->delete();
-    }
-    
-    $tipo_resp_ref = $request->tipo_resp_ref;
-    $resposta_ref = $request->resposta_ref;
-    $corret_ref = explode(',', $request->correto_ref);
-    for($count = 0; $count < count($resposta_ref); $count++)
-    {
-        $resposta_id_ref = DB::table('respostas')->insertGetId(array(
-
-         'sala_id'  => $request->sala_id,
-         'tipo_resp' => $tipo_resp_ref,
-         'resposta' => $resposta_ref[$count],
-         'corret' => $corret_ref[$count]
-
-
-     ));
-
-        DB::table('perg_resp')->insert(array('perg_id' => $perg_ref[0]->ref_id, 'resp_id' => $resposta_id_ref));
-    }
-    
-    
-    
-}else{
-  
-              //  ////////////////Patch errado da Pergunta/////////
- $ambiente_perg = $request->answer_boolean;
- $tamanho1 = $request->tamanho;
- $largura1 = $request->largura;
- $disponivel = true;
-      $largura = 0;
-    if($ambiente_perg==1){
-        $tamanho_perg = rand(1,3);
-        $largura_perg = rand(1,3);
-    }else{
-
-         if($tamanho1 == 1 ){
-            $tamanho_perg = rand(1,3);
-
-         }else if($tamanho1 == 2 ){
-            $tamanho_perg = rand(4,6);
-
-         }else if($tamanho1 == 3 ){
-            $tamanho_perg = rand(7,10);
-
-         }
-        
-        
-        
-        if($largura1 == 1 ){
-            $largura_perg = rand(1,3);
-
-         }else if($largura1 == 2 ){
-            $largura_perg = rand(4,6);
-
-         }else if($largura1 == 3 ){
-            $largura_perg = rand(7,10);
-
-         }
-    }
- $disponivel_perg = false;
- 
-                     ////////Perguntas///////////
-
- $sala_id_ref = $request->sala_id;
- $tipo_perg_ref = $request->question_type_ref;
- $pergunta_ref = $request->reforco;
- $room_type_ref = $request->room_type_ref;
-
-
-                     /////Resposta2////////////
- $tipo_resp_ref = $request->tipo_resp_ref;
- $resposta_ref = $request->resposta_ref;
- $corret_ref = explode(',', $request->correto_ref);
-
-
-                     ////////////////PatchReforco/////////
-  $ambiente_ref = $request->answer_boolean_ref;
- $tamanho_ref1 = $request->tamanho_ref;
- $largura_ref1 = $request->largura_ref;
- $largura_ref = 0;
-    
-    
-    if($ambiente_ref==1){
-        $tamanho_ref = rand(1,3);
-        $largura_ref = rand(1,3);
-    }else{
-         if($tamanho_ref1 == 1 ){
-            $tamanho_ref = rand(1,3);
-
-         }else if($tamanho_ref1 == 2 ){
-            $tamanho_ref = rand(4,6);
-
-         }else if($tamanho_ref1 == 3 ){
-            $tamanho_ref = rand(7,10);
-
-         }
-        
-        if($largura_ref1 == 1 ){
-            $largura_ref = rand(1,3);
-
-         }else if($largura_ref1 == 2 ){
-            $largura_ref = rand(4,6);
-
-         }else if($largura_ref1 == 3 ){
-            $largura_ref = rand(7,10);
-
-         }
-    }
- $disponivel_ref = true;
-
-
-                     ////////////Tabela Path ambiente errado//////////////////
- $pathidperg = DB::table('paths')->insertGetId(array(
-     'ambiente_perg' =>  $ambiente_perg,
-     'tamanho' =>   $tamanho_perg,
-     'largura' => $largura_perg,
-     'disp' => $disponivel_perg
- ));
- 
-                     ////////////Tabela Path//////////////////
- $pathidref = DB::table('paths')->insertGetId(array(
-     'ambiente_perg' =>  $ambiente_ref,
-     'tamanho' =>   $tamanho_ref,
-     'largura' => $largura_ref,
-     'disp' => $disponivel_ref
- ));
-
-                     ////////Tabela Pergunta ////////////////////////
- $pergid2 = DB::table('perguntas')->insertGetId(array(
-    'sala_id' => $sala_id,
-    'tipo_perg' => $tipo_perg_ref,
-    'pergunta' => $pergunta_ref,
-    'room_type' => $room_type_ref
-));  
- 
- DB::table('path_perg')->insert(array('perg_id' => $request->perg_id, 'path_id' =>  $pathidperg));
-
- DB::table('path_perg')->insert(array('perg_id' => $pergid2, 'path_id' =>  $pathidref));
- 
- DB::table('perg_ref')->insert(array('perg_id' => $request->perg_id, 'ref_id' => $pergid2));
-
- 
-                     ////////////////Tabela Resposta2//////////////////////
-
- for($i = 0; $i < count($resposta_ref); $i++)
- {
-     $reforcoid = DB::table('respostas')->insertGetId(array(
-         
-         'sala_id'  =>  $sala_id,
-         'tipo_resp' => $tipo_resp_ref,
-         'resposta' => $resposta_ref[$i],
-         'corret' => $corret_ref[$i]
-         
-         
-     ));
-     
-     
-     DB::table('perg_resp')->insert(array('perg_id' => $pergid2, 'resp_id' => $reforcoid));
-     
- }
-}}
-else{
-  
-  $paths_perg = DB::table('path_perg')
-  ->where('perg_id','=',$request->perg_id)
-  ->get();
-  
-  if(count($paths_perg)>1){
-      $perg_ref = DB::table('perg_ref')
-      ->where('perg_id','=',$request->perg_id)
-      ->get();      
-      
-      if(count($perg_ref)>0){
-          $repostas_ref = DB::table('perg_resp')
-          ->where('perg_id','=',$perg_ref[0]->ref_id)
-          ->get();
-          $paths_ref = DB::table('path_perg')
-          ->where('perg_id','=',$perg_ref[0]->ref_id)
-          ->get();
-          DB::table('perguntas')
-          ->where('id','=',$perg_ref[0]->ref_id)
-          ->delete();
-          
-          foreach($repostas_ref as $resp_ref){
-             $deleteRespRef = Resposta::find($resp_ref->resp_id);
-             $deleteRespRef->delete();
-         }
-         
-         $deletePathRef = Path::find($paths_ref[0]->path_id);
-         $deletePathRef->delete();
-
-     }
-
-     
-     $x=0;
-     foreach($paths_perg as $path){
-      if($x==1)
-        DB::table('paths')->where('id', $path->path_id)->delete();
-    $x++;
-}
-
-}
-}
-
-
-return response()->json(['success' => 'Pergunta alterada com sucesso!']);
-
-}
-}
-}
-
 
     /**
      * Display the specified resource.

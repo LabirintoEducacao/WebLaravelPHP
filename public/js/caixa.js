@@ -1010,7 +1010,8 @@ $(document).ready(function () {
 
                                     }
 
-                                    modal.find('#path_id').val(path.path_id);
+                                    modal.find('#path_id4').val(path.path_id);
+                                    console.log("path  ++++++++++++    "+path.path_id);
                                     w++;
                                 } else if (document.getElementById('room_type').value == 'hope_door') {
 
