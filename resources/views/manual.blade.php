@@ -162,7 +162,7 @@
                                                 Tipo da pergunta: se é texto, imagem, vídeo ou áudio;
                                             </li>
                                             <li>
-                                                Interação: como irá interagir com o usuário;
+                                                Interação: como irá interagir com o usuário, caso seja selecionado "Porta da Esperança", será necessário adicionar uma pergunta reforço;
                                             </li>
                                             <li>
                                                 Pergunta: este campo irá variar de acordo com o que foi selecionado no campo tipo de pergunta: se for texto, aparecerá um campo para digitar, se for imagem ou áudio, aparecerá um campo para realizar o upload do arquivo e, caso seja vídeo, aparecrá um campo para digitar a url do mesmo.
@@ -199,12 +199,12 @@
                                                 Largura: pequeno, médio ou grande;
                                             </li>
                                         </ul>
-                                        <img src="/img/add_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                        <img src="/img/add_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                                     </li>
                                     <li>
-                                        Reforço: inicialmente só há um campo que, ao ser clicado, mostra os campos para preencher uma pergunta de reforço, esses campos serão exatamente iguais aos anteriores, a única diferença é que há duas configurações de ambientes diferentes: a primeira é o caminho que usuário irá percorrer para achar o reforço e o outro será o caminho pelo qual ele passará quando acertar a pergunta.
-                                        <img src="/img/ref.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
-                                        <img src="/img/add_ref.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                        Reforço: só aparecerá se o campo Porta da Esperança estiver selecionado na aba Pergunta, os campos são exatamente iguais aos anteriores, a única diferença é que há duas configurações de ambientes diferentes: a primeira é o caminho que usuário irá percorrer para achar o reforço e o outro será o caminho pelo qual ele passará quando acertar a pergunta.
+                                        <img src="/img/ref.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                                        <img src="/img/add_ref.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                                     </li>
                                     
                                 </ul>
@@ -223,7 +223,7 @@
                             <p>
                                 Após criar as perguntas, se algum dos campos tiver sido preenchido de forma errada, é só clicar no botão <i class="material-icons">more_vert</i> e depois em 'Editar', e ele abrirá um editor de texto com os mesmos campos da caixa de criar pergunta e, ao finalizar, clique em “SALVAR ALTERAÇÕES”.
                                 <br>
-                                <img src="/img/editar_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                <img src="/img/editar_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             <!--                            ALTERAR ORDEM                          -->
                             <h5 id="list-item-2-3">
@@ -232,8 +232,8 @@
                             <p>
                                 É o botão que serve para alterar a ordem em que o jogador verá as perguntas. Para alterar a ordem, basta arrastar a perqunta para a posição desejada.
                                 <br>
-                                <img src="/img/ordem_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
-                                <img src="/img/ordem.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                <img src="/img/ordem_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                                <img src="/img/ordem.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             
                             <!--                            DELETAR SALA                           -->
@@ -245,7 +245,7 @@
                                 <br>
                                 <span style="color:#aa0000">Obs.: ao clicar em 'Excluir', a(s) resposta(s) e, se houver, o reforço serão deletados juntos a pergunta.</span>
                                 <br>
-                                <img src="/img/deletar_perg.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                                <img src="/img/deletar_perg.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                             </p>
                             
                         </div>
@@ -267,7 +267,10 @@
                         <p>
                             É o item do menu que, ao ser clicado, mostra ao usuário todas as salas em que ele pode jogar.
                             <br>
-                            <img src="/img/virtual.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                            <img src="/img/virtual.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
+                            <br>
+                            Para jogar, basta clicar em QrCode e, depois, lê-lo com o celular.
+                            <img src="/img/virtual2.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                         </p>
                         
                     </div>
@@ -284,7 +287,7 @@
                         <p>
                             Para alterar os dados do perfil (nome e/ou e-mail), é só clicar na opção Editar Perfil.
                             <br>
-                            <img src="/img/perfil.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                            <img src="/img/perfil.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                         </p>
                         
                     </div>
@@ -293,9 +296,9 @@
                             Editar Senha
                         </h4>
                         <p>
-                            Para alterar a senha é só clicar na opção Editar Senha.
+                            Para alterar a senha, basta ir clicar em Perfil e, depois, em Alterar Senha.
                             <br>
-                            <img src="/img/senha.png" class="img-fluid" style="width: 400px; padding-bottom: 50px; padding-top:50px; ">
+                            <img src="/img/senha.png" class="img-fluid" style="width: 800px; padding-bottom: 50px; padding-top:50px; ">
                         </p>
                         
                     </div>
