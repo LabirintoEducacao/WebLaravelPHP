@@ -26,7 +26,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro2" type="checkbox" name="corret[]" value="0" onclick="muda(this);">' +
+                    '<input class="form-check-input correct verdadeiro2" type="checkbox" name="corret[]" value="0" onclick="muda(this,0);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -56,7 +56,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);">' +
+                    '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this,0);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -173,7 +173,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda(this);">' +
+                    '<input class="form-check-input correct verdadeiro" type="checkbox" name="corret_ref[]" value="0" onclick="muda(this,1);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -204,7 +204,7 @@ $(document).ready(function () {
                     '<div class="form-check form-check-radio">' +
                     'Essa resposta esta correta?&emsp;' +
                     '<label class="form-check-label">' +
-                    '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
+                    '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this,1);">' +
                     'Sim' +
                     '<span class="circle">' +
                     '<span class="check"></span>' +
@@ -512,7 +512,7 @@ $(document).ready(function () {
                 '<div class="form-check form-check-radio">' +
                 'Essa resposta esta correta?&emsp;' +
                 '<label class="form-check-label">' +
-                '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this);">' +
+                '<input class="form-check-input correct verdadeiro" type="radio" name="corret_ref[]" value="0" onclick="muda(this,1);">' +
                 'Sim' +
                 '<span class="circle">' +
                 '<span class="check"></span>' +
@@ -838,7 +838,7 @@ $(document).ready(function () {
             '<div class="form-check form-check-radio">' +
             'Essa resposta esta correta?&emsp;' +
             '<label class="form-check-label">' +
-            '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this);" required>' +
+            '<input class="form-check-input correct verdadeiro2" type="radio" name="corret[]" value="0" onclick="muda(this,0);" required>' +
             'Sim' +
             '<span class="circle">' +
             '<span class="check"></span>' +
@@ -1185,6 +1185,7 @@ $(document).ready(function () {
         for (i = 0; i < y.length; i++) {
 
             teste3[i] = y[i].value;
+            console.log(teste3[i])
 
 
             if (y[i].value == 1)
@@ -1217,6 +1218,8 @@ $(document).ready(function () {
         //   }
         //   if(($('#room_type').val() == 'hope_door' && entrar==2) || ($('#room_type').val() != 'hope_door' && entrar==1)){
 
+        console.log(z)
+        e.preventDefault()
 
         if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false') ||
             (!ref.checked && $('#room_type').val() == 'true_or_false')) ||
