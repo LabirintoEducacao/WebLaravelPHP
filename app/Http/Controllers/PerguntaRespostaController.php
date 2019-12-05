@@ -950,9 +950,9 @@ class PerguntaRespostaController extends Controller
                         if($largura1 == 1){
                             $largura = rand(1,3);
 
-                        }else if($largura1 == 1){
+                        }else if($largura1 == 2){
                             $largura = rand(4,6);
-                        }else if($largura1 == 1){
+                        }else if($largura1 == 3){
                             $largura = rand(7,10);
                         }
 
