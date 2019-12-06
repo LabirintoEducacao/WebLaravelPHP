@@ -234,7 +234,7 @@ class UserController extends Controller
 
             $alunos = \App\User::orderBy('name')->get();
 
-            return view('add_alunos', ['id' => $id])->with(['data' => $data, 'alunos' => $alunos]);
+            return view('add_alunos', ['id' => $id])->with(['data' => $data, 'alunos' => $alunos, 'qtd' => count($data)]);
         } else {
             $notification = array(
                 'message' => 'Esta sala é pública, não há como adicionar alunos!',

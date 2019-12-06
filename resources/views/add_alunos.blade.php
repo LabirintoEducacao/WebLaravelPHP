@@ -29,7 +29,7 @@
                 </th>
               </thead>
               <tbody>
-
+                  @if($qtd>0)
                 @foreach($data as $aluno)
                 <tr class="{{'aluno_sala'.$aluno->id}}">
                   <td>{{$aluno->name}}</td>
@@ -45,6 +45,13 @@
                   </td>
                 </tr>
                 @endforeach
+                  @else
+                  <tr>
+                      <td>
+                    <h4>Não há alunos cadastrados nesta sala!</h4>
+                          </td>
+                  </tr>
+                  @endif
 
               </tbody>
             </table>
