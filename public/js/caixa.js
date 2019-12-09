@@ -390,17 +390,17 @@ $(document).ready(function () {
                 '<input type="hidden" name="path_reforco_id" id="path_reforco_id"></td>' +
                 '<div class="row" style="height:50px;">' +
                 '<div class="col-4 col-sm-4 col-lg-4" style="height:100%;">' +
-                '  <label for="answer_boolean_ref">Caminho do jogo:</label>' +
+                 '<label for="answer_boolean_ref">Caminho do jogo:</label>' +
                 '</div>' +
                 '<div class="col-1 col-sm-1" style="margin-left: -30px; margin-top: 12px;">' +
                 '<i class="material-icons info" data-toggle="modal" data-target="#modalinfoCorredor" style="cursor: pointer;" title="Informações sobre a Interação">info</i>' +
                 '</div>' +
                 '<div class="col-7 col-sm-7">' +
-                '   <select class="form-control selectpicker conteudo2 " data-style="btn btn-primary" name="answer_boolean_ref" id="answer_boolean_ref">' +
-                ' <option selected value="1">Corredor</option>' +
-                ' <option value="2">Labirinto</option>' +
+                '<select name="answer_boolean_ref" id="answer_boolean_ref" class="form-control selectpicker " data-style="btn btn-primary" style="float:left;">' +
+                '<option selected value="1">Corredor</option>' +
+                '<option value="2">Labirinto</option>' +
                 '</select>' +
-                ' </div>' +
+                '</div>' +
                 '</div>' +
                 '</div>' +
                 '  <div class="col-12 col-sm-12 col-md-12 col-lg-4">' +
@@ -1218,8 +1218,7 @@ $(document).ready(function () {
         //   }
         //   if(($('#room_type').val() == 'hope_door' && entrar==2) || ($('#room_type').val() != 'hope_door' && entrar==1)){
 
-        console.log(z)
-        e.preventDefault()
+
 
         if (((z == 1 && !ref.checked && $('#room_type').val() != 'true_or_false') ||
             (!ref.checked && $('#room_type').val() == 'true_or_false')) ||

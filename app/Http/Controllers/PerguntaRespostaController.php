@@ -925,12 +925,12 @@ class PerguntaRespostaController extends Controller
                     ->where('id','=', $request->path_reforco_id)
                     ->update(['ambiente_perg' => $ambiente_ref,'tamanho' => $tamanho_ref,'largura' => $largura_ref]);
 
-                    $ambienteB_perg = $request->answer_boolean_perg;
+                    $ambiente_perg = $request->answer_boolean_perg;
                     $tamanho1 = $request->tamanho_perg;
                     $largura1 = $request->largura_perg;
                     $disponivel = true;
 
-                    if($ambienteB_perg==1){
+                    if($ambiente_perg==1){
                         $tamanho = rand(1,3);
                         $largura = rand(1,3);
                     }else{
@@ -962,7 +962,7 @@ class PerguntaRespostaController extends Controller
 
                     DB::table('paths')
                     ->where('id','=', $request->path_errado_id)
-                    ->update(['ambiente_perg' => $ambienteB_perg,'tamanho' => $tamanho,'largura' => $largura]);
+                    ->update(['ambiente_perg' => $ambiente_perg,'tamanho' => $tamanho,'largura' => $largura]);
 
                     foreach($respostas_ref as $resp_ref){
                         $v=0;
@@ -1019,6 +1019,46 @@ class PerguntaRespostaController extends Controller
                         DB::table('perguntas')
                         ->where('id','=', $perg_ref[0]->ref_id)
                         ->update(['tipo_perg' => $request->question_type_ref,'pergunta' => $request->reforco,'room_type' => $request->room_type_ref]);
+                        
+                        $ambiente_perg = $request->answer_boolean_perg;
+                        $tamanho1 = $request->tamanho_perg;
+                        $largura1 = $request->largura_perg;
+                        $disponivel = true;
+                        $largura = 0;
+
+                        if($ambiente_perg==1){
+                            $tamanho_perg = rand(1,3);
+                            $largura_perg = rand(1,3);
+                        }else{
+
+                            if($tamanho1 == 1 ){
+                                $tamanho = rand(1,3);
+
+                            }else if($tamanho1 == 2 ){
+                                $tamanho = rand(4,6);
+
+                            }else if($tamanho1 == 3 ){
+                                $tamanho = rand(7,10);
+
+
+                            }
+
+                            if($largura1 == 1){
+                                $largura = rand(1,3);
+
+                            }else if($largura1 == 2){
+                                $largura = rand(4,6);
+                            }else if($largura1 == 3){
+                                $largura = rand(7,10);
+                            }
+
+
+                        }
+                        
+                        DB::table('paths')
+                        ->join('path_perg', 'paths.id', '=', 'path_perg.path_id')
+                        ->where('path_perg.perg_id','=', $perg_ref[0]->ref_id)
+                        ->update(['path.ambiente_perg' => $ambiente_perg,'path.tamanho' => $tamanho,'path.largura' => $largura]);
 
                         $respostas_ref = DB::table('respostas')
                         ->join('perg_resp','perg_resp.resp_id','=','respostas.id')
@@ -1052,9 +1092,9 @@ class PerguntaRespostaController extends Controller
                     }else{
 
                         //  ////////////////Patch errado da Pergunta/////////
-                        $ambiente_perg = $request->answer_boolean;
-                        $tamanho1 = $request->tamanho;
-                        $largura1 = $request->largura;
+                        $ambiente_perg = $request->answer_boolean_perg;
+                        $tamanho1 = $request->tamanho_perg;
+                        $largura1 = $request->largura_perg;
                         $disponivel = true;
                         $largura = 0;
 
@@ -1064,24 +1104,24 @@ class PerguntaRespostaController extends Controller
                         }else{
 
                             if($tamanho1 == 1 ){
-                                $tamanho = rand(1,3);
+                                $tamanho_perg = rand(1,3);
 
                             }else if($tamanho1 == 2 ){
-                                $tamanho = rand(4,6);
+                                $tamanho_perg = rand(4,6);
 
                             }else if($tamanho1 == 3 ){
-                                $tamanho = rand(7,10);
+                                $tamanho_perg = rand(7,10);
 
 
                             }
 
                             if($largura1 == 1){
-                                $largura = rand(1,3);
+                                $largura_perg = rand(1,3);
 
                             }else if($largura1 == 2){
-                                $largura = rand(4,6);
+                                $largura_perg = rand(4,6);
                             }else if($largura1 == 3){
-                                $largura = rand(7,10);
+                                $largura_perg = rand(7,10);
                             }
 
 
