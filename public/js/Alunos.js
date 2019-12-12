@@ -1,13 +1,111 @@
 // Alunos Js
 
+function teste_plugin(op) {
+
+    if(op == 0){
+        $('#divtabela2').append(
+        '<table id="table_plugin">' +
+        '<thead >' +
+        '<tr>' +
+        '<th scope="col"> </th>' +
+        '<th scope="col"> Nome: </th>' +
+        '<th scope="col"> Email: </th>' +
+        '<th scope="col"></th>' +
+        '</tr>' +
+        '</thead>' +
+        '<tbody id="body_plugin" >' +
+        '</tbody>' +
+        '</table>');
+        $.get("/admin/showalunos").done(function (data) {
+
+            remover_alunos_inseridos(data,6);
+            
+        });
+    }else{
+        $('#divtabela4').append(
+        '<table id="table_grupos">' +
+        '<thead >' +
+        '<tr>' +
+        '<th scope="col"> </th>' +
+        '<th scope="col"> Nome: </th>' +
+        '<th scope="col"> Email: </th>' +
+        '<th scope="col"></th>' +
+        '</tr>' +
+        '</thead>' +
+        '<tbody id="body_grupos_editar" >' +
+        '</tbody>' +
+        '</table>');
+        $.get("/admin/showalunos").done(function (data) {
+
+            remover_alunos_inseridos(data,0);
+            
+        });
+    }
+ 
+}
+
+function carrega_plugin(json,op){
+    var parse = JSON.parse(json);
+
+    console.log(parse);
+    if(op == 0){
+        for (let i = 0; i < parse.length; i++) {
+            $('#body_plugin').append(
+                '<tr id=addaluno' + parse[i].id + '>' +
+                '<td scope="row" id="cod' + parse[i].id + '"></td>' +
+                '<td>' + parse[i].name + '</td>' +
+                '<td>' + parse[i].email + '</td>' +
+                '<td>' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(0,' + parse[i].id + ')">Adicionar</a>' +
+                '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                '</tr>'
+
+            );
+        }
+        data_table('table_plugin');
+    }else{
+        for (let i = 0; i < parse.length; i++) {
+            $('#body_grupos_editar').append(
+                '<tr id=addaluno' + parse[i].id + '>' +
+                '<td scope="row" id="cod' + parse[i].id + '"></td>' +
+                '<td>' + parse[i].name + '</td>' +
+                '<td>' + parse[i].email + '</td>' +
+                '<td>' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="salvar_alteracoes(1,' + parse[i].id + ')">Adicionar</a>' +
+                '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                '</tr>'
+
+            );
+        }
+        data_table('table_grupos');
+    }
+}
+
+function data_table(id){
+        
+    $('#'+id).DataTable({
+          "language": {
+                "lengthMenu": "Mostrando _MENU_ registros por página",
+                "zeroRecords": "Nada encontrado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum registro disponível",
+                "infoFiltered": "(Filtrado de _MAX_ registros no total)"
+            },
+             "lengthMenu": [[5,7,10, 15, 20, -1], [5,7,10, 15, 20, "Todos"]]
+        });
+}
+
+
+
 $('#addAlunoModal').on('show.bs.modal', function (e) {
 
     // mostrarmaisalunos2(0, 1, 5);
     let idsala1 = $("#id_sala").val();
     //console.log("id----->  "+idsala1);
-    alunos_sala(idsala1);
-    pesquisa();
+    //alunos_sala(idsala1);
+    //pesquisa();
     mostrargrupos();
+    
+    teste_plugin(0);
+
 
 
 });
@@ -73,7 +171,7 @@ function pesquisa() {
 function mostrargrupos() {
     $('#divtabelagrupo').append(
 
-        '<table style="align:center" id="" class="  justify-content-center idtable table container " >' +
+        '<table style="align:center" id="tabelagrupo" class="  justify-content-center idtable table container " >' +
         '<thead class=" justify-content-center">' +
         '<tr>' +
         '<th scope="col-1"></th>' +
@@ -106,6 +204,7 @@ function mostrargrupos() {
                 '</tr>'
             );
         }
+        data_table('tabelagrupo');
     });
 }
 
@@ -138,7 +237,7 @@ function addgrupo(id, salaid) {
             });
         }
 
-        alert_grupo("Grupo Adicionado com Sucesso !!", "error");
+        alert_grupo("Grupo adicionado com sucesso !", "error");
 
     });
 }
@@ -175,352 +274,41 @@ function mostrarmaisalunos2(option, option2, jotason) {
     $('#addGrupoModal').on('show.bs.modal');
     $('.pagination').empty();
 
-    if (option == 0) {
-        if (jotason == 5) { //Ocorre quando clica em adicionar grupos (mostra TODOS os alunos)
-            //console.log("Jotason se for 5---->" + jotason);
-            parse = todos;
-        }
-
-        newJson = jotason;
-        option = 1;
-    }
-    if (option == 0) {
-
+    
+        $('#divtabela').append(
+        '<table id="table_add_grupo">' +
+        '<thead >' +
+        '<tr>' +
+        '<th scope="col"> </th>' +
+        '<th scope="col"> Nome: </th>' +
+        '<th scope="col"> Email: </th>' +
+        '<th scope="col"></th>' +
+        '</tr>' +
+        '</thead>' +
+        '<tbody id="body_add_grupo" >' +
+        '</tbody>' +
+        '</table>');
         $.get("/admin/showalunos").done(function (data) {
+            var parse = JSON.parse(data);
 
-            if (option2 == 0) {
-                remover_alunos_inseridos(data, 0); //Manda o array de todos os alunos para a função que seleciona somente os não presentes no grupo
-                parse = JSON.parse(jotason);
-                $(".pagination").empty();
-            } else {
-                parse = JSON.parse(data);
+            console.log(parse);
+            for (let i = 0; i < parse.length; i++) {
+                $('#body_add_grupo').append(
+                    '<tr id=addaluno' + parse[i].id + '>' +
+                    '<td scope="row" id="cod' + parse[i].id + '"></td>' +
+                    '<td>' + parse[i].name + '</td>' +
+                    '<td>' + parse[i].email + '</td>' +
+                    '<td>' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(0,' + parse[i].id + ')">Adicionar</a>' +
+                    '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
+                    '</tr>'
+
+                );
             }
-            let contagem = 1;
-            let contagem1 = 0;
-            let max = 7;
-            let i = 0;
+            data_table('table_add_grupo');
 
-            //console.log("jotason--->" + jotason);
-            if (jotason == 5) {
-                $('#divtabela').empty();
-                $('.pagination').empty();
-                parse = JSON.parse(todos);
 
-                let paginacao = Math.ceil(parse.length / max);
-                $('#divtabela').append(
-                    '<table id="table' + contagem + '" class="table container-fluid" style="display:block;">' +
-                    '<thead >' +
-                    '<tr>' +
-                    '<th scope="col">  </th>' +
-                    '<th scope="col"> Nome: </th>' +
-                    '<th scope="col"> Email: </th>' +
-                    '<th scope="col"></th>' +
-                    '</tr>' +
-                    '</thead>' +
-                    '<tbody id="body' + contagem + '" >' +
-                    '</tbody>' +
-                    '</table>');
-                for (i = 0; i < parse.length; i++) {
-                    if (contagem1 > max) {
-                        contagem++;
-
-                        $('#divtabela').append(
-                            '<table id="table' + contagem + '" class="table container-fluid" style="display:none;">' +
-                            '<thead >' +
-                            '<tr>' +
-                            '<th scope="col"> </th>' +
-                            '<th scope="col"> Nome: </th>' +
-                            '<th scope="col"> Email: </th>' +
-                            '<th scope="col"></th>' +
-                            '</tr>' +
-                            '</thead>' +
-                            '<tbody id="body' + contagem + '" >' +
-                            '</tbody>' +
-                            '</table>');
-                        contagem1 = 0;
-                    }
-                    if (i > 0) {
-                        if (parse[i].id != parse[(i - 1)].id) {
-                            $('#body' + contagem).append(
-                                '<tr id=addaluno' + parse[i].id + '>' +
-                                '<td scope="row" id="cod' + parse[i].id + '"></td>' +
-                                '<td>' + parse[i].name + '</td>' +
-                                '<td>' + parse[i].email + '</td>' +
-                                '<td>' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(0,' + parse[i].id + ')">Adicionar</a>' +
-                                '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
-                                '</tr>'
-
-                            );
-                            contagem1++;
-                        }
-                    } else {
-                        $('#body' + contagem).append(
-                            '<tr id=addaluno' + parse[i].id + '>' +
-                            '<td scope="row" id="cod' + parse[i].id + '"></td>' +
-                            '<td>' + parse[i].name + '</td>' +
-                            '<td>' + parse[i].email + '</td>' +
-                            '<td>' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(0,' + parse[i].id + ')">Adicionar</a>' +
-                            '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="material-icons">done</i></a>' + '</td>' +
-                            '</tr>'
-                        );
-                        contagem1++;
-                    }
-                }
-                if (contagem > 5) {
-                    for (i = 1; i <= 5; i++) {
-                        if (i == 1) {
-                            $('.pagination').append(
-                                '<li class="page-item active"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-
-                        } else {
-                            $('.pagination').append(
-                                '<li class="page-item"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-                        }
-                    }
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(0,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                    );
-                }
-                if (contagem <= 5) {
-                    for (i = 1; i <= contagem; i++) {
-                        if (i == 1) {
-                            $('.pagination').append(
-                                '<li class="page-item active"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-                        } else {
-                            $('.pagination').append(
-                                '<li class="page-item"><a class="page-link" onclick="paginar(0,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-                        }
-                    }
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(0,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                    );
-                }
-            }
-
+            
         });
-    } else {
-        $.get("/admin/showalunos").done(function (data) {
-            if (option2 == 0) {
-                remover_alunos_inseridos(data, 0);
-            } else {
-                parse = JSON.parse(jotason);
-            }
-            let contagem = 1;
-            let contagem1 = 0;
-            let max = 7;
-            let i = 0;
-            //console.log(jotason);
-            if (Option == 1) {
-                parse = JSON.parse(jotason);
-            }
-
-            if (jotason == 5) {
-                parse = JSON.parse(data);
-                todos = parse;
-                option = 0;
-                $("#divtabela2").empty();
-                $("#divtabela").empty();
-                $(".pagination").empty();
-                let paginacao = Math.ceil(parse.length / max);
-                $('#divtabela').append(
-                    '<table id="table' + contagem + '" class="table" style="display:block;">' +
-                    '<thead >' +
-                    '<tr>' +
-                    '<th scope="col" >  </th>' +
-                    '<th scope="col" > Nome </th>' +
-                    '<th scope="col" > Email </th>' +
-                    '<th scope="col" > Ações </th>' +
-                    '</tr>' +
-                    '</thead>' +
-                    '<tbody id="body' + contagem + '" >' +
-                    '</tbody>' +
-                    '</table>');
-                for (i = 0; i < parse.length; i++) {
-                    if (contagem1 > max) {
-                        contagem++;
-
-                        $('#divtabela').append(
-                            '<table id="table' + contagem + '" class="table" style="display:none;">' +
-                            '<thead >' +
-                            '<tr>' +
-                            '<th scope="col" > </th>' +
-                            '<th scope="col"> Nome: </th>' +
-                            '<th scope="col" > Email: </th>' +
-                            '<th scope="col" > Ações </th>' +
-                            '</tr>' +
-                            '</thead>' +
-                            '<tbody id="body' + contagem + '" >' +
-                            '</tbody>' +
-                            '</table>');
-                        contagem1 = 0;
-                    }
-                    if (i > 0) {
-                        if (parse[i].id != parse[(i - 1)].id) {
-                            $('#body' + contagem).append(
-                                '<tr id=addaluno' + parse[i].id + '>' +
-                                '<td  id="cod' + parse[i].id + '"></td>' +
-                                '<td >' + parse[i].name + '</td>' +
-                                '<td >' + parse[i].email + '</td>' +
-                                '<td >' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
-                                '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="fa fa-undo rotationteste"></i></a>' + '</td>' +
-                                '</tr>'
-
-                            );
-                            contagem1++;
-                        }
-                    } else {
-                        $('#body' + contagem).append(
-                            '<tr id=addaluno' + parse[i].id + '>' +
-                            '<td  id="cod' + parse[i].id + '"></td>' +
-                            '<td >' + parse[i].name + '</td>' +
-                            '<td >' + parse[i].email + '</td>' +
-                            '<td >' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
-                            '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="fa fa-undo rotationteste"></i></a>' + '</td>' +
-                            '</tr>'
-                        );
-                        contagem1++;
-                    }
-                }
-                if (contagem > 5) {
-                    for (i = 1; i <= 5; i++) {
-                        if (i == 1) {
-                            $('.pagination').append(
-                                '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-
-                        } else {
-                            $('.pagination').append(
-                                '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-                        }
-                    }
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                    );
-                }
-                if (contagem <= 5) {
-                    for (i = 1; i <= contagem; i++) {
-                        if (i == 1) {
-                            $('.pagination').append(
-                                '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-                        } else {
-                            $('.pagination').append(
-                                '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                            );
-                        }
-                    }
-                    $('.pagination').append(
-                        '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                    );
-                }
-            } else {
-                $("#divtabela2").empty();
-                $("#divtabela").empty();
-                $(".pagination").empty();
-                if (option2 != 0) {
-                    let paginacao = Math.ceil(parse.length / max);
-                    $('#divtabela2').append(
-                        '<table id="table' + contagem + '" class="table table-hover" style="display:block;">' +
-                        '<thead class="text-primary">' +
-                        '<tr>' +
-                        '<th scope="col" >  </th>' +
-                        '<th scope="col" > Alunos </th>' +
-                        '<th scope="col" > Email </th>' +
-                        '<th scope="col" > Ações </th>' +
-                        '</tr>' +
-                        '</thead>' +
-                        '<tbody id="body' + contagem + '" >' +
-                        '</tbody>' +
-                        '</table>');
-                    for (i = 0; i < parse.length; i++) {
-                        if (contagem1 > max) {
-                            contagem++;
-
-                            $('#divtabela2').append(
-                                '<table id="table' + contagem + '" class="table" style="display:none;">' +
-                                '<thead >' +
-                                '<tr>' +
-                                '<th scope="col" > </th>' +
-                                '<th scope="col"> Nome: </th>' +
-                                '<th scope="col" > Email: </th>' +
-                                '<th scope="col" ></th>' +
-                                '</tr>' +
-                                '</thead>' +
-                                '<tbody id="body' + contagem + '" >' +
-                                '</tbody>' +
-                                '</table>');
-                            contagem1 = 0;
-                        }
-                        if (i > 0) {
-                            if (parse[i].id != parse[(i - 1)].id) {
-                                $('#body' + contagem).append(
-                                    '<tr id=addaluno' + parse[i].id + '>' +
-                                    '<td  id="cod' + parse[i].id + '"></td>' +
-                                    '<td >' + parse[i].name + '</td>' +
-                                    '<td >' + parse[i].email + '</td>' +
-                                    '<td >' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
-                                    '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="fa fa-undo rotationteste"></i></a>' + '</td>' +
-                                    '</tr>'
-
-                                );
-                                contagem1++;
-                            }
-                        } else {
-                            $('#body' + contagem).append(
-                                '<tr id=addaluno' + parse[i].id + '>' +
-                                '<td  id="cod' + parse[i].id + '"></td>' +
-                                '<td >' + parse[i].name + '</td>' +
-                                '<td >' + parse[i].email + '</td>' +
-                                '<td >' + '<a style="color:white;" class="btn btn-primary btn-sm" id="add' + parse[i].id + '" onclick="addaluno2(1,' + parse[i].id + ')">Adicionar</a>' +
-                                '<a id="done' + parse[i].id + '" style="display:none;float:right"><i class="fa fa-undo rotationteste"></i></a>' + '</td>' +
-                                '</tr>'
-                            );
-                            contagem1++;
-                        }
-                    }
-                    if (contagem > 5) {
-                        for (i = 1; i <= 5; i++) {
-                            if (i == 1) {
-                                $('.pagination').append(
-                                    '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                                );
-
-                            } else {
-                                $('.pagination').append(
-                                    '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                                );
-                            }
-                        }
-                        $('.pagination').append(
-                            '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                        );
-                    }
-                    if (contagem <= 5) {
-                        for (i = 1; i <= contagem; i++) {
-                            if (i == 1) {
-                                $('.pagination').append(
-                                    '<li class="page-item active"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                                );
-                            } else {
-                                $('.pagination').append(
-                                    '<li class="page-item"><a class="page-link" onclick="paginar(1,' + i + ',' + contagem + ')">' + i + '</a></li>'
-                                );
-                            }
-                        }
-                        $('.pagination').append(
-                            '<li class="page-item"><a class="page-link" onclick="paginar(1,' + contagem + ',' + contagem + ')">Ultima</a></li>'
-                        );
-                    }
-                }
-                option = 0;
-            }
-        });
-    }
 }
 
 //função reponsável por remover um grupo
@@ -850,7 +638,7 @@ function troca_tabs(option) {
     let res = ident.split("a");
 
 
-    $("#divtabela2").empty();
+    $("#divtabela4").empty();
     if (option == 0) {
         mostrarmaisalunos2(1, 0);
         for (let i = 0; i <= remove.length; i++) {
@@ -861,6 +649,7 @@ function troca_tabs(option) {
         $("#salas_v").hide();
         $("#divdatabela").hide();
         $('#adicionaralunos').show();
+        teste_plugin(1);
         remove = [];
     } else if (option == 1) {
         $("#divdatabela").show();
@@ -1100,8 +889,28 @@ function remover_alunos_inseridos(data1, option) {
                 jsonNovo = JSON.stringify(json_original);
                 mostrarmaisalunos2(0, 1, jsonNovo);
             });
-    } else {
-        $.get("/grupos/alunosgrupo/" + res3[0]).done(
+    } else if(option == 6){
+        let sala = document.getElementById('id_sala').value;
+        console.log(data1);
+        console.log("/grupos/alunosgrupoteste/" + sala);
+        $.get("/grupos/alunosgrupoteste/" + sala).done(
+            function (data) {
+                console.log(data);
+                var json_original = JSON.parse(data1);
+                for (let i = 0; i < json_original.length; i++) {
+                    for (let y = 0; y < data.length; y++) {
+                        if (json_original[i].id == data[y].id) {
+                            json_original.splice(i, 1);
+                        }
+                    }
+                }
+                jsonNovo = JSON.stringify(json_original);
+                carrega_plugin(jsonNovo,0);
+            });
+              
+    }else{
+        let sala = document.getElementById('id_sala').value;
+        $.get("/grupos/alunosgrupo/" + sala).done(
             function (data) {
                 var json_original = JSON.parse(data1);
                 for (let i = 0; i < json_original.length; i++) {
@@ -1112,7 +921,7 @@ function remover_alunos_inseridos(data1, option) {
                     }
                 }
                 jsonNovo = JSON.stringify(json_original);
-                mostrarmaisalunos2(0, 1, jsonNovo);
+                carrega_plugin(jsonNovo,1);
             });
     }
 }
@@ -1162,6 +971,7 @@ function alunos_sala(id) {
             json_alunos_sala = data;
         }
     });
+    console.log(json_alunos_sala)
     json_alunos_sala = JSON.parse(json_alunos_sala);
     json_todos = JSON.parse(json_todos);
 

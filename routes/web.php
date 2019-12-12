@@ -132,6 +132,11 @@ Route::prefix('/admin')->group(function () {
     Route::post('/busca-sala', 'SalaController@buscarS');
 
     Route::get('/teste/{id}', 'PerguntaRespostaController@teste');
+    
+    
+    Route::get('/testeplugin', function () {
+        return view('teste_plugin');
+    });
 
 
     Route::get('/users', 'Admin\UserController@getUsers');
@@ -284,4 +289,4 @@ Route::get('/alunos-sala/{id}', 'Admin\UserController@alunos_na_sala');
 Route::get('/alunos-todos', 'Admin\UserController@todos_alunos');
 
 
-
+Route::get('/grupos/alunosgrupoteste/{id}', 'Admin\UserController@carregarpessoas');

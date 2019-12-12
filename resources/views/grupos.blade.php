@@ -69,7 +69,7 @@
 
 <!-- Modal ADD Grupo -->
 <div class="modal fade bd-example-modal-lg" id="addGrupoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <!-- <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Cadastro de Grupos</h5>
@@ -208,14 +208,9 @@
             </div>
 
             <div id="adicionaralunos" style="display:none;">
-                <div id="divtabela2" class="modal-body">
+                <div id="divtabela4" class="modal-body">
                 </div>
-                <div class="row justify-content-center">
-                    <nav aria-label="...">
-                        <ul class="pagination justify-content-center">
-                        </ul>
-                    </nav>
-                </div>
+
             </div>
 
             @csrf

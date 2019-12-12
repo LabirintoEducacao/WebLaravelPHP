@@ -67,7 +67,7 @@
 
 
   <div class="modal fade " id="addAlunoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
 
 
@@ -108,7 +108,7 @@
           <div class="row">
             <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
             <input type="hidden" name="sala_id" id="sala_id" value="{{$id}}">
-            <div class="form-group" style="margin-top:-4%; margin-bottom:5%">
+            <div class="form-group" style="margin-top:-2%; margin-bottom:5%">
               <div class="container">
                 <label for="user_id" display="inline">Escolha o aluno a ser adicionado:</label>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNovoAlunoModal">
@@ -120,11 +120,8 @@
             </div>
           </div>
 
-          <div class="row container" style="margin-bottom:5%">
-            <h5>Pesquisar:&emsp;</h5>
-            <input id="search" name="search" type="text" class="fa fa-search" style="width: 60%; height: 40px ; border-radius: 5px;">
-          </div>
-          <div class="tab-content" id="nav-tabContent">
+         
+          <div class="tab-content" id="nav-tabContent" style="margin-top:-3%;">
             <div class="tab-pane fade show active" id="alunos" role="tabpanel" aria-labelledby="nav-home-tab">
               <div class="tab-content" id="divtabela2">
 

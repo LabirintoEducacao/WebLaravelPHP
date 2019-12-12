@@ -451,15 +451,35 @@ class UserController extends Controller
 
     public function alunos_na_sala($id)
     {
-        $data = DB::table('users')
+       $data = DB::table('users')
             ->select('users.id', 'users.name','users.email')
             ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
             ->orderBy('name')
             ->where('sala_user.sala_id', '=', $id)
             ->get();
+
+        
+
         return $data;
     }
 
+    
+    
+        public function carregarpessoas($id)
+    {
+       $data = DB::table('users')
+            ->select('users.id', 'users.name','users.email')
+            ->join('sala_user', 'users.id', '=', 'sala_user.user_id')
+            ->orderBy('name')
+            ->where('sala_user.sala_id', '=', $id)
+            ->get();
+
+        
+
+        return $data;
+    }
+    
+    
     public function todos_alunos()
     {
         $data = DB::table('users')
