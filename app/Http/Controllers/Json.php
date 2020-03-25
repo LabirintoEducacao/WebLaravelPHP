@@ -67,10 +67,10 @@ class Json extends Controller
 
       $strCaminho = public_path() . '/sala/' . $id;
 
-      if(file_exists($strCaminho)) { 
+      if(file_exists($strCaminho)) {
 
         File::deleteDirectory($strCaminho);
-        
+
       }
 
     }
@@ -78,12 +78,12 @@ class Json extends Controller
 
 
 
-    public function show($id) {   
-      
-      
+    public function show($id) {
+
+
       $idd = $id;
 
-      
+
 
 
 // --------------------- Consultando Dados da Tabela ------------------//
@@ -93,8 +93,8 @@ class Json extends Controller
       $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
       $sala = Sala::find($id);
 
-      $sala_name = $sala->name; 
-      $salaid = $sala->id;  
+      $sala_name = $sala->name;
+      $salaid = $sala->id;
       $ijson = 0;
       $conta =0;
       $limite = 100;
@@ -124,14 +124,14 @@ class Json extends Controller
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
     foreach($prox_pergunta as $proxima){
-      
+
       $prox = $proxima->id;
 
       $proxpergid [] = $prox;
-    //$contagem++; //Contagem 
-      
+    //$contagem++; //Contagem
+
     }
-    
+
 
     $i=0;
 
@@ -139,7 +139,7 @@ class Json extends Controller
 
 // --------------------- Começo do Foreach das Perguntas------------------//
     foreach  ($pergunta as $perg) {
-      $i++;   
+      $i++;
 
 
       $pergid = $perg->id;
@@ -160,7 +160,7 @@ class Json extends Controller
       $pathid = DB::table('path_perg') ->where('perg_id',$pergid)->get();
 
 
-// ------------------ Perunta Reforço ------------------------- 
+// ------------------ Perunta Reforço -------------------------
 
       if(count($reforcoid) == 0){
 
@@ -179,7 +179,7 @@ class Json extends Controller
 
 
         $ref_resp = DB::table('perg_resp')->select('resp_id') ->where('perg_id',$idref)->get();
-        
+
         $pathreforco = DB::table('path_perg') ->where('perg_id',$idref)->get();
 
         $pathrefs = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$pathreforco[0]->path_id)->get();
@@ -204,18 +204,18 @@ class Json extends Controller
           'width' => $pathrefs[0]->largura,
           'height' => $pathrefs[0]->tamanho,
           'type' => $pathrefs[0]->ambiente_perg,
-          'connected_question' => $idperg 
+          'connected_question' => $idperg
         );
 
-        
+
         $path_ref[]=$pathref;
- // ------------------ Perunta Reforço -------------------------    
+ // ------------------ Perunta Reforço -------------------------
 
         foreach ($ref_resp as  $value) {
 
          $idresp = $value->resp_id;
 
-         $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();     
+         $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();
 
          if($respostaref[0]->corret == 0) {
 
@@ -236,7 +236,7 @@ class Json extends Controller
         );
         $respref[] = $resp_ref;
         $tipo_ref = $respostaref[0]->tipo_resp;
-        
+
 
       }
 
@@ -260,10 +260,10 @@ class Json extends Controller
     foreach ($respostaid as   $value) {
 
      $id = $value->resp_id;
-     $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();  
+     $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();
 
     // Preenchendo os campos do json com as respostas !!!!!!!
-     
+
      if($resposta[0]->corret == 0) {
 
       $answ = false;
@@ -287,14 +287,14 @@ class Json extends Controller
 
   }
 
-  
+
 
      //Puxando os path com id da tabela relação path_perg
   foreach ($pathid as $value) {
 
     $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
 
-    
+
 
     if($path[0]->disp == 1){
 
@@ -336,7 +336,7 @@ class Json extends Controller
 
           $conttrue = 58;
 
-          
+
 
           $pat= array(
             'availability' => $disponivel,
@@ -348,7 +348,7 @@ class Json extends Controller
         }
         if($path[0]->disp == 0){
 
-          
+
 
           $pat= array(
             'availability' => $disponivel,
@@ -357,7 +357,7 @@ class Json extends Controller
             'type' => $path[0]->ambiente_perg,
             'connected_question'=> $conect
           );
-        }       
+        }
       }
 
       $paths [] = $pat;
@@ -368,8 +368,8 @@ class Json extends Controller
     //Preenchendo os campos do json com as perguntas !!!!!!
     foreach ($perg as $key => $value) {
 
-      
-      
+
+
      $perguntas = array(
       'question_id' => $perg->id,
       'answer_type' => $tipo,
@@ -384,7 +384,7 @@ class Json extends Controller
 
     );
 
-     
+
    }
 
 
@@ -396,9 +396,9 @@ class Json extends Controller
 
    if(count($reforcoid) > 0){
      $arperg [] = $perguntas;
-     $arperg [] = $ref; 
+     $arperg [] = $ref;
 
-     
+
    }
 
 
@@ -406,11 +406,11 @@ class Json extends Controller
 
      $arperg [] = $perguntas;
 
-     
+
 
    }
 
-   
+
    $jsn = [
      "maze_id" => $sala->id,
      "maze_name"=>$sala_name,
@@ -418,8 +418,8 @@ class Json extends Controller
      "time_limit" => $sala->duracao,
      "theme" => $sala->tematica,
      "questions" => $arperg
-     
-   ]; 
+
+   ];
 
  }
 
@@ -437,8 +437,8 @@ class Json extends Controller
  fclose($fp);
 
 
- $myfile = file_get_contents( 
-  'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip'); 
+ $myfile = file_get_contents(
+  'sala'.DIRECTORY_SEPARATOR.$salaid.DIRECTORY_SEPARATOR.'json.zip');
 
 
  $base = base64_encode($myfile);
@@ -486,7 +486,7 @@ if($total > $limite){
 
     $rest = substr($base, $conta, $limite);
     $conta = $conta + strlen($rest);
-    
+
 
     $append  = "append|" . $n . "|" . $ntotal ."|";
     $qr = $append.$rest;
@@ -520,9 +520,9 @@ return json_encode($img);
 
 
       $id = $_REQUEST['id'];
-      
 
-      
+
+
 
 
 // --------------------- Consultando Dados da Tabela ------------------//
@@ -532,8 +532,8 @@ return json_encode($img);
       $prox_pergunta =  Pergunta::select('id')->where('sala_id', $id)->whereNotNull('ordem')->orderBy('ordem')->get();
       $sala = Sala::find($id);
 
-      $sala_name = $sala->name; 
-      $salaid = $sala->id;  
+      $sala_name = $sala->name;
+      $salaid = $sala->id;
       $ijson = 0;
       $conta =0;
       $limite = 2000;
@@ -545,14 +545,14 @@ return json_encode($img);
 // Lógica para saber Qual a próxima pergunta a exibir !!!!!!!
 
       foreach($prox_pergunta as $proxima){
-        
+
         $prox = $proxima->id;
 
         $proxpergid [] = $prox;
-    //$contagem++; //Contagem 
-        
+    //$contagem++; //Contagem
+
       }
-      
+
 
       $i=0;
 
@@ -560,7 +560,7 @@ return json_encode($img);
 
 // --------------------- Começo do Foreach das Perguntas------------------//
       foreach  ($pergunta as $perg) {
-        $i++;   
+        $i++;
 
 
         $pergid = $perg->id;
@@ -581,7 +581,7 @@ return json_encode($img);
         $pathid = DB::table('path_perg') ->where('perg_id',$pergid)->get();
 
 
-// ------------------ Perunta Reforço ------------------------- 
+// ------------------ Perunta Reforço -------------------------
 
         if(count($reforcoid) == 0){
 
@@ -600,7 +600,7 @@ return json_encode($img);
 
 
           $ref_resp = DB::table('perg_resp')->select('resp_id') ->where('perg_id',$idref)->get();
-          
+
           $pathreforco = DB::table('path_perg') ->where('perg_id',$idref)->get();
 
           $pathrefs = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$pathreforco[0]->path_id)->get();
@@ -625,18 +625,18 @@ return json_encode($img);
             'width' => $pathrefs[0]->largura,
             'height' => $pathrefs[0]->tamanho,
             'type' => $pathrefs[0]->ambiente_perg,
-            'connected_question' => $idperg 
+            'connected_question' => $idperg
           );
 
-          
+
           $path_ref[]=$pathref;
- // ------------------ Perunta Reforço -------------------------    
+ // ------------------ Perunta Reforço -------------------------
 
           foreach ($ref_resp as  $value) {
 
            $idresp = $value->resp_id;
 
-           $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();     
+           $respostaref =  Resposta::select('id','tipo_resp','resposta','corret')->where('id',$idresp )->get();
 
            if($respostaref[0]->corret == 0) {
 
@@ -657,7 +657,7 @@ return json_encode($img);
           );
           $respref[] = $resp_ref;
           $tipo_ref = $respostaref[0]->tipo_resp;
-          
+
 
         }
 
@@ -681,10 +681,10 @@ return json_encode($img);
       foreach ($respostaid as   $value) {
 
        $id = $value->resp_id;
-       $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();  
+       $resposta =  Resposta::select('id','tipo_resp','resposta','corret')->where('id', $id)->get();
 
     // Preenchendo os campos do json com as respostas !!!!!!!
-       
+
        if($resposta[0]->corret == 0) {
 
         $answ = false;
@@ -708,14 +708,14 @@ return json_encode($img);
 
     }
 
-    
+
 
      //Puxando os path com id da tabela relação path_perg
     foreach ($pathid as $value) {
 
       $path = Path::select('ambiente_perg','tamanho','largura','disp')->where('id',$value->path_id)->get();
 
-      
+
 
       if($path[0]->disp == 1){
 
@@ -757,7 +757,7 @@ return json_encode($img);
 
           $conttrue = 58;
 
-          
+
 
           $pat= array(
             'availability' => $disponivel,
@@ -769,7 +769,7 @@ return json_encode($img);
         }
         if($path[0]->disp == 0){
 
-          
+
 
           $pat= array(
             'availability' => $disponivel,
@@ -778,7 +778,7 @@ return json_encode($img);
             'type' => $path[0]->ambiente_perg,
             'connected_question'=> $conect
           );
-        }       
+        }
       }
 
       $paths [] = $pat;
@@ -789,8 +789,8 @@ return json_encode($img);
     //Preenchendo os campos do json com as perguntas !!!!!!
     foreach ($perg as $key => $value) {
 
-      
-      
+
+
      $perguntas = array(
       'question_id' => $perg->id,
       'answer_type' => $tipo,
@@ -805,7 +805,7 @@ return json_encode($img);
 
     );
 
-     
+
    }
 
 
@@ -817,9 +817,9 @@ return json_encode($img);
 
    if(count($reforcoid) > 0){
      $arperg [] = $perguntas;
-     $arperg [] = $ref; 
+     $arperg [] = $ref;
 
-     
+
    }
 
 
@@ -827,23 +827,23 @@ return json_encode($img);
 
      $arperg [] = $perguntas;
 
-     
+
 
    }
 
-   
+
    $jsn = [
      "maze_id" => $sala->id,
      "maze_name"=>$sala_name,
      "starting_question_id"=> $proxpergid [0],
      "time_limit" => $sala->duracao,
-     "theme" => $sala->tematica,
+     "theme" => $this->getThemeId($sala->tematica),
      "questions" => $arperg
-     
-   ]; 
+
+   ];
 
  }
- 
+
  return json_encode($jsn);
 
 }
@@ -869,5 +869,26 @@ return json_encode($img);
     public function destroy($id)
     {
         //
+    }
+
+    private function getThemeId($name){
+        switch ($name){
+            case "icy_maze":
+                return 0;
+                break;
+            case "urban":
+                return 5;
+                break;
+            case "forest":
+                return 3;
+                break;
+            case "mansion":
+                return 4;
+                break;
+            default:
+                return -1;
+                break;
+
+        }
     }
   }

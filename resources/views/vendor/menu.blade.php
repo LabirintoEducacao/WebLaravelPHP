@@ -12,7 +12,7 @@
 =========================================================
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
- 
+
 <!DOCTYPE html>
 <html lang="en" id="abrirmenu">
 
@@ -38,8 +38,8 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/c0ff39d208.js" crossorigin="anonymous"></script>
 
-    
-    
+
+
 </head>
 
 <body onload="totalresposta()">
@@ -162,9 +162,9 @@
 
 
       @yield('myscript')
-    
-    
-    
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 <!--    <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.js charset=utf-8></script>-->
      {{-- ChartScript --}}
@@ -214,37 +214,37 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('assets/demo/demo.js')}}"></script>
     <script>
-        
-        
+
+
             $('#qntdeRespPerg').change(function(){
-                
+
                 if($('#qntdeRespPerg').is(":checked") == true){
-                    
+
                     $('#qntdeRespPergDiv').css('display','block');
-                    
+
                 }else{
-                    
+
                     $('#qntdeRespPergDiv').css('display','none');
-                    
+
                 }
-                
+
             })
-        
+
         $('#qntdeTentativas').change(function(){
-                
+
                 if($('#qntdeTentativas').is(":checked") == true){
-                    
+
                     $('#qntdeTentativasDiv').css('display','block');
-                    
+
                 }else{
-                    
+
                     $('#qntdeTentativasDiv').css('display','none');
-                    
+
                 }
-                
+
             })
-        
-        
+
+
         $('#removerAlunoModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
 
@@ -284,9 +284,9 @@
 
 
             var modal = $(this);
-         
+
             modal.find("#tituloPergModal").html("Você realmente deseja deletar a pergunta \'" + perg + "\' desta sala?");
-           
+
             modal.find('#confirmarRemoverPergunta').on('click', function() {
                 window.location.href = url;
             })
@@ -733,7 +733,7 @@
             modal.find('#time3').val(recipienttempo);
             modal.find('#time4').val(tempo);
             modal.find('#sala_id').val(recipientid);
-            modal.find('#theme').val(recipienttema);
+            modal.find('#theme').val(recipienttema).change();
             console.log(recipientcorrect);
             console.log(recipientenable);
 

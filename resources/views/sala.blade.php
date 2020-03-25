@@ -103,7 +103,7 @@
                                         </td>
                                         <?php
                                             $x = gmdate("H:i:s", $sala->duracao);
-                                            
+
                                         ?>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
@@ -139,7 +139,7 @@
                                                 @endif
                                              </div>
                                         </td>
-                                        
+
                                     </tr>
                                     @endforeach
 
@@ -174,7 +174,7 @@
                                     @if($sala->public==1)
                                     <?php
                                             $x = gmdate("H:i:s", $sala->duracao);
-                                            
+
                                         ?>
                                     @if($sala->enable == 0)
                                     <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
@@ -260,7 +260,7 @@
                                     @if($sala->public==0)
                                     <?php
                                             $x = gmdate("H:i:s", $sala->duracao);
-                                            
+
                                         ?>
                                     @if($sala->enable == 0)
                                     <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
@@ -309,7 +309,7 @@
                                                 <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
                                                 @endif
                                                 <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
-                                            
+
                                             </div>
                                         </td>
                                     </tr>
@@ -347,7 +347,7 @@
                                     @if($sala->enable==1)
                                     <?php
                                             $x = gmdate("H:i:s", $sala->duracao);
-                                            
+
                                         ?>
                                     <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
@@ -386,10 +386,10 @@
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
                                                 <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-tempoo="{{$sala->duracao}}" data-whatevertempo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="width:93%; cursor: pointer;" >Editar</button>
-                                    
+
                                                 <a class="dropdown-item" href="{{url('admin/desativar/'.$sala->id)}}">Desativar</a>
-                                               
-                                       
+
+
                                                 @if($sala->public==0)
                                                 <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
                                                 @endif
@@ -430,7 +430,7 @@
                                     @if($sala->enable==0)
                                     <?php
                                             $x = gmdate("H:i:s", $sala->duracao);
-                                            
+
                                         ?>
 
                                     <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
@@ -470,9 +470,9 @@
                                             <div class="dropdown-menu" aria-labelledby="sala{{$sala->id}}">
                                                 <a class="dropdown-item" href="{{ url('admin/visualizar/'.$sala->id) }}">Visualizar</a>
                                                 <button class="dropdown-item" data-toggle="modal" data-target="#editarSalaModal1" data-whateverid="{{$sala->id}}" data-whatevernome="{{$sala->name}}" data-tempoo="{{$sala->duracao}}" data-whatevertempo="{{$sala->duracao}}" data-tempoo="{{$sala->duracao}}" data-whatevertema="{{$sala->tematica}}" data-whateverpublic="{{$sala->public}}" data-whateverenable="{{$sala->enable}}" style="width:93%; cursor: pointer" >Editar</button>
-                                                
+
                                                 <a class="dropdown-item" href="{{url('admin/ativar/'.$sala->id)}}">Ativar</a>
-                                          
+
                                                 @if($sala->public==0)
                                                 <a class="dropdown-item" href="{{url('admin/alunos/'.$sala->id)}}">Adicionar Alunos</a>
                                                 @endif
@@ -535,12 +535,12 @@
                                 <label for="theme">Tema:&emsp;</label>
                                 <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
-                                    <option disabled value="urban">Urbano</option>
-                                    <option disabled value="forest">Selva</option>
-                                    <option disabled value="mansion">Casa/Mansão</option>
+                                    <option value="urban">Urbano</option>
+                                    <option value="forest">Selva</option>
+                                    <option value="mansion">Casa/Mansão</option>
                                 </select>
-                                
-                            
+
+
 
                             </div>
                             <div class="form-group col">
@@ -576,8 +576,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
 </div>
 
@@ -621,9 +621,9 @@
                                 <label for="theme">Tema:&emsp;</label>
                                 <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
-                                    <option disabled value="urban">Urbano</option>
-                                    <option disabled value="forest">Selva</option>
-                                    <option disabled value="mansion">Casa/Mansão</option>
+                                    <option value="urban">Urbano</option>
+                                    <option value="forest">Selva</option>
+                                    <option value="mansion">Casa/Mansão</option>
                                 </select>
 
                             </div>
@@ -668,12 +668,12 @@
    <div class="modal-content">
     <div class="modal-header" style="background-color:#9124a3">
          <h4 class="modal-title" style="color: #ffffff;">Informação</h4>
-        
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
         <h5 class="modal-title" style="color: black; font-size: 13px"><b>Este tema determina a estética utilizada para mostrar o problema aos jogadores, nenhuma mecânica é influenciada por essa escolha.</b></h5>
-   
+
         <br>
          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Gelo</b></h5>
         <p style="font-size: 12px; text-align: justify;">O labirinto é formado por uma geleira, com quadro para os textos de pergunta e resposta e suporte para os itens todos lapidados em blocos de gelo.</p>
@@ -692,15 +692,15 @@
 @section('js')
     <script>
         $(document).ready(function(){
-            $('.teste').on('cilck', function (event) {
+            $('.teste').on('click', function (event) {
                var button = $(event.relatedTarget); // Button that triggered the modal
                 console.log(button);
 
            });
-        }
-                          
-        
-                          
+        };
+
+
+
 
 
     </script>
