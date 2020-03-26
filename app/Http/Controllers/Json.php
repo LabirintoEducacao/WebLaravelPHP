@@ -876,14 +876,20 @@ return json_encode($img);
             case "icy_maze":
                 return 0;
                 break;
-            case "urban":
-                return 5;
+            case "cave":
+                return 1;
+                break;
+            case "desert":
+                return 2;
                 break;
             case "forest":
                 return 3;
                 break;
             case "mansion":
                 return 4;
+                break;
+            case "urban":
+                return 5;
                 break;
             default:
                 return -1;

@@ -91,14 +91,18 @@
                                     @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica=="urban")
-                                            Urbano
+                                            @if($sala->tematica=="icy_maze")
+                                                Gelo
+                                            @elseif($sala->tematica=="cave")
+                                                Caverna
+                                            @elseif($sala->tematica=="desert")
+                                                Deserto
+                                            @elseif($sala->tematica=="forest")
+                                                Floresta
                                             @elseif($sala->tematica=="mansion")
-                                            Casa/Mansão
-                                            @elseif($sala->tematica=="icy_maze")
-                                            Gelo
-                                            @else
-                                            Selva
+                                                Casa/Mansão
+                                            @elseif($sala->tematica=="urban")
+                                                Urbano
                                             @endif
                                         </td>
                                         <?php
@@ -183,14 +187,18 @@
                                     @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica=="urban")
-                                            Urbano
+                                            @if($sala->tematica=="icy_maze")
+                                                Gelo
+                                            @elseif($sala->tematica=="cave")
+                                                Caverna
+                                            @elseif($sala->tematica=="desert")
+                                                Deserto
+                                            @elseif($sala->tematica=="forest")
+                                                Floresta
                                             @elseif($sala->tematica=="mansion")
-                                            Casa/Mansão
-                                            @elseif($sala->tematica=="icy_maze")
-                                            Gelo
-                                            @else
-                                            Selva
+                                                Casa/Mansão
+                                            @elseif($sala->tematica=="urban")
+                                                Urbano
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -269,14 +277,18 @@
                                     @endif
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                           @if($sala->tematica=="urban")
-                                            Urbano
+                                            @if($sala->tematica=="icy_maze")
+                                                Gelo
+                                            @elseif($sala->tematica=="cave")
+                                                Caverna
+                                            @elseif($sala->tematica=="desert")
+                                                Deserto
+                                            @elseif($sala->tematica=="forest")
+                                                Floresta
                                             @elseif($sala->tematica=="mansion")
-                                            Casa/Mansão
-                                            @elseif($sala->tematica=="icy_maze")
-                                            Gelo
-                                            @else
-                                            Selva
+                                                Casa/Mansão
+                                            @elseif($sala->tematica=="urban")
+                                                Urbano
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -352,14 +364,18 @@
                                     <tr style="cursor: pointer;">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                            @if($sala->tematica=="urban")
-                                            Urbano
+                                            @if($sala->tematica=="icy_maze")
+                                                Gelo
+                                            @elseif($sala->tematica=="cave")
+                                                Caverna
+                                            @elseif($sala->tematica=="desert")
+                                                Deserto
+                                            @elseif($sala->tematica=="forest")
+                                                Floresta
                                             @elseif($sala->tematica=="mansion")
-                                            Casa/Mansão
-                                            @elseif($sala->tematica=="icy_maze")
-                                            Gelo
-                                            @else
-                                            Selva
+                                                Casa/Mansão
+                                            @elseif($sala->tematica=="urban")
+                                                Urbano
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -436,14 +452,18 @@
                                     <tr id="sala"style="cursor: pointer; background-color:rgba(229, 229, 229, 0.4);">
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{$sala->name}}</td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">
-                                           @if($sala->tematica=="urban")
-                                            Urbano
+                                            @if($sala->tematica=="icy_maze")
+                                                Gelo
+                                            @elseif($sala->tematica=="cave")
+                                                Caverna
+                                            @elseif($sala->tematica=="desert")
+                                                Deserto
+                                            @elseif($sala->tematica=="forest")
+                                                Floresta
                                             @elseif($sala->tematica=="mansion")
-                                            Casa/Mansão
-                                            @elseif($sala->tematica=="icy_maze")
-                                            Gelo
-                                            @else
-                                            Selva
+                                                Casa/Mansão
+                                            @elseif($sala->tematica=="urban")
+                                                Urbano
                                             @endif
                                         </td>
                                         <td onclick="window.location.href = '{{ url('admin/visualizar/'.$sala->id) }}'; ">{{ $x }}</td>
@@ -535,9 +555,11 @@
                                 <label for="theme">Tema:&emsp;</label>
                                 <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
-                                    <option value="urban">Urbano</option>
-                                    <option value="forest">Selva</option>
+                                    <option value="cave">Caverna</option>
+                                    <option value="desert">Deserto</option>
+                                    <option value="forest">Floresta</option>
                                     <option value="mansion">Casa/Mansão</option>
+                                    <option value="urban">Urbano</option>
                                 </select>
 
 
@@ -621,9 +643,11 @@
                                 <label for="theme">Tema:&emsp;</label>
                                 <select id="theme" name="theme" class="form-control selectpicker" data-style="btn btn-primary">
                                     <option value="icy_maze">Gelo</option>
-                                    <option value="urban">Urbano</option>
-                                    <option value="forest">Selva</option>
+                                    <option value="cave">Caverna</option>
+                                    <option value="desert">Deserto</option>
+                                    <option value="forest">Floresta</option>
                                     <option value="mansion">Casa/Mansão</option>
+                                    <option value="urban">Urbano</option>
                                 </select>
 
                             </div>
@@ -677,12 +701,16 @@
         <br>
          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Gelo</b></h5>
         <p style="font-size: 12px; text-align: justify;">O labirinto é formado por uma geleira, com quadro para os textos de pergunta e resposta e suporte para os itens todos lapidados em blocos de gelo.</p>
-          <h5 class="modal-title" style="color: black; font-size: 13px"><b>Urbano</b></h5>
-          <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
-           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Selva</b></h5>
-           <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
+        <h5 class="modal-title" style="color: black; font-size: 13px"><b>Caverna</b></h5>
+        <p style="font-size: 12px; text-align: justify;">O labirinto possui uma estética mais fechada e com paredes rochosas. O jogador passará pode diversos desafios com perguntas e respostas.</p>
+        <h5 class="modal-title" style="color: black; font-size: 13px"><b>Deserto</b></h5>
+        <p style="font-size: 12px; text-align: justify;">O labirinto possui uma estética mais egipcia, passando por passagens com paredes pintadas com símbolos, remetendo a um interior de um templo. O jogador passará pode diversos desafios com perguntas e respostas.</p>
+           <h5 class="modal-title" style="color: black; font-size: 13px"><b>Floresta</b></h5>
+           <p style="font-size: 12px; text-align: justify;">O labirinto possui ambientação harmônica com foco na natureza cheio de paredes e objetos rochosos com musgos. O jogador passará pode diversos desafios com perguntas e respostas.</p>
             <h5 class="modal-title" style="color: black; font-size: 13px"><b>Casa/Mansão</b></h5>
-            <p style="font-size: 12px; text-align: justify;">Ainda não funciona.</p>
+            <p style="font-size: 12px; text-align: justify;">Labirinto com uma estética simples e limpa, onde o jogador poderá aproveitar o ambiente para se sentir em uma casa cheio de quadros artísticos. O jogador passará pode diversos desafios com perguntas e respostas.</p>
+        <h5 class="modal-title" style="color: black; font-size: 13px"><b>Urbano</b></h5>
+        <p style="font-size: 12px; text-align: justify;">O labirinto possui uma ambientação de um centro de uma cidade, com algumas variações de paredes ( com posteres e rachaduras). O jogador passará pode diversos desafios com perguntas e respostas.</p>
     </div>
     </div>
   </div>
