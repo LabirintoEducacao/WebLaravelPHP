@@ -489,7 +489,7 @@ class EstatisticaController extends Controller
         if(count($tperg)== 0){
 
             $result = array(
-                'error'=>array('nao existe registro com essas informacoes'),
+                'error'=>array('Não existe registro com essas informacões'),
                 'success'=> -1
             );
 
@@ -512,7 +512,7 @@ class EstatisticaController extends Controller
                             $rooms[$stop->question_id]['room_id'] = $stop->question_id;
                             $rooms[$stop->question_id]['answer_id'] = 0;
                             $rooms[$stop->question_id]['right'] = 0;
-                            $rooms[$stop->question_id]['wrong'] = 0;
+                            $rooms[$stop->question_id]['wrongs'] = 0;
                             $rooms[$stop->question_id]['status'] = 0;
                             $rooms[$stop->question_id]['enterTime'] = 0;
                             $rooms[$stop->question_id]['timeInside'] = 0;
@@ -531,10 +531,12 @@ class EstatisticaController extends Controller
                     if($stop->event == "question_end"){
                         $correct_count = $stop->correct_count;
                         $wrong_count = $stop->wrong_count;
-                        $lastquestion = $stop->question_id;
+                        if($stop->correct){
+                            $lastquestion = $stop->question_id;
+                        }
 
-                        $rooms[$stop->question_id]['right'] = (int) ($stop->correct);
-                        $rooms[$stop->question_id]['wrong'] = (int) (!$stop->correct);
+                        $rooms[$stop->question_id]['right'] = intval($stop->correct);
+                        $rooms[$stop->question_id]['wrongs'] = intval(!$stop->correct);
                         $rooms[$stop->question_id]['status'] = ($stop->correct) ? 1 : 2;
                         $rooms[$stop->question_id]['timeInside'] = strtotime($stop->created_at) - $rooms[$stop->question_id]['enterTime'];
                     }
@@ -578,7 +580,7 @@ class EstatisticaController extends Controller
                     $room['room_id'] = $perg->id;
                     $room['answer_id'] = 0;
                     $room['right'] = 0;
-                    $room['wrong'] = 0;
+                    $room['wrongs'] = 0;
                     $room['status'] = 0;
                 }
                 array_push($resrooms, $room);
