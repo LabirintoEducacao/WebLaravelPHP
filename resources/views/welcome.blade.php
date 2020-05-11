@@ -93,7 +93,7 @@
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Registrar</a>
+                            <a href="{{ route('register') }}">Cadastrar</a>
                         @endif
                     @endauth
                 </div>
@@ -114,7 +114,7 @@
                         <i class="fas fa-user-graduate fa-10x" style="width: 80%; color: #636b6f; margin: 8px"></i>
                         <div class="card-text links">
                             <a href="{{ url('usuario/login') }}">Login</a><br>
-                            <a href="{{ url('usuario/register') }}">Cadastrar Aluno</a>
+                            <a href="{{ url('usuario/register') }}">Cadastre-se</a>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                         <i class="fas fa-chalkboard-teacher fa-10x" style="width: 80%; color: #636b6f; margin: 8px"></i>
                         <div class="card-text links">
                             <a href="{{ url('login') }}">Login</a><br>
-                            <a href="{{ url('register') }}">Cadastrar Professor</a>
+                            <a href="{{ url('register') }}">Cadastre-se</a>
                         </div>
                     </div>
                 </div>
