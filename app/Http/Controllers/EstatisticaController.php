@@ -538,11 +538,14 @@ class EstatisticaController extends Controller
                     if($stop->event == "maze_start"){
                         $gamestat = 0;
                     }
-                    if($stop->event == "answer_interaction"){
+                    if($stop->event == "question_answer"){
                         $rooms[$stop->question_id]['answer_id'] = $stop->answer_id;
                     }
-                    if($stop->event == "question_start"){
+                    if($stop->event == "question_start" || $stop->event == "maze_continue"){
                         $rooms[$stop->question_id]['enterTime'] = strtotime($stop->created_at);
+                    }
+                    if($stop->event == "maze_paused"){
+                        $rooms[$stop->question_id]['timeInside'] += (strtotime($stop->created_at) - $rooms[$stop->question_id]['enterTime']);
                     }
                     if($stop->event == "question_end"){
                         $correct_count = $stop->correct_count;
@@ -550,16 +553,14 @@ class EstatisticaController extends Controller
                         if($stop->correct){
                             $lastquestion = $stop->question_id;
                         }
-
                         $rooms[$stop->question_id]['right'] = intval($stop->correct);
                         $rooms[$stop->question_id]['wrongs'] = intval(!$stop->correct);
                         $rooms[$stop->question_id]['status'] = ($stop->correct) ? 1 : 2;
-                        $rooms[$stop->question_id]['timeInside'] = strtotime($stop->created_at) - $rooms[$stop->question_id]['enterTime'];
+                        $rooms[$stop->question_id]['timeInside'] += (strtotime($stop->created_at) - $rooms[$stop->question_id]['enterTime']);
                     }
                     if($stop->event == "maze_end"){
                         $gamestat = 1;
                     }
-
                     $time_elapsed = $stop->elapsed_time;
                 }
 
@@ -598,6 +599,8 @@ class EstatisticaController extends Controller
                     $room['right'] = 0;
                     $room['wrongs'] = 0;
                     $room['status'] = 0;
+                    $room['enterTime'] = 0;
+                    $room['timeInside'] = 0;
                 }
                 array_push($resrooms, $room);
             }

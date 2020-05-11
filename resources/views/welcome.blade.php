@@ -84,9 +84,10 @@
     <body>
 
     <div class="container position-ref full-height">
-        <div>
+        <div class="row" style="margin-top: 16px; margin-bottom: 16px">
+            <div class="col-md-8"></div>
             @if (Route::has('login'))
-                <div class="top-right links mobile-hide">
+                <div class="links mobile-hide col-md-4" style="text-align: right">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
@@ -101,7 +102,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 title m-b-md justify-content-center" style="margin-top: 10%; text-align: center">
+            <div class="col-md-12 title m-b-md justify-content-center" style="margin-top: 7%; text-align: center">
                 Labirinto da Educação
             </div>
         </div>
