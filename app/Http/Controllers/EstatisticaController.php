@@ -538,7 +538,7 @@ class EstatisticaController extends Controller
                     if($stop->event == "maze_start"){
                         $gamestat = 0;
                     }
-                    if($stop->event == "answer_interaction"){
+                    if($stop->event == "question_answer"){
                         $rooms[$stop->question_id]['answer_id'] = $stop->answer_id;
                         if($stop->correct == 1){
                             $rooms[$stop->question_id]['right'] = 1;
