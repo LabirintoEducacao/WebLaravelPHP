@@ -208,7 +208,7 @@ class EstatisticaController extends Controller
         
         if($start){
             $jogadas = $start->start;
-            if($start->event == "maze_event"){
+            if($start->event == "maze_end"){
                 $jogadas++;
             } else if($event == 'maze_start'){
                 $jogadas++;
