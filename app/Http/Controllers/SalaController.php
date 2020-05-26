@@ -155,8 +155,6 @@ class SalaController extends Controller
         $objProjetoDiretorio = File::makeDirectory($strCaminho);
       }
     } else {
-      var_dump($request->input('enable1'));
-      var_dump($request->input('public1'));
       $sala = Sala::find($request->sala_id);
       $sala->name = $request->input('nome');
       $sala->duracao = 0;

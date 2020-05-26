@@ -569,6 +569,7 @@ class EstatisticaController extends Controller
                 if($indexperg == 0){
                     $startquestion = $perg->id;
                 }
+                $indexperg++;
 
                 if(isset($rooms[$perg->id])){
                     $room = $rooms[$perg->id];
