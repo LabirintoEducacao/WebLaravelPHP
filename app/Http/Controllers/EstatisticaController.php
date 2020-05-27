@@ -509,7 +509,7 @@ class EstatisticaController extends Controller
 
         }
         else{
-            $start = [];
+            $save = [];
 
             if($start){
                 $jogada = $start['start'];
